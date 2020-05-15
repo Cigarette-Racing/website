@@ -2,3 +2,11 @@ node_modules
 
 # Storybook
 storybook-static
+
+# CraftCMS/Database
+backend/assets/*
+backend/backups/*
+backend/redactor/*
+backend/templates/*
+backend/translations/*
+backend/mysql_config.cnf
