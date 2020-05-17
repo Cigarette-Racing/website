@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography } from '../../src/ui-kit/typography'
+import { Typography } from '../src/ui-kit/typography'
 
 const Divider = () => {
   return (
