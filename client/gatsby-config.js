@@ -16,6 +16,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-postcss`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
