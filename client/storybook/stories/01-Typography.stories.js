@@ -1,50 +1,5 @@
-import React, { Fragment } from 'react'
-
-const getStyles = (variant) => {
-  if (variant === 'h1') {
-    return ['72px', '0px', '88px']
-  }
-  if (variant === 'h2') {
-    return ['56px', '0px', '88px']
-  }
-  if (variant === 'h3') {
-    return ['40px', '0px', '48px']
-  }
-  if (variant === 'h4') {
-    return ['32px', '0px', '40px']
-  }
-  if (variant === 'h5') {
-    return ['24px', '0px', '32px']
-  }
-  if (variant === 'p1') {
-    return ['18px', '1px', '24px']
-  }
-  if (variant === 'p2') {
-    return ['16px', '1px', '24px']
-  }
-  if (variant === 'p3') {
-    return ['14px', '1px', '18px']
-  }
-  if (variant === 'e1') {
-    return ['16px', '2px', '18px']
-  }
-  if (variant === 'e2') {
-    return ['14px', '2px', '18px']
-  }
-  if (variant === 'e3') {
-    return ['12px', '2px', '18px']
-  }
-  throw new Error(`Invalid variant provided: ${variant}`)
-}
-
-const Typography = (props) => {
-  const [fontSize, letterSpacing, lineHeight] = getStyles(props.variant)
-  return (
-    <div style={{ fontSize, letterSpacing, lineHeight, color: 'white' }}>
-      {props.children}
-    </div>
-  )
-}
+import React from 'react'
+import { Typography } from '../../src/ui-kit/typography'
 
 const Divider = () => {
   return (
