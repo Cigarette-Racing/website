@@ -35,7 +35,6 @@ const getStyles = (variant: TypographyVariant) => {
     return ['text-xs', 'tracking-wider', 'leading-4']
   }
   return []
-  // throw new Error(`Invalid variant provided: ${variant}`)
 }
 
 type TypographyVariant =
@@ -52,7 +51,8 @@ type TypographyVariant =
   | 'e3' // Eyebrow 3
 
 export interface TypographyProps {
-  variant: TypographyVariant // Eyebrow 3
+  /** Typographic variant to use. */
+  variant: TypographyVariant
 }
 
 export const Typography: React.FC<TypographyProps> = (props) => {
