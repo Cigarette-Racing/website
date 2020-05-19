@@ -1,6 +1,24 @@
 module.exports = {
   purge: ['./src/**/*.{ts,tsx}'],
   theme: {
+    fontFamily: {
+      system: ['system-ui'],
+      heading: ['"SangBleu Kingdom"', 'serif'],
+      body: ['"SangBleu Sans"', 'serif'],
+    },
+    colors: {
+      red: '#d12026',
+      black: '#000000',
+      white: '#ffffff',
+      gray: {
+        1: '#333333',
+        2: '#4f4f4f',
+        3: '#828282',
+        4: '#bdbdbd',
+        5: '#e0e0e0',
+        6: '#f2f2f2',
+      },
+    },
     extend: {
       fontSize: {
         xs: '0.75rem', // 12px
