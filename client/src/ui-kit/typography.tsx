@@ -2,37 +2,43 @@ import React from 'react'
 
 const getStyles = (variant: TypographyVariant) => {
   if (variant === 'h1') {
-    return ['text-6xl', 'tracking-normal', 'leading-10']
+    return ['text-6xl', 'tracking-normal', 'leading-10', 'font-heading']
   }
   if (variant === 'h2') {
-    return ['text-5xl', 'tracking-normal', 'leading-10']
+    return ['text-5xl', 'tracking-normal', 'leading-10', 'font-heading']
   }
   if (variant === 'h3') {
-    return ['text-4xl', 'tracking-normal', 'leading-9']
+    return ['text-4xl', 'tracking-normal', 'leading-9', 'font-heading']
   }
   if (variant === 'h4') {
-    return ['text-3xl', 'tracking-normal', 'leading-8']
+    return ['text-3xl', 'tracking-normal', 'leading-8', 'font-heading']
   }
   if (variant === 'h5') {
-    return ['text-2xl', 'tracking-normal', 'leading-7']
+    return ['text-2xl', 'tracking-normal', 'leading-7', 'font-heading']
   }
   if (variant === 'p1') {
-    return ['text-lg', 'tracking-wide', 'leading-6']
+    return ['text-lg', 'tracking-wide', 'leading-6', 'font-body']
   }
   if (variant === 'p2') {
-    return ['text-base', 'tracking-wide', 'leading-6']
+    return ['text-base', 'tracking-wide', 'leading-6', 'font-body']
   }
   if (variant === 'p3') {
-    return ['text-sm', 'tracking-wide', 'leading-4']
+    return ['text-sm', 'tracking-wide', 'leading-4', 'font-body']
   }
   if (variant === 'e1') {
-    return ['text-base', 'tracking-wider', 'leading-4']
+    return [
+      'text-base',
+      'tracking-wider',
+      'leading-4',
+      'font-body',
+      'uppercase',
+    ]
   }
   if (variant === 'e2') {
-    return ['text-sm', 'tracking-wider', 'leading-4']
+    return ['text-sm', 'tracking-wider', 'leading-4', 'font-body', 'uppercase']
   }
   if (variant === 'e3') {
-    return ['text-xs', 'tracking-wider', 'leading-4']
+    return ['text-xs', 'tracking-wider', 'leading-4', 'font-body', 'uppercase']
   }
   return []
 }
@@ -58,7 +64,7 @@ export interface TypographyProps {
 export const Typography: React.FC<TypographyProps> = (props) => {
   const classes = getStyles(props.variant)
   return (
-    <div className={['font-serif', 'text-white', classes].flat().join(' ')}>
+    <div className={['text-white', classes].flat().join(' ')}>
       {props.children}
     </div>
   )
