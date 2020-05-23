@@ -7,6 +7,8 @@ module.exports = {
       body: ['"SangBleu Sans"', 'serif'],
     },
     colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
       red: '#d12026',
       black: '#000000',
       white: '#ffffff',
