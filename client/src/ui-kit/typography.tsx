@@ -1,4 +1,6 @@
 import React from 'react'
+import clsx from 'clsx'
+import { Theme } from './types'
 
 const getStyles = (variant: TypographyVariant) => {
   if (variant === 'h1') {
@@ -57,15 +59,36 @@ type TypographyVariant =
   | 'e3' // Eyebrow 3
 
 export interface TypographyProps {
-  /** Typographic variant to use. */
+  /** Typographic variant to use */
   variant: TypographyVariant
+  /** Light or dark theme */
+  theme?: Theme
+  /** HTML element to use */
+  as?: keyof JSX.IntrinsicElements
+  /** Additional classes to apply */
+  className?: 'string'
 }
 
-export const Typography: React.FC<TypographyProps> = (props) => {
-  const classes = getStyles(props.variant)
+export const Typography: React.FC<TypographyProps> = ({
+  as: Component = 'div',
+  variant,
+  theme,
+  className,
+  children,
+}) => {
+  const variantClasses = getStyles(variant)
   return (
-    <div className={['text-white', classes].flat().join(' ')}>
-      {props.children}
-    </div>
+    <Component
+      className={clsx(
+        variantClasses,
+        {
+          'text-white': theme === 'light',
+          'text-black': theme === 'dark',
+        },
+        className
+      )}
+    >
+      {children}
+    </Component>
   )
 }
