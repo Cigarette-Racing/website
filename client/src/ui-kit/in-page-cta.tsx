@@ -12,11 +12,11 @@ export interface InPageCtaProps {
 
 const baseClasses = 'h-10 px-10 border rounded-full'
 const primaryClasses = 'bg-white text-black border-white'
-const secondaryClasses = 'bg-black text-white border-red'
+const secondaryClasses = 'border-red'
 
 export const InPageCta: React.FC<
   InPageCtaProps & React.HTMLProps<HTMLButtonElement>
-> = ({ variant, children, ...rest }) => {
+> = ({ variant, theme, children, ...rest }) => {
   return (
     <button
       {...rest}
@@ -24,6 +24,8 @@ export const InPageCta: React.FC<
       className={clsx(baseClasses, {
         [primaryClasses]: variant === 'primary',
         [secondaryClasses]: variant === 'secondary',
+        'text-white': variant === 'secondary' && theme === 'dark',
+        'text-black': variant === 'secondary' && theme === 'light',
       })}
     >
       <Typography variant="e2" as="span">

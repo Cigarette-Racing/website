@@ -10,5 +10,30 @@ export default {
 
 export const Sandbox = () => {
   const variant = select('variant', ['primary', 'secondary'], 'primary')
-  return <InPageCta variant={variant}>Request Info</InPageCta>
+  const theme = select('theme', ['light', 'dark'], 'dark')
+  return (
+    <InPageCta variant={variant} theme={theme}>
+      Request Info
+    </InPageCta>
+  )
+}
+
+export const Primary = () => {
+  return <InPageCta variant="primary">Request Info</InPageCta>
+}
+
+export const SecondaryLight = () => {
+  return (
+    <InPageCta variant="secondary" theme="light">
+      Request Info
+    </InPageCta>
+  )
+}
+
+export const SecondaryDark = () => {
+  return (
+    <InPageCta variant="secondary" theme="dark">
+      Request Info
+    </InPageCta>
+  )
 }
