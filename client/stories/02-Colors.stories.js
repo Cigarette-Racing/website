@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import clsx from 'clsx'
 
 export default {
-  title: 'Colors',
+  title: 'Atoms/Colors',
   parameters: {
     backgrounds: [{ name: 'Off-black', value: '#1b1b1b', default: true }],
   },

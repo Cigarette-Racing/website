@@ -3,7 +3,7 @@ import { withKnobs, number, select } from '@storybook/addon-knobs'
 import { ProgressDots } from '../src/ui-kit/progress-dots'
 
 export default {
-  title: 'Progress Dots',
+  title: 'Atoms/Progress Dots',
   component: ProgressDots,
   decorators: [withKnobs],
 }

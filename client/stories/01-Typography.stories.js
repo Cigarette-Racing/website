@@ -14,7 +14,7 @@ const Divider = () => {
 }
 
 export default {
-  title: 'Typography',
+  title: 'Atoms/Typography',
   component: Typography,
 }
 

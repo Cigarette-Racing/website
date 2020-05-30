@@ -4,7 +4,7 @@ import { CircleButton } from '../src/ui-kit/circle-button'
 import { PlayIcon } from '../src/svgs/icons'
 
 export default {
-  title: 'Circle Button',
+  title: 'Atoms/Circle Button',
   component: CircleButton,
   decorators: [withKnobs],
 }

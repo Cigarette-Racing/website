@@ -12,7 +12,7 @@ const source = createMemorySource('/a')
 const history = createHistory(source)
 
 export default {
-  title: 'Tabs',
+  title: 'Atoms/Tabs',
   component: Tabs,
   decorators: [withKnobs],
 }
