@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { ReturnLink } from '../src/ui-kit/return-link'
 
 export default {
-  title: 'Return Link',
+  title: 'Atoms/Return Link',
   component: ReturnLink,
   decorators: [withKnobs],
 }

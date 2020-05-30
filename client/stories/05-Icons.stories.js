@@ -25,7 +25,7 @@ const Container = ({ className, children }) => (
 )
 
 export default {
-  title: 'Icons',
+  title: 'Atoms/Icons',
 }
 
 export const All = () => {

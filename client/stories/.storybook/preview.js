@@ -7,6 +7,9 @@ import '../../src/fonts/fonts.css'
 addDecorator(centered)
 
 addParameters({
+  options: {
+    showRoots: true,
+  },
   backgrounds: [
     { name: 'UI Background', value: '#1e1e1e', default: true },
     { name: 'Red', value: '#d12026' },

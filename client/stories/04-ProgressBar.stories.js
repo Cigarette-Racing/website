@@ -5,7 +5,7 @@ import { ProgressBar } from '../src/ui-kit/progress-bar'
 const Container = ({ children }) => <div className="w-48">{children}</div>
 
 export default {
-  title: 'Progress Bar',
+  title: 'Atoms/Progress Bar',
   component: ProgressBar,
   decorators: [withKnobs],
 }

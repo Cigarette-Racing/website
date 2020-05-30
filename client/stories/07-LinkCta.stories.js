@@ -3,7 +3,7 @@ import { withKnobs, select } from '@storybook/addon-knobs'
 import { LinkCta } from '../src/ui-kit/link-cta'
 
 export default {
-  title: 'Link CTA',
+  title: 'Atoms/Link CTA',
   component: LinkCta,
   decorators: [withKnobs],
 }
