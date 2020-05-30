@@ -67,6 +67,8 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    translate: ['responsive', 'hover', 'focus', 'group-hover'],
+  },
   plugins: [],
 }
