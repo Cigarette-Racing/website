@@ -21,47 +21,47 @@ export default {
 export const All = () => {
   return (
     <div style={{ padding: '60px 0', minWidth: '600px' }}>
-      <Typography variant="h1" theme="light">
+      <Typography variant="h1" theme="dark">
         headline 1
       </Typography>
       <Divider />
-      <Typography variant="h2" theme="light">
+      <Typography variant="h2" theme="dark">
         headline 2
       </Typography>
       <Divider />
-      <Typography variant="h3" theme="light">
+      <Typography variant="h3" theme="dark">
         headline 3
       </Typography>
       <Divider />
-      <Typography variant="h4" theme="light">
+      <Typography variant="h4" theme="dark">
         headline 4
       </Typography>
       <Divider />
-      <Typography variant="h5" theme="light">
+      <Typography variant="h5" theme="dark">
         headline 5
       </Typography>
       <Divider />
-      <Typography variant="p1" theme="light">
+      <Typography variant="p1" theme="dark">
         paragraph 1
       </Typography>
       <Divider />
-      <Typography variant="p2" theme="light">
+      <Typography variant="p2" theme="dark">
         paragraph 2
       </Typography>
       <Divider />
-      <Typography variant="p3" theme="light">
+      <Typography variant="p3" theme="dark">
         paragraph 3
       </Typography>
       <Divider />
-      <Typography variant="e1" theme="light">
+      <Typography variant="e1" theme="dark">
         eyebrow 1
       </Typography>
       <Divider />
-      <Typography variant="e2" theme="light">
+      <Typography variant="e2" theme="dark">
         eyebrow 2
       </Typography>
       <Divider />
-      <Typography variant="e3" theme="light">
+      <Typography variant="e3" theme="dark">
         eyebrow 3
       </Typography>
     </div>
@@ -69,57 +69,57 @@ export const All = () => {
 }
 
 export const Headline1 = () => (
-  <Typography variant="h1" theme="light">
+  <Typography variant="h1" theme="dark">
     headline 1
   </Typography>
 )
 export const Headline2 = () => (
-  <Typography variant="h2" theme="light">
+  <Typography variant="h2" theme="dark">
     headline 2
   </Typography>
 )
 export const Headline3 = () => (
-  <Typography variant="h3" theme="light">
+  <Typography variant="h3" theme="dark">
     headline 3
   </Typography>
 )
 export const Headline4 = () => (
-  <Typography variant="h4" theme="light">
+  <Typography variant="h4" theme="dark">
     headline 4
   </Typography>
 )
 export const Headline5 = () => (
-  <Typography variant="h5" theme="light">
+  <Typography variant="h5" theme="dark">
     headline 5
   </Typography>
 )
 export const Paragraph1 = () => (
-  <Typography variant="p1" theme="light">
+  <Typography variant="p1" theme="dark">
     paragraph 1
   </Typography>
 )
 export const Paragraph2 = () => (
-  <Typography variant="p2" theme="light">
+  <Typography variant="p2" theme="dark">
     paragraph 2
   </Typography>
 )
 export const Paragraph3 = () => (
-  <Typography variant="p3" theme="light">
+  <Typography variant="p3" theme="dark">
     paragraph 3
   </Typography>
 )
 export const Eyebrow1 = () => (
-  <Typography variant="e1" theme="light">
+  <Typography variant="e1" theme="dark">
     eyebrow 1
   </Typography>
 )
 export const Eyebrow2 = () => (
-  <Typography variant="e2" theme="light">
+  <Typography variant="e2" theme="dark">
     eyebrow 2
   </Typography>
 )
 export const Eyebrow3 = () => (
-  <Typography variant="e3" theme="light">
+  <Typography variant="e3" theme="dark">
     eyebrow 3
   </Typography>
 )
