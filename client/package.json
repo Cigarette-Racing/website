@@ -12,8 +12,8 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "type-check": "tsc --noEmit",
-    "storybook:start": "start-storybook -p 17009",
-    "storybook:build": "build-storybook"
+    "storybook:start": "start-storybook -c ./stories/.storybook -p 17009",
+    "storybook:build": "build-storybook -c ./stories/.storybook"
   },
   "dependencies": {
     "clsx": "^1.1.0",
