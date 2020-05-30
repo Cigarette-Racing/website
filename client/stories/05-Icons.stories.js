@@ -1,7 +1,10 @@
 import React from 'react'
 import {
   ArrowIcon,
-  CaretIcon,
+  CaretDownIcon,
+  CaretUpIcon,
+  CheckIcon,
+  CloseIcon,
   ExpandIcon,
   ExternalLinkIcon,
   FacebookIcon,
@@ -41,7 +44,10 @@ export const All = () => {
   return (
     <Container className={colorClass}>
       <ArrowIcon />
-      <CaretIcon />
+      <CaretDownIcon />
+      <CaretUpIcon />
+      <CheckIcon />
+      <CloseIcon />
       <ExpandIcon />
       <ExternalLinkIcon />
       <FacebookIcon />
@@ -59,7 +65,10 @@ export const All = () => {
 }
 
 export const Arrow = () => <ArrowIcon className="text-white text-2xl" />
-export const Caret = () => <CaretIcon className="text-white text-2xl" />
+export const CaretDown = () => <CaretDownIcon className="text-white text-2xl" />
+export const CaretUp = () => <CaretUpIcon className="text-white text-2xl" />
+export const Check = () => <CheckIcon className="text-white text-2xl" />
+export const Close = () => <CloseIcon className="text-white text-2xl" />
 export const Expand = () => <ExpandIcon className="text-white text-2xl" />
 export const ExternalLink = () => (
   <ExternalLinkIcon className="text-white text-2xl" />

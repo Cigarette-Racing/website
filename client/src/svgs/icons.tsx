@@ -1,5 +1,8 @@
 import Arrow from './arrow.svg'
-import Caret from './caret.svg'
+import CaretDown from './caret-down.svg'
+import CaretUp from './caret-up.svg'
+import Check from './check.svg'
+import Close from './close.svg'
 import Expand from './expand.svg'
 import ExternalLink from './external-link.svg'
 import Facebook from './fb.svg'
@@ -15,7 +18,10 @@ import Youtube from './youtube.svg'
 
 export {
   Arrow as ArrowIcon,
-  Caret as CaretIcon,
+  CaretDown as CaretDownIcon,
+  CaretUp as CaretUpIcon,
+  Check as CheckIcon,
+  Close as CloseIcon,
   Expand as ExpandIcon,
   ExternalLink as ExternalLinkIcon,
   Facebook as FacebookIcon,
