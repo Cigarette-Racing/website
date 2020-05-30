@@ -66,7 +66,7 @@ export interface TypographyProps {
   /** HTML element to use */
   as?: keyof JSX.IntrinsicElements
   /** Additional classes to apply */
-  className?: 'string'
+  className?: string
 }
 
 export const Typography: React.FC<TypographyProps> = ({

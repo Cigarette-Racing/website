@@ -8,9 +8,11 @@ export interface LinkCtaProps {
   variant: 'primary' | 'secondary'
 }
 
-const baseClasses = 'h-10 border-b text-white flex items-center'
+const baseClasses = 'h-10 border-b text-white flex items-center group'
 const primaryClasses = 'border-white'
 const secondaryClasses = 'border-transparent'
+const typographyClasses =
+  ' transform transition-transform duration-300 ease-in-out group-hover:translate-x-1'
 
 export const LinkCta: React.FC<
   LinkCtaProps & React.HTMLProps<HTMLButtonElement>
@@ -24,7 +26,7 @@ export const LinkCta: React.FC<
         [secondaryClasses]: variant === 'secondary',
       })}
     >
-      <Typography variant="e2" as="span">
+      <Typography variant="e3" as="span" className={typographyClasses}>
         {children}
       </Typography>
       <ArrowIcon className="ml-10" />
