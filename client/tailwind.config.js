@@ -6,6 +6,13 @@ module.exports = {
       heading: ['"SangBleu Kingdom"', 'serif'],
       body: ['"SangBleu Sans"', 'serif'],
     },
+    fontWeight: {
+      hairline: '100',
+      light: '300',
+      normal: '400',
+      medium: '500',
+      bold: '700',
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
