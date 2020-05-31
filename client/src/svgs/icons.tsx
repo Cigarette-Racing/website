@@ -1,3 +1,4 @@
+import Angle from './angle.svg'
 import Arrow from './arrow.svg'
 import CaretDown from './caret-down.svg'
 import CaretUp from './caret-up.svg'
@@ -17,6 +18,7 @@ import ThreeDots from './threedots.svg'
 import Youtube from './youtube.svg'
 
 export {
+  Angle as AngleIcon,
   Arrow as ArrowIcon,
   CaretDown as CaretDownIcon,
   CaretUp as CaretUpIcon,
