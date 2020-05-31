@@ -6,10 +6,12 @@ import { Typography } from '../atoms/typography'
 export interface HeaderProps {}
 
 export const Header = ({}: HeaderProps) => {
+  // @ts-ignore
+  const src: string = logo
   return (
     <div className="bg-black bg-opacity-50 flex justify-between items-center text-white h-20">
       <Typography variant="e3">Hamburger</Typography>
-      <img src={logo} className="h-16 py-2" />
+      <img src={src} className="h-16 py-2" />
       <Typography variant="e3">Contact</Typography>
     </div>
   )
