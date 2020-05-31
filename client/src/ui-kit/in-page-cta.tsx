@@ -10,9 +10,11 @@ export interface InPageCtaProps {
   theme: Theme
 }
 
-const baseClasses = 'h-10 px-10 border rounded-full'
-const primaryClasses = 'bg-white text-black border-white'
-const secondaryClasses = 'border-red'
+const baseClasses =
+  'h-10 px-10 border rounded-full transition-colors duration-150 ease-in-out'
+const primaryClasses =
+  'bg-white text-black border-white hover:bg-black hover:border-red hover:text-red'
+const secondaryClasses = 'border-red hover:bg-red'
 
 export const InPageCta: React.FC<
   InPageCtaProps & React.HTMLProps<HTMLButtonElement>

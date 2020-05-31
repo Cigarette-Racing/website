@@ -12,7 +12,7 @@ const baseClasses = 'h-10 border-b text-white flex items-center group'
 const primaryClasses = 'border-white'
 const secondaryClasses = 'border-transparent'
 const typographyClasses =
-  ' transform transition-transform duration-300 ease-in-out group-hover:translate-x-1'
+  'transform transition-transform duration-300 ease-in-out group-hover:translate-x-1'
 
 export const LinkCta: React.FC<
   LinkCtaProps & React.HTMLProps<HTMLButtonElement>
