@@ -1,7 +1,7 @@
 import { addParameters, addDecorator } from '@storybook/react'
 import centered from '@storybook/addon-centered/react'
 import { action } from '@storybook/addon-actions'
-import '../../src/index.css'
+import '../../src/styles.css'
 import '../../src/fonts/fonts.css'
 
 addDecorator(centered)
