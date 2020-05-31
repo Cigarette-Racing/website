@@ -17,3 +17,7 @@
 .blur-4 {
   backdrop-filter: blur(20px);
 }
+
+.writing-mode-vertical {
+  writing-mode: vertical-lr;
+}
