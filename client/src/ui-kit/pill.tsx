@@ -3,6 +3,10 @@ import { Typography } from './typography'
 import { CloseIcon } from '../svgs/icons'
 
 export interface PillProps {
+  /**
+   * Optional callback triggered when the close icon is clicked. If no callback
+   * is provided, the close icon is hidden.
+   */
   onRemove?: (event: React.MouseEvent) => void
 }
 

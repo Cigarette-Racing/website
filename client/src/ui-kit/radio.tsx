@@ -4,6 +4,7 @@ import { Typography } from './typography'
 
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  /** Checked state of the input */
   checked: boolean
 }
 
