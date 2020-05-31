@@ -9,7 +9,7 @@ export interface RadioProps
 
 export const Radio = ({ checked, children, ...inputProps }: RadioProps) => {
   return (
-    <label className="flex items-center">
+    <label className="flex items-center cursor-pointer">
       <input
         aria-checked={checked}
         checked={checked}
