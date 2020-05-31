@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import logo from '../images/logo-white.svg'
-import { Typography } from '../ui-kit/typography'
+import { Typography } from '../atoms/typography'
 
 export interface HeaderProps {}
 

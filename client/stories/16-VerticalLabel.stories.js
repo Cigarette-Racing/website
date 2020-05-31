@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, text } from '@storybook/addon-knobs'
-import { VerticalLabel } from '../src/ui-kit/vertical-label'
+import { VerticalLabel } from '../src/atoms/vertical-label'
 
 export default {
   title: 'Atoms/VerticalLabel',

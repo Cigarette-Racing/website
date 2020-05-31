@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, number, select } from '@storybook/addon-knobs'
-import { ProgressDots } from '../src/ui-kit/progress-dots'
+import { ProgressDots } from '../src/atoms/progress-dots'
 
 export default {
   title: 'Atoms/Progress Dots',

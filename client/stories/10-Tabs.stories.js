@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs } from '@storybook/addon-knobs'
-import { Tabs, Tab } from '../src/ui-kit/tabs'
+import { Tabs, Tab } from '../src/atoms/tabs'
 // @reach/router is a transitive dependency via Gatsby
 import {
   createMemorySource,
