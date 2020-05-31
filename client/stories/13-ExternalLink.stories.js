@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, text } from '@storybook/addon-knobs'
-import { ExternalLink } from '../src/ui-kit/external-link'
+import { ExternalLink } from '../src/atoms/external-link'
 
 export default {
   title: 'Atoms/ExternalLink',

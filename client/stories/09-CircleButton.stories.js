@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, select } from '@storybook/addon-knobs'
-import { CircleButton } from '../src/ui-kit/circle-button'
+import { CircleButton } from '../src/atoms/circle-button'
 import { PlayIcon } from '../src/svgs/icons'
 import { action } from '@storybook/addon-actions'
 

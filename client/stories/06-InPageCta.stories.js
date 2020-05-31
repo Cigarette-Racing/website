@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, select, text } from '@storybook/addon-knobs'
-import { InPageCta } from '../src/ui-kit/in-page-cta'
+import { InPageCta } from '../src/atoms/in-page-cta'
 
 export default {
   title: 'Atoms/In Page CTA',
