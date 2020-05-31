@@ -1,5 +1,5 @@
 import React from 'react'
-import { withKnobs, select } from '@storybook/addon-knobs'
+import { withKnobs, select, text } from '@storybook/addon-knobs'
 import { InPageCta } from '../src/ui-kit/in-page-cta'
 
 export default {
@@ -11,9 +11,10 @@ export default {
 export const Sandbox = () => {
   const variant = select('variant', ['primary', 'secondary'], 'primary')
   const theme = select('theme', ['light', 'dark'], 'dark')
+  const children = text('text', 'Request Info')
   return (
     <InPageCta variant={variant} theme={theme}>
-      Request Info
+      {children}
     </InPageCta>
   )
 }
