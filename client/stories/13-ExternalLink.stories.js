@@ -1,5 +1,5 @@
 import React from 'react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { withKnobs, text } from '@storybook/addon-knobs'
 import { ExternalLink } from '../src/ui-kit/external-link'
 
 export default {
@@ -9,7 +9,7 @@ export default {
 }
 
 export const Sandbox = () => {
-  return (
-    <ExternalLink href="https://example.com">speedthewater.com</ExternalLink>
-  )
+  const href = text('href', 'https://example.com')
+  const children = text('text', 'speedthewater.com')
+  return <ExternalLink href={href}>{children}</ExternalLink>
 }

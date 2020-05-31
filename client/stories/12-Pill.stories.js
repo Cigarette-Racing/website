@@ -1,5 +1,5 @@
 import React from 'react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 import { Pill } from '../src/ui-kit/pill'
 
 export default {
@@ -9,5 +9,7 @@ export default {
 }
 
 export const Sandbox = () => {
-  return <Pill onRemove={() => {}}>Auroris</Pill>
+  const children = text('text', 'Auroris')
+  const isRemovable = boolean('Pill is Removable?', true)
+  return <Pill onRemove={isRemovable ? () => {} : undefined}>{children}</Pill>
 }

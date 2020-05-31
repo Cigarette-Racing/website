@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { withKnobs, number } from '@storybook/addon-knobs'
 import { Radio } from '../src/ui-kit/radio'
 
 export default {
@@ -13,14 +13,22 @@ export const Sandbox = () => {
   const handleClick = (event) => {
     setSelected(event.target.value)
   }
+  const numberOfItems = number('Number of Items', 2, { min: 2, max: 5 })
+
   return (
     <div className="space-y-3">
-      <Radio onClick={handleClick} value="asdf" checked={selected === 'asdf'}>
-        Nighthawk
-      </Radio>
-      <Radio onClick={handleClick} value="qwer" checked={selected === 'qwer'}>
-        Nighthawk
-      </Radio>
+      {Array.from({ length: numberOfItems }, (_, k) => k.toString()).map(
+        (index) => (
+          <Radio
+            key={index}
+            onClick={handleClick}
+            value={index}
+            checked={selected === index}
+          >
+            Nighthawk
+          </Radio>
+        )
+      )}
     </div>
   )
 }
