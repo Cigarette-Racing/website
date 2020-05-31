@@ -4,9 +4,13 @@ import { Theme } from './types'
 
 export interface CircleButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Icon to show in button */
   icon: React.ReactType
+  /** Button size to display */
   size?: 'sm' | 'md' | 'lg'
+  /** Visual variant to use */
   variant: 'primary' | 'secondary'
+  /** Light or dark theme */
   theme: Theme
 }
 
