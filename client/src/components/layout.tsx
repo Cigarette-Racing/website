@@ -6,7 +6,6 @@
  */
 
 import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
 import { Header } from '../molecules/header'
 import { Footer } from '../molecules/footer'
 
