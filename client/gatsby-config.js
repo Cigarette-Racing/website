@@ -16,6 +16,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-typescript`,
+    { resolve: `gatsby-plugin-svgr`, options: { include: /svgs/ } },
     `gatsby-plugin-postcss`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
