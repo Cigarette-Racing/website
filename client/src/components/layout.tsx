@@ -8,7 +8,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Header } from '../molecules/header'
-import '../fonts/fonts.css'
+import { Footer } from '../molecules/footer'
 
 export const Layout: React.FC = ({ children }) => {
   // const data = useStaticQuery(graphql`
@@ -24,12 +24,8 @@ export const Layout: React.FC = ({ children }) => {
   return (
     <Fragment>
       <Header />
-      <main className="bg-red-600">{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+      <main>{children}</main>
+      <Footer />
     </Fragment>
   )
 }
