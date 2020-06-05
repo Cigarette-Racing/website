@@ -1,5 +1,4 @@
 import React from 'react'
-import clsx from 'clsx'
 import { Typography } from './typography'
 
 export interface VerticalLabelProps {}

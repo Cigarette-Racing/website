@@ -15,7 +15,7 @@ export const ProgressBar = ({ percentage }: ProgressBarProps) => {
   const percentageString = normalizePercentage(percentage) + '%'
   return (
     <div className="h-px w-full bg-white">
-      <div className={'h-px bg-red'} style={{ width: percentageString }}>
+      <div className="h-px bg-red" style={{ width: percentageString }}>
         <span className="sr-only">{percentageString}</span>
       </div>
     </div>
