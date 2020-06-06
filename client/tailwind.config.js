@@ -1,3 +1,30 @@
+const plugin = require('tailwindcss/plugin')
+
+/**
+ * Adds classes .grid-cols-max-1 through .grid-cols-max-12
+ *
+ * Example CSS:
+ *
+ * ```css
+ * .grid-cols-max-1 {
+ *   grid-template-columns: repeat(1, max-content);
+ * }
+ * ```
+ */
+const gridColsMax = plugin(({ addUtilities }) => {
+  const classes = Array.from({ length: 12 }, (_, index) => index + 1).reduce(
+    (rules, columnNumber) => {
+      rules[`.grid-cols-max-${columnNumber}`] = {
+        gridTemplateColumns: `repeat(${columnNumber}, max-content)`,
+      }
+      return rules
+    },
+    {}
+  )
+
+  addUtilities(classes, ['responsive'])
+})
+
 module.exports = {
   purge: ['./src/**/*.{ts,tsx}'],
   theme: {
@@ -65,10 +92,14 @@ module.exports = {
         wider: '2px',
         widest: '3px',
       },
+      maxWidth: {
+        '7xl': '80rem',
+        '8xl': '90rem',
+      },
     },
   },
   variants: {
     translate: ['responsive', 'hover', 'focus', 'group-hover'],
   },
-  plugins: [],
+  plugins: [gridColsMax],
 }
