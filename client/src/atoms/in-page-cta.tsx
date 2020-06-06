@@ -5,20 +5,20 @@ import { Theme } from './types'
 
 export interface InPageCtaProps {
   /** Visual variant to use */
-  variant: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary'
   /** Light or dark theme */
-  theme: Theme
+  theme?: Theme
 }
 
 const baseClasses =
-  'h-10 px-10 border rounded-full transition-colors duration-150 ease-in-out'
+  'h-10 px-4 sm:px-10 border rounded-full transition-colors duration-150 ease-in-out'
 const primaryClasses =
   'bg-white text-black border-white hover:bg-black hover:border-red hover:text-red'
 const secondaryClasses = 'border-red hover:bg-red'
 
 export const InPageCta: React.FC<
   InPageCtaProps & React.HTMLProps<HTMLButtonElement>
-> = ({ variant, theme, children, ...rest }) => {
+> = ({ variant = 'primary', theme, children, ...rest }) => {
   return (
     <button
       {...rest}
