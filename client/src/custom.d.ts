@@ -4,3 +4,7 @@ declare module '*.svg' {
   >>
   export default string
 }
+
+declare module '*.jpeg' {
+  export default string
+}
