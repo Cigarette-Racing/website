@@ -16,7 +16,16 @@ module.exports = {
       },
     },
     `gatsby-plugin-typescript`,
-    { resolve: `gatsby-plugin-svgr`, options: { include: /svgs/ } },
+    {
+      resolve: `gatsby-plugin-svgr`,
+      options: {
+        include: /svgs/,
+        icon: true,
+        replaceAttrValues: {
+          '#fff': 'currentColor',
+        },
+      },
+    },
     `gatsby-plugin-postcss`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
