@@ -5,7 +5,7 @@ import { ArrowIcon } from '../svgs/icons'
 
 export interface LinkCtaProps {
   /** Visual variant to use */
-  variant: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary'
 }
 
 const baseClasses = 'h-10 border-b text-white flex items-center group'
@@ -16,7 +16,7 @@ const typographyClasses =
 
 export const LinkCta: React.FC<
   LinkCtaProps & React.HTMLProps<HTMLButtonElement>
-> = ({ variant, children, ...rest }) => {
+> = ({ variant = 'primary', children, ...rest }) => {
   return (
     <button
       {...rest}
@@ -29,7 +29,7 @@ export const LinkCta: React.FC<
       <Typography variant="e3" as="span" className={typographyClasses}>
         {children}
       </Typography>
-      <ArrowIcon className="ml-10" />
+      <ArrowIcon className="ml-6 sm:ml-10" />
     </button>
   )
 }
