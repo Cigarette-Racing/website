@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+See `tailwind.config.js` for more custom styles
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+
 body {
   @apply bg-black;
 }
@@ -27,52 +33,17 @@ main {
 }
 
 @responsive {
-  .grid-cols-max-1 {
-    grid-template-columns: repeat(1, max-content);
+  .h-screen-half {
+    height: 50vh;
   }
-
-  .grid-cols-max-2 {
-    grid-template-columns: repeat(2, max-content);
+  .min-h-screen-half {
+    min-height: 50vh;
   }
-
-  .grid-cols-max-3 {
-    grid-template-columns: repeat(3, max-content);
+  .flex-2 {
+    flex: 2 1 0%;
   }
-
-  .grid-cols-max-4 {
-    grid-template-columns: repeat(4, max-content);
-  }
-
-  .grid-cols-max-5 {
-    grid-template-columns: repeat(5, max-content);
-  }
-
-  .grid-cols-max-6 {
-    grid-template-columns: repeat(6, max-content);
-  }
-
-  .grid-cols-max-7 {
-    grid-template-columns: repeat(7, max-content);
-  }
-
-  .grid-cols-max-8 {
-    grid-template-columns: repeat(8, max-content);
-  }
-
-  .grid-cols-max-9 {
-    grid-template-columns: repeat(9, max-content);
-  }
-
-  .grid-cols-max-10 {
-    grid-template-columns: repeat(10, max-content);
-  }
-
-  .grid-cols-max-11 {
-    grid-template-columns: repeat(11, max-content);
-  }
-
-  .grid-cols-max-12 {
-    grid-template-columns: repeat(12, max-content);
+  .input-placeholder::placeholder {
+    @apply text-white uppercase;
   }
 }
 
