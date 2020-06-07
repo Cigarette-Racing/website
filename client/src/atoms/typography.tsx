@@ -2,49 +2,6 @@ import React from 'react'
 import clsx from 'clsx'
 import { Theme } from './types'
 
-const getStyles = (variant: TypographyVariant) => {
-  if (variant === 'h1') {
-    return ['text-6xl', 'tracking-normal', 'leading-10', 'font-heading']
-  }
-  if (variant === 'h2') {
-    return ['text-5xl', 'tracking-normal', 'leading-10', 'font-heading']
-  }
-  if (variant === 'h3') {
-    return ['text-4xl', 'tracking-normal', 'leading-9', 'font-heading']
-  }
-  if (variant === 'h4') {
-    return ['text-3xl', 'tracking-normal', 'leading-8', 'font-heading']
-  }
-  if (variant === 'h5') {
-    return ['text-2xl', 'tracking-normal', 'leading-7', 'font-heading']
-  }
-  if (variant === 'p1') {
-    return ['text-lg', 'tracking-wide', 'leading-6', 'font-body']
-  }
-  if (variant === 'p2') {
-    return ['text-base', 'tracking-wide', 'leading-6', 'font-body']
-  }
-  if (variant === 'p3') {
-    return ['text-sm', 'tracking-wide', 'leading-4', 'font-body']
-  }
-  if (variant === 'e1') {
-    return [
-      'text-base',
-      'tracking-wider',
-      'leading-4',
-      'font-body',
-      'uppercase',
-    ]
-  }
-  if (variant === 'e2') {
-    return ['text-sm', 'tracking-wider', 'leading-4', 'font-body', 'uppercase']
-  }
-  if (variant === 'e3') {
-    return ['text-xs', 'tracking-wider', 'leading-4', 'font-body', 'uppercase']
-  }
-  return []
-}
-
 type TypographyVariant =
   | 'h1' // Heading 1
   | 'h2' // Heading 2
@@ -67,23 +24,38 @@ export interface TypographyProps {
   as?: keyof JSX.IntrinsicElements
   /** Additional classes to apply */
   className?: string
+  /** Variant to apply at the `sm` breakpoint */
+  sm?: TypographyVariant
+  /** Variant to apply at the `md` breakpoint */
+  md?: TypographyVariant
+  /** Variant to apply at the `lg` breakpoint */
+  lg?: TypographyVariant
+  /** Variant to apply at the `xl` breakpoint */
+  xl?: TypographyVariant
 }
 
 export const Typography: React.FC<TypographyProps> = ({
   as: Component = 'div',
   variant,
+  sm,
+  md,
+  lg,
+  xl,
   theme,
   className,
   children,
 }) => {
-  const variantClasses = getStyles(variant)
   return (
     <Component
       className={clsx(
-        variantClasses,
+        variant,
         {
           'text-white': theme === 'dark',
           'text-black': theme === 'light',
+          [`sm:${sm}`]: !!sm,
+          [`md:${md}`]: !!md,
+          [`lg:${lg}`]: !!lg,
+          [`xl:${xl}`]: !!xl,
         },
         className
       )}

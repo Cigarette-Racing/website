@@ -3,15 +3,7 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import { Typography } from '../../src/atoms/typography'
 
 const Divider = () => {
-  return (
-    <div
-      style={{
-        marginTop: '60px',
-        marginBottom: '60px',
-        borderBottom: '1px solid #4a4a4a',
-      }}
-    />
-  )
+  return <div className="my-16 border-b border-gray-2" />
 }
 
 export default {
@@ -22,7 +14,7 @@ export default {
 
 export const All = () => {
   return (
-    <div style={{ padding: '60px 0', minWidth: '600px' }}>
+    <div className="py-16" style={{ minWidth: '600px' }}>
       <Typography variant="h1" theme="dark">
         headline 1
       </Typography>
@@ -154,6 +146,14 @@ export const Eyebrow3 = () => {
   const children = text('text', 'eyebrow 3')
   return (
     <Typography variant="e3" theme="dark">
+      {children}
+    </Typography>
+  )
+}
+export const Responsive = () => {
+  const children = text('text', 'responsive')
+  return (
+    <Typography variant="h5" sm="h4" md="h3" lg="h2" xl="h1" theme="dark">
       {children}
     </Typography>
   )
