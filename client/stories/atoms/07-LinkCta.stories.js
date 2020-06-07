@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, select, text } from '@storybook/addon-knobs'
-import { LinkCta } from '../src/atoms/link-cta'
+import { LinkCta } from '../../src/atoms/link-cta'
 
 export default {
   title: 'Atoms/Link CTA',

@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, text } from '@storybook/addon-knobs'
-import { Typography } from '../src/atoms/typography'
+import { Typography } from '../../src/atoms/typography'
 
 const Divider = () => {
   return (

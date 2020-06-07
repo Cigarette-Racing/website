@@ -1,6 +1,6 @@
 import React from 'react'
-import { SocialLink } from '../src/atoms/social-link'
-import { FacebookIcon, InstagramIcon, YoutubeIcon } from '../src/svgs/icons'
+import { SocialLink } from '../../src/atoms/social-link'
+import { FacebookIcon, InstagramIcon, YoutubeIcon } from '../../src/svgs/icons'
 
 export default {
   title: 'Atoms/Social Link',

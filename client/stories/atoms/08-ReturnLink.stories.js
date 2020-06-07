@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs } from '@storybook/addon-knobs'
-import { ReturnLink } from '../src/atoms/return-link'
+import { ReturnLink } from '../../src/atoms/return-link'
 
 export default {
   title: 'Atoms/Return Link',

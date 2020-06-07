@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, text, number } from '@storybook/addon-knobs'
-import { StatBlock } from '../src/atoms/stat-block'
+import { StatBlock } from '../../src/atoms/stat-block'
 
 export default {
   title: 'Atoms/StatBlock',
