@@ -16,6 +16,7 @@ main {
   @apply bg-white;
 }
 
+/* Backdrop blur */
 .blur-0 {
   backdrop-filter: blur(0);
 }
@@ -32,6 +33,44 @@ main {
   backdrop-filter: blur(20px);
 }
 
+/* Typography styles */
+@responsive {
+  .h1 {
+    @apply text-6xl tracking-normal leading-10 font-heading;
+  }
+  .h2 {
+    @apply text-5xl tracking-normal leading-10 font-heading;
+  }
+  .h3 {
+    @apply text-4xl tracking-normal leading-9 font-heading;
+  }
+  .h4 {
+    @apply text-3xl tracking-normal leading-8 font-heading;
+  }
+  .h5 {
+    @apply text-2xl tracking-normal leading-7 font-heading;
+  }
+  .p1 {
+    @apply text-lg tracking-wide leading-6 font-body;
+  }
+  .p2 {
+    @apply text-base tracking-wide leading-6 font-body;
+  }
+  .p3 {
+    @apply text-sm tracking-wide leading-4 font-body;
+  }
+  .e1 {
+    @apply text-base tracking-wider leading-4 font-body uppercase;
+  }
+  .e2 {
+    @apply text-sm tracking-wider leading-4 font-body uppercase;
+  }
+  .e3 {
+    @apply text-xs tracking-wider leading-4 font-body uppercase;
+  }
+}
+
+/* Responsive utilities */
 @responsive {
   .h-screen-half {
     height: 50vh;
@@ -47,6 +86,7 @@ main {
   }
 }
 
+/* Non-responsive utilities */
 .writing-mode-vertical {
   writing-mode: vertical-lr;
 }
