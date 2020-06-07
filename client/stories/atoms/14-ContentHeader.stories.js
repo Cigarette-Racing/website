@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, text } from '@storybook/addon-knobs'
-import { ContentHeader } from '../src/atoms/content-header'
+import { ContentHeader } from '../../src/atoms/content-header'
 
 export default {
   title: 'Atoms/ContentHeader',

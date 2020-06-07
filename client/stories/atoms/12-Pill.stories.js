@@ -1,6 +1,6 @@
 import React from 'react'
 import { withKnobs, text, boolean } from '@storybook/addon-knobs'
-import { Pill } from '../src/atoms/pill'
+import { Pill } from '../../src/atoms/pill'
 
 export default {
   title: 'Atoms/Pill',

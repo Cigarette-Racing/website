@@ -17,7 +17,7 @@ import {
   PlusIcon,
   ThreeDotsIcon,
   YoutubeIcon,
-} from '../src/svgs/icons'
+} from '../../src/svgs/icons'
 import { select } from '@storybook/addon-knobs'
 import clsx from 'clsx'
 

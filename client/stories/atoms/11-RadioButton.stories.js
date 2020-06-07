@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { withKnobs, number } from '@storybook/addon-knobs'
-import { Radio } from '../src/atoms/radio'
+import { Radio } from '../../src/atoms/radio'
 
 export default {
   title: 'Atoms/Radio',
