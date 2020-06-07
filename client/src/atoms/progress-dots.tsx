@@ -27,6 +27,7 @@ export const ProgressDots = ({
         const isCurrent = index + 1 === current
         return (
           <div
+            key={index}
             className={clsx(
               'w-6 h-6 border rounded-full border-transparent flex justify-center items-center',
               { 'border-red': isCurrent }

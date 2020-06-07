@@ -39,13 +39,13 @@ export const Footer = ({}: FooterProps) => {
       <div className="mb-16 grid flex grid-cols-max-2 row-gap-16 col-gap-4 sm:grid-cols-max-4 justify-around">
         {footerLinks.map((linkGroup) => {
           return (
-            <div>
+            <div key={linkGroup.header}>
               <Typography variant="e3" className="mb-4">
                 {linkGroup.header}
               </Typography>
               {linkGroup.links.map((link) => {
                 return (
-                  <Typography variant="p3" className="mb-1">
+                  <Typography variant="p3" className="mb-1" key={link}>
                     <a href="#">{link}</a>
                   </Typography>
                 )
@@ -61,7 +61,7 @@ export const Footer = ({}: FooterProps) => {
           className="w-20 hidden sm:block"
         />
         {socialLinks.map((linkProps) => {
-          return <SocialLink {...linkProps} />
+          return <SocialLink key={linkProps.text} {...linkProps} />
         })}
       </div>
       <div className="py-12 space-x-12 flex sm:justify-center sm:text-center">
