@@ -3,7 +3,7 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import { ContentHeader } from '../../src/atoms/content-header'
 
 export default {
-  title: 'Atoms/ContentHeader',
+  title: 'Atoms/Content Header',
   component: ContentHeader,
   decorators: [withKnobs],
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollIndicator } from '../../src/molecules/scroll-indicator'
 
 export default {
-  title: 'Molecules/ScrollIndicator',
+  title: 'Molecules/Scroll Indicator',
   component: ScrollIndicator,
 }
 

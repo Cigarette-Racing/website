@@ -3,7 +3,7 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import { ExternalLink } from '../../src/atoms/external-link'
 
 export default {
-  title: 'Atoms/ExternalLink',
+  title: 'Atoms/External Link',
   component: ExternalLink,
   decorators: [withKnobs],
 }

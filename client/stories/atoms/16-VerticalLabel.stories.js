@@ -3,7 +3,7 @@ import { withKnobs, text } from '@storybook/addon-knobs'
 import { VerticalLabel } from '../../src/atoms/vertical-label'
 
 export default {
-  title: 'Atoms/VerticalLabel',
+  title: 'Atoms/Vertical Label',
   component: VerticalLabel,
   decorators: [withKnobs],
 }
