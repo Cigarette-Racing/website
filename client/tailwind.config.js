@@ -47,6 +47,7 @@ module.exports = {
       black: '#000000',
       white: '#ffffff',
       gray: {
+        0: '#131313',
         1: '#333333',
         2: '#4f4f4f',
         3: '#828282',
@@ -56,6 +57,9 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        xs: '420px',
+      },
       fontSize: {
         xs: '0.75rem', // 12px
         sm: '0.875rem', // 14px

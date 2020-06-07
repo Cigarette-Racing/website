@@ -90,3 +90,7 @@ main {
 .writing-mode-vertical {
   writing-mode: vertical-lr;
 }
+
+.h-screen-w {
+  height: 100vw;
+}
