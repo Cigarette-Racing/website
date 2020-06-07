@@ -6,11 +6,18 @@ import { ExternalLinkIcon } from '../svgs/icons'
 export interface ExternalLinkProps
   extends React.LinkHTMLAttributes<HTMLAnchorElement> {}
 
-export const ExternalLink = ({ children, ...props }: ExternalLinkProps) => {
+export const ExternalLink = ({
+  children,
+  className,
+  ...props
+}: ExternalLinkProps) => {
   return (
     <a
       {...props}
-      className="bg-white bg-opacity-25 rounded-full py-2 px-4 flex items-center blur-3 text-white"
+      className={clsx(
+        'bg-white bg-opacity-25 rounded-full py-2 px-4 flex items-center blur-3 text-white',
+        className
+      )}
       target="_blank"
       rel="noopener noreferrer"
     >
