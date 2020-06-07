@@ -3,7 +3,7 @@ import { withKnobs, text, number } from '@storybook/addon-knobs'
 import { StatBlock } from '../../src/atoms/stat-block'
 
 export default {
-  title: 'Atoms/StatBlock',
+  title: 'Atoms/Stat Block',
   component: StatBlock,
   decorators: [withKnobs],
 }
