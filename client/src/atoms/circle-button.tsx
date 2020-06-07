@@ -6,6 +6,8 @@ export interface CircleButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Icon to show in button */
   icon: React.ReactType
+  /** CSS classes to apply to the icon */
+  iconClassName?: string
   /** Button size to display */
   size?: 'sm' | 'md' | 'lg'
   /** Visual variant to use */
@@ -27,6 +29,7 @@ const containerLargeClasses = 'p-5'
 
 export const CircleButton = ({
   icon: Icon,
+  iconClassName,
   size = 'md',
   variant,
   theme,
@@ -53,7 +56,7 @@ export const CircleButton = ({
         className
       )}
     >
-      <Icon className={clsx('text-base')} />
+      <Icon className={clsx('text-base', iconClassName)} />
     </button>
   )
 }
