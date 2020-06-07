@@ -6,7 +6,7 @@ import { Typography } from '../atoms/typography'
 
 const footerLinks = [
   {
-    header: 'Out Boats',
+    header: 'Our Boats',
     links: ['All Boats', 'Center Console', 'High Performance', 'Heritage'],
   },
   {

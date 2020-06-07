@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import header1 from '../images/homepage-header.jpeg'
@@ -156,7 +155,12 @@ const IndexPage = () => (
             Visit the News Room
           </LinkCta>
           <div className="mt-10 space-x-4 hidden sm:block">
-            <CircleButton variant="secondary" theme="light" icon={ArrowIcon} />
+            <CircleButton
+              variant="secondary"
+              theme="light"
+              icon={ArrowIcon}
+              iconClassName="transform rotate-180"
+            />
             <CircleButton variant="secondary" theme="light" icon={ArrowIcon} />
           </div>
         </div>
@@ -205,7 +209,12 @@ const IndexPage = () => (
           </div>
         </div>
         <div className="mt-10 space-x-4 sm:hidden">
-          <CircleButton variant="secondary" theme="light" icon={ArrowIcon} />
+          <CircleButton
+            variant="secondary"
+            theme="light"
+            icon={ArrowIcon}
+            iconClassName="transform rotate-180"
+          />
           <CircleButton variant="secondary" theme="light" icon={ArrowIcon} />
         </div>
       </div>
