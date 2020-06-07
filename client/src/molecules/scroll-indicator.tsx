@@ -57,7 +57,7 @@ export const ScrollIndicator = ({}: ScrollIndicatorProps) => {
   return (
     <div
       className={clsx(
-        'fixed right-0 z-30 pointer-events-none h-screen flex items-center pr-4 transition-opacity duration-200',
+        'fixed right-0 z-30 pointer-events-none h-screen flex items-center pr-1 sm:pr-2 md:pr-3 lg:pr-4 transition-opacity duration-200',
         {
           'opacity-0': !isVisible,
           'opacity-100': isVisible,
