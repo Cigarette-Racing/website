@@ -17,7 +17,7 @@ const primaryClasses =
 const secondaryClasses = 'border-red hover:bg-red'
 
 export const InPageCta: React.FC<
-  InPageCtaProps & React.HTMLProps<HTMLButtonElement>
+  InPageCtaProps & React.HTMLAttributes<HTMLButtonElement>
 > = ({ variant = 'primary', theme, children, ...rest }) => {
   return (
     <button
