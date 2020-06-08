@@ -18,7 +18,7 @@ const typographyClasses =
   'transform transition-transform duration-300 ease-in-out group-hover:translate-x-1'
 
 export const LinkCta: React.FC<
-  LinkCtaProps & React.HTMLProps<HTMLButtonElement>
+  LinkCtaProps & React.HTMLAttributes<HTMLButtonElement>
 > = ({ variant = 'primary', children, className, theme, ...rest }) => {
   return (
     <button
