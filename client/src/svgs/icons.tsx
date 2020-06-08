@@ -10,6 +10,7 @@ import { ReactComponent as FacebookIcon } from './fb.svg'
 import { ReactComponent as InstagramIcon } from './instagram.svg'
 import { ReactComponent as MailIcon } from './mail.svg'
 import { ReactComponent as MapIcon } from './map.svg'
+import { ReactComponent as MenuIcon } from './menu.svg'
 import { ReactComponent as MinusIcon } from './minus.svg'
 import { ReactComponent as PhoneIcon } from './phone.svg'
 import { ReactComponent as PlayIcon } from './play.svg'
@@ -30,6 +31,7 @@ export {
   InstagramIcon,
   MailIcon,
   MapIcon,
+  MenuIcon,
   MinusIcon,
   PhoneIcon,
   PlayIcon,
