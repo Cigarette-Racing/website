@@ -48,6 +48,7 @@ export const Typography: React.FC<TypographyProps> = ({
   return (
     <Component
       className={clsx(
+        'font-light',
         variant,
         {
           'text-white': theme === 'dark',
