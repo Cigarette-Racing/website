@@ -52,9 +52,13 @@ export const Header = ({}: HeaderProps) => {
                   <MenuIcon />
                 </button>
               ) : (
-                <div className="flex space-x-10 pointer-events-none">
+                <div className="flex space-x-8 xl:space-x-10 pointer-events-none">
                   {leftLinks.map((link) => (
-                    <Typography variant="e3" key={link}>
+                    <Typography
+                      variant="e3"
+                      className="whitespace-no-wrap"
+                      key={link}
+                    >
                       {link}
                     </Typography>
                   ))}
@@ -68,9 +72,13 @@ export const Header = ({}: HeaderProps) => {
               {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (
                 <Typography variant="e3">Contact</Typography>
               ) : (
-                <div className="flex space-x-10 pointer-events-none">
+                <div className="flex space-x-8 xl:space-x-10 pointer-events-none">
                   {rightLinks.map((link) => (
-                    <Typography variant="e3" key={link}>
+                    <Typography
+                      variant="e3"
+                      key={link}
+                      className="whitespace-no-wrap"
+                    >
                       {link}
                     </Typography>
                   ))}
