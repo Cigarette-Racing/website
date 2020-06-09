@@ -1,5 +1,14 @@
 const plugin = require('tailwindcss/plugin')
 
+// From https://stackoverflow.com/a/44230264/4357882
+// range(3,7) === [ 3, 4, 5, 6, 7 ]
+const range = (x, y) =>
+  Array.from(
+    (function* () {
+      while (x <= y) yield x++
+    })()
+  )
+
 /**
  * Adds classes .grid-cols-max-1 through .grid-cols-max-12
  *
@@ -23,6 +32,29 @@ const gridColsMax = plugin(({ addUtilities }) => {
   )
 
   addUtilities(classes, ['responsive'])
+})
+
+/**
+ * Adds fractional classes for top, right, bottom, left values
+ */
+const fractionalTopRightBottomLeft = plugin(({ addUtilities }) => {
+  const toPercentString = (dividend, divisor) =>
+    `${((dividend / divisor) * 100).toFixed(6).replace('.000000', '')}%`
+  const classesPairs = 'top,right,bottom,left'
+    .split(',')
+    .map((position) =>
+      range(2, 6)
+        .concat(12)
+        .map((divisor) =>
+          range(1, divisor - 1).map((dividend) => [
+            `.${position}-${dividend}\\/${divisor}`,
+            { [position]: toPercentString(dividend, divisor) },
+          ])
+        )
+    )
+    .flat(2)
+
+  addUtilities(Object.fromEntries(classesPairs))
 })
 
 module.exports = {
@@ -105,5 +137,5 @@ module.exports = {
   variants: {
     translate: ['responsive', 'hover', 'focus', 'group-hover'],
   },
-  plugins: [gridColsMax],
+  plugins: [gridColsMax, fractionalTopRightBottomLeft],
 }
