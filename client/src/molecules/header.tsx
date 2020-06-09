@@ -9,7 +9,11 @@ import { useLockBodyScroll, useMedia, useHoverDirty } from 'react-use'
 import Modal from 'react-modal'
 
 // Hack for Storybook
-Modal.setAppElement(!!(window as any).STORYBOOK_ENV ? '#root' : '#___gatsby')
+Modal.setAppElement(
+  typeof window !== 'undefined' && !!(window as any).STORYBOOK_ENV
+    ? '#root'
+    : '#___gatsby'
+)
 
 const leftLinks = ['Models', 'Our world', 'The Difference']
 const rightLinks = ['Owners', 'Store', 'Contact']
