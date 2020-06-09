@@ -19,19 +19,19 @@ main {
 /* Typography styles */
 @responsive {
   .h1 {
-    @apply text-6xl tracking-normal leading-10 font-heading;
+    @apply text-6xl tracking-normal leading-10 font-heading font-light;
   }
   .h2 {
-    @apply text-5xl tracking-normal leading-10 font-heading;
+    @apply text-5xl tracking-normal leading-10 font-heading font-light;
   }
   .h3 {
-    @apply text-4xl tracking-normal leading-9 font-heading;
+    @apply text-4xl tracking-normal leading-9 font-heading font-light;
   }
   .h4 {
-    @apply text-3xl tracking-normal leading-8 font-heading;
+    @apply text-3xl tracking-normal leading-8 font-heading font-light;
   }
   .h5 {
-    @apply text-2xl tracking-normal leading-7 font-heading;
+    @apply text-2xl tracking-normal leading-7 font-heading font-light;
   }
   .p1 {
     @apply text-lg tracking-wide leading-6 font-body;
