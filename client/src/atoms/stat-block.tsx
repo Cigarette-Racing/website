@@ -13,7 +13,7 @@ export interface StatBlockProps {
 
 export const StatBlock = ({ label, percentage, text }: StatBlockProps) => {
   return (
-    <div className="w-48 text-white">
+    <div className="w-full max-w-48 text-white">
       <ProgressBar percentage={percentage} />
       <Typography variant="h5" className="my-2">
         {text}

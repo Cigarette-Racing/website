@@ -11,9 +11,9 @@ export interface CircleButtonProps
   /** Button size to display */
   size?: 'sm' | 'md' | 'lg'
   /** Visual variant to use */
-  variant: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary'
   /** Light or dark theme */
-  theme: Theme
+  theme?: Theme
 }
 
 const containerPrimaryClasses =
@@ -31,7 +31,7 @@ export const CircleButton = ({
   icon: Icon,
   iconClassName,
   size = 'md',
-  variant,
+  variant = 'primary',
   theme,
   className,
   ...props
