@@ -16,7 +16,9 @@
     "storybook:build": "build-storybook -c ./stories/.storybook"
   },
   "dependencies": {
+    "@types/react-headroom": "^2.2.1",
     "@types/react-helmet": "^6.0.0",
+    "@types/react-modal": "^3.10.5",
     "clsx": "^1.1.0",
     "gatsby": "^2.21.22",
     "gatsby-image": "^2.4.3",
@@ -29,7 +31,10 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.0.0"
+    "react-headroom": "^3.0.0",
+    "react-helmet": "^6.0.0",
+    "react-modal": "^3.11.2",
+    "react-use": "^15.1.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",
