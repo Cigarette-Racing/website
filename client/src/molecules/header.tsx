@@ -5,8 +5,16 @@ import logo from '../images/logo-white.svg'
 import { Typography } from '../atoms/typography'
 import { MenuIcon } from '../svgs/icons'
 import { ReturnLink } from '../atoms/return-link'
-import { useLockBodyScroll, useMedia, useHoverDirty } from 'react-use'
+import {
+  useLockBodyScroll,
+  useMedia,
+  useHoverDirty,
+  createGlobalState,
+} from 'react-use'
 import Modal from 'react-modal'
+
+export type HeaderState = 'top' | 'pinned' | 'hidden'
+export const useHeaderState = createGlobalState<HeaderState>('top')
 
 // Hack for Storybook
 Modal.setAppElement(
@@ -27,6 +35,7 @@ export const Header = ({}: HeaderProps) => {
   const isMobileMenu = useMedia('(max-width: 1000px)')
   const [isAtTop, setIsAtTop] = useState(true)
   const isHoveringOverMenu = useHoverDirty(headerRef)
+  const [, setHeaderState] = useHeaderState()
   useLockBodyScroll(isMenuOpen)
   // @ts-ignore
   const src: string = logo
@@ -34,13 +43,18 @@ export const Header = ({}: HeaderProps) => {
     <Fragment>
       <Headroom
         className="absolute top-0 left-0 w-full z-40"
-        onPin={() => console.log('onPin')}
+        onPin={() => {
+          console.log('onPin')
+          setHeaderState('pinned')
+        }}
         onUnpin={() => {
           console.log('onUnpin')
+          setHeaderState('hidden')
           setIsAtTop(false)
         }}
         onUnfix={() => {
           console.log('onUnfix')
+          setHeaderState('top')
           setIsAtTop(true)
         }}
       >
