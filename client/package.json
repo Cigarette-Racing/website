@@ -46,9 +46,10 @@
     "gatsby-plugin-typescript": "^2.4.2",
     "prettier": "^2.0.5",
     "tailwindcss": "^1.4.6",
+    "tailwindcss-aspect-ratio": "^3.0.0",
     "tailwindcss-filters": "^3.0.0",
     "ts-node": "^8.10.1",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.5"
   },
   "optionalDependencies": {
     "@babel/core": "^7.9.6",

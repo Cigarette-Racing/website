@@ -60,17 +60,22 @@ const fractionalTopRightBottomLeft = plugin(({ addUtilities }) => {
 module.exports = {
   purge: ['./src/**/*.{ts,tsx}'],
   theme: {
-    fontFamily: {
-      system: ['system-ui'],
-      heading: ['"SangBleu Kingdom"', 'serif'],
-      body: ['"SangBleu Sans"', 'serif'],
+    aspectRatio: {
+      none: 0,
+      '1:1': [1, 1],
+      '3:2': [3, 2],
+      '2:3': [2, 3],
+      '4:3': [4, 3],
+      '3:4': [3, 4],
+      '16:9': [16, 9],
+      '21:9': [21, 9],
     },
-    fontWeight: {
-      hairline: '100',
-      light: '300',
-      normal: '400',
-      medium: '500',
-      bold: '700',
+    backdropFilter: {
+      none: 'none',
+      'blur-1': 'blur(5px)',
+      'blur-2': 'blur(10px)',
+      'blur-3': 'blur(15px)',
+      'blur-4': 'blur(20px)',
     },
     colors: {
       transparent: 'transparent',
@@ -87,17 +92,25 @@ module.exports = {
         5: '#e0e0e0',
         6: '#f2f2f2',
       },
-      filter: {
-        none: 'none',
-        grayscale: 'grayscale(1)',
-      },
-      backdropFilter: {
-        none: 'none',
-        'blur-1': 'blur(5px)',
-        'blur-2': 'blur(10px)',
-        'blur-3': 'blur(15px)',
-        'blur-4': 'blur(20px)',
-      },
+    },
+    filter: {
+      none: 'none',
+      grayscale: 'grayscale(1)',
+      'saturate-25': 'saturate(.25)',
+      'saturate-50': 'saturate(.50)',
+      'saturate-75': 'saturate(.75)',
+    },
+    fontFamily: {
+      system: ['system-ui'],
+      heading: ['"SangBleu Kingdom"', 'serif'],
+      body: ['"SangBleu Sans"', 'serif'],
+    },
+    fontWeight: {
+      hairline: '100',
+      light: '300',
+      normal: '400',
+      medium: '500',
+      bold: '700',
     },
     extend: {
       screens: {
@@ -162,11 +175,13 @@ module.exports = {
     },
   },
   variants: {
+    backgroundOpacity: ['responsive', 'hover', 'focus', 'group-hover'],
     translate: ['responsive', 'hover', 'focus', 'group-hover'],
   },
   plugins: [
     gridColsMax,
     fractionalTopRightBottomLeft,
     require('tailwindcss-filters'),
+    require('tailwindcss-aspect-ratio'),
   ],
 }
