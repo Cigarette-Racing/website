@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { Typography } from '../atoms/typography'
 import { CaretDownIcon, CaretUpIcon } from '../svgs/icons'
 import Modal from 'react-modal'
-import { useHeaderState } from './header'
+// import { useHeaderState } from './header'
 
 const slugify = (str: string) =>
   str.toLowerCase().replace(/\W/g, '_').replace(/_+/, '_')
@@ -21,7 +21,7 @@ export const InPageNav = ({
   links,
   onClickInquire,
 }: InPageNavProps) => {
-  const [headerState] = useHeaderState()
+  // const [headerState] = useHeaderState()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
     <Fragment>
@@ -29,7 +29,7 @@ export const InPageNav = ({
         className={clsx(
           'sticky top-0 left-0 w-full h-12 z-30 bg-gray-0 text-white flex justify-between items-center px-4 transform duration-200 ease-in-out',
           {
-            'translate-y-20': headerState === 'pinned',
+            // 'translate-y-20': headerState === 'pinned',
           }
         )}
       >
