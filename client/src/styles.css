@@ -1,11 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 See `tailwind.config.js` for more custom styles
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+@tailwind base;
+
+/* 
+Base Styles 
 */
 
 body {
@@ -16,39 +17,46 @@ main {
   @apply bg-white;
 }
 
+@tailwind components;
+@tailwind utilities;
+
+/* 
+Utilities
+*/
+
 /* Typography styles */
 @responsive {
-  .h1 {
+  .type-h1 {
     @apply text-6xl tracking-normal leading-10 font-heading font-light;
   }
-  .h2 {
+  .type-h2 {
     @apply text-5xl tracking-normal leading-10 font-heading font-light;
   }
-  .h3 {
+  .type-h3 {
     @apply text-4xl tracking-normal leading-9 font-heading font-light;
   }
-  .h4 {
+  .type-h4 {
     @apply text-3xl tracking-normal leading-8 font-heading font-light;
   }
-  .h5 {
+  .type-h5 {
     @apply text-2xl tracking-normal leading-7 font-heading font-light;
   }
-  .p1 {
+  .type-p1 {
     @apply text-lg tracking-wide leading-6 font-body;
   }
-  .p2 {
+  .type-p2 {
     @apply text-base tracking-wide leading-6 font-body;
   }
-  .p3 {
+  .type-p3 {
     @apply text-sm tracking-wide leading-4 font-body;
   }
-  .e1 {
+  .type-e1 {
     @apply text-base tracking-wider leading-4 font-body uppercase;
   }
-  .e2 {
+  .type-e2 {
     @apply text-sm tracking-wider leading-4 font-body uppercase;
   }
-  .e3 {
+  .type-e3 {
     @apply text-xs tracking-wider leading-4 font-body uppercase;
   }
 }

@@ -58,7 +58,17 @@ const fractionalTopRightBottomLeft = plugin(({ addUtilities }) => {
 })
 
 module.exports = {
-  purge: ['./src/**/*.{ts,tsx}'],
+  purge: {
+    content: ['./src/**/*.{ts,tsx}'],
+    options: {
+      whitelistPatterns: [
+        // Typography
+        /type-/,
+        // Aspect Ratios
+        /aspect-ratio-/,
+      ],
+    },
+  },
   theme: {
     aspectRatio: {
       none: 0,
