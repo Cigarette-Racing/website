@@ -48,14 +48,14 @@ export const Typography: React.FC<TypographyProps> = ({
   return (
     <Component
       className={clsx(
-        variant,
+        `type-${variant}`,
         {
           'text-white': theme === 'dark',
           'text-black': theme === 'light',
-          [`sm:${sm}`]: !!sm,
-          [`md:${md}`]: !!md,
-          [`lg:${lg}`]: !!lg,
-          [`xl:${xl}`]: !!xl,
+          [`sm:type-${sm}`]: !!sm,
+          [`md:type-${md}`]: !!md,
+          [`lg:type-${lg}`]: !!lg,
+          [`xl:type-${xl}`]: !!xl,
         },
         className
       )}
