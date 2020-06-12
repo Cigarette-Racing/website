@@ -32,7 +32,7 @@ export const AspectRatio: React.FC<AspectRatioProps> = ({
     <div
       {...rest}
       className={clsx(
-        'h-0',
+        'h-0 relative',
         `aspect-ratio-${ratio}`,
         {
           [`sm:aspect-ratio-${sm}`]: !!sm,
