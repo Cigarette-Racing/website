@@ -91,7 +91,9 @@ export const Header = ({}: HeaderProps) => {
             </div>
             <div className="w-1/3 flex justify-end">
               {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (
-                <Typography variant="e3">Contact</Typography>
+                <div>
+                  <Typography variant="e3">Contact</Typography>
+                </div>
               ) : (
                 <div className="flex space-x-8 xl:space-x-10 pointer-events-none">
                   {rightLinks.map((link) => (
