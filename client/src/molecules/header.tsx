@@ -12,6 +12,7 @@ import {
   createGlobalState,
 } from 'react-use'
 import Modal from 'react-modal'
+import { Link } from 'gatsby'
 
 export type HeaderState = 'top' | 'pinned' | 'hidden'
 export const useHeaderState = createGlobalState<HeaderState>('top')
@@ -57,9 +58,10 @@ export const Header = ({}: HeaderProps) => {
           setHeaderState('top')
           setIsAtTop(true)
         }}
+        upTolerance={12}
       >
         <div ref={headerRef} className="w-full text-white h-20">
-          <div className="max-w-8xl mx-auto h-full px-4 flex justify-between items-center">
+          <div className="max-w-7xl mx-auto h-full px-4 flex justify-between items-center">
             <div className="w-1/3 flex justify-start">
               {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (
                 <button className="p-2" onClick={() => setIsMenuOpen(true)}>
@@ -80,7 +82,9 @@ export const Header = ({}: HeaderProps) => {
               )}
             </div>
             <div className="w-1/3 flex justify-center">
-              <img src={src} className="h-16 py-2" />
+              <Link to="/">
+                <img src={src} className="h-16 py-2" />
+              </Link>
             </div>
             <div className="w-1/3 flex justify-end">
               {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (

@@ -3,7 +3,7 @@ import { Typography } from './typography'
 import clsx from 'clsx'
 
 export interface VerticalLabelProps {
-  className: string
+  className?: string
 }
 
 export const VerticalLabel: React.FC<VerticalLabelProps> = ({
