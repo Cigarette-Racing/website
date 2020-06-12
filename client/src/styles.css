@@ -27,37 +27,37 @@ Utilities
 /* Typography styles */
 @responsive {
   .type-h1 {
-    @apply text-6xl tracking-normal leading-10 font-heading font-light;
+    @apply text-6xl tracking-normal leading-10 font-heading;
   }
   .type-h2 {
-    @apply text-5xl tracking-normal leading-10 font-heading font-light;
+    @apply text-4xl tracking-normal leading-tight font-heading;
   }
   .type-h3 {
-    @apply text-4xl tracking-normal leading-9 font-heading font-light;
+    @apply text-3xl tracking-normal leading-snug font-heading;
   }
   .type-h4 {
-    @apply text-3xl tracking-normal leading-8 font-heading font-light;
+    @apply text-2xl tracking-normal leading-normal font-heading;
   }
   .type-h5 {
-    @apply text-2xl tracking-normal leading-7 font-heading font-light;
+    @apply text-base tracking-normal leading-normal font-heading;
   }
   .type-p1 {
-    @apply text-lg tracking-wide leading-6 font-body;
+    @apply text-lg tracking-wide leading-7 font-body;
   }
   .type-p2 {
-    @apply text-base tracking-wide leading-6 font-body;
+    @apply text-base tracking-wide leading-7 font-body;
   }
   .type-p3 {
-    @apply text-sm tracking-wide leading-4 font-body;
+    @apply text-sm tracking-wide leading-6 font-body;
   }
   .type-e1 {
-    @apply text-base tracking-wider leading-4 font-body uppercase;
+    @apply text-sm tracking-widest leading-normal font-bold font-body uppercase;
   }
   .type-e2 {
-    @apply text-sm tracking-wider leading-4 font-body uppercase;
+    @apply text-xs tracking-wider leading-normal font-bold font-body uppercase;
   }
   .type-e3 {
-    @apply text-xs tracking-wider leading-4 font-body uppercase;
+    @apply text-mi tracking-wider leading-normal font-bold font-body uppercase;
   }
 }
 

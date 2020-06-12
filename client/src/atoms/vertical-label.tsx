@@ -17,7 +17,7 @@ export const VerticalLabel: React.FC<VerticalLabelProps> = ({
         className
       )}
     >
-      <Typography variant="e3" theme="dark" className="whitespace-no-wrap">
+      <Typography variant="e2" theme="dark" className="whitespace-no-wrap">
         {children}
       </Typography>
     </div>

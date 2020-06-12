@@ -23,11 +23,11 @@ export const ContentHeader: React.FC<ContentHeaderProps> = ({
       <AngleIcon className="mr-1 text-red" style={{ fontSize: '40px' }} />
       <div>
         {!!subtitle && (
-          <Typography variant="e3" className="text-red">
+          <Typography variant="e2" className="text-red">
             {subtitle}
           </Typography>
         )}
-        <Typography variant="e3" theme="dark">
+        <Typography variant="e2" theme="dark">
           {children}
         </Typography>
       </div>

@@ -25,7 +25,7 @@ export function Tab({
         'text-red border-red': active,
       })}
     >
-      <Typography variant="e3" as="span">
+      <Typography variant="e2" as="span">
         {children}
       </Typography>
     </Comp>
