@@ -13,7 +13,7 @@ export interface InPageCtaProps {
 const baseClasses =
   'h-10 px-4 sm:px-10 border rounded-full transition-colors duration-150 ease-in-out'
 const primaryClasses =
-  'bg-white text-black border-white hover:bg-black hover:border-red hover:text-red'
+  'bg-white text-black border-white hover:bg-red hover:border-red hover:text-white'
 const secondaryClasses = 'border-red hover:bg-red'
 
 export const InPageCta: React.FC<

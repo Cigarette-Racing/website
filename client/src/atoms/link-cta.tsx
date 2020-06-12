@@ -12,7 +12,7 @@ export interface LinkCtaProps {
 }
 
 const baseClasses = 'h-10 border-b flex items-center group'
-const primaryClasses = 'border-current'
+const primaryClasses = 'border-current border-opacity-50'
 const secondaryClasses = 'border-transparent'
 const typographyClasses =
   'transform transition-transform duration-300 ease-in-out group-hover:translate-x-1'
@@ -29,8 +29,8 @@ export const LinkCta: React.FC<
         {
           [primaryClasses]: variant === 'primary',
           [secondaryClasses]: variant === 'secondary',
-          'text-white': theme === 'dark',
-          'text-black': theme === 'light',
+          'text-white border-white': theme === 'dark',
+          'text-black border-black': theme === 'light',
         },
         className
       )}
