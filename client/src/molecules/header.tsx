@@ -64,7 +64,10 @@ export const Header = ({}: HeaderProps) => {
           <div className="max-w-7xl mx-auto h-full px-4 flex justify-between items-center">
             <div className="w-1/3 flex justify-start">
               {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (
-                <button className="p-2" onClick={() => setIsMenuOpen(true)}>
+                <button
+                  className="p-2 text-2xl"
+                  onClick={() => setIsMenuOpen(true)}
+                >
                   <MenuIcon />
                 </button>
               ) : (

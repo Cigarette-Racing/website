@@ -95,6 +95,7 @@ Utilities
   );
 }
 .headroom--pinned {
-  @apply bg-opacity-100;
+  @apply bg-opacity-50 backdrop-blur-4;
+  background-image: none;
 }
 
