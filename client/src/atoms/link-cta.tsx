@@ -35,7 +35,7 @@ export const LinkCta: React.FC<
         className
       )}
     >
-      <Typography variant="e3" as="span" className={typographyClasses}>
+      <Typography variant="e2" as="span" className={typographyClasses}>
         {children}
       </Typography>
       <ArrowIcon className="ml-6 sm:ml-10" />

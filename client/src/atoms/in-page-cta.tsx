@@ -30,7 +30,7 @@ export const InPageCta: React.FC<
         'text-black': variant === 'secondary' && theme === 'light',
       })}
     >
-      <Typography variant="e3" as="span">
+      <Typography variant="e2" as="span">
         {children}
       </Typography>
     </button>
