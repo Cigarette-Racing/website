@@ -826,7 +826,7 @@ const GalleryImage = ({
   className = '',
   img,
 }: {
-  className: string
+  className?: string
   img: string
 }) => {
   return (
