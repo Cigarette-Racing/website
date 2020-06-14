@@ -23,7 +23,7 @@ export const Layout: React.FC = ({ children }) => {
   return (
     <Fragment>
       <Header />
-      <main>{children}</main>
+      <main className="main">{children}</main>
       <Footer />
     </Fragment>
   )

@@ -9,11 +9,15 @@ See `tailwind.config.js` for more custom styles
 Base Styles 
 */
 
-body {
+/* Use `.body` class (instead of `body`) so this is only applied in Gatsby */
+.body {
   @apply bg-black;
+  /* This may be a bad idea... */
+  @apply overflow-x-hidden;
 }
 
-main {
+/* Use `.main` class (instead of `main`) so this is only applied in Gatsby */
+.main {
   @apply bg-white;
 }
 
