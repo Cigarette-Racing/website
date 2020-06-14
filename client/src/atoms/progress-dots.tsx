@@ -8,12 +8,15 @@ export interface ProgressDotsProps {
   total: number
   /** Direction in which to display the dots */
   variant: 'horizontal' | 'vertical'
+  /** Callback fired when a dot is clicked. Value is the one-based index of the dot. */
+  onClick?(index: number): void
 }
 
 export const ProgressDots = ({
   current,
   total,
   variant,
+  onClick,
 }: ProgressDotsProps) => {
   const array = useMemo(() => Array.from({ length: total }), [total])
   return (
@@ -27,19 +30,24 @@ export const ProgressDots = ({
         const oneBasedIndex = index + 1
         const isCurrent = oneBasedIndex === current
         return (
-          <div
+          <button
             key={index}
             className={clsx(
-              'w-6 h-6 border rounded-full border-transparent flex justify-center items-center',
-              { 'border-red': isCurrent }
+              'w-6 h-6 border rounded-full border-transparent flex justify-center items-center cursor-default',
+              {
+                'border-red': isCurrent,
+                'cursor-pointer pointer-events-auto': !!onClick,
+              }
             )}
+            onClick={!!onClick ? () => onClick(oneBasedIndex) : undefined}
+            disabled={!onClick}
           >
             <div className="w-1 h-1 bg-white rounded-full">
               <span className="sr-only">
                 {oneBasedIndex} of {total}
               </span>
             </div>
-          </div>
+          </button>
         )
       })}
     </div>
