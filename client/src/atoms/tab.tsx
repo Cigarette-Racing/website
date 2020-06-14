@@ -21,11 +21,15 @@ export function Tab({
   return (
     <Comp
       {...props}
-      className={clsx('block py-px border-b border-transparent', className, {
-        'text-red border-red': active,
-      })}
+      className={clsx(
+        'block py-px border-b md:border-none border-transparent',
+        className,
+        {
+          'text-red border-red': active,
+        }
+      )}
     >
-      <Typography variant="e2" as="span">
+      <Typography variant="e2" md="e3" as="span">
         {children}
       </Typography>
     </Comp>
