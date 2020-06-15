@@ -10,6 +10,11 @@ export default {
 
 export const Sandbox = () => {
   const variant = select('variant', ['primary', 'secondary'], 'primary')
+  const theme = select('theme', ['dark', 'light'], 'dark')
   const children = text('text', 'Request Info')
-  return <LinkCta variant={variant}>{children}</LinkCta>
+  return (
+    <LinkCta variant={variant} theme={theme}>
+      {children}
+    </LinkCta>
+  )
 }
