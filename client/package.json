@@ -4,6 +4,7 @@
   "description": "",
   "version": "0.0.0",
   "scripts": {
+    "add-deploy-branch": "node ./scripts/enableDeliveryBranchDeploy.js",
     "build": "gatsby build",
     "develop": "gatsby develop -p 17007",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
@@ -63,6 +64,7 @@
     "@storybook/react": "^5.3.19",
     "@storybook/theming": "^5.3.19",
     "babel-loader": "^8.1.0",
+    "netlify": "^4.3.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "ts-loader": "^7.0.4"
   }
