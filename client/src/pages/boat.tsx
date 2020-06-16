@@ -4,6 +4,17 @@ import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
 import { StatBlock } from '../atoms/stat-block'
 import { InPageCta } from '../atoms/in-page-cta'
+import { InPageNav } from '../molecules/in-page-nav'
+import { CircleButton } from '../atoms/circle-button'
+import { PlayIcon, PlusIcon, ArrowIcon, ExpandIcon } from '../svgs/icons'
+import { VerticalLabel } from '../atoms/vertical-label'
+import { AspectRatio } from '../atoms/aspect-ratio'
+import { Tab } from '../atoms/tab'
+import { LinkCta } from '../atoms/link-cta'
+import { VerticalHeader } from '../atoms/vertical-header'
+import { ProgressBar } from '../atoms/progress-bar'
+
+// Images
 import boat1 from '../images/tirranna-boat.jpeg'
 import tirrannaLogo from '../images/tirranna-logo.svg'
 import section2Bg from '../images/boat-section2-bg.jpeg'
@@ -35,15 +46,6 @@ import section8Image8 from '../images/homepage-header.jpeg'
 import section9Image from '../images/boat-section9-image.jpeg'
 import section9Image2 from '../images/boat-section9-image2.jpeg'
 import section10Image from '../images/article1.jpeg'
-import { InPageNav } from '../molecules/in-page-nav'
-import { CircleButton } from '../atoms/circle-button'
-import { PlayIcon, PlusIcon, ArrowIcon, ExpandIcon } from '../svgs/icons'
-import { VerticalLabel } from '../atoms/vertical-label'
-import { AspectRatio } from '../atoms/aspect-ratio'
-import { Tab } from '../atoms/tab'
-import { LinkCta } from '../atoms/link-cta'
-import { VerticalHeader } from '../atoms/vertical-header'
-import { ProgressBar } from '../atoms/progress-bar'
 
 const IN_PAGE_NAV_LINKS = [
   ['Discover'],
@@ -608,14 +610,8 @@ const IndexPage = () => (
         </InPageCta>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[5][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Specs section */}
-    <section className="py-12 md:py-24 overflow-y-hidden">
+    <section className="py-12 md:py-24">
       <div className="relative flex max-w-7xl mx-auto">
         <div className="hidden md:block absolute right-0 top-0">
           <VerticalHeader theme="light" className="mr-4">
@@ -630,11 +626,11 @@ const IndexPage = () => (
           <Tab className="w-auto whitespace-no-wrap">Category Three</Tab>
           <Tab className="w-auto whitespace-no-wrap">Category Four</Tab>
         </div>
-        <div className="max-w-2xl">
+        <div className="max-w-2xl w-full">
           <div className="px-4 md:px-0 md:mb-16">
             <Typography variant="h4">59' Tirranna AMG Edition Specs</Typography>
           </div>
-          <div className="md:hidden flex flex-no-wrap px-4 space-x-4 overflow-y-scroll my-12">
+          <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
             <Tab className="whitespace-no-wrap" active>
               Category One
             </Tab>

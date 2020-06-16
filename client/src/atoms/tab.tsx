@@ -29,7 +29,7 @@ export function Tab({
         }
       )}
     >
-      <Typography variant="e2" md="e3" as="span">
+      <Typography variant="e3" md="e2" as="span">
         {children}
       </Typography>
     </Comp>
