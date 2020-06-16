@@ -40,7 +40,7 @@ export const InPageNav = ({
         <div className="h-12 bg-gray-0 px-4">
           <div
             className={clsx(
-              'h-full flex justify-between items-center border-b border-transparent border-opacity-25 max-w-7xl mx-auto',
+              'h-full flex justify-between items-center border-b border-transparent border-opacity-25 max-w-8xl mx-auto',
               {
                 'border-white': !isMobileMenu && isMenuOpen,
               }
