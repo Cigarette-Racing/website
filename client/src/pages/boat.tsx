@@ -610,6 +610,12 @@ const IndexPage = () => (
         </InPageCta>
       </div>
     </section>
+    <InPageNav
+      boatName="Tirranna"
+      current={IN_PAGE_NAV_LINKS[5][0]}
+      links={IN_PAGE_NAV_LINKS}
+      onClickInquire={() => console.log('Clicked inquire')}
+    />
     {/* Specs section */}
     <section className="py-12 md:py-24">
       <div className="relative flex max-w-7xl mx-auto">
