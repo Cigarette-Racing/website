@@ -77,7 +77,7 @@ export const InPageNav = ({
           </div>
         </div>
         {!isMobileMenu && isMenuOpen && (
-          <div className="flex justify-center items-center bg-gray-0 h-10 space-x-6">
+          <div className="flex justify-center items-center bg-gray-0 h-10 -mb-10 space-x-6">
             {links.map((link) => {
               return (
                 <Typography

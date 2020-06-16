@@ -170,7 +170,7 @@ const IndexPage = () => (
       onClickInquire={() => console.log('Clicked inquire')}
     />
     {/* Design & Engineering section */}
-    <section className="py-12 md:px-12 lg:px-16">
+    <section className="py-12">
       <div className="px-4">
         <Typography
           variant="h4"
@@ -179,18 +179,24 @@ const IndexPage = () => (
           {IN_PAGE_NAV_LINKS[1][0]}
         </Typography>
       </div>
-      <div className="relative max-w-5xl md:mt-16 lg:mt-32 md:mb-32 mx-auto">
-        <VerticalHeader theme="light" className="absolute -ml-12 xl:-ml-16">
-          {IN_PAGE_NAV_LINKS[1][0]}
-        </VerticalHeader>
-        <div className="md:-mr-12 md:ml-4 lg:ml-12 xl:ml-24 max-w-none">
-          <img src={section3Image} alt="" />
+
+      <div className="max-w-7xl mx-auto relative md:mt-16 lg:mt-32">
+        <div className="hidden md:block absolute left-0 top-0">
+          <VerticalHeader theme="light" className="ml-4">
+            {IN_PAGE_NAV_LINKS[1][0]}
+          </VerticalHeader>
         </div>
       </div>
-
-      <div className="md:flex md:mb-24 max-w-5xl mx-auto">
-        <div className="md:w-1/2 lg:pr-8">
-          <div className="my-12 px-4 lg:px-0 lg:ml-12 xl:ml-24 md:mb-32 lg:mb-48">
+      <div className="relative max-w-8xl mx-auto md:mt-16 lg:mt-32 md:mb-32">
+        <div className="w-full md:w-11/12 lg:w-10/12  ml-auto">
+          <AspectRatio ratio="3:2" className="relative">
+            <img src={section3Image} className="absolute h-full object-cover" />
+          </AspectRatio>
+        </div>
+      </div>
+      <div className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto">
+        <div className="md:w-1/2 lg:pr-12">
+          <div className="my-12 px-4 lg:px-0 lg:ml-12 md:mb-32 lg:mb-48">
             <Typography variant="e2" className="mb-4">
               Advanced helm
             </Typography>
@@ -213,8 +219,8 @@ const IndexPage = () => (
             </AspectRatio>
           </div>
         </div>
-        <div className="md:w-1/2 lg:pl-8">
-          <div className="px-4 lg:px-0">
+        <div className="md:w-1/2 lg:pl-12">
+          <div className="px-4 lg:px-0 lg:pr-16">
             <AspectRatio
               ratio="3:4"
               className="relative"
@@ -229,7 +235,7 @@ const IndexPage = () => (
               </VerticalLabel>
             </AspectRatio>
           </div>
-          <div className="my-10 md:my-16 px-4 lg:px-0">
+          <div className="my-10 md:my-16 px-4 lg:px-0 lg:pr-16">
             <Typography variant="e2" className="mb-4">
               POWERTRAIN OPTIONS
             </Typography>
@@ -267,8 +273,15 @@ const IndexPage = () => (
           {IN_PAGE_NAV_LINKS[2][0]}
         </Typography>
       </div>
-      <div className="relative max-w-5xl mx-auto md:mt-16 lg:mt-32 md:mb-32">
-        <div className="md:mr-4 lg:mr-12 xl:mr-24">
+      <div className="max-w-7xl mx-auto relative md:mt-16">
+        <div className="hidden md:block absolute right-0 top-0">
+          <VerticalHeader theme="dark" className="mr-4">
+            {IN_PAGE_NAV_LINKS[2][0]}
+          </VerticalHeader>
+        </div>
+      </div>
+      <div className="relative max-w-8xl mx-auto md:mt-16 md:mb-24">
+        <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12">
           <AspectRatio ratio="3:2" className="relative">
             <img
               src={section4Image}
@@ -277,7 +290,7 @@ const IndexPage = () => (
           </AspectRatio>
         </div>
       </div>
-      <div className="my-12 px-4 mb-32 max-w-5xl mx-auto">
+      <div className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto">
         <div className="max-w-md">
           <Typography variant="e2" className="mb-4">
             DIGITAL SWITCHING & AUTOMATION
@@ -336,7 +349,7 @@ const IndexPage = () => (
           </div>
         </div>
       </div>
-      <div className="max-w-5xl mx-auto md:flex mb-24">
+      <div className="max-w-5xl mx-auto sm:flex mb-24">
         <div className="px-4 mb-16 md:mb-0 flex-1">
           <AspectRatio ratio="3:4" className="relative">
             <img
@@ -369,6 +382,7 @@ const IndexPage = () => (
       links={IN_PAGE_NAV_LINKS}
       onClickInquire={() => console.log('Clicked inquire')}
     />
+    {/* Advanced Features section */}
     <section className="py-12">
       <div className="px-4">
         <Typography
@@ -392,9 +406,9 @@ const IndexPage = () => (
           </AspectRatio>
         </div>
       </div>
-      <div className="md:flex max-w-5xl mx-auto md:space-x-8">
+      <div className="sm:flex sm:mt-32 max-w-5xl mx-auto md:space-x-16 lg:space-x-24 md:px-16 lg:px-8 xl:px-0 sm:mb-24">
         <div className=" px-4 md:px-0">
-          <div className="my-12">
+          <div className="my-12 sm:mt-0 sm:mb-20 lg:mb-32 lg:pl-20">
             <Typography variant="e2" className="mb-4">
               Carbon Fiber Hardtop
             </Typography>
@@ -418,7 +432,7 @@ const IndexPage = () => (
           </div>
         </div>
         <div className="px-4 md:px-0">
-          <div className="max-w-md">
+          <div className="max-w-md sm:mt-20 lg:mt-32 xl:mt-40">
             <AspectRatio
               ratio="3:4"
               className="relative"
@@ -433,7 +447,7 @@ const IndexPage = () => (
               </VerticalLabel>
             </AspectRatio>
           </div>
-          <div className="my-10">
+          <div className="my-10 sm:mt-16">
             <Typography variant="e2" className="mb-4">
               Storage & Convenience
             </Typography>
@@ -461,7 +475,7 @@ const IndexPage = () => (
             <CircleButton icon={ArrowIcon} theme="dark" variant="secondary" />
           </div>
         </AspectRatio>
-        <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 md:px-0 ">
+        <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
           <div className="md:w-7/12">
             <Typography variant="e2" className="mb-4">
               Feature Callout
