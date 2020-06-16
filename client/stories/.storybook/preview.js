@@ -3,6 +3,7 @@ import centered from '@storybook/addon-centered/react'
 import { action } from '@storybook/addon-actions'
 import '../../src/styles.css'
 import '../../src/fonts/fonts.css'
+import './storybook.css'
 
 addDecorator(centered)
 
