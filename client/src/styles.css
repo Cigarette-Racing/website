@@ -11,11 +11,11 @@ Base Styles
 
 body {
   @apply bg-black;
+  overflow-x: hidden;
 }
 
 main {
   @apply bg-white;
-  overflow-x: hidden;
 }
 
 @tailwind components;
