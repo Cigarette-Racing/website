@@ -15,6 +15,7 @@ body {
 
 main {
   @apply bg-white;
+  overflow-x: hidden;
 }
 
 @tailwind components;
@@ -98,4 +99,3 @@ Utilities
   @apply bg-opacity-50 backdrop-blur-4;
   background-image: none;
 }
-
