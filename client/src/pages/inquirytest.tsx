@@ -1,19 +1,18 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 
-import Inquiry from '../components/inquiry'
+import Inquiry, { useGlobalValue } from '../components/inquiry'
 
 const InquiryTest = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [val, setVal] = useGlobalValue()
+
+  console.log(val)
 
   return (
     <Fragment>
-      <button className="text-white" onClick={() => setIsModalOpen(true)}>
+      <button className="text-white" onClick={() => setVal(true)}>
         Open Modal
       </button>
-      <Inquiry
-        isModalOpen={isModalOpen}
-        handleCloseModal={() => setIsModalOpen(false)}
-      />
+      <Inquiry />
     </Fragment>
   )
 }

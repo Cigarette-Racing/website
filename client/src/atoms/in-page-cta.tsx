@@ -4,6 +4,7 @@ import { Typography } from './typography'
 import { Theme } from './types'
 
 export interface InPageCtaProps {
+  className?: string
   /** Visual variant to use */
   variant?: 'primary' | 'secondary'
   /** Light or dark theme */
@@ -18,17 +19,21 @@ const secondaryClasses = 'border-red hover:bg-red'
 
 export const InPageCta: React.FC<
   InPageCtaProps & React.HTMLAttributes<HTMLButtonElement>
-> = ({ variant = 'primary', theme, children, ...rest }) => {
+> = ({ className, variant = 'primary', theme, children, ...rest }) => {
   return (
     <button
-      {...rest}
       type="button"
-      className={clsx(baseClasses, {
-        [primaryClasses]: variant === 'primary',
-        [secondaryClasses]: variant === 'secondary',
-        'text-white': variant === 'secondary' && theme === 'dark',
-        'text-black': variant === 'secondary' && theme === 'light',
-      })}
+      {...rest}
+      className={clsx(
+        baseClasses,
+        {
+          [primaryClasses]: variant === 'primary',
+          [secondaryClasses]: variant === 'secondary',
+          'text-white': variant === 'secondary' && theme === 'dark',
+          'text-black': variant === 'secondary' && theme === 'light',
+        },
+        className
+      )}
     >
       <Typography variant="e2" as="span">
         {children}
