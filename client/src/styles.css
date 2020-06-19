@@ -11,6 +11,7 @@ Base Styles
 
 body {
   @apply bg-black;
+  -webkit-font-smoothing: antialiased;
 }
 
 main {
