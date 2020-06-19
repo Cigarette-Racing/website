@@ -6,7 +6,7 @@ import { Theme } from '../atoms/types'
 import clsx from 'clsx'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { CircleButton } from '../atoms/circle-button'
-import { ExpandIcon, PlayIcon } from '../svgs/icons'
+import { ExpandIcon, PlayIcon, ArrowIcon } from '../svgs/icons'
 import { InPageAnchor } from '../molecules/in-page-nav'
 import { VerticalHeader } from '../atoms/vertical-header'
 
@@ -165,6 +165,24 @@ export const MobileSectionHeader: React.FC<{ className?: string }> = ({
     >
       {children}
     </Typography>
+  </div>
+)
+
+export const CarouselButtons = ({
+  className,
+  theme = 'dark',
+}: {
+  className?: string
+  theme?: Theme
+}) => (
+  <div className={clsx('flex justify-center space-x-4', className)}>
+    <CircleButton
+      icon={ArrowIcon}
+      theme={theme}
+      variant="secondary"
+      iconClassName="transform rotate-180"
+    />
+    <CircleButton icon={ArrowIcon} theme={theme} variant="secondary" />
   </div>
 )
 
