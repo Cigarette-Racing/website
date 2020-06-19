@@ -26,10 +26,12 @@ export const ScrollIndicator = ({}: ScrollIndicatorProps) => {
 
   useEffect(() => {
     if (!window.IntersectionObserver) return
+
     const sections = Array.from(
       document.querySelectorAll('[data-scrollsection]')
     )
     const ratiosMap = new Map(Array.from(sections).map((el) => [el, 0]))
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ target, intersectionRatio }) => {
@@ -47,8 +49,10 @@ export const ScrollIndicator = ({}: ScrollIndicatorProps) => {
       },
       { threshold: [0.01, 0.25, 0.75, 1] }
     )
+
     sections.forEach((el) => observer.observe(el))
     setScrollSections(sections)
+
     return () => observer.disconnect()
   }, [])
 
