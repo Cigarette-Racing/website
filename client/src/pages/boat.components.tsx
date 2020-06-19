@@ -211,6 +211,37 @@ export const ImageWithLabel = ({
   </AspectRatio>
 )
 
+type Side = 'left' | 'right'
+
+export const VerticalHeaderBlock = ({
+  className,
+  label,
+  side,
+  theme,
+}: {
+  className?: string
+  label: string
+  theme: Theme
+  side: Side
+}) => (
+  // <div className="max-w-7xl mx-auto relative md:mt-16 lg:mt-32">
+  <div className={clsx('max-w-7xl mx-auto relative md:mt-16', className)}>
+    <div
+      className={clsx('hidden md:block absolute top-0', {
+        'left-0': side === 'left',
+        'right-0': side === 'right',
+      })}
+    >
+      <VerticalHeader
+        theme={theme}
+        className={clsx({ 'ml-4': side === 'left', 'mr-4': side === 'right' })}
+      >
+        {label}
+      </VerticalHeader>
+    </div>
+  </div>
+)
+
 export const BespokeOptionCard = ({ img }: { img: string }) => {
   return (
     <div className="w-56 sm:w-auto max-w-lg">
