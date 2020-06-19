@@ -14,6 +14,7 @@ import { VerticalHeader } from '../atoms/vertical-header'
 import discoverBackground from '../images/boat-section2-bg.jpeg'
 import orderBackground from '../images/article1.jpeg'
 import { VerticalLabel } from '../atoms/vertical-label'
+import string from '../images/boat-section2-bg.jpeg'
 
 export const BoatHeader = ({
   boatImage,
@@ -291,6 +292,32 @@ export const TwoUpImageBlock = ({
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
         <img src={images[1]} className="absolute h-full w-full object-cover" />
+      </AspectRatio>
+    </div>
+  </div>
+)
+
+export const ThreeUpImageBlock = ({
+  className,
+  images,
+}: {
+  className?: string
+  images: [string, string, string]
+}) => (
+  <div className={clsx('sm:flex max-w-7xl mx-auto', className)}>
+    <div className="px-4 mb-16 sm:w-1/3">
+      <AspectRatio ratio="3:4">
+        <img src={images[0]} className="absolute h-full w-full object-cover" />
+      </AspectRatio>
+    </div>
+    <div className="px-4 mb-16 sm:w-1/3">
+      <AspectRatio ratio="3:4">
+        <img src={images[1]} className="absolute h-full w-full object-cover" />
+      </AspectRatio>
+    </div>
+    <div className="px-4 mb-16 sm:w-1/3">
+      <AspectRatio ratio="3:4">
+        <img src={images[2]} className="absolute h-full w-full object-cover" />
       </AspectRatio>
     </div>
   </div>

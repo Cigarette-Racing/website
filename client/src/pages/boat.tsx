@@ -24,6 +24,7 @@ import {
   VerticalHeaderBlock,
   SideBleedImage,
   TwoUpImageBlock,
+  ThreeUpImageBlock,
 } from './boat.components'
 
 // Images
@@ -303,32 +304,10 @@ const IndexPage = () => (
           copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
         />
       </div>
-      <div className="sm:flex max-w-7xl mx-auto sm:mb-24">
-        <div className="px-4 mb-16 sm:w-1/3">
-          <AspectRatio ratio="3:4">
-            <img
-              src={section6Image3}
-              className="absolute h-full w-full object-cover"
-            />
-          </AspectRatio>
-        </div>
-        <div className="px-4 mb-16 sm:w-1/3">
-          <AspectRatio ratio="3:4">
-            <img
-              src={section6Image4}
-              className="absolute h-full w-full object-cover"
-            />
-          </AspectRatio>
-        </div>
-        <div className="px-4 mb-16 sm:w-1/3">
-          <AspectRatio ratio="3:4">
-            <img
-              src={section6Image5}
-              className="absolute h-full w-full object-cover"
-            />
-          </AspectRatio>
-        </div>
-      </div>
+      <ThreeUpImageBlock
+        className="sm:mb-24"
+        images={[section6Image3, section6Image4, section6Image5]}
+      />
       <TextBlock
         className="my-16 px-4 max-w-2xl mx-auto md:text-center"
         header="Story Callout"
