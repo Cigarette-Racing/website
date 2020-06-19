@@ -256,7 +256,7 @@ const IndexPage = () => (
       </div>
     </section>
     {/* Technology section */}
-    <section className="relative py-12 bg-black text-white">
+    <section className="relative py-12 bg-black text-white overflow-x-hidden">
       <InPageAnchor title={TITLES[2][0]} />
       <div className="px-4">
         <Typography
