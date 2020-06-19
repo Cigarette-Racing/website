@@ -275,6 +275,27 @@ export const SideBleedImage = ({
   </div>
 )
 
+export const TwoUpImageBlock = ({
+  className,
+  images,
+}: {
+  className?: string
+  images: [string, string]
+}) => (
+  <div className={clsx('max-w-5xl mx-auto sm:flex', className)}>
+    <div className="px-4 mb-16 md:mb-0 flex-1">
+      <AspectRatio ratio="3:4">
+        <img src={images[0]} className="absolute h-full w-full object-cover" />
+      </AspectRatio>
+    </div>
+    <div className="px-4 mb-16 md:mb-0 flex-1">
+      <AspectRatio ratio="3:4">
+        <img src={images[1]} className="absolute h-full w-full object-cover" />
+      </AspectRatio>
+    </div>
+  </div>
+)
+
 export const BespokeOptionCard = ({ img }: { img: string }) => {
   return (
     <div className="w-56 sm:w-auto max-w-lg">

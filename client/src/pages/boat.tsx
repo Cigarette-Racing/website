@@ -23,6 +23,7 @@ import {
   ImageWithLabel,
   VerticalHeaderBlock,
   SideBleedImage,
+  TwoUpImageBlock,
 } from './boat.components'
 
 // Images
@@ -200,24 +201,10 @@ const IndexPage = () => (
           </div>
         </div>
       </div>
-      <div className="max-w-5xl mx-auto sm:flex mb-24">
-        <div className="px-4 mb-16 md:mb-0 flex-1">
-          <AspectRatio ratio="3:4">
-            <img
-              src={section4Image3}
-              className="absolute h-full w-full object-cover"
-            />
-          </AspectRatio>
-        </div>
-        <div className="px-4 mb-16 md:mb-0 flex-1">
-          <AspectRatio ratio="3:4">
-            <img
-              src={section4Image4}
-              className="absolute h-full w-full object-cover"
-            />
-          </AspectRatio>
-        </div>
-      </div>
+      <TwoUpImageBlock
+        className="mb-24"
+        images={[section4Image3, section4Image4]}
+      />
       <div className="flex justify-center mb-4 md:mb-8">
         <InPageCta variant="secondary" theme="dark">
           <span className="flex items-center">
