@@ -13,8 +13,8 @@ import { VerticalLabel } from './atoms/vertical-label'
 import { ProgressBar } from './atoms/progress-bar'
 
 // images
-import discoverBackground from '../images/boat-section2-bg.jpeg'
-import orderBackground from '../images/article1.jpeg'
+import discoverBackground from './images/boat-section2-bg.jpeg'
+import orderBackground from './images/article1.jpeg'
 
 export const BoatHeader = ({
   boatImage,
