@@ -21,6 +21,7 @@ import {
   TextBlock,
   CarouselButtons,
   ImageWithLabel,
+  VerticalHeaderBlock,
 } from './boat.components'
 
 // Images
@@ -100,13 +101,12 @@ const IndexPage = () => (
     <BoatSection>
       <InPageAnchor title={TITLES[1][0]} />
       <MobileSectionHeader>{TITLES[1][0]}</MobileSectionHeader>
-      <div className="max-w-7xl mx-auto relative md:mt-16 lg:mt-32">
-        <div className="hidden md:block absolute left-0 top-0">
-          <VerticalHeader theme="light" className="ml-4">
-            {TITLES[1][0]}
-          </VerticalHeader>
-        </div>
-      </div>
+      <VerticalHeaderBlock
+        label={TITLES[1][0]}
+        side="left"
+        theme="light"
+        className="lg:mt-32"
+      />
       <div className="relative max-w-8xl mx-auto md:mt-16 lg:mt-32 md:mb-32">
         <div className="w-full md:w-11/12 lg:w-10/12  ml-auto">
           <AspectRatio ratio="3:2">
@@ -160,13 +160,7 @@ const IndexPage = () => (
     <BoatSection theme="dark" className="overflow-x-hidden">
       <InPageAnchor title={TITLES[2][0]} />
       <MobileSectionHeader>{TITLES[2][0]}</MobileSectionHeader>
-      <div className="max-w-7xl mx-auto relative md:mt-16">
-        <div className="hidden md:block absolute right-0 top-0">
-          <VerticalHeader theme="dark" className="mr-4">
-            {TITLES[2][0]}
-          </VerticalHeader>
-        </div>
-      </div>
+      <VerticalHeaderBlock label={TITLES[2][0]} side="right" theme="dark" />
       <div className="relative max-w-8xl mx-auto md:mt-16 md:mb-24">
         <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12">
           <AspectRatio ratio="3:2">
@@ -241,13 +235,7 @@ const IndexPage = () => (
     <BoatSection>
       <InPageAnchor title={TITLES[3][0]} />
       <MobileSectionHeader>{TITLES[3][0]}</MobileSectionHeader>
-      <div className="max-w-7xl mx-auto relative md:mt-16">
-        <div className="hidden md:block absolute left-0 top-0">
-          <VerticalHeader theme="light" className="ml-4">
-            {TITLES[3][0]}
-          </VerticalHeader>
-        </div>
-      </div>
+      <VerticalHeaderBlock label={TITLES[3][0]} side="left" theme="light" />
       <div className="relative max-w-8xl mx-auto md:mt-16 md:mb-24">
         <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 ml-auto">
           <AspectRatio ratio="3:2">
@@ -318,13 +306,7 @@ const IndexPage = () => (
     <BoatSection theme="dark">
       <InPageAnchor title={TITLES[4][0]} />
       <MobileSectionHeader>{TITLES[4][0]}</MobileSectionHeader>
-      <div className="max-w-7xl mx-auto relative md:mt-16">
-        <div className="hidden md:block absolute right-0 top-0">
-          <VerticalHeader theme="dark" className="mr-4">
-            {TITLES[4][0]}
-          </VerticalHeader>
-        </div>
-      </div>
+      <VerticalHeaderBlock label={TITLES[4][0]} side="right" theme="dark" />
       <div className="relative max-w-8xl mx-auto md:mt-16 md:mb-24">
         <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12">
           <AspectRatio ratio="3:2">
