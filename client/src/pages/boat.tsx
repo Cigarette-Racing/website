@@ -9,12 +9,10 @@ import { AspectRatio } from '../atoms/aspect-ratio'
 import { Tab } from '../atoms/tab'
 import { LinkCta } from '../atoms/link-cta'
 import { VerticalHeader } from '../atoms/vertical-header'
-import { ProgressBar } from '../atoms/progress-bar'
 import {
   BoatHeader,
   BoatSection,
   BespokeOptionCard,
-  GalleryImage,
   DiscoverSection,
   MobileSectionHeader,
   OrderSection,
@@ -25,6 +23,7 @@ import {
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
+  MediaGallerySection,
 } from './boat.components'
 
 // Images
@@ -68,6 +67,16 @@ const TITLES = [
   ['Media Gallery', 'Gallery'],
   ['Bespoke Possibilities', 'Bespoke'],
   ['Order Today', 'Order'],
+]
+const GALLERY_IMAGES = [
+  section8Image,
+  section8Image2,
+  section8Image3,
+  section8Image4,
+  section8Image5,
+  section8Image6,
+  section8Image7,
+  section8Image8,
 ]
 
 // From https://stackoverflow.com/a/44230264/4357882
@@ -376,47 +385,7 @@ const IndexPage = () => (
       </div>
     </BoatSection>
     {/* Media Gallery section */}
-    <BoatSection theme="dark" className="sm:py-32">
-      <InPageAnchor title={TITLES[6][0]} />
-      <MobileSectionHeader className="sm:hidden">
-        {TITLES[6][0]}
-      </MobileSectionHeader>
-      <div className="relative max-w-7xl mx-auto sm:pl-16">
-        <VerticalHeader
-          theme="dark"
-          className="absolute -ml-12 xl:-ml-16 mt-12"
-        >
-          {TITLES[6][0]}
-        </VerticalHeader>
-        <div className="px-4 flex space-x-6 mb-6">
-          <Typography variant="e2" className="text-red sm:text-white">
-            All
-          </Typography>
-          <Typography variant="e2" className="sm:text-gray-3">
-            Photos
-          </Typography>
-          <Typography variant="e2" className="sm:text-gray-3">
-            Videos
-          </Typography>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col-dense sm:grid-rows-2 gap-6 px-4 mb-16">
-          <GalleryImage img={section8Image} />
-          <GalleryImage img={section8Image2} />
-          <GalleryImage img={section8Image3} />
-          <GalleryImage img={section8Image4} />
-          <GalleryImage img={section8Image5} className="hidden sm:block" />
-          <GalleryImage img={section8Image6} className="hidden sm:block" />
-          <GalleryImage img={section8Image7} className="hidden md:block" />
-          <GalleryImage img={section8Image8} className="hidden md:block" />
-        </div>
-        <div className="flex sm:justify-between items-center px-4">
-          <div className="hidden sm:block w-full max-w-xs md:max-w-sm lg:max-w-md">
-            <ProgressBar percentage={33} />
-          </div>
-          <CarouselButtons className="mb-4" />
-        </div>
-      </div>
-    </BoatSection>
+    <MediaGallerySection title={TITLES[6][0]} images={GALLERY_IMAGES} />
     {/* Bespoke Possibilities section */}
     <BoatSection theme="dark" className="py-24 sm:pb-16">
       <InPageAnchor title={TITLES[7][0]} />

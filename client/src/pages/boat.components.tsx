@@ -9,12 +9,12 @@ import { CircleButton } from '../atoms/circle-button'
 import { ExpandIcon, PlayIcon, ArrowIcon } from '../svgs/icons'
 import { InPageAnchor } from '../molecules/in-page-nav'
 import { VerticalHeader } from '../atoms/vertical-header'
+import { VerticalLabel } from '../atoms/vertical-label'
+import { ProgressBar } from '../atoms/progress-bar'
 
 // images
 import discoverBackground from '../images/boat-section2-bg.jpeg'
 import orderBackground from '../images/article1.jpeg'
-import { VerticalLabel } from '../atoms/vertical-label'
-import string from '../images/boat-section2-bg.jpeg'
 
 export const BoatHeader = ({
   boatImage,
@@ -225,7 +225,6 @@ export const VerticalHeaderBlock = ({
   theme: Theme
   side: Side
 }) => (
-  // <div className="max-w-7xl mx-auto relative md:mt-16 lg:mt-32">
   <div className={clsx('max-w-7xl mx-auto relative md:mt-16', className)}>
     <div
       className={clsx('hidden md:block absolute top-0', {
@@ -321,6 +320,50 @@ export const ThreeUpImageBlock = ({
       </AspectRatio>
     </div>
   </div>
+)
+
+export const MediaGallerySection = ({
+  images,
+  title,
+}: {
+  images: string[]
+  title: string
+}) => (
+  <BoatSection theme="dark" className="sm:py-32">
+    <InPageAnchor title={title} />
+    <MobileSectionHeader className="sm:hidden">{title}</MobileSectionHeader>
+    <div className="relative max-w-7xl mx-auto sm:pl-16">
+      <VerticalHeader theme="dark" className="absolute -ml-12 xl:-ml-16 mt-12">
+        {title}
+      </VerticalHeader>
+      <div className="px-4 flex space-x-6 mb-6">
+        <Typography variant="e2" className="text-red sm:text-white">
+          All
+        </Typography>
+        <Typography variant="e2" className="sm:text-gray-3">
+          Photos
+        </Typography>
+        <Typography variant="e2" className="sm:text-gray-3">
+          Videos
+        </Typography>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col-dense sm:grid-rows-2 gap-6 px-4 mb-16">
+        {images.map((image, index) => (
+          <GalleryImage
+            key={image}
+            img={image}
+            className={index > 3 ? 'hidden sm:block' : ''}
+          />
+        ))}
+      </div>
+      <div className="flex sm:justify-between items-center px-4">
+        <div className="hidden sm:block w-full max-w-xs md:max-w-sm lg:max-w-md">
+          <ProgressBar percentage={33} />
+        </div>
+        <CarouselButtons className="mb-4" />
+      </div>
+    </div>
+  </BoatSection>
 )
 
 export const BespokeOptionCard = ({ img }: { img: string }) => {
