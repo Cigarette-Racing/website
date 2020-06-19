@@ -11,7 +11,7 @@ Base Styles
 
 body {
   @apply bg-black;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 main {
@@ -85,6 +85,10 @@ Utilities
 
 .h-screen-w {
   height: 100vw;
+}
+
+.-z-index-1 {
+  z-index: -1;
 }
 
 /* Classes for third-party libraries */

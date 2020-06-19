@@ -4,7 +4,7 @@ import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
 import { StatBlock } from '../atoms/stat-block'
 import { InPageCta } from '../atoms/in-page-cta'
-import { InPageNav } from '../molecules/in-page-nav'
+import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
 import { CircleButton } from '../atoms/circle-button'
 import { PlayIcon, PlusIcon, ArrowIcon, ExpandIcon } from '../svgs/icons'
 import { VerticalLabel } from '../atoms/vertical-label'
@@ -47,7 +47,7 @@ import section9Image from '../images/boat-section9-image.jpeg'
 import section9Image2 from '../images/boat-section9-image2.jpeg'
 import section10Image from '../images/article1.jpeg'
 
-const IN_PAGE_NAV_LINKS = [
+const TITLES = [
   ['Discover'],
   ['Design & Engineering'],
   ['Technology'],
@@ -115,12 +115,13 @@ const IndexPage = () => (
     </section>
     <InPageNav
       boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[0][0]}
-      links={IN_PAGE_NAV_LINKS}
+      current={TITLES[0][0]}
+      titles={TITLES}
       onClickInquire={() => console.log('Clicked inquire')}
     />
     {/* Discover section */}
     <section className="relative bg-black text-white pt-12 pb-24 overflow-hidden">
+      <InPageAnchor title={TITLES[0][0]} />
       <img
         src={section2Bg}
         className="absolute top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
@@ -135,7 +136,7 @@ const IndexPage = () => (
       <div className="md:px-12 lg:px-16 relative max-w-5xl mx-auto">
         <div className="hidden md:block absolute right-0 top-0">
           <VerticalHeader theme="dark" className="mr-4">
-            {IN_PAGE_NAV_LINKS[0][0]}
+            {TITLES[0][0]}
           </VerticalHeader>
         </div>
         <div className="px-4 mb-16 lg:mb-20 md:mt-8 lg:mt-16">
@@ -165,27 +166,22 @@ const IndexPage = () => (
         </div>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[1][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Design & Engineering section */}
-    <section className="py-12">
+    <section className="relative py-12">
+      <InPageAnchor title={TITLES[1][0]} />
       <div className="px-4">
         <Typography
           variant="h4"
           className="text-center px-4 text-gray-4 mb-8 md:hidden"
         >
-          {IN_PAGE_NAV_LINKS[1][0]}
+          {TITLES[1][0]}
         </Typography>
       </div>
 
       <div className="max-w-7xl mx-auto relative md:mt-16 lg:mt-32">
         <div className="hidden md:block absolute left-0 top-0">
           <VerticalHeader theme="light" className="ml-4">
-            {IN_PAGE_NAV_LINKS[1][0]}
+            {TITLES[1][0]}
           </VerticalHeader>
         </div>
       </div>
@@ -259,26 +255,21 @@ const IndexPage = () => (
         </InPageCta>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[2][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Technology section */}
-    <section className="py-12 bg-black text-white">
+    <section className="relative py-12 bg-black text-white overflow-x-hidden">
+      <InPageAnchor title={TITLES[2][0]} />
       <div className="px-4">
         <Typography
           variant="h4"
           className="text-center px-4 text-gray-4 mb-8 md:hidden"
         >
-          {IN_PAGE_NAV_LINKS[2][0]}
+          {TITLES[2][0]}
         </Typography>
       </div>
       <div className="max-w-7xl mx-auto relative md:mt-16">
         <div className="hidden md:block absolute right-0 top-0">
           <VerticalHeader theme="dark" className="mr-4">
-            {IN_PAGE_NAV_LINKS[2][0]}
+            {TITLES[2][0]}
           </VerticalHeader>
         </div>
       </div>
@@ -298,9 +289,9 @@ const IndexPage = () => (
             DIGITAL SWITCHING & AUTOMATION
           </Typography>
           <Typography variant="p2">
-            Lorem ipsum dolor sit amet, consec- tetur adipiscing elit, sed do
+            Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud.Lorem ipsum dolor sit  amet,
+            ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet,
             consectetur adipiscing elit, sed do eiusmod .
           </Typography>
         </div>
@@ -335,8 +326,8 @@ const IndexPage = () => (
                 Feature Callout
               </Typography>
               <Typography variant="p2">
-                Lorem ipsum dolor sit amet, consec- tetur adipiscing elit, sed
-                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Typography>
             </div>
             <div className="hidden md:flex justify-center space-x-4">
@@ -378,26 +369,21 @@ const IndexPage = () => (
         </InPageCta>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[3][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Advanced Features section */}
-    <section className="py-12">
+    <section className="relative py-12">
+      <InPageAnchor title={TITLES[3][0]} />
       <div className="px-4">
         <Typography
           variant="h4"
           className="text-center px-4 text-gray-4 mb-8  md:hidden"
         >
-          {IN_PAGE_NAV_LINKS[3][0]}
+          {TITLES[3][0]}
         </Typography>
       </div>
       <div className="max-w-7xl mx-auto relative md:mt-16">
         <div className="hidden md:block absolute left-0 top-0">
           <VerticalHeader theme="light" className="ml-4">
-            {IN_PAGE_NAV_LINKS[3][0]}
+            {TITLES[3][0]}
           </VerticalHeader>
         </div>
       </div>
@@ -483,7 +469,7 @@ const IndexPage = () => (
               Feature Callout
             </Typography>
             <Typography variant="p2">
-              Lorem ipsum dolor sit amet, consec- tetur adipiscing elit, sed do
+              Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </Typography>
           </div>
@@ -507,23 +493,18 @@ const IndexPage = () => (
         </InPageCta>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[4][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Interior Details section */}
-    <section className="py-12 bg-black text-white">
+    <section className="relative py-12 bg-black text-white">
+      <InPageAnchor title={TITLES[4][0]} />
       <div className="px-4 md:hidden">
         <Typography variant="h4" className="text-center px-4 text-gray-4 mb-8">
-          {IN_PAGE_NAV_LINKS[4][0]}
+          {TITLES[4][0]}
         </Typography>
       </div>
       <div className="max-w-7xl mx-auto relative md:mt-16">
         <div className="hidden md:block absolute right-0 top-0">
           <VerticalHeader theme="dark" className="mr-4">
-            {IN_PAGE_NAV_LINKS[4][0]}
+            {TITLES[4][0]}
           </VerticalHeader>
         </div>
       </div>
@@ -539,9 +520,9 @@ const IndexPage = () => (
           DIGITAL SWITCHING & AUTOMATION
         </Typography>
         <Typography variant="p2" className="max-w-md">
-          Lorem ipsum dolor sit amet, consec- tetur adipiscing elit, sed do
+          Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud.Lorem ipsum dolor sit  amet, consectetur
+          minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur
           adipiscing elit, sed do eiusmod .
         </Typography>
       </div>
@@ -557,9 +538,9 @@ const IndexPage = () => (
             Story Callout
           </Typography>
           <Typography variant="p2">
-            Lorem ipsum dolor sit amet, consec- tetur adipiscing elit, sed do
+            Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud.Lorem ipsum dolor sit  amet,
+            ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet,
             consectetur adipiscing elit, sed do eiusmod .
           </Typography>
         </div>
@@ -595,9 +576,9 @@ const IndexPage = () => (
           Story Callout
         </Typography>
         <Typography variant="p2">
-          Lorem ipsum dolor sit amet, consec- tetur adipiscing elit, sed do
+          Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud.Lorem ipsum dolor sit  amet, consectetur
+          minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur
           adipiscing elit, sed do eiusmod .
         </Typography>
       </div>
@@ -610,18 +591,13 @@ const IndexPage = () => (
         </InPageCta>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[5][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Specs section */}
-    <section className="py-12 md:py-24">
+    <section className="relative py-12 md:py-24">
+      <InPageAnchor title={TITLES[5][0]} />
       <div className="relative flex max-w-7xl mx-auto">
         <div className="hidden md:block absolute right-0 top-0">
           <VerticalHeader theme="light" className="mr-4">
-            {IN_PAGE_NAV_LINKS[5][0]}
+            {TITLES[5][0]}
           </VerticalHeader>
         </div>
         <div className="hidden md:block px-4 space-y-2 md:w-48 lg:w-56 xl:w-64 mt-24">
@@ -668,17 +644,12 @@ const IndexPage = () => (
         </div>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[6][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Media Gallery section */}
-    <section className="py-12 sm:py-32 bg-black text-white">
+    <section className="relative py-12 sm:py-32 bg-black text-white">
+      <InPageAnchor title={TITLES[6][0]} />
       <div className="px-4 sm:hidden">
         <Typography variant="h4" className="text-center px-4 text-gray-4 mb-8">
-          {IN_PAGE_NAV_LINKS[6][0]}
+          {TITLES[6][0]}
         </Typography>
       </div>
       <div className="relative max-w-7xl mx-auto sm:pl-16">
@@ -686,7 +657,7 @@ const IndexPage = () => (
           theme="dark"
           className="absolute -ml-12 xl:-ml-16 mt-12"
         >
-          {IN_PAGE_NAV_LINKS[6][0]}
+          {TITLES[6][0]}
         </VerticalHeader>
         <div className="px-4 flex space-x-6 mb-6">
           <Typography variant="e2" className="text-red sm:text-white">
@@ -725,14 +696,9 @@ const IndexPage = () => (
         </div>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[7][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Bespoke Possibilities section */}
     <section className="bg-black text-white py-24 sm:pb-16 relative">
+      <InPageAnchor title={TITLES[7][0]} />
       <img
         src={section6Image5}
         className="absolute top-0 h-full w-full object-cover"
@@ -778,14 +744,9 @@ const IndexPage = () => (
         </LinkCta>
       </div>
     </section>
-    <InPageNav
-      boatName="Tirranna"
-      current={IN_PAGE_NAV_LINKS[8][0]}
-      links={IN_PAGE_NAV_LINKS}
-      onClickInquire={() => console.log('Clicked inquire')}
-    />
     {/* Order Today section */}
     <section className="relative pt-12 pb-48 sm:py-48">
+      <InPageAnchor title={TITLES[8][0]} />
       <img
         src={section10Image}
         className="absolute h-full w-full top-0 object-cover"

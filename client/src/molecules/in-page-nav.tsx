@@ -1,49 +1,74 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import clsx from 'clsx'
 import { Typography } from '../atoms/typography'
 import { CaretDownIcon, CaretUpIcon, AngleIcon } from '../svgs/icons'
 import Modal from 'react-modal'
 import { useMedia, useToggle } from 'react-use'
-// import { useHeaderState } from './header'
+import { useHeaderState } from './header'
 
 const slugify = (str: string) =>
   str.toLowerCase().replace(/\W/g, '_').replace(/_+/, '_')
+const extractName = (el: Element) => (el as HTMLElement).dataset.inPageNav || ''
+const getCurrentAnchor = (map: Map<Element, number>) => {
+  if (map.size === 0) return
+  return Array.from(map.keys()).find((el) => map.get(el)! > 0)
+}
 
 export interface InPageNavProps {
   boatName: string
   current: string
-  links: string[][]
+  titles: string[][]
   onClickInquire: React.MouseEventHandler<HTMLButtonElement>
 }
 
 export const InPageNav = ({
   boatName,
-  current,
-  links,
+  titles,
   onClickInquire,
 }: InPageNavProps) => {
-  // const [headerState] = useHeaderState()
+  const [headerState] = useHeaderState()
+  const [current, setCurrent] = useState('')
   const [isMenuOpen, toggleIsMenuOpen] = useToggle(false)
   const isMobileMenu = useMedia('(max-width: 1023px)')
+
+  useEffect(() => {
+    if (!window.IntersectionObserver) return
+
+    const anchors = Array.from(document.querySelectorAll('[data-in-page-nav]'))
+    const ratiosMap = new Map(Array.from(anchors).map((el) => [el, 0]))
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ target, intersectionRatio }) => {
+          ratiosMap.set(target, intersectionRatio)
+        })
+        const currentAnchor = getCurrentAnchor(ratiosMap)
+        if (!currentAnchor) return
+        setCurrent(extractName(currentAnchor))
+      },
+      { threshold: [0, 1] }
+    )
+
+    anchors.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  const CaretIcon = isMenuOpen ? CaretUpIcon : CaretDownIcon
 
   return (
     <Fragment>
       <div
         className={clsx(
           'sticky top-0 left-0 w-full z-30 text-white transform duration-200 ease-in-out',
-          {
-            // 'translate-y-20': headerState === 'pinned',
-          }
+          { 'translate-y-20': headerState === 'pinned' }
         )}
       >
-        <a id={slugify(current)} className="sr-only"></a>
         <div className="h-12 bg-gray-0 px-4">
           <div
             className={clsx(
               'h-full flex justify-between items-center border-b border-transparent border-opacity-25 max-w-8xl mx-auto',
-              {
-                'border-white': !isMobileMenu && isMenuOpen,
-              }
+              { 'border-white': !isMobileMenu && isMenuOpen }
             )}
           >
             <button
@@ -51,17 +76,17 @@ export const InPageNav = ({
               type="button"
               className="flex items-center"
             >
-              <CaretDownIcon className="text-red mr-4" />
+              <CaretIcon className="text-red mr-4" />
               <div className="md:hidden">
                 <Typography variant="e3" as="span">
-                  {current === links[0][0] ? boatName : current}
+                  {current === titles[0][0] ? boatName : current}
                 </Typography>
               </div>
               <div className="hidden md:flex items-center">
                 <Typography variant="e3" as="span">
                   {boatName}
                 </Typography>
-                {current !== links[0][0] && (
+                {current !== titles[0][0] && (
                   <Fragment>
                     <AngleIcon className="h-6 mx-4" />
                     <Typography variant="e3" as="span">
@@ -71,36 +96,65 @@ export const InPageNav = ({
                 )}
               </div>
             </button>
-            <Typography variant="e3" as="button">
-              Inquire
-            </Typography>
+            <button onClick={onClickInquire}>
+              <Typography variant="e3">Inquire</Typography>
+            </button>
           </div>
         </div>
         {!isMobileMenu && isMenuOpen && (
-          <div className="flex justify-center items-center bg-gray-0 h-10 -mb-10 space-x-6">
-            {links.map((link) => {
-              return (
-                <Typography
-                  variant="e3"
-                  className={clsx('whitespace-no-wrap', {
-                    'text-red': link[0] === current,
-                  })}
-                >
-                  {link[1] || link[0]}
-                </Typography>
-              )
-            })}
-          </div>
+          <DropdownMenu
+            current={current}
+            titles={titles}
+            toggleIsMenuOpen={toggleIsMenuOpen}
+          />
         )}
       </div>
       <MobileMenu
         boatName={boatName}
         current={current}
         isMenuOpen={isMobileMenu && isMenuOpen}
-        links={links}
+        titles={titles}
         toggleIsMenuOpen={toggleIsMenuOpen}
       />
     </Fragment>
+  )
+}
+
+export const InPageAnchor = ({ title }: { title: string }) => (
+  <a
+    className="absolute inset-0 -z-index-1"
+    id={slugify(title)}
+    data-in-page-nav={title}
+  ></a>
+)
+
+function DropdownMenu({
+  current,
+  titles,
+  toggleIsMenuOpen,
+}: {
+  current: string
+  titles: string[][]
+  toggleIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+}) {
+  return (
+    <div className="flex justify-center items-center bg-gray-0 h-10 -mb-10 space-x-6">
+      {titles.map(([long, short]) => {
+        return (
+          <a href={`#${slugify(long)}`} onClick={() => toggleIsMenuOpen(false)}>
+            <Typography
+              variant="e3"
+              as="span"
+              className={clsx('whitespace-no-wrap', {
+                'text-red': long === current,
+              })}
+            >
+              {short || long}
+            </Typography>
+          </a>
+        )
+      })}
+    </div>
   )
 }
 
@@ -108,13 +162,13 @@ function MobileMenu({
   boatName,
   current,
   isMenuOpen,
-  links,
+  titles,
   toggleIsMenuOpen,
 }: {
   boatName: string
   current: string
   isMenuOpen: boolean
-  links: string[][]
+  titles: string[][]
   toggleIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   return (
@@ -143,7 +197,7 @@ function MobileMenu({
           <Typography variant="e3">{boatName}</Typography>
         </button>
         <div className="mt-10 flex flex-col items-start">
-          {links.map(([link]) => {
+          {titles.map(([link]) => {
             return (
               <div key={link} className="relative mb-6">
                 <a
