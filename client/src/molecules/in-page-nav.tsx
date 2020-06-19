@@ -36,12 +36,10 @@ export const InPageNav = ({
 
     const anchors = Array.from(document.querySelectorAll('[data-in-page-nav]'))
     const ratiosMap = new Map(Array.from(anchors).map((el) => [el, 0]))
-    console.log({ anchors, ratiosMap })
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(({ target, intersectionRatio }) => {
-          console.log(extractName(target), intersectionRatio)
           ratiosMap.set(target, intersectionRatio)
         })
         const currentAnchor = getCurrentAnchor(ratiosMap)
