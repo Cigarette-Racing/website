@@ -22,6 +22,7 @@ import {
   CarouselButtons,
   ImageWithLabel,
   VerticalHeaderBlock,
+  SideBleedImage,
 } from './boat.components'
 
 // Images
@@ -107,13 +108,12 @@ const IndexPage = () => (
         theme="light"
         className="lg:mt-32"
       />
-      <div className="relative max-w-8xl mx-auto md:mt-16 lg:mt-32 md:mb-32">
-        <div className="w-full md:w-11/12 lg:w-10/12  ml-auto">
-          <AspectRatio ratio="3:2">
-            <img src={section3Image} className="absolute h-full object-cover" />
-          </AspectRatio>
-        </div>
-      </div>
+      <SideBleedImage
+        src={section3Image}
+        side="right"
+        className="lg:mt-32 md:mb-32"
+        size="large"
+      />
       <div className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto">
         <div className="md:w-1/2 lg:pr-12">
           <TextBlock
@@ -161,16 +161,12 @@ const IndexPage = () => (
       <InPageAnchor title={TITLES[2][0]} />
       <MobileSectionHeader>{TITLES[2][0]}</MobileSectionHeader>
       <VerticalHeaderBlock label={TITLES[2][0]} side="right" theme="dark" />
-      <div className="relative max-w-8xl mx-auto md:mt-16 md:mb-24">
-        <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12">
-          <AspectRatio ratio="3:2">
-            <img
-              src={section4Image}
-              className="absolute h-full object-cover filter-saturate-25"
-            />
-          </AspectRatio>
-        </div>
-      </div>
+      <SideBleedImage
+        src={section4Image}
+        side="left"
+        className="md:mb-24"
+        imgClassName="filter-saturate-25"
+      />
       <div className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto">
         <TextBlock
           className="max-w-md"
@@ -236,13 +232,7 @@ const IndexPage = () => (
       <InPageAnchor title={TITLES[3][0]} />
       <MobileSectionHeader>{TITLES[3][0]}</MobileSectionHeader>
       <VerticalHeaderBlock label={TITLES[3][0]} side="left" theme="light" />
-      <div className="relative max-w-8xl mx-auto md:mt-16 md:mb-24">
-        <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 ml-auto">
-          <AspectRatio ratio="3:2">
-            <img src={section5Image} className="absolute h-full object-cover" />
-          </AspectRatio>
-        </div>
-      </div>
+      <SideBleedImage src={section5Image} side="right" className="md:mb-24" />
       <div className="sm:flex sm:mt-32 max-w-5xl mx-auto md:space-x-16 lg:space-x-24 md:px-16 lg:px-8 xl:px-0 sm:mb-24">
         <div className=" px-4 md:px-0">
           <TextBlock
@@ -307,15 +297,9 @@ const IndexPage = () => (
       <InPageAnchor title={TITLES[4][0]} />
       <MobileSectionHeader>{TITLES[4][0]}</MobileSectionHeader>
       <VerticalHeaderBlock label={TITLES[4][0]} side="right" theme="dark" />
-      <div className="relative max-w-8xl mx-auto md:mt-16 md:mb-24">
-        <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12">
-          <AspectRatio ratio="3:2">
-            <img src={section6Image} className="absolute h-full object-cover" />
-          </AspectRatio>
-        </div>
-      </div>
+      <SideBleedImage src={section6Image} side="left" className="md:mb-24" />
       <TextBlock
-        className="my-12 px-4 mb-16 md:mb-48 max-w-5xl mx-auto"
+        className="my-12 px-4 mb-16 md:mb-48 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto"
         header="DIGITAL SWITCHING & AUTOMATION"
         copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
       />
