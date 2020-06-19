@@ -98,7 +98,6 @@ const IndexPage = () => (
     />
     <InPageNav
       boatName="Tirranna"
-      current={TITLES[0][0]}
       titles={TITLES}
       onClickInquire={() => console.log('Clicked inquire')}
     />
