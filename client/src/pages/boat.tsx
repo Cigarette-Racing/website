@@ -5,7 +5,7 @@ import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
 import { CircleButton } from '../atoms/circle-button'
-import { PlayIcon, PlusIcon, ArrowIcon } from '../svgs/icons'
+import { PlusIcon, ArrowIcon } from '../svgs/icons'
 import { VerticalLabel } from '../atoms/vertical-label'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { Tab } from '../atoms/tab'
@@ -26,7 +26,6 @@ import {
 // Images
 import boat1 from '../images/tirranna-boat.jpeg'
 import tirrannaLogo from '../images/tirranna-logo.svg'
-import section2Bg from '../images/boat-section2-bg.jpeg'
 import section2Video from '../images/boat-section2-video.jpeg'
 import section3Image from '../images/boat-section3-image.jpeg'
 import section3Image2 from '../images/boat-section3-image2.jpeg'
@@ -54,7 +53,6 @@ import section8Image7 from '../images/boat-section8-image7.jpeg'
 import section8Image8 from '../images/homepage-header.jpeg'
 import section9Image from '../images/boat-section9-image.jpeg'
 import section9Image2 from '../images/boat-section9-image2.jpeg'
-import section10Image from '../images/article1.jpeg'
 
 const TITLES = [
   ['Discover'],
@@ -76,17 +74,6 @@ const range = (x: number, y: number) =>
       while (x <= y) yield x++
     })()
   )
-
-// TODO:
-// - Componentize carousel buttons
-// - Componentize image with vertical label
-// - Componentize vertical header
-// - Componentize 2-up images
-// - Componentize 3-up images
-// - Componentize
-// - Componentize
-// - Componentize
-// - Componentize
 
 const IndexPage = () => (
   <Layout>
