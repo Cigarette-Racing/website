@@ -24,7 +24,7 @@ import {
   TwoUpImageBlock,
   ThreeUpImageBlock,
   MediaGallerySection,
-} from './boat.components'
+} from '../boat.components'
 
 // Images
 import boat1 from '../images/tirranna-boat.jpeg'
