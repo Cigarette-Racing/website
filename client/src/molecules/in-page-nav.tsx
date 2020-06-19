@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, useRef } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import clsx from 'clsx'
 import { Typography } from '../atoms/typography'
 import { CaretDownIcon, CaretUpIcon, AngleIcon } from '../svgs/icons'
@@ -56,23 +56,21 @@ export const InPageNav = ({
     return () => observer.disconnect()
   }, [])
 
+  const CaretIcon = isMenuOpen ? CaretUpIcon : CaretDownIcon
+
   return (
     <Fragment>
       <div
         className={clsx(
           'sticky top-0 left-0 w-full z-30 text-white transform duration-200 ease-in-out',
-          {
-            'translate-y-20': headerState === 'pinned',
-          }
+          { 'translate-y-20': headerState === 'pinned' }
         )}
       >
         <div className="h-12 bg-gray-0 px-4">
           <div
             className={clsx(
               'h-full flex justify-between items-center border-b border-transparent border-opacity-25 max-w-8xl mx-auto',
-              {
-                'border-white': !isMobileMenu && isMenuOpen,
-              }
+              { 'border-white': !isMobileMenu && isMenuOpen }
             )}
           >
             <button
@@ -80,7 +78,7 @@ export const InPageNav = ({
               type="button"
               className="flex items-center"
             >
-              <CaretDownIcon className="text-red mr-4" />
+              <CaretIcon className="text-red mr-4" />
               <div className="md:hidden">
                 <Typography variant="e3" as="span">
                   {current === titles[0][0] ? boatName : current}
@@ -106,33 +104,18 @@ export const InPageNav = ({
           </div>
         </div>
         {!isMobileMenu && isMenuOpen && (
-          <div className="flex justify-center items-center bg-gray-0 h-10 -mb-10 space-x-6">
-            {titles.map(([long, short]) => {
-              return (
-                <a
-                  href={`#${slugify(long)}`}
-                  onClick={() => toggleIsMenuOpen(false)}
-                >
-                  <Typography
-                    variant="e3"
-                    as="span"
-                    className={clsx('whitespace-no-wrap', {
-                      'text-red': long === current,
-                    })}
-                  >
-                    {short || long}
-                  </Typography>
-                </a>
-              )
-            })}
-          </div>
+          <DropdownMenu
+            current={current}
+            titles={titles}
+            toggleIsMenuOpen={toggleIsMenuOpen}
+          />
         )}
       </div>
       <MobileMenu
         boatName={boatName}
         current={current}
         isMenuOpen={isMobileMenu && isMenuOpen}
-        links={titles}
+        titles={titles}
         toggleIsMenuOpen={toggleIsMenuOpen}
       />
     </Fragment>
@@ -147,17 +130,47 @@ export const InPageAnchor = ({ title }: { title: string }) => (
   ></a>
 )
 
+function DropdownMenu({
+  current,
+  titles,
+  toggleIsMenuOpen,
+}: {
+  current: string
+  titles: string[][]
+  toggleIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+}) {
+  return (
+    <div className="flex justify-center items-center bg-gray-0 h-10 -mb-10 space-x-6">
+      {titles.map(([long, short]) => {
+        return (
+          <a href={`#${slugify(long)}`} onClick={() => toggleIsMenuOpen(false)}>
+            <Typography
+              variant="e3"
+              as="span"
+              className={clsx('whitespace-no-wrap', {
+                'text-red': long === current,
+              })}
+            >
+              {short || long}
+            </Typography>
+          </a>
+        )
+      })}
+    </div>
+  )
+}
+
 function MobileMenu({
   boatName,
   current,
   isMenuOpen,
-  links,
+  titles,
   toggleIsMenuOpen,
 }: {
   boatName: string
   current: string
   isMenuOpen: boolean
-  links: string[][]
+  titles: string[][]
   toggleIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   return (
@@ -186,7 +199,7 @@ function MobileMenu({
           <Typography variant="e3">{boatName}</Typography>
         </button>
         <div className="mt-10 flex flex-col items-start">
-          {links.map(([link]) => {
+          {titles.map(([link]) => {
             return (
               <div key={link} className="relative mb-6">
                 <a
