@@ -4,7 +4,7 @@ import { InPageCta } from '../atoms/in-page-cta'
 import { StatBlock } from '../atoms/stat-block'
 import { Theme } from '../atoms/types'
 import clsx from 'clsx'
-import { AspectRatio, Ratio, AspectRatioProps } from '../atoms/aspect-ratio'
+import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
 import { CircleButton } from '../atoms/circle-button'
 import { ExpandIcon, PlayIcon, ArrowIcon } from '../svgs/icons'
 import { InPageAnchor } from '../molecules/in-page-nav'
@@ -238,6 +238,39 @@ export const VerticalHeaderBlock = ({
       >
         {label}
       </VerticalHeader>
+    </div>
+  </div>
+)
+
+export const SideBleedImage = ({
+  className,
+  imgClassName,
+  ratio = '3:2',
+  side,
+  size = 'default',
+  src,
+}: {
+  className?: string
+  imgClassName?: string
+  ratio?: Ratio
+  side: Side
+  size?: 'default' | 'large'
+  src: string
+}) => (
+  <div className={clsx('relative max-w-8xl mx-auto md:mt-16', className)}>
+    <div
+      className={clsx('w-full md:w-11/12 lg:w-10/12', {
+        'ml-auto': side === 'right',
+        'mr-auto': side === 'left',
+        'xl:w-9/12': size === 'default',
+      })}
+    >
+      <AspectRatio ratio={ratio}>
+        <img
+          src={src}
+          className={clsx('absolute h-full object-cover', imgClassName)}
+        />
+      </AspectRatio>
     </div>
   </div>
 )
