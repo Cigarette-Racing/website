@@ -4,7 +4,7 @@ import { InPageCta } from '../atoms/in-page-cta'
 import { StatBlock } from '../atoms/stat-block'
 import { Theme } from '../atoms/types'
 import clsx from 'clsx'
-import { AspectRatio } from '../atoms/aspect-ratio'
+import { AspectRatio, Ratio, AspectRatioProps } from '../atoms/aspect-ratio'
 import { CircleButton } from '../atoms/circle-button'
 import { ExpandIcon, PlayIcon, ArrowIcon } from '../svgs/icons'
 import { InPageAnchor } from '../molecules/in-page-nav'
@@ -13,6 +13,7 @@ import { VerticalHeader } from '../atoms/vertical-header'
 // images
 import discoverBackground from '../images/boat-section2-bg.jpeg'
 import orderBackground from '../images/article1.jpeg'
+import { VerticalLabel } from '../atoms/vertical-label'
 
 export const BoatHeader = ({
   boatImage,
@@ -184,6 +185,30 @@ export const CarouselButtons = ({
     />
     <CircleButton icon={ArrowIcon} theme={theme} variant="secondary" />
   </div>
+)
+
+export const ImageWithLabel = ({
+  imgClassName,
+  label,
+  ratio,
+  src,
+  ...rest
+}: {
+  imgClassName?: string
+  label?: string
+  src: string
+} & AspectRatioProps) => (
+  <AspectRatio ratio={ratio} {...rest}>
+    <img
+      src={src}
+      className={clsx('absolute h-full object-cover', imgClassName)}
+    />
+    {label && (
+      <VerticalLabel className="absolute bottom-0 left-0">
+        {label}
+      </VerticalLabel>
+    )}
+  </AspectRatio>
 )
 
 export const BespokeOptionCard = ({ img }: { img: string }) => {

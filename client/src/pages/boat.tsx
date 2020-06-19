@@ -5,7 +5,6 @@ import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
 import { PlusIcon } from '../svgs/icons'
-import { VerticalLabel } from '../atoms/vertical-label'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { Tab } from '../atoms/tab'
 import { LinkCta } from '../atoms/link-cta'
@@ -21,6 +20,7 @@ import {
   OrderSection,
   TextBlock,
   CarouselButtons,
+  ImageWithLabel,
 } from './boat.components'
 
 // Images
@@ -122,28 +122,23 @@ const IndexPage = () => (
             copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
           />
           <div className="px-4 lg:px-0 mb-12 md:mb-0">
-            <AspectRatio ratio="3:4">
-              <img
-                src={section3Image2}
-                className="absolute h-full object-cover filter-grayscale"
-              />
-              <VerticalLabel className="absolute bottom-0 left-0">
-                This is a photo label
-              </VerticalLabel>
-            </AspectRatio>
+            <ImageWithLabel
+              ratio="3:4"
+              src={section3Image2}
+              label="This is a photo label"
+              imgClassName="filter-grayscale"
+            />
           </div>
         </div>
         <div className="md:w-1/2 lg:pl-12">
           <div className="px-4 lg:px-0 lg:pr-16">
-            <AspectRatio ratio="3:4" style={{ backgroundColor: '#222222' }}>
-              <img
-                src={section3Image3}
-                className="absolute h-full left-1/2 transform -translate-x-1/2 object-cover filter-grayscale"
-              />
-              <VerticalLabel className="absolute bottom-0 left-0">
-                4x MERCURY 350 VERADOS
-              </VerticalLabel>
-            </AspectRatio>
+            <ImageWithLabel
+              ratio="3:4"
+              src={section3Image3}
+              label="4x MERCURY 350 VERADOS"
+              style={{ backgroundColor: '#222222' }}
+              imgClassName="left-1/2 transform -translate-x-1/2"
+            />
           </div>
           <TextBlock
             className="my-10 md:my-16 px-4 lg:px-0 lg:pr-16"
@@ -268,28 +263,20 @@ const IndexPage = () => (
             copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ."
           />
           <div className="mb-12 max-w-lg">
-            <AspectRatio ratio="3:4">
-              <img
-                src={section5Image2}
-                className="absolute h-full w-full object-cover"
-              />
-              <VerticalLabel className="absolute bottom-0 left-0">
-                This is a photo label
-              </VerticalLabel>
-            </AspectRatio>
+            <ImageWithLabel
+              ratio="3:4"
+              src={section5Image2}
+              label="This is a photo label"
+            />
           </div>
         </div>
         <div className="px-4 md:px-0">
           <div className="max-w-md sm:mt-20 lg:mt-32 xl:mt-40">
-            <AspectRatio ratio="3:4" style={{ backgroundColor: '#222222' }}>
-              <img
-                src={section5Image3}
-                className="absolute h-full w-full object-cover"
-              />
-              <VerticalLabel className="absolute bottom-0 left-0">
-                This is a photo label
-              </VerticalLabel>
-            </AspectRatio>
+            <ImageWithLabel
+              ratio="3:4"
+              src={section5Image3}
+              label="This is a photo label"
+            />
           </div>
           <TextBlock
             className="my-10 sm:mt-16"
