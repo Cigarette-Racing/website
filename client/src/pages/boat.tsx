@@ -4,8 +4,7 @@ import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
-import { CircleButton } from '../atoms/circle-button'
-import { PlusIcon, ArrowIcon } from '../svgs/icons'
+import { PlusIcon } from '../svgs/icons'
 import { VerticalLabel } from '../atoms/vertical-label'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { Tab } from '../atoms/tab'
@@ -21,6 +20,7 @@ import {
   MobileSectionHeader,
   OrderSection,
   TextBlock,
+  CarouselButtons,
 } from './boat.components'
 
 // Images
@@ -203,15 +203,7 @@ const IndexPage = () => (
                 left: 'calc(100% + 8.5rem)',
               }}
             />
-            <div className="flex justify-center space-x-4 absolute bottom-0 pb-4 w-full md:hidden">
-              <CircleButton
-                icon={ArrowIcon}
-                theme="dark"
-                variant="secondary"
-                iconClassName="transform rotate-180"
-              />
-              <CircleButton icon={ArrowIcon} theme="dark" variant="secondary" />
-            </div>
+            <CarouselButtons className="absolute bottom-0 pb-4 w-full md:hidden" />
           </AspectRatio>
           <div className="md:flex justify-between items-start md:mt-10 md:mb-40">
             <TextBlock
@@ -219,15 +211,7 @@ const IndexPage = () => (
               header="Feature Callout"
               copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             />
-            <div className="hidden md:flex justify-center space-x-4">
-              <CircleButton
-                icon={ArrowIcon}
-                theme="dark"
-                variant="secondary"
-                iconClassName="transform rotate-180"
-              />
-              <CircleButton icon={ArrowIcon} theme="dark" variant="secondary" />
-            </div>
+            <CarouselButtons className="hidden md:flex" />
           </div>
         </div>
       </div>
@@ -320,15 +304,7 @@ const IndexPage = () => (
             src={section5Image4}
             className="absolute h-full w-full object-cover"
           />
-          <div className="flex justify-center space-x-4 absolute bottom-0 pb-4 w-full md:hidden">
-            <CircleButton
-              icon={ArrowIcon}
-              theme="dark"
-              variant="secondary"
-              iconClassName="transform rotate-180"
-            />
-            <CircleButton icon={ArrowIcon} theme="dark" variant="secondary" />
-          </div>
+          <CarouselButtons className="absolute bottom-0 pb-4 w-full md:hidden" />
         </AspectRatio>
         <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
           <TextBlock
@@ -336,15 +312,10 @@ const IndexPage = () => (
             header="Feature Callout"
             copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
-          <div className="hidden md:flex justify-center items-start space-x-4">
-            <CircleButton
-              icon={ArrowIcon}
-              theme="light"
-              variant="secondary"
-              iconClassName="transform rotate-180"
-            />
-            <CircleButton icon={ArrowIcon} theme="light" variant="secondary" />
-          </div>
+          <CarouselButtons
+            className="hidden md:flex items-start"
+            theme="light"
+          />
         </div>
       </div>
       <div className="flex justify-center md:mb-16">
@@ -523,15 +494,7 @@ const IndexPage = () => (
           <div className="hidden sm:block w-full max-w-xs md:max-w-sm lg:max-w-md">
             <ProgressBar percentage={33} />
           </div>
-          <div className="flex justify-center space-x-4 mb-4">
-            <CircleButton
-              icon={ArrowIcon}
-              theme="dark"
-              variant="secondary"
-              iconClassName="transform rotate-180"
-            />
-            <CircleButton icon={ArrowIcon} theme="dark" variant="secondary" />
-          </div>
+          <CarouselButtons className="mb-4" />
         </div>
       </div>
     </BoatSection>
@@ -568,15 +531,7 @@ const IndexPage = () => (
               Explore Bespoke Studio
             </InPageCta>
           </div>
-          <div className="flex space-x-4 mb-12 sm:mb-0">
-            <CircleButton
-              icon={ArrowIcon}
-              theme="dark"
-              variant="secondary"
-              iconClassName="transform rotate-180"
-            />
-            <CircleButton icon={ArrowIcon} theme="dark" variant="secondary" />
-          </div>
+          <CarouselButtons className="mb-12 sm:mb-0" />
         </div>
         <LinkCta theme="dark" className="mx-auto sm:hidden">
           Explore Bespoke Possibilities
