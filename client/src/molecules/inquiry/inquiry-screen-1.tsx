@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
-import { Typography } from '../atoms/typography'
-import { AngleIcon } from '../svgs/icons'
+import { Typography } from '../../atoms/typography'
+import { AngleIcon } from '../../svgs/icons'
 
 const InquiryScreen1: React.FC = ({}) => {
   return (

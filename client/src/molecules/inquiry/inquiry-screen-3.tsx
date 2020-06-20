@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography } from '../atoms/typography'
+import { Typography } from '../../atoms/typography'
 
 const InquiryScreen3: React.FC = ({}) => {
   return (

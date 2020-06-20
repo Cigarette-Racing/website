@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import Select from 'react-select'
 
-import { Typography } from '../atoms/typography'
-import { AngleIcon } from '../svgs/icons'
+import { Typography } from '../../atoms/typography'
+import { AngleIcon } from '../../svgs/icons'
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },

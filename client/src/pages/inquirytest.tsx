@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-import Inquiry, { useGlobalValue } from '../components/inquiry'
+import Inquiry, { useGlobalValue } from '../molecules/inquiry/inquiry'
 
 const InquiryTest = () => {
   const [val, setVal] = useGlobalValue()

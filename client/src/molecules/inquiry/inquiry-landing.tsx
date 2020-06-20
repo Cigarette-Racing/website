@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
-import { Typography } from '../atoms/typography'
-import { OptionsCta } from '../atoms/options-cta'
+import { Typography } from '../../atoms/typography'
+import { OptionsCta } from '../../atoms/options-cta'
 
 const InquiryLanding: React.FC = ({ goToNext }) => {
   return (

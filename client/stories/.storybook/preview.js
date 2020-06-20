@@ -4,6 +4,7 @@ import { action } from '@storybook/addon-actions'
 import './storybook.css'
 import '../../src/styles.css'
 import '../../src/fonts/fonts.css'
+import './storybook.css'
 
 addDecorator(centered)
 

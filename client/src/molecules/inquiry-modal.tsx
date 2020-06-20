@@ -5,10 +5,10 @@ import { CaretDownIcon, ArrowIcon } from '../svgs/icons'
 import { Typography } from '../atoms/typography'
 import section2Image from '../images/boat-section2-bg.jpeg'
 import { InPageCta } from '../atoms/in-page-cta'
-import InquiryLanding from './inquiry-landing'
-import InquiryScreen1 from './inquiry-screen-1'
-import InquiryScreen2 from './inquiry-screen-2'
-import InquiryScreen3 from './inquiry-screen-3'
+import InquiryLanding from './inquiry/inquiry-landing'
+import InquiryScreen1 from './inquiry/inquiry-screen-1'
+import InquiryScreen2 from './inquiry/inquiry-screen-2'
+import InquiryScreen3 from './inquiry/inquiry-screen-3'
 
 const ReactModalStyles = {
   overlay: {
