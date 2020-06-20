@@ -1,7 +1,16 @@
 import React, { Fragment } from 'react'
+import Select from 'react-select'
 
 import { Typography } from '../atoms/typography'
 import { AngleIcon } from '../svgs/icons'
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+]
+
+const MyComponent = () => <Select options={options} isMulti />
 
 const InquiryScreen2: React.FC = ({}) => {
   return (
@@ -18,12 +27,7 @@ const InquiryScreen2: React.FC = ({}) => {
           Model Interest
         </Typography>
       </div>
-      <select name="" id="" className="text-white">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
+      <MyComponent />
       <div className="flex items-center">
         <AngleIcon className="mr-1 text-white" style={{ fontSize: '40px' }} />
         <Typography variant="e2" className="text-white">
