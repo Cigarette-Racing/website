@@ -16,7 +16,6 @@ const getCurrentAnchor = (map: Map<Element, number>) => {
 
 export interface InPageNavProps {
   boatName: string
-  current: string
   titles: string[][]
   onClickInquire: React.MouseEventHandler<HTMLButtonElement>
 }
