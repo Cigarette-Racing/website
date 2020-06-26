@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Theme } from './types'
+import { Theme } from '../types/shared'
 
 type TypographyVariant =
   | 'h1' // Heading 1
