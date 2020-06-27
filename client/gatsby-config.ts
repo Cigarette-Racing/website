@@ -3,6 +3,7 @@ export const siteMetadata = {
   description: `Cigarette Racing`,
   author: `@cigaretteracing`,
 }
+
 export const plugins = [
   `gatsby-transformer-yaml`,
   `gatsby-plugin-react-helmet`,
@@ -21,6 +22,17 @@ export const plugins = [
     },
   },
   `gatsby-plugin-typescript`,
+  {
+    resolve: `gatsby-plugin-typegen`,
+    options: {
+      emitSchema: {
+        'src/__generated__/gatsby-introspection.json': true,
+      },
+      emitPluginDocuments: {
+        'src/__generated__/gatsby-plugin-documents.graphql': true,
+      },
+    },
+  },
   {
     resolve: `gatsby-plugin-svgr`,
     options: {
