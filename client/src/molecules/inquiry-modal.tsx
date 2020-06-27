@@ -9,12 +9,14 @@ import InquiryLanding from './inquiry/inquiry-landing'
 import InquiryScreen1 from './inquiry/inquiry-screen-1'
 import InquiryScreen2 from './inquiry/inquiry-screen-2'
 import InquiryScreen3 from './inquiry/inquiry-screen-3'
+import { NONAME } from 'dns'
 
 const ReactModalStyles = {
   overlay: {
     zIndex: 50,
   },
   content: {
+    border: 'none',
     top: 0,
     left: 0,
     right: 0,
@@ -24,7 +26,7 @@ const ReactModalStyles = {
 }
 export const useInquiryModalState = createGlobalState<boolean>(false)
 
-const Inquiry: React.FC = () => {
+const InquiryModal: React.FC = () => {
   const [inquiryModalState, setInquiryModalState] = useInquiryModalState()
   const [inquiryScreen, setInquiryScreen] = useState(0)
 
@@ -91,13 +93,13 @@ const Inquiry: React.FC = () => {
           {inquiryScreen != 0 && (
             <div className="flex justify-center flex-col">
               <InPageCta
-                className="self-center"
+                className="self-center mt-12"
                 variant="primary"
                 onClick={goToNext}
               >
                 Continue
               </InPageCta>
-              <div className="text-white self-center">
+              <div className="text-white self-center mt-6 font-heading italic">
                 {inquiryScreen != 0 && `${inquiryScreen} of 3`}
               </div>
             </div>
@@ -108,4 +110,4 @@ const Inquiry: React.FC = () => {
   )
 }
 
-export default Inquiry
+export default InquiryModal

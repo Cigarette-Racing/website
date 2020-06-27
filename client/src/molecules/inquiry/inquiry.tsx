@@ -4,7 +4,7 @@ import ReactModal from 'react-modal'
 import { CaretDownIcon } from '../../svgs/icons'
 import { OptionsCta } from '../../atoms/options-cta'
 import { Typography } from '../../atoms/typography'
-import section2Image from '../images/boat-section2-bg.jpeg'
+import section2Image from '../../images/boat-section2-bg.jpeg'
 import InquiryPage1 from './inquiry-screen-1'
 import InquiryPage2 from './inquiry-screen-2'
 import InquiryPage3 from './inquiry-screen-3'
@@ -17,7 +17,6 @@ const Inquiry: React.FC = () => {
   useLockBodyScroll(inquiryModalState)
 
   const goToNext = () => {
-    console.log('do something')
     setInquiryPage(inquiryPage + 1)
   }
 

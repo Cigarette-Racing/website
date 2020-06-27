@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import Select from 'react-select'
+import React from 'react'
+import { MultiSelect } from '../../atoms/multi-select'
 
 import { Typography } from '../../atoms/typography'
 import { AngleIcon } from '../../svgs/icons'
@@ -10,8 +10,6 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' },
 ]
 
-const MyComponent = () => <Select options={options} isMulti />
-
 const InquiryScreen2: React.FC = ({}) => {
   return (
     <div className="flex flex-col justify-center px-4">
@@ -21,14 +19,14 @@ const InquiryScreen2: React.FC = ({}) => {
       >
         Request an appointment
       </Typography>
-      <div className="flex items-center">
+      <div className="flex items-center mb-5">
         <AngleIcon className="mr-1 text-white" style={{ fontSize: '40px' }} />
         <Typography variant="e2" className="text-white">
           Model Interest
         </Typography>
       </div>
-      <MyComponent />
-      <div className="flex items-center">
+      <MultiSelect options={options} />
+      <div className="flex items-center mb-5">
         <AngleIcon className="mr-1 text-white" style={{ fontSize: '40px' }} />
         <Typography variant="e2" className="text-white">
           Leave a note

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import { Typography } from '../../atoms/typography'
 import { AngleIcon } from '../../svgs/icons'
+import { TextInput } from '../../atoms/text-input'
 
 const InquiryScreen1: React.FC = ({}) => {
   return (
@@ -12,44 +13,16 @@ const InquiryScreen1: React.FC = ({}) => {
       >
         Request an appointment
       </Typography>
-      <div className="flex items-center">
+      <div className="flex items-center mb-5">
         <AngleIcon className="mr-1 text-white" style={{ fontSize: '40px' }} />
         <Typography variant="e2" className="text-white">
           Basic Info
         </Typography>
       </div>
-      <div className="text-field required-field flex items-center">
-        <input
-          className="w-full text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 outline-none py-4"
-          type="text"
-          name="first name"
-          placeholder="First Name"
-        />
-      </div>
-      <div className="text-field required-field flex items-center">
-        <input
-          className="w-full text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 outline-none py-4"
-          type="text"
-          name="last name"
-          placeholder="Last Name"
-        />
-      </div>
-      <div className="text-field required-field flex items-center">
-        <input
-          className="w-full text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 outline-none py-4"
-          type="text"
-          name="phone number"
-          placeholder="Phone Number"
-        />
-      </div>
-      <div className="text-field required-field flex items-center">
-        <input
-          className="w-full text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 outline-none py-4"
-          type="text"
-          name="email address"
-          placeholder="Email Address"
-        />
-      </div>
+      <TextInput type="text" name="first name" placeholder="First Name" />
+      <TextInput type="text" name="last name" placeholder="First Name" />
+      <TextInput type="text" name="phone number" placeholder="phone number" />
+      <TextInput type="text" name="email address" placeholder="email address" />
     </div>
   )
 }
