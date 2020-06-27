@@ -81,7 +81,6 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   if (!boat) return null
 
   const titles = extractTitles(boat.sections!)
-  console.log({ titles })
   const heroData = findHeroSection(boat.sections!)
   const discoverData = findDiscoverSection(boat.sections!)
   const flexData = getFlexibleSections(boat.sections!)
