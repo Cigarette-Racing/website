@@ -1,21 +1,29 @@
 import React from 'react'
 import clsx from 'clsx'
 
-type Ratios = 'none' | '1:1' | '3:2' | '2:3' | '4:3' | '3:4' | '16:9' | '21:9'
+export type Ratio =
+  | 'none'
+  | '1:1'
+  | '3:2'
+  | '2:3'
+  | '4:3'
+  | '3:4'
+  | '16:9'
+  | '21:9'
 
 export interface AspectRatioProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Ratio to apply */
-  ratio: Ratios
+  ratio: Ratio
   /** Additional classes to apply */
   className?: string
   /** Ratio to apply at the `sm` breakpoint */
-  sm?: Ratios
+  sm?: Ratio
   /** Ratio to apply at the `md` breakpoint */
-  md?: Ratios
+  md?: Ratio
   /** Ratio to apply at the `lg` breakpoint */
-  lg?: Ratios
+  lg?: Ratio
   /** Ratio to apply at the `xl` breakpoint */
-  xl?: Ratios
+  xl?: Ratio
 }
 
 export const AspectRatio: React.FC<AspectRatioProps> = ({

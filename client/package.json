@@ -6,7 +6,7 @@
   "scripts": {
     "add-deploy-branch": "node ./scripts/enableDeliveryBranchDeploy.js",
     "build": "gatsby build",
-    "develop": "gatsby develop -p 17007",
+    "develop": "gatsby develop -H 0.0.0.0 -p 17007",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve -p 17008",
