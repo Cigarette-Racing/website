@@ -1,0 +1,129 @@
+boatName: Tirranna
+boatNameLong: Tirranna AMG 59 Edition
+sections:
+  - type: hero
+    headline: One-of-a-kind performance
+    boatLogo:
+      image: '../../src/images/tirranna-logo.svg'
+    backgroundMedia:
+      image: '../../src/images/tirranna-boat.jpeg'
+    stats:
+      - percentage: 80
+        text: '59’'
+        label: Length
+      - percentage: 80
+        text: '14’'
+        label: Beam
+      - percentage: 80
+        text: 2,700hp
+        label: Max Horsepower
+
+  - type: discover
+    title: Discover
+    shortTitle: ''
+    media:
+      image: '../../src/images/boat-section2-video.jpeg'
+    content:
+      header: BOUNDLESS POSSIBILITY
+      copy: 'Through the kinship of creative instinct, technical prowess and performance-centric pedigree, the longstanding collaboration between Cigarette and Mercedes-AMG has never ceased to produce one-of-a-kind performance icons for land and water. The all-new 2020 59’ Tirranna AMG Edition is the ultimate ascendancy over the conventional, the mundane, the uninspired - it champions singularity in all aspects of life and represents boundless possibility. Perhaps our finest collaboration yet, or simply the benchmark for the future!'
+
+  - type: flexible
+    title: Design & Engineering
+    shortTitle: ''
+    theme: light
+    bleedDirection: right
+    headerImage:
+      image: '../../src/images/boat-section3-image.jpeg'
+    blocks: []
+
+  - type: flexible
+    title: Technology
+    shortTitle: ''
+    theme: dark
+    bleedDirection: left
+    headerImage:
+      image: '../../src/images/boat-section4-image.jpeg'
+    blocks: []
+
+  - type: flexible
+    title: Advanced Features
+    shortTitle: ''
+    theme: light
+    bleedDirection: right
+    headerImage:
+      image: '../../src/images/boat-section5-image.jpeg'
+    blocks: []
+
+  - type: flexible
+    title: Interior Details
+    shortTitle: Interior
+    theme: dark
+    bleedDirection: left
+    headerImage:
+      image: '../../src/images/boat-section6-image.jpeg'
+    blocks: []
+
+  - type: specs
+    title: Specs
+    shortTitle: ''
+    categories:
+      - name: Deck
+        specs:
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+      - name: Interiors
+        specs:
+          - header:
+            copy:
+      - name: Details
+        specs:
+          - header:
+            copy:
+      - name: Technical
+        specs:
+          - header:
+            copy:
+      - name: Exterior
+        specs:
+          - header:
+            copy:
+
+  - type: gallery
+    title: Media Gallery
+    shortTitle: Gallery
+    gallery:
+      - image: '../../src/images/boat-section8-image.jpeg'
+      - image: '../../src/images/boat-section8-image2.jpeg'
+      - image: '../../src/images/boat-section8-image3.jpeg'
+      - image: '../../src/images/boat-section8-image4.jpeg'
+      - image: '../../src/images/boat-section8-image5.jpeg'
+      - image: '../../src/images/boat-section8-image6.jpeg'
+      - image: '../../src/images/boat-section8-image7.jpeg'
+      - image: '../../src/images/homepage-header.jpeg'
+
+  - type: customizations
+    title: Bespoke Possibilities
+    shortTitle: Bespoke
+    options:
+      - media:
+          image: '../../src/images/boat-section9-image.jpeg'
+        content:
+          header: Title of bespoke option
+          copy: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...
+      - media:
+          image: '../../src/images/boat-section9-image2.jpeg'
+        content:
+          header: Title of bespoke option
+          copy: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...
