@@ -1,4 +1,5 @@
 import React from 'react'
+import Img from 'gatsby-image'
 import { Typography } from './atoms/typography'
 import { InPageCta } from './atoms/in-page-cta'
 import { StatBlock } from './atoms/stat-block'
@@ -6,24 +7,38 @@ import { Theme } from './types/shared'
 import clsx from 'clsx'
 import { AspectRatio, AspectRatioProps, Ratio } from './atoms/aspect-ratio'
 import { CircleButton } from './atoms/circle-button'
-import { ExpandIcon, PlayIcon, ArrowIcon } from './svgs/icons'
+import { ExpandIcon, PlayIcon, ArrowIcon, PlusIcon } from './svgs/icons'
 import { InPageAnchor } from './molecules/in-page-nav'
 import { VerticalHeader } from './atoms/vertical-header'
 import { VerticalLabel } from './atoms/vertical-label'
 import { ProgressBar } from './atoms/progress-bar'
+import {
+  Stat,
+  Media,
+  SpecsSection,
+  CustomizationsSection,
+  TextBlock,
+} from './types/boat'
+import { Tab } from './atoms/tab'
+import { LinkCta } from './atoms/link-cta'
 
 // images
 import discoverBackground from './images/boat-section2-bg.jpeg'
 import orderBackground from './images/article1.jpeg'
+import customizationsBackground from './images/boat-section6-image5.jpeg'
 
 export const BoatHeader = ({
   boatImage,
   boatLogo,
   boatNameLong,
+  headline,
+  stats,
 }: {
-  boatImage: string
+  boatImage: GatsbyTypes.ImageSharpFluid
   boatLogo: string
   boatNameLong: string
+  headline: string
+  stats: Stat[]
 }) => (
   <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between">
     <div />
@@ -38,29 +53,30 @@ export const BoatHeader = ({
         xl="h1"
         className="text-center mb-8 md:mb-10 max-w-2xl lg:max-w-3xl mx-auto"
       >
-        Headline goes here lorem ipsum.
+        {headline}
       </Typography>
-
       <div className="relative mb-4 justify-center hidden md:flex">
         <InPageCta>Request Info</InPageCta>
       </div>
     </div>
-    <img src={boatImage} alt="" className="mb-8 md:absolute" />
+    <div className="mb-8 md:absolute w-full">
+      <Img fluid={boatImage} alt="" />
+    </div>
     <div className="hidden bg-black bg-opacity-50 absolute inset-0 md:block"></div>
     <div className="relative z-10">
       <div className="relative flex justify-center mb-8 md:mb-10">
         <img src={boatLogo} alt="" />
       </div>
       <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
-        <div className="flex-1">
-          <StatBlock label="Length" percentage={80} text="59’" />
-        </div>
-        <div className="flex-1">
-          <StatBlock label="Freeboard" percentage={75} text="68”" />
-        </div>
-        <div className="flex-1">
-          <StatBlock label="Max Speed" percentage={85} text="80mph" />
-        </div>
+        {stats.map((stat) => (
+          <div key={stat.label} className="flex-1">
+            <StatBlock
+              label={stat.label}
+              percentage={stat.percentage}
+              text={stat.text}
+            />
+          </div>
+        ))}
       </div>
     </div>
     <div className="relative mb-4 flex justify-center md:hidden">
@@ -87,7 +103,7 @@ export const BoatSection: React.FC<{ theme?: Theme; className?: string }> = ({
   </section>
 )
 
-export const TextBlock = ({
+export const TextBlockComponent = ({
   className = '',
   copy,
   header,
@@ -147,7 +163,7 @@ export const DiscoverSection = ({
           />
         </AspectRatio>
       </div>
-      <TextBlock
+      <TextBlockComponent
         className="text-center px-4 max-w-2xl mx-auto lg:mb-8"
         header={header}
         copy={copy}
@@ -322,11 +338,71 @@ export const ThreeUpImageBlock = ({
   </div>
 )
 
+export const SpecsSectionComponent = ({
+  title,
+  categories,
+  boatNameLong,
+}: SpecsSection & { boatNameLong: string }) => (
+  <BoatSection className="md:py-24">
+    <InPageAnchor title={title} />
+    <div className="relative flex max-w-7xl mx-auto">
+      <div className="hidden md:block absolute right-0 top-0">
+        <VerticalHeader theme="light" className="mr-4">
+          {title}
+        </VerticalHeader>
+      </div>
+      <div className="hidden md:block px-4 space-y-2 md:w-48 lg:w-56 xl:w-64 mt-24">
+        {categories.map(({ name }, index) => (
+          <Tab
+            key={name}
+            className="w-auto whitespace-no-wrap"
+            active={index === 0}
+          >
+            {name}
+          </Tab>
+        ))}
+      </div>
+      <div className="max-w-2xl w-full">
+        <div className="px-4 md:px-0 md:mb-16">
+          <Typography variant="h4">{boatNameLong}</Typography>
+        </div>
+        <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
+          {categories.map(({ name }, index) => (
+            <Tab key={name} className="whitespace-no-wrap" active={index === 0}>
+              {name}
+            </Tab>
+          ))}
+        </div>
+        <div className="px-4 md:px-0 grid col-gap-6 grid-cols-2 mb-10">
+          {categories[0].specs.map(({ header, copy }) => (
+            <div key={header} className="py-8 border-t border-gray-5">
+              <Typography variant="e3" className="mb-2">
+                {header}
+              </Typography>
+              <Typography variant="p3" className="text-gray-2 md:w-11/12">
+                {copy}
+              </Typography>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-center md:justify-start mb-2">
+          <InPageCta variant="secondary" theme="light">
+            <span className="flex items-center">
+              <PlusIcon className="inline-block text-red mr-2 text-lg" />
+              <span>More Specs</span>
+            </span>
+          </InPageCta>
+        </div>
+      </div>
+    </div>
+  </BoatSection>
+)
+
 export const MediaGallerySection = ({
-  images,
+  media,
   title,
 }: {
-  images: string[]
+  media: Media[]
   title: string
 }) => (
   <BoatSection theme="dark" className="sm:py-32">
@@ -348,10 +424,10 @@ export const MediaGallerySection = ({
         </Typography>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col-dense sm:grid-rows-2 gap-6 px-4 mb-16">
-        {images.map((image, index) => (
+        {media.map((item, index) => (
           <GalleryImage
-            key={image}
-            img={image}
+            key={index}
+            img={item.image.childImageSharp?.fluid?.src!}
             className={index > 3 ? 'hidden sm:block' : ''}
           />
         ))}
@@ -366,7 +442,61 @@ export const MediaGallerySection = ({
   </BoatSection>
 )
 
-export const BespokeOptionCard = ({ img }: { img: string }) => {
+export const CustomizationsSectionComponent = ({
+  title,
+  options,
+}: CustomizationsSection) => (
+  <BoatSection theme="dark" className="py-24 sm:pb-16">
+    <InPageAnchor title={title} />
+    <img
+      src={customizationsBackground}
+      className="absolute top-0 h-full w-full object-cover"
+    />
+    <div
+      className="absolute inset-0"
+      style={{
+        background:
+          'linear-gradient(360deg, #000000 46.14%, rgba(0, 0, 0, 0) 100%)',
+      }}
+    ></div>
+    <div className="relative text-center mb-24 sm:mt-20 sm:mb-48">
+      <Typography variant="h3" sm="h2" lg="h1" className="mb-4">
+        Make it yours.
+      </Typography>
+      <Typography variant="e2" md="e1" className="text-gray-4">
+        Bespoke Possibilities
+      </Typography>
+    </div>
+    <div className="relative max-w-7xl mx-auto">
+      <div className="flex space-x-6 px-4 overflow-hidden mb-12 sm:mb-20">
+        {options.map(({ media, content }) => (
+          <BespokeOptionCard
+            key={content.header}
+            img={media.image.childImageSharp?.fluid?.src!}
+            {...content}
+          />
+        ))}
+      </div>
+      <div className="px-4 flex sm:justify-between items-center">
+        <div className="hidden sm:block">
+          <InPageCta variant="secondary" theme="dark">
+            Explore Bespoke Studio
+          </InPageCta>
+        </div>
+        <CarouselButtons className="mb-12 sm:mb-0" />
+      </div>
+      <LinkCta theme="dark" className="mx-auto sm:hidden">
+        Explore Bespoke Possibilities
+      </LinkCta>
+    </div>
+  </BoatSection>
+)
+
+export const BespokeOptionCard = ({
+  img,
+  header,
+  copy,
+}: { img: string } & TextBlock) => {
   return (
     <div className="w-56 sm:w-auto max-w-lg">
       <AspectRatio
@@ -384,11 +514,10 @@ export const BespokeOptionCard = ({ img }: { img: string }) => {
         ></div>
       </AspectRatio>
       <Typography variant="h4" className="mb-4">
-        Title of bespoke option
+        {header}
       </Typography>
       <Typography variant="p3" sm="p2">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor...
+        {copy}
       </Typography>
     </div>
   )
