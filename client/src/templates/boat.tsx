@@ -65,10 +65,8 @@ const TITLES = [
 ]
 const ORDER_TITLE = ['Order Today', 'Order']
 
-const extractTitles = (
-  sections: readonly ({ type: string } & CommonSectionProps)[]
-) =>
-  sections
+const extractTitles = (sections: readonly any[]) =>
+  (sections as ({ type: string } & CommonSectionProps)[])
     .filter((section) => section.type !== 'hero')
     .map((section) => [section.title, section.shortTitle || ''])
     .concat([ORDER_TITLE])
