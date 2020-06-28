@@ -56,6 +56,7 @@ import section8Image7 from '../images/boat-section8-image7.jpeg'
 import section8Image8 from '../images/homepage-header.jpeg'
 import section9Image from '../images/boat-section9-image.jpeg'
 import section9Image2 from '../images/boat-section9-image2.jpeg'
+import { Media } from '../types/boat'
 
 const TITLES = [
   ['Discover'],
@@ -77,7 +78,7 @@ const GALLERY_IMAGES = [
   { image: { childImageSharp: { fluid: { src: section8Image6 } } } },
   { image: { childImageSharp: { fluid: { src: section8Image7 } } } },
   { image: { childImageSharp: { fluid: { src: section8Image8 } } } },
-]
+] as Media[]
 
 // From https://stackoverflow.com/a/44230264/4357882
 // range(3,7) === [ 3, 4, 5, 6, 7 ]
