@@ -1,11 +1,9 @@
 import { Theme } from './shared'
 import { Ratio } from '../atoms/aspect-ratio'
 
-export type CommonSectionProps = {
-  title: string
-  shortTitle?: string
-}
-
+// ===================================
+// BASE TYPES
+// ===================================
 export type TextBlock = {
   header: string
   copy: string
@@ -29,6 +27,14 @@ export type Stat = {
   label: string
   percentage: number
   text: string
+}
+
+// ===================================
+// SECTIONS
+// ===================================
+export type CommonSectionProps = {
+  title: string
+  shortTitle?: string
 }
 
 type HeroSection = {
@@ -112,6 +118,7 @@ type FlexibleSection = {
   bleedDirection: 'left' | 'right'
   headerImage: Media
   blocks: Block[]
+  moreDetails?: Block[]
 } & CommonSectionProps
 
 function isFlexibleSection(section: any): section is FlexibleSection {
@@ -122,45 +129,6 @@ export function getFlexibleSections(sections: readonly any[]) {
   return sections.filter(isFlexibleSection) as FlexibleSection[]
 }
 
-type OneColumnImageTextBlock = {
-  type: 'one-column-image-text'
-} & ImageWithText
-
-type TwoColumnImageTextBlock = {
-  type: 'two-column-image-text'
-  leftColumn: ImageWithText
-  rightColumn: ImageWithText
-}
-
-type TwoColumnImagesBlock = {
-  type: 'two-column-images'
-  media: [Media, Media]
-}
-
-type ThreeColumnImagesBlock = {
-  type: 'three-column-images'
-  media: [Media, Media, Media]
-}
-
-type SliderBlock = {
-  type: 'slider'
-  items: ImageWithText[]
-}
-
-type CarouselBlock = {
-  type: 'carousel'
-  items: ImageWithText[]
-}
-
-type Block =
-  | TextBlock
-  | OneColumnImageTextBlock
-  | TwoColumnImageTextBlock
-  | TwoColumnImagesBlock
-  | ThreeColumnImagesBlock
-  | SliderBlock
-  | CarouselBlock
-
 type Section =
   | HeroSection
   | DiscoverSection
@@ -169,8 +137,86 @@ type Section =
   | CustomizationsSection
   | FlexibleSection
 
+// ===================================
+// BLOCKS
+// ===================================
+export type OneColumnTextBlock = {
+  type: 'one-column-text'
+} & TextBlock
+
+export function isOneColumnTextBlock(
+  block: Block
+): block is OneColumnTextBlock {
+  return block.type === 'one-column-text'
+}
+
+export type OneColumnImageTextBlock = {
+  type: 'one-column-image-text'
+} & ImageWithText
+
+export type TwoColumnImageTextBlock = {
+  type: 'two-column-image-text'
+  leftColumn: ImageWithText
+  rightColumn: ImageWithText
+}
+
+export function isTwoColumnImageTextBlock(
+  block: Block
+): block is TwoColumnImageTextBlock {
+  return block.type === 'two-column-image-text'
+}
+
+export type TwoColumnImagesBlock = {
+  type: 'two-column-images'
+  images: [Media, Media]
+}
+
+export type ThreeColumnImagesBlock = {
+  type: 'three-column-images'
+  images: [Media, Media, Media]
+}
+
+export type SliderBlock = {
+  type: 'slider'
+  items: ImageWithText[]
+}
+
+export type CarouselBlock = {
+  type: 'carousel'
+  items: ImageWithText[]
+}
+
+export function isCarouselBlock(block: Block): block is CarouselBlock {
+  return block.type === 'carousel'
+}
+
+type Block =
+  | OneColumnTextBlock
+  | OneColumnImageTextBlock
+  | TwoColumnImageTextBlock
+  | TwoColumnImagesBlock
+  | ThreeColumnImagesBlock
+  | SliderBlock
+  | CarouselBlock
+
+// ===================================
+// PRIMARY TYPES
+// ===================================
 export type BoatData = {
   boatName: string
   boatLongName: string
   sections: Section[]
 }
+
+// Utilities
+// function finder<T>(findFn: (item: any) => boolean) {
+//   return function (sections: readonly any[]): T {
+//     return sections.find(findFn) as T
+//   }
+// }
+
+// function filterer<T>(filterFn: (item: any) => boolean) {
+//   return function (sections: readonly any[]): T[] {
+//     return sections.filter(filterFn) as T[]
+//   }
+// }

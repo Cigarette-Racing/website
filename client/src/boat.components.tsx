@@ -18,14 +18,18 @@ import {
   SpecsSection,
   CustomizationsSection,
   TextBlock,
+  TwoColumnImagesBlock,
+  TwoColumnImageTextBlock,
+  OneColumnTextBlock,
+  CarouselBlock,
 } from './types/boat'
 import { Tab } from './atoms/tab'
 import { LinkCta } from './atoms/link-cta'
 
 // images
-import discoverBackground from './images/boat-section2-bg.jpeg'
-import orderBackground from './images/article1.jpeg'
-import customizationsBackground from './images/boat-section6-image5.jpeg'
+import discoverBackground from '../content/images/boat-section2-bg.jpeg'
+import orderBackground from '../content/images/article1.jpeg'
+import customizationsBackground from '../content/images/boat-section6-image5.jpeg'
 
 export const BoatHeader = ({
   boatImage,
@@ -374,8 +378,8 @@ export const SpecsSectionComponent = ({
           ))}
         </div>
         <div className="px-4 md:px-0 grid col-gap-6 grid-cols-2 mb-10">
-          {categories[0].specs.map(({ header, copy }) => (
-            <div key={header} className="py-8 border-t border-gray-5">
+          {categories[0].specs.map(({ header, copy }, index) => (
+            <div key={header + index} className="py-8 border-t border-gray-5">
               <Typography variant="e3" className="mb-2">
                 {header}
               </Typography>
@@ -469,9 +473,9 @@ export const CustomizationsSectionComponent = ({
     </div>
     <div className="relative max-w-7xl mx-auto">
       <div className="flex space-x-6 px-4 overflow-hidden mb-12 sm:mb-20">
-        {options.map(({ media, content }) => (
+        {options.map(({ media, content }, index) => (
           <BespokeOptionCard
-            key={content.header}
+            key={content.header + index}
             img={media.image.childImageSharp?.fluid?.src!}
             {...content}
           />
@@ -576,4 +580,87 @@ export const OrderSection = ({
       </div>
     </div>
   </BoatSection>
+)
+
+// ===================================
+// BLOCKS
+// ===================================
+export const OneColumnTextBlockComponent = ({
+  header,
+  copy,
+}: OneColumnTextBlock) => (
+  <div className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto">
+    <TextBlockComponent className="max-w-md" header={header} copy={copy} />
+  </div>
+)
+
+export const TwoColumnImageTextBlockComponent = ({
+  leftColumn,
+  rightColumn,
+}: TwoColumnImageTextBlock) => (
+  <div className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto">
+    <div className="md:w-1/2 lg:pr-12">
+      <TextBlockComponent
+        className="my-12 px-4 lg:px-0 lg:ml-12 md:mb-32 lg:mb-48"
+        header={leftColumn.content.header}
+        copy={leftColumn.content.copy}
+      />
+      <div className="px-4 lg:px-0 mb-12 md:mb-0">
+        <ImageWithLabel
+          ratio="3:4"
+          src={leftColumn.media.image.childImageSharp?.fluid?.src!}
+          label={leftColumn.media.label}
+          imgClassName="filter-grayscale"
+        />
+      </div>
+    </div>
+    <div className="md:w-1/2 lg:pl-12">
+      <div className="px-4 lg:px-0 lg:pr-16">
+        <ImageWithLabel
+          ratio="3:4"
+          src={rightColumn.media.image.childImageSharp?.fluid?.src!}
+          label={leftColumn.media.label}
+          style={{ backgroundColor: '#222222' }}
+          imgClassName="left-1/2 transform -translate-x-1/2"
+        />
+      </div>
+      <TextBlockComponent
+        className="my-10 md:my-16 px-4 lg:px-0 lg:pr-16"
+        header={rightColumn.content.header}
+        copy={rightColumn.content.copy}
+      />
+    </div>
+  </div>
+)
+
+export const CarouselBlockComponent = ({ items }: CarouselBlock) => (
+  <div className="max-w-5xl mx-auto">
+    <div className="md:w-9/12">
+      <AspectRatio ratio="3:2">
+        {items.map((item, index) => (
+          <img
+            key={index}
+            src={item.media.image.childImageSharp?.fluid?.src!}
+            className="absolute h-full w-full object-cover"
+            style={
+              index > 0
+                ? {
+                    left: 'calc(100% + 8.5rem)',
+                  }
+                : {}
+            }
+          />
+        ))}
+        <CarouselButtons className="absolute bottom-0 pb-4 w-full md:hidden" />
+      </AspectRatio>
+      <div className="md:flex justify-between items-start md:mt-10 md:mb-40">
+        <TextBlockComponent
+          className="my-8 md:my-0 px-4 mb-20 md:w-10/12"
+          header={items[0].content.header}
+          copy={items[0].content.copy}
+        />
+        <CarouselButtons className="hidden md:flex" />
+      </div>
+    </div>
+  </div>
 )

@@ -21,25 +21,27 @@ import {
   MediaGallerySection,
   SpecsSectionComponent,
   CustomizationsSectionComponent,
+  OneColumnTextBlockComponent,
+  TwoColumnImageTextBlockComponent,
 } from '../boat.components'
 
 // Images
-import section3Image from '../images/boat-section3-image.jpeg'
-import section3Image2 from '../images/boat-section3-image2.jpeg'
-import section3Image3 from '../images/boat-section3-image3.jpeg'
-import section4Image from '../images/boat-section4-image.jpeg'
-import section4Image2 from '../images/boat-section4-image2.jpeg'
-import section4Image3 from '../images/boat-section4-image3.jpeg'
-import section4Image4 from '../images/boat-section4-image4.jpeg'
-import section5Image from '../images/boat-section5-image.jpeg'
-import section5Image2 from '../images/boat-section5-image2.jpeg'
-import section5Image3 from '../images/boat-section5-image3.jpeg'
-import section5Image4 from '../images/boat-section5-image4.jpeg'
-import section6Image from '../images/boat-section6-image.jpeg'
-import section6Image2 from '../images/boat-section6-image2.jpeg'
-import section6Image3 from '../images/boat-section6-image3.jpeg'
-import section6Image4 from '../images/boat-section6-image4.jpeg'
-import section6Image5 from '../images/boat-section6-image5.jpeg'
+import section3Image from '../../content/images/boat-section3-image.jpeg'
+import section3Image2 from '../../content/images/boat-section3-image2.jpeg'
+import section3Image3 from '../../content/images/boat-section3-image3.jpeg'
+import section4Image from '../../content/images/boat-section4-image.jpeg'
+import section4Image2 from '../../content/images/boat-section4-image2.jpeg'
+import section4Image3 from '../../content/images/boat-section4-image3.jpeg'
+import section4Image4 from '../../content/images/boat-section4-image4.jpeg'
+import section5Image from '../../content/images/boat-section5-image.jpeg'
+import section5Image2 from '../../content/images/boat-section5-image2.jpeg'
+import section5Image3 from '../../content/images/boat-section5-image3.jpeg'
+import section5Image4 from '../../content/images/boat-section5-image4.jpeg'
+import section6Image from '../../content/images/boat-section6-image.jpeg'
+import section6Image2 from '../../content/images/boat-section6-image2.jpeg'
+import section6Image3 from '../../content/images/boat-section6-image3.jpeg'
+import section6Image4 from '../../content/images/boat-section6-image4.jpeg'
+import section6Image5 from '../../content/images/boat-section6-image5.jpeg'
 import { PageProps, graphql } from 'gatsby'
 import {
   Stat,
@@ -50,19 +52,11 @@ import {
   findGallerySection,
   findSpecsSection,
   findCustomizationsSection,
+  isTwoColumnImageTextBlock,
+  isOneColumnTextBlock,
+  isCarouselBlock,
 } from '../types/boat'
 
-const TITLES = [
-  ['Discover'],
-  ['Design & Engineering'],
-  ['Technology'],
-  ['Advanced Features'],
-  ['Interior Details', 'Interior'],
-  ['Specs'],
-  ['Media Gallery', 'Gallery'],
-  ['Bespoke Possibilities', 'Bespoke'],
-  ['Order Today', 'Order'],
-]
 const ORDER_TITLE = ['Order Today', 'Order']
 
 const extractTitles = (sections: readonly any[]) =>
@@ -107,38 +101,63 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         header={discoverData.content.header}
         copy={discoverData.content.copy}
       />
-      {flexData.map(({ title, theme, bleedDirection, headerImage }) => (
-        <BoatSection theme={theme}>
-          <InPageAnchor title={title} />
-          <MobileSectionHeader>{title}</MobileSectionHeader>
-          <VerticalHeaderBlock
-            label={title}
-            side={bleedDirection === 'left' ? 'right' : 'left'}
-            theme={theme}
-            className="lg:mt-32"
-          />
-          <SideBleedImage
-            src={headerImage.image.childImageSharp?.fluid?.src!}
-            side={bleedDirection}
-            className="lg:mt-32 md:mb-32"
-            size="large"
-          />
-          <div className="flex justify-center md:mb-12">
-            <InPageCta variant="secondary" theme={theme}>
-              <span className="flex items-center">
-                <PlusIcon className="inline-block text-red mr-2 text-lg" />
-                <span>More Details</span>
-              </span>
-            </InPageCta>
-          </div>
-        </BoatSection>
-      ))}
+      {flexData.map(
+        ({
+          title,
+          theme,
+          bleedDirection,
+          headerImage,
+          blocks,
+          moreDetails,
+        }) => (
+          <BoatSection key={title} theme={theme}>
+            <InPageAnchor title={title} />
+            <MobileSectionHeader>{title}</MobileSectionHeader>
+            <VerticalHeaderBlock
+              label={title}
+              side={bleedDirection === 'left' ? 'right' : 'left'}
+              theme={theme}
+              className="lg:mt-32"
+            />
+            <SideBleedImage
+              src={headerImage.image.childImageSharp?.fluid?.src!}
+              side={bleedDirection}
+              className="lg:mt-32 md:mb-32"
+              size="large"
+            />
+            {blocks.map((block, index) => {
+              if (isTwoColumnImageTextBlock(block)) {
+                return (
+                  <TwoColumnImageTextBlockComponent key={index} {...block} />
+                )
+              }
+              if (isOneColumnTextBlock(block)) {
+                return <OneColumnTextBlockComponent key={index} {...block} />
+              }
+              if (isCarouselBlock(block)) {
+                return 'Yes'
+              }
+              return null
+            })}
+            {moreDetails && (
+              <div className="flex justify-center md:mb-12">
+                <InPageCta variant="secondary" theme={theme}>
+                  <span className="flex items-center">
+                    <PlusIcon className="inline-block text-red mr-2 text-lg" />
+                    <span>More Details</span>
+                  </span>
+                </InPageCta>
+              </div>
+            )}
+          </BoatSection>
+        )
+      )}
       {/* Design & Engineering section */}
       <BoatSection>
-        <InPageAnchor title={TITLES[1][0]} />
-        <MobileSectionHeader>{TITLES[1][0]}</MobileSectionHeader>
+        <InPageAnchor title={'Design & Engineering'} />
+        <MobileSectionHeader>{'Design & Engineering'}</MobileSectionHeader>
         <VerticalHeaderBlock
-          label={TITLES[1][0]}
+          label={'Design & Engineering'}
           side="left"
           theme="light"
           className="lg:mt-32"
@@ -193,9 +212,9 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       </BoatSection>
       {/* Technology section */}
       <BoatSection theme="dark" className="overflow-x-hidden">
-        <InPageAnchor title={TITLES[2][0]} />
-        <MobileSectionHeader>{TITLES[2][0]}</MobileSectionHeader>
-        <VerticalHeaderBlock label={TITLES[2][0]} side="right" theme="dark" />
+        <InPageAnchor title="Technology" />
+        <MobileSectionHeader>Technology</MobileSectionHeader>
+        <VerticalHeaderBlock label="Technology" side="right" theme="dark" />
         <SideBleedImage
           src={section4Image}
           side="left"
@@ -250,9 +269,13 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       </BoatSection>
       {/* Advanced Features section */}
       <BoatSection>
-        <InPageAnchor title={TITLES[3][0]} />
-        <MobileSectionHeader>{TITLES[3][0]}</MobileSectionHeader>
-        <VerticalHeaderBlock label={TITLES[3][0]} side="left" theme="light" />
+        <InPageAnchor title={'Advanced Features'} />
+        <MobileSectionHeader>{'Advanced Features'}</MobileSectionHeader>
+        <VerticalHeaderBlock
+          label={'Advanced Features'}
+          side="left"
+          theme="light"
+        />
         <SideBleedImage src={section5Image} side="right" className="md:mb-24" />
         <div className="sm:flex sm:mt-32 max-w-5xl mx-auto md:space-x-16 lg:space-x-24 md:px-16 lg:px-8 xl:px-0 sm:mb-24">
           <div className=" px-4 md:px-0">
@@ -315,9 +338,13 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       </BoatSection>
       {/* Interior Details section */}
       <BoatSection theme="dark">
-        <InPageAnchor title={TITLES[4][0]} />
-        <MobileSectionHeader>{TITLES[4][0]}</MobileSectionHeader>
-        <VerticalHeaderBlock label={TITLES[4][0]} side="right" theme="dark" />
+        <InPageAnchor title={'Interior Details'} />
+        <MobileSectionHeader>{'Interior Details'}</MobileSectionHeader>
+        <VerticalHeaderBlock
+          label={'Interior Details'}
+          side="right"
+          theme="dark"
+        />
         <SideBleedImage src={section6Image} side="left" className="md:mb-24" />
         <TextBlockComponent
           className="my-12 px-4 mb-16 md:mb-48 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto"
@@ -394,7 +421,7 @@ export const query = graphql`
         backgroundMedia {
           image {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 2000) {
                 ...GatsbyImageSharpFluid
               }
             }
@@ -403,7 +430,7 @@ export const query = graphql`
         media {
           image {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 1700) {
                 ...GatsbyImageSharpFluid
               }
             }
@@ -449,10 +476,59 @@ export const query = graphql`
         headerImage {
           image {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 2400) {
                 ...GatsbyImageSharpFluid
               }
             }
+          }
+        }
+        blocks {
+          type
+          leftColumn {
+            content {
+              header
+              copy
+            }
+            media {
+              image {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+              label
+            }
+          }
+          rightColumn {
+            content {
+              header
+              copy
+            }
+            media {
+              image {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+              label
+            }
+          }
+          header
+          copy
+          items {
+            content {
+              header
+              copy
+            }
+            media {
+              image
+            }
+          }
+          images {
+            image
           }
         }
       }
