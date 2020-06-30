@@ -13,6 +13,7 @@ import {
 } from 'react-use'
 import Modal from 'react-modal'
 import { Link } from 'gatsby'
+import { useLocation } from '@reach/router'
 
 export type HeaderState = 'top' | 'pinned' | 'hidden'
 export const useHeaderState = createGlobalState<HeaderState>('top')
@@ -24,9 +25,9 @@ Modal.setAppElement(
     : '#___gatsby'
 )
 
-const leftLinks = ['Models', 'Our world', 'The Difference']
-const rightLinks = ['Owners', 'Store', 'Contact']
-const allLinks = ['Home'].concat(leftLinks, rightLinks)
+const leftLinks = [['Models'], ['Our world'], ['The Difference']]
+const rightLinks = [['Owners'], ['Store'], ['Contact', '/contact']]
+const allLinks = [['Home', '/']].concat(leftLinks, rightLinks)
 
 export interface HeaderProps {}
 
@@ -72,13 +73,13 @@ export const Header = ({}: HeaderProps) => {
                 </button>
               ) : (
                 <div className="flex space-x-8 xl:space-x-10 pointer-events-none">
-                  {leftLinks.map((link) => (
+                  {leftLinks.map(([text]) => (
                     <Typography
                       variant="e3"
                       className="whitespace-no-wrap"
-                      key={link}
+                      key={text}
                     >
-                      {link}
+                      {text}
                     </Typography>
                   ))}
                 </div>
@@ -92,19 +93,36 @@ export const Header = ({}: HeaderProps) => {
             <div className="w-1/3 flex justify-end">
               {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (
                 <div>
-                  <Typography variant="e3">Contact</Typography>
+                  <Link to="/contact">
+                    <Typography variant="e3">Contact</Typography>
+                  </Link>
                 </div>
               ) : (
-                <div className="flex space-x-8 xl:space-x-10 pointer-events-none">
-                  {rightLinks.map((link) => (
-                    <Typography
-                      variant="e3"
-                      key={link}
-                      className="whitespace-no-wrap"
-                    >
-                      {link}
-                    </Typography>
-                  ))}
+                <div className="flex space-x-8 xl:space-x-10">
+                  {rightLinks.map(([text, link]) => {
+                    if (link) {
+                      return (
+                        <Link to={link}>
+                          <Typography
+                            variant="e3"
+                            key={text}
+                            className="whitespace-no-wrap"
+                          >
+                            {text}
+                          </Typography>
+                        </Link>
+                      )
+                    }
+                    return (
+                      <Typography
+                        variant="e3"
+                        key={text}
+                        className="whitespace-no-wrap pointer-events-none"
+                      >
+                        {text}
+                      </Typography>
+                    )
+                  })}
                 </div>
               )}
             </div>
@@ -123,6 +141,8 @@ function MobileMenu({
   isMenuOpen: boolean
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
+  const location = useLocation()
+  console.log({ location })
   return (
     <Modal
       isOpen={isMenuOpen}
@@ -145,13 +165,27 @@ function MobileMenu({
           <ReturnLink onClick={() => setIsMenuOpen(false)}>Back</ReturnLink>
         </div>
         <div className="mt-10 flex flex-col items-start">
-          {allLinks.map((link) => {
+          {allLinks.map(([text, link]) => {
+            if (link) {
+              return (
+                <Link to={link} onClick={() => setIsMenuOpen(false)}>
+                  <div key={text} className="relative mb-6">
+                    <Typography variant="h4" as="a">
+                      {text}
+                    </Typography>
+                    {location.pathname === link && (
+                      <div className="absolute border-b border-t border-red w-full top-1/2"></div>
+                    )}
+                  </div>
+                </Link>
+              )
+            }
             return (
-              <div key={link} className="relative mb-6">
+              <div key={text} className="relative mb-6">
                 <Typography variant="h4" as="a">
-                  {link}
+                  {text}
                 </Typography>
-                {link.toLowerCase() === 'home' && (
+                {location.pathname === link && (
                   <div className="absolute border-b border-t border-red w-full top-1/2"></div>
                 )}
               </div>
