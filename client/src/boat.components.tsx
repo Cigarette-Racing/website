@@ -20,10 +20,12 @@ export const BoatHeader = ({
   boatImage,
   boatLogo,
   boatNameLong,
+  onClickCta,
 }: {
   boatImage: string
   boatLogo: string
   boatNameLong: string
+  onClickCta: () => void
 }) => (
   <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between">
     <div />
@@ -42,7 +44,7 @@ export const BoatHeader = ({
       </Typography>
 
       <div className="relative mb-4 justify-center hidden md:flex">
-        <InPageCta>Request Info</InPageCta>
+        <InPageCta onClick={onClickCta}>Request Info</InPageCta>
       </div>
     </div>
     <img src={boatImage} alt="" className="mb-8 md:absolute" />
