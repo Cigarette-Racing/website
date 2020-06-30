@@ -92,19 +92,36 @@ export const Header = ({}: HeaderProps) => {
             <div className="w-1/3 flex justify-end">
               {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (
                 <div>
-                  <Typography variant="e3">Contact</Typography>
+                  <Link to="/contact">
+                    <Typography variant="e3">Contact</Typography>
+                  </Link>
                 </div>
               ) : (
-                <div className="flex space-x-8 xl:space-x-10 pointer-events-none">
-                  {rightLinks.map((link) => (
-                    <Typography
-                      variant="e3"
-                      key={link}
-                      className="whitespace-no-wrap"
-                    >
-                      {link}
-                    </Typography>
-                  ))}
+                <div className="flex space-x-8 xl:space-x-10">
+                  {rightLinks.map((link) => {
+                    if (link === 'Contact') {
+                      return (
+                        <Link to="/contact">
+                          <Typography
+                            variant="e3"
+                            key={link}
+                            className="whitespace-no-wrap"
+                          >
+                            {link}
+                          </Typography>
+                        </Link>
+                      )
+                    }
+                    return (
+                      <Typography
+                        variant="e3"
+                        key={link}
+                        className="whitespace-no-wrap pointer-events-none"
+                      >
+                        {link}
+                      </Typography>
+                    )
+                  })}
                 </div>
               )}
             </div>
@@ -146,6 +163,20 @@ function MobileMenu({
         </div>
         <div className="mt-10 flex flex-col items-start">
           {allLinks.map((link) => {
+            if (link === 'Contact') {
+              return (
+                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+                  <div key={link} className="relative mb-6">
+                    <Typography variant="h4" as="a">
+                      {link}
+                    </Typography>
+                    {link.toLowerCase() === 'home' && (
+                      <div className="absolute border-b border-t border-red w-full top-1/2"></div>
+                    )}
+                  </div>
+                </Link>
+              )
+            }
             return (
               <div key={link} className="relative mb-6">
                 <Typography variant="h4" as="a">
