@@ -4,9 +4,9 @@ sections:
   - type: hero
     headline: One-of-a-kind performance
     boatLogo:
-      image: '../../src/images/tirranna-logo.svg'
+      image: '../images/tirranna-logo.svg'
     backgroundMedia:
-      image: '../../src/images/tirranna-boat.jpeg'
+      image: '../images/tirranna-boat.jpeg'
     stats:
       - percentage: 80
         text: '59’'
@@ -22,7 +22,7 @@ sections:
     title: Discover
     shortTitle: ''
     media:
-      image: '../../src/images/boat-section2-video.jpeg'
+      image: '../images/boat-section2-video.jpeg'
     content:
       header: BOUNDLESS POSSIBILITY
       copy: 'Through the kinship of creative instinct, technical prowess and performance-centric pedigree, the longstanding collaboration between Cigarette and Mercedes-AMG has never ceased to produce one-of-a-kind performance icons for land and water. The all-new 2020 59’ Tirranna AMG Edition is the ultimate ascendancy over the conventional, the mundane, the uninspired - it champions singularity in all aspects of life and represents boundless possibility. Perhaps our finest collaboration yet, or simply the benchmark for the future!'
@@ -33,8 +33,24 @@ sections:
     theme: light
     bleedDirection: right
     headerImage:
-      image: '../../src/images/boat-section3-image.jpeg'
-    blocks: []
+      image: '../images/boat-section3-image.jpeg'
+    blocks:
+      - type: two-column-image-text
+        leftColumn:
+          media:
+            image: '../images/boat-section3-image2.jpeg'
+            label: TWIN STEP HULL DESIGN
+          content:
+            header: AN ENGINEERING FEAT
+            copy: 'The AMG Tirranna draws on Cigarette’s advanced-engineered twin step hull design to match unprecedented performance with unyielding comfort. Paired to sextuple Mercury Racing 450 outboards, The Tirranna is equal parts luxury sport yacht and performance oriented super consoles. These combined truly create something so unique and so special, that it anchors the new family of boats within the Cigarette line-up: The Hyperlux Console.'
+        rightColumn:
+          media:
+            image: '../images/boat-section3-image3.jpeg'
+            label: SEXTUPLE OUTBOARDS
+          content:
+            header: MERCURY RACING 450
+            copy: 'Use this space to overview the powertrain options. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+    moreDetails: []
 
   - type: flexible
     title: Technology
@@ -42,8 +58,29 @@ sections:
     theme: dark
     bleedDirection: left
     headerImage:
-      image: '../../src/images/boat-section4-image.jpeg'
-    blocks: []
+      image: '../images/boat-section4-image.jpeg'
+    blocks:
+      - type: one-column-text
+        header: DIGITAL SWITCHING & AUTOMATION
+        copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.'
+      - type: carousel
+        items:
+          - media:
+              image: '../images/boat-section4-image2.jpeg'
+            content:
+              header: FEATURE CALLOUT
+              copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+          - media:
+              image: '../images/boat-section4-image2.jpeg'
+            content:
+              header: FEATURE CALLOUT
+              copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+      - type: two-column-images
+        images:
+          - image: '../images/boat-section4-image3.jpeg'
+          - image: '../images/boat-section4-image4.jpeg'
+
+    moreDetails: []
 
   - type: flexible
     title: Advanced Features
@@ -51,8 +88,9 @@ sections:
     theme: light
     bleedDirection: right
     headerImage:
-      image: '../../src/images/boat-section5-image.jpeg'
+      image: '../images/boat-section5-image.jpeg'
     blocks: []
+    moreDetails: []
 
   - type: flexible
     title: Interior Details
@@ -60,8 +98,9 @@ sections:
     theme: dark
     bleedDirection: left
     headerImage:
-      image: '../../src/images/boat-section6-image.jpeg'
+      image: '../images/boat-section6-image.jpeg'
     blocks: []
+    moreDetails: []
 
   - type: specs
     title: Specs
@@ -104,26 +143,26 @@ sections:
     title: Media Gallery
     shortTitle: Gallery
     gallery:
-      - image: '../../src/images/boat-section8-image.jpeg'
-      - image: '../../src/images/boat-section8-image2.jpeg'
-      - image: '../../src/images/boat-section8-image3.jpeg'
-      - image: '../../src/images/boat-section8-image4.jpeg'
-      - image: '../../src/images/boat-section8-image5.jpeg'
-      - image: '../../src/images/boat-section8-image6.jpeg'
-      - image: '../../src/images/boat-section8-image7.jpeg'
-      - image: '../../src/images/homepage-header.jpeg'
+      - image: '../images/boat-section8-image.jpeg'
+      - image: '../images/boat-section8-image2.jpeg'
+      - image: '../images/boat-section8-image3.jpeg'
+      - image: '../images/boat-section8-image4.jpeg'
+      - image: '../images/boat-section8-image5.jpeg'
+      - image: '../images/boat-section8-image6.jpeg'
+      - image: '../images/boat-section8-image7.jpeg'
+      - image: '../images/homepage-header.jpeg'
 
   - type: customizations
     title: Bespoke Possibilities
     shortTitle: Bespoke
     options:
       - media:
-          image: '../../src/images/boat-section9-image.jpeg'
+          image: '../images/boat-section9-image.jpeg'
         content:
           header: Title of bespoke option
           copy: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...
       - media:
-          image: '../../src/images/boat-section9-image2.jpeg'
+          image: '../images/boat-section9-image2.jpeg'
         content:
           header: Title of bespoke option
           copy: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...

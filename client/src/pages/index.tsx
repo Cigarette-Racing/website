@@ -1,13 +1,13 @@
 import React from 'react'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
-import header1 from '../images/homepage-header.jpeg'
-import header2 from '../images/homepage-header-2.jpeg'
-import header3 from '../images/homepage-header-3.jpeg'
-import boat1 from '../images/boat1.jpeg'
-import boat2 from '../images/boat2.jpeg'
-import article1 from '../images/article1.jpeg'
-import article2 from '../images/article2.jpeg'
+import header1 from '../../content/images/homepage-header.jpeg'
+import header2 from '../../content/images/homepage-header-2.jpeg'
+import header3 from '../../content/images/homepage-header-3.jpeg'
+import boat1 from '../../content/images/boat1.jpeg'
+import boat2 from '../../content/images/boat2.jpeg'
+import article1 from '../../content/images/article1.jpeg'
+import article2 from '../../content/images/article2.jpeg'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
@@ -23,7 +23,7 @@ const IndexPage = () => (
     <ScrollIndicator />
     {/* First hero section */}
     <section
-      className="relative min-h-screen relative flex justify-center items-end overflow-hidden"
+      className="relative min-h-screen flex justify-center items-end overflow-hidden"
       data-scrollsection
     >
       <img
