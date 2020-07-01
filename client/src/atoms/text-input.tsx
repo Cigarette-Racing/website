@@ -1,17 +1,33 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Typography } from './typography'
+import { Field } from 'react-final-form'
 
 export interface TextInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: 'text'
+}
 
-export const TextInput = ({ children, ...inputProps }: TextInputProps) => {
+export const TextInput = ({
+  name,
+  children,
+  ...inputProps
+}: TextInputProps) => {
   return (
-    <div className="text-field required-field flex items-center">
-      <input
-        className="w-full bg-transparent text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 hover:border-opacity-100 outline-none py-4"
-        {...inputProps}
-      />
-    </div>
+    <Field
+      className="text-field required-field flex items-center"
+      name={name}
+      component="input"
+    >
+      {(props) => {
+        console.log(props.someArbitraryOtherProp) // would print 42
+        return (
+          <input
+            className="w-full bg-transparent text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 hover:border-opacity-100 outline-none py-4"
+            {...inputProps}
+            {...props.input}
+          />
+        )
+      }}
+    </Field>
   )
 }
