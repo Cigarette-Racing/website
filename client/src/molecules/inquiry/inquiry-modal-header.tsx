@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { WithWizard } from 'react-albus'
-import { createGlobalState } from 'react-use'
+import { Line } from 'rc-progress'
 
 import { CaretDownIcon, ArrowIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
@@ -13,35 +13,50 @@ const InquiryModalHeader: React.FC = () => {
     <WithWizard
       render={({ previous, step, steps }) => {
         return (
-          <header className="bg-white flex items-center flex-col justify-center relative h-20">
-            {steps.indexOf(step) === 0 && (
-              <button
-                className="flex items-center justify-center flex-col"
-                onClick={() => {
-                  setInquiryModalState(false)
-                  console.log('close the thing', inquiryModalState)
-                }}
-              >
-                <Typography className="uppercase font-bold" variant="e2">
-                  close
-                </Typography>
-                <CaretDownIcon className="text-red" />
-              </button>
-            )}
+          <Fragment>
+            <header
+              className={`bg-white flex px-4 ${
+                steps.indexOf(step) !== 0 ? 'items-start' : ''
+              } sm:items-center flex-col justify-center relative h-20`}
+            >
+              {steps.indexOf(step) === 0 && (
+                <button
+                  className="flex items-center justify-center flex-col"
+                  onClick={() => {
+                    setInquiryModalState(false)
+                    console.log('close the thing', inquiryModalState)
+                  }}
+                >
+                  <Typography className="uppercase font-bold" variant="e2">
+                    close
+                  </Typography>
+                  <CaretDownIcon className="text-red" />
+                </button>
+              )}
+              {steps.indexOf(step) > 0 && (
+                <button
+                  className="flex items-center justify-center"
+                  onClick={() => {
+                    previous()
+                  }}
+                >
+                  <ArrowIcon className="mr-4 text-xl text-red transform rotate-180" />
+                  <Typography className="uppercase font-bold" variant="e2">
+                    go back
+                  </Typography>
+                </button>
+              )}
+            </header>
+            {console.log((steps.indexOf(step) / (steps.length - 1)) * 100)}
             {steps.indexOf(step) > 0 && (
-              <button
-                className="flex items-center justify-center"
-                onClick={() => {
-                  previous()
-                }}
-              >
-                <ArrowIcon className="mr-4 text-xl text-red transform rotate-180" />
-                <Typography className="uppercase font-bold" variant="e2">
-                  go back
-                </Typography>
-              </button>
+              <Line
+                strokeColor="#D12026"
+                strokeLinecap="butt"
+                strokeWidth={0.4}
+                percent={(steps.indexOf(step) / (steps.length - 1)) * 100}
+              />
             )}
-          </header>
+          </Fragment>
         )
       }}
     />
