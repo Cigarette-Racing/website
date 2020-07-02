@@ -129,11 +129,29 @@ const InquiryModal: React.FC = () => {
                     />
                     <Step
                       id="request-appointment-2"
-                      render={({ next }) => <div>Step 2</div>}
+                      render={({ next }) => (
+                        <div className="flex flex-col justify-center px-4">
+                          <Typography
+                            className="text-white uppercase text-center mb-12 mt-16 font-bold"
+                            variant="p3"
+                          >
+                            request an appointment
+                          </Typography>
+                        </div>
+                      )}
                     />
                     <Step
                       id="request-appointment-3"
-                      render={({ next }) => <div>Step 3</div>}
+                      render={({ next }) => (
+                        <div className="flex flex-col justify-center px-4">
+                          <Typography
+                            className="text-white uppercase text-center mb-12 mt-16 font-bold"
+                            variant="p3"
+                          >
+                            request an appointment
+                          </Typography>
+                        </div>
+                      )}
                     />
                   </Steps>
                   <WithWizard
@@ -158,7 +176,7 @@ const InquiryModal: React.FC = () => {
                                   alert('nothing!')
                                 }}
                               >
-                                Submit
+                                Submit request
                               </InPageCta>
                             )}
                             <div className="text-white self-center mt-6 font-heading italic">
