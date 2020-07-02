@@ -66,7 +66,7 @@ export const BoatHeader = ({
       </div>
     </div>
     <div className="relative mb-4 flex justify-center md:hidden">
-      <InPageCta>Request Info</InPageCta>
+      <InPageCta onClick={onClickCta}>Request Info</InPageCta>
     </div>
   </section>
 )

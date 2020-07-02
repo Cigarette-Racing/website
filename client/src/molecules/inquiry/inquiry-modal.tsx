@@ -4,10 +4,11 @@ import ReactModal from 'react-modal'
 import { Wizard, Steps, Step } from 'react-albus'
 import { Form, Field } from 'react-final-form'
 
+import { AngleIcon } from '../../svgs/icons'
 import { OptionsCta } from '../../atoms/options-cta'
 import { Typography } from '../../atoms/typography'
 import FullBleedBackground from '../../molecules/full-bleed-background'
-import InquiryModalNavigation from './inquiry-modal-navigation'
+import { TextInput } from '../../atoms/text-input'
 import InquiryModalHeader from './inquiry-modal-header'
 import fullBleedImage from '../../images/boat-section2-bg.jpeg'
 
@@ -34,21 +35,26 @@ const InquiryModal: React.FC = () => {
   return (
     <ReactModal isOpen={inquiryModalState!} style={modalStyles}>
       <FullBleedBackground image={fullBleedImage} />
-
-      <section className="flex flex-col justify-center relative">
-        <Form
-          onSubmit={(values) => {
-            console.log(values)
-          }}
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
-            <form onSubmit={handleSubmit}>
-              <Wizard>
-                <InquiryModalHeader />
-                <Steps>
-                  <Step
-                    id="initial-screen"
-                    render={({ next }) => (
-                      <div>
+      <Wizard>
+        <InquiryModalHeader />
+        <div className="text-white flex justify-center relative">
+          <div className="w-full max-w-2xl">
+            <Form
+              onSubmit={(values) => {
+                console.log(values)
+              }}
+              render={({
+                handleSubmit,
+                form,
+                submitting,
+                pristine,
+                values,
+              }) => (
+                <form onSubmit={handleSubmit}>
+                  <Steps>
+                    <Step
+                      id="initial-screen"
+                      render={({ next }) => (
                         <div className="flex flex-col justify-center px-4">
                           <Typography
                             className="text-white uppercase text-center mb-16 mt-20 font-bold"
@@ -59,9 +65,7 @@ const InquiryModal: React.FC = () => {
                           <OptionsCta
                             variant="secondary"
                             theme="dark"
-                            onClick={() => {
-                              next()
-                            }}
+                            onClick={next}
                           >
                             Request <br className="md:hidden" />
                             an appointment
@@ -73,34 +77,82 @@ const InquiryModal: React.FC = () => {
                             Contact
                           </OptionsCta>
                         </div>
-                        {/* <Field name="firstName" component="input"></Field> */}
-                      </div>
-                    )}
-                  />
-                  <Step
-                    id="request-appointment-1"
-                    render={() => (
-                      <h1 className="text-white self-center">Screen 1</h1>
-                    )}
-                  />
-                  <Step
-                    id="request-appointment-2"
-                    render={() => (
-                      <h1 className="text-white self-center">Screen 2</h1>
-                    )}
-                  />
-                  <Step
-                    id="request-appointment-3"
-                    render={() => <button type="submit">Submit</button>}
-                  />
-                </Steps>
-                <InquiryModalNavigation />
-              </Wizard>
-            </form>
-          )}
-        />
-      </section>
+                      )}
+                    />
+                    <Step
+                      id="request-appointment-1"
+                      render={({ next }) => (
+                        <div className="flex flex-col justify-center px-4">
+                          <Typography
+                            className="text-white uppercase text-center mb-12 mt-16 font-bold"
+                            variant="p3"
+                          >
+                            request an appointment
+                          </Typography>
+                          <div className="flex items-center mb-6">
+                            <AngleIcon
+                              className="text-white"
+                              style={{ fontSize: '40px' }}
+                            />
+                            <Typography variant="e2" className="text-white">
+                              Basic Info
+                            </Typography>
+                          </div>
+                          <div className="space-y-6 lg:pl-5">
+                            <Field
+                              component={TextField}
+                              required={true}
+                              name="firstName"
+                              placeholder="First Name"
+                            />
+                            <Field
+                              component={TextField}
+                              required={true}
+                              name="lastName"
+                              placeholder="Last Name"
+                            />
+                            <Field
+                              component={TextField}
+                              required={true}
+                              name="phone"
+                              placeholder="Phone Number"
+                            />
+                            <Field
+                              component={TextField}
+                              required={true}
+                              name="Email Address"
+                              placeholder="Email Address"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    />
+                    <Step
+                      id="request-appointment-2"
+                      render={({ next }) => <div>Step 3</div>}
+                    />
+                  </Steps>
+                </form>
+              )}
+            />
+          </div>
+        </div>
+      </Wizard>
     </ReactModal>
+  )
+}
+
+const TextField = (props: any) => {
+  return (
+    <div className="flex items-center justify-center ">
+      {props.required && <div className="text-red mr-2">*</div>}
+      <input
+        {...props.input}
+        placeholder={props.placeholder}
+        className="placeholder-white font-body w-full bg-transparent text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 hover:border-opacity-100 transition-border-opacity duration-200 ease-in-out outline-none py-4"
+        autoComplete="off"
+      />
+    </div>
   )
 }
 

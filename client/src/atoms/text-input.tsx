@@ -4,7 +4,7 @@ import { Field } from 'react-final-form'
 
 export interface TextInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  name: 'text'
+  name: string
 }
 
 export const TextInput = ({
@@ -23,8 +23,9 @@ export const TextInput = ({
         return (
           <input
             className="w-full bg-transparent text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 hover:border-opacity-100 outline-none py-4"
-            {...inputProps}
+            autoComplete="off"
             {...props.input}
+            {...inputProps}
           />
         )
       }}
