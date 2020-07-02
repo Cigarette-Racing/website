@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-import { GatsbyNode } from 'gatsby'
+import { GatsbyNode, CreateSchemaCustomizationArgs } from 'gatsby'
 import { resolve } from 'path'
 
 const createBoatPages: GatsbyNode['createPages'] = async ({
@@ -62,4 +62,31 @@ const addSlugs: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = (...args) => {
   addSlugs(...args)
+}
+
+export const createSchemaCustomization = ({
+  actions,
+}: CreateSchemaCustomizationArgs) => {
+  const { createTypes } = actions
+  // Have to manually type these because Gatsby is freaking out
+  // and refuses to link up these images in the YAML file
+  const typeDefs = `
+    type BoatsYamlSectionsBlocksItemsMedia {
+      image: File @fileByRelativePath
+      label: String
+      alt: String
+      videoUrl: String
+      embedUrl: String
+      ratio: String
+    }
+    type BoatsYamlSectionsBlocksImages {
+      image: File @fileByRelativePath
+      label: String
+      alt: String
+      videoUrl: String
+      embedUrl: String
+      ratio: String
+    }
+  `
+  createTypes(typeDefs)
 }
