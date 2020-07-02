@@ -77,12 +77,12 @@ const InquiryModal: React.FC = () => {
                           </OptionsCta>
                           <Link
                             to="/contact"
-                            className="border-b border-opacity-25 flex items-center group"
+                            className="border-b border-opacity-25 border-white flex items-center group h-24 justify-between"
                           >
                             <Typography
                               variant="h4"
                               as="span"
-                              className="text-white border-white"
+                              className="text-white"
                             >
                               Contact
                             </Typography>
