@@ -47,7 +47,6 @@ const InquiryModalHeader: React.FC = () => {
                 </button>
               )}
             </header>
-            {console.log((steps.indexOf(step) / (steps.length - 1)) * 100)}
             {steps.indexOf(step) > 0 && (
               <Line
                 strokeColor="#D12026"
