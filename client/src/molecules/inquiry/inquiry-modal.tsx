@@ -1,14 +1,14 @@
 import React, { useState, Fragment } from 'react'
 import { createGlobalState, useLockBodyScroll } from 'react-use'
 import ReactModal from 'react-modal'
-import { Wizard, Steps, Step } from 'react-albus'
+import { Wizard, WithWizard, Steps, Step } from 'react-albus'
 import { Form, Field } from 'react-final-form'
 
 import { AngleIcon } from '../../svgs/icons'
 import { OptionsCta } from '../../atoms/options-cta'
 import { Typography } from '../../atoms/typography'
 import FullBleedBackground from '../../molecules/full-bleed-background'
-import { TextInput } from '../../atoms/text-input'
+import { InPageCta } from '../../atoms/in-page-cta'
 import InquiryModalHeader from './inquiry-modal-header'
 import fullBleedImage from '../../images/boat-section2-bg.jpeg'
 
@@ -37,7 +37,7 @@ const InquiryModal: React.FC = () => {
       <FullBleedBackground image={fullBleedImage} />
       <Wizard>
         <InquiryModalHeader />
-        <div className="text-white flex justify-center relative">
+        <div className="text-white flex flex-col items-center justify-center relative">
           <div className="w-full max-w-2xl">
             <Form
               onSubmit={(values) => {
@@ -129,9 +129,47 @@ const InquiryModal: React.FC = () => {
                     />
                     <Step
                       id="request-appointment-2"
+                      render={({ next }) => <div>Step 2</div>}
+                    />
+                    <Step
+                      id="request-appointment-3"
                       render={({ next }) => <div>Step 3</div>}
                     />
                   </Steps>
+                  <WithWizard
+                    render={({ next, previous, step, steps }) => (
+                      <div>
+                        {steps.indexOf(step) > 0 && (
+                          <div className="flex justify-center flex-col relative">
+                            {steps.indexOf(step) + 1 < steps.length && (
+                              <InPageCta
+                                className="self-center mt-16 lg:mt-20"
+                                variant="primary"
+                                onClick={next}
+                              >
+                                Continue
+                              </InPageCta>
+                            )}
+                            {steps.indexOf(step) + 1 === steps.length && (
+                              <InPageCta
+                                className="self-center mt-16 lg:mt-20"
+                                variant="primary"
+                                onClick={() => {
+                                  alert('nothing!')
+                                }}
+                              >
+                                Submit
+                              </InPageCta>
+                            )}
+                            <div className="text-white self-center mt-6 font-heading italic">
+                              {console.log(steps.indexOf(step))}
+                              {`${steps.indexOf(step)} of 3`}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  />
                 </form>
               )}
             />
