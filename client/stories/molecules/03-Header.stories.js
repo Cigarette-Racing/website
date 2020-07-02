@@ -1,6 +1,15 @@
 import React, { Fragment, useEffect } from 'react'
 import { Header } from '../../src/molecules/header'
 import clsx from 'clsx'
+// @reach/router is a transitive dependency via Gatsby
+import {
+  createMemorySource,
+  createHistory,
+  LocationProvider,
+} from '@reach/router'
+
+const source = createMemorySource('/a')
+const history = createHistory(source)
 
 // From https://stackoverflow.com/a/44230264/4357882
 // range(3,7) === [ 3, 4, 5, 6, 7 ]
@@ -23,7 +32,7 @@ export const Sandbox = () => {
   }, [])
 
   return (
-    <Fragment>
+    <LocationProvider history={history}>
       <Header />
       {range(1, 5).map((key) => {
         return (
@@ -41,6 +50,6 @@ export const Sandbox = () => {
           </div>
         )
       })}
-    </Fragment>
+    </LocationProvider>
   )
 }
