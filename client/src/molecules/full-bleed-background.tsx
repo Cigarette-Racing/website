@@ -15,7 +15,7 @@ const FullBleedBackground: React.FC<FullBleedBackgroundProps> = ({
       <img
         src={image}
         className={clsx(
-          'absolute top-0 left-0 h-full w-full object-cover z-auto',
+          'absolute top-0 left-0 h-screen w-full object-cover z-auto',
           { 'filter-grayscale': variant === 'grayscale' }
         )}
       />
