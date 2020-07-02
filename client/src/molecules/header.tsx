@@ -76,7 +76,7 @@ export const Header = ({}: HeaderProps) => {
                   {leftLinks.map(([text]) => (
                     <Typography
                       variant="e3"
-                      className="whitespace-no-wrap"
+                      className="whitespace-no-wrap opacity-25"
                       key={text}
                     >
                       {text}
@@ -117,7 +117,7 @@ export const Header = ({}: HeaderProps) => {
                       <Typography
                         variant="e3"
                         key={text}
-                        className="whitespace-no-wrap pointer-events-none"
+                        className="whitespace-no-wrap pointer-events-none opacity-25"
                       >
                         {text}
                       </Typography>
@@ -182,12 +182,12 @@ function MobileMenu({
             }
             return (
               <div key={text} className="relative mb-6">
-                <Typography variant="h4" as="a">
+                <Typography
+                  variant="h4"
+                  className="pointer-events-none opacity-25"
+                >
                   {text}
                 </Typography>
-                {location.pathname === link && (
-                  <div className="absolute border-b border-t border-red w-full top-1/2"></div>
-                )}
               </div>
             )
           })}
