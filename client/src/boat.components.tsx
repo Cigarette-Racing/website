@@ -18,13 +18,15 @@ import {
   SpecsSection,
   CustomizationsSection,
   TextBlock,
-  TwoColumnImagesBlock,
   TwoColumnImageTextBlock,
   OneColumnTextBlock,
   CarouselBlock,
+  SliderBlock,
+  FullWidthCarouselBlock,
 } from './types/boat'
 import { Tab } from './atoms/tab'
 import { LinkCta } from './atoms/link-cta'
+import { ProgressDots } from './atoms/progress-dots'
 
 // images
 import discoverBackground from '../content/images/boat-section2-bg.jpeg'
@@ -586,11 +588,20 @@ export const OrderSection = ({
 // BLOCKS
 // ===================================
 export const OneColumnTextBlockComponent = ({
+  align = 'left',
   header,
   copy,
 }: OneColumnTextBlock) => (
   <div className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto">
-    <TextBlockComponent className="max-w-md" header={header} copy={copy} />
+    <TextBlockComponent
+      className={clsx({
+        'max-w-md mr-auto text-left': align === 'left',
+        'max-w-xl mx-auto text-center': align === 'center',
+        'max-w-md ml-auto text-right': align === 'right',
+      })}
+      header={header}
+      copy={copy}
+    />
   </div>
 )
 
@@ -633,7 +644,7 @@ export const TwoColumnImageTextBlockComponent = ({
   </div>
 )
 
-export const CarouselBlockComponent = ({ items }: CarouselBlock) => (
+export const SliderBlockComponent = ({ items }: SliderBlock) => (
   <div className="max-w-5xl mx-auto">
     <div className="md:w-9/12">
       <AspectRatio ratio="3:2">
@@ -661,6 +672,43 @@ export const CarouselBlockComponent = ({ items }: CarouselBlock) => (
         />
         <CarouselButtons className="hidden md:flex" />
       </div>
+    </div>
+  </div>
+)
+
+export const CarouselBlockComponent = ({ items }: CarouselBlock) => (
+  <div className="max-w-5xl mx-auto">
+    <AspectRatio ratio="3:2">
+      <img
+        src={items[0].media.image.childImageSharp?.fluid?.src!}
+        className="absolute h-full w-full object-cover"
+      />
+      <CarouselButtons className="absolute bottom-0 pb-4 w-full md:hidden" />
+    </AspectRatio>
+    <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
+      <TextBlockComponent
+        className="md:w-7/12"
+        header={items[0].content.header}
+        copy={items[0].content.copy}
+      />
+      <CarouselButtons className="hidden md:flex items-start" theme="light" />
+    </div>
+  </div>
+)
+
+export const FullWidthCarouselBlockComponent = ({
+  items,
+}: Omit<FullWidthCarouselBlock, 'type'>) => (
+  <div className="relative -mb-12">
+    <AspectRatio ratio="16:9">
+      <img
+        className="absolute h-full w-full object-cover"
+        src={items[0].media.image.childImageSharp?.fluid?.src!}
+        alt=""
+      />
+    </AspectRatio>
+    <div className="absolute pb-4 bottom-0 left-1/2 transform -translate-x-1/2">
+      <ProgressDots current={1} total={items.length} variant="horizontal" />
     </div>
   </div>
 )

@@ -9,6 +9,8 @@ export type TextBlock = {
   copy: string
 }
 
+type Treatment = 'desaturate' | 'grayscale'
+
 export type Media = {
   image: GatsbyTypes.File
   label?: string
@@ -16,6 +18,7 @@ export type Media = {
   videoUrl?: string
   embedUrl?: string
   ratio?: Ratio
+  treatments?: Treatment[]
 }
 
 type ImageWithText = {
@@ -142,6 +145,7 @@ type Section =
 // ===================================
 export type OneColumnTextBlock = {
   type: 'one-column-text'
+  align?: 'left' | 'center' | 'right'
 } & TextBlock
 
 export function isOneColumnTextBlock(
@@ -149,10 +153,6 @@ export function isOneColumnTextBlock(
 ): block is OneColumnTextBlock {
   return block.type === 'one-column-text'
 }
-
-export type OneColumnImageTextBlock = {
-  type: 'one-column-image-text'
-} & ImageWithText
 
 export type TwoColumnImageTextBlock = {
   type: 'two-column-image-text'
@@ -171,14 +171,30 @@ export type TwoColumnImagesBlock = {
   images: [Media, Media]
 }
 
+export function isTwoColumnImagesBlock(
+  block: Block
+): block is TwoColumnImagesBlock {
+  return block.type === 'two-column-images'
+}
+
 export type ThreeColumnImagesBlock = {
   type: 'three-column-images'
   images: [Media, Media, Media]
 }
 
+export function isThreeColumnImagesBlock(
+  block: Block
+): block is ThreeColumnImagesBlock {
+  return block.type === 'three-column-images'
+}
+
 export type SliderBlock = {
   type: 'slider'
   items: ImageWithText[]
+}
+
+export function isSliderBlock(block: Block): block is SliderBlock {
+  return block.type === 'slider'
 }
 
 export type CarouselBlock = {
@@ -190,14 +206,25 @@ export function isCarouselBlock(block: Block): block is CarouselBlock {
   return block.type === 'carousel'
 }
 
+export type FullWidthCarouselBlock = {
+  type: 'full-width-carousel'
+  items: ImageWithText[]
+}
+
+export function isFullWidthCarouselBlock(
+  block: Block
+): block is FullWidthCarouselBlock {
+  return block.type === 'full-width-carousel'
+}
+
 type Block =
   | OneColumnTextBlock
-  | OneColumnImageTextBlock
   | TwoColumnImageTextBlock
   | TwoColumnImagesBlock
   | ThreeColumnImagesBlock
   | SliderBlock
   | CarouselBlock
+  | FullWidthCarouselBlock
 
 // ===================================
 // PRIMARY TYPES

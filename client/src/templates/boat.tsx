@@ -23,6 +23,9 @@ import {
   CustomizationsSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
+  CarouselBlockComponent,
+  SliderBlockComponent,
+  FullWidthCarouselBlockComponent,
 } from '../boat.components'
 
 // Images
@@ -55,6 +58,10 @@ import {
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
   isCarouselBlock,
+  isTwoColumnImagesBlock,
+  isThreeColumnImagesBlock,
+  isSliderBlock,
+  isFullWidthCarouselBlock,
 } from '../types/boat'
 
 const ORDER_TITLE = ['Order Today', 'Order']
@@ -132,10 +139,45 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 )
               }
               if (isOneColumnTextBlock(block)) {
-                return <OneColumnTextBlockComponent key={index} {...block} />
+                return (
+                  <OneColumnTextBlockComponent
+                    key={index}
+                    {...block}
+                    align={block.align ?? undefined}
+                  />
+                )
               }
               if (isCarouselBlock(block)) {
-                return 'Yes'
+                return <CarouselBlockComponent {...block} />
+              }
+              if (isSliderBlock(block)) {
+                return <SliderBlockComponent {...block} />
+              }
+              if (isThreeColumnImagesBlock(block)) {
+                return (
+                  <ThreeUpImageBlock
+                    className="mb-32"
+                    images={[
+                      block.images[0].image.childImageSharp?.fluid?.src!,
+                      block.images[1].image.childImageSharp?.fluid?.src!,
+                      block.images[2].image.childImageSharp?.fluid?.src!,
+                    ]}
+                  />
+                )
+              }
+              if (isTwoColumnImagesBlock(block)) {
+                return (
+                  <TwoUpImageBlock
+                    className="mb-32"
+                    images={[
+                      block.images[0].image.childImageSharp?.fluid?.src!,
+                      block.images[1].image.childImageSharp?.fluid?.src!,
+                    ]}
+                  />
+                )
+              }
+              if (isFullWidthCarouselBlock(block)) {
+                return <FullWidthCarouselBlockComponent {...block} />
               }
               return null
             })}
@@ -492,7 +534,7 @@ export const query = graphql`
             media {
               image {
                 childImageSharp {
-                  fluid {
+                  fluid(maxWidth: 2400) {
                     ...GatsbyImageSharpFluid
                   }
                 }
@@ -508,7 +550,7 @@ export const query = graphql`
             media {
               image {
                 childImageSharp {
-                  fluid {
+                  fluid(maxWidth: 2400) {
                     ...GatsbyImageSharpFluid
                   }
                 }
@@ -518,17 +560,30 @@ export const query = graphql`
           }
           header
           copy
+          align
           items {
             content {
               header
               copy
             }
             media {
-              image
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 2400) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
             }
           }
           images {
-            image
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2400) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
