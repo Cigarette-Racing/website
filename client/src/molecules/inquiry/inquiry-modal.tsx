@@ -3,7 +3,9 @@ import { createGlobalState, useLockBodyScroll } from 'react-use'
 import ReactModal from 'react-modal'
 import { Wizard, WithWizard, Steps, Step } from 'react-albus'
 import { Form, Field } from 'react-final-form'
+import { Link } from 'gatsby'
 
+import { ArrowIcon } from '../../svgs/icons'
 import { AngleIcon } from '../../svgs/icons'
 import { OptionsCta } from '../../atoms/options-cta'
 import { Typography } from '../../atoms/typography'
@@ -73,9 +75,21 @@ const InquiryModal: React.FC = () => {
                           <OptionsCta variant="secondary" theme="dark">
                             Questions & answer
                           </OptionsCta>
-                          <OptionsCta variant="secondary" theme="dark">
-                            Contact
-                          </OptionsCta>
+                          <Link
+                            to="/contact"
+                            className="border-b border-opacity-25 flex items-center group"
+                          >
+                            <Typography
+                              variant="h4"
+                              as="span"
+                              className="text-white border-white"
+                            >
+                              Contact
+                            </Typography>
+                            <div className="border border-red rounded-full p-2">
+                              <ArrowIcon className="text-xl" />
+                            </div>
+                          </Link>
                         </div>
                       )}
                     />
