@@ -82,12 +82,12 @@ sections:
               image: ../images/boat-section4-image.jpeg
             content:
               header: FEATURE CALLOUT
-              copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+              copy: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla dignissimos adipisci porro eius beatae? Quisquam ullam tempora ipsum quo sed maxime sint odio quos. Adipisci quidem fugiat maiores doloremque impedit.'
           - media:
               image: ../images/boat-section4-image3.jpeg
             content:
               header: FEATURE CALLOUT
-              copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+              copy: 'Inventore quae quos nemo non! Commodi ipsam velit natus aspernatur facere!'
       - type: two-column-images
         images:
           - image: ../images/boat-section4-image3.jpeg
