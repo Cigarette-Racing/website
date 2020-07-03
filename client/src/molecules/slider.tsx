@@ -33,6 +33,23 @@ const variants = {
   },
 }
 
+const textContentAnimations = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    zIndex: 1,
+    opacity: 1,
+  },
+  exit: {
+    zIndex: 0,
+    opacity: 0,
+  },
+  transition: {
+    opacity: { duration: 0.4 },
+  },
+}
+
 export interface SliderProps extends Omit<SliderBlock, 'type'> {}
 
 export const Slider = ({ items }: SliderProps) => {
@@ -84,11 +101,16 @@ export const Slider = ({ items }: SliderProps) => {
           />
         </AspectRatio>
         <div className="md:flex justify-between items-start md:mt-10 md:mb-40">
-          <TextBlockComponent
-            className="my-8 md:my-0 px-4 mb-20 md:w-10/12"
-            header={items[0].content.header}
-            copy={items[0].content.copy}
-          />
+          <AnimatePresence initial={false}>
+            <motion.div {...textContentAnimations}>
+              <TextBlockComponent
+                key={page}
+                className="my-8 md:my-0 px-4 mb-20 md:w-10/12"
+                header={items[itemIndex].content.header}
+                copy={items[itemIndex].content.copy}
+              />
+            </motion.div>
+          </AnimatePresence>
           <CarouselButtons
             className="hidden md:flex"
             onClickNext={goNext}
