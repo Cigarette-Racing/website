@@ -55,9 +55,9 @@ sections:
           - media:
               image: ../images/boat-section5-image4.jpeg
           - media:
-              image: ../images/boat-section5-image4.jpeg
+              image: ../images/boat-section5-image3.jpeg
           - media:
-              image: ../images/boat-section5-image4.jpeg
+              image: ../images/boat-section5-image2.jpeg
     moreDetails: []
 
   - type: flexible
@@ -74,12 +74,17 @@ sections:
       - type: slider
         items:
           - media:
-              image: ../images/boat-section4-image.jpeg
+              image: ../images/boat-section4-image2.jpeg
             content:
               header: FEATURE CALLOUT
               copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
           - media:
               image: ../images/boat-section4-image.jpeg
+            content:
+              header: FEATURE CALLOUT
+              copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+          - media:
+              image: ../images/boat-section4-image3.jpeg
             content:
               header: FEATURE CALLOUT
               copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
@@ -150,9 +155,9 @@ sections:
           - media:
               image: ../images/boat-section5-image4.jpeg
           - media:
-              image: ../images/boat-section5-image4.jpeg
+              image: ../images/boat-section5-image3.jpeg
           - media:
-              image: ../images/boat-section5-image4.jpeg
+              image: ../images/boat-section5-image2.jpeg
     moreDetails: []
 
   - type: specs
