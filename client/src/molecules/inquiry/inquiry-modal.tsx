@@ -49,7 +49,7 @@ const InquiryModal: React.FC = () => {
 
   return (
     <ReactModal isOpen={inquiryModalState!} style={modalStyles}>
-      <div className="relative pb-10">
+      <div className="relative h-full">
         <FullBleedBackground image={fullBleedImage} />
         <Wizard>
           <InquiryModalHeader />
