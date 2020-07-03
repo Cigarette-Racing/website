@@ -9,6 +9,7 @@ import { OptionsCta } from '../../atoms/options-cta'
 import { AngleIcon } from '../../svgs/icons'
 import { ArrowIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
+import { MultiSelect } from '../../atoms/multi-select'
 
 export const FieldSet = ({ children }: any) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
@@ -49,9 +50,9 @@ export const ScreenHeader = ({ children }: any) => {
   )
 }
 
-export const FormSectionHeader = ({ children }: any) => {
+export const FormSectionHeader = ({ children, className }: any) => {
   return (
-    <div className="flex items-center mb-2 px-1">
+    <div className={clsx('flex items-center mb-2 px-1', className)}>
       <AngleIcon className="text-white" style={{ fontSize: '40px' }} />
       <Typography variant="e2" className="text-white">
         {children}
@@ -168,14 +169,35 @@ export const StepTwo = ({ next, steps, step }: any) => {
       </div>
       <FormSectionHeader>Model Interest</FormSectionHeader>
       <FieldSet>
-        <Field
-          component={TextField}
-          required={true}
-          name="select"
-          placeholder="Select which models interest you"
-        />
+        <div className="mb-10">
+          <Field
+            component={() => (
+              <div className="flex items-center justify-center">
+                <div className="text-red mr-2">*</div>
+                <MultiSelect
+                  className="w-full"
+                  name="boat-models"
+                  options={[
+                    {
+                      value: 'tirranna',
+                      label: 'Tirranna',
+                    },
+                    {
+                      value: 'nighthawk',
+                      label: 'Nighthawk',
+                    },
+                    { value: 'model 3', label: 'Model 3' },
+                  ]}
+                />
+              </div>
+            )}
+            required={true}
+            name="Email Address"
+            placeholder="Email Address"
+          />
+        </div>
       </FieldSet>
-      <FormSectionHeader>Leave a note</FormSectionHeader>
+      <FormSectionHeader className="mb-10">Leave a note</FormSectionHeader>
       <FieldSet>
         <Field
           className="w-full bg-gray-0 text-white p-8 font-body placeholder-white h-48"
@@ -194,7 +216,7 @@ export const StepTwo = ({ next, steps, step }: any) => {
   )
 }
 
-export const StepThree = ({ next, steps, step }: any) => {
+export const StepThree = ({ steps, step }: any) => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
@@ -232,6 +254,7 @@ export const StepThree = ({ next, steps, step }: any) => {
         <Field
           component={TextField}
           required={true}
+          validate={required}
           name="interest"
           placeholder="Ready to purchase"
         />

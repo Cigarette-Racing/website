@@ -12,10 +12,12 @@ export interface SelectInputProps
   name: string
 }
 
-const MultiSelectComp = (props: any) => {
-  console.log(props)
-
-  return <Pill {...props}>{props.data.label}</Pill>
+const MultiValueComp = (props: any) => {
+  return (
+    <Pill {...props} onRemove={() => {}}>
+      {props.data.label}
+    </Pill>
+  )
 }
 
 export const MultiSelect = ({ className, name, options }: SelectInputProps) => {
@@ -24,7 +26,7 @@ export const MultiSelect = ({ className, name, options }: SelectInputProps) => {
       className={className}
       isMulti
       name={name}
-      components={{ MultiValue: MultiSelectComp }}
+      components={{ MultiValue: MultiValueComp }}
       options={options}
       placeholder={
         <Typography variant="p2">Select which model interests you</Typography>
