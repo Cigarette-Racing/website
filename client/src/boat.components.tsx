@@ -195,9 +195,13 @@ export const MobileSectionHeader: React.FC<{ className?: string }> = ({
 export const CarouselButtons = ({
   className,
   theme = 'dark',
+  onClickNext,
+  onClickPrev,
 }: {
   className?: string
   theme?: Theme
+  onClickNext?: React.MouseEventHandler<HTMLButtonElement>
+  onClickPrev?: React.MouseEventHandler<HTMLButtonElement>
 }) => (
   <div className={clsx('flex justify-center space-x-4', className)}>
     <CircleButton
@@ -205,8 +209,14 @@ export const CarouselButtons = ({
       theme={theme}
       variant="secondary"
       iconClassName="transform rotate-180"
+      onClick={onClickPrev}
     />
-    <CircleButton icon={ArrowIcon} theme={theme} variant="secondary" />
+    <CircleButton
+      icon={ArrowIcon}
+      theme={theme}
+      variant="secondary"
+      onClick={onClickNext}
+    />
   </div>
 )
 
