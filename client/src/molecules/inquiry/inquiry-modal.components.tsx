@@ -163,6 +163,14 @@ export const StepOne = ({ next, steps, step, children }: any) => {
   )
 }
 
+const MultiValueComp = (props: any) => {
+  return (
+    <Pill {...props} onRemove={() => {}}>
+      {props.data.label}
+    </Pill>
+  )
+}
+
 export const StepTwo = ({ next, steps, step }: any) => {
   return (
     <div className="flex flex-col justify-center">
@@ -179,6 +187,7 @@ export const StepTwo = ({ next, steps, step }: any) => {
               <Select
                 className="w-full"
                 isMulti
+                components={{ MultiValue: MultiValueComp }}
                 options={[
                   {
                     value: 'tirranna',

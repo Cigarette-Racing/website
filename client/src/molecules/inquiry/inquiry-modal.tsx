@@ -67,7 +67,7 @@ const InquiryModal: React.FC = () => {
                   pristine,
                   values,
                 }) => (
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit} data-netlify="true">
                     <Steps>
                       <Step
                         id="landing"
