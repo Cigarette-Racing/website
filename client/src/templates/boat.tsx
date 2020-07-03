@@ -52,7 +52,6 @@ const extractTitles = (sections: readonly any[]) =>
     .concat([ORDER_TITLE])
 
 const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
-  console.log({ props })
   const {
     data: { boatsYaml: boat },
   } = props
@@ -65,7 +64,6 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const specsData = findSpecsSection(boat.sections!)
   const galleryData = findGallerySection(boat.sections!)
   const customizationsData = findCustomizationsSection(boat.sections!)
-  console.log({ flexData })
   return (
     <Layout>
       <SEO title="Boat" />
