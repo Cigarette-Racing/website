@@ -49,75 +49,81 @@ const InquiryModal: React.FC = () => {
 
   return (
     <ReactModal isOpen={inquiryModalState!} style={modalStyles}>
-      <FullBleedBackground image={fullBleedImage} />
-      <Wizard>
-        <InquiryModalHeader />
-        <div className="text-white flex flex-col items-center justify-center relative">
-          <div className="w-full max-w-2xl">
-            <Form
-              onSubmit={(values) => {
-                console.log(values)
-              }}
-              render={({
-                handleSubmit,
-                form,
-                submitting,
-                pristine,
-                values,
-              }) => (
-                <form onSubmit={handleSubmit}>
-                  <Steps>
-                    <Step
-                      id="landing"
-                      render={({ next }) => {
-                        return <LandingStep next={next} />
-                      }}
-                    />
-                    <Step
-                      id="one"
-                      render={({ next, steps, step }) => {
-                        return (
-                          <StepOne>
-                            <ContinueButton
-                              next={next}
-                              inValid={form.getState().hasValidationErrors}
+      <div className="relative pb-10">
+        <FullBleedBackground image={fullBleedImage} />
+        <Wizard>
+          <InquiryModalHeader />
+          <div className="text-white flex flex-col items-center justify-center relative">
+            <div className="w-full max-w-2xl">
+              <Form
+                onSubmit={(values) => {
+                  console.log(values)
+                }}
+                render={({
+                  handleSubmit,
+                  form,
+                  submitting,
+                  pristine,
+                  values,
+                }) => (
+                  <form onSubmit={handleSubmit}>
+                    <Steps>
+                      <Step
+                        id="landing"
+                        render={({ next }) => {
+                          return <LandingStep next={next} />
+                        }}
+                      />
+                      <Step
+                        id="one"
+                        render={({ next, steps, step }) => {
+                          return (
+                            <StepOne>
+                              <ContinueButton
+                                next={next}
+                                inValid={form.getState().hasValidationErrors}
+                              />
+                              <PageStatus
+                                next={next}
+                                steps={steps}
+                                step={step}
+                              />
+                            </StepOne>
+                          )
+                        }}
+                      />
+                      <Step
+                        id="two"
+                        render={(props) => {
+                          return (
+                            <StepTwo
+                              {...props}
+                              pristine={pristine}
+                              submitting={submitting}
                             />
-                            <PageStatus next={next} steps={steps} step={step} />
-                          </StepOne>
-                        )
-                      }}
-                    />
-                    <Step
-                      id="two"
-                      render={(props) => {
-                        return (
-                          <StepTwo
-                            {...props}
-                            pristine={pristine}
-                            submitting={submitting}
-                          />
-                        )
-                      }}
-                    />
-                    <Step
-                      id="three"
-                      render={(props) => {
-                        return (
-                          <StepThree
-                            {...props}
-                            pristine={pristine}
-                            submitting={submitting}
-                          />
-                        )
-                      }}
-                    />
-                  </Steps>
-                </form>
-              )}
-            />
+                          )
+                        }}
+                      />
+                      <Step
+                        id="three"
+                        render={(props) => {
+                          return (
+                            <StepThree
+                              {...props}
+                              pristine={pristine}
+                              submitting={submitting}
+                            />
+                          )
+                        }}
+                      />
+                    </Steps>
+                  </form>
+                )}
+              />
+            </div>
           </div>
-        </div>
-      </Wizard>
+        </Wizard>
+      </div>
     </ReactModal>
   )
 }
