@@ -17,7 +17,6 @@
     "storybook:build": "build-storybook -c ./stories/.storybook"
   },
   "dependencies": {
-    "@lemoncode/fonk": "^1.3.0",
     "@types/react-albus": "^2.0.5",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
