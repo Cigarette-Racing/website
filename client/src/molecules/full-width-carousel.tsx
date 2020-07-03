@@ -28,7 +28,6 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
   const [page, setPage] = useState(0)
   const itemIndex = wrap(0, items.length, page)
   const goToItem = (oneBasedIndex: number) => {
-    console.log(oneBasedIndex)
     setPage(oneBasedIndex - 1)
   }
 

@@ -14,7 +14,6 @@ enum Direction {
 
 const variants = {
   enter: ({ direction, width }: { direction: Direction; width: number }) => {
-    console.log('enter', { direction, width })
     return {
       x: direction === Direction.Next ? 500 : -500,
       opacity: 0,
@@ -26,7 +25,6 @@ const variants = {
     opacity: 1,
   },
   exit: ({ direction, width }: { direction: Direction; width: number }) => {
-    console.log('exit', { direction, width })
     return {
       zIndex: 0,
       x: direction === Direction.Prev ? 500 : -500,
@@ -47,8 +45,6 @@ export const Slider = ({ items }: SliderProps) => {
   const goPrev = () => {
     setPage([page - 1, Direction.Prev])
   }
-
-  console.log({ width })
 
   return (
     <div className="max-w-5xl mx-auto">

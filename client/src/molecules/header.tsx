@@ -142,7 +142,6 @@ function MobileMenu({
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const location = useLocation()
-  console.log({ location })
   return (
     <Modal
       isOpen={isMenuOpen}
