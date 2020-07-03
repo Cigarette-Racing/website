@@ -15,7 +15,7 @@ export const ExternalLink = ({
     <a
       {...props}
       className={clsx(
-        'bg-white bg-opacity-25 rounded-full py-2 px-4 flex items-center backdrop-blur-3 text-white',
+        'bg-black bg-opacity-25 rounded-full py-2 px-4 flex items-center backdrop-blur-3 text-white',
         className
       )}
       target="_blank"
