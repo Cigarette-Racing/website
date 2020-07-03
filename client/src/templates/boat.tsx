@@ -125,19 +125,15 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 )
               }
               if (isCarouselBlock(block)) {
-                return <Carousel {...block} />
+                return <Carousel key={index} {...block} />
               }
               if (isSliderBlock(block)) {
-                return (
-                  <Fragment>
-                    <Slider {...block} />
-                    <SliderBlockComponent {...block} />
-                  </Fragment>
-                )
+                return <Slider key={index} {...block} />
               }
               if (isThreeColumnImagesBlock(block)) {
                 return (
                   <ThreeUpImageBlock
+                    key={index}
                     className="mb-32"
                     images={[
                       block.images[0].image.childImageSharp?.fluid?.src!,
@@ -150,6 +146,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
               if (isTwoColumnImagesBlock(block)) {
                 return (
                   <TwoUpImageBlock
+                    key={index}
                     className="mb-32"
                     images={[
                       block.images[0].image.childImageSharp?.fluid?.src!,
@@ -159,7 +156,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 )
               }
               if (isFullWidthCarouselBlock(block)) {
-                return <FullWidthCarousel {...block} />
+                return <FullWidthCarousel key={index} {...block} />
               }
               return null
             })}
