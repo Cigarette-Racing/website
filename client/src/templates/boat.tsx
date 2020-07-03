@@ -1,19 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { InPageCta } from '../atoms/in-page-cta'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
 import { PlusIcon } from '../svgs/icons'
-import { AspectRatio } from '../atoms/aspect-ratio'
 import {
   BoatHeader,
   BoatSection,
   DiscoverSection,
   MobileSectionHeader,
   OrderSection,
-  TextBlockComponent,
-  CarouselButtons,
-  ImageWithLabel,
   VerticalHeaderBlock,
   SideBleedImage,
   TwoUpImageBlock,
@@ -23,29 +20,8 @@ import {
   CustomizationsSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
-  CarouselBlockComponent,
   SliderBlockComponent,
-  FullWidthCarouselBlockComponent,
 } from '../boat.components'
-
-// Images
-import section3Image from '../../content/images/boat-section3-image.jpeg'
-import section3Image2 from '../../content/images/boat-section3-image2.jpeg'
-import section3Image3 from '../../content/images/boat-section3-image3.jpeg'
-import section4Image from '../../content/images/boat-section4-image.jpeg'
-import section4Image2 from '../../content/images/boat-section4-image2.jpeg'
-import section4Image3 from '../../content/images/boat-section4-image3.jpeg'
-import section4Image4 from '../../content/images/boat-section4-image4.jpeg'
-import section5Image from '../../content/images/boat-section5-image.jpeg'
-import section5Image2 from '../../content/images/boat-section5-image2.jpeg'
-import section5Image3 from '../../content/images/boat-section5-image3.jpeg'
-import section5Image4 from '../../content/images/boat-section5-image4.jpeg'
-import section6Image from '../../content/images/boat-section6-image.jpeg'
-import section6Image2 from '../../content/images/boat-section6-image2.jpeg'
-import section6Image3 from '../../content/images/boat-section6-image3.jpeg'
-import section6Image4 from '../../content/images/boat-section6-image4.jpeg'
-import section6Image5 from '../../content/images/boat-section6-image5.jpeg'
-import { PageProps, graphql } from 'gatsby'
 import {
   Stat,
   CommonSectionProps,
@@ -63,6 +39,9 @@ import {
   isSliderBlock,
   isFullWidthCarouselBlock,
 } from '../types/boat'
+import { Carousel } from '../molecules/carousel'
+import { FullWidthCarousel } from '../molecules/full-width-carousel'
+import { Slider } from '../molecules/slider'
 
 const ORDER_TITLE = ['Order Today', 'Order']
 
@@ -148,10 +127,15 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 )
               }
               if (isCarouselBlock(block)) {
-                return <CarouselBlockComponent {...block} />
+                return <Carousel {...block} />
               }
               if (isSliderBlock(block)) {
-                return <SliderBlockComponent {...block} />
+                return (
+                  <Fragment>
+                    <Slider {...block} />
+                    <SliderBlockComponent {...block} />
+                  </Fragment>
+                )
               }
               if (isThreeColumnImagesBlock(block)) {
                 return (
@@ -177,7 +161,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 )
               }
               if (isFullWidthCarouselBlock(block)) {
-                return <FullWidthCarouselBlockComponent {...block} />
+                return <FullWidthCarousel {...block} />
               }
               return null
             })}
@@ -195,7 +179,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         )
       )}
       {/* Design & Engineering section */}
-      <BoatSection>
+      {/* <BoatSection>
         <InPageAnchor title={'Design & Engineering'} />
         <MobileSectionHeader>{'Design & Engineering'}</MobileSectionHeader>
         <VerticalHeaderBlock
@@ -251,9 +235,9 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             </span>
           </InPageCta>
         </div>
-      </BoatSection>
+      </BoatSection> */}
       {/* Technology section */}
-      <BoatSection theme="dark" className="overflow-x-hidden">
+      {/* <BoatSection theme="dark" className="overflow-x-hidden">
         <InPageAnchor title="Technology" />
         <MobileSectionHeader>Technology</MobileSectionHeader>
         <VerticalHeaderBlock label="Technology" side="right" theme="dark" />
@@ -308,9 +292,9 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             </span>
           </InPageCta>
         </div>
-      </BoatSection>
+      </BoatSection> */}
       {/* Advanced Features section */}
-      <BoatSection>
+      {/* <BoatSection>
         <InPageAnchor title={'Advanced Features'} />
         <MobileSectionHeader>{'Advanced Features'}</MobileSectionHeader>
         <VerticalHeaderBlock
@@ -377,9 +361,9 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             </span>
           </InPageCta>
         </div>
-      </BoatSection>
+      </BoatSection> */}
       {/* Interior Details section */}
-      <BoatSection theme="dark">
+      {/* <BoatSection theme="dark">
         <InPageAnchor title={'Interior Details'} />
         <MobileSectionHeader>{'Interior Details'}</MobileSectionHeader>
         <VerticalHeaderBlock
@@ -423,7 +407,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             </span>
           </InPageCta>
         </div>
-      </BoatSection>
+      </BoatSection> */}
       <SpecsSectionComponent boatNameLong={boat.boatNameLong!} {...specsData} />
       <MediaGallerySection
         title={galleryData.title}
