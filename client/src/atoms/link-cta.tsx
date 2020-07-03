@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { Typography } from './typography'
 import { ArrowIcon } from '../svgs/icons'
-import { Theme } from './types'
+import { Theme } from '../types/shared'
 
 export interface LinkCtaProps {
   /** Light or dark theme */
