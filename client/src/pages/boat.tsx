@@ -16,7 +16,7 @@ import {
   DiscoverSection,
   MobileSectionHeader,
   OrderSection,
-  TextBlock,
+  TextBlockComponent,
   CarouselButtons,
   ImageWithLabel,
   VerticalHeaderBlock,
@@ -27,35 +27,36 @@ import {
 } from '../boat.components'
 
 // Images
-import boat1 from '../images/tirranna-boat.jpeg'
-import tirrannaLogo from '../images/tirranna-logo.svg'
-import section2Video from '../images/boat-section2-video.jpeg'
-import section3Image from '../images/boat-section3-image.jpeg'
-import section3Image2 from '../images/boat-section3-image2.jpeg'
-import section3Image3 from '../images/boat-section3-image3.jpeg'
-import section4Image from '../images/boat-section4-image.jpeg'
-import section4Image2 from '../images/boat-section4-image2.jpeg'
-import section4Image3 from '../images/boat-section4-image3.jpeg'
-import section4Image4 from '../images/boat-section4-image4.jpeg'
-import section5Image from '../images/boat-section5-image.jpeg'
-import section5Image2 from '../images/boat-section5-image2.jpeg'
-import section5Image3 from '../images/boat-section5-image3.jpeg'
-import section5Image4 from '../images/boat-section5-image4.jpeg'
-import section6Image from '../images/boat-section6-image.jpeg'
-import section6Image2 from '../images/boat-section6-image2.jpeg'
-import section6Image3 from '../images/boat-section6-image3.jpeg'
-import section6Image4 from '../images/boat-section6-image4.jpeg'
-import section6Image5 from '../images/boat-section6-image5.jpeg'
-import section8Image from '../images/boat-section8-image.jpeg'
-import section8Image2 from '../images/boat-section8-image2.jpeg'
-import section8Image3 from '../images/boat-section8-image3.jpeg'
-import section8Image4 from '../images/boat-section8-image4.jpeg'
-import section8Image5 from '../images/boat-section8-image5.jpeg'
-import section8Image6 from '../images/boat-section8-image6.jpeg'
-import section8Image7 from '../images/boat-section8-image7.jpeg'
-import section8Image8 from '../images/homepage-header.jpeg'
-import section9Image from '../images/boat-section9-image.jpeg'
-import section9Image2 from '../images/boat-section9-image2.jpeg'
+import boat1 from '../../content/images/tirranna-boat.jpeg'
+import tirrannaLogo from '../../content/images/tirranna-logo.svg'
+import section2Video from '../../content/images/boat-section2-video.jpeg'
+import section3Image from '../../content/images/boat-section3-image.jpeg'
+import section3Image2 from '../../content/images/boat-section3-image2.jpeg'
+import section3Image3 from '../../content/images/boat-section3-image3.jpeg'
+import section4Image from '../../content/images/boat-section4-image.jpeg'
+import section4Image2 from '../../content/images/boat-section4-image2.jpeg'
+import section4Image3 from '../../content/images/boat-section4-image3.jpeg'
+import section4Image4 from '../../content/images/boat-section4-image4.jpeg'
+import section5Image from '../../content/images/boat-section5-image.jpeg'
+import section5Image2 from '../../content/images/boat-section5-image2.jpeg'
+import section5Image3 from '../../content/images/boat-section5-image3.jpeg'
+import section5Image4 from '../../content/images/boat-section5-image4.jpeg'
+import section6Image from '../../content/images/boat-section6-image.jpeg'
+import section6Image2 from '../../content/images/boat-section6-image2.jpeg'
+import section6Image3 from '../../content/images/boat-section6-image3.jpeg'
+import section6Image4 from '../../content/images/boat-section6-image4.jpeg'
+import section6Image5 from '../../content/images/boat-section6-image5.jpeg'
+import section8Image from '../../content/images/boat-section8-image.jpeg'
+import section8Image2 from '../../content/images/boat-section8-image2.jpeg'
+import section8Image3 from '../../content/images/boat-section8-image3.jpeg'
+import section8Image4 from '../../content/images/boat-section8-image4.jpeg'
+import section8Image5 from '../../content/images/boat-section8-image5.jpeg'
+import section8Image6 from '../../content/images/boat-section8-image6.jpeg'
+import section8Image7 from '../../content/images/boat-section8-image7.jpeg'
+import section8Image8 from '../../content/images/homepage-header.jpeg'
+import section9Image from '../../content/images/boat-section9-image.jpeg'
+import section9Image2 from '../../content/images/boat-section9-image2.jpeg'
+import { Media } from '../types/boat'
 
 const TITLES = [
   ['Discover'],
@@ -69,15 +70,15 @@ const TITLES = [
   ['Order Today', 'Order'],
 ]
 const GALLERY_IMAGES = [
-  section8Image,
-  section8Image2,
-  section8Image3,
-  section8Image4,
-  section8Image5,
-  section8Image6,
-  section8Image7,
-  section8Image8,
-]
+  { image: { childImageSharp: { fluid: { src: section8Image } } } },
+  { image: { childImageSharp: { fluid: { src: section8Image2 } } } },
+  { image: { childImageSharp: { fluid: { src: section8Image3 } } } },
+  { image: { childImageSharp: { fluid: { src: section8Image4 } } } },
+  { image: { childImageSharp: { fluid: { src: section8Image5 } } } },
+  { image: { childImageSharp: { fluid: { src: section8Image6 } } } },
+  { image: { childImageSharp: { fluid: { src: section8Image7 } } } },
+  { image: { childImageSharp: { fluid: { src: section8Image8 } } } },
+] as Media[]
 
 // From https://stackoverflow.com/a/44230264/4357882
 // range(3,7) === [ 3, 4, 5, 6, 7 ]
@@ -88,6 +89,12 @@ const range = (x: number, y: number) =>
     })()
   )
 
+const STATS = [
+  { percentage: 80, text: '59’', label: 'Length' },
+  { percentage: 80, text: '14’', label: 'Beam' },
+  { percentage: 80, text: '2,700hp', label: 'Max Horsepower' },
+]
+
 const IndexPage = () => (
   <Layout>
     <SEO title="Boat" />
@@ -95,6 +102,8 @@ const IndexPage = () => (
       boatImage={boat1}
       boatLogo={tirrannaLogo}
       boatNameLong="Tirranna AMG 59 Edition"
+      headline="Headline goes here lorem ipsum."
+      stats={STATS}
     />
     <InPageNav
       boatName="Tirranna"
@@ -126,7 +135,7 @@ const IndexPage = () => (
       />
       <div className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto">
         <div className="md:w-1/2 lg:pr-12">
-          <TextBlock
+          <TextBlockComponent
             className="my-12 px-4 lg:px-0 lg:ml-12 md:mb-32 lg:mb-48"
             header="Advanced helm"
             copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
@@ -150,7 +159,7 @@ const IndexPage = () => (
               imgClassName="left-1/2 transform -translate-x-1/2"
             />
           </div>
-          <TextBlock
+          <TextBlockComponent
             className="my-10 md:my-16 px-4 lg:px-0 lg:pr-16"
             header="POWERTRAIN OPTIONS"
             copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet,"
@@ -178,7 +187,7 @@ const IndexPage = () => (
         imgClassName="filter-saturate-25"
       />
       <div className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto">
-        <TextBlock
+        <TextBlockComponent
           className="max-w-md"
           header="DIGITAL SWITCHING and AUTOMATION"
           copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ."
@@ -201,7 +210,7 @@ const IndexPage = () => (
             <CarouselButtons className="absolute bottom-0 pb-4 w-full md:hidden" />
           </AspectRatio>
           <div className="md:flex justify-between items-start md:mt-10 md:mb-40">
-            <TextBlock
+            <TextBlockComponent
               className="my-8 md:my-0 px-4 mb-20 md:w-10/12"
               header="Feature Callout"
               copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -231,7 +240,7 @@ const IndexPage = () => (
       <SideBleedImage src={section5Image} side="right" className="md:mb-24" />
       <div className="sm:flex sm:mt-32 max-w-5xl mx-auto md:space-x-16 lg:space-x-24 md:px-16 lg:px-8 xl:px-0 sm:mb-24">
         <div className=" px-4 md:px-0">
-          <TextBlock
+          <TextBlockComponent
             className="my-12 sm:mt-0 sm:mb-20 lg:mb-32 lg:pl-20"
             header="Carbon Fiber Hardtop"
             copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ."
@@ -252,7 +261,7 @@ const IndexPage = () => (
               label="This is a photo label"
             />
           </div>
-          <TextBlock
+          <TextBlockComponent
             className="my-10 sm:mt-16"
             header="Storage & Convenience"
             copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet,"
@@ -268,7 +277,7 @@ const IndexPage = () => (
           <CarouselButtons className="absolute bottom-0 pb-4 w-full md:hidden" />
         </AspectRatio>
         <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
-          <TextBlock
+          <TextBlockComponent
             className="md:w-7/12"
             header="Feature Callout"
             copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -294,7 +303,7 @@ const IndexPage = () => (
       <MobileSectionHeader>{TITLES[4][0]}</MobileSectionHeader>
       <VerticalHeaderBlock label={TITLES[4][0]} side="right" theme="dark" />
       <SideBleedImage src={section6Image} side="left" className="md:mb-24" />
-      <TextBlock
+      <TextBlockComponent
         className="my-12 px-4 mb-16 md:mb-48 max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto"
         header="DIGITAL SWITCHING & AUTOMATION"
         copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
@@ -306,7 +315,7 @@ const IndexPage = () => (
             className="absolute h-full w-full object-cover"
           />
         </AspectRatio>
-        <TextBlock
+        <TextBlockComponent
           className="mt-16 mb-24 md:mb-40 max-w-xl"
           header="Story Callout"
           copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
@@ -316,7 +325,7 @@ const IndexPage = () => (
         className="sm:mb-24"
         images={[section6Image3, section6Image4, section6Image5]}
       />
-      <TextBlock
+      <TextBlockComponent
         className="my-16 px-4 max-w-2xl mx-auto md:text-center"
         header="Story Callout"
         copy="Lorem ipsum dolor sit amet, consec-tetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod."
@@ -384,7 +393,7 @@ const IndexPage = () => (
       </div>
     </BoatSection>
     {/* Media Gallery section */}
-    <MediaGallerySection title={TITLES[6][0]} images={GALLERY_IMAGES} />
+    <MediaGallerySection title={TITLES[6][0]} media={GALLERY_IMAGES} />
     {/* Bespoke Possibilities section */}
     <BoatSection theme="dark" className="py-24 sm:pb-16">
       <InPageAnchor title={TITLES[7][0]} />
@@ -409,8 +418,16 @@ const IndexPage = () => (
       </div>
       <div className="relative max-w-7xl mx-auto">
         <div className="flex space-x-6 px-4 overflow-hidden mb-12 sm:mb-20">
-          <BespokeOptionCard img={section9Image} />
-          <BespokeOptionCard img={section9Image2} />
+          <BespokeOptionCard
+            img={section9Image}
+            header="Title of bespoke option"
+            copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor..."
+          />
+          <BespokeOptionCard
+            img={section9Image2}
+            header="Title of bespoke option"
+            copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor..."
+          />
         </div>
         <div className="px-4 flex sm:justify-between items-center">
           <div className="hidden sm:block">

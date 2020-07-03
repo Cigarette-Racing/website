@@ -12,7 +12,7 @@ import {
   FacebookIcon,
 } from '../svgs/icons'
 import { InPageCta } from '../atoms/in-page-cta'
-import { Theme } from '../atoms/types'
+import { Theme } from '../types/shared'
 
 // images
 import headerImage from '../../content/images/contact-header.jpeg'

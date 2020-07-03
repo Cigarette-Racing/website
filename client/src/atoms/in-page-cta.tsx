@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { Typography } from './typography'
-import { Theme } from './types'
+import { Theme } from '../types/shared'
 
 export interface InPageCtaProps {
   /** Visual variant to use */
