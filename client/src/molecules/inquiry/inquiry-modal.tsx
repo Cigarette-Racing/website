@@ -22,6 +22,8 @@ import {
   StepOne,
   StepTwo,
   StepThree,
+  ContinueButton,
+  PageStatus,
 } from './inquiry-modal.components'
 
 const modalStyles = {
@@ -73,20 +75,40 @@ const InquiryModal: React.FC = () => {
                     />
                     <Step
                       id="one"
-                      render={(props) => {
-                        return <StepOne {...props} />
+                      render={({ next, steps, step }) => {
+                        return (
+                          <StepOne>
+                            <ContinueButton
+                              next={next}
+                              inValid={form.getState().hasValidationErrors}
+                            />
+                            <PageStatus next={next} steps={steps} step={step} />
+                          </StepOne>
+                        )
                       }}
                     />
                     <Step
                       id="two"
                       render={(props) => {
-                        return <StepTwo {...props} />
+                        return (
+                          <StepTwo
+                            {...props}
+                            pristine={pristine}
+                            submitting={submitting}
+                          />
+                        )
                       }}
                     />
                     <Step
                       id="three"
                       render={(props) => {
-                        return <StepThree {...props} />
+                        return (
+                          <StepThree
+                            {...props}
+                            pristine={pristine}
+                            submitting={submitting}
+                          />
+                        )
                       }}
                     />
                   </Steps>
