@@ -5,12 +5,23 @@ import { Typography } from './typography'
 export interface RadioProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /** Checked state of the input */
-  checked: boolean
+  checked?: boolean
+  alignment?: 'start' | 'center' | 'end'
 }
 
-export const Radio = ({ checked, children, ...inputProps }: RadioProps) => {
+export const Radio = ({
+  checked,
+  alignment,
+  children,
+  ...inputProps
+}: RadioProps) => {
   return (
-    <label className="flex items-center cursor-pointer">
+    <label
+      className={clsx(
+        'flex cursor-pointer',
+        alignment ? `items-${alignment}` : 'items-center'
+      )}
+    >
       <input
         aria-checked={checked}
         checked={checked}
@@ -18,7 +29,12 @@ export const Radio = ({ checked, children, ...inputProps }: RadioProps) => {
         {...inputProps}
         className="sr-only"
       />
-      <span className="w-4 h-4 border border-white rounded-full mr-4 flex items-center justify-center">
+      <span
+        className={clsx(
+          'w-4 h-4 border border-white rounded-full mr-4 flex flex-shrink-0 items-center justify-center',
+          alignment === 'start' && 'mt-2'
+        )}
+      >
         <span
           className={clsx(
             'inline-block w-2 h-2 bg-red rounded-full transition-transform duration-100 ease-in transform scale-0',
