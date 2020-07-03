@@ -15,6 +15,11 @@ export const TextField = (props: any) => {
   return (
     <div className="flex items-center justify-center ">
       {props.required && <div className="text-red mr-2">*</div>}
+      {props.meta.error && props.meta.touched && (
+        <div className="absolute top-0 pl-4 left-0">
+          Enter required info to continue
+        </div>
+      )}
       <input
         {...props.input}
         placeholder={props.placeholder}
@@ -89,7 +94,7 @@ export const LandingStep = ({ next }: any) => {
     </div>
   )
 }
-
+const required = (value: any) => (value ? undefined : 'Required')
 export const StepOne = ({ next, steps, step }: any) => {
   return (
     <div className="flex flex-col justify-center">
@@ -101,6 +106,7 @@ export const StepOne = ({ next, steps, step }: any) => {
         <Field
           component={TextField}
           required={true}
+          validate={required}
           name="firstName"
           placeholder="First Name"
         />
@@ -215,7 +221,7 @@ export const StepThree = ({ next, steps, step }: any) => {
             name="marketingOptIn"
             value="text"
             type="radio"
-            component={({ input }) => {
+            component={({ input, meta }) => {
               return (
                 <Radio {...input} alignment="start">
                   <Typography variant="p3">
