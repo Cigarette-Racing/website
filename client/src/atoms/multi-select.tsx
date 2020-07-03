@@ -70,19 +70,3 @@ export const MultiSelect = ({ className, name, options }: SelectInputProps) => {
     />
   )
 }
-
-const CustomMultiValue = (props: any) => {
-  console.log(props)
-
-  return (
-    <Pill
-      onRemove={(e) => {
-        e.stopPropagation()
-        console.log('remove this')
-        props.clearValue()
-      }}
-    >
-      {props.data.label}
-    </Pill>
-  )
-}
