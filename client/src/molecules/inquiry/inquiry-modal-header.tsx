@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { WithWizard } from 'react-albus'
 import { Line } from 'rc-progress'
+import clsx from 'clsx'
 
 import { CaretDownIcon, ArrowIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
@@ -15,19 +16,25 @@ const InquiryModalHeader: React.FC = () => {
         return (
           <Fragment>
             <header
-              className={`bg-white flex px-4 ${
-                steps.indexOf(step) !== 0 ? 'items-start' : ''
-              } sm:items-center flex-col justify-center relative h-20`}
+              className={clsx(
+                'bg-white flex px-4 pb-2',
+                steps.indexOf(step) !== 0 ? 'items-start' : '',
+                'sm:items-center flex-col relative h-20 justify-end'
+              )}
+
+              // {`bg-white flex px-4 ${
+              //   steps.indexOf(step) !== 0 ? 'items-start' : ''
+              // } sm:items-center flex-col relative h-20 justify-end`}
             >
               {steps.indexOf(step) === 0 && (
                 <button
-                  className="flex items-center justify-center flex-col"
+                  className="flex items-center justify-end flex-col"
                   onClick={() => {
                     setInquiryModalState(false)
                     console.log('close the thing', inquiryModalState)
                   }}
                 >
-                  <Typography className="uppercase font-bold" variant="e2">
+                  <Typography className="uppercase font-bold pb-1" variant="e2">
                     close
                   </Typography>
                   <CaretDownIcon className="text-red" />
