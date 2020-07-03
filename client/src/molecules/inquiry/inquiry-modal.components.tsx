@@ -2,6 +2,7 @@ import React from 'react'
 import { Field } from 'react-final-form'
 import clsx from 'clsx'
 import { Link } from 'gatsby'
+import Select from 'react-select'
 
 import { Radio } from '../../atoms/radio'
 import { InPageCta } from '../../atoms/in-page-cta'
@@ -252,11 +253,79 @@ export const StepThree = ({ steps, step }: any) => {
       <FormSectionHeader>Level of interest</FormSectionHeader>
       <FieldSet>
         <Field
-          component={TextField}
+          component={() => (
+            <div className="flex items-center justify-center">
+              <div className="text-red mr-2">*</div>
+              <Select
+                className="w-full"
+                name="interest"
+                options={[
+                  {
+                    value: 'ready to purchase',
+                    label: 'ready to purchase',
+                  },
+                  {
+                    value: 'something else',
+                    label: 'something else',
+                  },
+                  { value: "I don't know", label: "I don't know" },
+                ]}
+                defaultValue={{
+                  value: 'Ready to purchase',
+                  label: 'Ready to purchase',
+                }}
+                components={{
+                  SingleValue: (props: any) => (
+                    <Typography variant="p3">{props.data.label}</Typography>
+                  ),
+                }}
+                styles={{
+                  placeholder: (base) => ({
+                    ...base,
+                    color: '#fff',
+                  }),
+                  control: (base) => ({
+                    ...base,
+                    background: 'transparent',
+                    border: 'none',
+                    borderBottom: '1px solid #fff',
+                    borderRadius: 0,
+                  }),
+                  clearIndicator: () => ({
+                    display: 'none',
+                  }),
+                  indicatorSeparator: () => ({
+                    display: 'none',
+                  }),
+                  valueContainer: (base) => ({
+                    ...base,
+                    padding: '10px 0',
+                    color: '#fff',
+                  }),
+                  singleValue: (base) => ({
+                    ...base,
+                    color: '#fff',
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    background: '#242424',
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    background: 'transparent',
+                    color: '#fff',
+                    '&:hover': {
+                      color: '#000',
+                      background: 'red',
+                    },
+                  }),
+                }}
+              />
+            </div>
+          )}
           required={true}
-          validate={required}
-          name="interest"
-          placeholder="Ready to purchase"
+          name="Email Address"
+          placeholder="Email Address"
         />
       </FieldSet>
       <div className="mt-12">

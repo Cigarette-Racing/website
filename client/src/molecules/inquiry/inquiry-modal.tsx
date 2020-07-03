@@ -38,6 +38,7 @@ const modalStyles = {
     padding: 0,
     border: 'none',
     borderRadius: 0,
+    background: '#020407',
   },
 }
 
@@ -49,7 +50,7 @@ const InquiryModal: React.FC = () => {
 
   return (
     <ReactModal isOpen={inquiryModalState!} style={modalStyles}>
-      <div className="relative h-full">
+      <div className="relative pb-10">
         <FullBleedBackground image={fullBleedImage} />
         <Wizard>
           <InquiryModalHeader />
