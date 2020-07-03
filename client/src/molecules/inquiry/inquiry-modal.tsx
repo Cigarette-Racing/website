@@ -17,7 +17,12 @@ import { InPageCta } from '../../atoms/in-page-cta'
 import InquiryModalHeader from './inquiry-modal-header'
 import fullBleedImage from '../../images/boat-section2-bg.jpeg'
 
-import { StepOne } from './inquiry-modal.components'
+import {
+  LandingStep,
+  StepOne,
+  StepTwo,
+  StepThree,
+} from './inquiry-modal.components'
 
 const modalStyles = {
   overlay: {
@@ -61,9 +66,27 @@ const InquiryModal: React.FC = () => {
                 <form onSubmit={handleSubmit}>
                   <Steps>
                     <Step
+                      id="landing"
+                      render={({ next }) => {
+                        return <LandingStep next={next} />
+                      }}
+                    />
+                    <Step
                       id="one"
-                      render={() => {
-                        return <StepOne />
+                      render={(props) => {
+                        return <StepOne {...props} />
+                      }}
+                    />
+                    <Step
+                      id="two"
+                      render={(props) => {
+                        return <StepTwo {...props} />
+                      }}
+                    />
+                    <Step
+                      id="three"
+                      render={(props) => {
+                        return <StepThree {...props} />
                       }}
                     />
                   </Steps>

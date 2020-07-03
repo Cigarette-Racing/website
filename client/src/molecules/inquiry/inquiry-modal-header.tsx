@@ -17,18 +17,16 @@ const InquiryModalHeader: React.FC = () => {
           <Fragment>
             <header
               className={clsx(
-                'bg-white flex px-4 pb-2',
-                steps.indexOf(step) !== 0 ? 'items-start' : '',
-                'sm:items-center flex-col relative h-20 justify-end'
+                'bg-white flex px-4',
+                steps.indexOf(step) !== 0
+                  ? 'items-start justify-center'
+                  : 'justify-end',
+                'sm:items-center flex-col relative h-20'
               )}
-
-              // {`bg-white flex px-4 ${
-              //   steps.indexOf(step) !== 0 ? 'items-start' : ''
-              // } sm:items-center flex-col relative h-20 justify-end`}
             >
               {steps.indexOf(step) === 0 && (
                 <button
-                  className="flex items-center justify-end flex-col"
+                  className="flex items-center justify-end flex-col pb-2"
                   onClick={() => {
                     setInquiryModalState(false)
                     console.log('close the thing', inquiryModalState)
