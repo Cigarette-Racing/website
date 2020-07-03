@@ -5,6 +5,7 @@ import { wrap } from '@popmotion/popcorn'
 import { SliderBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { CarouselButtons, TextBlockComponent } from '../boat.components'
+import { useMeasure } from 'react-use'
 
 enum Direction {
   Next = 1,
@@ -12,7 +13,8 @@ enum Direction {
 }
 
 const variants = {
-  enter: (direction: Direction) => {
+  enter: ({ direction, width }: { direction: Direction; width: number }) => {
+    console.log('enter', { direction, width })
     return {
       x: direction === Direction.Next ? 500 : -500,
       opacity: 0,
@@ -23,7 +25,8 @@ const variants = {
     x: 0,
     opacity: 1,
   },
-  exit: (direction: Direction) => {
+  exit: ({ direction, width }: { direction: Direction; width: number }) => {
+    console.log('exit', { direction, width })
     return {
       zIndex: 0,
       x: direction === Direction.Prev ? 500 : -500,
@@ -35,6 +38,7 @@ const variants = {
 export interface SliderProps extends Omit<SliderBlock, 'type'> {}
 
 export const Slider = ({ items }: SliderProps) => {
+  const [ref, { width }] = useMeasure<HTMLDivElement>()
   const [[page, direction], setPage] = useState([0, 0])
   const itemIndex = wrap(0, items.length, page)
   const goNext = () => {
@@ -44,22 +48,24 @@ export const Slider = ({ items }: SliderProps) => {
     setPage([page - 1, Direction.Prev])
   }
 
+  console.log({ width })
+
   return (
     <div className="max-w-5xl mx-auto">
-      <div className="md:w-9/12">
+      <div className="md:w-9/12" ref={ref}>
         <AspectRatio ratio="3:2">
-          <AnimatePresence initial={false} custom={direction}>
+          <AnimatePresence initial={false} custom={{ direction, width }}>
             <motion.img
               key={page}
               src={items[itemIndex].media.image.childImageSharp?.fluid?.src!}
-              custom={direction}
+              custom={{ direction, width }}
               variants={variants}
               initial="enter"
               animate="center"
               exit="exit"
               transition={{
                 x: { type: 'spring', stiffness: 300, damping: 200 },
-                opacity: { duration: 0.2 },
+                opacity: { duration: 0.4 },
               }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
