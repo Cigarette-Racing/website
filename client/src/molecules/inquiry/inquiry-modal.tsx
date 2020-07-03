@@ -111,6 +111,7 @@ const InquiryModal: React.FC = () => {
                           return (
                             <StepThree
                               {...props}
+                              submit={handleSubmit}
                               pristine={pristine}
                               submitting={submitting}
                             />

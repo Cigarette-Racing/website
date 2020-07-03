@@ -165,9 +165,11 @@ export const StepOne = ({ next, steps, step, children }: any) => {
 
 const MultiValueComp = (props: any) => {
   return (
-    <Pill {...props} onRemove={() => {}}>
-      {props.data.label}
-    </Pill>
+    <div className="mr-2">
+      <Pill {...props} onRemove={() => {}}>
+        {props.data.label}
+      </Pill>
+    </div>
   )
 }
 
@@ -269,7 +271,7 @@ export const StepTwo = ({ next, steps, step }: any) => {
   )
 }
 
-export const StepThree = ({ steps, step }: any) => {
+export const StepThree = ({ steps, step, submit }: any) => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
@@ -311,7 +313,6 @@ export const StepThree = ({ steps, step }: any) => {
               <div className="text-red mr-2">*</div>
               <Select
                 className="w-full"
-                isMulti
                 options={[
                   {
                     value: 'ready to purchase',
@@ -401,7 +402,7 @@ export const StepThree = ({ steps, step }: any) => {
         className="self-center mt-16 lg:mt-20"
         variant="primary"
         onClick={() => {
-          alert('nothing!')
+          submit()
         }}
       >
         Submit request
