@@ -11,6 +11,7 @@ import { AngleIcon } from '../../svgs/icons'
 import { ArrowIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
 import { MultiSelect } from '../../atoms/multi-select'
+import { Pill } from '../../atoms/pill'
 
 export const FieldSet = ({ children }: any) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
@@ -170,33 +171,75 @@ export const StepTwo = ({ next, steps, step }: any) => {
       </div>
       <FormSectionHeader>Model Interest</FormSectionHeader>
       <FieldSet>
-        <div className="mb-10">
-          <Field
-            component={() => (
-              <div className="flex items-center justify-center">
-                <div className="text-red mr-2">*</div>
-                <MultiSelect
-                  className="w-full"
-                  name="boat-models"
-                  options={[
-                    {
-                      value: 'tirranna',
-                      label: 'Tirranna',
+        <Field
+          name="model-interest"
+          component={(props) => (
+            <div className="flex items-center justify-center">
+              <div className="text-red mr-2">*</div>
+              <Select
+                className="w-full"
+                isMulti
+                options={[
+                  {
+                    value: 'tirranna',
+                    label: 'Tirranna',
+                  },
+                  {
+                    value: 'nighthawk',
+                    label: 'Nighthawk',
+                  },
+                  { value: 'model 3', label: 'Model 3' },
+                ]}
+                defaultValue={{
+                  value: 'Ready to purchase',
+                  label: 'Ready to purchase',
+                }}
+                styles={{
+                  placeholder: (base) => ({
+                    ...base,
+                    color: '#fff',
+                  }),
+                  control: (base) => ({
+                    ...base,
+                    background: 'transparent',
+                    border: 'none',
+                    borderBottom: '1px solid #fff',
+                    borderRadius: 0,
+                  }),
+                  clearIndicator: () => ({
+                    display: 'none',
+                  }),
+                  indicatorSeparator: () => ({
+                    display: 'none',
+                  }),
+                  valueContainer: (base) => ({
+                    ...base,
+                    padding: '10px 0',
+                    color: '#fff',
+                  }),
+                  singleValue: (base) => ({
+                    ...base,
+                    color: '#fff',
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    background: '#242424',
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    background: 'transparent',
+                    color: '#fff',
+                    '&:hover': {
+                      color: '#000',
+                      background: 'red',
                     },
-                    {
-                      value: 'nighthawk',
-                      label: 'Nighthawk',
-                    },
-                    { value: 'model 3', label: 'Model 3' },
-                  ]}
-                />
-              </div>
-            )}
-            required={true}
-            name="Email Address"
-            placeholder="Email Address"
-          />
-        </div>
+                  }),
+                }}
+                {...props.input}
+              />
+            </div>
+          )}
+        />
       </FieldSet>
       <FormSectionHeader className="mb-10">Leave a note</FormSectionHeader>
       <FieldSet>
@@ -253,12 +296,13 @@ export const StepThree = ({ steps, step }: any) => {
       <FormSectionHeader>Level of interest</FormSectionHeader>
       <FieldSet>
         <Field
-          component={() => (
+          name="interest"
+          component={(props) => (
             <div className="flex items-center justify-center">
               <div className="text-red mr-2">*</div>
               <Select
                 className="w-full"
-                name="interest"
+                isMulti
                 options={[
                   {
                     value: 'ready to purchase',
@@ -273,11 +317,6 @@ export const StepThree = ({ steps, step }: any) => {
                 defaultValue={{
                   value: 'Ready to purchase',
                   label: 'Ready to purchase',
-                }}
-                components={{
-                  SingleValue: (props: any) => (
-                    <Typography variant="p3">{props.data.label}</Typography>
-                  ),
                 }}
                 styles={{
                   placeholder: (base) => ({
@@ -320,12 +359,10 @@ export const StepThree = ({ steps, step }: any) => {
                     },
                   }),
                 }}
+                {...props.input}
               />
             </div>
           )}
-          required={true}
-          name="Email Address"
-          placeholder="Email Address"
         />
       </FieldSet>
       <div className="mt-12">
