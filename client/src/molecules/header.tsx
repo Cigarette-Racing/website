@@ -102,7 +102,7 @@ export const Header = ({}: HeaderProps) => {
                   {rightLinks.map(([text, link]) => {
                     if (link) {
                       return (
-                        <Link to={link}>
+                        <Link to={link} key={text}>
                           <Typography
                             variant="e3"
                             key={text}
@@ -167,8 +167,8 @@ function MobileMenu({
           {allLinks.map(([text, link]) => {
             if (link) {
               return (
-                <Link to={link} onClick={() => setIsMenuOpen(false)}>
-                  <div key={text} className="relative mb-6">
+                <Link key={text} to={link} onClick={() => setIsMenuOpen(false)}>
+                  <div className="relative mb-6">
                     <Typography variant="h4" as="a">
                       {text}
                     </Typography>
