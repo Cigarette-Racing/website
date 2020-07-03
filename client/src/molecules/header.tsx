@@ -25,7 +25,7 @@ Modal.setAppElement(
     : '#___gatsby'
 )
 
-const leftLinks = [['Models'], ['Our world'], ['The Difference']]
+const leftLinks = [['Boats'], ['Our world'], ['The Difference']]
 const rightLinks = [['Owners'], ['Store'], ['Contact', '/contact']]
 const allLinks = [['Home', '/']].concat(leftLinks, rightLinks)
 
@@ -102,7 +102,7 @@ export const Header = ({}: HeaderProps) => {
                   {rightLinks.map(([text, link]) => {
                     if (link) {
                       return (
-                        <Link to={link}>
+                        <Link to={link} key={text}>
                           <Typography
                             variant="e3"
                             key={text}
@@ -142,7 +142,6 @@ function MobileMenu({
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const location = useLocation()
-  console.log({ location })
   return (
     <Modal
       isOpen={isMenuOpen}
@@ -168,8 +167,8 @@ function MobileMenu({
           {allLinks.map(([text, link]) => {
             if (link) {
               return (
-                <Link to={link} onClick={() => setIsMenuOpen(false)}>
-                  <div key={text} className="relative mb-6">
+                <Link key={text} to={link} onClick={() => setIsMenuOpen(false)}>
+                  <div className="relative mb-6">
                     <Typography variant="h4" as="a">
                       {text}
                     </Typography>
