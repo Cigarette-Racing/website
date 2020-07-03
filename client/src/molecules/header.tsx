@@ -25,7 +25,7 @@ Modal.setAppElement(
     : '#___gatsby'
 )
 
-const leftLinks = [['Models'], ['Our world'], ['The Difference']]
+const leftLinks = [['Boats'], ['Our world'], ['The Difference']]
 const rightLinks = [['Owners'], ['Store'], ['Contact', '/contact']]
 const allLinks = [['Home', '/']].concat(leftLinks, rightLinks)
 
