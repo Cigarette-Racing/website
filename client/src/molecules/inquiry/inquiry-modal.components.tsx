@@ -259,7 +259,7 @@ export const StepThree = ({ steps, step }: any) => {
           placeholder="Ready to purchase"
         />
       </FieldSet>
-      <div>
+      <div className="mt-12">
         <FieldSet>
           <Field
             name="marketingOptIn"
