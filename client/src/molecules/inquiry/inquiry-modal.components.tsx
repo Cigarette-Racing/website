@@ -3,6 +3,7 @@ import { Step } from 'react-albus'
 import { Link } from 'gatsby'
 import { Field } from 'react-final-form'
 
+import { Radio } from '../../atoms/radio'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { OptionsCta } from '../../atoms/options-cta'
 import { AngleIcon } from '../../svgs/icons'
@@ -173,10 +174,64 @@ export const StepThree = ({ next, steps, step }: any) => {
         request and appointment
       </div>
       <FormSectionHeader>Contact preference</FormSectionHeader>
-      <div className="space-y-6 px-4 mb-12 lg:pl-5"></div>
+      <div className="space-y-2 px-4 mb-12 lg:pl-5">
+        <Field
+          name="contactPreferences"
+          value="phone"
+          type="radio"
+          component={({ input }) => {
+            return <Radio {...input}>Phone Call</Radio>
+          }}
+        />
+        <Field
+          name="contactPreferences"
+          value="email"
+          type="radio"
+          component={({ input }) => {
+            return <Radio {...input}>Email</Radio>
+          }}
+        />
+        <Field
+          name="contactPreferences"
+          value="text"
+          type="radio"
+          component={({ input }) => {
+            return <Radio {...input}>SMS Text Message</Radio>
+          }}
+        />
+      </div>
       <FormSectionHeader>Level of interest</FormSectionHeader>
-      <div className="space-y-6 px-4 lg:pl-5"></div>
-      <div>{/* disclaimer agreement */}</div>
+      <div className="space-y-6 px-4 lg:pl-5">
+        <Field
+          component={TextField}
+          required={true}
+          name="interest"
+          placeholder="Ready to purchase"
+        />
+      </div>
+      <div>
+        <div className="space-y-6 mt-8 px-4 lg:pl-5">
+          <Field
+            name="marketingOptIn"
+            value="text"
+            type="radio"
+            component={({ input }) => {
+              return (
+                <Radio {...input} alignment="start">
+                  <Typography variant="p3">
+                    I would like to receive marketing communications on
+                    products, services and events offered by Cigarette Racing
+                    Team. I understand these communications may be personalised
+                    to me based on my interests, preferences and use of products
+                    and services, including invitations to provide customer
+                    experience feedback.
+                  </Typography>
+                </Radio>
+              )
+            }}
+          />
+        </div>
+      </div>
       <InPageCta
         className="self-center mt-16 lg:mt-20"
         variant="primary"
