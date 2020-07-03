@@ -1,1 +1,2 @@
-npm run storybook:build
+npm run build
+npm run storybook:build -- --quiet

@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Theme } from './types'
+import { Theme } from '../types/shared'
 
 export interface CircleButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

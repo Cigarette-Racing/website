@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { Typography } from './typography'
 import adornmentDark from '../images/vertical-header-dark.svg'
 import adornmentLight from '../images/vertical-header-light.svg'
-import { Theme } from './types'
+import { Theme } from '../types/shared'
 
 export interface VerticalHeaderProps {
   className?: string
