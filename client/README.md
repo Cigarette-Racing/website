@@ -1,4 +1,6 @@
-# Boat Page Components:
+# Gatsby Site
+
+## Boat Page Components:
 
 - Hero
 - Intro
