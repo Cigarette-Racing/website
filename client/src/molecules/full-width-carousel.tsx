@@ -15,10 +15,10 @@ const animations = {
   },
   exit: {
     zIndex: 0,
-    opacity: 0,
+    opacity: 0.5,
   },
   transition: {
-    opacity: { duration: 0.4 },
+    opacity: { duration: 0.6 },
   },
 }
 export interface FullWidthCarouselProps
@@ -33,7 +33,7 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
 
   return (
     <div className="relative -mb-12 max-w-8xl mx-auto">
-      <AspectRatio ratio="16:9">
+      <AspectRatio ratio="2:1">
         <AnimatePresence>
           <motion.img
             key={page}
