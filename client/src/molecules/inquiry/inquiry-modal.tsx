@@ -68,6 +68,11 @@ const InquiryModal: React.FC = () => {
                   values,
                 }) => (
                   <form onSubmit={handleSubmit} data-netlify="true">
+                    <input
+                      type="hidden"
+                      name="form-name"
+                      value="inquiry-contact"
+                    />
                     <Steps>
                       <Step
                         id="landing"
