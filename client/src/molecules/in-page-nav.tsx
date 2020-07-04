@@ -25,7 +25,8 @@ export const InPageNav = ({
   titles,
   onClickInquire,
 }: InPageNavProps) => {
-  const [headerState] = useHeaderState()
+  // TODO: determine if we actually want this
+  // const [headerState] = useHeaderState()
   const [current, setCurrent] = useState('')
   const [isMenuOpen, toggleIsMenuOpen] = useToggle(false)
   const isMobileMenu = useMedia('(max-width: 1023px)')
@@ -59,8 +60,8 @@ export const InPageNav = ({
     <Fragment>
       <div
         className={clsx(
-          'sticky top-0 left-0 w-full z-30 text-white transform duration-200 ease-in-out',
-          { 'translate-y-20': headerState === 'pinned' }
+          'sticky top-0 left-0 w-full z-30 text-white transform duration-200 ease-in-out'
+          // { 'translate-y-20': headerState === 'pinned' }
         )}
       >
         <div className="h-12 bg-gray-0 px-4">
