@@ -32,23 +32,6 @@ const IndexPage = () => {
         className="relative min-h-screen flex justify-center items-end overflow-hidden"
         data-scrollsection
       >
-        <form
-          name="enquiry-form"
-          method="post"
-          data-netlify="true"
-          data-netlify-honeypot="favorite"
-          className="hidden"
-        >
-          <input type="hidden" name="favorite" value="" />
-          <input type="hidden" name="form-name" value="enquiry-form" />
-          <input type="text" name="firstName" />
-          <input type="text" name="lastName" />
-          <input type="email" name="email" />
-          <input type="email" name="email2" />
-          <input name="phone" />
-          <textarea name="enquiry"></textarea>
-          <button type="submit">Send</button>
-        </form>
         <img
           src={header1}
           className="absolute top-0 left-0 h-screen w-full object-cover"
