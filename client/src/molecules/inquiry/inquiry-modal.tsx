@@ -16,6 +16,7 @@ import FullBleedBackground from '../../molecules/full-bleed-background'
 import { InPageCta } from '../../atoms/in-page-cta'
 import InquiryModalHeader from './inquiry-modal-header'
 import fullBleedImage from '../../../content/images/boat-section2-bg.jpeg'
+import InquiryForm from './inquiry-form'
 
 import {
   LandingStep,
@@ -67,15 +68,6 @@ const InquiryModal: React.FC = () => {
               <Form
                 onSubmit={(values) => {
                   console.log(values)
-                  fetch('/', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: encode({ 'form-name': 'contact', values }),
-                  })
-                    .then(() => alert('Success!'))
-                    .catch((error) => alert(error))
                 }}
                 render={({
                   handleSubmit,
@@ -84,13 +76,7 @@ const InquiryModal: React.FC = () => {
                   pristine,
                   values,
                 }) => (
-                  <form
-                    method="post"
-                    name="inquiry-contact"
-                    onSubmit={handleSubmit}
-                    data-netlify="true"
-                    netlify-honeypot="bot-field"
-                  >
+                  <InquiryForm onSubmit={handleSubmit}>
                     <input type="hidden" name="bot-field" />
                     <input
                       type="hidden"
@@ -148,7 +134,7 @@ const InquiryModal: React.FC = () => {
                         }}
                       />
                     </Steps>
-                  </form>
+                  </InquiryForm>
                 )}
               />
             </div>
