@@ -20,18 +20,14 @@ import {
   TextBlock,
   TwoColumnImageTextBlock,
   OneColumnTextBlock,
-  CarouselBlock,
-  SliderBlock,
-  FullWidthCarouselBlock,
 } from './types/boat'
 import { Tab } from './atoms/tab'
 import { LinkCta } from './atoms/link-cta'
-import { ProgressDots } from './atoms/progress-dots'
 
 // images
-import discoverBackground from '../content/images/boat-section2-bg.jpeg'
+import discoverBackground from '../content/images/discover-section-bg.jpeg'
 import orderBackground from '../content/images/article1.jpeg'
-import customizationsBackground from '../content/images/boat-section6-image5.jpeg'
+import customizationsBackground from '../content/images/customization-section-bg.jpeg'
 
 export const BoatHeader = ({
   boatImage,
