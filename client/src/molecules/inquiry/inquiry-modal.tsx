@@ -48,6 +48,14 @@ const InquiryModal: React.FC = () => {
   const [inquiryModalState] = useInquiryModalState()
   useLockBodyScroll(inquiryModalState)
 
+  const encode = (data: any) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+      )
+      .join('&')
+  }
+
   return (
     <ReactModal isOpen={inquiryModalState!} style={modalStyles}>
       <div className="relative pb-10">
@@ -59,6 +67,15 @@ const InquiryModal: React.FC = () => {
               <Form
                 onSubmit={(values) => {
                   console.log(values)
+                  fetch('/', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: encode({ 'form-name': 'contact', values }),
+                  })
+                    .then(() => alert('Success!'))
+                    .catch((error) => alert(error))
                 }}
                 render={({
                   handleSubmit,
