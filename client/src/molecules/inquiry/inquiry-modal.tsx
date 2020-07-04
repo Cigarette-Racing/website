@@ -86,10 +86,12 @@ const InquiryModal: React.FC = () => {
                 }) => (
                   <form
                     method="post"
-                    name="contact"
+                    name="inquiry-contact"
                     onSubmit={handleSubmit}
                     data-netlify="true"
+                    netlify-honeypot="bot-field"
                   >
+                    <input type="hidden" name="bot-field" />
                     <input
                       type="hidden"
                       name="form-name"
