@@ -1,3 +1,20 @@
+# Boat Page Components:
+
+- Hero
+- Intro
+- Section
+  - Large Image
+  - Large Image w/Text
+  - One-column Image & Text
+  - Two-column Image & Text
+  - Image Carousel
+  - Two-column Images
+  - Three-column Images
+  - One-column Text
+- Specs
+- Gallery
+-
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
