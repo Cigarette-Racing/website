@@ -70,22 +70,20 @@ export const createSchemaCustomization = ({
   const { createTypes } = actions
   // Have to manually type these because Gatsby is freaking out
   // and refuses to link up these images in the YAML file
+  const Media = `
+    image: File @fileByRelativePath
+    label: String
+    alt: String
+    videoUrl: String
+    embedUrl: String
+    ratio: String
+  `
   const typeDefs = `
     type BoatsYamlSectionsBlocksItemsMedia {
-      image: File @fileByRelativePath
-      label: String
-      alt: String
-      videoUrl: String
-      embedUrl: String
-      ratio: String
+      ${Media}
     }
     type BoatsYamlSectionsBlocksImages {
-      image: File @fileByRelativePath
-      label: String
-      alt: String
-      videoUrl: String
-      embedUrl: String
-      ratio: String
+      ${Media}
     }
   `
   createTypes(typeDefs)

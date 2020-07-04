@@ -74,3 +74,6 @@ secrets.*
 # Generated GraphQL types
 __generated__
 
+# Temporary
+content/original_images
+

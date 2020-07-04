@@ -8,3 +8,7 @@ declare module '*.svg' {
 declare module '*.jpeg' {
   export default string
 }
+
+declare module '*.png' {
+  export default string
+}

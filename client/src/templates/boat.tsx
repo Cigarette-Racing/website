@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
@@ -17,10 +17,9 @@ import {
   ThreeUpImageBlock,
   MediaGallerySection,
   SpecsSectionComponent,
-  CustomizationsSectionComponent,
+  // CustomizationsSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
-  SliderBlockComponent,
 } from '../boat.components'
 import {
   Stat,
@@ -30,7 +29,7 @@ import {
   getFlexibleSections,
   findGallerySection,
   findSpecsSection,
-  findCustomizationsSection,
+  // findCustomizationsSection,
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
   isCarouselBlock,
@@ -42,6 +41,7 @@ import {
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
+import { MediaGallery } from '../molecules/media-gallery'
 
 const ORDER_TITLE = ['Order Today', 'Order']
 
@@ -63,7 +63,8 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const flexData = getFlexibleSections(boat.sections!)
   const specsData = findSpecsSection(boat.sections!)
   const galleryData = findGallerySection(boat.sections!)
-  const customizationsData = findCustomizationsSection(boat.sections!)
+  // TODO:
+  // const customizationsData = findCustomizationsSection(boat.sections!)
   return (
     <Layout>
       <SEO title="Boat" />
@@ -404,11 +405,8 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         </div>
       </BoatSection> */}
       <SpecsSectionComponent boatNameLong={boat.boatNameLong!} {...specsData} />
-      <MediaGallerySection
-        title={galleryData.title}
-        media={galleryData.gallery}
-      />
-      <CustomizationsSectionComponent {...customizationsData} />
+      <MediaGallery {...galleryData} />
+      {/* <CustomizationsSectionComponent {...customizationsData} /> */}
       <OrderSection
         boatNameLong={boat.boatNameLong!}
         sectionTitle={ORDER_TITLE[0]}
