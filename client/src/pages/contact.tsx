@@ -16,7 +16,7 @@ import { Theme } from '../types/shared'
 
 // images
 import headerImage from '../../content/images/contact-header.jpeg'
-import footerImage from '../../content/images/contact-footer.jpeg'
+import footerImage from '../../content/images/contact-footer.png'
 
 const ContactPage = () => (
   <Layout>
@@ -85,27 +85,32 @@ const ContactPage = () => (
       theme="light"
       className="py-20 divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x"
     >
-      <div className="divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x max-w-6xl mx-auto">
+      <div className="divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x max-w-6xl mx-auto w-full">
         <ContentColumn
           header="Inquiries"
-          copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun."
-          buttonText="Request Info"
+          buttonText="Request An Appointment"
+          copy="Your Cigarette Racing journey begins here. Request info and schedule an appointment today."
         />
         <ContentColumn
           header="Media & Press"
-          copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun."
           buttonText="Get In Touch"
+          copy="From press kits to partnerships — lets work together towards something great."
         />
       </div>
     </Section>
     <Section theme="dark" className="py-24 lg:py-48">
       <FullBgImage src={footerImage} />
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-25"></div>
       <div className="relative bg-black bg-opacity-75 px-4 py-24 md:py-32 text-center space-y-12 max-w-2xl mx-auto">
         <Typography variant="h3" md="h2">
           Work at Cigarette
         </Typography>
-        <InPageCta variant="secondary" theme="dark">
+        <InPageCta
+          variant="secondary"
+          theme="dark"
+          href="mailto:support@cigaretteracing.com"
+          link
+        >
           Start a Career
         </InPageCta>
       </div>
@@ -114,9 +119,15 @@ const ContactPage = () => (
       <div className="space-y-8 text-center lg:hidden">
         <Typography variant="h3">Owner support</Typography>
         <Typography variant="p3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          Whatever you need, our team is dedicated to help you get the most out
+          of your Cigarette Racing boat.
         </Typography>
-        <InPageCta variant="secondary" theme="dark">
+        <InPageCta
+          variant="secondary"
+          theme="dark"
+          href="mailto:support@cigaretteracing.com"
+          link
+        >
           support@cigaretteracing.com
         </InPageCta>
       </div>
@@ -126,10 +137,15 @@ const ContactPage = () => (
         </div>
         <div className="space-y-8 pt-4">
           <Typography variant="p2" className="max-w-md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididun.
+            Whatever you need, our team is dedicated to help you get the most
+            out of your Cigarette Racing boat.
           </Typography>
-          <InPageCta variant="secondary" theme="dark">
+          <InPageCta
+            variant="secondary"
+            theme="dark"
+            href="mailto:support@cigaretteracing.com"
+            link
+          >
             support@cigaretteracing.com
           </InPageCta>
         </div>
@@ -193,18 +209,25 @@ function ContentColumn({
   buttonText,
 }: {
   header: string
-  copy: string
+  copy?: string
   buttonText: string
 }) {
   return (
-    <div className="text-center space-y-8 py-16 md:py-32 xl:py-48">
+    <div className="text-center space-y-8 py-16 md:py-32 xl:py-48 md:w-1/2">
       <Typography variant="h3" lg="h2">
         {header}
       </Typography>
-      <Typography variant="p3" lg="p2" className="w-5/6 md:w-3/4 mx-auto">
-        {copy}
-      </Typography>
-      <InPageCta variant="secondary" theme="light">
+      {copy && (
+        <Typography variant="p3" lg="p2" className="w-5/6 md:w-3/4 mx-auto">
+          {copy}
+        </Typography>
+      )}
+      <InPageCta
+        variant="secondary"
+        theme="light"
+        href="mailto:support@cigaretteracing.com"
+        link
+      >
         {buttonText}
       </InPageCta>
     </div>
