@@ -69,7 +69,7 @@ export function findDiscoverSection(sections: readonly any[]) {
   return sections.find(isDiscoverSection) as DiscoverSection
 }
 
-type GallerySection = {
+export type GallerySection = {
   type: 'gallery'
   gallery: Media[]
 } & CommonSectionProps
