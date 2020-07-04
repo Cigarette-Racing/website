@@ -77,12 +77,6 @@ const InquiryModal: React.FC = () => {
                   values,
                 }) => (
                   <InquiryForm onSubmit={handleSubmit}>
-                    <input type="hidden" name="bot-field" />
-                    <input
-                      type="hidden"
-                      name="form-name"
-                      value="inquiry-contact"
-                    />
                     <Steps>
                       <Step
                         id="landing"
