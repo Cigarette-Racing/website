@@ -405,11 +405,8 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         </div>
       </BoatSection> */}
       <SpecsSectionComponent boatNameLong={boat.boatNameLong!} {...specsData} />
-      <MediaGallerySection
-        title={galleryData.title}
-        media={galleryData.gallery}
-      />
-      <CustomizationsSectionComponent {...customizationsData} />
+      <MediaGallery {...galleryData} />
+      {/* <CustomizationsSectionComponent {...customizationsData} /> */}
       <OrderSection
         boatNameLong={boat.boatNameLong!}
         sectionTitle={ORDER_TITLE[0]}
