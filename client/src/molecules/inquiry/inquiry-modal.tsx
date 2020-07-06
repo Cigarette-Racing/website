@@ -16,7 +16,6 @@ import FullBleedBackground from '../../molecules/full-bleed-background'
 import { InPageCta } from '../../atoms/in-page-cta'
 import InquiryModalHeader from './inquiry-modal-header'
 import fullBleedImage from '../../../content/images/boat-section2-bg.jpeg'
-import InquiryForm from './inquiry-form'
 
 import {
   LandingStep,
