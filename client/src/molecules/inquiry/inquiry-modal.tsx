@@ -140,3 +140,17 @@ const InquiryModal: React.FC = () => {
 }
 
 export default InquiryModal
+
+export const HiddenInquiryForm = () => (
+  <form
+    method="post"
+    netlify-honeypot="bot-field"
+    data-netlify="true"
+    name="TEST-contact"
+  >
+    <input type="hidden" name="bot-field" />
+    <input type="hidden" name="form-name" value="TEST-contact" />
+
+    <button type="submit">Submit</button>
+  </form>
+)
