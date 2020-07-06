@@ -18,6 +18,7 @@ import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
 import InquiryModal, {
   useInquiryModalState,
+  HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
 
 const IndexPage = () => {
@@ -273,6 +274,7 @@ const IndexPage = () => {
         </div>
       </section>
       <InquiryModal />
+      <HiddenInquiryForm />
     </Layout>
   )
 }
