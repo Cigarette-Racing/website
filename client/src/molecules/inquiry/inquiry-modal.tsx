@@ -146,13 +146,15 @@ export const HiddenInquiryForm = () => (
     netlify-honeypot="bot-field"
     data-netlify="true"
     name="TEST-contact"
+    hidden
   >
     <input type="hidden" name="bot-field" />
     <input type="hidden" name="form-name" value="TEST-contact" />
 
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <textarea name="message"></textarea>
+    <input type="text" name="firstName" />
+    <input type="text" name="lastName" />
+    <input type="text" name="phone" />
+    <input type="email" name="emailAddress" />
 
     <button type="submit">Submit</button>
   </form>
