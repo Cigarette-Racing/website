@@ -229,6 +229,7 @@ export const StepTwo = ({ next, steps, step }: any) => {
                     border: 'none',
                     borderBottom: '1px solid #fff',
                     borderRadius: 0,
+                    cursor: 'pointer',
                   }),
                   clearIndicator: () => ({
                     display: 'none',
@@ -285,10 +286,6 @@ export const StepTwo = ({ next, steps, step }: any) => {
 }
 
 export const StepThree = ({ steps, step, submit }: any) => {
-  const formState = useFormState()
-
-  console.log(formState)
-
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
