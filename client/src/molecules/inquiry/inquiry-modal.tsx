@@ -68,14 +68,31 @@ const InquiryModal: React.FC = () => {
                 onSubmit={(values) => {
                   console.log(values)
 
+                  const submissionValues = {
+                    firstName: values.firstName,
+                    lastName: values.lastName,
+                    phone: values.phone,
+                    emailAddress: values.emailAddress,
+                    notes: values.notes,
+                    contactPreferences: values.contactPreferences,
+                    interest: values.interest.value,
+                    modelInterest: values.modelInterest
+                      .map((model: any) => model.value)
+                      .join(', '),
+                    marketingOptIn: values.marketingOptIn,
+                  }
+
                   fetch('/', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    body: encode({ 'form-name': 'TEST-contact', ...values }),
+                    body: encode({
+                      'form-name': 'TEST-contact',
+                      ...submissionValues,
+                    }),
                   })
-                    .then(() => alert('Success!'))
+                    .then(() => console.log('success!!'))
                     .catch((error) => alert(error))
                 }}
                 render={({
