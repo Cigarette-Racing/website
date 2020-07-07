@@ -182,7 +182,7 @@ export const StepTwo = ({ next, steps, step }: any) => {
       <FormSectionHeader>Model Interest</FormSectionHeader>
       <FieldSet>
         <Field
-          name="model-interest"
+          name="modelInterest"
           component={(props) => (
             <div className="flex items-center justify-center">
               <div className="text-red mr-2">*</div>
@@ -383,7 +383,7 @@ export const StepThree = ({ steps, step, submit }: any) => {
             type="radio"
             component={({ input, meta }) => {
               return (
-                <Radio {...input} alignment="start">
+                <Radio {...input} alignment="start" name="marketingOptIn">
                   <Typography variant="p3">
                     I would like to receive marketing communications on
                     products, services and events offered by Cigarette Racing

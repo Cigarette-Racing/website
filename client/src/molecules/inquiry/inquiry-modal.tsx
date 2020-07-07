@@ -67,6 +67,16 @@ const InquiryModal: React.FC = () => {
               <Form
                 onSubmit={(values) => {
                   console.log(values)
+
+                  fetch('/', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: encode({ 'form-name': 'TEST-contact', ...values }),
+                  })
+                    .then(() => alert('Success!'))
+                    .catch((error) => alert(error))
                 }}
                 render={({
                   handleSubmit,
@@ -155,6 +165,11 @@ export const HiddenInquiryForm = () => (
     <input type="text" name="lastName" />
     <input type="text" name="phone" />
     <input type="email" name="emailAddress" />
+    <input type="text" name="notes" />
+    <input type="text" name="modelInterest" />
+    <input type="text" name="marketingOptIn" />
+    <input type="text" name="interest" />
+    <input type="text" name="contactPreferences" />
 
     <button type="submit">Submit</button>
   </form>
