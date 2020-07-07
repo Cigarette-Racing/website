@@ -154,7 +154,7 @@ export const StepOne = ({ next, steps, step, children }: any) => {
           component={TextField}
           required={true}
           validate={required}
-          name="Email Address"
+          name="emailAddress"
           placeholder="Email Address"
         />
       </FieldSet>
