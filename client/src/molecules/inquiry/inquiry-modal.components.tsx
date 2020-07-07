@@ -91,10 +91,6 @@ export const PageStatus = ({ steps, step }: any) => (
 )
 
 export const LandingStep = ({ next }: any) => {
-  const useFormStuff = useForm()
-
-  console.log(useFormStuff)
-
   return (
     <div className="flex flex-col justify-center px-4">
       <Typography
@@ -125,7 +121,18 @@ export const LandingStep = ({ next }: any) => {
   )
 }
 
-const required = (value: any) => (value ? undefined : 'Required')
+const requiredText = (value: any) => (value ? undefined : 'Required')
+const requiredEmail = (value: any) =>
+  value && value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+    ? undefined
+    : 'Required'
+const requiredPhone = (value: any) =>
+  value &&
+  value.match(
+    /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
+  )
+    ? undefined
+    : 'Required'
 
 export const StepOne = ({ next, steps, step, children }: any) => {
   return (
@@ -138,28 +145,28 @@ export const StepOne = ({ next, steps, step, children }: any) => {
         <Field
           component={TextField}
           required={true}
-          validate={required}
+          validate={requiredText}
           name="firstName"
           placeholder="First Name"
         />
         <Field
           component={TextField}
           required={true}
-          validate={required}
+          validate={requiredText}
           name="lastName"
           placeholder="Last Name"
         />
         <Field
           component={TextField}
           required={true}
-          validate={required}
+          validate={requiredPhone}
           name="phone"
           placeholder="Phone Number"
         />
         <Field
           component={TextField}
           required={true}
-          validate={required}
+          validate={requiredEmail}
           name="emailAddress"
           placeholder="Email Address"
         />
@@ -390,7 +397,7 @@ export const StepThree = ({ steps, step, submit }: any) => {
           <Field
             name="marketingOptIn"
             value="text"
-            type="radio"
+            type="checkbox"
             component={({ input, meta }) => {
               return (
                 <Radio {...input} alignment="start" name="marketingOptIn">
