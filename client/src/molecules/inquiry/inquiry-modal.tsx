@@ -75,7 +75,7 @@ const InquiryModal: React.FC = () => {
                   pristine,
                   values,
                 }) => (
-                  <InquiryForm onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit}>
                     <Steps>
                       <Step
                         id="landing"
@@ -127,7 +127,7 @@ const InquiryModal: React.FC = () => {
                         }}
                       />
                     </Steps>
-                  </InquiryForm>
+                  </form>
                 )}
               />
             </div>
@@ -149,6 +149,10 @@ export const HiddenInquiryForm = () => (
   >
     <input type="hidden" name="bot-field" />
     <input type="hidden" name="form-name" value="TEST-contact" />
+
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <textarea name="message"></textarea>
 
     <button type="submit">Submit</button>
   </form>
