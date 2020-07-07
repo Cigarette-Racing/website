@@ -184,9 +184,9 @@ export const HiddenInquiryForm = () => (
     <input type="email" name="emailAddress" />
     <input type="text" name="notes" />
     <input type="text" name="modelInterest" />
-    <input type="text" name="marketingOptIn" />
+    <input type="checkbox" name="marketingOptIn" />
     <input type="text" name="interest" />
-    <input type="text" name="contactPreferences" />
+    <input type="radio" name="contactPreferences" />
 
     <button type="submit">Submit</button>
   </form>
