@@ -196,7 +196,7 @@ export const StepTwo = ({ next, steps, step }: any) => {
       <FieldSet>
         <Field
           name="modelInterest"
-          component={(props) => (
+          render={(props) => (
             <div className="flex items-center justify-center">
               <div className="text-red mr-2">*</div>
               <Select
@@ -297,7 +297,7 @@ export const StepThree = ({ steps, step, submit }: any) => {
           name="contactPreferences"
           value="phone"
           type="radio"
-          component={({ input }) => {
+          render={({ input }) => {
             return <Radio {...input}>Phone Call</Radio>
           }}
         />
@@ -305,7 +305,7 @@ export const StepThree = ({ steps, step, submit }: any) => {
           name="contactPreferences"
           value="email"
           type="radio"
-          component={({ input }) => {
+          render={({ input }) => {
             return <Radio {...input}>Email</Radio>
           }}
         />
@@ -313,7 +313,7 @@ export const StepThree = ({ steps, step, submit }: any) => {
           name="contactPreferences"
           value="text"
           type="radio"
-          component={({ input }) => {
+          render={({ input }) => {
             return <Radio {...input}>SMS Text Message</Radio>
           }}
         />
@@ -322,7 +322,7 @@ export const StepThree = ({ steps, step, submit }: any) => {
       <FieldSet>
         <Field
           name="interest"
-          component={(props) => (
+          render={(props) => (
             <div className="flex items-center justify-center">
               <div className="text-red mr-2">*</div>
               <Select
@@ -395,7 +395,7 @@ export const StepThree = ({ steps, step, submit }: any) => {
             name="marketingOptIn"
             value="text"
             type="checkbox"
-            component={({ input, meta }) => {
+            render={({ input, meta }) => {
               return (
                 <Radio {...input} alignment="start" name="marketingOptIn">
                   <Typography variant="p3">
