@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field } from 'react-final-form'
+import { Field, useForm } from 'react-final-form'
 import clsx from 'clsx'
 import { Link } from 'gatsby'
 import Select from 'react-select'
@@ -20,19 +20,21 @@ export const FieldSet = ({ children }: any) => (
 export const TextField = ({ required, meta, input, placeholder }: any) => {
   return (
     <div className="relative pt-8">
-      {meta.error && meta.touched && (
+      {meta.invalid && meta.touched && (
         <div className="absolute top-0 pl-4 left-0">
           <Typography variant="p3">Enter required info to continue</Typography>
         </div>
       )}
       <div className="flex justify-center">
         {required && <div className="text-red mr-2">*</div>}
+        {console.log(meta)}
         <input
           {...input}
           placeholder={placeholder}
           className={clsx(
-            'placeholder-white font-body w-full bg-transparent text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 hover:border-opacity-100 transition-border-opacity duration-200 ease-in-out outline-none pb-5',
-            { 'placeholder-red': meta.error && meta.touched }
+            'font-body w-full bg-transparent text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 hover:border-opacity-100 transition-border-opacity duration-200 ease-in-out outline-none pb-5',
+            { 'placeholder-red': meta.invalid && meta.touched },
+            { 'placeholder-white': !meta.invalid || !meta.touched }
           )}
           autoComplete="off"
         />
@@ -89,6 +91,10 @@ export const PageStatus = ({ steps, step }: any) => (
 )
 
 export const LandingStep = ({ next }: any) => {
+  const useFormStuff = useForm()
+
+  console.log(useFormStuff)
+
   return (
     <div className="flex flex-col justify-center px-4">
       <Typography
@@ -272,6 +278,10 @@ export const StepTwo = ({ next, steps, step }: any) => {
 }
 
 export const StepThree = ({ steps, step, submit }: any) => {
+  const formState = useFormState()
+
+  console.log(formState)
+
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
