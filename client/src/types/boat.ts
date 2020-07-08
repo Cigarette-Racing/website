@@ -154,6 +154,16 @@ export function isOneColumnTextBlock(
   return block.type === 'one-column-text'
 }
 
+export type OneColumnImageTextBlock = {
+  type: 'one-column-image-text'
+} & ImageWithText
+
+export function isOneColumnImageTextBlock(
+  block: Block
+): block is OneColumnImageTextBlock {
+  return block.type === 'one-column-image-text'
+}
+
 export type TwoColumnImageTextBlock = {
   type: 'two-column-image-text'
   leftColumn: ImageWithText
@@ -219,6 +229,7 @@ export function isFullWidthCarouselBlock(
 
 type Block =
   | OneColumnTextBlock
+  | OneColumnImageTextBlock
   | TwoColumnImageTextBlock
   | TwoColumnImagesBlock
   | ThreeColumnImagesBlock
