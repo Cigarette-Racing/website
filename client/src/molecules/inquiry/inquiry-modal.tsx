@@ -38,9 +38,14 @@ const modalStyles = {
     padding: 0,
     border: 'none',
     borderRadius: 0,
-    background: '#020407',
-    backgroundImage: 'url(' + fullBleedImage + ')',
+    backgroundImage: `url(${fullBleedImage})`,
   },
+}
+
+const encode = (data: any) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
 }
 
 export const useInquiryModalState = createGlobalState<boolean>(false)
@@ -49,119 +54,104 @@ const InquiryModal: React.FC = () => {
   const [inquiryModalState] = useInquiryModalState()
   useLockBodyScroll(inquiryModalState)
 
-  const encode = (data: any) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
-      )
-      .join('&')
-  }
-
   return (
     <ReactModal isOpen={inquiryModalState!} style={modalStyles}>
-      <FullBleedBackground image={fullBleedImage} />
-      <div className="relative pb-10">
-        <Wizard>
-          <InquiryModalHeader />
-          <div className="text-white flex flex-col items-center justify-center relative">
-            <div className="w-full max-w-2xl">
-              <Form
-                onSubmit={(values) => {
-                  console.log(values)
+      <Wizard>
+        <InquiryModalHeader />
+        <div className="text-white flex flex-col items-center justify-center relative">
+          <div className="w-full max-w-2xl">
+            <Form
+              onSubmit={(values) => {
+                console.log(values)
 
-                  const submissionValues = {
-                    firstName: values.firstName,
-                    lastName: values.lastName,
-                    phone: values.phone,
-                    emailAddress: values.emailAddress,
-                    notes: values.notes,
-                    contactPreferences: values.contactPreferences,
-                    interest: values.interest.value,
-                    modelInterest: values.modelInterest
-                      .map((model: any) => model.value)
-                      .join(', '),
-                    marketingOptIn: values.marketingOptIn,
-                  }
+                const submissionValues = {
+                  firstName: values.firstName,
+                  lastName: values.lastName,
+                  phone: values.phone,
+                  emailAddress: values.emailAddress,
+                  notes: values.notes,
+                  contactPreferences: values.contactPreferences,
+                  interest: values.interest.value,
+                  modelInterest: values.modelInterest
+                    .map((model: any) => model.value)
+                    .join(', '),
+                  marketingOptIn: values.marketingOptIn,
+                }
 
-                  fetch('/', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: encode({
-                      'form-name': 'TEST-contact',
-                      ...submissionValues,
-                    }),
-                  })
-                    .then(() => console.log('success!!'))
-                    .catch((error) => alert(error))
-                }}
-                render={({
-                  handleSubmit,
-                  form,
-                  submitting,
-                  pristine,
-                  values,
-                }) => (
-                  <form onSubmit={handleSubmit}>
-                    <Steps>
-                      <Step
-                        id="landing"
-                        render={({ next }) => {
-                          return <LandingStep next={next} />
-                        }}
-                      />
-                      <Step
-                        id="one"
-                        render={({ next, steps, step }) => {
-                          return (
-                            <StepOne>
-                              <ContinueButton
-                                next={next}
-                                inValid={form.getState().hasValidationErrors}
-                              />
-                              <PageStatus
-                                next={next}
-                                steps={steps}
-                                step={step}
-                              />
-                            </StepOne>
-                          )
-                        }}
-                      />
-                      <Step
-                        id="two"
-                        render={(props) => {
-                          return (
-                            <StepTwo
-                              {...props}
-                              pristine={pristine}
-                              submitting={submitting}
+                fetch('/', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: encode({
+                    'form-name': 'TEST-contact',
+                    ...submissionValues,
+                  }),
+                })
+                  .then(() => console.log('success!!'))
+                  .catch((error) => alert(error))
+              }}
+              render={({
+                handleSubmit,
+                form,
+                submitting,
+                pristine,
+                values,
+              }) => (
+                <form onSubmit={handleSubmit}>
+                  <Steps>
+                    <Step
+                      id="landing"
+                      render={({ next }) => {
+                        return <LandingStep next={next} />
+                      }}
+                    />
+                    <Step
+                      id="one"
+                      render={({ next, steps, step }) => {
+                        return (
+                          <StepOne>
+                            <ContinueButton
+                              next={next}
+                              inValid={form.getState().hasValidationErrors}
                             />
-                          )
-                        }}
-                      />
-                      <Step
-                        id="three"
-                        render={(props) => {
-                          return (
-                            <StepThree
-                              {...props}
-                              submit={handleSubmit}
-                              pristine={pristine}
-                              submitting={submitting}
-                            />
-                          )
-                        }}
-                      />
-                    </Steps>
-                  </form>
-                )}
-              />
-            </div>
+                            <PageStatus next={next} steps={steps} step={step} />
+                          </StepOne>
+                        )
+                      }}
+                    />
+                    <Step
+                      id="two"
+                      render={(props) => {
+                        return (
+                          <StepTwo
+                            {...props}
+                            pristine={pristine}
+                            submitting={submitting}
+                          />
+                        )
+                      }}
+                    />
+                    <Step
+                      id="three"
+                      render={(props) => {
+                        return (
+                          <StepThree
+                            {...props}
+                            submit={handleSubmit}
+                            pristine={pristine}
+                            submitting={submitting}
+                          />
+                        )
+                      }}
+                    />
+                  </Steps>
+                </form>
+              )}
+            />
           </div>
-        </Wizard>
-      </div>
+        </div>
+      </Wizard>
     </ReactModal>
   )
 }
