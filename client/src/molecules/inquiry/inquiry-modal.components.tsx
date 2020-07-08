@@ -2,16 +2,16 @@ import React from 'react'
 import { Field, useForm } from 'react-final-form'
 import clsx from 'clsx'
 import { Link } from 'gatsby'
-import Select from 'react-select'
+import Select, { components } from 'react-select'
 
 import { Radio } from '../../atoms/radio'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { OptionsCta } from '../../atoms/options-cta'
 import { AngleIcon } from '../../svgs/icons'
 import { ArrowIcon } from '../../svgs/icons'
+import { CloseIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
-import { MultiSelect } from '../../atoms/multi-select'
-import { Pill } from '../../atoms/pill'
+import { MultiValueRemove } from 'react-select/src/components/MultiValue'
 
 export const FieldSet = ({ children }: any) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
@@ -176,16 +176,6 @@ export const StepOne = ({ next, steps, step, children }: any) => {
   )
 }
 
-const MultiValueComp = (props: any) => {
-  return (
-    <div className="mr-2">
-      <Pill {...props} onRemove={() => {}}>
-        {props.data.label}
-      </Pill>
-    </div>
-  )
-}
-
 export const StepTwo = ({ next, steps, step }: any) => {
   return (
     <div className="flex flex-col justify-center">
@@ -202,7 +192,31 @@ export const StepTwo = ({ next, steps, step }: any) => {
               <Select
                 className="w-full"
                 isMulti
-                components={{ MultiValue: MultiValueComp }}
+                components={{
+                  MultiValueContainer: (props) => (
+                    <components.MultiValueContainer {...props}>
+                      <div className="bg-black rounded-full py-2 px-4 flex items-center mr-2 mb-2">
+                        {props.children}
+                      </div>
+                    </components.MultiValueContainer>
+                  ),
+                  MultiValueLabel: (props) => (
+                    <components.MultiValueLabel {...props}>
+                      <Typography
+                        variant="p2"
+                        theme="dark"
+                        className="leading-none font-light"
+                      >
+                        {props.children}
+                      </Typography>
+                    </components.MultiValueLabel>
+                  ),
+                  MultiValueRemove: (props) => (
+                    <components.MultiValueRemove {...props}>
+                      <CloseIcon role="button" className="text-white" />
+                    </components.MultiValueRemove>
+                  ),
+                }}
                 options={[
                   {
                     value: 'tirranna',
@@ -237,9 +251,14 @@ export const StepTwo = ({ next, steps, step }: any) => {
                   indicatorSeparator: () => ({
                     display: 'none',
                   }),
+                  multiValue: (base) => {
+                    return {
+                      paddingBottom: 0,
+                    }
+                  },
                   valueContainer: (base) => ({
                     ...base,
-                    padding: '10px 0',
+                    padding: 0,
                     color: '#fff',
                   }),
                   singleValue: (base) => ({
