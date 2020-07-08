@@ -15,7 +15,6 @@ import {
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
-  MediaGallerySection,
   SpecsSectionComponent,
   // CustomizationsSectionComponent,
   OneColumnTextBlockComponent,

@@ -1,0 +1,205 @@
+boatName: Nighthawk
+boatNameLong: 41’ NIGHTHAWK HYPERLUX
+sections:
+  - type: hero
+    headline: Vision for the future
+    boatLogo:
+      image: ../images/nighthawk/nighthawk-logo.svg
+    backgroundMedia:
+      image: ../images/nighthawk/nighthawk-00001.png
+    stats:
+      - percentage: 75
+        text: '41’'
+        label: Length
+      - percentage: 75
+        text: '11’'
+        label: Beam
+      - percentage: 75
+        text: 1,800hp
+        label: Max Horsepower
+
+  - type: discover
+    title: Discover
+    shortTitle: ''
+    media:
+      image: ../images/nighthawk/nighthawk-00002.png
+    content:
+      header: A PURE EXPRESSION
+      copy: 'Blending tradition with innovation, design with functionality, the all-new 41’ Nighthawk is a pure expression of Cigarette Racing. Its clarity of vision and willingness to take action make the Nighthawk as luxurious as it is thrilling to drive.'
+
+  - type: flexible
+    title: Design & Engineering
+    shortTitle: ''
+    theme: light
+    bleedDirection: right
+    headerImage:
+      image: ../images/nighthawk/nighthawk-00003.png
+    blocks:
+      - type: two-column-image-text
+        leftColumn:
+          media:
+            image: ../images/nighthawk/nighthawk-00004.png
+          content:
+            header: PERFORMANCE X COMFORT
+            copy: 'The Nighthawk draws on Cigarette’s advanced-engineered twin step hull design to match unprecedented performance with unyielding comfort. A low, aggressive center of gravity and an all carbon-fiber hardtop design further improve handling, while intelligent use of composite materials and proprietary construction techniques improve vibration dampening and structural integrity for enhanced comfort in even the most compromised conditions.'
+        rightColumn:
+          media:
+            image: ../images/nighthawk/nighthawk-00005.png
+            label: 4x/5x MERCURY RACING 450 VERADOS
+          content:
+            header: POWERTRAIN OPTIONS
+            copy: 'Use this space to overview the powertrain options. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+      - type: full-width-carousel
+        items:
+          - media:
+              image: ../images/nighthawk/nighthawk-00006.png
+          - media:
+              image: ../images/nighthawk/nighthawk-00007.png
+          - media:
+              image: ../images/nighthawk/nighthawk-00008.png
+    moreDetails: []
+
+  - type: flexible
+    title: Technology
+    shortTitle: ''
+    theme: dark
+    bleedDirection: left
+    headerImage:
+      image: ../images/nighthawk/nighthawk-00009.png
+    blocks:
+      - type: one-column-text
+        header: ADVANCED HELM
+        copy: 'The Nighthawk’s advanced helm features three Garmin 8617 chartplotters flush mounted to an instrument panel milled from a solid block of aluminum. The nano-coated instrument panel is resistant to heat, reflections and finger prints for ease of use. Integrated cup holders, glovebox compartments, stainless steel grab bars and ergonomic CNC machined footrests provide the convenience, safety and comfort that is synonymous with Cigarette.'
+      - type: two-column-images
+        images:
+          - image: ../images/nighthawk/nighthawk-00010.png
+          - image: ../images/nighthawk/nighthawk-00011.png
+      - type: slider
+        items:
+          - media:
+              image: ../images/nighthawk/nighthawk-00012.png
+            content:
+              header: DIGITAL SWITCHING & AUTOMATION
+              copy: 'State-of-the-Art doesn’t have to be cumbersome or confusing. Our fully engineered and thoughtfully designed digital switching system allows you to control almost any function of the 41’ Nighthawk directly from the Garmin multifunctional displays. An automatic sequential engine system activates all engines with a simple press of a button.'
+          - media:
+              image: ../images/nighthawk/nighthawk-00013.png
+            content:
+              header: Garmin Convenience
+              copy: 'With the optional Garmin Convenience Package, digital switching controls are made available at both the bow and aft conversation areas making operation and enjoyment a seamless experience.'
+    moreDetails: []
+
+  - type: flexible
+    title: Advanced Features
+    shortTitle: ''
+    theme: light
+    bleedDirection: right
+    headerImage:
+      image: ../images/nighthawk/nighthawk-00014.png
+    blocks:
+      - type: one-column-text
+        header: AN ATHLETIC HARDTOP
+        copy: 'Our exclusive hardtop was skillfully and deliberately engineered to provide a lower center of gravity for increased performance and comfort without compromising a beautiful design aesthetic. The four-pillar, all carbon-fiber hardtop features a wide, double-curvature, frameless clear-laminated safety glass windscreen offering exceptional wind protection. Integrated flood lights, boarding handrails, full-spectrum ambient lighting, as well as optional windshield wiper with cleaning system and electrically actuated sun shade make this a pronounced and puristic center console.'
+      - type: three-column-images
+        images:
+          - image: ../images/nighthawk/nighthawk-00015.png
+          - image: ../images/nighthawk/nighthawk-00016.png
+          - image: ../images/nighthawk/nighthawk-00017.png
+      - type: one-column-image-text
+        media:
+          image: ../images/nighthawk/nighthawk-00018.png
+        content:
+          header: SURESHADE
+          copy: 'The Nighthawk hardtop offers an optional electrically actuated sun shade. At the press of a button, the shade will cover the rear entertainment area. All done and ready to get underway? Simply press the "shade in" button on your Garmin display andit will retract into the hardtop.'
+    moreDetails: []
+
+  - type: flexible
+    title: Interior Details
+    shortTitle: Interior
+    theme: dark
+    bleedDirection: left
+    headerImage:
+      image: ../images/nighthawk/nighthawk-00019.png
+    blocks:
+      - type: one-column-text
+        header: STORAGE & CONVENIENCE
+        copy: 'The Nighthawk has conveniently integrated storage solutions for ease of use and peace of mind. Latched compartments support four fenders with room for lines, personal belongings, passenger shoes, and trash. Additional floor storage, forward combing box storage and bow seat storage harmonizes core functionality with uncompromising design.'
+      - type: two-column-images
+        images:
+          - image: ../images/nighthawk/nighthawk-00020.jpeg
+          - image: ../images/nighthawk/nighthawk-00021.jpeg
+            label: Hello world
+      - type: one-column-text
+        header: SEATING & UPHOLSTERY
+        copy: 'Like each artistically designed hull, each of our interiors are handcrafted masterpieces. All new upholstery introduces multi-layered foams coupled with highly detailed quilted patterns using Cigarette Cool Touch fabrics for a premium, always comfortable feel. Powered forward helm seats are independently adjustable and quickly convert from standard seating to standing bolsters for convenience and drive comfort in all conditions.'
+        align: center
+      - type: full-width-carousel
+        items:
+          - media:
+              image: ../images/nighthawk/nighthawk-00022.png
+          - media:
+              image: ../images/nighthawk/nighthawk-00022.png
+          - media:
+              image: ../images/nighthawk/nighthawk-00022.png
+    moreDetails: []
+
+  - type: specs
+    title: Specs
+    shortTitle: ''
+    categories:
+      - name: Deck
+        specs:
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+          - header: Bow, Gunwale & Hull Sides
+            copy: Lined anchor locker with delta anchor and electric windlass...
+      - name: Interiors
+        specs:
+          - header:
+            copy:
+      - name: Details
+        specs:
+          - header:
+            copy:
+      - name: Technical
+        specs:
+          - header:
+            copy:
+      - name: Exterior
+        specs:
+          - header:
+            copy:
+
+  - type: gallery
+    title: Media Gallery
+    shortTitle: Gallery
+    gallery:
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
+      - image: ../images/nighthawk/nighthawk-00001.png
+      - image: ../images/homepage-header.jpeg
