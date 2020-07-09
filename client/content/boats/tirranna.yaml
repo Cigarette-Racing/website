@@ -140,7 +140,6 @@ sections:
         images:
           - image: ../images/tirranna/tirranna-00022.jpeg
           - image: ../images/tirranna/tirranna-00023.jpeg
-            label: Hello world
       - type: one-column-text
         header: METICULOUSLY CRAFTED
         copy: 'The history sewn into each thread provides you the most intimate escape or provides you and 20 of your favorite guests to something legendary. Each story, each departure on the waters is written by you. Be the Alpha and Omega of your own destiny- the AMG Tirranna is as legendary as you are, come see and feel the difference, the Cigarette Difference.'
