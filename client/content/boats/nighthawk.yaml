@@ -8,13 +8,13 @@ sections:
     backgroundMedia:
       image: ../images/nighthawk/nighthawk-00001.png
     stats:
-      - percentage: 75
+      - percentage: 70
         text: '41’'
         label: Length
-      - percentage: 75
+      - percentage: 70
         text: '11’'
         label: Beam
-      - percentage: 75
+      - percentage: 70
         text: 1,800hp
         label: Max Horsepower
 
