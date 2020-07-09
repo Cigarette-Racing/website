@@ -7,6 +7,7 @@ import Select, { components } from 'react-select'
 import { Radio } from '../../atoms/radio'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { OptionsCta } from '../../atoms/options-cta'
+import { TextInput } from '../../atoms/text-input'
 import { AngleIcon } from '../../svgs/icons'
 import { ArrowIcon } from '../../svgs/icons'
 import { CloseIcon } from '../../svgs/icons'
@@ -142,33 +143,24 @@ export const StepOne = ({ next, steps, step, children }: any) => {
       </div>
       <FormSectionHeader>Basic info</FormSectionHeader>
       <FieldSet>
-        <Field
-          component={TextField}
-          required={true}
-          validate={requiredText}
+        <TextInput
           name="firstName"
           placeholder="First Name"
+          type="text"
+          required
         />
-        <Field
-          component={TextField}
-          required={true}
-          validate={requiredText}
+        <TextInput
           name="lastName"
-          placeholder="Last Name"
+          placeholder="last Name"
+          type="text"
+          required
         />
-        <Field
-          component={TextField}
-          required={true}
-          validate={requiredPhone}
-          name="phone"
-          placeholder="Phone Number"
-        />
-        <Field
-          component={TextField}
-          required={true}
-          validate={requiredEmail}
+        <TextInput name="phone" placeholder="Phone" type="phone" required />
+        <TextInput
           name="emailAddress"
+          type="email"
           placeholder="Email Address"
+          required
         />
       </FieldSet>
       {children}
