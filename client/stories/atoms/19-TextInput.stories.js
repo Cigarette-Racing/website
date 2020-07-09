@@ -11,19 +11,37 @@ export default {
 
 export const Sandbox = () => {
   return (
-    <Form
-      onSubmit={() => {
-        console.log('submitted')
-      }}
-    >
-      {(props) => (
-        <form onSubmit={props.handleSubmit}>
-          <TextInput
-            name="firstName"
-            className="w-full bg-transparent text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 hover:border-opacity-100 outline-none py-4"
-          />
-        </form>
-      )}
-    </Form>
+    <div className="w-full max-w-2xl">
+      <Form
+        onSubmit={() => {
+          console.log('submitted')
+        }}
+      >
+        {(props) => (
+          <form onSubmit={props.handleSubmit}>
+            <div className="space-y-2">
+              <TextInput
+                name="firstName"
+                placeholder="First Name"
+                type="text"
+                required
+              />
+              <TextInput
+                name="email"
+                placeholder="Email"
+                type="email"
+                required
+              />
+              <TextInput
+                name="phone"
+                placeholder="Phone"
+                type="text"
+                required
+              />
+            </div>
+          </form>
+        )}
+      </Form>
+    </div>
   )
 }
