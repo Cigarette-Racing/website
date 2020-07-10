@@ -230,3 +230,9 @@ sections:
         content:
           header: Title of bespoke option
           copy: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...
+
+  - type: order
+    title: Order Today
+    shortTitle: Order
+    media:
+      image: ../images/article1.jpeg
