@@ -208,3 +208,9 @@ sections:
       - image: ../images/homepage-header.jpeg
       - image: ../images/auroris/auroris-00001.png
       - image: ../images/homepage-header.jpeg
+
+  - type: order
+    title: Order Today
+    shortTitle: Order
+    media:
+      image: ../images/auroris/auroris-00026.png
