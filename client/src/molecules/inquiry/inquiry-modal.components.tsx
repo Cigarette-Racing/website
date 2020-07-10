@@ -7,55 +7,23 @@ import Select, { components } from 'react-select'
 import { Radio } from '../../atoms/radio'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { OptionsCta } from '../../atoms/options-cta'
-import { TextInput } from '../../atoms/text-input'
+import {
+  TextInput,
+  requiredText,
+  requiredEmail,
+  requiredPhone,
+} from '../../atoms/text-input'
 import { AngleIcon } from '../../svgs/icons'
 import { ArrowIcon } from '../../svgs/icons'
 import { CloseIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
 import { MultiValueRemove } from 'react-select/src/components/MultiValue'
 
-export const FieldSet = ({ children }: any) => (
+export const FieldSetContainer = ({ children }: any) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
 )
 
-export const TextField = ({ required, meta, input, placeholder }: any) => {
-  return (
-    <div className="relative pt-8">
-      {meta.invalid && meta.touched && (
-        <div className="absolute top-0 pl-4 left-0">
-          <Typography variant="p3">Enter required info to continue</Typography>
-        </div>
-      )}
-      <div className="flex justify-center">
-        {required && <div className="text-red mr-2">*</div>}
-        {console.log(meta)}
-        <input
-          {...input}
-          placeholder={placeholder}
-          className={clsx(
-            'font-body w-full bg-transparent text-white border-b border-white border-solid border-opacity-25 focus:border-opacity-100 hover:border-opacity-100 transition-border-opacity duration-200 ease-in-out outline-none pb-5',
-            { 'placeholder-red': meta.invalid && meta.touched },
-            { 'placeholder-white': !meta.invalid || !meta.touched }
-          )}
-          autoComplete="off"
-        />
-      </div>
-    </div>
-  )
-}
-
-export const ScreenHeader = ({ children }: any) => {
-  return (
-    <Typography
-      className="text-white uppercase text-center mb-16 mt-20 font-bold"
-      variant="p3"
-    >
-      {children}
-    </Typography>
-  )
-}
-
-export const FormSectionHeader = ({ children, className }: any) => {
+export const FieldSetHeader = ({ children, className }: any) => {
   return (
     <div className={clsx('flex items-center mb-2 px-1', className)}>
       <AngleIcon className="text-white" style={{ fontSize: '40px' }} />
@@ -122,49 +90,54 @@ export const LandingStep = ({ next }: any) => {
   )
 }
 
-const requiredText = (value: any) => (value ? undefined : 'Required')
-const requiredEmail = (value: any) =>
-  value && value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
-    ? undefined
-    : 'Required'
-const requiredPhone = (value: any) =>
-  value &&
-  value.match(
-    /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
-  )
-    ? undefined
-    : 'Required'
-
-export const StepOne = ({ next, steps, step, children }: any) => {
+export const StepOne = ({ children }: any) => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
         request and appointment
       </div>
-      <FormSectionHeader>Basic info</FormSectionHeader>
-      <FieldSet>
+      <FieldSetHeader>Basic info</FieldSetHeader>
+      <FieldSetContainer>
         <TextInput
           name="firstName"
           placeholder="First Name"
           type="text"
+          validation={requiredText}
           required
         />
         <TextInput
           name="lastName"
           placeholder="last Name"
           type="text"
+          validation={requiredText}
           required
         />
-        <TextInput name="phone" placeholder="Phone" type="phone" required />
+        <TextInput
+          name="phone"
+          placeholder="Phone"
+          type="phone"
+          validation={requiredPhone}
+          required
+        />
         <TextInput
           name="emailAddress"
           type="email"
           placeholder="Email Address"
+          validation={requiredEmail}
           required
         />
-      </FieldSet>
+      </FieldSetContainer>
       {children}
     </div>
+  )
+}
+const Placeholder = (props: any) => {
+  return (
+    <components.Placeholder {...props}>
+      <Typography className=" pt-4" variant="p3">
+        {props.children}
+      </Typography>
+    </components.Placeholder>
   )
 }
 
@@ -174,20 +147,25 @@ export const StepTwo = ({ next, steps, step }: any) => {
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
         request and appointment
       </div>
-      <FormSectionHeader>Model Interest</FormSectionHeader>
-      <FieldSet>
+      <FieldSetHeader>Model Interest</FieldSetHeader>
+      <FieldSetContainer>
         <Field
           name="modelInterest"
           render={(props) => (
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center pt-3">
               <div className="text-red mr-2">*</div>
               <Select
                 className="w-full"
                 isMulti
+                placeholder={'Select which boats are you interested in?'}
                 components={{
+                  Placeholder,
+                  // Placeholder: (props) => (
+                  //   <components.Placeholder {...props}></components.Placeholder>
+                  // ),
                   MultiValueContainer: (props) => (
                     <components.MultiValueContainer {...props}>
-                      <div className="bg-black rounded-full py-2 px-4 flex items-center mr-2 mb-2">
+                      <div className="bg-black rounded-full py-1 px-4 flex items-center mr-2 mb-2">
                         {props.children}
                       </div>
                     </components.MultiValueContainer>
@@ -220,13 +198,10 @@ export const StepTwo = ({ next, steps, step }: any) => {
                   },
                   { value: 'model 3', label: 'Model 3' },
                 ]}
-                defaultValue={{
-                  value: 'Ready to purchase',
-                  label: 'Ready to purchase',
-                }}
                 styles={{
                   placeholder: (base) => ({
                     ...base,
+                    paddingBottom: '20px',
                     color: '#fff',
                   }),
                   control: (base) => ({
@@ -236,6 +211,7 @@ export const StepTwo = ({ next, steps, step }: any) => {
                     borderBottom: '1px solid #fff',
                     borderRadius: 0,
                     cursor: 'pointer',
+                    minHeight: '54px',
                   }),
                   clearIndicator: () => ({
                     display: 'none',
@@ -276,16 +252,16 @@ export const StepTwo = ({ next, steps, step }: any) => {
             </div>
           )}
         />
-      </FieldSet>
-      <FormSectionHeader className="mb-10">Leave a note</FormSectionHeader>
-      <FieldSet>
+      </FieldSetContainer>
+      <FieldSetHeader className="mb-10 mt-10">Leave a note</FieldSetHeader>
+      <div className="px-4 lg:pl-5">
         <Field
           className="w-full bg-gray-0 text-white p-8 font-body placeholder-white h-48"
           placeholder="Leave a message for our team..."
           name="notes"
           component="textarea"
         />
-      </FieldSet>
+      </div>
       <ContinueButton next={next} />
       <div className="text-white self-center mt-6 font-heading italic">
         <span className="mr-2">{`${steps.indexOf(step)}`}</span>
@@ -302,8 +278,8 @@ export const StepThree = ({ steps, step, submit }: any) => {
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
         request and appointment
       </div>
-      <FormSectionHeader>Contact preference</FormSectionHeader>
-      <div className="space-y-2 px-4 mb-12 lg:pl-5">
+      <FieldSetHeader>Contact preference</FieldSetHeader>
+      <div className="space-y-3 px-4 mb-12 lg:pl-5 mt-4">
         <Field
           name="contactPreferences"
           value="phone"
@@ -329,13 +305,17 @@ export const StepThree = ({ steps, step, submit }: any) => {
           }}
         />
       </div>
-      <FormSectionHeader>Level of interest</FormSectionHeader>
-      <FieldSet>
+
+      <div className="mb-1">
+        <FieldSetHeader>Level of interest</FieldSetHeader>
+      </div>
+
+      <FieldSetContainer>
         <Field
           name="interest"
           render={(props) => (
             <div className="flex items-center justify-center">
-              <div className="text-red mr-2">*</div>
+              <div className="text-red mr-2 pt-2">*</div>
               <Select
                 className="w-full"
                 options={[
@@ -399,9 +379,9 @@ export const StepThree = ({ steps, step, submit }: any) => {
             </div>
           )}
         />
-      </FieldSet>
+      </FieldSetContainer>
       <div className="mt-12">
-        <FieldSet>
+        <FieldSetContainer>
           <Field
             name="marketingOptIn"
             value="text"
@@ -421,7 +401,7 @@ export const StepThree = ({ steps, step, submit }: any) => {
               )
             }}
           />
-        </FieldSet>
+        </FieldSetContainer>
       </div>
       <InPageCta
         className="self-center mt-16 lg:mt-20"

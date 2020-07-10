@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import clsx from 'clsx'
 
 export interface FullBleedBackgroundProps {
-  image: string
+  image?: string
   variant?: 'grayscale'
 }
 

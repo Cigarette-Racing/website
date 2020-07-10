@@ -9,27 +9,23 @@ export interface TextInputProps
   name: string
   placeholder: string
   required: boolean
-  validation?: any
+  validation?: (value: any) => undefined | 'Required'
 }
 
-const requiredText = (value: any) => (value ? undefined : 'Required')
-const requiredEmail = (value: any) =>
+export const requiredText = (value: any) => (value ? undefined : 'Required')
+
+export const requiredEmail = (value: any) =>
   value && value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
     ? undefined
     : 'Required'
-const requiredPhone = (value: any) =>
+
+export const requiredPhone = (value: any) =>
   value &&
   value.match(
     /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/
   )
     ? undefined
     : 'Required'
-
-const getValidation = (value: any) => {
-  if (value === 'email') return requiredEmail(value)
-  if (value === 'phone') return requiredPhone(value)
-  return requiredText(value)
-}
 
 export const TextInput = ({
   name,
@@ -45,7 +41,7 @@ export const TextInput = ({
   return (
     <Field
       name={name}
-      validate={getValidation}
+      validate={validation}
       render={({ input, meta }) => {
         return (
           <div className="relative">
