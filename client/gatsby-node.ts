@@ -78,13 +78,12 @@ export const createSchemaCustomization = ({
     embedUrl: String
     ratio: String
   `
-  const typeDefs = `
-    type BoatsYamlSectionsBlocksItemsMedia {
-      ${Media}
-    }
-    type BoatsYamlSectionsBlocksImages {
-      ${Media}
-    }
-  `
+  const typeDefs = [
+    'BoatsYamlSectionsBlocksItemsMedia',
+    'BoatsYamlSectionsBlocksImages',
+    'BoatsYamlSectionsBlocksMedia',
+  ]
+    .map((type) => `type ${type} { ${Media} }`)
+    .join('\n')
   createTypes(typeDefs)
 }
