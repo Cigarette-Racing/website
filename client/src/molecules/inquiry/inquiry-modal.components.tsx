@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, useForm } from 'react-final-form'
+import { Field, useFormState } from 'react-final-form'
 import clsx from 'clsx'
 import { Link } from 'gatsby'
 import Select, { components } from 'react-select'
@@ -13,11 +13,14 @@ import {
   requiredEmail,
   requiredPhone,
 } from '../../atoms/text-input'
+import { useInquiryModalState } from './inquiry-modal'
 import { AngleIcon } from '../../svgs/icons'
 import { ArrowIcon } from '../../svgs/icons'
 import { CloseIcon } from '../../svgs/icons'
+import { CheckIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
 import { MultiValueRemove } from 'react-select/src/components/MultiValue'
+import { log } from 'util'
 
 export const FieldSetContainer = ({ children }: any) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
@@ -134,7 +137,7 @@ export const StepOne = ({ children }: any) => {
 const Placeholder = (props: any) => {
   return (
     <components.Placeholder {...props}>
-      <Typography className=" pt-4" variant="p3">
+      <Typography className="pb- pt-4" variant="p3">
         {props.children}
       </Typography>
     </components.Placeholder>
@@ -273,150 +276,190 @@ export const StepTwo = ({ next, steps, step }: any) => {
 }
 
 export const StepThree = ({ steps, step, submit }: any) => {
-  return (
-    <div className="flex flex-col justify-center">
-      <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
-        request and appointment
-      </div>
-      <FieldSetHeader>Contact preference</FieldSetHeader>
-      <div className="space-y-3 px-4 mb-12 lg:pl-5 mt-4">
-        <Field
-          name="contactPreferences"
-          value="phone"
-          type="radio"
-          render={({ input }) => {
-            return <Radio {...input}>Phone Call</Radio>
-          }}
-        />
-        <Field
-          name="contactPreferences"
-          value="email"
-          type="radio"
-          render={({ input }) => {
-            return <Radio {...input}>Email</Radio>
-          }}
-        />
-        <Field
-          name="contactPreferences"
-          value="text"
-          type="radio"
-          render={({ input }) => {
-            return <Radio {...input}>SMS Text Message</Radio>
-          }}
-        />
-      </div>
+  const [, setInquiryModalState] = useInquiryModalState()
 
-      <div className="mb-1">
-        <FieldSetHeader>Level of interest</FieldSetHeader>
-      </div>
+  const { submitSucceeded } = useFormState({
+    subscription: {
+      submitSucceeded: true,
+    },
+  })
 
-      <FieldSetContainer>
-        <Field
-          name="interest"
-          render={(props) => (
-            <div className="flex items-center justify-center">
-              <div className="text-red mr-2 pt-2">*</div>
-              <Select
-                className="w-full"
-                options={[
-                  {
-                    value: 'ready to purchase',
-                    label: 'ready to purchase',
-                  },
-                  {
-                    value: 'something else',
-                    label: 'something else',
-                  },
-                  { value: "I don't know", label: "I don't know" },
-                ]}
-                defaultValue={{
-                  value: 'Ready to purchase',
-                  label: 'Ready to purchase',
-                }}
-                styles={{
-                  placeholder: (base) => ({
-                    ...base,
-                    color: '#fff',
-                  }),
-                  control: (base) => ({
-                    ...base,
-                    background: 'transparent',
-                    border: 'none',
-                    borderBottom: '1px solid #fff',
-                    borderRadius: 0,
-                  }),
-                  clearIndicator: () => ({
-                    display: 'none',
-                  }),
-                  indicatorSeparator: () => ({
-                    display: 'none',
-                  }),
-                  valueContainer: (base) => ({
-                    ...base,
-                    padding: '10px 0',
-                    color: '#fff',
-                  }),
-                  singleValue: (base) => ({
-                    ...base,
-                    color: '#fff',
-                  }),
-                  menu: (base) => ({
-                    ...base,
-                    background: '#242424',
-                  }),
-                  option: (base, state) => ({
-                    ...base,
-                    background: 'transparent',
-                    color: '#fff',
-                    '&:hover': {
-                      color: '#000',
-                      background: 'red',
-                    },
-                  }),
-                }}
-                {...props.input}
-              />
-            </div>
-          )}
-        />
-      </FieldSetContainer>
-      <div className="mt-12">
-        <FieldSetContainer>
+  if (!submitSucceeded) {
+    return (
+      <div className="flex flex-col justify-center">
+        <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
+          request and appointment
+        </div>
+        <FieldSetHeader>Contact preference</FieldSetHeader>
+        <div className="space-y-3 px-4 mb-12 lg:pl-5 mt-4">
           <Field
-            name="marketingOptIn"
-            value="text"
-            type="checkbox"
-            render={({ input, meta }) => {
-              return (
-                <Radio {...input} alignment="start" name="marketingOptIn">
-                  <Typography variant="p3">
-                    I would like to receive marketing communications on
-                    products, services and events offered by Cigarette Racing
-                    Team. I understand these communications may be personalised
-                    to me based on my interests, preferences and use of products
-                    and services, including invitations to provide customer
-                    experience feedback.
-                  </Typography>
-                </Radio>
-              )
+            name="contactPreferences"
+            value="phone"
+            type="radio"
+            render={({ input }) => {
+              return <Radio {...input}>Phone Call</Radio>
             }}
           />
+          <Field
+            name="contactPreferences"
+            value="email"
+            type="radio"
+            render={({ input }) => {
+              return <Radio {...input}>Email</Radio>
+            }}
+          />
+          <Field
+            name="contactPreferences"
+            value="text"
+            type="radio"
+            render={({ input }) => {
+              return <Radio {...input}>SMS Text Message</Radio>
+            }}
+          />
+        </div>
+
+        <div className="mb-1">
+          <FieldSetHeader>Level of interest</FieldSetHeader>
+        </div>
+
+        <FieldSetContainer>
+          <Field
+            name="interest"
+            render={(props) => (
+              <div className="flex items-center justify-center">
+                <div className="text-red mr-2 pt-2">*</div>
+                <Select
+                  className="w-full"
+                  options={[
+                    {
+                      value: 'ready to purchase',
+                      label: 'ready to purchase',
+                    },
+                    {
+                      value: 'something else',
+                      label: 'something else',
+                    },
+                    { value: "I don't know", label: "I don't know" },
+                  ]}
+                  defaultValue={{
+                    value: 'Ready to purchase',
+                    label: 'Ready to purchase',
+                  }}
+                  styles={{
+                    placeholder: (base) => ({
+                      ...base,
+                      color: '#fff',
+                    }),
+                    control: (base) => ({
+                      ...base,
+                      background: 'transparent',
+                      border: 'none',
+                      borderBottom: '1px solid #fff',
+                      borderRadius: 0,
+                    }),
+                    clearIndicator: () => ({
+                      display: 'none',
+                    }),
+                    indicatorSeparator: () => ({
+                      display: 'none',
+                    }),
+                    valueContainer: (base) => ({
+                      ...base,
+                      padding: '10px 0',
+                      color: '#fff',
+                    }),
+                    singleValue: (base) => ({
+                      ...base,
+                      color: '#fff',
+                    }),
+                    menu: (base) => ({
+                      ...base,
+                      background: '#242424',
+                    }),
+                    option: (base, state) => ({
+                      ...base,
+                      background: 'transparent',
+                      color: '#fff',
+                      '&:hover': {
+                        color: '#000',
+                        background: 'red',
+                      },
+                    }),
+                  }}
+                  {...props.input}
+                />
+              </div>
+            )}
+          />
         </FieldSetContainer>
+        <div className="mt-12">
+          <FieldSetContainer>
+            <Field
+              name="marketingOptIn"
+              value="text"
+              type="checkbox"
+              render={({ input, meta }) => {
+                return (
+                  <Radio {...input} alignment="start" name="marketingOptIn">
+                    <Typography variant="p3">
+                      I would like to receive marketing communications on
+                      products, services and events offered by Cigarette Racing
+                      Team. I understand these communications may be
+                      personalised to me based on my interests, preferences and
+                      use of products and services, including invitations to
+                      provide customer experience feedback.
+                    </Typography>
+                  </Radio>
+                )
+              }}
+            />
+          </FieldSetContainer>
+        </div>
+        <InPageCta
+          className="self-center mt-16 lg:mt-20"
+          variant="primary"
+          onClick={() => {
+            submit()
+          }}
+        >
+          Submit request
+        </InPageCta>
+        <div className="text-white self-center mt-6 font-heading italic">
+          <span className="mr-2">{`${steps.indexOf(step)}`}</span>
+          <span className="mr-2">of</span>
+          <span>3</span>
+        </div>
       </div>
-      <InPageCta
-        className="self-center mt-16 lg:mt-20"
-        variant="primary"
-        onClick={() => {
-          submit()
+    )
+  } else {
+    return (
+      <div
+        className="flex items-center justify-center flex-col"
+        style={{
+          height: 'calc(100vh - 100px)',
         }}
       >
-        Submit request
-      </InPageCta>
-      <div className="text-white self-center mt-6 font-heading italic">
-        <span className="mr-2">{`${steps.indexOf(step)}`}</span>
-        <span className="mr-2">of</span>
-        <span>3</span>
+        <div className="flex items-center bg-black bg-opacity-50 h-10 px-4 rounded-full mb-8">
+          <CheckIcon className="mr-4" />
+          <Typography variant="e2">request received</Typography>
+        </div>
+        <Typography className="mb-12" variant="h3" md="h2">
+          Thank you for your interest
+        </Typography>
+        <Typography variant="p2" className="max-w-xs text-center mb-10">
+          One of our team members will be in touch with your shortly.
+        </Typography>
+        <InPageCta
+          className={clsx('self-center')}
+          variant="primary"
+          onClick={() => {
+            setInquiryModalState(false)
+            console.log('close the modal')
+          }}
+        >
+          Continue exploring
+        </InPageCta>
       </div>
-    </div>
-  )
+    )
+  }
 }
