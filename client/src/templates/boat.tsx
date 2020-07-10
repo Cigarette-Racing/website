@@ -19,6 +19,7 @@ import {
   // CustomizationsSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
+  OneColumnImageTextBlockComponent,
 } from '../boat.components'
 import {
   Stat,
@@ -36,6 +37,7 @@ import {
   isThreeColumnImagesBlock,
   isSliderBlock,
   isFullWidthCarouselBlock,
+  isOneColumnImageTextBlock,
 } from '../types/boat'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
@@ -123,6 +125,9 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     align={block.align ?? undefined}
                   />
                 )
+              }
+              if (isOneColumnImageTextBlock(block)) {
+                return <OneColumnImageTextBlockComponent {...block} />
               }
               if (isCarouselBlock(block)) {
                 return <Carousel key={index} {...block} />
@@ -560,6 +565,19 @@ export const query = graphql`
                 }
               }
             }
+          }
+          media {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2400) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          content {
+            header
+            copy
           }
         }
       }
