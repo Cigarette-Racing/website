@@ -203,3 +203,9 @@ sections:
       - image: ../images/homepage-header.jpeg
       - image: ../images/nighthawk/nighthawk-00001.png
       - image: ../images/homepage-header.jpeg
+
+  - type: order
+    title: Order Today
+    shortTitle: Order
+    media:
+      image: ../images/nighthawk/nighthawk-00023.png

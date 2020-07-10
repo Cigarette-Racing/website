@@ -115,6 +115,19 @@ export function findCustomizationsSection(sections: readonly any[]) {
   return sections.find(isCustomizationsSection) as CustomizationsSection
 }
 
+export type OrderSection = {
+  type: 'order'
+  media: Media
+} & CommonSectionProps
+
+function isOrderSection(section: any): section is OrderSection {
+  return section.type === 'order'
+}
+
+export function findOrderSection(sections: readonly any[]) {
+  return sections.find(isOrderSection) as OrderSection
+}
+
 type FlexibleSection = {
   type: 'flexible'
   theme: Theme
@@ -138,6 +151,7 @@ type Section =
   | GallerySection
   | SpecsSection
   | CustomizationsSection
+  | OrderSection
   | FlexibleSection
 
 // ===================================

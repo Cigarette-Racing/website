@@ -21,13 +21,13 @@ import {
   TwoColumnImageTextBlock,
   OneColumnTextBlock,
   OneColumnImageTextBlock,
+  OrderSection,
 } from './types/boat'
 import { Tab } from './atoms/tab'
 import { LinkCta } from './atoms/link-cta'
 
 // images
 import discoverBackground from '../content/images/discover-section-bg.jpeg'
-import orderBackground from '../content/images/article1.jpeg'
 import customizationsBackground from '../content/images/customization-section-bg.jpeg'
 
 export const BoatHeader = ({
@@ -561,17 +561,15 @@ export const GalleryImage = ({
   )
 }
 
-export const OrderSection = ({
+export const OrderSectionComponent = ({
   boatNameLong,
-  sectionTitle,
-}: {
-  boatNameLong: string
-  sectionTitle: string
-}) => (
+  title,
+  media,
+}: OrderSection & { boatNameLong: string }) => (
   <BoatSection className="pb-48 sm:py-48">
-    <InPageAnchor title={sectionTitle} />
+    <InPageAnchor title={title} />
     <img
-      src={orderBackground}
+      src={media.image.childImageSharp?.fluid?.src!}
       className="absolute h-full w-full top-0 object-cover"
     />
     <div className="absolute inset-0 bg-black bg-opacity-25"></div>
