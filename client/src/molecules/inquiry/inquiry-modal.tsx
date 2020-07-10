@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react'
 import { createGlobalState, useLockBodyScroll } from 'react-use'
 import ReactModal from 'react-modal'
 import { Wizard, WithWizard, Steps, Step } from 'react-albus'
-import { Form, Field } from 'react-final-form'
+import { Form, FormSpy } from 'react-final-form'
 import Select from 'react-select'
 import { Link } from 'gatsby'
 
@@ -25,6 +25,7 @@ import {
   ContinueButton,
   PageStatus,
 } from './inquiry-modal.components'
+import { log } from 'util'
 
 const modalStyles = {
   overlay: {
@@ -72,8 +73,6 @@ const InquiryModal: React.FC = () => {
               <div className="w-full max-w-2xl">
                 <Form
                   onSubmit={(values) => {
-                    console.log(values)
-
                     const submissionValues = {
                       firstName: values.firstName,
                       lastName: values.lastName,
