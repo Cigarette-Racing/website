@@ -20,6 +20,7 @@ import {
   TextBlock,
   TwoColumnImageTextBlock,
   OneColumnTextBlock,
+  OneColumnImageTextBlock,
 } from './types/boat'
 import { Tab } from './atoms/tab'
 import { LinkCta } from './atoms/link-cta'
@@ -608,6 +609,23 @@ export const OneColumnTextBlockComponent = ({
       header={header}
       copy={copy}
     />
+  </div>
+)
+
+export const OneColumnImageTextBlockComponent = ({
+  content,
+  media,
+}: OneColumnImageTextBlock) => (
+  <div className="max-w-5xl mx-auto">
+    <AspectRatio ratio="3:2" className="overflow-hidden">
+      <img
+        src={media.image.childImageSharp?.fluid?.src!}
+        className="absolute h-full w-full object-cover"
+      />
+    </AspectRatio>
+    <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
+      <TextBlockComponent className="md:w-7/12" {...content} />
+    </div>
   </div>
 )
 
