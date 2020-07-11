@@ -1,4 +1,5 @@
 import React from 'react'
+import { Form, Field } from 'react-final-form'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
@@ -16,6 +17,33 @@ import { PlusIcon, ArrowIcon, PlayIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
+
+const encode = (data: any) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
+
+const stayConnectedOnSubmit = (values: any) => {
+  const submissionValues = {
+    emailAddress: values.emailAddress,
+  }
+
+  console.log('submitted')
+
+  fetch('/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: encode({
+      'form-name': 'stay-connected',
+      ...submissionValues,
+    }),
+  }).then((params) => {
+    console.log('subccess')
+  })
+}
 
 const IndexPage = () => (
   <Layout>
@@ -246,16 +274,36 @@ const IndexPage = () => (
         </div>
         <div className="relative px-4 max-w-md">
           <div className="flex border-b border-gray-3 mb-10 h-10 items-center">
-            <form name="stay-connected" method="POST" data-netlify="true">
-              <input
-                type="text"
-                className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
-                placeholder="Enter Email Address"
-              />
-            </form>
-            <button type="submit">
-              <PlusIcon className="w-4 h-4" />
-            </button>
+            <Form
+              onSubmit={stayConnectedOnSubmit}
+              render={({ handleSubmit }) => (
+                <form
+                  name="stay-connected"
+                  method="POST"
+                  data-netlify="true"
+                  onSubmit={handleSubmit}
+                  className="flex items-center justify-between w-full"
+                >
+                  <Field
+                    name="stay-connected"
+                    render={({ input }) => {
+                      return (
+                        <input
+                          {...input}
+                          type="text"
+                          className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
+                          placeholder="Enter Email Address"
+                        />
+                      )
+                    }}
+                  />
+
+                  <button type="submit">
+                    <PlusIcon className="w-4 h-4" />
+                  </button>
+                </form>
+              )}
+            />
           </div>
           <Typography variant="p2">
             Want to join our exclusive community and be the first to get the
