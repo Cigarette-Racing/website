@@ -267,9 +267,7 @@ export const StepTwo = ({ next, steps, step, children }: any) => {
   )
 }
 
-export const StepThree = ({ steps, step, submit }: any) => {
-  const [, setInquiryModalState] = useInquiryModalState()
-
+export const StepThree = ({ submit }: any) => {
   const { submitSucceeded } = useFormState({
     subscription: {
       submitSucceeded: true,
@@ -419,33 +417,39 @@ export const StepThree = ({ steps, step, submit }: any) => {
       </div>
     )
   } else {
-    return (
-      <div
-        className="flex items-center justify-center flex-col"
-        style={{
-          height: 'calc(100vh - 100px)',
+    return <FormSuccessMessage />
+  }
+}
+
+export const FormSuccessMessage = () => {
+  const [, setInquiryModalState] = useInquiryModalState()
+
+  return (
+    <div
+      className="flex items-center justify-center flex-col"
+      style={{
+        height: 'calc(100vh - 100px)',
+      }}
+    >
+      <div className="flex items-center bg-black bg-opacity-50 h-10 px-4 rounded-full mb-8">
+        <CheckIcon className="mr-4" />
+        <Typography variant="e2">request received</Typography>
+      </div>
+      <Typography className="mb-12" variant="h3" md="h2">
+        Thank you for your interest
+      </Typography>
+      <Typography variant="p2" className="max-w-xs text-center mb-10">
+        One of our team members will be in touch with your shortly.
+      </Typography>
+      <InPageCta
+        className={clsx('self-center')}
+        variant="primary"
+        onClick={() => {
+          setInquiryModalState(false)
         }}
       >
-        <div className="flex items-center bg-black bg-opacity-50 h-10 px-4 rounded-full mb-8">
-          <CheckIcon className="mr-4" />
-          <Typography variant="e2">request received</Typography>
-        </div>
-        <Typography className="mb-12" variant="h3" md="h2">
-          Thank you for your interest
-        </Typography>
-        <Typography variant="p2" className="max-w-xs text-center mb-10">
-          One of our team members will be in touch with your shortly.
-        </Typography>
-        <InPageCta
-          className={clsx('self-center')}
-          variant="primary"
-          onClick={() => {
-            setInquiryModalState(false)
-          }}
-        >
-          Continue exploring
-        </InPageCta>
-      </div>
-    )
-  }
+        Continue exploring
+      </InPageCta>
+    </div>
+  )
 }
