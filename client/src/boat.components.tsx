@@ -429,7 +429,7 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
     <div className="py-8 border-t border-gray-5">
       <div
         className={clsx('mb-2 flex', {
-          'cursor-pointer focus:outline-none': isClickable,
+          'cursor-pointer focus:outline-none select-none': isClickable,
         })}
         tabIndex={isClickable ? 0 : undefined}
         onClick={isClickable ? () => toggleIsOpen() : NOOP}
