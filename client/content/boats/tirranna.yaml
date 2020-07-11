@@ -160,36 +160,207 @@ sections:
     categories:
       - name: Deck
         specs:
-          - header: Bow, Gunwale & Hull Sides
-            copy: Lined anchor locker with delta anchor and electric windlass...
-          - header: Bow, Gunwale & Hull Sides
-            copy: Lined anchor locker with delta anchor and electric windlass...
-          - header: Bow, Gunwale & Hull Sides
-            copy: Lined anchor locker with delta anchor and electric windlass...
-          - header: Bow, Gunwale & Hull Sides
-            copy: Lined anchor locker with delta anchor and electric windlass...
-          - header: Bow, Gunwale & Hull Sides
-            copy: Lined anchor locker with delta anchor and electric windlass...
-          - header: Bow, Gunwale & Hull Sides
-            copy: Lined anchor locker with delta anchor and electric windlass...
-          - header: Bow, Gunwale & Hull Sides
-            copy: Lined anchor locker with delta anchor and electric windlass...
+          - name: Bow, Gunwale & Hull Sides
+            descriptions:
+              - Lined anchor locker with delta anchor and electric windlass
+              - Wide profile rub rail with stainless chafe profile
+              - 2”x1” rounded rectangle stainless steel continuous grab rail runs the length of the boat
+              - Three signature windows on each hull side offers a sea-view from within cabin interior
+              - Large, inboard swinging, single-piece, dive door on starboard side with hidden fold-out diving ladder and handrail
+              - 10 stainless steel cleats
+          - name: Bow Area
+            descriptions:
+              - Dual c-shaped convertible sofas seat 4-5 people each
+              - Dual, aft facing, benches sitting two each
+              - Pyramid shaped multi-functional backrests allows forward sofas to be used as lounge seats, with plush headrest for extra comfort
+              - Two fixed tables
+              - Upholstered bow step for additional informal seating and extra comfort
+              - 4 stainless steel cupholders around C-shaped sofas
+              - Weathertight storage boxes underneath each seat
+              - Cooler box underneath port aft facing bench
+              - Trash box underneath starboard aft facing bench
+          - name: Forward Lounge Area
+            descriptions:
+              - Pillow headrest for extra comfort
+              - 5.5’ wide lounge seat at front of center console comfortably seats three and features a centered foldable armrest and 6 stainless steel cupholders
+          - name: Hardtop
+            descriptions:
+              - Unique, fully composite, four-pillar, hardtop design
+              - 8’ wide (largest in class), double curvature, frameless windscreen with clear tempered safety glass
+              - Windscreen features a windshield wiper
+              - Openable glass air vents for routing fresh air to cockpit
+              - Unique C-shaped sky-light glazings for extra light in cockpit area
+              - Additional instrumentation and switching located above helm on the hard top
+              - Integrated Rigid Industries floodlights
+              - Aft spoiler with signature Cigarette rise
+              - Custom grab rails on each side for enhanced accessibility from the dock.
+              - 9” Garmin MFD provides an additional control screen above the helm and allows for passengers in the second row to enjoy navigation data.
+          - name: Helmstation
+            descriptions:
+              - Instrument panel in Fenix, an anti-reflective, nano-coated surface, with titanium fasteners.
+              - Wind doors on each side for added wind protection, constructed from ovencured carbon-fiber.
+              - Ergonomically placed components and instrumentation.
+              - Dual Garmin multifunctional displays
+              - Convenience space consisting of four cupholders, phone holders, and a keeper tray holder
+              - Wrap-around stainless grab-rail
+              - Starboard-side electric sliding cabin door
+              - Ergonomic footrest and fold-down raised platform
+              - Large access hatch for maintenance
+          - name: Central Seating
+            descriptions:
+              - Two row seating arrangement with four seats in front and three in back
+              - Front seats are full size ergonomic chairs with headrests
+              - Driver and co-pilot seats are shifted forward for extra visibility and comfort
+              - Second row seats feature fold up bolsters and ergonomic footrest
+          - name: Helm Seating Area
+            descriptions:
+              - Four seat helm seating with central drivers seat
+              - Seat bottoms may be flipped up to form a bolster for more comfortable stand-up operation
+          - name: Aft Lounge Area
+            descriptions:
+              - Unique lounge arrangement with forward facing oversized L-shaped sofa and aft facing sofa, seating a total of up to 10 people
+              - Forward and aft facing sofas seats electrically slide to become a huge sunpad area
+              - Forward facing sofa has two armrests with integrated cupholders
+              - Two extra cupholders serve the port-side seating
+              - Large electric hatch gives full access to technical room below
+              - Additional machinery room access hatch under L-sofa corner
+              - Storage box under port side seating
+              - '2 large multipurpose cabinets under hardtop pillars, with:'
+              - Corian countertops
+              - Ergonomically designed internal arrangements, complete with fridge, trash, drawers and storage lockers.
+              - Custom-shaped rail across each side functions as both a grab-rail and a keeper.
       - name: Interiors
         specs:
-          - header:
-            copy:
+          - name: Cabin - General
+            descriptions:
+              - 8’ wide center console cabin
+              - Large glass windows on both sides look through hull side windows, showing the sea and sky at eye level
+              - Oversized uv-coated glass skylights
+              - Central, flush, glass hatch for cabin air exchange and extra escape route
+              - Electric sliding access door with entryway protected under windscreen
+              - Wood stairs with integrated lighting
+              - Wide entry corridor with wood storage cabinetry
+              - Large starboard side cabinet with fridge, storage space, within nano-coated surface top machined and Corian sides
+              - Plush, deep, custom designed sofa on port side, large enough to be used as a third berth
+              - Sofa and bed stuffing is in multi layer variable density foam for added comfort, with a super soft top layer
+              - Microwave
+              - Storage space behind sofa backrest
+              - Storage pockets under sofa and bed.
+              - Overhead storage compartments with integrated air conditioning grills and lighting
+              - Head bulkhead and head wooden door fully upholstered
+              - Upholstered wraparound panels throughout the cabin’s internal perimeter
+          - name: Aft Platform Area
+            descriptions:
+              - Full-width, floor hatches with largest in class storage box underneath
+              - Portside daily access hatch to technical room
+              - Starboard-side door to guest aft cockpit
+              - 'Unique feature central 8’ wide multi-purpose cabinet, with:'
+              - Full-width lid with integrated lighting and protection from grill heat, complete with stainless grab rail on top.
+              - Full-width nano-coated countertop with plancha grill and sink.
+              - Three-door storage access with trash bins and drawers inside.
+          - name: Enclosed Head
+            descriptions:
+              - Large bathroom with separated toilet and vanity compartments
+              - Shower door in clear, hard-coated, acrylic
+              - Machined Corian custom sink, with large counter
+              - Storage shelf under sink
+              - Storage cabinet under sink with two doors, large internal volume
+              - Elka sink mixer and faucet, wall mounted on the mirror
+              - Elka wall towel hangers
+              - Custom mirror cabinet, fully cladded with acrylic mirror, with two large storage shelves and all-round diffuse lighting
+              - Ceramic electric toilet bowl
+              - Independent shower mixer and shower head
+              - Hot water heater
+          - name: Berth
+            descriptions:
+              - California King bed with upholstered mattress and side panels
+              - Bedside cubbies in machined Corian and nano-particle coated top surface, with integrated cupholders, switches, and USB charging ports
+              - Extra storage under bed’s mattress
+              - Upholstered sculpted bed ceiling
       - name: Details
         specs:
-          - header:
-            copy:
+          - name: Exterior Lighting
+            descriptions:
+              - Courtesy lighting is achieved by means of 35+ low level white pin lights throughout the boat, divided in two circuits, controlling what’s forward and aft of the helm-station
+              - High power LED down-lights are installed in the hardtop for general and task lighting
+              - The aft summer kitchen benefits from full-width LED strip lighting installed inside the lid
+          - name: Interior Lighting
+            descriptions:
+              - Two lighting circuits control the cabin’s general lighting
+              - Low level courtesy lights and wraparound warm white led strips are lit together
+              - Four down-lights are installed on top of the sofa and bar cabinet and turn on together
+              - All lights have a high (>90) CRI and low glare for maximum visual comfort and perfect rendition of color nuances
+              - All light fixtures are finished in a custom black color
+          - name: Upholstery & Flooring
+            descriptions:
+              - Upholstery is in premium quality vinyl fabrics.
+          - name: Bathroom Lighting
+            descriptions:
+              - Distributed, warm white, high CRI, ceiling spotlights are provided in the bathroom
+              - Additional diffuse lighting is provided through 10’ of high CRI LED strip lighting around the mirror cabinet
       - name: Technical
         specs:
-          - header:
-            copy:
+          - name: Audio
+            descriptions:
+              - 10x 7.7” JL Audio M Series coaxial speakers and 4x 10” JL Audio M Series subwoofers on deck.
+              - 2,400 watts of Class D amplification
+              - Fusion Apollo network headunit
+              - 2x 7.7” JL Audio M Series cabin speakers powered by Apollo headunit
+              - 100A MasterVolt battery charger used in power supply mode to feed the house bank
+          - name: Digital Switching & Automation
+            descriptions:
+              - State-of-the-art CZone digital control and monitoring system
+              - Control of almost every vessel function through several touch screen displays on the boat
+              - Single button “scenes” which activate preset conditions such as day cruising, night cruising, at the dock or entertaining
+              - Lighting, including dimming, can be adjusted across the boat with a single keystroke from one of many MFDs throughout the vessel.
+              - CZone monitoring allows the operator to monitor water and diesel fuel directly and fuel level via the NMEA2000 network
+              - Automatic sequential engine starting with a single button push on the Garmin display
+              - Individual engine trim control through Mercury integration
+              - Manual bypass toggle switches for critical systems
+              - All digital switching output modules feature a two position fuse holder that allows bypass of the output
+              - AC electrical system is powered by a single shore power connection and an onboard generator.
+              - Power source selection, main shore power, and generator circuit breakers conveniently located in the main distribution panel
+              - Individual branch circuit breakers and CZone ACOI circuit control and monitoring boards are located in the forward tech space, out of sight but within easy reach.
+              - All AC power circuits with the exception of battery chargers are controlled and monitored through CZone digital switching system
+              - Circuits can be turned on or off from one or more of the Garmin MFD displays around the boat.
+          - name: Electrical System Design
+            descriptions:
+              - Split DC electrical system designed to protect the start battery pack and provide multiple power feeds for critical systems such as navigation
+              - Standalone engine starting and power steering circuits
+              - Steering pumps are driven from their respected engines and in the case of the two outboard pairs connected by tie bars, both engines drive the single steering pump through a solid state battery combiner. In this way, if either of the pair is running you have the associated steering pump.
+              - Automatic battery switches with manual paralleling
+              - House battery system designed to minimize weight and maximize powering of house loads
+              - 2x Odyssey house batteries with a combined capacity of 428 Amp/hours
+              - Robust Phasor 11kW Generator with 35-gallon diesel fuel tank
+              - Bilge pumps, drain sumps and the wireless remote to CZone are all fed directly from the house battery bank with reset only circuit breakers so that these critical circuits can’t be accidentally turned off.
+              - House bank charging is accomplished by a single 100A dedicated MasterVolt battery charger.
+              - 50Amp shore power
+          - name: Laminate Quality
+            descriptions:
+              - Hull and deck are vacuum infused using highly optimized composites and vinylester resin.
+              - High-performance PVC coring
+              - Carbon-fiber capped stringers and frames
+              - Carbon-fiber reinforced high density transom
+              - Carbon-fiber hard top to reduce the center of gravity for better handling
+              - Two sided, completely finished, hatches throughout
+          - name: Mooring and Docking
+            descriptions:
+              - Lewmar V5 2000W windlass
+              - Lewmar 76-lbs stainless steel delta anchor
+              - Side Power Bow Thruster
+          - name: Mercury Power & Control
+            descriptions:
+              - Quintuple or sextuple Mercury Racing 450Rs or Mercury Racing 400R outboards
+              - Five and six engine packages can be controlled by just two levers.
+              - New VesselView UI is capable of showing all five/six engines on one screen
+          - name: Gyro Stabilization
+            descriptions:
+              - SeaKeeper 9
       - name: Exterior
         specs:
-          - header:
-            copy:
+          - name: Paint
+            descriptions:
+              - Painted hullside with bootstripe included.
 
   - type: gallery
     title: Media Gallery
