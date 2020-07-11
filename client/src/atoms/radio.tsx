@@ -17,10 +17,11 @@ export const Radio = ({
 }: RadioProps) => {
   return (
     <label
-      className={clsx(
-        'flex cursor-pointer',
-        alignment ? `items-${alignment}` : 'items-center'
-      )}
+      className={clsx('flex cursor-pointer', {
+        'items-left': alignment === 'start',
+        'items-center': alignment === 'center',
+        'items-right': alignment === 'end',
+      })}
     >
       <input
         aria-checked={checked}
