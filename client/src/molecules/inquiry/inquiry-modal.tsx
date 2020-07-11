@@ -50,7 +50,7 @@ const encode = (data: any) => {
 
 export const useInquiryModalState = createGlobalState<boolean>(false)
 
-const InquiryModal: React.FC = () => {
+export const InquiryModal: React.FC = () => {
   const [inquiryModalState] = useInquiryModalState()
   useLockBodyScroll(inquiryModalState)
 
@@ -170,8 +170,6 @@ const InquiryModal: React.FC = () => {
     </ReactModal>
   )
 }
-
-export default InquiryModal
 
 export const HiddenInquiryForm = () => (
   <form

@@ -16,7 +16,8 @@ import { PlusIcon, ArrowIcon, PlayIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
-import InquiryModal, {
+import {
+  InquiryModal,
   useInquiryModalState,
   HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
