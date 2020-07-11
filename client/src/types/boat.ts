@@ -69,7 +69,7 @@ export function findDiscoverSection(sections: readonly any[]) {
   return sections.find(isDiscoverSection) as DiscoverSection
 }
 
-type GallerySection = {
+export type GallerySection = {
   type: 'gallery'
   gallery: Media[]
 } & CommonSectionProps
@@ -115,6 +115,19 @@ export function findCustomizationsSection(sections: readonly any[]) {
   return sections.find(isCustomizationsSection) as CustomizationsSection
 }
 
+export type OrderSection = {
+  type: 'order'
+  media: Media
+} & CommonSectionProps
+
+function isOrderSection(section: any): section is OrderSection {
+  return section.type === 'order'
+}
+
+export function findOrderSection(sections: readonly any[]) {
+  return sections.find(isOrderSection) as OrderSection
+}
+
 type FlexibleSection = {
   type: 'flexible'
   theme: Theme
@@ -138,6 +151,7 @@ type Section =
   | GallerySection
   | SpecsSection
   | CustomizationsSection
+  | OrderSection
   | FlexibleSection
 
 // ===================================
@@ -152,6 +166,16 @@ export function isOneColumnTextBlock(
   block: Block
 ): block is OneColumnTextBlock {
   return block.type === 'one-column-text'
+}
+
+export type OneColumnImageTextBlock = {
+  type: 'one-column-image-text'
+} & ImageWithText
+
+export function isOneColumnImageTextBlock(
+  block: Block
+): block is OneColumnImageTextBlock {
+  return block.type === 'one-column-image-text'
 }
 
 export type TwoColumnImageTextBlock = {
@@ -219,6 +243,7 @@ export function isFullWidthCarouselBlock(
 
 type Block =
   | OneColumnTextBlock
+  | OneColumnImageTextBlock
   | TwoColumnImageTextBlock
   | TwoColumnImagesBlock
   | ThreeColumnImagesBlock

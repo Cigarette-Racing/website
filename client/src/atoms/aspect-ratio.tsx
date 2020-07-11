@@ -4,6 +4,7 @@ import clsx from 'clsx'
 export type Ratio =
   | 'none'
   | '1:1'
+  | '2:1'
   | '3:2'
   | '2:3'
   | '4:3'

@@ -20,18 +20,15 @@ import {
   TextBlock,
   TwoColumnImageTextBlock,
   OneColumnTextBlock,
-  CarouselBlock,
-  SliderBlock,
-  FullWidthCarouselBlock,
+  OneColumnImageTextBlock,
+  OrderSection,
 } from './types/boat'
 import { Tab } from './atoms/tab'
 import { LinkCta } from './atoms/link-cta'
-import { ProgressDots } from './atoms/progress-dots'
 
 // images
-import discoverBackground from '../content/images/boat-section2-bg.jpeg'
-import orderBackground from '../content/images/article1.jpeg'
-import customizationsBackground from '../content/images/boat-section6-image5.jpeg'
+import discoverBackground from '../content/images/discover-section-bg.jpeg'
+import customizationsBackground from '../content/images/customization-section-bg.jpeg'
 
 export const BoatHeader = ({
   boatImage,
@@ -67,8 +64,8 @@ export const BoatHeader = ({
         <InPageCta onClick={onClickCta}>Request Info</InPageCta>
       </div>
     </div>
-    <div className="mb-8 md:absolute w-full">
-      <Img fluid={boatImage} alt="" />
+    <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
+      <Img fluid={boatImage} alt="" className="h-full w-full object-cover" />
     </div>
     <div className="hidden bg-black bg-opacity-50 absolute inset-0 md:block"></div>
     <div className="relative z-10">
@@ -197,9 +194,13 @@ export const MobileSectionHeader: React.FC<{ className?: string }> = ({
 export const CarouselButtons = ({
   className,
   theme = 'dark',
+  onClickNext,
+  onClickPrev,
 }: {
   className?: string
   theme?: Theme
+  onClickNext?: React.MouseEventHandler<HTMLButtonElement>
+  onClickPrev?: React.MouseEventHandler<HTMLButtonElement>
 }) => (
   <div className={clsx('flex justify-center space-x-4', className)}>
     <CircleButton
@@ -207,8 +208,14 @@ export const CarouselButtons = ({
       theme={theme}
       variant="secondary"
       iconClassName="transform rotate-180"
+      onClick={onClickPrev}
     />
-    <CircleButton icon={ArrowIcon} theme={theme} variant="secondary" />
+    <CircleButton
+      icon={ArrowIcon}
+      theme={theme}
+      variant="secondary"
+      onClick={onClickNext}
+    />
   </div>
 )
 
@@ -545,7 +552,7 @@ export const GalleryImage = ({
           src={img}
           className="absolute h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
         />
-        <div className="absolute inset-0 bg-black transform duration-200 bg-opacity-25 group-hover:bg-opacity-0 transition duration-150 ease-in-out"></div>
+        <div className="absolute inset-0 bg-black transform bg-opacity-25 group-hover:bg-opacity-0 transition duration-150 ease-in-out"></div>
         <CircleButton
           icon={ExpandIcon}
           size="sm"
@@ -556,17 +563,15 @@ export const GalleryImage = ({
   )
 }
 
-export const OrderSection = ({
+export const OrderSectionComponent = ({
   boatNameLong,
-  sectionTitle,
-}: {
-  boatNameLong: string
-  sectionTitle: string
-}) => (
+  title,
+  media,
+}: OrderSection & { boatNameLong: string }) => (
   <BoatSection className="pb-48 sm:py-48">
-    <InPageAnchor title={sectionTitle} />
+    <InPageAnchor title={title} />
     <img
-      src={orderBackground}
+      src={media.image.childImageSharp?.fluid?.src!}
       className="absolute h-full w-full top-0 object-cover"
     />
     <div className="absolute inset-0 bg-black bg-opacity-25"></div>
@@ -597,13 +602,30 @@ export const OneColumnTextBlockComponent = ({
   <div className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto">
     <TextBlockComponent
       className={clsx({
-        'max-w-md mr-auto text-left': align === 'left',
+        'max-w-lg mr-auto text-left': align === 'left',
         'max-w-xl mx-auto text-center': align === 'center',
-        'max-w-md ml-auto text-right': align === 'right',
+        'max-w-lg ml-auto text-right': align === 'right',
       })}
       header={header}
       copy={copy}
     />
+  </div>
+)
+
+export const OneColumnImageTextBlockComponent = ({
+  content,
+  media,
+}: OneColumnImageTextBlock) => (
+  <div className="max-w-5xl mx-auto">
+    <AspectRatio ratio="3:2" className="overflow-hidden">
+      <img
+        src={media.image.childImageSharp?.fluid?.src!}
+        className="absolute h-full w-full object-cover"
+      />
+    </AspectRatio>
+    <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
+      <TextBlockComponent className="md:w-7/12" {...content} />
+    </div>
   </div>
 )
 
@@ -623,7 +645,6 @@ export const TwoColumnImageTextBlockComponent = ({
           ratio="3:4"
           src={leftColumn.media.image.childImageSharp?.fluid?.src!}
           label={leftColumn.media.label}
-          imgClassName="filter-grayscale"
         />
       </div>
     </div>
@@ -632,9 +653,7 @@ export const TwoColumnImageTextBlockComponent = ({
         <ImageWithLabel
           ratio="3:4"
           src={rightColumn.media.image.childImageSharp?.fluid?.src!}
-          label={leftColumn.media.label}
-          style={{ backgroundColor: '#222222' }}
-          imgClassName="left-1/2 transform -translate-x-1/2"
+          label={rightColumn.media.label}
         />
       </div>
       <TextBlockComponent
@@ -642,75 +661,6 @@ export const TwoColumnImageTextBlockComponent = ({
         header={rightColumn.content.header}
         copy={rightColumn.content.copy}
       />
-    </div>
-  </div>
-)
-
-export const SliderBlockComponent = ({ items }: SliderBlock) => (
-  <div className="max-w-5xl mx-auto">
-    <div className="md:w-9/12">
-      <AspectRatio ratio="3:2">
-        {items.map((item, index) => (
-          <img
-            key={index}
-            src={item.media.image.childImageSharp?.fluid?.src!}
-            className="absolute h-full w-full object-cover"
-            style={
-              index > 0
-                ? {
-                    left: 'calc(100% + 8.5rem)',
-                  }
-                : {}
-            }
-          />
-        ))}
-        <CarouselButtons className="absolute bottom-0 pb-4 w-full md:hidden" />
-      </AspectRatio>
-      <div className="md:flex justify-between items-start md:mt-10 md:mb-40">
-        <TextBlockComponent
-          className="my-8 md:my-0 px-4 mb-20 md:w-10/12"
-          header={items[0].content.header}
-          copy={items[0].content.copy}
-        />
-        <CarouselButtons className="hidden md:flex" />
-      </div>
-    </div>
-  </div>
-)
-
-export const CarouselBlockComponent = ({ items }: CarouselBlock) => (
-  <div className="max-w-5xl mx-auto">
-    <AspectRatio ratio="3:2">
-      <img
-        src={items[0].media.image.childImageSharp?.fluid?.src!}
-        className="absolute h-full w-full object-cover"
-      />
-      <CarouselButtons className="absolute bottom-0 pb-4 w-full md:hidden" />
-    </AspectRatio>
-    <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
-      <TextBlockComponent
-        className="md:w-7/12"
-        header={items[0].content.header}
-        copy={items[0].content.copy}
-      />
-      <CarouselButtons className="hidden md:flex items-start" theme="light" />
-    </div>
-  </div>
-)
-
-export const FullWidthCarouselBlockComponent = ({
-  items,
-}: Omit<FullWidthCarouselBlock, 'type'>) => (
-  <div className="relative -mb-12">
-    <AspectRatio ratio="16:9">
-      <img
-        className="absolute h-full w-full object-cover"
-        src={items[0].media.image.childImageSharp?.fluid?.src!}
-        alt=""
-      />
-    </AspectRatio>
-    <div className="absolute pb-4 bottom-0 left-1/2 transform -translate-x-1/2">
-      <ProgressDots current={1} total={items.length} variant="horizontal" />
     </div>
   </div>
 )

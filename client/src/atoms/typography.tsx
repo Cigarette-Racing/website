@@ -15,7 +15,7 @@ type TypographyVariant =
   | 'e2' // Eyebrow 2
   | 'e3' // Eyebrow 3
 
-export interface TypographyProps {
+export interface TypographyProps<T> extends React.HTMLAttributes<T> {
   /** Typographic variant to use */
   variant: TypographyVariant
   /** Light or dark theme */
@@ -34,7 +34,7 @@ export interface TypographyProps {
   xl?: TypographyVariant
 }
 
-export const Typography: React.FC<TypographyProps> = ({
+export function Typography<T extends HTMLElement = HTMLDivElement>({
   as: Component = 'div',
   variant,
   sm,
@@ -44,7 +44,7 @@ export const Typography: React.FC<TypographyProps> = ({
   theme,
   className,
   children,
-}) => {
+}: React.PropsWithChildren<TypographyProps<T>>) {
   return (
     <Component
       className={clsx(

@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useRef } from 'react'
+import React, { useState, Fragment } from 'react'
 import clsx from 'clsx'
 import Headroom from 'react-headroom'
 import logo from '../images/logo-white.svg'
@@ -8,8 +8,8 @@ import { ReturnLink } from '../atoms/return-link'
 import {
   useLockBodyScroll,
   useMedia,
-  useHoverDirty,
   createGlobalState,
+  useToggle,
 } from 'react-use'
 import Modal from 'react-modal'
 import { Link } from 'gatsby'
@@ -25,18 +25,17 @@ Modal.setAppElement(
     : '#___gatsby'
 )
 
-const leftLinks = [['Models'], ['Our world'], ['The Difference']]
+const leftLinks = [['Boats'], ['Our world'], ['The Difference']]
 const rightLinks = [['Owners'], ['Store'], ['Contact', '/contact']]
 const allLinks = [['Home', '/']].concat(leftLinks, rightLinks)
 
 export interface HeaderProps {}
 
 export const Header = ({}: HeaderProps) => {
-  const headerRef = useRef(null)
+  const [isHovering, setIsHovering] = useToggle(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const isMobileMenu = useMedia('(max-width: 1000px)')
   const [isAtTop, setIsAtTop] = useState(true)
-  const isHoveringOverMenu = useHoverDirty(headerRef)
   const [, setHeaderState] = useHeaderState()
   useLockBodyScroll(isMenuOpen)
   // @ts-ignore
@@ -61,10 +60,14 @@ export const Header = ({}: HeaderProps) => {
         }}
         upTolerance={12}
       >
-        <div ref={headerRef} className="w-full text-white h-20">
+        <div
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          className="w-full text-white h-20"
+        >
           <div className="max-w-7xl mx-auto h-full px-4 flex justify-between items-center">
             <div className="w-1/3 flex justify-start">
-              {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (
+              {isMobileMenu || (!isAtTop && !isHovering) ? (
                 <button
                   className="p-2 text-2xl"
                   onClick={() => setIsMenuOpen(true)}
@@ -72,15 +75,9 @@ export const Header = ({}: HeaderProps) => {
                   <MenuIcon />
                 </button>
               ) : (
-                <div className="flex space-x-8 xl:space-x-10 pointer-events-none">
+                <div className="flex space-x-4 xl:space-x-6">
                   {leftLinks.map(([text]) => (
-                    <Typography
-                      variant="e3"
-                      className="whitespace-no-wrap opacity-25"
-                      key={text}
-                    >
-                      {text}
-                    </Typography>
+                    <ComingSoonLink key={text} text={text} />
                   ))}
                 </div>
               )}
@@ -91,37 +88,31 @@ export const Header = ({}: HeaderProps) => {
               </Link>
             </div>
             <div className="w-1/3 flex justify-end">
-              {isMobileMenu || (!isAtTop && !isHoveringOverMenu) ? (
+              {isMobileMenu || (!isAtTop && !isHovering) ? (
                 <div>
                   <Link to="/contact">
-                    <Typography variant="e3">Contact</Typography>
+                    <Typography variant="e3" className="p-2 whitespace-no-wrap">
+                      Contact
+                    </Typography>
                   </Link>
                 </div>
               ) : (
-                <div className="flex space-x-8 xl:space-x-10">
+                <div className="flex space-x-4 xl:space-x-6">
                   {rightLinks.map(([text, link]) => {
                     if (link) {
                       return (
-                        <Link to={link}>
+                        <Link to={link} key={text}>
                           <Typography
                             variant="e3"
                             key={text}
-                            className="whitespace-no-wrap"
+                            className="p-2 whitespace-no-wrap"
                           >
                             {text}
                           </Typography>
                         </Link>
                       )
                     }
-                    return (
-                      <Typography
-                        variant="e3"
-                        key={text}
-                        className="whitespace-no-wrap pointer-events-none opacity-25"
-                      >
-                        {text}
-                      </Typography>
-                    )
+                    return <ComingSoonLink key={text} text={text} />
                   })}
                 </div>
               )}
@@ -134,6 +125,41 @@ export const Header = ({}: HeaderProps) => {
   )
 }
 
+function ComingSoonLink({ text }: { text: string }) {
+  const [isActive, setIsActive] = useToggle(false)
+  return (
+    <div
+      onMouseEnter={() => setIsActive(true)}
+      onFocus={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
+      onBlur={() => setIsActive(false)}
+      tabIndex={0}
+      className="relative cursor-default"
+    >
+      <Typography
+        variant="e3"
+        className={clsx('p-2 whitespace-no-wrap opacity-25', {
+          invisible: isActive,
+        })}
+      >
+        {text}
+      </Typography>
+      {isActive && (
+        <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center">
+          <Typography
+            variant="e3"
+            className="whitespace-no-wrap opacity-75 text-center"
+          >
+            Coming
+            <br />
+            Soon
+          </Typography>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function MobileMenu({
   isMenuOpen,
   setIsMenuOpen,
@@ -142,7 +168,6 @@ function MobileMenu({
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const location = useLocation()
-  console.log({ location })
   return (
     <Modal
       isOpen={isMenuOpen}
@@ -161,18 +186,21 @@ function MobileMenu({
         role="dialog"
         aria-modal="true"
       >
-        <div className="h-20 flex items-center">
+        <div className="h-16 flex items-center">
           <ReturnLink onClick={() => setIsMenuOpen(false)}>Back</ReturnLink>
         </div>
         <div className="mt-10 flex flex-col items-start">
           {allLinks.map(([text, link]) => {
             if (link) {
               return (
-                <Link to={link} onClick={() => setIsMenuOpen(false)}>
-                  <div key={text} className="relative mb-6">
-                    <Typography variant="h4" as="a">
-                      {text}
-                    </Typography>
+                <Link
+                  key={text}
+                  to={link}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="py-2 mb-2"
+                >
+                  <div className="relative">
+                    <Typography variant="h4">{text}</Typography>
                     {location.pathname === link && (
                       <div className="absolute border-b border-t border-red w-full top-1/2"></div>
                     )}
@@ -181,18 +209,36 @@ function MobileMenu({
               )
             }
             return (
-              <div key={text} className="relative mb-6">
-                <Typography
-                  variant="h4"
-                  className="pointer-events-none opacity-25"
-                >
-                  {text}
-                </Typography>
+              <div key={text} className="relative">
+                <ComingSoonMobileLink text={text} />
               </div>
             )
           })}
         </div>
       </div>
     </Modal>
+  )
+}
+
+function ComingSoonMobileLink({ text }: { text: string }) {
+  const [isActive, setIsActive] = useToggle(false)
+  return (
+    <div
+      onMouseEnter={() => setIsActive(true)}
+      onFocus={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
+      onBlur={() => setIsActive(false)}
+      tabIndex={0}
+      className="relative cursor-default py-2 mb-2"
+    >
+      <Typography
+        variant="h4"
+        className={clsx('whitespace-no-wrap opacity-25', {
+          'opacity-50': isActive,
+        })}
+      >
+        {isActive ? 'Coming Soon' : text}
+      </Typography>
+    </div>
   )
 }
