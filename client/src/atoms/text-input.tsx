@@ -33,10 +33,8 @@ export const TextInput = ({
   required = false,
   validation,
 }: TextInputProps) => {
-  const inputBorderStylesInactive =
-    'border-b border-white border-solid border-opacity-25'
-  const inputBorderStylesActive =
-    'border-b border-white border-solid border-opacity-100'
+  const inputBorderStylesInactive = 'border-opacity-25'
+  const inputBorderStylesActive = 'border-opacity-100'
 
   return (
     <Field
@@ -53,7 +51,7 @@ export const TextInput = ({
               </div>
               <div
                 className={clsx(
-                  'relative w-full pb-6',
+                  'relative w-full pb-6 border-b border-white border-solid',
                   { [inputBorderStylesInactive]: !meta.active },
                   { [inputBorderStylesActive]: meta.active }
                 )}
