@@ -441,7 +441,6 @@ export const StepThree = ({ steps, step, submit }: any) => {
           variant="primary"
           onClick={() => {
             setInquiryModalState(false)
-            console.log('close the modal')
           }}
         >
           Continue exploring
