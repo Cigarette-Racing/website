@@ -15,7 +15,7 @@ export const StatBlock = ({ label, percentage, text }: StatBlockProps) => {
   return (
     <div className="w-full max-w-48 text-white">
       <ProgressBar percentage={percentage} />
-      <Typography variant="h5" className="my-2">
+      <Typography variant="h4" className="my-2">
         {text}
       </Typography>
       <Typography variant="e3">{label}</Typography>
