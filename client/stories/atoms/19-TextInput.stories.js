@@ -6,7 +6,6 @@ import { Form } from 'react-final-form'
 export default {
   title: 'Atoms/TextInput',
   component: TextInput,
-  decorators: [withKnobs],
 }
 
 export const Sandbox = () => {
