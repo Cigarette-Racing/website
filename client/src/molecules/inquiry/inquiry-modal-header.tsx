@@ -29,7 +29,6 @@ const InquiryModalHeader: React.FC = () => {
                   className="flex items-center justify-end flex-col pb-2"
                   onClick={() => {
                     setInquiryModalState(false)
-                    console.log('close the thing', inquiryModalState)
                   }}
                 >
                   <Typography className="uppercase font-bold pb-1" variant="e2">
