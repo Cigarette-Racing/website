@@ -29,7 +29,7 @@ const stayConnectedOnSubmit = (values: any) => {
     emailAddress: values.emailAddress,
   }
 
-  console.log('submitted')
+  console.log('submitted', submissionValues)
 
   fetch('/', {
     method: 'POST',
@@ -295,7 +295,7 @@ const IndexPage = () => (
                           value="stay-connected"
                         />
                         <Field
-                          name="email"
+                          name="emailAddress"
                           render={({ input }) => {
                             return (
                               <input
