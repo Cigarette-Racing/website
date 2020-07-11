@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
@@ -273,42 +273,53 @@ const IndexPage = () => (
           <Typography variant="h2">Stay connected</Typography>
         </div>
         <div className="relative px-4 max-w-md">
-          <div className="flex border-b border-gray-3 mb-10 h-10 items-center">
-            <Form
-              onSubmit={stayConnectedOnSubmit}
-              render={({ handleSubmit }) => (
-                <form
-                  name="stay-connected"
-                  method="POST"
-                  data-netlify="true"
-                  onSubmit={handleSubmit}
-                  className="flex items-center justify-between w-full"
-                >
-                  <Field
-                    name="stay-connected"
-                    render={({ input }) => {
-                      return (
-                        <input
-                          {...input}
-                          type="text"
-                          className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
-                          placeholder="Enter Email Address"
-                        />
-                      )
-                    }}
-                  />
+          <Form
+            onSubmit={stayConnectedOnSubmit}
+            render={({ handleSubmit, submitSucceeded }) => (
+              <div>
+                {!submitSucceeded && (
+                  <div>
+                    <div className="flex border-b border-gray-3 mb-10 h-10 items-center">
+                      <form
+                        name="stay-connected"
+                        method="POST"
+                        data-netlify="true"
+                        onSubmit={handleSubmit}
+                        className="flex items-center justify-between w-full"
+                      >
+                        <Fragment>
+                          <Field
+                            name="email"
+                            render={({ input }) => {
+                              return (
+                                <input
+                                  {...input}
+                                  type="text"
+                                  className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
+                                  placeholder="Enter Email Address"
+                                />
+                              )
+                            }}
+                          />
 
-                  <button type="submit">
-                    <PlusIcon className="w-4 h-4" />
-                  </button>
-                </form>
-              )}
-            />
-          </div>
-          <Typography variant="p2">
-            Want to join our exclusive community and be the first to get the
-            latest from Cigarette Racing?
-          </Typography>
+                          <button type="submit">
+                            <PlusIcon className="w-4 h-4" />
+                          </button>
+                        </Fragment>
+                      </form>
+                    </div>
+                    <Typography variant="p2">
+                      Want to join our exclusive community and be the first to
+                      get the latest from Cigarette Racing?
+                    </Typography>
+                  </div>
+                )}
+                {submitSucceeded && (
+                  <Typography variant="h3">Thank You!</Typography>
+                )}
+              </div>
+            )}
+          />
         </div>
       </div>
     </section>
