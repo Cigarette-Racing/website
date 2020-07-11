@@ -282,30 +282,35 @@ const IndexPage = () => (
                     <div className="flex border-b border-gray-3 mb-10 h-10 items-center">
                       <form
                         name="stay-connected"
+                        netlify-honeypot="bot-field"
                         method="POST"
                         data-netlify="true"
                         onSubmit={handleSubmit}
                         className="flex items-center justify-between w-full"
                       >
-                        <Fragment>
-                          <Field
-                            name="email"
-                            render={({ input }) => {
-                              return (
-                                <input
-                                  {...input}
-                                  type="text"
-                                  className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
-                                  placeholder="Enter Email Address"
-                                />
-                              )
-                            }}
-                          />
+                        <input type="hidden" name="bot-field" />
+                        <input
+                          type="hidden"
+                          name="form-name"
+                          value="stay-connected"
+                        />
+                        <Field
+                          name="email"
+                          render={({ input }) => {
+                            return (
+                              <input
+                                {...input}
+                                type="text"
+                                className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
+                                placeholder="Enter Email Address"
+                              />
+                            )
+                          }}
+                        />
 
-                          <button type="submit">
-                            <PlusIcon className="w-4 h-4" />
-                          </button>
-                        </Fragment>
+                        <button type="submit">
+                          <PlusIcon className="w-4 h-4" />
+                        </button>
                       </form>
                     </div>
                     <Typography variant="p2">
