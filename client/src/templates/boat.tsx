@@ -232,8 +232,8 @@ export const query = graphql`
         categories {
           name
           specs {
-            header
-            copy
+            name
+            descriptions
           }
         }
         gallery {
