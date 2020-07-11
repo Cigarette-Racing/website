@@ -144,7 +144,7 @@ const Placeholder = (props: any) => {
   )
 }
 
-export const StepTwo = ({ next, steps, step }: any) => {
+export const StepTwo = ({ next, steps, step, children }: any) => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
@@ -265,12 +265,7 @@ export const StepTwo = ({ next, steps, step }: any) => {
           component="textarea"
         />
       </div>
-      <ContinueButton next={next} />
-      <div className="text-white self-center mt-6 font-heading italic">
-        <span className="mr-2">{`${steps.indexOf(step)}`}</span>
-        <span className="mr-2">of</span>
-        <span>3</span>
-      </div>
+      {children}
     </div>
   )
 }
@@ -424,11 +419,6 @@ export const StepThree = ({ steps, step, submit }: any) => {
         >
           Submit request
         </InPageCta>
-        <div className="text-white self-center mt-6 font-heading italic">
-          <span className="mr-2">{`${steps.indexOf(step)}`}</span>
-          <span className="mr-2">of</span>
-          <span>3</span>
-        </div>
       </div>
     )
   } else {

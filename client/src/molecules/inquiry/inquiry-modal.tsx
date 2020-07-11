@@ -1,21 +1,10 @@
-import React, { useState, Fragment } from 'react'
+import React from 'react'
 import { createGlobalState, useLockBodyScroll } from 'react-use'
 import ReactModal from 'react-modal'
-import { Wizard, WithWizard, Steps, Step } from 'react-albus'
-import { Form, FormSpy } from 'react-final-form'
-import Select from 'react-select'
-import { Link } from 'gatsby'
-
-import { ArrowIcon } from '../../svgs/icons'
-import { AngleIcon } from '../../svgs/icons'
-import { OptionsCta } from '../../atoms/options-cta'
-import { Typography } from '../../atoms/typography'
-import { Radio } from '../../atoms/radio'
-import { MultiSelect } from '../../atoms/multi-select'
-import FullBleedBackground from '../../molecules/full-bleed-background'
-import { InPageCta } from '../../atoms/in-page-cta'
+import { Wizard, Steps, Step } from 'react-albus'
+import { Form } from 'react-final-form'
 import InquiryModalHeader from './inquiry-modal-header'
-import fullBleedImage from '../../../content/images/boat-section2-bg.jpeg'
+import fullBleedImage from '../../../content/images/discover-section-bg.jpeg'
 
 import {
   LandingStep,
@@ -25,7 +14,6 @@ import {
   ContinueButton,
   PageStatus,
 } from './inquiry-modal.components'
-import { log } from 'util'
 
 const modalStyles = {
   overlay: {
@@ -135,26 +123,40 @@ export const InquiryModal: React.FC = () => {
                         />
                         <Step
                           id="two"
-                          render={(props) => {
+                          render={({ next, steps, step }) => {
                             return (
                               <StepTwo
-                                {...props}
                                 pristine={pristine}
                                 submitting={submitting}
-                              />
+                              >
+                                <ContinueButton
+                                  next={next}
+                                  inValid={form.getState().hasValidationErrors}
+                                />
+                                <PageStatus
+                                  next={next}
+                                  steps={steps}
+                                  step={step}
+                                />
+                              </StepTwo>
                             )
                           }}
                         />
                         <Step
                           id="three"
-                          render={(props) => {
+                          render={({ next, steps, step }) => {
                             return (
                               <StepThree
-                                {...props}
                                 submit={handleSubmit}
                                 pristine={pristine}
                                 submitting={submitting}
-                              />
+                              >
+                                <PageStatus
+                                  next={next}
+                                  steps={steps}
+                                  step={step}
+                                />
+                              </StepThree>
                             )
                           }}
                         />
