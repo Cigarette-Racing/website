@@ -8,7 +8,7 @@ export interface TextInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string
   placeholder: string
-  required: boolean
+  required?: boolean
   validation?: (value: any) => undefined | 'Required'
 }
 
@@ -30,7 +30,7 @@ export const requiredPhone = (value: any) =>
 export const TextInput = ({
   name,
   placeholder,
-  required,
+  required = false,
   validation,
 }: TextInputProps) => {
   const inputBorderStylesInactive =
