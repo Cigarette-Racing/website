@@ -313,14 +313,16 @@ const IndexPage = () => (
                         </button>
                       </form>
                     </div>
-                    <Typography variant="p2">
+                    <Typography variant="p2" className="pb-16">
                       Want to join our exclusive community and be the first to
                       get the latest from Cigarette Racing?
                     </Typography>
                   </div>
                 )}
                 {submitSucceeded && (
-                  <Typography variant="h3">Thank You!</Typography>
+                  <Typography variant="h3" className="pb-16">
+                    Thank You!
+                  </Typography>
                 )}
               </div>
             )}
