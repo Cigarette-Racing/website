@@ -36,6 +36,33 @@ const encode = (data: any) => {
     .join('&')
 }
 
+const inquiryOnSubmit = (values: any) => {
+  const submissionValues = {
+    firstName: values.firstName,
+    lastName: values.lastName,
+    phone: values.phone,
+    emailAddress: values.emailAddress,
+    notes: values.notes,
+    contactPreferences: values.contactPreferences,
+    interest: values.interest.value,
+    modelInterest: values.modelInterest
+      .map((model: any) => model.value)
+      .join(', '),
+    marketingOptIn: values.marketingOptIn,
+  }
+
+  fetch('/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: encode({
+      'form-name': 'TEST-contact',
+      ...submissionValues,
+    }),
+  })
+}
+
 export const useInquiryModalState = createGlobalState<boolean>(false)
 
 export const InquiryModal: React.FC = () => {
@@ -60,41 +87,8 @@ export const InquiryModal: React.FC = () => {
             <div className="text-white flex flex-col items-center justify-center relative">
               <div className="w-full max-w-2xl">
                 <Form
-                  onSubmit={(values) => {
-                    const submissionValues = {
-                      firstName: values.firstName,
-                      lastName: values.lastName,
-                      phone: values.phone,
-                      emailAddress: values.emailAddress,
-                      notes: values.notes,
-                      contactPreferences: values.contactPreferences,
-                      interest: values.interest.value,
-                      modelInterest: values.modelInterest
-                        .map((model: any) => model.value)
-                        .join(', '),
-                      marketingOptIn: values.marketingOptIn,
-                    }
-
-                    fetch('/', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                      },
-                      body: encode({
-                        'form-name': 'TEST-contact',
-                        ...submissionValues,
-                      }),
-                    })
-                      .then(() => console.log('success!!'))
-                      .catch((error) => alert(error))
-                  }}
-                  render={({
-                    handleSubmit,
-                    form,
-                    submitting,
-                    pristine,
-                    values,
-                  }) => (
+                  onSubmit={inquiryOnSubmit}
+                  render={({ handleSubmit, form, submitting, pristine }) => (
                     <form onSubmit={handleSubmit}>
                       <Steps>
                         <Step
