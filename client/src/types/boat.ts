@@ -82,9 +82,14 @@ export function findGallerySection(sections: readonly any[]) {
   return sections.find(isGallerySection) as GallerySection
 }
 
-type SpecCategory = {
+export type Spec = {
   name: string
-  specs: TextBlock[]
+  descriptions: string[]
+}
+
+export type SpecCategory = {
+  name: string
+  specs: Spec[]
 } & CommonSectionProps
 
 export type SpecsSection = {
