@@ -163,9 +163,6 @@ export const StepTwo = ({ next, steps, step, children }: any) => {
                 placeholder={'Select which boats are you interested in?'}
                 components={{
                   Placeholder,
-                  // Placeholder: (props) => (
-                  //   <components.Placeholder {...props}></components.Placeholder>
-                  // ),
                   MultiValueContainer: (props) => (
                     <components.MultiValueContainer {...props}>
                       <div className="bg-black rounded-full py-1 px-4 flex items-center mr-2 mb-2">
