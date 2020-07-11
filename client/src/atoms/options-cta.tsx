@@ -11,7 +11,8 @@ export interface OptionsCtaProps {
   variant?: 'primary' | 'secondary'
 }
 
-const baseClasses = 'border-b border-opacity-25 flex items-center group'
+const baseClasses =
+  'border-b border-opacity-25 flex items-center group justify-between h-24'
 const primaryClasses = 'border-current border-opacity-50'
 const secondaryClasses = 'border-transparent'
 const typographyClasses =
@@ -32,8 +33,6 @@ export const OptionsCta: React.FC<
           'text-white border-white': theme === 'dark',
           'text-black border-black': theme === 'light',
         },
-        'justify-between',
-        'h-24',
         className
       )}
     >
