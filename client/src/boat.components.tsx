@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Img from 'gatsby-image'
 import { Typography } from './atoms/typography'
 import { InPageCta } from './atoms/in-page-cta'
@@ -7,7 +7,7 @@ import { Theme } from './types/shared'
 import clsx from 'clsx'
 import { AspectRatio, AspectRatioProps, Ratio } from './atoms/aspect-ratio'
 import { CircleButton } from './atoms/circle-button'
-import { ExpandIcon, PlayIcon, ArrowIcon, PlusIcon } from './svgs/icons'
+import { ExpandIcon, PlayIcon, ArrowIcon, CaretDownIcon } from './svgs/icons'
 import { InPageAnchor } from './molecules/in-page-nav'
 import { VerticalHeader } from './atoms/vertical-header'
 import { VerticalLabel } from './atoms/vertical-label'
@@ -22,13 +22,16 @@ import {
   OneColumnTextBlock,
   OneColumnImageTextBlock,
   OrderSection,
+  Spec,
 } from './types/boat'
 import { Tab } from './atoms/tab'
 import { LinkCta } from './atoms/link-cta'
+import { AnimatePresence, motion } from 'framer-motion'
 
 // images
 import discoverBackground from '../content/images/discover-section-bg.jpeg'
 import customizationsBackground from '../content/images/customization-section-bg.jpeg'
+import { useToggle } from 'react-use'
 
 export const BoatHeader = ({
   boatImage,
@@ -355,61 +358,122 @@ export const SpecsSectionComponent = ({
   title,
   categories,
   boatNameLong,
-}: SpecsSection & { boatNameLong: string }) => (
-  <BoatSection className="md:py-24">
-    <InPageAnchor title={title} />
-    <div className="relative flex max-w-7xl mx-auto">
-      <div className="hidden md:block absolute right-0 top-0">
-        <VerticalHeader theme="light" className="mr-4">
-          {title}
-        </VerticalHeader>
-      </div>
-      <div className="hidden md:block px-4 space-y-2 md:w-48 lg:w-56 xl:w-64 mt-24">
-        {categories.map(({ name }, index) => (
-          <Tab
-            key={name}
-            className="w-auto whitespace-no-wrap"
-            active={index === 0}
-          >
-            {name}
-          </Tab>
-        ))}
-      </div>
-      <div className="max-w-2xl w-full">
-        <div className="px-4 md:px-0 md:mb-16">
-          <Typography variant="h4">{boatNameLong}</Typography>
+}: SpecsSection & { boatNameLong: string }) => {
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    categories[0].name
+  )
+  return (
+    <BoatSection className="md:py-24">
+      <InPageAnchor title={title} />
+      <div className="relative flex max-w-7xl mx-auto">
+        <div className="hidden md:block absolute right-0 top-0">
+          <VerticalHeader theme="light" className="mr-4">
+            {title}
+          </VerticalHeader>
         </div>
-        <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
-          {categories.map(({ name }, index) => (
-            <Tab key={name} className="whitespace-no-wrap" active={index === 0}>
+        <div className="hidden md:block px-4 space-y-2 md:w-48 lg:w-56 xl:w-64 mt-24">
+          {categories.map(({ name }) => (
+            <Tab
+              key={name}
+              className="w-auto whitespace-no-wrap"
+              active={name === selectedCategory}
+              onClick={() => setSelectedCategory(name)}
+            >
               {name}
             </Tab>
           ))}
         </div>
-        <div className="px-4 md:px-0 grid col-gap-6 grid-cols-2 mb-10">
-          {categories[0].specs.map(({ header, copy }, index) => (
-            <div key={header + index} className="py-8 border-t border-gray-5">
-              <Typography variant="e3" className="mb-2">
-                {header}
-              </Typography>
-              <Typography variant="p3" className="text-gray-2 md:w-11/12">
-                {copy}
-              </Typography>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center md:justify-start mb-2">
-          <InPageCta variant="secondary" theme="light">
-            <span className="flex items-center">
-              <PlusIcon className="inline-block text-red mr-2 text-lg" />
-              <span>More Specs</span>
-            </span>
-          </InPageCta>
+        <div className="max-w-2xl w-full">
+          <div className="px-4 md:px-0 md:mb-16">
+            <Typography variant="h4">{boatNameLong}</Typography>
+          </div>
+          <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
+            {categories.map(({ name }) => (
+              <Tab
+                key={name}
+                className="whitespace-no-wrap"
+                active={name === selectedCategory}
+                onClick={() => setSelectedCategory(name)}
+              >
+                {name}
+              </Tab>
+            ))}
+          </div>
+          <div className="px-4 md:px-0 grid col-gap-6 grid-cols-2 mb-10">
+            {categories
+              .find((category) => category.name === selectedCategory)!
+              .specs.map((spec, index) => (
+                <SpecAccordion key={spec.name + index} {...spec} />
+              ))}
+          </div>
+          {/* <div className="flex justify-center md:justify-start mb-2">
+            <InPageCta variant="secondary" theme="light">
+              <span className="flex items-center">
+                <PlusIcon className="inline-block text-red mr-2 text-lg" />
+                <span>More Specs</span>
+              </span>
+            </InPageCta>
+          </div> */}
         </div>
       </div>
+    </BoatSection>
+  )
+}
+
+const NOOP = () => {}
+
+const SpecAccordion = ({ name, descriptions }: Spec) => {
+  const [isOpen, toggleIsOpen] = useToggle(false)
+  const isClickable = descriptions.length > 1
+  return (
+    <div className="py-8 border-t border-gray-5">
+      <div
+        className={clsx('mb-2 flex', {
+          'cursor-pointer focus:outline-none': isClickable,
+        })}
+        tabIndex={isClickable ? 0 : undefined}
+        onClick={isClickable ? () => toggleIsOpen() : NOOP}
+      >
+        <Typography variant="e3" className="flex-1">
+          {name}
+        </Typography>
+        {isClickable && (
+          <motion.div
+            initial={false}
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <CaretDownIcon className="text-red" />
+          </motion.div>
+        )}
+      </div>
+      <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
+        {descriptions[0]}
+      </Typography>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="descriptions"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: 'auto' },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            {descriptions.slice(1).map((description) => (
+              <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
+                {description}
+              </Typography>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  </BoatSection>
-)
+  )
+}
 
 export const MediaGallerySection = ({
   media,
