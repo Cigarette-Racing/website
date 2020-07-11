@@ -246,12 +246,16 @@ const IndexPage = () => (
         </div>
         <div className="relative px-4 max-w-md">
           <div className="flex border-b border-gray-3 mb-10 h-10 items-center">
-            <input
-              type="text"
-              className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
-              placeholder="Enter Email Address"
-            />
-            <PlusIcon className="w-4 h-4" />
+            <form name="stay-connected" method="POST" data-netlify="true">
+              <input
+                type="text"
+                className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
+                placeholder="Enter Email Address"
+              />
+            </form>
+            <button type="submit">
+              <PlusIcon className="w-4 h-4" />
+            </button>
           </div>
           <Typography variant="p2">
             Want to join our exclusive community and be the first to get the
