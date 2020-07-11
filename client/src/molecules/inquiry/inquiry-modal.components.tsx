@@ -106,28 +106,28 @@ export const StepOne = ({ children }: any) => {
           placeholder="First Name"
           type="text"
           validation={requiredText}
-          required
+          required={true}
         />
         <TextInput
           name="lastName"
           placeholder="last Name"
           type="text"
           validation={requiredText}
-          required
+          required={true}
         />
         <TextInput
           name="phone"
           placeholder="Phone"
           type="phone"
           validation={requiredPhone}
-          required
+          required={true}
         />
         <TextInput
           name="emailAddress"
           type="email"
           placeholder="Email Address"
           validation={requiredEmail}
-          required
+          required={true}
         />
       </FieldSetContainer>
       {children}
