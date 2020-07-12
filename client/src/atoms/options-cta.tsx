@@ -4,7 +4,8 @@ import { Typography } from './typography'
 import { ArrowIcon } from '../svgs/icons'
 import { Theme } from '../types/shared'
 
-export interface OptionsCtaProps {
+export interface OptionsCtaProps
+  extends React.HTMLAttributes<HTMLButtonElement> {
   /** Light or dark theme */
   theme?: Theme
   /** Visual variant to use */
@@ -18,9 +19,13 @@ const secondaryClasses = 'border-transparent'
 const typographyClasses =
   'transform transition-transform duration-300 ease-in-out group-hover:translate-x-1 text-left'
 
-export const OptionsCta: React.FC<
-  OptionsCtaProps & React.HTMLAttributes<HTMLButtonElement>
-> = ({ variant = 'primary', children, className, theme, ...rest }) => {
+export const OptionsCta: React.FC<OptionsCtaProps> = ({
+  variant = 'primary',
+  children,
+  className,
+  theme,
+  ...rest
+}) => {
   return (
     <button
       {...rest}

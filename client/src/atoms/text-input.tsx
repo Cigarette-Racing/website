@@ -51,7 +51,7 @@ export const TextInput = ({
               </div>
               <div
                 className={clsx(
-                  'relative w-full pb-6 border-b border-white border-solid',
+                  'relative w-full border-b border-white border-solid',
                   { [inputBorderStylesInactive]: !meta.active },
                   { [inputBorderStylesActive]: meta.active }
                 )}
@@ -74,7 +74,7 @@ export const TextInput = ({
                   name={name}
                   placeholder={placeholder}
                   className={clsx(
-                    'font-body appearance-none bg-transparent outline-none w-full',
+                    'font-body appearance-none bg-transparent outline-none w-full pb-6',
                     { 'placeholder-white': !meta.invalid || !meta.touched },
                     { 'placeholder-red': meta.invalid && meta.touched }
                   )}

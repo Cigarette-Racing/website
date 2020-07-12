@@ -19,8 +19,6 @@ import { ArrowIcon } from '../../svgs/icons'
 import { CloseIcon } from '../../svgs/icons'
 import { CheckIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
-import { MultiValueRemove } from 'react-select/src/components/MultiValue'
-import { log } from 'util'
 
 export const FieldSetContainer = ({ children }: any) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
@@ -64,7 +62,7 @@ export const PageStatus = ({ steps, step }: any) => (
 
 export const LandingStep = ({ next }: any) => {
   return (
-    <div className="flex flex-col justify-center px-4">
+    <div className="flex flex-col justify-center px-4 pb-10">
       <Typography
         className="text-white uppercase text-center mb-16 mt-20 font-bold"
         variant="p3"
@@ -75,9 +73,10 @@ export const LandingStep = ({ next }: any) => {
         Request <br className="md:hidden" />
         an appointment
       </OptionsCta>
-      <OptionsCta variant="secondary" theme="dark">
+      {/* commenting out for soft launch */}
+      {/* <OptionsCta variant="secondary" theme="dark">
         Questions & answer
-      </OptionsCta>
+      </OptionsCta> */}
       <Link
         to="/contact"
         className="border-b border-opacity-25 border-white flex items-center group h-24 justify-between"
@@ -154,6 +153,9 @@ export const StepTwo = ({ next, steps, step, children }: any) => {
       <FieldSetContainer>
         <Field
           name="modelInterest"
+          validate={(value: any) => {
+            return value ? undefined : 'Required'
+          }}
           render={(props) => (
             <div className="flex items-center justify-center pt-3">
               <div className="text-red mr-2">*</div>
@@ -224,6 +226,14 @@ export const StepTwo = ({ next, steps, step, children }: any) => {
                       paddingBottom: 0,
                     }
                   },
+                  multiValueRemove: (base) => {
+                    return {
+                      ...base,
+                      '&:hover': {
+                        background: 'transparent',
+                      },
+                    }
+                  },
                   valueContainer: (base) => ({
                     ...base,
                     padding: 0,
@@ -237,13 +247,14 @@ export const StepTwo = ({ next, steps, step, children }: any) => {
                     ...base,
                     background: '#242424',
                   }),
-                  option: (base, state) => ({
+                  option: (base) => ({
                     ...base,
                     background: 'transparent',
                     color: '#fff',
+                    cursor: 'pointer',
                     '&:hover': {
                       color: '#000',
-                      background: 'red',
+                      background: '#D12026',
                     },
                   }),
                 }}
@@ -281,13 +292,18 @@ export const StepThree = ({ submit }: any) => {
           request and appointment
         </div>
         <FieldSetHeader>Contact preference</FieldSetHeader>
-        <div className="space-y-3 px-4 mb-12 lg:pl-5 mt-4">
+        <div className="space-y-3 lg:space-y-0 justify-between px-4 mb-12 lg:pl-5 mt-4 lg:flex">
           <Field
             name="contactPreferences"
             value="phone"
             type="radio"
+            checked
             render={({ input }) => {
-              return <Radio {...input}>Phone Call</Radio>
+              return (
+                <Radio alignment="center" {...input}>
+                  Phone Call
+                </Radio>
+              )
             }}
           />
           <Field
@@ -295,7 +311,11 @@ export const StepThree = ({ submit }: any) => {
             value="email"
             type="radio"
             render={({ input }) => {
-              return <Radio {...input}>Email</Radio>
+              return (
+                <Radio alignment="center" {...input}>
+                  Email
+                </Radio>
+              )
             }}
           />
           <Field
@@ -303,7 +323,11 @@ export const StepThree = ({ submit }: any) => {
             value="text"
             type="radio"
             render={({ input }) => {
-              return <Radio {...input}>SMS Text Message</Radio>
+              return (
+                <Radio alignment="center" {...input}>
+                  SMS Text Message
+                </Radio>
+              )
             }}
           />
         </div>
@@ -315,6 +339,9 @@ export const StepThree = ({ submit }: any) => {
         <FieldSetContainer>
           <Field
             name="interest"
+            validate={(value: any) => {
+              return value ? undefined : 'Required'
+            }}
             render={(props) => (
               <div className="flex items-center justify-center">
                 <div className="text-red mr-2 pt-2">*</div>
