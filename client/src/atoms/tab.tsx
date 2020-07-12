@@ -4,8 +4,8 @@ import { Typography } from './typography'
 
 export interface TabProps
   extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLInputElement
+    React.HTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
   > {
   active?: boolean
   as?: keyof JSX.IntrinsicElements | React.ReactType
@@ -13,7 +13,7 @@ export interface TabProps
 
 export function Tab({
   active,
-  as: Comp = 'div',
+  as: Comp = 'button',
   className,
   children,
   ...props

@@ -50,7 +50,7 @@ const extractTitles = (sections: readonly any[]) =>
     .filter((section) => section.type !== 'hero')
     .map((section) => [section.title, section.shortTitle || ''])
 
-const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
+const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const {
     data: { boatsYaml: boat },
   } = props
@@ -185,7 +185,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   )
 }
 
-export default IndexPage
+export default BoatTemplate
 
 export const query = graphql`
   query BoatPage($id: String!) {
@@ -232,8 +232,8 @@ export const query = graphql`
         categories {
           name
           specs {
-            header
-            copy
+            name
+            descriptions
           }
         }
         gallery {
