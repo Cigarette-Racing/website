@@ -1,5 +1,8 @@
 boatName: Auroris
 boatNameLong: 42’ AURORIS HYPERLUX
+metadata:
+  menuSort: 3
+  menuName: 42’ Auroris
 sections:
   - type: hero
     headline: The ultimate adventure
