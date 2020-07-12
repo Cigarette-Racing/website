@@ -20,11 +20,14 @@ import { CloseIcon } from '../../svgs/icons'
 import { CheckIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
 
-export const FieldSetContainer = ({ children }: any) => (
+export const FieldSetContainer: React.FC = ({ children }) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
 )
 
-export const FieldSetHeader = ({ children, className }: any) => {
+export const FieldSetHeader: React.FC<{ className?: 'string' }> = ({
+  children,
+  className,
+}) => {
   return (
     <div className={clsx('flex items-center mb-2 px-1', className)}>
       <AngleIcon className="text-white" style={{ fontSize: '40px' }} />
@@ -35,7 +38,10 @@ export const FieldSetHeader = ({ children, className }: any) => {
   )
 }
 
-export const ContinueButton = ({ next, inValid }: any) => {
+export const ContinueButton: React.FC<{
+  next: () => void
+  inValid: boolean
+}> = ({ next, inValid }) => {
   return (
     <InPageCta
       className={clsx('self-center mt-16 lg:mt-20', {
@@ -349,19 +355,19 @@ export const StepThree = ({ submit }: any) => {
                   className="w-full"
                   options={[
                     {
+                      value: 'Just exploring',
+                      label: 'Just exploring',
+                    },
+                    {
+                      value: 'Seriously interested',
+                      label: 'Seriously interested',
+                    },
+                    {
                       value: 'ready to purchase',
                       label: 'ready to purchase',
                     },
-                    {
-                      value: 'something else',
-                      label: 'something else',
-                    },
-                    { value: "I don't know", label: "I don't know" },
                   ]}
-                  defaultValue={{
-                    value: 'Ready to purchase',
-                    label: 'Ready to purchase',
-                  }}
+                  placeholder={'Select your level of interest.'}
                   styles={{
                     placeholder: (base) => ({
                       ...base,
@@ -399,7 +405,7 @@ export const StepThree = ({ submit }: any) => {
                       color: '#fff',
                       '&:hover': {
                         color: '#000',
-                        background: 'red',
+                        background: '#D12026',
                       },
                     }),
                   }}
