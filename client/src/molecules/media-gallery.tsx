@@ -45,11 +45,6 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
   const goPrev = () => {
     setPage((page) => (page === 1 ? page : page - 1))
   }
-  console.log(
-    'slice',
-    getGallerySlice(gallery, page, perPage),
-    getGallerySlice(gallery, page, perPage).length
-  )
   return (
     <BoatSection theme="dark" className="sm:py-32">
       <InPageAnchor title={title} />

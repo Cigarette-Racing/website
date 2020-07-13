@@ -24,8 +24,13 @@ export const Sandbox = () => {
             onClick={handleClick}
             value={index}
             checked={selected === index}
+            alignment="start"
           >
-            Nighthawk
+            I would like to receive marketing communications on products,
+            services and events offered by Cigarette Racing Team. I understand
+            these communications may be personalised to me based on my
+            interests, preferences and use of products and services, including
+            invitations to provide customer experience feedback.
           </Radio>
         )
       )}

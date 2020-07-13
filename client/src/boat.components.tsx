@@ -32,17 +32,20 @@ import { AnimatePresence, motion } from 'framer-motion'
 import discoverBackground from '../content/images/discover-section-bg.jpeg'
 import customizationsBackground from '../content/images/customization-section-bg.jpeg'
 import { useToggle } from 'react-use'
+import ReactPlayer from 'react-player'
 
 export const BoatHeader = ({
   boatImage,
   boatLogo,
   boatNameLong,
+  onClickCta,
   headline,
   stats,
 }: {
   boatImage: GatsbyTypes.ImageSharpFluid
   boatLogo: string
   boatNameLong: string
+  onClickCta: () => void
   headline: string
   stats: Stat[]
 }) => (
@@ -62,7 +65,7 @@ export const BoatHeader = ({
         {headline}
       </Typography>
       <div className="relative mb-4 justify-center hidden md:flex">
-        <InPageCta>Request Info</InPageCta>
+        <InPageCta onClick={onClickCta}>Request Info</InPageCta>
       </div>
     </div>
     <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
@@ -86,7 +89,7 @@ export const BoatHeader = ({
       </div>
     </div>
     <div className="relative mb-4 flex justify-center md:hidden">
-      <InPageCta>Request Info</InPageCta>
+      <InPageCta onClick={onClickCta}>Request Info</InPageCta>
     </div>
   </section>
 )
@@ -126,14 +129,59 @@ export const TextBlockComponent = ({
   </div>
 )
 
+const DiscoverMedia = ({ media }: { media: Media }) => {
+  const [showVideo, setShowVideo] = useState(false)
+  return (
+    <AspectRatio ratio="3:2" md="16:9" lg="21:9">
+      <img
+        src={media.image.childImageSharp?.fluid?.src!}
+        className="absolute h-full w-full object-cover"
+      />
+      {media.videoUrl && (
+        <CircleButton
+          onClick={() => setShowVideo(true)}
+          icon={PlayIcon}
+          size="lg"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        />
+      )}
+      <AnimatePresence>
+        {showVideo && (
+          <motion.div
+            key="video"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <ReactPlayer
+              className="absolute top-0 left-0"
+              url={media.videoUrl}
+              controls
+              playing
+              config={{
+                file: {
+                  attributes: {
+                    className: 'object-cover',
+                  },
+                },
+              }}
+              width="100%"
+              height="100%"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </AspectRatio>
+  )
+}
+
 export const DiscoverSection = ({
   copy,
   header,
-  primaryImage,
+  media,
   sectionTitle,
 }: {
   sectionTitle: string
-  primaryImage: string
+  media: Media
   header: string
   copy: string
 }) => (
@@ -157,17 +205,7 @@ export const DiscoverSection = ({
         </VerticalHeader>
       </div>
       <div className="px-4 mb-16 lg:mb-20 md:mt-8 lg:mt-16">
-        <AspectRatio ratio="3:2" md="16:9" lg="21:9">
-          <img
-            src={primaryImage}
-            className="absolute h-full w-full object-cover"
-          />
-          <CircleButton
-            icon={PlayIcon}
-            size="lg"
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          />
-        </AspectRatio>
+        <DiscoverMedia media={media} />
       </div>
       <TextBlockComponent
         className="text-center px-4 max-w-2xl mx-auto lg:mb-8"
