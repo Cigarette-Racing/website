@@ -23,6 +23,7 @@
     "@types/react-headroom": "^2.2.1",
     "@types/react-helmet": "^6.0.0",
     "@types/react-modal": "^3.10.5",
+    "@types/throttle-debounce": "^2.1.0",
     "clsx": "^1.1.0",
     "framer-motion": "^1.11.1",
     "gatsby": "^2.23.14",
@@ -32,7 +33,9 @@
     "react-headroom": "^3.0.0",
     "react-helmet": "^6.0.0",
     "react-modal": "^3.11.2",
-    "react-use": "^15.1.1"
+    "react-player": "^2.5.0",
+    "react-use": "^15.1.1",
+    "throttle-debounce": "^2.2.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",

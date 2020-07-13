@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
@@ -19,6 +19,46 @@ import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
 import BoatFeaturette from '../molecules/boat-featurette'
+import ReactPlayer from 'react-player'
+import { AnimatePresence, motion } from 'framer-motion'
+
+const headerVideo =
+  'https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175'
+
+const TopVideo = () => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  return (
+    <AnimatePresence>
+      <motion.img
+        key="image"
+        src={header1}
+        className="absolute top-0 left-0 h-screen w-full object-cover"
+      />
+      <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
+        <ReactPlayer
+          className="absolute top-0 left-0"
+          url={headerVideo}
+          controls={false}
+          muted
+          loop
+          playing
+          onReady={() => {
+            setIsVideoLoaded(true)
+          }}
+          config={{
+            file: {
+              attributes: {
+                className: 'object-cover',
+              },
+            },
+          }}
+          width="100%"
+          height="100%"
+        />
+      </motion.div>
+    </AnimatePresence>
+  )
+}
 
 const IndexPage = () => (
   <Layout>
@@ -29,10 +69,9 @@ const IndexPage = () => (
       className="relative min-h-screen flex justify-center items-end overflow-hidden"
       data-scrollsection
     >
-      <img
-        src={header1}
-        className="absolute top-0 left-0 h-screen w-full object-cover"
-      />
+      <div className="absolute top-0 left-0 h-screen w-full">
+        <TopVideo />
+      </div>
       <div
         className="absolute top-0 left-0 h-screen w-full pointer-events-none"
         style={{
