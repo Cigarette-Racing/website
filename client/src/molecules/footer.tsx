@@ -36,7 +36,7 @@ export const Footer = ({}: FooterProps) => {
   const src: string = logo
   return (
     <footer className="max-w-full lg:max-w-5xl mx-auto bg-black text-white py-24 px-4">
-      <div className="mb-16 grid flex grid-cols-max-2 row-gap-16 col-gap-4 sm:grid-cols-max-4 justify-around">
+      {/* <div className="mb-16 grid flex grid-cols-max-2 row-gap-16 col-gap-4 sm:grid-cols-max-4 justify-around">
         {footerLinks.map((linkGroup) => {
           return (
             <div key={linkGroup.header}>
@@ -53,8 +53,8 @@ export const Footer = ({}: FooterProps) => {
             </div>
           )
         })}
-      </div>
-      <div className="h-32 border-t border-b border-gray-1 flex justify-around items-center">
+      </div> */}
+      <div className="h-32 DISABLED__border-t border-b border-gray-1 flex justify-around items-center">
         <img
           src={src}
           alt="Cigarette Racing"
