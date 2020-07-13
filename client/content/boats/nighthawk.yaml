@@ -50,8 +50,8 @@ sections:
             image: ../images/nighthawk/nighthawk-00005.png
             label: 4x/5x MERCURY RACING 450 VERADOS
           content:
-            header: POWERTRAIN OPTIONS
-            copy: 'Use this space to overview the powertrain options. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+            header: Mercury Racing 450 Verados
+            copy: 'Four engines sounds like a pipe dream—and yet that’s what you get with the Nighthawk. Four Mercery Racing 450 Verados, 350-450hp each, with a stunning max of 1800hp—cutting through the water will feel like soaring through the sky.'
       - type: full-width-carousel
         items:
           - media:

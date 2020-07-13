@@ -113,12 +113,12 @@ sections:
               image: ../images/auroris/auroris-00018.png
             content:
               header: SUNLOUNGE
-              copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+              copy: 'The Auroris’ deck layout is extremely versatile for entertaining, complete with inviting forward seat lounges, U-shaped seating, a rear conversational area, and a spacious rear sun lounge—so you can catch some sun while catching up.'
           - media:
               image: ../images/auroris/auroris-00019.png
             content:
               header: SURESHADE
-              copy: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+              copy: 'The Auroris hardtop offers an optional electrically actuated sun shade. At the press of a button, the shade covers the rear entertainment area. Ready to move on? Simply press “Shade In” on your Garmin display and it will retract into the hardtop.'
     moreDetails: []
 
   - type: flexible
