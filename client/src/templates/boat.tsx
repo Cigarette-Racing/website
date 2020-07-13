@@ -83,7 +83,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         onClickCta={setInquiryModalState}
       />
       <InPageNav
-        boatName="Tirranna"
+        boatName={boat.boatName!}
         titles={titles}
         onClickInquire={setInquiryModalState}
       />
