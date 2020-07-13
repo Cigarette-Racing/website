@@ -27,7 +27,6 @@ import {
 import { Tab } from './atoms/tab'
 import { LinkCta } from './atoms/link-cta'
 import { AnimatePresence, motion } from 'framer-motion'
-
 // images
 import discoverBackground from '../content/images/discover-section-bg.jpeg'
 import customizationsBackground from '../content/images/customization-section-bg.jpeg'
@@ -45,7 +44,7 @@ export const BoatHeader = ({
   boatImage: GatsbyTypes.ImageSharpFluid
   boatLogo: string
   boatNameLong: string
-  onClickCta: () => void
+  onClickCta: (state: boolean) => void
   headline: string
   stats: Stat[]
 }) => (
@@ -65,7 +64,13 @@ export const BoatHeader = ({
         {headline}
       </Typography>
       <div className="relative mb-4 justify-center hidden md:flex">
-        <InPageCta onClick={onClickCta}>Request Info</InPageCta>
+        <InPageCta
+          onClick={() => {
+            onClickCta(true)
+          }}
+        >
+          Request Info
+        </InPageCta>
       </div>
     </div>
     <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
@@ -89,7 +94,13 @@ export const BoatHeader = ({
       </div>
     </div>
     <div className="relative mb-4 flex justify-center md:hidden">
-      <InPageCta onClick={onClickCta}>Request Info</InPageCta>
+      <InPageCta
+        onClick={() => {
+          onClickCta(true)
+        }}
+      >
+        Request Info
+      </InPageCta>
     </div>
   </section>
 )
@@ -667,29 +678,37 @@ export const OrderSectionComponent = ({
   boatNameLong,
   title,
   media,
-}: OrderSection & { boatNameLong: string }) => (
-  <BoatSection className="pb-48 sm:py-48">
-    <InPageAnchor title={title} />
-    <img
-      src={media.image.childImageSharp?.fluid?.src!}
-      className="absolute h-full w-full top-0 object-cover"
-    />
-    <div className="absolute inset-0 bg-black bg-opacity-25"></div>
-    <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
-      <div className="bg-black bg-opacity-75 py-16 sm:py-20 px-4 max-w-md">
-        <Typography variant="h3" sm="h2" className="mb-6">
-          Order today
-        </Typography>
-        <Typography variant="e2" className="mb-12">
-          {boatNameLong}
-        </Typography>
-        <div className="flex justify-center">
-          <InPageCta>Request Info</InPageCta>
+}: OrderSection & { boatNameLong: string }) => {
+  return (
+    <BoatSection className="pb-48 sm:py-48">
+      <InPageAnchor title={title} />
+      <img
+        src={media.image.childImageSharp?.fluid?.src!}
+        className="absolute h-full w-full top-0 object-cover"
+      />
+      <div className="absolute inset-0 bg-black bg-opacity-25"></div>
+      <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
+        <div className="bg-black bg-opacity-75 py-16 sm:py-20 px-4 max-w-md">
+          <Typography variant="h3" sm="h2" className="mb-6">
+            Order today
+          </Typography>
+          <Typography variant="e2" className="mb-12">
+            {boatNameLong}
+          </Typography>
+          <div className="flex justify-center">
+            <InPageCta
+              onClick={() => {
+                onClickCta(true)
+              }}
+            >
+              Request Info
+            </InPageCta>
+          </div>
         </div>
       </div>
-    </div>
-  </BoatSection>
-)
+    </BoatSection>
+  )
+}
 
 // ===================================
 // BLOCKS

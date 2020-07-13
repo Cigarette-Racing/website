@@ -44,6 +44,10 @@ import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
 import { MediaGallery } from '../molecules/media-gallery'
+import {
+  InquiryModal,
+  useInquiryModalState,
+} from '../molecules/inquiry/inquiry-modal'
 
 const extractTitles = (sections: readonly any[]) =>
   (sections as ({ type: string } & CommonSectionProps)[])
@@ -63,6 +67,8 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const specsData = findSpecsSection(boat.sections!)
   const galleryData = findGallerySection(boat.sections!)
   const orderData = findOrderSection(boat.sections!)
+
+  const [, setInquiryModalState] = useInquiryModalState()
   // TODO:
   // const customizationsData = findCustomizationsSection(boat.sections!)
   return (
@@ -74,11 +80,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         boatNameLong={boat.boatNameLong!}
         headline={heroData.headline!}
         stats={heroData.stats! as Stat[]}
+        onClickCta={setInquiryModalState}
       />
       <InPageNav
         boatName="Tirranna"
         titles={titles}
-        onClickInquire={() => console.log('Clicked inquire')}
+        onClickInquire={setInquiryModalState}
       />
       <DiscoverSection
         sectionTitle={discoverData.title!}
@@ -181,6 +188,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       <MediaGallery {...galleryData} />
       {/* <CustomizationsSectionComponent {...customizationsData} /> */}
       <OrderSectionComponent boatNameLong={boat.boatNameLong!} {...orderData} />
+      <InquiryModal />
     </Layout>
   )
 }
