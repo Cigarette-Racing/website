@@ -38,12 +38,14 @@ export const BoatHeader = ({
   boatImage,
   boatLogo,
   boatNameLong,
+  onClickCta,
   headline,
   stats,
 }: {
   boatImage: GatsbyTypes.ImageSharpFluid
   boatLogo: string
   boatNameLong: string
+  onClickCta: () => void
   headline: string
   stats: Stat[]
 }) => (
@@ -63,7 +65,7 @@ export const BoatHeader = ({
         {headline}
       </Typography>
       <div className="relative mb-4 justify-center hidden md:flex">
-        <InPageCta>Request Info</InPageCta>
+        <InPageCta onClick={onClickCta}>Request Info</InPageCta>
       </div>
     </div>
     <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
@@ -87,7 +89,7 @@ export const BoatHeader = ({
       </div>
     </div>
     <div className="relative mb-4 flex justify-center md:hidden">
-      <InPageCta>Request Info</InPageCta>
+      <InPageCta onClick={onClickCta}>Request Info</InPageCta>
     </div>
   </section>
 )
