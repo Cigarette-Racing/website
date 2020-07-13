@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Field } from 'react-final-form'
+import { Link } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
