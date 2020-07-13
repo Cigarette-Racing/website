@@ -17,7 +17,7 @@ const BoatFeaturette = ({
   boatName: string
 }) => (
   <div
-    className="bg-cover relative md:w-1/2 min-h-screen-half bg-black text-white pt-4 lg:pt-16"
+    className="bg-cover relative justify-content: center; md:w-1/2 min-h-screen-half bg-black text-white pt-4 lg:pt-16"
     style={{
       backgroundImage: `url(${backgroundImage})`,
     }}
@@ -29,7 +29,7 @@ const BoatFeaturette = ({
           'linear-gradient(360deg, rgba(0, 0, 0, 0.6) 23.28%, rgba(0, 0, 0, 0) 71.29%)',
       }}
     ></div>
-    <div className="flex flex-col ml-auto max-w-2xl relative justify-between lg:justify-end">
+    <div className="flex flex-col h-full relative justify-between lg:justify-end">
       <div className="relative z-0 flex-2">
         <div className="px-2 md:px-4 flex justify-center">
           <img src={boatImage} className="object-cover max-w-1/2" />
