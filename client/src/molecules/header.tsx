@@ -508,9 +508,6 @@ function BoatSelector({
                         onReset()
                       }
                     }}
-                    className={clsx({
-                      'pointer-events-none cursor-default': index !== boatIndex,
-                    })}
                   >
                     <motion.div
                       variants={titleVariants}
@@ -673,9 +670,7 @@ const MobileBoatSelector = ({
                     setTimeout(onClose, 32)
                   }
                 }}
-                className={clsx('text-center', {
-                  'pointer-events-none cursor-default': index !== boatIndex,
-                })}
+                className="text-center"
               >
                 <motion.div
                   animate={{ opacity: index === boatIndex ? 1 : 0.4 }}
