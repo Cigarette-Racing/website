@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect, useRef } from 'react'
+import React, { useState, Fragment, useEffect, useRef, useMemo } from 'react'
 import clsx from 'clsx'
 import Headroom from 'react-headroom'
 import logo from '../images/logo-white.svg'
@@ -282,7 +282,7 @@ function MobileMenu({
                 if (section) {
                   return (
                     <button
-                      className="relative"
+                      className="relative mb-2"
                       onClick={() => {
                         if (selectedSection === section) {
                           setSelectedSection('')
@@ -401,7 +401,7 @@ function BoatSelector({
   }, [isVisible])
 
   const listenerProps = useOnMobileScroll(
-    throttle(32, (deltaY: number): void => {
+    throttle(300, true, (deltaY: number): void => {
       if (isNaN(deltaY)) return
       const step = deltaY > 0 ? 1 : -1
       setBoatIndex((index) =>
@@ -499,11 +499,15 @@ function BoatSelector({
                   className="absolute top-0 left-0  px-8"
                 >
                   <Link
-                    to={boat.slug!}
-                    onClick={onReset}
-                    className={clsx({
-                      'pointer-events-none cursor-default': index !== boatIndex,
-                    })}
+                    to={index === boatIndex ? boat.slug! : '#'}
+                    onClick={(event) => {
+                      if (index !== boatIndex) {
+                        event.preventDefault()
+                        setBoatIndex(index)
+                      } else {
+                        onReset()
+                      }
+                    }}
                   >
                     <motion.div
                       variants={titleVariants}
@@ -560,21 +564,24 @@ function BoatSelector({
 
 const useOnMobileScroll = (callback: (deltaY: number) => void) => {
   const yRef = useRef(0)
-  const onTouchStart: React.TouchEventHandler = (event) => {
-    yRef.current = event.changedTouches[0].screenY
-  }
-  const onTouchEnd: React.TouchEventHandler = (event) => {
-    callback(yRef.current - event.changedTouches[0].screenY)
-    yRef.current = 0
-  }
-  const onWheel: React.WheelEventHandler = (event) => {
-    callback(event.deltaY)
-  }
-  return {
-    onTouchStart,
-    onTouchEnd,
-    onWheel,
-  }
+  return useMemo(() => {
+    const onTouchStart: React.TouchEventHandler = (event) => {
+      yRef.current = event.changedTouches[0].screenY
+    }
+    const onTouchEnd: React.TouchEventHandler = (event) => {
+      callback(yRef.current - event.changedTouches[0].screenY)
+      yRef.current = 0
+    }
+    const onWheel: React.WheelEventHandler = (event) => {
+      if (Math.abs(event.deltaY) < 10) return
+      callback(event.deltaY)
+    }
+    return {
+      onTouchStart,
+      onTouchEnd,
+      onWheel,
+    }
+  }, [])
 }
 
 const MobileBoatSelector = ({
@@ -589,7 +596,7 @@ const MobileBoatSelector = ({
   const boats = extractBoats(data)
 
   const listenerProps = useOnMobileScroll(
-    throttle(32, (deltaY: number): void => {
+    throttle(200, true, (deltaY: number): void => {
       if (isNaN(deltaY) || Math.abs(deltaY) < 1) return
       const step = deltaY > 0 ? 1 : -1
       setBoatIndex((index) =>
@@ -651,16 +658,19 @@ const MobileBoatSelector = ({
               className="absolute top-0 left-0 w-full"
             >
               <Link
-                to={boat.slug!}
-                onClick={() => {
-                  // Hack because the menu closes faster than the page navigates.
-                  // Using a 32ms timeout generally gives the route enough time
-                  // to change before closing the menu.
-                  setTimeout(onClose, 32)
+                to={index === boatIndex ? boat.slug! : '#'}
+                onClick={(event) => {
+                  if (index !== boatIndex) {
+                    event.preventDefault()
+                    setBoatIndex(index)
+                  } else {
+                    // Hack because the menu closes faster than the page navigates.
+                    // Using a 32ms timeout generally gives the route enough time
+                    // to change before closing the menu.
+                    setTimeout(onClose, 32)
+                  }
                 }}
-                className={clsx('text-center', {
-                  'pointer-events-none cursor-default': index !== boatIndex,
-                })}
+                className="text-center"
               >
                 <motion.div
                   animate={{ opacity: index === boatIndex ? 1 : 0.4 }}
