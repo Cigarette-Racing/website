@@ -27,11 +27,7 @@
     "@types/react-select": "^3.0.14",
     "@types/throttle-debounce": "^2.1.0",
     "clsx": "^1.1.0",
-<<<<<<< HEAD
     "final-form": "^4.20.1",
-=======
-    "final-form": "^4.20.0",
->>>>>>> origin
     "framer-motion": "^1.11.1",
     "gatsby": "^2.23.14",
     "gatsby-image": "^2.4.11",
