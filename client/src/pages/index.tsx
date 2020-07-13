@@ -149,7 +149,7 @@ const IndexPage = () => {
           boatImage={boat1}
           contentHeader="Performance Center Console"
           subtitle="Hyperlux"
-          boatName="41' Nighthawk"
+          boatName="41 Nighthawk"
           url="nighthawk"
         />
         <BoatFeaturette
