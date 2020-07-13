@@ -143,6 +143,7 @@ const IndexPage = () => {
           contentHeader="Performance Center Console"
           subtitle="Hyperlux"
           boatName="41' Nighthawk"
+          url="nighthawk"
         />
         <BoatFeaturette
           backgroundImage={boat2BG}
@@ -150,6 +151,7 @@ const IndexPage = () => {
           contentHeader="Performance Center Console"
           subtitle="Hyperlux"
           boatName="42 Auroris"
+          url="auroris"
         />
       </section>
       {/* Second hero section */}
