@@ -499,8 +499,15 @@ function BoatSelector({
                   className="absolute top-0 left-0  px-8"
                 >
                   <Link
-                    to={boat.slug!}
-                    onClick={onReset}
+                    to={index === boatIndex ? boat.slug! : '#'}
+                    onClick={(event) => {
+                      if (index !== boatIndex) {
+                        event.preventDefault()
+                        setBoatIndex(index)
+                      } else {
+                        onReset()
+                      }
+                    }}
                     className={clsx({
                       'pointer-events-none cursor-default': index !== boatIndex,
                     })}
@@ -654,12 +661,17 @@ const MobileBoatSelector = ({
               className="absolute top-0 left-0 w-full"
             >
               <Link
-                to={boat.slug!}
-                onClick={() => {
-                  // Hack because the menu closes faster than the page navigates.
-                  // Using a 32ms timeout generally gives the route enough time
-                  // to change before closing the menu.
-                  setTimeout(onClose, 32)
+                to={index === boatIndex ? boat.slug! : '#'}
+                onClick={(event) => {
+                  if (index !== boatIndex) {
+                    event.preventDefault()
+                    setBoatIndex(index)
+                  } else {
+                    // Hack because the menu closes faster than the page navigates.
+                    // Using a 32ms timeout generally gives the route enough time
+                    // to change before closing the menu.
+                    setTimeout(onClose, 32)
+                  }
                 }}
                 className={clsx('text-center', {
                   'pointer-events-none cursor-default': index !== boatIndex,
