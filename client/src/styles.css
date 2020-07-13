@@ -18,6 +18,13 @@ main {
   @apply bg-white;
 }
 
+/* TODO: Fix this with better contextual focus states */
+button:focus,
+a:focus,
+:focus {
+  outline: none;
+}
+
 @tailwind components;
 @tailwind utilities;
 
@@ -85,6 +92,10 @@ Utilities
 
 .h-screen-w {
   height: 100vw;
+}
+
+.w-min-content {
+  width: min-content;
 }
 
 .-z-index-1 {

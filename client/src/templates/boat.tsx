@@ -82,7 +82,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       />
       <DiscoverSection
         sectionTitle={discoverData.title!}
-        primaryImage={discoverData.media.image.childImageSharp?.fluid?.src!}
+        media={discoverData.media}
         header={discoverData.content.header}
         copy={discoverData.content.copy}
       />
@@ -224,6 +224,7 @@ export const query = graphql`
               }
             }
           }
+          videoUrl
         }
         content {
           header

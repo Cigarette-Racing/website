@@ -4,6 +4,7 @@ import { Typography } from './typography'
 import { Theme } from '../types/shared'
 
 export interface InPageCtaProps {
+  className?: string
   /** Make the button a link */
   link?: true
   /** Visual variant to use */
@@ -24,13 +25,17 @@ export const InPageCta: React.FC<
       | React.HTMLAttributes<HTMLButtonElement>
       | React.AnchorHTMLAttributes<HTMLLinkElement>
     )
-> = ({ variant = 'primary', theme, children, ...rest }) => {
-  const classNames = clsx(baseClasses, {
-    [primaryClasses]: variant === 'primary',
-    [secondaryClasses]: variant === 'secondary',
-    'bg-black text-white': variant === 'secondary' && theme === 'dark',
-    'text-black': variant === 'secondary' && theme === 'light',
-  })
+> = ({ className, variant = 'primary', theme, children, ...rest }) => {
+  const classNames = clsx(
+    baseClasses,
+    {
+      [primaryClasses]: variant === 'primary',
+      [secondaryClasses]: variant === 'secondary',
+      'bg-black text-white': variant === 'secondary' && theme === 'dark',
+      'text-black': variant === 'secondary' && theme === 'light',
+    },
+    className
+  )
   if (isLink(rest)) {
     return (
       <a {...rest} className={classNames}>
