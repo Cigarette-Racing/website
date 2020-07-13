@@ -192,86 +192,7 @@ const IndexPage = () => {
         </div>
       </section>
       {/* News and press section */}
-      <section className="p-4 py-12 sm:py-40 bg-white min-h-screen sm:min-h-0 flex sm:block items-center">
-        <div className="max-w-8xl sm:mx-auto sm:flex">
-          <div className="sm:w-1/2 md:pl-8 lg:pl-16 xl:pl-24">
-            <Typography variant="h3" sm="h2" className="mb-4 sm:mb-16">
-              News <br className="hidden sm:block" />& press
-            </Typography>
-            <ComingSoonLink>
-              <LinkCta className="hidden sm:flex text-black mb-40">
-                Visit the News Room
-              </LinkCta>
-            </ComingSoonLink>
-            <div className="mt-10 space-x-4 hidden sm:block">
-              <CircleButton
-                variant="secondary"
-                theme="light"
-                icon={ArrowIcon}
-                iconClassName="transform rotate-180"
-              />
-              <CircleButton
-                variant="secondary"
-                theme="light"
-                icon={ArrowIcon}
-              />
-            </div>
-          </div>
-          <div className="flex sm:w-1/2 sm:overflow-hidden space-x-6">
-            <div style={{ maxWidth: '421px' }}>
-              <div
-                className="relative w-screen h-screen-w -mx-4 xs:mx-0 mb-6"
-                style={{ maxWidth: '421px', maxHeight: '421px' }}
-              >
-                <img src={article1} className="object-cover h-full" />
-                <ExternalLink
-                  href="https://example.com"
-                  className="absolute top-0 mt-6 ml-4"
-                >
-                  speedthewater.com
-                </ExternalLink>
-              </div>
-              <Typography variant="h5" className="mb-2">
-                This is an article title.
-              </Typography>
-              <Typography variant="p2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt
-              </Typography>
-            </div>
-            <div className="hidden sm:block" style={{ maxWidth: '421px' }}>
-              <div
-                className="relative w-screen h-screen-w -mx-4 xs:mx-0 mb-6"
-                style={{ maxWidth: '421px', maxHeight: '421px' }}
-              >
-                <img src={article2} className="object-cover h-full" />
-                <ExternalLink
-                  href="https://example.com"
-                  className="absolute top-0 mt-6 ml-4"
-                >
-                  speedthewater.com
-                </ExternalLink>
-              </div>
-              <Typography variant="h5" className="mb-2">
-                This is an article title.
-              </Typography>
-              <Typography variant="p2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt
-              </Typography>
-            </div>
-          </div>
-          <div className="mt-10 space-x-4 sm:hidden">
-            <CircleButton
-              variant="secondary"
-              theme="light"
-              icon={ArrowIcon}
-              iconClassName="transform rotate-180"
-            />
-            <CircleButton variant="secondary" theme="light" icon={ArrowIcon} />
-          </div>
-        </div>
-      </section>
+      <NewsSection />
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
@@ -524,7 +445,7 @@ function NewsSection() {
   }
 
   return (
-    <section className="p-4 py-12 sm:py-40 bg-white min-h-screen sm:min-h-0 flex sm:block items-center">
+    <section className="p-4 py-12 sm:py-40 bg-white min-h-screen sm:min-h-0 flex sm:block items-center overflow-hidden">
       <div className="max-w-8xl sm:mx-auto sm:flex">
         <div className="sm:w-1/2 md:pl-8 lg:pl-16 xl:pl-24">
           <Typography variant="h3" sm="h2" className="mb-4 sm:mb-16">
@@ -542,8 +463,39 @@ function NewsSection() {
             onClickPrev={goPrev}
           />
         </div>
-        <div className="flex sm:w-1/2 sm:overflow-hidden space-x-6">
-          <AnimatePresence initial={false}>
+        <div className="flex sm:w-1/2 space-x-6">
+          <div
+            key={newsItems[itemIndex].url}
+            // initial={{ x: direction === Direction.Next ? width : -1 * width }}
+            // animate={{ x: 0 }}
+            // exit={{ x: direction === Direction.Prev ? width : -1 * width }}
+            // transition={{
+            //   x: {
+            //     type: 'spring',
+            //     stiffness: 300,
+            //     damping: 200,
+            //   },
+            // }}
+          >
+            {renderItem(newsItems[itemIndex])}
+          </div>
+          <div
+            key={newsItems[nextItemIndex].url}
+            className="hidden sm:block"
+            // initial={{ x: direction === Direction.Next ? width : -1 * width }}
+            // animate={{ x: 0 }}
+            // exit={{ x: direction === Direction.Prev ? width : -1 * width }}
+            // transition={{
+            //   x: {
+            //     type: 'spring',
+            //     stiffness: 300,
+            //     damping: 200,
+            //   },
+            // }}
+          >
+            {renderItem(newsItems[nextItemIndex])}
+          </div>
+          {/* <AnimatePresence initial={false}>
             <motion.div
               key={newsItems[itemIndex].url}
               initial={{ x: direction === Direction.Next ? width : -1 * width }}
@@ -574,15 +526,17 @@ function NewsSection() {
             >
               {renderItem(newsItems[nextItemIndex])}
             </motion.div>
-          </AnimatePresence>
+          </AnimatePresence> */}
           {/* {newsItems.map(renderItem)} */}
         </div>
-        <CarouselButtons
-          className="mt-10 space-x-4 sm:hidden"
-          theme="light"
-          onClickNext={goNext}
-          onClickPrev={goPrev}
-        />
+        <div className="flex justify-start">
+          <CarouselButtons
+            className="mt-10 space-x-4 sm:hidden"
+            theme="light"
+            onClickNext={goNext}
+            onClickPrev={goPrev}
+          />
+        </div>
       </div>
     </section>
   )
