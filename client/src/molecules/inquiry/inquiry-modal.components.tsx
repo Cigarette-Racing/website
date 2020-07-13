@@ -24,7 +24,7 @@ export const FieldSetContainer: React.FC = ({ children }) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
 )
 
-export const FieldSetHeader: React.FC<{ className?: 'string' }> = ({
+export const FieldSetHeader: React.FC<{ className?: string }> = ({
   children,
   className,
 }) => {
