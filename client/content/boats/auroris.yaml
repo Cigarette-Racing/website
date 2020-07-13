@@ -50,8 +50,8 @@ sections:
             image: ../images/auroris/auroris-00005.png
             label: 4x/5x MERCURY RACING 450 VERADOS
           content:
-            header: POWERTRAIN OPTIONS
-            copy: 'Use this space to overview the powertrain options. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
+            header: 4x/5x Mercury Verados
+            copy: 'A true testament to power and grace, the Auroris can put out up to 2,250 max horsepower with up to 5x Mercury Racing 450 Verados—the kind of output that is true poetry in motion.'
       - type: full-width-carousel
         items:
           - media:
