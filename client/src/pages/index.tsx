@@ -53,7 +53,6 @@ const TopVideo = () => {
           height="100%"
         />
       </motion.div>
-      )
     </AnimatePresence>
   )
 }
