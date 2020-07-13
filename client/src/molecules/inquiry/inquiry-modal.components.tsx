@@ -102,7 +102,7 @@ export const StepOne = ({ children }: any) => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
-        request and appointment
+        request an appointment
       </div>
       <FieldSetHeader>Basic info</FieldSetHeader>
       <FieldSetContainer>
