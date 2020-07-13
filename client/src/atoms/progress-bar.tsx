@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 export interface ProgressBarProps {
   /** Number between 0 and 100 (inclusive) to display as progress */
@@ -15,9 +16,13 @@ export const ProgressBar = ({ percentage }: ProgressBarProps) => {
   const percentageString = normalizePercentage(percentage) + '%'
   return (
     <div className="h-px w-full bg-white">
-      <div className="h-px bg-red" style={{ width: percentageString }}>
+      <motion.div
+        className="h-px bg-red"
+        initial={false}
+        animate={{ width: percentageString }}
+      >
         <span className="sr-only">{percentageString}</span>
-      </div>
+      </motion.div>
     </div>
   )
 }

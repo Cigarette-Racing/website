@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect, useRef } from 'react'
 import clsx from 'clsx'
 import Headroom from 'react-headroom'
 import logo from '../images/logo-white.svg'
 import { Typography } from '../atoms/typography'
-import { MenuIcon } from '../svgs/icons'
+import { MenuIcon, ArrowIcon } from '../svgs/icons'
 import { ReturnLink } from '../atoms/return-link'
 import {
   useLockBodyScroll,
@@ -12,8 +12,14 @@ import {
   useToggle,
 } from 'react-use'
 import Modal from 'react-modal'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import { useLocation } from '@reach/router'
+import { findHeroSection } from '../types/boat'
+import { StatBlock } from '../atoms/stat-block'
+import { throttle } from 'throttle-debounce'
+import { AspectRatio } from '../atoms/aspect-ratio'
+import { motion, Variants } from 'framer-motion'
+import arrowWithCircleSvg from '../images/arrow-with-circle.svg'
 
 export type HeaderState = 'top' | 'pinned' | 'hidden'
 export const useHeaderState = createGlobalState<HeaderState>('top')
@@ -25,25 +31,92 @@ Modal.setAppElement(
     : '#___gatsby'
 )
 
-const leftLinks = [['Boats'], ['Our world'], ['The Difference']]
-const rightLinks = [['Owners'], ['Store'], ['Contact', '/contact']]
-const allLinks = [['Home', '/']].concat(leftLinks, rightLinks)
+type LinkItem = {
+  text: string
+  link?: string
+  section?: string
+}
+
+const leftLinks: LinkItem[] = [
+  { text: 'Boats', section: 'boats' },
+  { text: 'Our world' },
+  { text: 'The Difference' },
+]
+const rightLinks: LinkItem[] = [
+  { text: 'Owners' },
+  { text: 'Store' },
+  { text: 'Contact', link: '/contact' },
+]
+const allLinks = [{ text: 'Home', link: '/' } as LinkItem].concat(
+  leftLinks,
+  rightLinks
+)
 
 export interface HeaderProps {}
 
 export const Header = ({}: HeaderProps) => {
   const [isHovering, setIsHovering] = useToggle(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const isMobileMenu = useMedia('(max-width: 1000px)')
+  const [selectedSection, setSelectedSection] = useState('')
+  const isMobileMenu = useMedia('(max-width: 767px)')
   const [isAtTop, setIsAtTop] = useState(true)
   const [, setHeaderState] = useHeaderState()
-  useLockBodyScroll(isMenuOpen)
+  useLockBodyScroll(isMenuOpen || !!selectedSection)
+
   // @ts-ignore
   const src: string = logo
+
+  const renderLinks = ({ text, link, section }: LinkItem): JSX.Element => {
+    if (link) {
+      return (
+        <Link to={link} key={text}>
+          <Typography
+            variant="e3"
+            key={text}
+            className="p-2 whitespace-no-wrap"
+          >
+            {text}
+          </Typography>
+        </Link>
+      )
+    }
+    if (section) {
+      return (
+        <button
+          className="relative"
+          onClick={() => {
+            if (selectedSection === section) {
+              setIsMenuOpen(false)
+              setSelectedSection('')
+            } else {
+              setIsMenuOpen(true)
+              setSelectedSection(section)
+            }
+          }}
+          key={text}
+        >
+          <Typography
+            variant="e3"
+            key={text}
+            className="p-2 whitespace-no-wrap"
+          >
+            {text}
+          </Typography>
+          {selectedSection === section && (
+            <div className="absolute border-t border-red w-full top-1/2 -mt-px"></div>
+          )}
+        </button>
+      )
+    }
+    return <ComingSoonLink key={text} text={text} />
+  }
+
   return (
     <Fragment>
       <Headroom
-        className="absolute top-0 left-0 w-full z-40"
+        className={clsx('absolute top-0 left-0 w-full z-40', {
+          'bg-black': selectedSection !== '',
+        })}
         onPin={() => {
           console.log('onPin')
           setHeaderState('pinned')
@@ -76,9 +149,7 @@ export const Header = ({}: HeaderProps) => {
                 </button>
               ) : (
                 <div className="flex space-x-4 xl:space-x-6">
-                  {leftLinks.map(([text]) => (
-                    <ComingSoonLink key={text} text={text} />
-                  ))}
+                  {leftLinks.map(renderLinks)}
                 </div>
               )}
             </div>
@@ -98,29 +169,23 @@ export const Header = ({}: HeaderProps) => {
                 </div>
               ) : (
                 <div className="flex space-x-4 xl:space-x-6">
-                  {rightLinks.map(([text, link]) => {
-                    if (link) {
-                      return (
-                        <Link to={link} key={text}>
-                          <Typography
-                            variant="e3"
-                            key={text}
-                            className="p-2 whitespace-no-wrap"
-                          >
-                            {text}
-                          </Typography>
-                        </Link>
-                      )
-                    }
-                    return <ComingSoonLink key={text} text={text} />
-                  })}
+                  {rightLinks.map(renderLinks)}
                 </div>
               )}
             </div>
           </div>
         </div>
       </Headroom>
-      <MobileMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <BoatSelector
+        isVisible={selectedSection === 'boats' && !isMobileMenu}
+        onReset={() => setSelectedSection('')}
+      />
+      <MobileMenu
+        isMenuOpen={isMenuOpen && isMobileMenu}
+        setIsMenuOpen={setIsMenuOpen}
+        selectedSection={selectedSection}
+        setSelectedSection={setSelectedSection}
+      />
     </Fragment>
   )
 }
@@ -163,9 +228,13 @@ function ComingSoonLink({ text }: { text: string }) {
 function MobileMenu({
   isMenuOpen,
   setIsMenuOpen,
+  selectedSection,
+  setSelectedSection,
 }: {
   isMenuOpen: boolean
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+  selectedSection: string
+  setSelectedSection: React.Dispatch<React.SetStateAction<string>>
 }) {
   const location = useLocation()
   return (
@@ -186,35 +255,64 @@ function MobileMenu({
         role="dialog"
         aria-modal="true"
       >
-        <div className="h-16 flex items-center">
-          <ReturnLink onClick={() => setIsMenuOpen(false)}>Back</ReturnLink>
-        </div>
-        <div className="mt-10 flex flex-col items-start">
-          {allLinks.map(([text, link]) => {
-            if (link) {
-              return (
-                <Link
-                  key={text}
-                  to={link}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="py-2 mb-2"
-                >
-                  <div className="relative">
-                    <Typography variant="h4">{text}</Typography>
-                    {location.pathname === link && (
-                      <div className="absolute border-b border-t border-red w-full top-1/2"></div>
-                    )}
+        {selectedSection === '' ? (
+          <Fragment>
+            <div className="h-16 flex items-center">
+              <ReturnLink onClick={() => setIsMenuOpen(false)}>Back</ReturnLink>
+            </div>
+            <div className="mt-10 flex flex-col items-start">
+              {allLinks.map(({ text, link, section }) => {
+                if (link) {
+                  return (
+                    <Link
+                      key={text}
+                      to={link}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="py-2 mb-2"
+                    >
+                      <div className="relative">
+                        <Typography variant="h3">{text}</Typography>
+                        {location.pathname === link && (
+                          <div className="absolute border-b border-t border-red w-full top-1/2"></div>
+                        )}
+                      </div>
+                    </Link>
+                  )
+                }
+                if (section) {
+                  return (
+                    <button
+                      className="relative"
+                      onClick={() => {
+                        if (selectedSection === section) {
+                          setSelectedSection('')
+                        } else {
+                          setSelectedSection(section)
+                        }
+                      }}
+                      key={text}
+                    >
+                      <Typography variant="h3">{text}</Typography>
+                    </button>
+                  )
+                }
+                return (
+                  <div key={text} className="relative">
+                    <ComingSoonMobileLink text={text} />
                   </div>
-                </Link>
-              )
-            }
-            return (
-              <div key={text} className="relative">
-                <ComingSoonMobileLink text={text} />
-              </div>
-            )
-          })}
-        </div>
+                )
+              })}
+            </div>
+          </Fragment>
+        ) : selectedSection === 'boats' ? (
+          <MobileBoatSelector
+            onReturn={() => setSelectedSection('')}
+            onClose={() => {
+              setIsMenuOpen(false)
+              setSelectedSection('')
+            }}
+          />
+        ) : null}
       </div>
     </Modal>
   )
@@ -232,12 +330,381 @@ function ComingSoonMobileLink({ text }: { text: string }) {
       className="relative cursor-default py-2 mb-2"
     >
       <Typography
-        variant="h4"
+        variant="h3"
         className={clsx('whitespace-no-wrap opacity-25', {
           'opacity-50': isActive,
         })}
       >
         {isActive ? 'Coming Soon' : text}
+      </Typography>
+    </div>
+  )
+}
+
+const extractBoats = (data: GatsbyTypes.HeaderMenuQuery) => {
+  return data.boats.nodes.map((node) => {
+    const heroSection = findHeroSection(node.sections!)
+    return {
+      boatName: node.boatName,
+      menuName: node.metadata?.menuName,
+      slug: node.fields?.slug,
+      ...heroSection,
+    }
+  })
+}
+const boatsQuery = graphql`
+  query HeaderMenu {
+    boats: allBoatsYaml(sort: { fields: metadata___menuSort }) {
+      nodes {
+        boatName
+        fields {
+          slug
+        }
+        metadata {
+          menuSort
+          menuName
+        }
+        sections {
+          type
+          stats {
+            percentage
+            text
+            label
+          }
+          backgroundMedia {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2000) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+function BoatSelector({
+  isVisible,
+  onReset,
+}: {
+  isVisible: boolean
+  onReset: () => void
+}) {
+  const [boatIndex, setBoatIndex] = useState(0)
+  const data = useStaticQuery<GatsbyTypes.HeaderMenuQuery>(boatsQuery)
+  const boats = extractBoats(data)
+
+  useEffect(() => {
+    setBoatIndex(0)
+  }, [isVisible])
+
+  const listenerProps = useOnMobileScroll(
+    throttle(32, (deltaY: number): void => {
+      if (isNaN(deltaY)) return
+      const step = deltaY > 0 ? 1 : -1
+      setBoatIndex((index) =>
+        Math.min(Math.max(0, index + step), boats.length - 1)
+      )
+    })
+  )
+
+  return (
+    <Modal
+      isOpen={isVisible}
+      className={{ base: 'absolute inset-0', afterOpen: '', beforeClose: '' }}
+      overlayClassName="fixed inset-0 z-30"
+      onRequestClose={() => {}}
+    >
+      <div
+        className={clsx(
+          'relative h-screen bg-black flex flex-col text-white pt-20 overflow-y-auto'
+        )}
+        role="dialog"
+        aria-modal="true"
+        {...listenerProps}
+      >
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+          <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl overflow-hidden flex">
+            <AspectRatio ratio="3:2" className="w-screen">
+              <img
+                src={
+                  boats[boatIndex].backgroundMedia.image.childImageSharp?.fluid
+                    ?.src!
+                }
+                alt=""
+                className="absolute h-full w-full object-cover"
+              />
+              <div className="bg-black opacity-50 absolute inset-0"></div>
+            </AspectRatio>
+          </div>
+        </div>
+        <div className="fixed top-0 left-0 w-full h-full">
+          <div className="max-w-5xl xl:max-w-6xl mx-auto relative top-1/2 -mt-16 px-8">
+            {boats.map((boat, index) => {
+              const collapsedHeight = 56
+              const highlightedHeight = 140
+              const stiffness = 90
+              const marginY = 40
+              const parentAnimation =
+                index !== boatIndex
+                  ? {
+                      height: collapsedHeight,
+                      translateY:
+                        (index - boatIndex) * (collapsedHeight + marginY) +
+                        (index > boatIndex
+                          ? highlightedHeight - marginY * 1.5
+                          : 0),
+                      scale: 0.85,
+                      transition: {
+                        stiffness,
+                      },
+                    }
+                  : {
+                      height: highlightedHeight,
+                      translateY: 0,
+                      scale: 1,
+                      transition: {
+                        stiffness,
+                      },
+                    }
+              const titleVariants: Variants = {
+                enter: {
+                  opacity: 0.4,
+                },
+                animate: {
+                  opacity: 1,
+                },
+              }
+              const linkVariants: Variants = {
+                enter: {
+                  opacity: 0,
+                  y: 10,
+                },
+                animate: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.15,
+                    delay: 0.2,
+                  },
+                },
+              }
+              return (
+                <motion.div
+                  key={boat.boatName}
+                  initial={false}
+                  animate={parentAnimation}
+                  className="absolute top-0 left-0  px-8"
+                >
+                  <Link
+                    to={boat.slug!}
+                    onClick={onReset}
+                    className={clsx({
+                      'pointer-events-none cursor-default': index !== boatIndex,
+                    })}
+                  >
+                    <motion.div
+                      variants={titleVariants}
+                      initial="enter"
+                      animate={index === boatIndex ? 'animate' : 'enter'}
+                      exit="enter"
+                    >
+                      <Typography variant="h1" className="mb-4 text-5xl">
+                        {boat.menuName}
+                      </Typography>
+                    </motion.div>
+                    <motion.div
+                      variants={linkVariants}
+                      initial={index === boatIndex ? false : 'enter'}
+                      animate={index === boatIndex ? 'animate' : 'enter'}
+                      exit="enter"
+                    >
+                      <Typography
+                        variant="e2"
+                        className="flex space-x-6 items-center"
+                      >
+                        <span>View Model</span>{' '}
+                        <ArrowIcon className="text-red text-xl" />
+                      </Typography>
+                    </motion.div>
+                  </Link>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+        <div className="fixed w-full bottom-0">
+          <div className="flex space-x-8 w-min-content mx-auto pb-10">
+            {boats[boatIndex].stats.map((stat) => (
+              <div key={stat.label} className="w-48">
+                <StatBlock
+                  label={stat.label}
+                  percentage={stat.percentage}
+                  text={stat.text}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="fixed bottom-0 left-0 w-full mb-8">
+          <div className="max-w-8xl mx-auto">
+            <ScrollPrompter className="" />
+          </div>
+        </div>
+      </div>
+    </Modal>
+  )
+}
+
+const useOnMobileScroll = (callback: (deltaY: number) => void) => {
+  const yRef = useRef(0)
+  const onTouchStart: React.TouchEventHandler = (event) => {
+    yRef.current = event.changedTouches[0].screenY
+  }
+  const onTouchEnd: React.TouchEventHandler = (event) => {
+    callback(yRef.current - event.changedTouches[0].screenY)
+    yRef.current = 0
+  }
+  const onWheel: React.WheelEventHandler = (event) => {
+    callback(event.deltaY)
+  }
+  return {
+    onTouchStart,
+    onTouchEnd,
+    onWheel,
+  }
+}
+
+const MobileBoatSelector = ({
+  onClose,
+  onReturn,
+}: {
+  onClose: () => void
+  onReturn: () => void
+}) => {
+  const [boatIndex, setBoatIndex] = useState(0)
+  const data = useStaticQuery<GatsbyTypes.HeaderMenuQuery>(boatsQuery)
+  const boats = extractBoats(data)
+
+  const listenerProps = useOnMobileScroll(
+    throttle(32, (deltaY: number): void => {
+      if (isNaN(deltaY) || Math.abs(deltaY) < 1) return
+      const step = deltaY > 0 ? 1 : -1
+      setBoatIndex((index) =>
+        Math.min(Math.max(0, index + step), boats.length - 1)
+      )
+    })
+  )
+
+  return (
+    <div className="min-h-screen" {...listenerProps}>
+      <div className="h-16 flex items-center">
+        <ReturnLink onClick={onReturn}>Back</ReturnLink>
+      </div>
+      <div className="-mx-4">
+        <AspectRatio ratio="3:2" className="w-screen">
+          <img
+            src={
+              boats[boatIndex].backgroundMedia.image.childImageSharp?.fluid
+                ?.src!
+            }
+            alt=""
+            className="absolute h-full w-full object-cover"
+          />
+          <div className="bg-black opacity-50 absolute inset-0"></div>
+        </AspectRatio>
+      </div>
+      <div className="relative -mt-6">
+        {boats.map((boat, index) => {
+          const collapsedHeight = 56
+          const highlightedHeight = 80
+          const parentAnimation =
+            index === boatIndex
+              ? {
+                  height: highlightedHeight,
+                  translateY: 0,
+                  scale: 1,
+                  opacity: 1,
+                }
+              : index > boatIndex
+              ? {
+                  height: collapsedHeight,
+                  translateY:
+                    (index - boatIndex) * collapsedHeight + highlightedHeight,
+                  scale: 0.85,
+                  opacity: 1,
+                }
+              : {
+                  height: collapsedHeight,
+                  translateY: (index - boatIndex) * collapsedHeight,
+                  scale: 0.5,
+                  opacity: 0,
+                }
+          return (
+            <motion.div
+              key={boat.boatName}
+              initial={false}
+              animate={parentAnimation}
+              transition={{ stiffness: 90 }}
+              className="absolute top-0 left-0 w-full"
+            >
+              <Link
+                to={boat.slug!}
+                onClick={() => {
+                  // Hack because the menu closes faster than the page navigates.
+                  // Using a 32ms timeout generally gives the route enough time
+                  // to change before closing the menu.
+                  setTimeout(onClose, 32)
+                }}
+                className={clsx('text-center', {
+                  'pointer-events-none cursor-default': index !== boatIndex,
+                })}
+              >
+                <motion.div
+                  animate={{ opacity: index === boatIndex ? 1 : 0.4 }}
+                >
+                  <Typography variant="h3" className="mb-4">
+                    {boat.menuName}
+                  </Typography>
+                </motion.div>
+                <motion.div
+                  initial={false}
+                  animate={{
+                    opacity: index === boatIndex ? 1 : 0,
+                    scale: index === boatIndex ? 1 : 0.5,
+                  }}
+                >
+                  <Typography
+                    variant="e1"
+                    className="flex space-x-6 items-center justify-center"
+                  >
+                    <span>View Model</span>{' '}
+                    <ArrowIcon className="text-red text-xl" />
+                  </Typography>
+                </motion.div>
+              </Link>
+            </motion.div>
+          )
+        })}
+      </div>
+      <ScrollPrompter className="fixed bottom-0 right-0" />
+    </div>
+  )
+}
+
+const ScrollPrompter = ({ className }: { className?: string }) => {
+  return (
+    <div
+      className={clsx(
+        'p-4 writing-mode-vertical transform rotate-180 pointer-events-none flex space-y-6',
+        className
+      )}
+    >
+      <img src={arrowWithCircleSvg} className="transform rotate-180" />
+      <Typography variant="e3" theme="dark" className="whitespace-no-wrap">
+        Scroll
       </Typography>
     </div>
   )
