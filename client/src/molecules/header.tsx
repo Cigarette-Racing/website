@@ -353,7 +353,7 @@ export const extractBoats = (data: GatsbyTypes.HeaderMenuQuery) => {
     }
   })
 }
-export const boatsQuery = graphql`
+const boatsQuery = graphql`
   query HeaderMenu {
     boats: allBoatsYaml(sort: { fields: metadata___menuSort }) {
       nodes {

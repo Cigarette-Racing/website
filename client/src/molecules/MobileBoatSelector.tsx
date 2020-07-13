@@ -2,16 +2,45 @@ import React, { useState } from 'react'
 import { Typography } from '../atoms/typography'
 import { ArrowIcon } from '../svgs/icons'
 import { ReturnLink } from '../atoms/return-link'
-import { Link, useStaticQuery } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import { throttle } from 'throttle-debounce'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { motion } from 'framer-motion'
-import {
-  boatsQuery,
-  extractBoats,
-  useOnMobileScroll,
-  ScrollPrompter,
-} from './header'
+import { extractBoats, useOnMobileScroll, ScrollPrompter } from './header'
+
+const boatsQuery = graphql`
+  query HeaderMenu {
+    boats: allBoatsYaml(sort: { fields: metadata___menuSort }) {
+      nodes {
+        boatName
+        fields {
+          slug
+        }
+        metadata {
+          menuSort
+          menuName
+        }
+        sections {
+          type
+          stats {
+            percentage
+            text
+            label
+          }
+          backgroundMedia {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 2000) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 export const MobileBoatSelector = ({
   onClose,
