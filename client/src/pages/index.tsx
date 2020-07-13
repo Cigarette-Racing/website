@@ -24,10 +24,13 @@ import {
   useInquiryModalState,
   HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
-
 import BoatFeaturette from '../molecules/boat-featurette'
 import ReactPlayer from 'react-player'
 import { AnimatePresence, motion } from 'framer-motion'
+import { wrap } from '@popmotion/popcorn'
+import { CarouselButtons } from '../boat.components'
+import { Link } from 'gatsby'
+import { useToggle } from 'react-use'
 
 const encode = (data: any) => {
   return Object.keys(data)
@@ -130,8 +133,12 @@ const IndexPage = () => {
             steadfast commitment to ultimate luxury and performance.
           </Typography>
           <div className="flex items-center space-x-6">
-            <InPageCta>Request Info</InPageCta>
-            <LinkCta>Learn More</LinkCta>
+            <InPageCta onClick={() => setInquiryModalState(true)}>
+              Request Info
+            </InPageCta>
+            <Link to="/boats/tirranna">
+              <LinkCta>Learn More</LinkCta>
+            </Link>
           </div>
         </div>
       </section>
@@ -178,7 +185,9 @@ const IndexPage = () => {
             The best is only the start
           </Typography>
           <div className="flex items-center space-x-6">
-            <LinkCta>EXPERIENCE THE DIFFERENCE</LinkCta>
+            <ComingSoonLink>
+              <LinkCta>EXPERIENCE THE DIFFERENCE</LinkCta>
+            </ComingSoonLink>
           </div>
         </div>
       </section>
@@ -189,9 +198,11 @@ const IndexPage = () => {
             <Typography variant="h3" sm="h2" className="mb-4 sm:mb-16">
               News <br className="hidden sm:block" />& press
             </Typography>
-            <LinkCta className="hidden sm:flex text-black mb-40">
-              Visit the News Room
-            </LinkCta>
+            <ComingSoonLink>
+              <LinkCta className="hidden sm:flex text-black mb-40">
+                Visit the News Room
+              </LinkCta>
+            </ComingSoonLink>
             <div className="mt-10 space-x-4 hidden sm:block">
               <CircleButton
                 variant="secondary"
@@ -343,3 +354,261 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+function ComingSoonLink({ children }: { children: React.ReactNode }) {
+  const [isActive, setIsActive] = useToggle(false)
+  return (
+    <div
+      onMouseEnter={() => setIsActive(true)}
+      onFocus={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
+      onBlur={() => setIsActive(false)}
+      tabIndex={0}
+      className="relative cursor-default whitespace-no-wrap"
+      style={{ width: 'min-content' }}
+    >
+      <motion.div
+        animate={{
+          opacity: isActive ? 0 : 0.5,
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        {children}
+      </motion.div>
+      {isActive && (
+        <motion.div
+          animate={{
+            opacity: isActive ? 1 : 0,
+          }}
+          className="absolute top-0 left-0 h-full w-full flex justify-center items-center"
+        >
+          <Typography
+            variant="e1"
+            className="whitespace-no-wrap opacity-75 text-center"
+          >
+            Coming Soon
+          </Typography>
+        </motion.div>
+      )}
+    </div>
+  )
+}
+
+type NewsItem = {
+  url: string
+  siteName: string
+  image: string
+  title: string
+  content: string
+}
+
+const newsItems: NewsItem[] = [
+  {
+    url:
+      'https://www.mercedes-amg.com/en/press-information/cigarette-boat-12th-edition.html',
+    siteName: 'mercedes-amg.com',
+    image: require('../../content/images/homepage/news-00001.jpeg'),
+    title:
+      '12th special edition from Mercedes-AMG and Cigarette Racing celebrates its world debut',
+    content:
+      'Mercedes-AMG and Cigarette Racing Team continue longstanding collaboration by creating performance one-off role models for land and water.',
+  },
+  {
+    url:
+      'https://www.speedonthewater.com/performance-boat-center-on-point-again-with-cigarette-owners-rendezvous/',
+    siteName: 'speedonthewater.com',
+    image: require('../../content/images/homepage/news-00002.png'),
+    title:
+      'Performance Boat Center On Point Again With Cigarette Owners Rendezvous',
+    content:
+      'No one knew how the Cigarette Owners Rendezvous would do when it landed at the Lake of the Ozarksin the hands of Performance Boat Center...',
+  },
+  {
+    url:
+      'https://www.speedonthewater.com/gallery-of-the-week-cigarette-opens-st-tropez/',
+    siteName: 'speedonthewater.com',
+    image: require('../../content/images/homepage/news-00003.png'),
+    title: 'Gallery Of The Week: Cigarette Opens St. Tropez',
+    content:
+      'Reopened this week after its own novel coronavirus shutdown, the Port of Tropez, one of the crown jewels of the French Riviera...',
+  },
+  {
+    url:
+      'https://robbreport.com/motors/aviation/mercedes-amg-cigarette-racing-powerboat-release-miami-details-2899104/',
+    siteName: 'robbreport.com',
+    image: require('../../content/images/homepage/news-00004.png'),
+    title: 'Mercedes-AMG Unveils Its Biggest, Baddest Cigarette Boat Yet',
+    content:
+      'This insane 80 mph, 59-foot rocketship could be yours for $3 million.',
+  },
+  {
+    url: 'https://www.youtube.com/watch?v=SKOXaiH5yB4&feature=emb_title',
+    siteName: 'youtube.com',
+    image: require('../../content/images/homepage/news-00005.png'),
+    title: "New Nighthawk 41 Cigarette's 88 Mph Center Console Monster!",
+    content:
+      'Some boats become legendary the moment you lay your eyes on them. This is one of them boats...',
+  },
+  {
+    url: 'https://www.youtube.com/watch?v=i8Wt97g7q_c&feature=emb_title',
+    siteName: 'youtube.com',
+    image: require('../../content/images/homepage/news-00006.png'),
+    title: "The Ultimate Adventure Awaits! (Cigarette's Auroris 42 Center)",
+    content:
+      'Cigarette has changed throughout the years but the 2020 Miami Boat Show Cigarette has begun...',
+  },
+  {
+    url:
+      'https://www.youtube.com/watch?time_continue=376&v=ZMLa7pdd1T4&feature=emb_title',
+    siteName: 'youtube.com',
+    image: require('../../content/images/homepage/news-00007.png'),
+    title: 'The King of Center Consoles! AMG Cigarette Tirranna',
+    content:
+      'The fantastic people at Cigarette Racing have come to the 2020 Miami International Boat Show...',
+  },
+]
+
+function NewsSection() {
+  const [[page, direction], setPage] = useState([0, 0])
+  const itemIndex = wrap(0, newsItems.length, page)
+  const nextItemIndex = wrap(0, newsItems.length, page + 1)
+  const goNext = () => {
+    setPage((state) => [state[0], Direction.Next])
+    setPage((state) => [state[0] + 1, state[1]])
+    // setPage([page + 1, Direction.Next])
+  }
+  const goPrev = () => {
+    setPage((state) => [state[0], Direction.Prev])
+    setPage((state) => [state[0] - 1, state[1]])
+    // setPage([page - 1, Direction.Prev])
+  }
+
+  enum Direction {
+    Next = 1,
+    Prev = -1,
+  }
+  const width = 421 + 32
+  const variants1 = {
+    enter: ({ direction }: { direction: Direction }) => {
+      console.log('enter1', direction, width)
+      return {
+        x: direction === Direction.Next ? width : -1 * width,
+      }
+    },
+    center: {
+      x: 0,
+    },
+    exit: ({ direction }: { direction: Direction }) => {
+      console.log('exit1', direction, width)
+      return {
+        x: direction === Direction.Prev ? width : -1 * width,
+      }
+    },
+  }
+  const variants2 = {
+    enter: ({ direction }: { direction: Direction }) => {
+      console.log('enter2', direction, width)
+      return {
+        x: direction === Direction.Next ? width : -1 * width,
+      }
+    },
+    center: {
+      x: 0,
+    },
+    exit: ({ direction }: { direction: Direction }) => {
+      console.log('exit2', direction, width)
+      return {
+        x: direction === Direction.Prev ? width : -1 * width,
+      }
+    },
+  }
+
+  return (
+    <section className="p-4 py-12 sm:py-40 bg-white min-h-screen sm:min-h-0 flex sm:block items-center">
+      <div className="max-w-8xl sm:mx-auto sm:flex">
+        <div className="sm:w-1/2 md:pl-8 lg:pl-16 xl:pl-24">
+          <Typography variant="h3" sm="h2" className="mb-4 sm:mb-16">
+            News <br className="hidden sm:block" />& press
+          </Typography>
+          <ComingSoonLink>
+            <LinkCta className="hidden sm:flex text-black mb-40">
+              Visit the News Room
+            </LinkCta>
+          </ComingSoonLink>
+          <CarouselButtons
+            className="mt-10 space-x-4 hidden sm:block"
+            theme="light"
+            onClickNext={goNext}
+            onClickPrev={goPrev}
+          />
+        </div>
+        <div className="flex sm:w-1/2 sm:overflow-hidden space-x-6">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={newsItems[itemIndex].url}
+              initial={{ x: direction === Direction.Next ? width : -1 * width }}
+              animate={{ x: 0 }}
+              exit={{ x: direction === Direction.Prev ? width : -1 * width }}
+              transition={{
+                x: {
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 200,
+                },
+              }}
+            >
+              {renderItem(newsItems[itemIndex])}
+            </motion.div>
+            <motion.div
+              key={newsItems[nextItemIndex].url}
+              initial={{ x: direction === Direction.Next ? width : -1 * width }}
+              animate={{ x: 0 }}
+              exit={{ x: direction === Direction.Prev ? width : -1 * width }}
+              transition={{
+                x: {
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 200,
+                },
+              }}
+            >
+              {renderItem(newsItems[nextItemIndex])}
+            </motion.div>
+          </AnimatePresence>
+          {/* {newsItems.map(renderItem)} */}
+        </div>
+        <CarouselButtons
+          className="mt-10 space-x-4 sm:hidden"
+          theme="light"
+          onClickNext={goNext}
+          onClickPrev={goPrev}
+        />
+      </div>
+    </section>
+  )
+
+  function renderItem(item: NewsItem) {
+    return (
+      <div key={item.url} style={{ maxWidth: '421px' }}>
+        <div
+          className="relative w-screen h-screen-w -mx-4 xs:mx-0 mb-6"
+          style={{
+            maxWidth: '421px',
+            maxHeight: '421px',
+          }}
+        >
+          <img src={item.image} className="object-cover h-full" />
+          <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
+            {item.siteName}
+          </ExternalLink>
+        </div>
+        <Typography variant="h4" className="mb-2">
+          {item.title}
+        </Typography>
+        <Typography variant="p2" className="text-gray-2">
+          {item.content}
+        </Typography>
+      </div>
+    )
+  }
+}
