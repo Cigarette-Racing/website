@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
@@ -22,58 +22,96 @@ import {
   HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
 
+import ReactPlayer from 'react-player'
+import { AnimatePresence, motion } from 'framer-motion'
+
+const headerVideo =
+  'https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175'
+
+const TopVideo = () => {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  return (
+    <AnimatePresence>
+      <motion.img
+        key="image"
+        src={header1}
+        className="absolute top-0 left-0 h-screen w-full object-cover"
+      />
+      <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
+        <ReactPlayer
+          className="absolute top-0 left-0"
+          url={headerVideo}
+          controls={false}
+          muted
+          loop
+          playing
+          onReady={() => {
+            setIsVideoLoaded(true)
+          }}
+          config={{
+            file: {
+              attributes: {
+                className: 'object-cover',
+              },
+            },
+          }}
+          width="100%"
+          height="100%"
+        />
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
 const IndexPage = () => {
   const [, setInquiryModalState] = useInquiryModalState()
 
   return (
     <Layout>
-      <SEO title="Home" />
-      <ScrollIndicator />
-      {/* First hero section */}
-      <section
-        className="relative min-h-screen flex justify-center items-end overflow-hidden"
-        data-scrollsection
-      >
-        <img
-          src={header1}
-          className="absolute top-0 left-0 h-screen w-full object-cover"
-        />
-        <div
-          className="absolute top-0 left-0 h-screen w-full"
-          style={{
-            background:
-              'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
-          }}
-        />
-        <CircleButton
-          variant="primary"
-          icon={PlayIcon}
-          size="lg"
-          className="absolute top-2/5 sm:hidden hidden"
-        />
-        <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
-          <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            Tirranna 59 AMG Edition
-          </ContentHeader>
-          <Typography variant="h2" md="h1" className="mb-10 ">
-            Performance luxury defined
-          </Typography>
-          <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
-            A juxtaposition highlighted by land and sea, yet united through a
-            steadfast commitment to ultimate luxury and performance.
-          </Typography>
-          <div className="flex items-center space-x-6">
-            <InPageCta onClick={() => setInquiryModalState(true)}>
-              Request Info
-            </InPageCta>
-            <LinkCta>Learn More</LinkCta>
-          </div>
+    <SEO title="Home" />
+    <ScrollIndicator />
+    {/* First hero section */}
+    <section
+      className="relative min-h-screen flex justify-center items-end overflow-hidden"
+      data-scrollsection
+    >
+      <div className="absolute top-0 left-0 h-screen w-full">
+        <TopVideo />
+      </div>
+      <div
+        className="absolute top-0 left-0 h-screen w-full"
+        style={{
+          background:
+            'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
+        }}
+      />
+      <CircleButton
+        variant="primary"
+        icon={PlayIcon}
+        size="lg"
+        className="absolute top-2/5 sm:hidden hidden"
+      />
+      <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
+        <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
+          Tirranna 59 AMG Edition
+        </ContentHeader>
+        <Typography variant="h2" md="h1" className="mb-10 ">
+          Performance luxury defined
+        </Typography>
+        <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
+          A juxtaposition highlighted by land and sea, yet united through a
+          steadfast commitment to ultimate luxury and performance.
+        </Typography>
+        <div className="flex items-center space-x-6">
+          <InPageCta>Request Info</InPageCta>
+          <LinkCta>Learn More</LinkCta>
         </div>
-      </section>
-      {/* 2-up boats section */}
-      <section className="min-h-screen relative md:flex" data-scrollsection>
-        {/* Left boat */}
-        <div className="relative md:w-1/2 min-h-screen-half md:min-h-screen bg-black text-white">
+      </div>
+    </section>
+    {/* 2-up boats section */}
+    <section className="min-h-screen relative md:flex" data-scrollsection>
+      {/* Left boat */}
+      <div className="relative md:w-1/2 min-h-screen-half md:min-h-screen bg-black text-white">
           <div
             className="absolute inset-0 z-10"
             style={{

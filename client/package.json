@@ -25,6 +25,7 @@
     "@types/react-helmet": "^6.0.0",
     "@types/react-modal": "^3.10.5",
     "@types/react-select": "^3.0.14",
+    "@types/throttle-debounce": "^2.1.0",
     "clsx": "^1.1.0",
     "final-form": "^4.20.0",
     "framer-motion": "^1.11.1",
@@ -40,7 +41,9 @@
     "react-helmet": "^6.0.0",
     "react-modal": "^3.11.2",
     "react-select": "^3.1.0",
-    "react-use": "^15.1.1"
+    "react-player": "^2.5.0",
+    "react-use": "^15.1.1",
+    "throttle-debounce": "^2.2.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",

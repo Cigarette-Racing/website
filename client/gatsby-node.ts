@@ -72,11 +72,6 @@ export const createSchemaCustomization = ({
   // and refuses to link up these images in the YAML file
   const Media = `
     image: File @fileByRelativePath
-    label: String
-    alt: String
-    videoUrl: String
-    embedUrl: String
-    ratio: String
   `
   const typeDefs = [
     'BoatsYamlSectionsBlocksItemsMedia',
