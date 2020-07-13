@@ -130,7 +130,13 @@ const IndexPage = () => {
             steadfast commitment to ultimate luxury and performance.
           </Typography>
           <div className="flex items-center space-x-6">
-            <InPageCta>Request Info</InPageCta>
+            <InPageCta
+              onClick={() => {
+                setInquiryModalState(true)
+              }}
+            >
+              Request Info
+            </InPageCta>
             <LinkCta>Learn More</LinkCta>
           </div>
         </div>
