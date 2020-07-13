@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Form, Field } from 'react-final-form'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
@@ -27,6 +28,29 @@ import {
 import BoatFeaturette from '../molecules/boat-featurette'
 import ReactPlayer from 'react-player'
 import { AnimatePresence, motion } from 'framer-motion'
+
+const encode = (data: any) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
+
+const stayConnectedOnSubmit = (values: any) => {
+  const submissionValues = {
+    emailAddress: values.emailAddress,
+  }
+
+  fetch('/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: encode({
+      'form-name': 'stay-connected',
+      ...submissionValues,
+    }),
+  })
+}
 
 const headerVideo =
   'https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175'
@@ -246,18 +270,67 @@ const IndexPage = () => {
             <Typography variant="h2">Stay connected</Typography>
           </div>
           <div className="relative px-4 max-w-md">
-            <div className="flex border-b border-gray-3 mb-10 h-10 items-center">
-              <input
-                type="text"
-                className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
-                placeholder="Enter Email Address"
-              />
-              <PlusIcon className="w-4 h-4" />
-            </div>
-            <Typography variant="p2">
-              Want to join our exclusive community and be the first to get the
-              latest from Cigarette Racing?
-            </Typography>
+            <Form
+              onSubmit={stayConnectedOnSubmit}
+              render={({
+                handleSubmit,
+                submitSucceeded,
+              }: {
+                handleSubmit: () => void
+                submitSucceeded: boolean
+              }) => (
+                <div>
+                  {!submitSucceeded && (
+                    <div>
+                      <div className="flex border-b border-gray-3 mb-10 h-10 items-center">
+                        <form
+                          name="stay-connected"
+                          netlify-honeypot="bot-field"
+                          method="POST"
+                          data-netlify="true"
+                          onSubmit={handleSubmit}
+                          className="flex items-center justify-between w-full"
+                        >
+                          <input type="hidden" name="bot-field" />
+                          <input
+                            type="hidden"
+                            name="form-name"
+                            value="stay-connected"
+                          />
+                          <Field
+                            name="emailAddress"
+                            render={({ input }) => {
+                              return (
+                                <input
+                                  {...input}
+                                  type="text"
+                                  className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
+                                  placeholder="Enter Email Address"
+                                />
+                              )
+                            }}
+                          />
+
+                          <button type="submit">
+                            <PlusIcon className="w-4 h-4" />
+                          </button>
+                        </form>
+                      </div>
+                      <Typography variant="p2" className="pb-16">
+                        Want to join our exclusive community and be the first to
+                        get the latest from Cigarette Racing?
+                      </Typography>
+                    </div>
+                  )}
+                  {submitSucceeded && (
+                    <Typography variant="p1" className="pb-16">
+                      Thanks for subscribing! Check your inbox for a welcome
+                      email soon.”
+                    </Typography>
+                  )}
+                </div>
+              )}
+            />
           </div>
         </div>
       </section>
