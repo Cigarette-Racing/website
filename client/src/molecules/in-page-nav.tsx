@@ -17,7 +17,7 @@ const getCurrentAnchor = (map: Map<Element, number>) => {
 export interface InPageNavProps {
   boatName: string
   titles: string[][]
-  onClickInquire: React.MouseEventHandler<HTMLButtonElement>
+  onClickInquire: (state: boolean) => void
 }
 
 export const InPageNav = ({
@@ -96,7 +96,11 @@ export const InPageNav = ({
                 )}
               </div>
             </button>
-            <button onClick={onClickInquire}>
+            <button
+              onClick={() => {
+                onClickInquire(true)
+              }}
+            >
               <Typography variant="e3">Inquire</Typography>
             </button>
           </div>
