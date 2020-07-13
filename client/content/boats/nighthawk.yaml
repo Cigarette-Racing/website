@@ -1,5 +1,8 @@
 boatName: Nighthawk
 boatNameLong: 41’ NIGHTHAWK HYPERLUX
+metadata:
+  menuSort: 2
+  menuName: 41’ Nighthawk
 sections:
   - type: hero
     headline: Vision for the future
