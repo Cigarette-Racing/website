@@ -4,8 +4,10 @@ import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
 import header2 from '../../content/images/homepage-header-2.jpeg'
 import header3 from '../../content/images/homepage-header-3.jpeg'
-import boat1 from '../../content/images/boat1.jpeg'
-import boat2 from '../../content/images/boat2.jpeg'
+import boat1 from '../../content/images/homepage/nighthawk.png'
+import boat1BG from '../../content/images/homepage/nighthawk-bg.jpeg'
+import boat2 from '../../content/images/homepage/auroris.png'
+import boat2BG from '../../content/images/homepage/auroris-bg.png'
 import article1 from '../../content/images/article1.jpeg'
 import article2 from '../../content/images/article2.jpeg'
 import { ContentHeader } from '../atoms/content-header'
@@ -22,6 +24,7 @@ import {
   HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
 
+import BoatFeaturette from '../molecules/boat-featurette'
 import ReactPlayer from 'react-player'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -68,116 +71,62 @@ const IndexPage = () => {
 
   return (
     <Layout>
-    <SEO title="Home" />
-    <ScrollIndicator />
-    {/* First hero section */}
-    <section
-      className="relative min-h-screen flex justify-center items-end overflow-hidden"
-      data-scrollsection
-    >
-      <div className="absolute top-0 left-0 h-screen w-full">
-        <TopVideo />
-      </div>
-      <div
-        className="absolute top-0 left-0 h-screen w-full"
-        style={{
-          background:
-            'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
-        }}
-      />
-      <CircleButton
-        variant="primary"
-        icon={PlayIcon}
-        size="lg"
-        className="absolute top-2/5 sm:hidden hidden"
-      />
-      <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
-        <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-          Tirranna 59 AMG Edition
-        </ContentHeader>
-        <Typography variant="h2" md="h1" className="mb-10 ">
-          Performance luxury defined
-        </Typography>
-        <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
-          A juxtaposition highlighted by land and sea, yet united through a
-          steadfast commitment to ultimate luxury and performance.
-        </Typography>
-        <div className="flex items-center space-x-6">
-          <InPageCta>Request Info</InPageCta>
-          <LinkCta>Learn More</LinkCta>
+      <SEO title="Home" />
+      <ScrollIndicator />
+      {/* First hero section */}
+      <section
+        className="relative min-h-screen flex justify-center items-end overflow-hidden"
+        data-scrollsection
+      >
+        <div className="absolute top-0 left-0 h-screen w-full">
+          <TopVideo />
         </div>
-      </div>
-    </section>
-    {/* 2-up boats section */}
-    <section className="min-h-screen relative md:flex" data-scrollsection>
-      {/* Left boat */}
-      <div className="relative md:w-1/2 min-h-screen-half md:min-h-screen bg-black text-white">
-          <div
-            className="absolute inset-0 z-10"
-            style={{
-              background:
-                'linear-gradient(360deg, rgba(0, 0, 0, 0.6) 23.28%, rgba(0, 0, 0, 0) 71.29%)',
-            }}
-          ></div>
-          <div className="flex flex-col ml-auto max-w-2xl h-full">
-            <div className="hidden sm:block flex-1"></div>
-            <div className="relative z-0 flex-2">
-              <div className="px-2 md:px-4">
-                <img src={boat1} className="object-cover" />
-              </div>
-            </div>
-            <div className="relative z-20 my-8 px-4 md:px-8 order-first md:order-none">
-              <ContentHeader
-                subtitle="Hyperlux"
-                className="self-start -ml-2 sm:self-auto mb:ml-0"
-              >
-                Performance Center Console
-              </ContentHeader>
-            </div>
-            <div className="relative z-20 px-4 md:px-8 pb-6 md:pb-20">
-              <Typography variant="h3" xl="h2" className="mb-4 md:mb-8">
-                42’ Auroris
-              </Typography>
-              <LinkCta>Learn More</LinkCta>
-            </div>
+        <div
+          className="absolute top-0 left-0 h-screen w-full pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
+          }}
+        />
+        <CircleButton
+          variant="primary"
+          icon={PlayIcon}
+          size="lg"
+          className="absolute top-2/5 sm:hidden hidden"
+        />
+        <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
+          <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
+            Tirranna 59 AMG Edition
+          </ContentHeader>
+          <Typography variant="h2" md="h1" className="mb-10 ">
+            Performance luxury defined
+          </Typography>
+          <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
+            A juxtaposition highlighted by land and sea, yet united through a
+            steadfast commitment to ultimate luxury and performance.
+          </Typography>
+          <div className="flex items-center space-x-6">
+            <InPageCta>Request Info</InPageCta>
+            <LinkCta>Learn More</LinkCta>
           </div>
         </div>
-        {/* Right boat */}
-        <div className="relative md:w-1/2 min-h-screen-half md:min-h-screen bg-gray-1 text-white">
-          <div
-            className="absolute inset-0 z-10"
-            style={{
-              background:
-                'linear-gradient(360deg, rgba(0, 0, 0, 0.6) 23.28%, rgba(0, 0, 0, 0) 71.29%)',
-            }}
-          ></div>
-          <div className="flex flex-col mr-auto max-w-2xl h-full">
-            <div className="hidden sm:block flex-1"></div>
-            <div className="relative z-0 flex-2">
-              <div className="px-2 md:px-4 bg-gray-1">
-                <img
-                  src={boat2}
-                  className="object-cover"
-                  style={{ mixBlendMode: 'screen' }}
-                />
-              </div>
-            </div>
-            <div className="relative z-20 my-8 px-4 md:px-8 order-first md:order-none">
-              <ContentHeader
-                subtitle="Heritage"
-                className="self-start -ml-2 sm:self-auto mb:ml-0"
-              >
-                High Performance
-              </ContentHeader>
-            </div>
-            <div className="relative z-20 px-4 md:px-8 pb-6 md:pb-20">
-              <Typography variant="h3" xl="h2" className="mb-4 md:mb-8">
-                39’ Top Gun Unlimited
-              </Typography>
-              <LinkCta>Learn More</LinkCta>
-            </div>
-          </div>
-        </div>
+      </section>
+      {/* 2-up boats section */}
+      <section className="relative md:flex" data-scrollsection>
+        <BoatFeaturette
+          backgroundImage={boat1BG}
+          boatImage={boat1}
+          contentHeader="Performance Center Console"
+          subtitle="Hyperlux"
+          boatName="41' Nighthawk"
+        />
+        <BoatFeaturette
+          backgroundImage={boat2BG}
+          boatImage={boat2}
+          contentHeader="Performance Center Console"
+          subtitle="Hyperlux"
+          boatName="42 Auroris"
+        />
       </section>
       {/* Second hero section */}
       <section
