@@ -4,8 +4,10 @@ import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
 import header2 from '../../content/images/homepage-header-2.jpeg'
 import header3 from '../../content/images/homepage-header-3.jpeg'
-import boat1 from '../../content/images/boat1.jpeg'
-import boat2 from '../../content/images/boat2.jpeg'
+import boat1 from '../../content/images/homepage/nighthawk.png'
+import boat1BG from '../../content/images/homepage/nighthawk-bg.jpeg'
+import boat2 from '../../content/images/homepage/auroris.png'
+import boat2BG from '../../content/images/homepage/auroris-bg.png'
 import article1 from '../../content/images/article1.jpeg'
 import article2 from '../../content/images/article2.jpeg'
 import { ContentHeader } from '../atoms/content-header'
@@ -16,6 +18,7 @@ import { PlusIcon, ArrowIcon, PlayIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
+import BoatFeaturette from '../molecules/boat-featurette'
 import ReactPlayer from 'react-player'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -70,7 +73,7 @@ const IndexPage = () => (
         <TopVideo />
       </div>
       <div
-        className="absolute top-0 left-0 h-screen w-full"
+        className="absolute top-0 left-0 h-screen w-full pointer-events-none"
         style={{
           background:
             'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
@@ -100,75 +103,21 @@ const IndexPage = () => (
       </div>
     </section>
     {/* 2-up boats section */}
-    <section className="min-h-screen relative md:flex" data-scrollsection>
-      {/* Left boat */}
-      <div className="relative md:w-1/2 min-h-screen-half md:min-h-screen bg-black text-white">
-        <div
-          className="absolute inset-0 z-10"
-          style={{
-            background:
-              'linear-gradient(360deg, rgba(0, 0, 0, 0.6) 23.28%, rgba(0, 0, 0, 0) 71.29%)',
-          }}
-        ></div>
-        <div className="flex flex-col ml-auto max-w-2xl h-full">
-          <div className="hidden sm:block flex-1"></div>
-          <div className="relative z-0 flex-2">
-            <div className="px-2 md:px-4">
-              <img src={boat1} className="object-cover" />
-            </div>
-          </div>
-          <div className="relative z-20 my-8 px-4 md:px-8 order-first md:order-none">
-            <ContentHeader
-              subtitle="Hyperlux"
-              className="self-start -ml-2 sm:self-auto mb:ml-0"
-            >
-              Performance Center Console
-            </ContentHeader>
-          </div>
-          <div className="relative z-20 px-4 md:px-8 pb-6 md:pb-20">
-            <Typography variant="h3" xl="h2" className="mb-4 md:mb-8">
-              42’ Auroris
-            </Typography>
-            <LinkCta>Learn More</LinkCta>
-          </div>
-        </div>
-      </div>
-      {/* Right boat */}
-      <div className="relative md:w-1/2 min-h-screen-half md:min-h-screen bg-gray-1 text-white">
-        <div
-          className="absolute inset-0 z-10"
-          style={{
-            background:
-              'linear-gradient(360deg, rgba(0, 0, 0, 0.6) 23.28%, rgba(0, 0, 0, 0) 71.29%)',
-          }}
-        ></div>
-        <div className="flex flex-col mr-auto max-w-2xl h-full">
-          <div className="hidden sm:block flex-1"></div>
-          <div className="relative z-0 flex-2">
-            <div className="px-2 md:px-4 bg-gray-1">
-              <img
-                src={boat2}
-                className="object-cover"
-                style={{ mixBlendMode: 'screen' }}
-              />
-            </div>
-          </div>
-          <div className="relative z-20 my-8 px-4 md:px-8 order-first md:order-none">
-            <ContentHeader
-              subtitle="Heritage"
-              className="self-start -ml-2 sm:self-auto mb:ml-0"
-            >
-              High Performance
-            </ContentHeader>
-          </div>
-          <div className="relative z-20 px-4 md:px-8 pb-6 md:pb-20">
-            <Typography variant="h3" xl="h2" className="mb-4 md:mb-8">
-              39’ Top Gun Unlimited
-            </Typography>
-            <LinkCta>Learn More</LinkCta>
-          </div>
-        </div>
-      </div>
+    <section className="relative md:flex" data-scrollsection>
+      <BoatFeaturette
+        backgroundImage={boat1BG}
+        boatImage={boat1}
+        contentHeader="Performance Center Console"
+        subtitle="Hyperlux"
+        boatName="41' Nighthawk"
+      />
+      <BoatFeaturette
+        backgroundImage={boat2BG}
+        boatImage={boat2}
+        contentHeader="Performance Center Console"
+        subtitle="Hyperlux"
+        boatName="42 Auroris"
+      />
     </section>
     {/* Second hero section */}
     <section
