@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 import { LinkCta } from '../atoms/link-cta'
@@ -9,12 +10,14 @@ const BoatFeaturette = ({
   contentHeader,
   subtitle,
   boatName,
+  url,
 }: {
   backgroundImage: string
   boatImage: string
   contentHeader: string
   subtitle: string
   boatName: string
+  url: string
 }) => (
   <div
     className="bg-cover relative justify-content: center; md:w-1/2 min-h-screen-half bg-black text-white pt-4 lg:pt-16"
@@ -48,7 +51,9 @@ const BoatFeaturette = ({
           <Typography variant="h3" xl="h2" className="mb-4 md:mb-8">
             {boatName}
           </Typography>
-          <LinkCta>Learn More</LinkCta>
+          <Link to={`/boats/${url}`}>
+            <LinkCta>Learn More</LinkCta>
+          </Link>
         </div>
       </div>
     </div>
