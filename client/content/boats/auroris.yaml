@@ -294,36 +294,36 @@ sections:
       - image: ../images/auroris/gallery/auroris-gallery-00006.jpg
       - image: ../images/auroris/gallery/auroris-gallery-00007.jpg
       - image: ../images/auroris/gallery/auroris-gallery-00008.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00009.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00010.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00011.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00012.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00013.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00014.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00015.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00016.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00017.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00018.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00019.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00020.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00021.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00022.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00023.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00024.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00025.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00026.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00027.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00028.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00029.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00030.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00031.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00032.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00033.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00034.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00035.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00036.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00037.jpg
-      # - image: ../images/auroris/gallery/auroris-gallery-00038.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00009.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00010.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00011.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00012.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00013.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00014.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00015.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00016.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00017.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00018.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00019.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00020.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00021.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00022.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00023.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00024.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00025.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00026.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00027.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00028.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00029.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00030.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00031.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00032.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00033.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00034.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00035.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00036.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00037.jpg
+      - image: ../images/auroris/gallery/auroris-gallery-00038.jpg
 
   - type: order
     title: Order Today
