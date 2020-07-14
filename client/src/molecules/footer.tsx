@@ -24,9 +24,21 @@ const footerLinks = [
 ]
 
 const socialLinks = [
-  { icon: FacebookIcon, text: 'Facebook', href: '#' },
-  { icon: InstagramIcon, text: 'Instagram', href: '#' },
-  { icon: YoutubeIcon, text: 'Youtube', href: '#' },
+  {
+    icon: FacebookIcon,
+    text: 'Facebook',
+    href: '//www.facebook.com/CigaretteRacingTeam/',
+  },
+  {
+    icon: InstagramIcon,
+    text: 'Instagram',
+    href: '//www.instagram.com/cigaretteracingteam/',
+  },
+  {
+    icon: YoutubeIcon,
+    text: 'Youtube',
+    href: '//www.youtube.com/user/CigaretteRacingTeam',
+  },
 ]
 
 export interface FooterProps {}
