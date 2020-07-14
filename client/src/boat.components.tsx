@@ -143,7 +143,9 @@ export const TextBlockComponent = ({
 const DiscoverMedia = ({ media }: { media: Media }) => {
   const [showVideo, setShowVideo] = useState(false)
   return (
-    <AspectRatio ratio="3:2" md="16:9" lg="21:9">
+    // TODO: get 3:2 discover section images
+    // <AspectRatio ratio="3:2" md="16:9" lg="21:9">
+    <AspectRatio ratio="21:9">
       <img
         src={media.image.childImageSharp?.fluid?.src!}
         className="absolute h-full w-full object-cover"
