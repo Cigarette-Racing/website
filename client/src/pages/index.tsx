@@ -123,7 +123,7 @@ const IndexPage = () => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            Tirranna 59 AMG Edition
+            59 TIRRANNA AMG Edition
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10 ">
             Performance luxury defined
