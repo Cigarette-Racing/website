@@ -12,14 +12,15 @@ import {
   useToggle,
 } from 'react-use'
 import Modal from 'react-modal'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import { useLocation } from '@reach/router'
-import { findHeroSection } from '../types/boat'
 import { StatBlock } from '../atoms/stat-block'
 import { throttle } from 'throttle-debounce'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { motion, Variants } from 'framer-motion'
 import arrowWithCircleSvg from '../images/arrow-with-circle.svg'
+import { MobileBoatSelector } from './header/mobile-boat-selector'
+import { useBoatsQuery } from './header/header-data'
 
 export type HeaderState = 'top' | 'pinned' | 'hidden'
 export const useHeaderState = createGlobalState<HeaderState>('top')
@@ -341,50 +342,6 @@ function ComingSoonMobileLink({ text }: { text: string }) {
   )
 }
 
-const extractBoats = (data: GatsbyTypes.HeaderMenuQuery) => {
-  return data.boats.nodes.map((node) => {
-    const heroSection = findHeroSection(node.sections!)
-    return {
-      boatName: node.boatName,
-      menuName: node.metadata?.menuName,
-      slug: node.fields?.slug,
-      ...heroSection,
-    }
-  })
-}
-const boatsQuery = graphql`
-  query HeaderMenu {
-    boats: allBoatsYaml(sort: { fields: metadata___menuSort }) {
-      nodes {
-        boatName
-        fields {
-          slug
-        }
-        metadata {
-          menuSort
-          menuName
-        }
-        sections {
-          type
-          stats {
-            percentage
-            text
-            label
-          }
-          backgroundMedia {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 2000) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
 function BoatSelector({
   isVisible,
   onReset,
@@ -393,8 +350,7 @@ function BoatSelector({
   onReset: () => void
 }) {
   const [boatIndex, setBoatIndex] = useState(0)
-  const data = useStaticQuery<GatsbyTypes.HeaderMenuQuery>(boatsQuery)
-  const boats = extractBoats(data)
+  const boats = useBoatsQuery()
 
   useEffect(() => {
     setBoatIndex(0)
@@ -562,7 +518,7 @@ function BoatSelector({
   )
 }
 
-const useOnMobileScroll = (callback: (deltaY: number) => void) => {
+export const useOnMobileScroll = (callback: (deltaY: number) => void) => {
   const yRef = useRef(0)
   return useMemo(() => {
     const onTouchStart: React.TouchEventHandler = (event) => {
@@ -584,127 +540,7 @@ const useOnMobileScroll = (callback: (deltaY: number) => void) => {
   }, [])
 }
 
-const MobileBoatSelector = ({
-  onClose,
-  onReturn,
-}: {
-  onClose: () => void
-  onReturn: () => void
-}) => {
-  const [boatIndex, setBoatIndex] = useState(0)
-  const data = useStaticQuery<GatsbyTypes.HeaderMenuQuery>(boatsQuery)
-  const boats = extractBoats(data)
-
-  const listenerProps = useOnMobileScroll(
-    throttle(200, true, (deltaY: number): void => {
-      if (isNaN(deltaY) || Math.abs(deltaY) < 1) return
-      const step = deltaY > 0 ? 1 : -1
-      setBoatIndex((index) =>
-        Math.min(Math.max(0, index + step), boats.length - 1)
-      )
-    })
-  )
-
-  return (
-    <div className="min-h-screen" {...listenerProps}>
-      <div className="h-16 flex items-center">
-        <ReturnLink onClick={onReturn}>Back</ReturnLink>
-      </div>
-      <div className="-mx-4">
-        <AspectRatio ratio="3:2" className="w-screen">
-          <img
-            src={
-              boats[boatIndex].backgroundMedia.image.childImageSharp?.fluid
-                ?.src!
-            }
-            alt=""
-            className="absolute h-full w-full object-cover"
-          />
-          <div className="bg-black opacity-50 absolute inset-0"></div>
-        </AspectRatio>
-      </div>
-      <div className="relative -mt-6">
-        {boats.map((boat, index) => {
-          const collapsedHeight = 56
-          const highlightedHeight = 80
-          const parentAnimation =
-            index === boatIndex
-              ? {
-                  height: highlightedHeight,
-                  translateY: 0,
-                  scale: 1,
-                  opacity: 1,
-                }
-              : index > boatIndex
-              ? {
-                  height: collapsedHeight,
-                  translateY:
-                    (index - boatIndex) * collapsedHeight + highlightedHeight,
-                  scale: 0.85,
-                  opacity: 1,
-                }
-              : {
-                  height: collapsedHeight,
-                  translateY: (index - boatIndex) * collapsedHeight,
-                  scale: 0.5,
-                  opacity: 0,
-                }
-          return (
-            <motion.div
-              key={boat.boatName}
-              initial={false}
-              animate={parentAnimation}
-              transition={{ stiffness: 90 }}
-              className="absolute top-0 left-0 w-full"
-            >
-              <Link
-                to={index === boatIndex ? boat.slug! : '#'}
-                onClick={(event) => {
-                  if (index !== boatIndex) {
-                    event.preventDefault()
-                    setBoatIndex(index)
-                  } else {
-                    // Hack because the menu closes faster than the page navigates.
-                    // Using a 32ms timeout generally gives the route enough time
-                    // to change before closing the menu.
-                    setTimeout(onClose, 32)
-                  }
-                }}
-                className="text-center"
-              >
-                <motion.div
-                  animate={{ opacity: index === boatIndex ? 1 : 0.4 }}
-                >
-                  <Typography variant="h3" className="mb-4">
-                    {boat.menuName}
-                  </Typography>
-                </motion.div>
-                <motion.div
-                  initial={false}
-                  animate={{
-                    opacity: index === boatIndex ? 1 : 0,
-                    scale: index === boatIndex ? 1 : 0.5,
-                  }}
-                >
-                  <Typography
-                    variant="e1"
-                    className="flex space-x-6 items-center justify-center"
-                  >
-                    <span>View Model</span>{' '}
-                    <ArrowIcon className="text-red text-xl" />
-                  </Typography>
-                </motion.div>
-              </Link>
-            </motion.div>
-          )
-        })}
-      </div>
-      <ScrollPrompter className="fixed bottom-0 right-0" />
-    </div>
-  )
-}
-
-const ScrollPrompter = ({ className }: { className?: string }) => {
+export const ScrollPrompter = ({ className }: { className?: string }) => {
   return (
     <div
       className={clsx(

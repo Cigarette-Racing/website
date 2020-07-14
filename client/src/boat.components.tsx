@@ -143,7 +143,9 @@ export const TextBlockComponent = ({
 const DiscoverMedia = ({ media }: { media: Media }) => {
   const [showVideo, setShowVideo] = useState(false)
   return (
-    <AspectRatio ratio="3:2" md="16:9" lg="21:9">
+    // TODO: get 3:2 discover section images
+    // <AspectRatio ratio="3:2" md="16:9" lg="21:9">
+    <AspectRatio ratio="21:9">
       <img
         src={media.image.childImageSharp?.fluid?.src!}
         className="absolute h-full w-full object-cover"
@@ -658,7 +660,10 @@ export const GalleryImage = ({
 }) => {
   return (
     <div className={`max-w-xs ${className}`}>
-      <AspectRatio ratio="1:1" className="relative group">
+      <AspectRatio
+        ratio="1:1"
+        className="relative group DISABLED__cursor-pointer"
+      >
         <img
           src={img}
           className="absolute h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
@@ -678,7 +683,11 @@ export const OrderSectionComponent = ({
   boatNameLong,
   title,
   media,
-}: OrderSection & { boatNameLong: string }) => {
+  onClickCta,
+}: OrderSection & {
+  boatNameLong: string
+  onClickCta: (state: boolean) => void
+}) => {
   return (
     <BoatSection className="pb-48 sm:py-48">
       <InPageAnchor title={title} />

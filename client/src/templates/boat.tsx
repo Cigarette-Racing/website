@@ -187,7 +187,11 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       <SpecsSectionComponent boatNameLong={boat.boatNameLong!} {...specsData} />
       <MediaGallery {...galleryData} />
       {/* <CustomizationsSectionComponent {...customizationsData} /> */}
-      <OrderSectionComponent boatNameLong={boat.boatNameLong!} {...orderData} />
+      <OrderSectionComponent
+        boatNameLong={boat.boatNameLong!}
+        onClickCta={setInquiryModalState}
+        {...orderData}
+      />
       <InquiryModal />
     </Layout>
   )
