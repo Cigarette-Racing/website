@@ -678,7 +678,11 @@ export const OrderSectionComponent = ({
   boatNameLong,
   title,
   media,
-}: OrderSection & { boatNameLong: string }) => {
+  onClickCta,
+}: OrderSection & {
+  boatNameLong: string
+  onClickCta: (state: boolean) => void
+}) => {
   return (
     <BoatSection className="pb-48 sm:py-48">
       <InPageAnchor title={title} />
