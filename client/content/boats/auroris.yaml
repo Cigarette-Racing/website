@@ -9,7 +9,7 @@ sections:
     boatLogo:
       image: ../images/auroris/auroris-logo.svg
     backgroundMedia:
-      image: ../images/auroris/auroris-00001.png
+      image: ../images/auroris/auroris-00001.jpg
     stats:
       - percentage: 75
         text: '42’'
@@ -25,7 +25,7 @@ sections:
     title: Discover
     shortTitle: ''
     media:
-      image: ../images/auroris/auroris-00002.png
+      image: ../images/auroris/auroris-00002.jpg
     content:
       header: LIFE WITHOUT COMPROMISE
       copy: "Filled with energy and adventure, the all-new 42’ Auroris brings harmony to the delicate balance between design, comfort and performance. It’s a vessel that allows you to reach beyond the shoreline and feast on life without compromise. The Auroris isn't for the spectator, it’s for the adventurer, the sportsman, the bon vivant."
@@ -36,18 +36,18 @@ sections:
     theme: light
     bleedDirection: right
     headerImage:
-      image: ../images/auroris/auroris-00003.jpeg
+      image: ../images/auroris/auroris-00003.jpg
     blocks:
       - type: two-column-image-text
         leftColumn:
           media:
-            image: ../images/auroris/auroris-00004.png
+            image: ../images/auroris/auroris-00004.jpg
           content:
             header: 50 YEARS IN THE MAKING
             copy: 'The Auroris embraces over 50 years of performance boat building experience and advanced computational fluid dynamics with the incorporation of Cigarette’s advanced-engineered twin step hull design. This proprietary hull design provides extraordinary speed, industry-leading efficiency and unparalleled comfort. A broader beam width with an all carbon-fiber hardtop design further improves handling, while intelligent use of composite materials and proprietary construction techniques improve vibration dampening and structural integrity for enhanced comfort in even the most compromised conditions.'
         rightColumn:
           media:
-            image: ../images/auroris/auroris-00005.png
+            image: ../images/auroris/auroris-00005.jpg
             label: 4x/5x MERCURY RACING 450 VERADOS
           content:
             header: 4x/5x Mercury Verados
@@ -55,11 +55,11 @@ sections:
       - type: full-width-carousel
         items:
           - media:
-              image: ../images/auroris/auroris-00006.png
+              image: ../images/auroris/auroris-00006.jpg
           - media:
-              image: ../images/auroris/auroris-00007.png
+              image: ../images/auroris/auroris-00007.jpg
           - media:
-              image: ../images/auroris/auroris-00008.png
+              image: ../images/auroris/auroris-00008.jpg
     moreDetails: []
 
   - type: flexible
@@ -68,24 +68,24 @@ sections:
     theme: dark
     bleedDirection: left
     headerImage:
-      image: ../images/auroris/auroris-00009.png
+      image: ../images/auroris/auroris-00009.jpg
     blocks:
       - type: one-column-text
         header: ADVANCED HELM
         copy: "The Auroris' advanced helm features three 17” Garmin multifunctional displays flush mounted to a state-of-the-art dash assembly milled from a solid block of aluminum. The nano-coated instrument panel is resistant to heat, reflections and finger prints for ease of use. Integrated cup holders, glovebox compartments, stainless steel grab bars and ergonomic CNC machined footrests provide the convenience, safety and comfort that is synonymous with Cigarette."
       - type: two-column-images
         images:
-          - image: ../images/auroris/auroris-00010.png
-          - image: ../images/auroris/auroris-00011.png
+          - image: ../images/auroris/auroris-00010.jpg
+          - image: ../images/auroris/auroris-00011.jpg
       - type: slider
         items:
           - media:
-              image: ../images/auroris/auroris-00012.png
+              image: ../images/auroris/auroris-00012.jpg
             content:
               header: DIGITAL SWITCHING & AUTOMATION
               copy: 'Our fully engineered and thoughtfully designed digital switching system allows you to control almost any function of the 42’ Auroris directly from the Garmin multifunctional displays. An automatic sequential engine system activates all engines with a simple press of a button.'
           - media:
-              image: ../images/auroris/auroris-00013.png
+              image: ../images/auroris/auroris-00013.jpg
             content:
               header: A SEAMLESS EXPERIENCE
               copy: 'With the optional Garmin Convenience Package, digital switching controls are made available at both the bow and aft conversation areas making operation and enjoyment a seamless experience.'
@@ -97,25 +97,25 @@ sections:
     theme: light
     bleedDirection: right
     headerImage:
-      image: ../images/auroris/auroris-00014.png
+      image: ../images/auroris/auroris-00014.jpg
     blocks:
       - type: one-column-text
         header: CARBON FIBER HARDTOP
         copy: 'Our exclusive hardtop was skillfully and deliberately engineered to provide a lower center of gravity for increased performance and comfort without compromising a beautiful design aesthetic. The four-pillar, all carbon-fiber hardtop features a wide, double-curvature, frameless clear-laminated safety glass windscreen offering exceptional wind protection. Integrated flood lights, boarding handrails, full-spectrum ambient lighting, as well as optional windshield wiper with cleaning system and electrically actuated sun shade make this a pronounced and puristic center console.'
       - type: three-column-images
         images:
-          - image: ../images/auroris/auroris-00015.png
-          - image: ../images/auroris/auroris-00016.png
-          - image: ../images/auroris/auroris-00017.png
+          - image: ../images/auroris/auroris-00015.jpg
+          - image: ../images/auroris/auroris-00016.jpg
+          - image: ../images/auroris/auroris-00017.jpg
       - type: carousel
         items:
           - media:
-              image: ../images/auroris/auroris-00018.png
+              image: ../images/auroris/auroris-00018.jpg
             content:
               header: SUNLOUNGE
               copy: 'The Auroris’ deck layout is extremely versatile for entertaining, complete with inviting forward seat lounges, U-shaped seating, a rear conversational area, and a spacious rear sun lounge—so you can catch some sun while catching up.'
           - media:
-              image: ../images/auroris/auroris-00019.png
+              image: ../images/auroris/auroris-00019.jpg
             content:
               header: SURESHADE
               copy: 'The Auroris hardtop offers an optional electrically actuated sun shade. At the press of a button, the shade covers the rear entertainment area. Ready to move on? Simply press “Shade In” on your Garmin display and it will retract into the hardtop.'
@@ -127,15 +127,15 @@ sections:
     theme: dark
     bleedDirection: left
     headerImage:
-      image: ../images/auroris/auroris-00020.png
+      image: ../images/auroris/auroris-00020.jpg
     blocks:
       - type: one-column-text
         header: STORAGE & CONVENIENCE
         copy: 'The Auroris has conveniently integrated storage solutions for ease of use and peace of mind. Latched compartments support four fenders with room for lines, personal belongings, passenger shoes, and trash. Additional floor storage, forward combing box storage and bow seat storage harmonizes core functionality with uncompromising design.'
       - type: two-column-images
         images:
-          - image: ../images/auroris/auroris-00021.jpeg
-          - image: ../images/auroris/auroris-00022.jpeg
+          - image: ../images/auroris/auroris-00021.jpg
+          - image: ../images/auroris/auroris-00022.jpg
       - type: one-column-text
         header: SEATING & UPHOLSTERY
         copy: 'All new upholstery introduces multi-layered foams coupled with highly detailed quilted patterns using Cigarette Cool Touch fabrics for a premium, always comfortable feel. Powered forward helm seats are independently adjustable and quickly convert from standard seating to standing bolsters for convenience and drive comfort in all conditions. And for your guests, aft forward and rear facing seats electronically extends to form an oversized sun lounge for the ultimate mix of comfort and style.'
@@ -143,11 +143,11 @@ sections:
       - type: full-width-carousel
         items:
           - media:
-              image: ../images/auroris/auroris-00023.png
+              image: ../images/auroris/auroris-00023.jpg
           - media:
-              image: ../images/auroris/auroris-00024.png
+              image: ../images/auroris/auroris-00024.jpg
           - media:
-              image: ../images/auroris/auroris-00025.jpeg
+              image: ../images/auroris/auroris-00025.jpg
     moreDetails: []
 
   - type: specs
@@ -329,4 +329,4 @@ sections:
     title: Order Today
     shortTitle: Order
     media:
-      image: ../images/auroris/auroris-00026.png
+      image: ../images/auroris/auroris-00026.jpg

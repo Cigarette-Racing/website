@@ -9,7 +9,7 @@ sections:
     boatLogo:
       image: ../images/tirranna/tirranna-logo.svg
     backgroundMedia:
-      image: ../images/tirranna/tirranna-00001.png
+      image: ../images/tirranna/tirranna-00001.jpg
     stats:
       - percentage: 80
         text: '59’'
@@ -25,7 +25,7 @@ sections:
     title: Discover
     shortTitle: ''
     media:
-      image: ../images/tirranna/tirranna-00002.jpeg
+      image: ../images/tirranna/tirranna-00002.jpg
       videoUrl: https://player.vimeo.com/external/437708057.hd.mp4?s=c33ad105952034e66bb206e9abb158d117257c70&profile_id=174
     content:
       header: BOUNDLESS POSSIBILITY
@@ -37,19 +37,19 @@ sections:
     theme: light
     bleedDirection: right
     headerImage:
-      image: ../images/tirranna/tirranna-00003.png
+      image: ../images/tirranna/tirranna-00003.jpg
     blocks:
       - type: two-column-image-text
         leftColumn:
           media:
-            image: ../images/tirranna/tirranna-00004.png
+            image: ../images/tirranna/tirranna-00004.jpg
             label: TWIN STEP HULL DESIGN
           content:
             header: AN ENGINEERING FEAT
             copy: 'The AMG Tirranna draws on Cigarette’s advanced-engineered twin step hull design to match unprecedented performance with unyielding comfort. Paired to sextuple Mercury Racing 450 outboards, The Tirranna is equal parts luxury sport yacht and performance oriented super consoles. These combined truly create something so unique and so special, that it anchors the new family of boats within the Cigarette line-up: The Hyperlux Console.'
         rightColumn:
           media:
-            image: ../images/tirranna/tirranna-00005.png
+            image: ../images/tirranna/tirranna-00005.jpg
             label: SEXTUPLE OUTBOARDS
           content:
             header: MERCURY RACING 450
@@ -57,11 +57,11 @@ sections:
       - type: full-width-carousel
         items:
           - media:
-              image: ../images/tirranna/tirranna-00006.png
+              image: ../images/tirranna/tirranna-00006.jpg
           - media:
-              image: ../images/tirranna/tirranna-00007.png
+              image: ../images/tirranna/tirranna-00007.jpg
           - media:
-              image: ../images/tirranna/tirranna-00008.png
+              image: ../images/tirranna/tirranna-00008.jpg
     moreDetails: []
 
   - type: flexible
@@ -70,24 +70,24 @@ sections:
     theme: dark
     bleedDirection: left
     headerImage:
-      image: ../images/tirranna/tirranna-00009.png
+      image: ../images/tirranna/tirranna-00009.jpg
     blocks:
       - type: one-column-text
         header: STATE OF THE ART HELM
         copy: 'The Tirranna’s advanced helm features dual Garmin multifunction displays that are mounted to an instrument panel utilizing titanium fasteners. The nano-coated instrument panel is resistant to heat, reflections and finger prints for ease of use. Integrated cup holders, phone holder, stainless steel grab bars starboard side electric sliding cabin door and a fold down raised platform provide the convenience, safety and comfort that is synonymous with the Cigarette Difference.'
       - type: two-column-images
         images:
-          - image: ../images/tirranna/tirranna-00010.png
-          - image: ../images/tirranna/tirranna-00011.png
+          - image: ../images/tirranna/tirranna-00010.jpg
+          - image: ../images/tirranna/tirranna-00011.jpg
       - type: slider
         items:
           - media:
-              image: ../images/tirranna/tirranna-00012.png
+              image: ../images/tirranna/tirranna-00012.jpg
             content:
               header: DIGITAL SWITCHING & AUTOMATION
               copy: 'State of the Art doesn’t have to be cumbersome or confusing. Thoughtfully designed digital systems allow the capability to control almost any function of the 59’ AMG Tirranna.'
           - media:
-              image: ../images/tirranna/tirranna-00013.png
+              image: ../images/tirranna/tirranna-00013.jpg
             content:
               header: GARMIN INTEGRATION
               copy: 'With Garmin Multi-function displays located throughout, you are always a touch of a button away from all the vitals of your legend. Simplistic controls allow one to sequentially start all four engines with the push of a button.'
@@ -99,30 +99,30 @@ sections:
     theme: light
     bleedDirection: right
     headerImage:
-      image: ../images/tirranna/tirranna-00014.png
+      image: ../images/tirranna/tirranna-00014.jpg
     blocks:
       - type: one-column-text
         header: CARBON FIBER HARDTOP
         copy: 'Our exclusive 8’ hardtop was skillfully and deliberately engineered to provide a lower center of gravity for increased performance and comfort without compromising a beautiful design aesthetic. The four-pillar, all carbon-fiber hardtop features a wide, double-curvature, frameless clear-laminated safety glass windscreen offering exceptional wind protection. Integrated flood lights, boarding handrails, full-spectrum ambient lighting, as well as a windshield wiper with cleaning system and electrically actuated sun shade make this a pronounced and puristic center console.'
       - type: three-column-images
         images:
-          - image: ../images/tirranna/tirranna-00015.png
-          - image: ../images/tirranna/tirranna-00016.png
-          - image: ../images/tirranna/tirranna-00017.png
+          - image: ../images/tirranna/tirranna-00015.jpg
+          - image: ../images/tirranna/tirranna-00016.jpg
+          - image: ../images/tirranna/tirranna-00017.jpg
       - type: carousel
         items:
           - media:
-              image: ../images/tirranna/tirranna-00018.png
+              image: ../images/tirranna/tirranna-00018.jpg
             content:
               header: INTEGRATED STORAGE
               copy: 'The AMG Tirranna embodies the idea of form and function. The Tirranna has conveniently integrated storage solutions for ease of use and peace of mind. Latched compartments support four fenders with room for lines, personal belongings, passenger shoes, and refuse collection.'
           - media:
-              image: ../images/tirranna/tirranna-00019.png
+              image: ../images/tirranna/tirranna-00019.jpg
             content:
               header: FORM & FUNCTION
               copy: 'Additional floor storage, forward combing box storage and bow seat storage harmonizes core functionality with uncompromising design.'
           - media:
-              image: ../images/tirranna/tirranna-00020.png
+              image: ../images/tirranna/tirranna-00020.jpg
             content:
               header: EXTENDED LUXURY
               copy: 'To bring you further into your escape, the Tirranna includes a Nano coated counter and Plancha grill.No day on the water has ever felt so luxurious, when you can step into your fully air conditioned cabin or retrieve a cold libation from the refrigerator- Your AMG Tirranna is both your journey and your destination.'
@@ -135,15 +135,15 @@ sections:
     theme: dark
     bleedDirection: left
     headerImage:
-      image: ../images/tirranna/tirranna-00021.png
+      image: ../images/tirranna/tirranna-00021.jpg
     blocks:
       - type: one-column-text
         header: SEATING & UPHOLSTERY
         copy: 'Uncompromised attention to detail. The AMG Tirranna has the most sophisticated interior, compliments of the Poltrona Frau interior. The Interior is artistically sculpted with hands that have over two decades of experience.'
       - type: two-column-images
         images:
-          - image: ../images/tirranna/tirranna-00022.jpeg
-          - image: ../images/tirranna/tirranna-00023.jpeg
+          - image: ../images/tirranna/tirranna-00022.jpg
+          - image: ../images/tirranna/tirranna-00023.jpg
       - type: one-column-text
         header: METICULOUSLY CRAFTED
         copy: 'The history sewn into each thread provides you the most intimate escape or provides you and 20 of your favorite guests to something legendary. Each story, each departure on the waters is written by you. Be the Alpha and Omega of your own destiny- the AMG Tirranna is as legendary as you are, come see and feel the difference, the Cigarette Difference.'
@@ -151,11 +151,11 @@ sections:
       - type: full-width-carousel
         items:
           - media:
-              image: ../images/tirranna/tirranna-00024.png
+              image: ../images/tirranna/tirranna-00024.jpg
           - media:
-              image: ../images/tirranna/tirranna-00025.png
+              image: ../images/tirranna/tirranna-00025.jpg
           - media:
-              image: ../images/tirranna/tirranna-00026.png
+              image: ../images/tirranna/tirranna-00026.jpg
     moreDetails: []
 
   - type: specs
@@ -486,12 +486,12 @@ sections:
     shortTitle: Bespoke
     options:
       - media:
-          image: ../images/tirranna/tirranna-00001.png
+          image: ../images/tirranna/tirranna-00001.jpg
         content:
           header: Title of bespoke option
           copy: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...
       - media:
-          image: ../images/tirranna/tirranna-00001.png
+          image: ../images/tirranna/tirranna-00001.jpg
         content:
           header: Title of bespoke option
           copy: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...
@@ -500,4 +500,4 @@ sections:
     title: Order Today
     shortTitle: Order
     media:
-      image: ../images/article1.jpeg
+      image: ../images/article1.jpg
