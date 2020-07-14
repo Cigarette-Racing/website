@@ -9,7 +9,7 @@ sections:
     boatLogo:
       image: ../images/nighthawk/nighthawk-logo.svg
     backgroundMedia:
-      image: ../images/nighthawk/nighthawk-00001.png
+      image: ../images/nighthawk/nighthawk-00001.jpg
     stats:
       - percentage: 70
         text: '41’'
@@ -25,7 +25,7 @@ sections:
     title: Discover
     shortTitle: ''
     media:
-      image: ../images/nighthawk/nighthawk-00002.png
+      image: ../images/nighthawk/nighthawk-00002.jpg
     content:
       header: A PURE EXPRESSION
       copy: 'Blending tradition with innovation, design with functionality, the all-new 41’ Nighthawk is a pure expression of Cigarette Racing. Its clarity of vision and willingness to take action make the Nighthawk as luxurious as it is thrilling to drive.'
@@ -36,18 +36,18 @@ sections:
     theme: light
     bleedDirection: right
     headerImage:
-      image: ../images/nighthawk/nighthawk-00003.png
+      image: ../images/nighthawk/nighthawk-00003.jpg
     blocks:
       - type: two-column-image-text
         leftColumn:
           media:
-            image: ../images/nighthawk/nighthawk-00004.png
+            image: ../images/nighthawk/nighthawk-00004.jpg
           content:
             header: PERFORMANCE X COMFORT
             copy: 'The Nighthawk draws on Cigarette’s advanced-engineered twin step hull design to match unprecedented performance with unyielding comfort. A low, aggressive center of gravity and an all carbon-fiber hardtop design further improve handling, while intelligent use of composite materials and proprietary construction techniques improve vibration dampening and structural integrity for enhanced comfort in even the most compromised conditions.'
         rightColumn:
           media:
-            image: ../images/nighthawk/nighthawk-00005.png
+            image: ../images/nighthawk/nighthawk-00005.jpg
             label: 4x/5x MERCURY RACING 450 VERADOS
           content:
             header: Mercury Racing 450 Verados
@@ -55,11 +55,11 @@ sections:
       - type: full-width-carousel
         items:
           - media:
-              image: ../images/nighthawk/nighthawk-00006.png
+              image: ../images/nighthawk/nighthawk-00006.jpg
           - media:
-              image: ../images/nighthawk/nighthawk-00007.png
+              image: ../images/nighthawk/nighthawk-00007.jpg
           - media:
-              image: ../images/nighthawk/nighthawk-00008.png
+              image: ../images/nighthawk/nighthawk-00008.jpg
     moreDetails: []
 
   - type: flexible
@@ -68,24 +68,24 @@ sections:
     theme: dark
     bleedDirection: left
     headerImage:
-      image: ../images/nighthawk/nighthawk-00009.png
+      image: ../images/nighthawk/nighthawk-00009.jpg
     blocks:
       - type: one-column-text
         header: ADVANCED HELM
         copy: 'The Nighthawk’s advanced helm features three Garmin 8617 chartplotters flush mounted to an instrument panel milled from a solid block of aluminum. The nano-coated instrument panel is resistant to heat, reflections and finger prints for ease of use. Integrated cup holders, glovebox compartments, stainless steel grab bars and ergonomic CNC machined footrests provide the convenience, safety and comfort that is synonymous with Cigarette.'
       - type: two-column-images
         images:
-          - image: ../images/nighthawk/nighthawk-00010.png
-          - image: ../images/nighthawk/nighthawk-00011.png
+          - image: ../images/nighthawk/nighthawk-00010.jpg
+          - image: ../images/nighthawk/nighthawk-00011.jpg
       - type: slider
         items:
           - media:
-              image: ../images/nighthawk/nighthawk-00012.png
+              image: ../images/nighthawk/nighthawk-00012.jpg
             content:
               header: DIGITAL SWITCHING & AUTOMATION
               copy: 'State-of-the-Art doesn’t have to be cumbersome or confusing. Our fully engineered and thoughtfully designed digital switching system allows you to control almost any function of the 41’ Nighthawk directly from the Garmin multifunctional displays. An automatic sequential engine system activates all engines with a simple press of a button.'
           - media:
-              image: ../images/nighthawk/nighthawk-00013.png
+              image: ../images/nighthawk/nighthawk-00013.jpg
             content:
               header: Garmin Convenience
               copy: 'With the optional Garmin Convenience Package, digital switching controls are made available at both the bow and aft conversation areas making operation and enjoyment a seamless experience.'
@@ -97,19 +97,19 @@ sections:
     theme: light
     bleedDirection: right
     headerImage:
-      image: ../images/nighthawk/nighthawk-00014.png
+      image: ../images/nighthawk/nighthawk-00014.jpg
     blocks:
       - type: one-column-text
         header: AN ATHLETIC HARDTOP
         copy: 'Our exclusive hardtop was skillfully and deliberately engineered to provide a lower center of gravity for increased performance and comfort without compromising a beautiful design aesthetic. The four-pillar, all carbon-fiber hardtop features a wide, double-curvature, frameless clear-laminated safety glass windscreen offering exceptional wind protection. Integrated flood lights, boarding handrails, full-spectrum ambient lighting, as well as optional windshield wiper with cleaning system and electrically actuated sun shade make this a pronounced and puristic center console.'
       - type: three-column-images
         images:
-          - image: ../images/nighthawk/nighthawk-00015.png
-          - image: ../images/nighthawk/nighthawk-00016.png
-          - image: ../images/nighthawk/nighthawk-00017.png
+          - image: ../images/nighthawk/nighthawk-00015.jpg
+          - image: ../images/nighthawk/nighthawk-00016.jpg
+          - image: ../images/nighthawk/nighthawk-00017.jpg
       - type: one-column-image-text
         media:
-          image: ../images/nighthawk/nighthawk-00018.png
+          image: ../images/nighthawk/nighthawk-00018.jpg
         content:
           header: SURESHADE
           copy: 'The Nighthawk hardtop offers an optional electrically actuated sun shade. At the press of a button, the shade will cover the rear entertainment area. All done and ready to get underway? Simply press the "shade in" button on your Garmin display andit will retract into the hardtop.'
@@ -121,15 +121,15 @@ sections:
     theme: dark
     bleedDirection: left
     headerImage:
-      image: ../images/nighthawk/nighthawk-00019.png
+      image: ../images/nighthawk/nighthawk-00019.jpg
     blocks:
       - type: one-column-text
         header: STORAGE & CONVENIENCE
         copy: 'The Nighthawk has conveniently integrated storage solutions for ease of use and peace of mind. Latched compartments support four fenders with room for lines, personal belongings, passenger shoes, and trash. Additional floor storage, forward combing box storage and bow seat storage harmonizes core functionality with uncompromising design.'
       - type: two-column-images
         images:
-          - image: ../images/nighthawk/nighthawk-00020.jpeg
-          - image: ../images/nighthawk/nighthawk-00021.jpeg
+          - image: ../images/nighthawk/nighthawk-00020.jpg
+          - image: ../images/nighthawk/nighthawk-00021.jpg
             label: Hello world
       - type: one-column-text
         header: SEATING & UPHOLSTERY
@@ -138,11 +138,11 @@ sections:
       - type: full-width-carousel
         items:
           - media:
-              image: ../images/nighthawk/nighthawk-00022.png
+              image: ../images/nighthawk/nighthawk-00022.jpg
           - media:
-              image: ../images/nighthawk/nighthawk-00022.png
+              image: ../images/nighthawk/nighthawk-00022.jpg
           - media:
-              image: ../images/nighthawk/nighthawk-00022.png
+              image: ../images/nighthawk/nighthawk-00022.jpg
     moreDetails: []
 
   - type: specs
@@ -339,4 +339,4 @@ sections:
     title: Order Today
     shortTitle: Order
     media:
-      image: ../images/nighthawk/nighthawk-00023.png
+      image: ../images/nighthawk/nighthawk-00023.jpg
