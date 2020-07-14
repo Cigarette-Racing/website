@@ -328,7 +328,7 @@ const newsItems: NewsItem[] = [
     url:
       'https://www.mercedes-amg.com/en/press-information/cigarette-boat-12th-edition.html',
     siteName: 'mercedes-amg.com',
-    image: require('../../content/images/homepage/news-00001.jpeg'),
+    image: require('../../content/images/homepage/news-00001.jpg'),
     title:
       '12th special edition from Mercedes-AMG and Cigarette Racing celebrates its world debut',
     content:
@@ -382,7 +382,7 @@ const newsItems: NewsItem[] = [
     url:
       'https://www.youtube.com/watch?time_continue=376&v=ZMLa7pdd1T4&feature=emb_title',
     siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00007.png'),
+    image: require('../../content/images/homepage/news-00007.jpg'),
     title: 'The King of Center Consoles! AMG Cigarette Tirranna',
     content:
       'The fantastic people at Cigarette Racing have come to the 2020 Miami International Boat Show...',
