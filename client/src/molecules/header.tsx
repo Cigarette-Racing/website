@@ -12,15 +12,15 @@ import {
   useToggle,
 } from 'react-use'
 import Modal from 'react-modal'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 import { useLocation } from '@reach/router'
-import { findHeroSection } from '../types/boat'
 import { StatBlock } from '../atoms/stat-block'
 import { throttle } from 'throttle-debounce'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { motion, Variants } from 'framer-motion'
 import arrowWithCircleSvg from '../images/arrow-with-circle.svg'
-import { MobileBoatSelector } from './MobileBoatSelector'
+import { MobileBoatSelector } from './header/mobile-boat-selector'
+import { useBoatsQuery } from './header/header-data'
 
 export type HeaderState = 'top' | 'pinned' | 'hidden'
 export const useHeaderState = createGlobalState<HeaderState>('top')
@@ -342,50 +342,6 @@ function ComingSoonMobileLink({ text }: { text: string }) {
   )
 }
 
-export const extractBoats = (data: GatsbyTypes.HeaderMenuQuery) => {
-  return data.boats.nodes.map((node) => {
-    const heroSection = findHeroSection(node.sections!)
-    return {
-      boatName: node.boatName,
-      menuName: node.metadata?.menuName,
-      slug: node.fields?.slug,
-      ...heroSection,
-    }
-  })
-}
-const boatsQuery = graphql`
-  query HeaderMenu {
-    boats: allBoatsYaml(sort: { fields: metadata___menuSort }) {
-      nodes {
-        boatName
-        fields {
-          slug
-        }
-        metadata {
-          menuSort
-          menuName
-        }
-        sections {
-          type
-          stats {
-            percentage
-            text
-            label
-          }
-          backgroundMedia {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 2000) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
 function BoatSelector({
   isVisible,
   onReset,
@@ -394,8 +350,7 @@ function BoatSelector({
   onReset: () => void
 }) {
   const [boatIndex, setBoatIndex] = useState(0)
-  const data = useStaticQuery<GatsbyTypes.HeaderMenuQuery>(boatsQuery)
-  const boats = extractBoats(data)
+  const boats = useBoatsQuery()
 
   useEffect(() => {
     setBoatIndex(0)
