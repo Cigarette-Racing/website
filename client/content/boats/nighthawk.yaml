@@ -1,5 +1,5 @@
 boatName: Nighthawk
-boatNameLong: 41’ NIGHTHAWK HYPERLUX
+boatNameLong: 41’ Nighthawk Hyperlux
 metadata:
   menuSort: 2
   menuName: 41’ Nighthawk
@@ -330,16 +330,11 @@ sections:
       - image: ../images/nighthawk/gallery/nighthawk-gallery-00051.jpg
       - image: ../images/nighthawk/gallery/nighthawk-gallery-00052.jpg
       - image: ../images/nighthawk/gallery/nighthawk-gallery-00053.jpg
-      - image: ../images/nighthawk/gallery/nighthawk-gallery-00054.jpg
-      - image: ../images/nighthawk/gallery/nighthawk-gallery-00055.jpg
-      - image: ../images/nighthawk/gallery/nighthawk-gallery-00056.jpg
-      - image: ../images/nighthawk/gallery/nighthawk-gallery-00057.jpg
+      # - image: ../images/nighthawk/gallery/nighthawk-gallery-00054.jpg
+      # - image: ../images/nighthawk/gallery/nighthawk-gallery-00056.jpg
       - image: ../images/nighthawk/gallery/nighthawk-gallery-00058.jpg
-      - image: ../images/nighthawk/gallery/nighthawk-gallery-00059.jpg
-      - image: ../images/nighthawk/gallery/nighthawk-gallery-00060.jpg
-      - image: ../images/nighthawk/gallery/nighthawk-gallery-00061.jpg
+      # - image: ../images/nighthawk/gallery/nighthawk-gallery-00060.jpg
       - image: ../images/nighthawk/gallery/nighthawk-gallery-00062.jpg
-      - image: ../images/nighthawk/gallery/nighthawk-gallery-00063.jpg
   - type: order
     title: Order Today
     shortTitle: Order

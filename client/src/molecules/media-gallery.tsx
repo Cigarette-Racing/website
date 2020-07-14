@@ -12,22 +12,39 @@ import { VerticalHeader } from '../atoms/vertical-header'
 import { Typography } from '../atoms/typography'
 import { ProgressBar } from '../atoms/progress-bar'
 import { useMedia } from 'react-use'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, Variants, Transition } from 'framer-motion'
 
-const animations = {
-  initial: {
-    opacity: 0,
+const parentAnimations = {
+  initial: 'hidden',
+  animate: 'visible',
+  exit: 'hidden',
+  variants: {
+    hidden: {
+      transition: {
+        when: 'afterChildren',
+        staggerChildren: 0.05,
+      },
+    },
+    visible: {
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.05,
+      },
+    },
   },
-  animate: {
-    zIndex: 1,
-    opacity: 1,
-  },
-  exit: {
-    zIndex: 0,
-    opacity: 0.5,
+}
+
+const childAnimations = {
+  variants: {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+    },
   },
   transition: {
-    opacity: { duration: 0.6 },
+    duration: 0.3,
   },
 }
 
@@ -38,7 +55,8 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
   const [page, setPage] = useState(1) // One-based to keep ourselves sane
   const [category, setCategory] = useState<'all' | 'photos' | 'videos'>('all')
   const perPage = showMore ? 8 : 4
-  const totalPages = Math.ceil(gallery.length / perPage)
+  const totalPages = Math.floor(gallery.length / perPage)
+  console.log('asdfasdfasdfasdf', gallery.length, perPage, totalPages)
   const goNext = () => {
     setPage((page) => (page === totalPages ? page : page + 1))
   }
@@ -78,19 +96,27 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
             Videos
           </CategorySelector>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col-dense sm:grid-rows-2 gap-6 px-4 mb-16">
-          <AnimatePresence>
+        <AnimatePresence exitBeforeEnter initial={false}>
+          <motion.div
+            key={`${page}-${perPage}`}
+            {...parentAnimations}
+            className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col-dense sm:grid-rows-2 gap-6 px-4 mb-16"
+          >
             {getGallerySlice(gallery, page, perPage).map((item, index) => (
-              <motion.div key={`${page}-${perPage}-${index}`} {...animations}>
+              <motion.div
+                key={`${page}-${perPage}-${item.image.childImageSharp?.fluid
+                  ?.src!}`}
+                {...childAnimations}
+              >
                 <GalleryImage
                   key={index}
                   img={item.image.childImageSharp?.fluid?.src!}
-                  className={index > 3 ? 'hidden sm:block' : ''}
+                  // className={index > 3 ? 'hidden sm:block' : ''}
                 />
               </motion.div>
             ))}
-          </AnimatePresence>
-        </div>
+          </motion.div>
+        </AnimatePresence>
         <div className="flex sm:justify-between items-center px-4">
           <div className="hidden sm:block w-full max-w-xs md:max-w-sm lg:max-w-md">
             <ProgressBar percentage={calculatePercentage(page, totalPages)} />
@@ -128,7 +154,7 @@ function CategorySelector({
 }
 
 const getGallerySlice = (gallery: Media[], page: number, perPage: number) => {
-  const start = page - 1
+  const start = page * perPage - 1
   const end = start + perPage
   return gallery.slice(start, end)
 }
