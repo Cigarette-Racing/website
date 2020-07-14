@@ -1,46 +1,13 @@
 import React, { useState } from 'react'
-import { Typography } from '../atoms/typography'
-import { ArrowIcon } from '../svgs/icons'
-import { ReturnLink } from '../atoms/return-link'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+import { Typography } from '../../atoms/typography'
+import { ArrowIcon } from '../../svgs/icons'
+import { ReturnLink } from '../../atoms/return-link'
+import { Link } from 'gatsby'
 import { throttle } from 'throttle-debounce'
-import { AspectRatio } from '../atoms/aspect-ratio'
+import { AspectRatio } from '../../atoms/aspect-ratio'
 import { motion } from 'framer-motion'
-import { extractBoats, useOnMobileScroll, ScrollPrompter } from './header'
-
-const boatsQuery = graphql`
-  query HeaderMenu {
-    boats: allBoatsYaml(sort: { fields: metadata___menuSort }) {
-      nodes {
-        boatName
-        fields {
-          slug
-        }
-        metadata {
-          menuSort
-          menuName
-        }
-        sections {
-          type
-          stats {
-            percentage
-            text
-            label
-          }
-          backgroundMedia {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 2000) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
+import { useOnMobileScroll, ScrollPrompter } from '../header'
+import { useBoatsQuery } from './header-data'
 
 export const MobileBoatSelector = ({
   onClose,
@@ -50,8 +17,7 @@ export const MobileBoatSelector = ({
   onReturn: () => void
 }) => {
   const [boatIndex, setBoatIndex] = useState(0)
-  const data = useStaticQuery<GatsbyTypes.HeaderMenuQuery>(boatsQuery)
-  const boats = extractBoats(data)
+  const boats = useBoatsQuery()
 
   const listenerProps = useOnMobileScroll(
     throttle(200, true, (deltaY: number): void => {
