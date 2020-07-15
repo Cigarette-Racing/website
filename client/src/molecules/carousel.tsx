@@ -4,7 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
 import { CarouselBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
-import { CarouselButtons, TextBlockComponent } from '../boat.components'
+import {
+  CarouselButtons,
+  TextBlockComponent,
+} from '../templates/boat.components'
 
 const animations = {
   initial: {

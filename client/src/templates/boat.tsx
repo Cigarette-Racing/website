@@ -20,7 +20,7 @@ import {
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
   OrderSectionComponent,
-} from '../boat.components'
+} from './boat.components'
 import {
   Stat,
   CommonSectionProps,
