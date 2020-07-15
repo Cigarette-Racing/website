@@ -28,8 +28,8 @@ import { Tab } from '../atoms/tab'
 import { LinkCta } from '../atoms/link-cta'
 import { AnimatePresence, motion } from 'framer-motion'
 // images
-import discoverBackground from '../content/images/discover-section-bg.jpeg'
-import customizationsBackground from '../content/images/customization-section-bg.jpeg'
+import discoverBackground from '../../content/images/discover-section-bg.jpeg'
+import customizationsBackground from '../../content/images/customization-section-bg.jpeg'
 import { useToggle } from 'react-use'
 import ReactPlayer from 'react-player'
 
