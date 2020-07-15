@@ -6,7 +6,7 @@ import {
   MobileSectionHeader,
   GalleryImage,
   CarouselButtons,
-} from '../boat.components'
+} from '../templates/boat.components'
 import { InPageAnchor } from './in-page-nav'
 import { VerticalHeader } from '../atoms/vertical-header'
 import { Typography } from '../atoms/typography'
@@ -56,7 +56,6 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
   const [category, setCategory] = useState<'all' | 'photos' | 'videos'>('all')
   const perPage = showMore ? 8 : 4
   const totalPages = Math.floor(gallery.length / perPage)
-  console.log('asdfasdfasdfasdf', gallery.length, perPage, totalPages)
   const goNext = () => {
     setPage((page) => (page === totalPages ? page : page + 1))
   }

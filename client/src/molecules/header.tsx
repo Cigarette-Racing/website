@@ -119,16 +119,13 @@ export const Header = ({}: HeaderProps) => {
           'bg-black': selectedSection !== '',
         })}
         onPin={() => {
-          console.log('onPin')
           setHeaderState('pinned')
         }}
         onUnpin={() => {
-          console.log('onUnpin')
           setHeaderState('hidden')
           setIsAtTop(false)
         }}
         onUnfix={() => {
-          console.log('onUnfix')
           setHeaderState('top')
           setIsAtTop(true)
         }}
