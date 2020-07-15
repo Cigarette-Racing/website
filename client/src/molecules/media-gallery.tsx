@@ -6,7 +6,7 @@ import {
   MobileSectionHeader,
   GalleryImage,
   CarouselButtons,
-} from '../boat.components'
+} from '../templates/boat.components'
 import { InPageAnchor } from './in-page-nav'
 import { VerticalHeader } from '../atoms/vertical-header'
 import { Typography } from '../atoms/typography'

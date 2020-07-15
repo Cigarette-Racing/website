@@ -29,7 +29,7 @@ import BoatFeaturette from '../molecules/boat-featurette'
 import ReactPlayer from 'react-player'
 import { AnimatePresence, motion } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
-import { CarouselButtons } from '../boat.components'
+import { CarouselButtons } from '../templates/boat.components'
 import { useToggle } from 'react-use'
 
 const encode = (data: any) => {
