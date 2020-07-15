@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import Img from 'gatsby-image'
-import { Typography } from './atoms/typography'
-import { InPageCta } from './atoms/in-page-cta'
-import { StatBlock } from './atoms/stat-block'
-import { Theme } from './types/shared'
+import { Typography } from '../atoms/typography'
+import { InPageCta } from '../atoms/in-page-cta'
+import { StatBlock } from '../atoms/stat-block'
+import { Theme } from '../types/shared'
 import clsx from 'clsx'
-import { AspectRatio, AspectRatioProps, Ratio } from './atoms/aspect-ratio'
-import { CircleButton } from './atoms/circle-button'
-import { ExpandIcon, PlayIcon, ArrowIcon, CaretDownIcon } from './svgs/icons'
-import { InPageAnchor } from './molecules/in-page-nav'
-import { VerticalHeader } from './atoms/vertical-header'
-import { VerticalLabel } from './atoms/vertical-label'
-import { ProgressBar } from './atoms/progress-bar'
+import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
+import { CircleButton } from '../atoms/circle-button'
+import { ExpandIcon, PlayIcon, ArrowIcon, CaretDownIcon } from '../svgs/icons'
+import { InPageAnchor } from '../molecules/in-page-nav'
+import { VerticalHeader } from '../atoms/vertical-header'
+import { VerticalLabel } from '../atoms/vertical-label'
+import { ProgressBar } from '../atoms/progress-bar'
 import {
   Stat,
   Media,
@@ -23,9 +23,9 @@ import {
   OneColumnImageTextBlock,
   OrderSection,
   Spec,
-} from './types/boat'
-import { Tab } from './atoms/tab'
-import { LinkCta } from './atoms/link-cta'
+} from '../types/boat'
+import { Tab } from '../atoms/tab'
+import { LinkCta } from '../atoms/link-cta'
 import { AnimatePresence, motion } from 'framer-motion'
 // images
 import discoverBackground from '../content/images/discover-section-bg.jpeg'
