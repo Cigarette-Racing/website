@@ -10,13 +10,11 @@ import boat1 from '../../content/images/homepage/nighthawk.png'
 import boat1BG from '../../content/images/homepage/nighthawk-bg.jpeg'
 import boat2 from '../../content/images/homepage/auroris.png'
 import boat2BG from '../../content/images/homepage/auroris-bg.jpeg'
-import article1 from '../../content/images/article1.jpeg'
-import article2 from '../../content/images/article2.jpeg'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
 import { LinkCta } from '../atoms/link-cta'
-import { PlusIcon, ArrowIcon, PlayIcon } from '../svgs/icons'
+import { PlusIcon, PlayIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
@@ -390,58 +388,16 @@ const newsItems: NewsItem[] = [
 ]
 
 function NewsSection() {
-  const [[page, direction], setPage] = useState([0, 0])
+  const [page, setPage] = useState(0)
   const itemIndex = wrap(0, newsItems.length, page)
   const nextItemIndex = wrap(0, newsItems.length, page + 1)
   const goNext = () => {
-    setPage((state) => [state[0], Direction.Next])
-    setPage((state) => [state[0] + 1, state[1]])
+    setPage((state) => state + 1)
     // setPage([page + 1, Direction.Next])
   }
   const goPrev = () => {
-    setPage((state) => [state[0], Direction.Prev])
-    setPage((state) => [state[0] - 1, state[1]])
+    setPage((state) => state - 1)
     // setPage([page - 1, Direction.Prev])
-  }
-
-  enum Direction {
-    Next = 1,
-    Prev = -1,
-  }
-  const width = 421 + 32
-  const variants1 = {
-    enter: ({ direction }: { direction: Direction }) => {
-      console.log('enter1', direction, width)
-      return {
-        x: direction === Direction.Next ? width : -1 * width,
-      }
-    },
-    center: {
-      x: 0,
-    },
-    exit: ({ direction }: { direction: Direction }) => {
-      console.log('exit1', direction, width)
-      return {
-        x: direction === Direction.Prev ? width : -1 * width,
-      }
-    },
-  }
-  const variants2 = {
-    enter: ({ direction }: { direction: Direction }) => {
-      console.log('enter2', direction, width)
-      return {
-        x: direction === Direction.Next ? width : -1 * width,
-      }
-    },
-    center: {
-      x: 0,
-    },
-    exit: ({ direction }: { direction: Direction }) => {
-      console.log('exit2', direction, width)
-      return {
-        x: direction === Direction.Prev ? width : -1 * width,
-      }
-    },
   }
 
   return (
@@ -464,70 +420,12 @@ function NewsSection() {
           />
         </div>
         <div className="flex sm:w-1/2 space-x-6">
-          <div
-            key={newsItems[itemIndex].url}
-            // initial={{ x: direction === Direction.Next ? width : -1 * width }}
-            // animate={{ x: 0 }}
-            // exit={{ x: direction === Direction.Prev ? width : -1 * width }}
-            // transition={{
-            //   x: {
-            //     type: 'spring',
-            //     stiffness: 300,
-            //     damping: 200,
-            //   },
-            // }}
-          >
+          <div key={newsItems[itemIndex].url}>
             {renderItem(newsItems[itemIndex])}
           </div>
-          <div
-            key={newsItems[nextItemIndex].url}
-            className="hidden sm:block"
-            // initial={{ x: direction === Direction.Next ? width : -1 * width }}
-            // animate={{ x: 0 }}
-            // exit={{ x: direction === Direction.Prev ? width : -1 * width }}
-            // transition={{
-            //   x: {
-            //     type: 'spring',
-            //     stiffness: 300,
-            //     damping: 200,
-            //   },
-            // }}
-          >
+          <div key={newsItems[nextItemIndex].url} className="hidden sm:block">
             {renderItem(newsItems[nextItemIndex])}
           </div>
-          {/* <AnimatePresence initial={false}>
-            <motion.div
-              key={newsItems[itemIndex].url}
-              initial={{ x: direction === Direction.Next ? width : -1 * width }}
-              animate={{ x: 0 }}
-              exit={{ x: direction === Direction.Prev ? width : -1 * width }}
-              transition={{
-                x: {
-                  type: 'spring',
-                  stiffness: 300,
-                  damping: 200,
-                },
-              }}
-            >
-              {renderItem(newsItems[itemIndex])}
-            </motion.div>
-            <motion.div
-              key={newsItems[nextItemIndex].url}
-              initial={{ x: direction === Direction.Next ? width : -1 * width }}
-              animate={{ x: 0 }}
-              exit={{ x: direction === Direction.Prev ? width : -1 * width }}
-              transition={{
-                x: {
-                  type: 'spring',
-                  stiffness: 300,
-                  damping: 200,
-                },
-              }}
-            >
-              {renderItem(newsItems[nextItemIndex])}
-            </motion.div>
-          </AnimatePresence> */}
-          {/* {newsItems.map(renderItem)} */}
         </div>
         <div className="flex justify-start">
           <CarouselButtons
