@@ -2,7 +2,7 @@ import React from 'react'
 import { createGlobalState, useLockBodyScroll } from 'react-use'
 import ReactModal from 'react-modal'
 import { Wizard, Steps, Step } from 'react-albus'
-import { Form } from 'react-final-form'
+import { Form, Field } from 'react-final-form'
 import InquiryModalHeader from './inquiry-modal-header'
 import fullBleedImage from '../../../content/images/discover-section-bg.jpeg'
 
@@ -15,6 +15,7 @@ import {
   PageStatus,
 } from './inquiry-modal.components'
 import { AnimatePresence, motion } from 'framer-motion'
+import { onSubmitCreator } from '../../services/forms'
 
 const modalStyles = {
   overlay: {
@@ -33,14 +34,8 @@ const modalStyles = {
   },
 }
 
-const encode = (data: any) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
-}
-
-const inquiryOnSubmit = (values: any) => {
-  const submissionValues = {
+const formValuesMapper = (values: any) => {
+  return {
     firstName: values.firstName,
     lastName: values.lastName,
     phone: values.phone,
@@ -53,18 +48,9 @@ const inquiryOnSubmit = (values: any) => {
       .join(', '),
     marketingOptIn: values.marketingOptIn,
   }
-
-  fetch('/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: encode({
-      'form-name': 'TEST-contact',
-      ...submissionValues,
-    }),
-  })
 }
+
+const inquiryOnSubmit = onSubmitCreator(formValuesMapper)
 
 export const useInquiryModalState = createGlobalState<boolean>(false)
 
@@ -109,6 +95,12 @@ export const InquiryModal: React.FC = () => {
                         pristine,
                       }) => (
                         <form onSubmit={handleSubmit}>
+                          <Field
+                            component="input"
+                            type="hidden"
+                            name="form-name"
+                            initialValue="TEST-contact"
+                          />
                           <Steps>
                             <Step
                               id="landing"
