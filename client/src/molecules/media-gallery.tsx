@@ -56,7 +56,6 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
   const [category, setCategory] = useState<'all' | 'photos' | 'videos'>('all')
   const perPage = showMore ? 8 : 4
   const totalPages = Math.floor(gallery.length / perPage)
-  console.log('asdfasdfasdfasdf', gallery.length, perPage, totalPages)
   const goNext = () => {
     setPage((page) => (page === totalPages ? page : page + 1))
   }
