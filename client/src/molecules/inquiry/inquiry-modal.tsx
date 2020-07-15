@@ -14,12 +14,15 @@ import {
   ContinueButton,
   PageStatus,
 } from './inquiry-modal.components'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const modalStyles = {
   overlay: {
+    background: 'transparent',
     zIndex: 50,
   },
   content: {
+    background: 'transparent',
     top: 0,
     left: 0,
     right: 0,
@@ -68,101 +71,123 @@ export const useInquiryModalState = createGlobalState<boolean>(false)
 export const InquiryModal: React.FC = () => {
   const [inquiryModalState] = useInquiryModalState()
   useLockBodyScroll(inquiryModalState)
+  const animationDuration = 0.5
 
   return (
-    <ReactModal isOpen={inquiryModalState!} style={modalStyles}>
-      <div
-        className="min-h-full"
-        style={{ backgroundImage: `url(${fullBleedImage})` }}
-      >
-        <div
-          className="pb-5 min-h-screen"
-          style={{
-            background:
-              'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
-          }}
-        >
-          <Wizard>
-            <InquiryModalHeader />
-            <div className="text-white flex flex-col items-center justify-center relative">
-              <div className="w-full max-w-2xl">
-                <Form
-                  onSubmit={inquiryOnSubmit}
-                  render={({ handleSubmit, form, submitting, pristine }) => (
-                    <form onSubmit={handleSubmit}>
-                      <Steps>
-                        <Step
-                          id="landing"
-                          render={({ next }) => {
-                            return <LandingStep next={next} />
-                          }}
-                        />
-                        <Step
-                          id="one"
-                          render={({ next, steps, step }) => {
-                            return (
-                              <StepOne>
-                                <ContinueButton
-                                  next={next}
-                                  inValid={form.getState().hasValidationErrors}
-                                />
-                                <PageStatus
-                                  next={next}
-                                  steps={steps}
-                                  step={step}
-                                />
-                              </StepOne>
-                            )
-                          }}
-                        />
-                        <Step
-                          id="two"
-                          render={({ next, steps, step }) => {
-                            return (
-                              <StepTwo
-                                pristine={pristine}
-                                submitting={submitting}
-                              >
-                                <ContinueButton
-                                  next={next}
-                                  inValid={form.getState().hasValidationErrors}
-                                />
-                                <PageStatus
-                                  next={next}
-                                  steps={steps}
-                                  step={step}
-                                />
-                              </StepTwo>
-                            )
-                          }}
-                        />
-                        <Step
-                          id="three"
-                          render={({ next, steps, step }) => {
-                            return (
-                              <StepThree
-                                submit={handleSubmit}
-                                pristine={pristine}
-                                submitting={submitting}
-                              >
-                                <PageStatus
-                                  next={next}
-                                  steps={steps}
-                                  step={step}
-                                />
-                              </StepThree>
-                            )
-                          }}
-                        />
-                      </Steps>
-                    </form>
-                  )}
-                />
-              </div>
+    <ReactModal
+      isOpen={inquiryModalState!}
+      style={modalStyles}
+      closeTimeoutMS={animationDuration * 1000}
+    >
+      <AnimatePresence>
+        {inquiryModalState && (
+          <motion.div
+            initial={{ y: '100vh' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100vh' }}
+            transition={{ stiffness: 100, duration: animationDuration }}
+            className="min-h-full"
+            style={{ backgroundImage: `url(${fullBleedImage})` }}
+          >
+            <div
+              className="pb-5 min-h-screen"
+              style={{
+                background:
+                  'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
+              }}
+            >
+              <Wizard>
+                <InquiryModalHeader />
+                <div className="text-white flex flex-col items-center justify-center relative">
+                  <div className="w-full max-w-2xl">
+                    <Form
+                      onSubmit={inquiryOnSubmit}
+                      render={({
+                        handleSubmit,
+                        form,
+                        submitting,
+                        pristine,
+                      }) => (
+                        <form onSubmit={handleSubmit}>
+                          <Steps>
+                            <Step
+                              id="landing"
+                              render={({ next }) => {
+                                return <LandingStep next={next} />
+                              }}
+                            />
+                            <Step
+                              id="one"
+                              render={({ next, steps, step }) => {
+                                return (
+                                  <StepOne>
+                                    <ContinueButton
+                                      next={next}
+                                      inValid={
+                                        form.getState().hasValidationErrors
+                                      }
+                                    />
+                                    <PageStatus
+                                      next={next}
+                                      steps={steps}
+                                      step={step}
+                                    />
+                                  </StepOne>
+                                )
+                              }}
+                            />
+                            <Step
+                              id="two"
+                              render={({ next, steps, step }) => {
+                                return (
+                                  <StepTwo
+                                    pristine={pristine}
+                                    submitting={submitting}
+                                  >
+                                    <ContinueButton
+                                      next={next}
+                                      inValid={
+                                        form.getState().hasValidationErrors
+                                      }
+                                    />
+                                    <PageStatus
+                                      next={next}
+                                      steps={steps}
+                                      step={step}
+                                    />
+                                  </StepTwo>
+                                )
+                              }}
+                            />
+                            <Step
+                              id="three"
+                              render={({ next, steps, step }) => {
+                                return (
+                                  <StepThree
+                                    submit={handleSubmit}
+                                    pristine={pristine}
+                                    submitting={submitting}
+                                  >
+                                    <PageStatus
+                                      next={next}
+                                      steps={steps}
+                                      step={step}
+                                    />
+                                  </StepThree>
+                                )
+                              }}
+                            />
+                          </Steps>
+                        </form>
+                      )}
+                    />
+                  </div>
+                </div>
+              </Wizard>
             </div>
-          </Wizard>
-        </div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </ReactModal>
   )
 }
