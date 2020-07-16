@@ -5,14 +5,11 @@ import { Wizard, Steps, Step } from 'react-albus'
 import { Form, Field } from 'react-final-form'
 import InquiryModalHeader from './inquiry-modal-header'
 import fullBleedImage from '../../../content/images/discover-section-bg.jpeg'
-
 import {
   LandingStep,
   StepOne,
   StepTwo,
   StepThree,
-  ContinueButton,
-  PageStatus,
 } from './inquiry-modal.components'
 import { AnimatePresence, motion } from 'framer-motion'
 import { onSubmitCreator } from '../../services/forms'
@@ -82,100 +79,7 @@ export const InquiryModal: React.FC = () => {
                   'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
               }}
             >
-              <Wizard>
-                <InquiryModalHeader />
-                <div className="text-white flex flex-col items-center justify-center relative">
-                  <div className="w-full max-w-2xl">
-                    <Form
-                      onSubmit={inquiryOnSubmit}
-                      render={({
-                        handleSubmit,
-                        form,
-                        submitting,
-                        pristine,
-                      }) => (
-                        <form onSubmit={handleSubmit}>
-                          <Field
-                            component="input"
-                            type="hidden"
-                            name="form-name"
-                            initialValue="TEST-contact"
-                          />
-                          <Steps>
-                            <Step
-                              id="landing"
-                              render={({ next }) => {
-                                return <LandingStep next={next} />
-                              }}
-                            />
-                            <Step
-                              id="one"
-                              render={({ next, steps, step }) => {
-                                return (
-                                  <StepOne>
-                                    <ContinueButton
-                                      next={next}
-                                      inValid={
-                                        form.getState().hasValidationErrors
-                                      }
-                                    />
-                                    <PageStatus
-                                      next={next}
-                                      steps={steps}
-                                      step={step}
-                                    />
-                                  </StepOne>
-                                )
-                              }}
-                            />
-                            <Step
-                              id="two"
-                              render={({ next, steps, step }) => {
-                                return (
-                                  <StepTwo
-                                    pristine={pristine}
-                                    submitting={submitting}
-                                  >
-                                    <ContinueButton
-                                      next={next}
-                                      inValid={
-                                        form.getState().hasValidationErrors
-                                      }
-                                    />
-                                    <PageStatus
-                                      next={next}
-                                      steps={steps}
-                                      step={step}
-                                    />
-                                  </StepTwo>
-                                )
-                              }}
-                            />
-                            <Step
-                              id="three"
-                              render={({ next, steps, step }) => {
-                                return (
-                                  <StepThree
-                                    submit={handleSubmit}
-                                    pristine={pristine}
-                                    submitting={submitting}
-                                  >
-                                    <PageStatus
-                                      next={next}
-                                      steps={steps}
-                                      step={step}
-                                    />
-                                  </StepThree>
-                                )
-                              }}
-                            />
-                          </Steps>
-                        </form>
-                      )}
-                    />
-                  </div>
-                </div>
-              </Wizard>
+              <FormWizard />
             </div>
           </motion.div>
         )}
@@ -183,6 +87,43 @@ export const InquiryModal: React.FC = () => {
     </ReactModal>
   )
 }
+
+const FormWizard = () => (
+  <Wizard>
+    <InquiryModalHeader />
+    <div className="text-white flex flex-col items-center justify-center relative">
+      <div className="w-full max-w-2xl">
+        <Form
+          onSubmit={inquiryOnSubmit}
+          render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+              <Field
+                component="input"
+                type="hidden"
+                name="form-name"
+                initialValue="TEST-contact"
+              />
+              <Steps>
+                <Step id="landing">
+                  <LandingStep />
+                </Step>
+                <Step id="one">
+                  <StepOne />
+                </Step>
+                <Step id="two">
+                  <StepTwo />
+                </Step>
+                <Step id="three">
+                  <StepThree />
+                </Step>
+              </Steps>
+            </form>
+          )}
+        />
+      </div>
+    </div>
+  </Wizard>
+)
 
 export const HiddenInquiryForm = () => (
   <form
