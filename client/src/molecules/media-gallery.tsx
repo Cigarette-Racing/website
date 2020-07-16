@@ -124,6 +124,8 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
             className="mb-4"
             onClickNext={goNext}
             onClickPrev={goPrev}
+            disabledNext={page === totalPages}
+            disabledPrev={page === 1}
           />
         </div>
       </div>
