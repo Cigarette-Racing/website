@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, useFormState } from 'react-final-form'
+import { Field } from 'react-final-form'
 import clsx from 'clsx'
 import { Link } from 'gatsby'
 import Select, { components } from 'react-select'
@@ -19,6 +19,8 @@ import { ArrowIcon } from '../../svgs/icons'
 import { CloseIcon } from '../../svgs/icons'
 import { CheckIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
+import { WithWizard } from 'react-albus'
+import { useFormState } from '../../services/forms'
 
 export const FieldSetContainer: React.FC = ({ children }) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
@@ -38,35 +40,46 @@ export const FieldSetHeader: React.FC<{ className?: string }> = ({
   )
 }
 
-export const ContinueButton: React.FC<{
-  next: () => void
-  inValid: boolean
-}> = ({ next, inValid }) => {
+const ContinueButton = () => {
+  const { hasValidationErrors: isInvalid } = useFormState({
+    subscription: {
+      hasValidationErrors: true,
+    },
+  })
+
   return (
-    <InPageCta
-      className={clsx('self-center mt-16 lg:mt-20', {
-        'opacity-50 pointer-events-none': inValid,
-      })}
-      variant="primary"
-      onClick={() => {
-        if (inValid) return
-        next()
-      }}
-    >
-      Continue
-    </InPageCta>
+    <WithWizard>
+      {({ next }) => (
+        <InPageCta
+          className={clsx('self-center mt-16 lg:mt-20', {
+            'opacity-50 pointer-events-none': isInvalid,
+          })}
+          variant="primary"
+          onClick={() => {
+            if (isInvalid) return
+            next()
+          }}
+        >
+          Continue
+        </InPageCta>
+      )}
+    </WithWizard>
   )
 }
 
-export const PageStatus = ({ steps, step }: any) => (
-  <div className="text-white self-center mt-6 font-heading italic">
-    <span className="mr-2">{`${steps.indexOf(step)}`}</span>
-    <span className="mr-2">of</span>
-    <span>3</span>
-  </div>
+const PageStatus = () => (
+  <WithWizard>
+    {({ steps, step }) => (
+      <div className="text-white self-center mt-6 font-heading italic">
+        <span className="mr-2">{`${steps.indexOf(step)}`}</span>
+        <span className="mr-2">of</span>
+        <span>3</span>
+      </div>
+    )}
+  </WithWizard>
 )
 
-export const LandingStep = ({ next }: any) => {
+export const LandingStep = () => {
   return (
     <div className="flex flex-col justify-center px-4 pb-10">
       <Typography
@@ -75,10 +88,14 @@ export const LandingStep = ({ next }: any) => {
       >
         at your service
       </Typography>
-      <OptionsCta variant="secondary" theme="dark" onClick={next}>
-        Request <br className="md:hidden" />
-        an appointment
-      </OptionsCta>
+      <WithWizard>
+        {({ next }) => (
+          <OptionsCta variant="secondary" theme="dark" onClick={next}>
+            Request <br className="md:hidden" />
+            an appointment
+          </OptionsCta>
+        )}
+      </WithWizard>
       {/* commenting out for soft launch */}
       {/* <OptionsCta variant="secondary" theme="dark">
         Questions & answer
@@ -98,7 +115,7 @@ export const LandingStep = ({ next }: any) => {
   )
 }
 
-export const StepOne = ({ children }: any) => {
+export const StepOne = () => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
@@ -135,7 +152,8 @@ export const StepOne = ({ children }: any) => {
           required={true}
         />
       </FieldSetContainer>
-      {children}
+      <ContinueButton />
+      <PageStatus />
     </div>
   )
 }
@@ -149,7 +167,7 @@ const Placeholder = (props: any) => {
   )
 }
 
-export const StepTwo = ({ next, steps, step, children }: any) => {
+export const StepTwo = () => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
@@ -279,14 +297,16 @@ export const StepTwo = ({ next, steps, step, children }: any) => {
           component="textarea"
         />
       </div>
-      {children}
+      <ContinueButton />
+      <PageStatus />
     </div>
   )
 }
 
-export const StepThree = ({ submit }: any) => {
-  const { submitSucceeded } = useFormState({
+export const StepThree: React.FC = () => {
+  const { hasValidationErrors, submitSucceeded } = useFormState({
     subscription: {
+      hasValidationErrors: true,
       submitSucceeded: true,
     },
   })
@@ -441,12 +461,11 @@ export const StepThree = ({ submit }: any) => {
         <InPageCta
           className="self-center mt-16 lg:mt-20"
           variant="primary"
-          onClick={() => {
-            submit()
-          }}
+          type="submit"
         >
           Submit request
         </InPageCta>
+        <PageStatus />
       </div>
     )
   } else {
