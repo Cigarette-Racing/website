@@ -1,7 +1,5 @@
-import string from '*.svg'
 import { useForm } from 'react-final-form'
-import { useLayoutEffect, useEffect, useState } from 'react'
-import { FormState, AnyObject } from 'final-form'
+import { useEffect, useState } from 'react'
 
 const id = (x: any) => x
 
