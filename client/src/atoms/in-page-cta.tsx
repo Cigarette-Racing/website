@@ -47,7 +47,7 @@ export const InPageCta: React.FC<
   }
   if (isButton(rest)) {
     return (
-      <button {...rest} type="button" className={classNames}>
+      <button type="button" {...rest} className={classNames}>
         <Typography variant="e2" as="span">
           {children}
         </Typography>
