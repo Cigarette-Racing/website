@@ -52,6 +52,7 @@ export const CircleButton = ({
             variant === 'secondary' && theme === 'dark',
           [containerSecondaryLightClasses]:
             variant === 'secondary' && theme === 'light',
+          'opacity-25 cursor-not-allowed pointer-events-none': props.disabled,
         },
         className
       )}
