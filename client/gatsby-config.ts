@@ -1,7 +1,10 @@
+import metadata from './content/metadata'
+
 export const siteMetadata = {
   title: `Cigarette Racing`,
   description: `Cigarette Racing`,
   author: `@cigaretteracing`,
+  metadata,
 }
 
 export const plugins = [
