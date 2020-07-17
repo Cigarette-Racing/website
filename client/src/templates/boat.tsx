@@ -231,7 +231,7 @@ export const query = graphql`
         media {
           image {
             childImageSharp {
-              fluid(maxWidth: 1700) {
+              fluid(maxWidth: 2000) {
                 ...GatsbyImageSharpFluid
               }
             }
@@ -250,13 +250,21 @@ export const query = graphql`
           }
         }
         gallery {
-          image {
+          thumbnail: image {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 600) {
                 ...GatsbyImageSharpFluid
               }
             }
           }
+          image {
+            childImageSharp {
+              fluid(maxWidth: 2000) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          videoUrl
         }
         options {
           media {

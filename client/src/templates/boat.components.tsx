@@ -657,34 +657,6 @@ export const BespokeOptionCard = ({
   )
 }
 
-export const GalleryImage = ({
-  className = '',
-  img,
-}: {
-  className?: string
-  img: string
-}) => {
-  return (
-    <div className={`max-w-xs ${className}`}>
-      <AspectRatio
-        ratio="1:1"
-        className="relative group DISABLED__cursor-pointer"
-      >
-        <img
-          src={img}
-          className="absolute h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
-        />
-        <div className="absolute inset-0 bg-black transform bg-opacity-25 group-hover:bg-opacity-0 transition duration-150 ease-in-out"></div>
-        {/* <CircleButton
-          icon={ExpandIcon}
-          size="sm"
-          className="absolute right-0 bottom-0 mb-4 mr-4 group-hover:bg-white group-hover:text-red"
-        /> */}
-      </AspectRatio>
-    </div>
-  )
-}
-
 export const OrderSectionComponent = ({
   boatNameLong,
   title,
