@@ -481,7 +481,8 @@ sections:
       - image: ../images/tirranna/gallery/tirranna-gallery-00109.jpg
       - image: ../images/tirranna/gallery/tirranna-gallery-00110.jpg
       - image: ../images/tirranna/gallery/tirranna-gallery-00111.jpg
-  - type: customizations
+
+  - type: DISABLED__customizations
     title: Bespoke Possibilities
     shortTitle: Bespoke
     options:
