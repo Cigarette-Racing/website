@@ -18,6 +18,7 @@ import { CircleButton } from '../atoms/circle-button'
 import { PlayIcon, ExpandIcon } from '../svgs/icons'
 import ReactModal from 'react-modal'
 import ReactPlayer from 'react-player'
+import { HotKeys } from 'react-hotkeys'
 
 const parentAnimations = {
   initial: 'hidden',
@@ -57,10 +58,10 @@ export interface MediaGalleryProps extends GallerySection {}
 
 export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
   const showMore = useMedia('(min-width: 720px)')
-  const [lightboxMedia, setLightboxMedia] = useState<GalleryMedia>()
+  const [lightboxMediaIndex, setLightboxMediaIndex] = useState<number>()
   const [page, setPage] = useState(1) // One-based to keep ourselves sane
   const [category, setCategory] = useState<'all' | 'photos' | 'videos'>('all')
-  useLockBodyScroll(!!lightboxMedia)
+  useLockBodyScroll(lightboxMediaIndex !== undefined)
 
   const perPage = showMore ? 8 : 4
   const totalPages = Math.ceil(gallery.length / perPage)
@@ -72,20 +73,14 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
     setPage((page) => (page === 1 ? page : page - 1))
   }
   const goNextLightbox = () => {
-    const lightboxMediaIndex = gallery.findIndex(
-      (item) => item === lightboxMedia
+    setLightboxMediaIndex((lightboxMediaIndex = -1) =>
+      Math.min(lightboxMediaIndex + 1, gallery.length - 1)
     )
-    if (lightboxMediaIndex < 0) return
-    const nextIndex = Math.min(lightboxMediaIndex + 1, gallery.length - 1)
-    setLightboxMedia(gallery[nextIndex])
   }
   const goPrevLightbox = () => {
-    const lightboxMediaIndex = gallery.findIndex(
-      (item) => item === lightboxMedia
+    setLightboxMediaIndex((lightboxMediaIndex = -1) =>
+      Math.max(lightboxMediaIndex - 1, 0)
     )
-    if (lightboxMediaIndex < 0) return
-    const prevIndex = Math.max(lightboxMediaIndex - 1, 0)
-    setLightboxMedia(gallery[prevIndex])
   }
 
   useEffect(() => {
@@ -95,6 +90,9 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
       )
     )
   }, [page, perPage])
+
+  const lightboxMedia =
+    lightboxMediaIndex !== undefined ? gallery[lightboxMediaIndex] : undefined
 
   return (
     <BoatSection theme="dark" className="sm:py-32">
@@ -145,7 +143,7 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
                   key={index}
                   img={item.thumbnail.childImageSharp?.fluid?.src!}
                   hasVideo={!!item.videoUrl}
-                  onClick={() => setLightboxMedia(item)}
+                  onClick={() => setLightboxMediaIndex(gallery.indexOf(item))}
                 />
               </motion.div>
             ))}
@@ -166,12 +164,12 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
       </div>
       <Lightbox
         isOpen={!!lightboxMedia}
-        onClose={() => setLightboxMedia(undefined)}
+        onClose={() => setLightboxMediaIndex(undefined)}
         media={lightboxMedia}
         goNext={goNextLightbox}
         goPrev={goPrevLightbox}
-        disabledNext={gallery.indexOf(lightboxMedia!) === gallery.length - 1}
-        disabledPrev={gallery.indexOf(lightboxMedia!) === 0}
+        disabledNext={lightboxMediaIndex === gallery.length - 1}
+        disabledPrev={lightboxMediaIndex === 0}
       />
     </BoatSection>
   )
@@ -214,66 +212,71 @@ const Lightbox = ({
 }) => {
   const animationDuration = 0.3
   return (
-    <ReactModal
-      isOpen={isOpen}
-      style={modalStyles}
-      closeTimeoutMS={animationDuration * 1000}
-      onRequestClose={onClose}
+    <HotKeys
+      keyMap={{ NEXT: 'right', PREV: 'left' }}
+      handlers={{ NEXT: goNext, PREV: goPrev }}
     >
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: animationDuration }}
-            className="relative min-h-full bg-black bg-opacity-75 flex justify-center items-center"
-            onClick={onClose}
-          >
-            <div
-              className="w-5/6 flex justify-center items-center"
-              style={{ width: '90vw', height: '90vh' }}
+      <ReactModal
+        isOpen={isOpen}
+        style={modalStyles}
+        closeTimeoutMS={animationDuration * 1000}
+        onRequestClose={onClose}
+      >
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: animationDuration }}
+              className="relative min-h-full bg-black bg-opacity-75 flex justify-center items-center"
+              onClick={onClose}
             >
-              {media!.videoUrl ? (
-                <ReactPlayer
-                  className=""
-                  url={media!.videoUrl}
-                  controls
-                  playing
-                  config={{
-                    file: {
-                      attributes: {
-                        className: 'object-cover',
+              <div
+                className="w-5/6 flex justify-center items-center"
+                style={{ width: '90vw', height: '90vh' }}
+              >
+                {media!.videoUrl ? (
+                  <ReactPlayer
+                    className=""
+                    url={media!.videoUrl}
+                    controls
+                    playing
+                    config={{
+                      file: {
+                        attributes: {
+                          className: 'object-cover',
+                        },
                       },
-                    },
-                  }}
-                  width="100%"
-                  height="100%"
-                />
-              ) : (
-                <motion.img
-                  src={media!.image.childImageSharp?.fluid?.src!}
-                  className="max-h-full max-w-full"
-                />
-              )}
-            </div>
-            <CarouselButtons
-              className="absolute px-4 w-full justify-between"
-              onClickNext={(e) => {
-                e.stopPropagation()
-                goNext()
-              }}
-              onClickPrev={(e) => {
-                e.stopPropagation()
-                goPrev()
-              }}
-              disabledNext={disabledNext}
-              disabledPrev={disabledPrev}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </ReactModal>
+                    }}
+                    width="100%"
+                    height="100%"
+                  />
+                ) : (
+                  <motion.img
+                    src={media!.image.childImageSharp?.fluid?.src!}
+                    className="max-h-full max-w-full"
+                  />
+                )}
+              </div>
+              <CarouselButtons
+                className="absolute px-4 w-full justify-between"
+                onClickNext={(e) => {
+                  e.stopPropagation()
+                  goNext()
+                }}
+                onClickPrev={(e) => {
+                  e.stopPropagation()
+                  goPrev()
+                }}
+                disabledNext={disabledNext}
+                disabledPrev={disabledPrev}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </ReactModal>
+    </HotKeys>
   )
 }
 
