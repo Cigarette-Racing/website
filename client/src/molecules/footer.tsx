@@ -3,6 +3,7 @@ import logo from '../images/logo-white.svg'
 import { SocialLink } from '../atoms/social-link'
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from '../svgs/icons'
 import { Typography } from '../atoms/typography'
+import { useMetadataQuery } from '../services/metadata'
 
 const footerLinks = [
   {
@@ -27,25 +28,28 @@ const socialLinks = [
   {
     icon: FacebookIcon,
     text: 'Facebook',
-    href: '//www.facebook.com/CigaretteRacingTeam/',
+    key: 'facebook',
   },
   {
     icon: InstagramIcon,
     text: 'Instagram',
-    href: '//www.instagram.com/cigaretteracingteam/',
+    key: 'instagram',
   },
   {
     icon: YoutubeIcon,
     text: 'Youtube',
-    href: '//www.youtube.com/user/CigaretteRacingTeam',
+    key: 'youtube',
   },
-]
+] as const
 
 export interface FooterProps {}
 
 export const Footer = ({}: FooterProps) => {
+  const metadata = useMetadataQuery()
+
   // @ts-ignore
   const src: string = logo
+
   return (
     <footer className="max-w-full lg:max-w-5xl mx-auto bg-black text-white py-24 px-4">
       {/* <div className="mb-16 grid flex grid-cols-max-2 row-gap-16 col-gap-4 sm:grid-cols-max-4 justify-around">
@@ -73,7 +77,8 @@ export const Footer = ({}: FooterProps) => {
           className="w-20 hidden sm:block"
         />
         {socialLinks.map((linkProps) => {
-          return <SocialLink key={linkProps.text} {...linkProps} />
+          const href = metadata?.social?.[linkProps.key]!
+          return <SocialLink {...linkProps} href={href} />
         })}
       </div>
       <div className="py-12 space-x-12 flex sm:justify-center sm:text-center">
