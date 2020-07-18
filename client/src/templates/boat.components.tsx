@@ -246,11 +246,15 @@ export const MobileSectionHeader: React.FC<{ className?: string }> = ({
 export const CarouselButtons = ({
   className,
   theme = 'dark',
+  disabledNext = false,
+  disabledPrev = false,
   onClickNext,
   onClickPrev,
 }: {
   className?: string
   theme?: Theme
+  disabledNext?: boolean
+  disabledPrev?: boolean
   onClickNext?: React.MouseEventHandler<HTMLButtonElement>
   onClickPrev?: React.MouseEventHandler<HTMLButtonElement>
 }) => (
@@ -261,12 +265,14 @@ export const CarouselButtons = ({
       variant="secondary"
       iconClassName="transform rotate-180"
       onClick={onClickPrev}
+      disabled={disabledPrev}
     />
     <CircleButton
       icon={ArrowIcon}
       theme={theme}
       variant="secondary"
       onClick={onClickNext}
+      disabled={disabledNext}
     />
   </div>
 )
@@ -526,50 +532,6 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
   )
 }
 
-export const MediaGallerySection = ({
-  media,
-  title,
-}: {
-  media: Media[]
-  title: string
-}) => (
-  <BoatSection theme="dark" className="sm:py-32">
-    <InPageAnchor title={title} />
-    <MobileSectionHeader className="sm:hidden">{title}</MobileSectionHeader>
-    <div className="relative max-w-7xl mx-auto sm:pl-16">
-      <VerticalHeader theme="dark" className="absolute -ml-12 xl:-ml-16 mt-12">
-        {title}
-      </VerticalHeader>
-      <div className="px-4 flex space-x-6 mb-6">
-        <Typography variant="e2" className="text-red sm:text-white">
-          All
-        </Typography>
-        <Typography variant="e2" className="sm:text-gray-3">
-          Photos
-        </Typography>
-        <Typography variant="e2" className="sm:text-gray-3">
-          Videos
-        </Typography>
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col-dense sm:grid-rows-2 gap-6 px-4 mb-16">
-        {media.map((item, index) => (
-          <GalleryImage
-            key={index}
-            img={item.image.childImageSharp?.fluid?.src!}
-            className={index > 3 ? 'hidden sm:block' : ''}
-          />
-        ))}
-      </div>
-      <div className="flex sm:justify-between items-center px-4">
-        <div className="hidden sm:block w-full max-w-xs md:max-w-sm lg:max-w-md">
-          <ProgressBar percentage={33} />
-        </div>
-        <CarouselButtons className="mb-4" />
-      </div>
-    </div>
-  </BoatSection>
-)
-
 export const CustomizationsSectionComponent = ({
   title,
   options,
@@ -647,34 +609,6 @@ export const BespokeOptionCard = ({
       <Typography variant="p3" sm="p2">
         {copy}
       </Typography>
-    </div>
-  )
-}
-
-export const GalleryImage = ({
-  className = '',
-  img,
-}: {
-  className?: string
-  img: string
-}) => {
-  return (
-    <div className={`max-w-xs ${className}`}>
-      <AspectRatio
-        ratio="1:1"
-        className="relative group DISABLED__cursor-pointer"
-      >
-        <img
-          src={img}
-          className="absolute h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
-        />
-        <div className="absolute inset-0 bg-black transform bg-opacity-25 group-hover:bg-opacity-0 transition duration-150 ease-in-out"></div>
-        {/* <CircleButton
-          icon={ExpandIcon}
-          size="sm"
-          className="absolute right-0 bottom-0 mb-4 mr-4 group-hover:bg-white group-hover:text-red"
-        /> */}
-      </AspectRatio>
     </div>
   )
 }
