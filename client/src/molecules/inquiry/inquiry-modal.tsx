@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createGlobalState, useLockBodyScroll } from 'react-use'
 import ReactModal from 'react-modal'
 import { Wizard, Steps, Step } from 'react-albus'
@@ -13,6 +13,7 @@ import {
 } from './inquiry-modal.components'
 import { AnimatePresence, motion } from 'framer-motion'
 import { onSubmitCreator } from '../../services/forms'
+import { cacheImages } from '../../services/images'
 
 const modalStyles = {
   overlay: {
@@ -56,6 +57,10 @@ export const InquiryModal: React.FC = () => {
   const [inquiryModalState] = useInquiryModalState()
   useLockBodyScroll(inquiryModalState)
   const animationDuration = 0.5
+
+  useEffect(() => {
+    cacheImages([fullBleedImage])
+  }, [])
 
   return (
     <ReactModal
