@@ -15,7 +15,7 @@ import {
   TwoUpImageBlock,
   ThreeUpImageBlock,
   SpecsSectionComponent,
-  // CustomizationsSectionComponent,
+  CustomizationsSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
@@ -29,7 +29,7 @@ import {
   getFlexibleSections,
   findGallerySection,
   findSpecsSection,
-  // findCustomizationsSection,
+  findCustomizationsSection,
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
   isCarouselBlock,
@@ -51,7 +51,10 @@ import {
 
 const extractTitles = (sections: readonly any[]) =>
   (sections as ({ type: string } & CommonSectionProps)[])
-    .filter((section) => section.type !== 'hero')
+    .filter(
+      (section) =>
+        section.type !== 'hero' && !section.type.includes('DISABLED__')
+    )
     .map((section) => [section.title, section.shortTitle || ''])
 
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
@@ -66,33 +69,36 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const flexData = getFlexibleSections(boat.sections!)
   const specsData = findSpecsSection(boat.sections!)
   const galleryData = findGallerySection(boat.sections!)
+  const customizationsData = findCustomizationsSection(boat.sections!)
   const orderData = findOrderSection(boat.sections!)
 
   const [, setInquiryModalState] = useInquiryModalState()
-  // TODO:
-  // const customizationsData = findCustomizationsSection(boat.sections!)
   return (
     <Layout>
       <SEO title="Boat" />
-      <BoatHeader
-        boatImage={heroData.backgroundMedia.image.childImageSharp?.fluid!}
-        boatLogo={heroData.boatLogo.image.publicURL!}
-        boatNameLong={boat.boatNameLong!}
-        headline={heroData.headline!}
-        stats={heroData.stats! as Stat[]}
-        onClickCta={setInquiryModalState}
-      />
+      {heroData && (
+        <BoatHeader
+          boatImage={heroData.backgroundMedia.image.childImageSharp?.fluid!}
+          boatLogo={heroData.boatLogo.image.publicURL!}
+          boatNameLong={boat.boatNameLong!}
+          headline={heroData.headline!}
+          stats={heroData.stats! as Stat[]}
+          onClickCta={setInquiryModalState}
+        />
+      )}
       <InPageNav
         boatName={boat.boatName!}
         titles={titles}
         onClickInquire={setInquiryModalState}
       />
-      <DiscoverSection
-        sectionTitle={discoverData.title!}
-        media={discoverData.media}
-        header={discoverData.content.header}
-        copy={discoverData.content.copy}
-      />
+      {discoverData && (
+        <DiscoverSection
+          sectionTitle={discoverData.title!}
+          media={discoverData.media}
+          header={discoverData.content.header}
+          copy={discoverData.content.copy}
+        />
+      )}
       {flexData.map(
         ({
           title,
@@ -184,14 +190,23 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           </BoatSection>
         )
       )}
-      <SpecsSectionComponent boatNameLong={boat.boatNameLong!} {...specsData} />
-      <MediaGallery {...galleryData} />
-      {/* <CustomizationsSectionComponent {...customizationsData} /> */}
-      <OrderSectionComponent
-        boatNameLong={boat.boatNameLong!}
-        onClickCta={setInquiryModalState}
-        {...orderData}
-      />
+      {specsData && (
+        <SpecsSectionComponent
+          boatNameLong={boat.boatNameLong!}
+          {...specsData}
+        />
+      )}
+      {galleryData && <MediaGallery {...galleryData} />}
+      {customizationsData && (
+        <CustomizationsSectionComponent {...customizationsData} />
+      )}
+      {orderData && (
+        <OrderSectionComponent
+          boatNameLong={boat.boatNameLong!}
+          onClickCta={setInquiryModalState}
+          {...orderData}
+        />
+      )}
       <InquiryModal />
     </Layout>
   )
@@ -231,7 +246,7 @@ export const query = graphql`
         media {
           image {
             childImageSharp {
-              fluid(maxWidth: 1700) {
+              fluid(maxWidth: 2000) {
                 ...GatsbyImageSharpFluid
               }
             }
@@ -250,13 +265,21 @@ export const query = graphql`
           }
         }
         gallery {
-          image {
+          thumbnail: image {
             childImageSharp {
-              fluid {
+              fluid(maxWidth: 600) {
                 ...GatsbyImageSharpFluid
               }
             }
           }
+          image {
+            childImageSharp {
+              fluid(maxWidth: 2000) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          videoUrl
         }
         options {
           media {
