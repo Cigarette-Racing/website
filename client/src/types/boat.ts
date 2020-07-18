@@ -53,7 +53,7 @@ function isHeroSection(section?: any): section is HeroSection {
 }
 
 export function findHeroSection(sections: readonly any[]) {
-  return sections.find(isHeroSection) as HeroSection
+  return sections.find(isHeroSection) as HeroSection | undefined
 }
 
 type DiscoverSection = {
@@ -66,7 +66,7 @@ function isDiscoverSection(section: any): section is DiscoverSection {
 }
 
 export function findDiscoverSection(sections: readonly any[]) {
-  return sections.find(isDiscoverSection) as DiscoverSection
+  return sections.find(isDiscoverSection) as DiscoverSection | undefined
 }
 
 export type GalleryMedia = Media & { thumbnail: GatsbyTypes.File }
@@ -81,7 +81,7 @@ function isGallerySection(section: any): section is GallerySection {
 }
 
 export function findGallerySection(sections: readonly any[]) {
-  return sections.find(isGallerySection) as GallerySection
+  return sections.find(isGallerySection) as GallerySection | undefined
 }
 
 export type Spec = {
@@ -104,7 +104,7 @@ function isSpecsSection(section: any): section is SpecsSection {
 }
 
 export function findSpecsSection(sections: readonly any[]) {
-  return sections.find(isSpecsSection) as SpecsSection
+  return sections.find(isSpecsSection) as SpecsSection | undefined
 }
 
 export type CustomizationsSection = {
@@ -119,7 +119,9 @@ function isCustomizationsSection(
 }
 
 export function findCustomizationsSection(sections: readonly any[]) {
-  return sections.find(isCustomizationsSection) as CustomizationsSection
+  return sections.find(isCustomizationsSection) as
+    | CustomizationsSection
+    | undefined
 }
 
 export type OrderSection = {
@@ -132,7 +134,7 @@ function isOrderSection(section: any): section is OrderSection {
 }
 
 export function findOrderSection(sections: readonly any[]) {
-  return sections.find(isOrderSection) as OrderSection
+  return sections.find(isOrderSection) as OrderSection | undefined
 }
 
 type FlexibleSection = {
