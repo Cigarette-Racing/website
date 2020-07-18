@@ -42,7 +42,7 @@ export const useBoatsQuery = () => {
 
 const extractBoats = (data: GatsbyTypes.HeaderBoatsMenuQuery) => {
   return data.boats.nodes.map((node) => {
-    const heroSection = findHeroSection(node.sections!)
+    const heroSection = findHeroSection(node.sections!)!
     return {
       boatName: node.boatName,
       menuName: node.metadata?.menuName,
