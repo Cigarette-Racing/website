@@ -8,23 +8,8 @@ import {
   CarouselButtons,
   TextBlockComponent,
 } from '../templates/boat.components'
-
-const animations = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    zIndex: 1,
-    opacity: 1,
-  },
-  exit: {
-    zIndex: 0,
-    opacity: 0,
-  },
-  transition: {
-    opacity: { duration: 0.4 },
-  },
-}
+import { determineSwipeAction } from '../services/swiping'
+import { fadeAnimationProps } from '../services/animations'
 
 export interface CarouselProps extends Omit<CarouselBlock, 'type'> {}
 
@@ -45,17 +30,17 @@ export const Carousel = ({ items }: CarouselProps) => {
           <motion.img
             key={page}
             src={items[itemIndex].media.image.childImageSharp?.fluid?.src!}
-            {...animations}
+            {...fadeAnimationProps}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0}
             onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x)
-              if (swipe < -swipeConfidenceThreshold) {
-                goNext()
-              } else if (swipe > swipeConfidenceThreshold) {
-                goPrev()
-              }
+              determineSwipeAction({
+                offset: offset.x,
+                velocity: velocity.x,
+                onSwipeLeft: goNext,
+                onSwipeRight: goPrev,
+              })
             }}
             className="absolute h-full w-full object-cover"
           />
@@ -68,7 +53,7 @@ export const Carousel = ({ items }: CarouselProps) => {
       </AspectRatio>
       <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
         <AnimatePresence initial={false}>
-          <motion.div {...animations}>
+          <motion.div {...fadeAnimationProps}>
             <TextBlockComponent
               key={page}
               className="md:w-7/12"
@@ -86,15 +71,4 @@ export const Carousel = ({ items }: CarouselProps) => {
       </div>
     </div>
   )
-}
-
-/**
- * Experimenting with distilling swipe offset and velocity into a single variable, so the
- * less distance a user has swiped, the more velocity they need to register as a swipe.
- * Should accomodate longer swipes and short flicks without having binary checks on
- * just distance thresholds and velocity > 0.
- */
-const swipeConfidenceThreshold = 10000
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity
 }

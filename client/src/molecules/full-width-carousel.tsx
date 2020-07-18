@@ -4,6 +4,7 @@ import { wrap } from '@popmotion/popcorn'
 import { FullWidthCarouselBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { ProgressDots } from '../atoms/progress-dots'
+import { determineSwipeAction } from '../services/swiping'
 
 const animations = {
   initial: {
@@ -43,12 +44,12 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0}
             onDragEnd={(e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x)
-              if (swipe < -swipeConfidenceThreshold) {
-                goToItem(page + 2)
-              } else if (swipe > swipeConfidenceThreshold) {
-                goToItem(page)
-              }
+              determineSwipeAction({
+                offset: offset.x,
+                velocity: velocity.x,
+                onSwipeLeft: () => goToItem(page + 2),
+                onSwipeRight: () => goToItem(page),
+              })
             }}
             className="absolute h-full w-full object-cover"
           />
@@ -64,15 +65,4 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
       </div>
     </div>
   )
-}
-
-/**
- * Experimenting with distilling swipe offset and velocity into a single variable, so the
- * less distance a user has swiped, the more velocity they need to register as a swipe.
- * Should accomodate longer swipes and short flicks without having binary checks on
- * just distance thresholds and velocity > 0.
- */
-const swipeConfidenceThreshold = 10000
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity
 }
