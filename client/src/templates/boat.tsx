@@ -120,7 +120,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             <SideBleedImage
               src={headerImage.image.childImageSharp?.fluid?.src!}
               side={bleedDirection}
-              className="lg:mt-32 md:mb-32"
+              className="lg:mt-32 md:mb-40"
               size="large"
             />
             {blocks.map((block, index) => {
@@ -151,7 +151,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 return (
                   <ThreeUpImageBlock
                     key={index}
-                    className="mb-32"
+                    className="mb-32 md:mb-48"
                     images={[
                       block.images[0].image.childImageSharp?.fluid?.src!,
                       block.images[1].image.childImageSharp?.fluid?.src!,
@@ -164,7 +164,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 return (
                   <TwoUpImageBlock
                     key={index}
-                    className="mb-32"
+                    className="mb-32 md:mb-48"
                     images={[
                       block.images[0].image.childImageSharp?.fluid?.src!,
                       block.images[1].image.childImageSharp?.fluid?.src!,

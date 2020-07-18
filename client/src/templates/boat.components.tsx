@@ -7,11 +7,10 @@ import { Theme } from '../types/shared'
 import clsx from 'clsx'
 import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
 import { CircleButton } from '../atoms/circle-button'
-import { ExpandIcon, PlayIcon, ArrowIcon, CaretDownIcon } from '../svgs/icons'
+import { PlayIcon, ArrowIcon, CaretDownIcon } from '../svgs/icons'
 import { InPageAnchor } from '../molecules/in-page-nav'
 import { VerticalHeader } from '../atoms/vertical-header'
 import { VerticalLabel } from '../atoms/vertical-label'
-import { ProgressBar } from '../atoms/progress-bar'
 import {
   Stat,
   Media,
@@ -661,7 +660,7 @@ export const OneColumnTextBlockComponent = ({
   header,
   copy,
 }: OneColumnTextBlock) => (
-  <div className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto">
+  <div className="my-12 px-4 xl:pl-0 mb-32 md:mb-48 max-w-5xl mx-auto">
     <TextBlockComponent
       className={clsx({
         'max-w-lg mr-auto text-left': align === 'left',
@@ -678,7 +677,7 @@ export const OneColumnImageTextBlockComponent = ({
   content,
   media,
 }: OneColumnImageTextBlock) => (
-  <div className="max-w-5xl mx-auto">
+  <div className="max-w-5xl mx-auto md:mb-48">
     <AspectRatio ratio="3:2" className="overflow-hidden">
       <img
         src={media.image.childImageSharp?.fluid?.src!}
@@ -695,7 +694,7 @@ export const TwoColumnImageTextBlockComponent = ({
   leftColumn,
   rightColumn,
 }: TwoColumnImageTextBlock) => (
-  <div className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto">
+  <div className="md:flex md:mb-48 md:px-12 lg:px-16 max-w-6xl mx-auto">
     <div className="md:w-1/2 lg:pr-12">
       <TextBlockComponent
         className="my-12 px-4 lg:px-0 lg:ml-12 md:mb-32 lg:mb-48"

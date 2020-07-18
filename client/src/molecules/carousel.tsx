@@ -24,7 +24,7 @@ export const Carousel = ({ items }: CarouselProps) => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-5xl mx-auto md:mb-48">
       <AspectRatio ratio="3:2" className="overflow-hidden">
         <AnimatePresence initial={false}>
           <motion.img
