@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Link } from 'gatsby'
 import { Layout } from '../components/layout'
@@ -30,6 +30,7 @@ import { wrap } from '@popmotion/popcorn'
 import { CarouselButtons } from '../templates/boat.components'
 import { useToggle } from 'react-use'
 import { onSubmitCreator } from '../services/forms'
+import { cacheImages } from '../services/images'
 
 const headerVideo =
   'https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175'
@@ -385,12 +386,14 @@ function NewsSection() {
   const nextItemIndex = wrap(0, newsItems.length, page + 1)
   const goNext = () => {
     setPage((state) => state + 1)
-    // setPage([page + 1, Direction.Next])
   }
   const goPrev = () => {
     setPage((state) => state - 1)
-    // setPage([page - 1, Direction.Prev])
   }
+
+  useEffect(() => {
+    cacheImages(newsItems.map((item) => item.image))
+  }, [])
 
   return (
     <section className="p-4 py-12 sm:py-40 bg-white min-h-screen sm:min-h-0 flex sm:block items-center overflow-hidden">
