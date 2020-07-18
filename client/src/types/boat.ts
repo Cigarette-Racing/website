@@ -69,9 +69,11 @@ export function findDiscoverSection(sections: readonly any[]) {
   return sections.find(isDiscoverSection) as DiscoverSection
 }
 
+export type GalleryMedia = Media & { thumbnail: GatsbyTypes.File }
+
 export type GallerySection = {
   type: 'gallery'
-  gallery: Media[]
+  gallery: GalleryMedia[]
 } & CommonSectionProps
 
 function isGallerySection(section: any): section is GallerySection {
