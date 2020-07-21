@@ -19,8 +19,8 @@ import { ArrowIcon } from '../../svgs/icons'
 import { CloseIcon } from '../../svgs/icons'
 import { CheckIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
-import { WithWizard } from 'react-albus'
 import { useFormState } from '../../services/forms'
+import { useWulfric } from '../wulfric'
 
 export const FieldSetContainer: React.FC = ({ children }) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
@@ -41,6 +41,7 @@ export const FieldSetHeader: React.FC<{ className?: string }> = ({
 }
 
 const ContinueButton = () => {
+  const { next } = useWulfric()
   const { hasValidationErrors: isInvalid } = useFormState({
     subscription: {
       hasValidationErrors: true,
@@ -48,38 +49,35 @@ const ContinueButton = () => {
   })
 
   return (
-    <WithWizard>
-      {({ next }) => (
-        <InPageCta
-          className={clsx('self-center mt-16 lg:mt-20', {
-            'opacity-50 pointer-events-none': isInvalid,
-          })}
-          variant="primary"
-          onClick={() => {
-            if (isInvalid) return
-            next()
-          }}
-        >
-          Continue
-        </InPageCta>
-      )}
-    </WithWizard>
+    <InPageCta
+      className={clsx('self-center mt-16 lg:mt-20', {
+        'opacity-50 pointer-events-none': isInvalid,
+      })}
+      variant="primary"
+      onClick={() => {
+        if (isInvalid) return
+        next()
+      }}
+    >
+      Continue
+    </InPageCta>
   )
 }
 
-const PageStatus = () => (
-  <WithWizard>
-    {({ steps, step }) => (
-      <div className="text-white self-center mt-6 font-heading italic">
-        <span className="mr-2">{`${steps.indexOf(step)}`}</span>
-        <span className="mr-2">of</span>
-        <span>3</span>
-      </div>
-    )}
-  </WithWizard>
-)
+const PageStatus = () => {
+  const { currentStepIndex } = useWulfric()
 
-export const LandingStep = () => {
+  return (
+    <div className="text-white self-center mt-6 font-heading italic">
+      <span className="mr-2">{currentStepIndex}</span>
+      <span className="mr-2">of</span>
+      <span>3</span>
+    </div>
+  )
+}
+
+export const LandingStep: React.FC<{ id: string }> = () => {
+  const { next } = useWulfric()
   return (
     <div className="flex flex-col justify-center px-4 pb-10">
       <Typography
@@ -88,14 +86,10 @@ export const LandingStep = () => {
       >
         at your service
       </Typography>
-      <WithWizard>
-        {({ next }) => (
-          <OptionsCta variant="secondary" theme="dark" onClick={next}>
-            Request <br className="md:hidden" />
-            an appointment
-          </OptionsCta>
-        )}
-      </WithWizard>
+      <OptionsCta variant="secondary" theme="dark" onClick={next}>
+        Request <br className="md:hidden" />
+        an appointment
+      </OptionsCta>
       {/* commenting out for soft launch */}
       {/* <OptionsCta variant="secondary" theme="dark">
         Questions & answer
@@ -115,7 +109,7 @@ export const LandingStep = () => {
   )
 }
 
-export const StepOne = () => {
+export const StepOne: React.FC<{ id: string }> = () => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
@@ -167,7 +161,7 @@ const Placeholder = (props: any) => {
   )
 }
 
-export const StepTwo = () => {
+export const StepTwo: React.FC<{ id: string }> = () => {
   return (
     <div className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
@@ -303,7 +297,7 @@ export const StepTwo = () => {
   )
 }
 
-export const StepThree: React.FC = () => {
+export const StepThree: React.FC<{ id: string }> = () => {
   const { hasValidationErrors, submitSucceeded } = useFormState({
     subscription: {
       hasValidationErrors: true,
