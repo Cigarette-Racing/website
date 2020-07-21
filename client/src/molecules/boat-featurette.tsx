@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 import { LinkCta } from '../atoms/link-cta'
@@ -12,8 +13,8 @@ const BoatFeaturette = ({
   boatName,
   url,
 }: {
-  backgroundImage: string
-  boatImage: string
+  backgroundImage: GatsbyTypes.File
+  boatImage: GatsbyTypes.File
   contentHeader: string
   subtitle: string
   boatName: string
@@ -22,7 +23,7 @@ const BoatFeaturette = ({
   <div
     className="bg-cover relative justify-content: center; md:w-1/2 min-h-screen-half bg-black text-white pt-4 lg:pt-16"
     style={{
-      backgroundImage: `url(${backgroundImage})`,
+      backgroundImage: `url(${backgroundImage.childImageSharp?.fluid?.src})`,
     }}
   >
     <div
@@ -35,7 +36,10 @@ const BoatFeaturette = ({
     <div className="flex flex-col h-full relative justify-between lg:justify-end">
       <div className="relative z-0 flex-2">
         <div className="px-2 md:px-4 flex justify-center">
-          <img src={boatImage} className="object-cover max-w-1/2" />
+          <Img
+            fluid={boatImage.childImageSharp?.fluid}
+            className="h-full w-full object-cover max-w-1/2"
+          />
         </div>
       </div>
       <div className="absolute flex flex-col justify-between md:justify-end h-full w-full">
