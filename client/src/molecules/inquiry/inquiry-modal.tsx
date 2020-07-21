@@ -110,12 +110,14 @@ const FormWizard = () => (
                 name="form-name"
                 initialValue="TEST-contact"
               />
-              <Steps>
-                <LandingStep id="landing" />
-                <StepOne id="one" />
-                <StepTwo id="two" />
-                <StepThree id="three" />
-              </Steps>
+              <AnimatePresence>
+                <Steps>
+                  <LandingStep id="landing" />
+                  <StepOne id="one" />
+                  <StepTwo id="two" />
+                  <StepThree id="three" />
+                </Steps>
+              </AnimatePresence>
             </form>
           )}
         />
