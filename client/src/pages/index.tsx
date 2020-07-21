@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Field } from 'react-final-form'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
-import header1 from '../../content/images/homepage-header.jpeg'
-import header2 from '../../content/images/homepage-header-2.jpeg'
-import header3 from '../../content/images/homepage-header-3.jpeg'
-import boat1 from '../../content/images/homepage/nighthawk.png'
-import boat1BG from '../../content/images/homepage/nighthawk-bg.jpeg'
-import boat2 from '../../content/images/homepage/auroris.png'
-import boat2BG from '../../content/images/homepage/auroris-bg.jpeg'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
@@ -32,22 +26,29 @@ import { useToggle } from 'react-use'
 import { onSubmitCreator } from '../services/forms'
 import { cacheImages } from '../services/images'
 
-const headerVideo =
+const HEADER_VIDEO =
   'https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175'
 
-const TopVideo = () => {
+const TopVideo = ({
+  image,
+  videoUrl,
+}: {
+  image: GatsbyTypes.File
+  videoUrl: string
+}) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   return (
     <AnimatePresence>
-      <motion.img
+      <Img
         key="image"
-        src={header1}
+        fluid={image.childImageSharp?.fluid}
         className="absolute top-0 left-0 h-screen w-full object-cover"
+        style={{ position: 'absolute' }}
       />
       <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
         <ReactPlayer
           className="absolute top-0 left-0"
-          url={headerVideo}
+          url={videoUrl}
           controls={false}
           muted
           loop
@@ -70,7 +71,7 @@ const TopVideo = () => {
   )
 }
 
-const IndexPage = () => {
+const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
   const [, setInquiryModalState] = useInquiryModalState()
 
   return (
@@ -83,7 +84,10 @@ const IndexPage = () => {
         data-scrollsection
       >
         <div className="absolute top-0 left-0 h-screen w-full">
-          <TopVideo />
+          <TopVideo
+            image={data.header1 as GatsbyTypes.File}
+            videoUrl={HEADER_VIDEO}
+          />
         </div>
         <div
           className="absolute top-0 left-0 h-screen w-full pointer-events-none"
@@ -122,16 +126,16 @@ const IndexPage = () => {
       {/* 2-up boats section */}
       <section className="relative md:flex" data-scrollsection>
         <BoatFeaturette
-          backgroundImage={boat1BG}
-          boatImage={boat1}
+          backgroundImage={data.boat1BG as GatsbyTypes.File}
+          boatImage={data.boat1 as GatsbyTypes.File}
           contentHeader="Performance Center Console"
           subtitle="Hyperlux"
           boatName="41 Nighthawk"
           url="nighthawk"
         />
         <BoatFeaturette
-          backgroundImage={boat2BG}
-          boatImage={boat2}
+          backgroundImage={data.boat2BG as GatsbyTypes.File}
+          boatImage={data.boat2 as GatsbyTypes.File}
           contentHeader="Performance Center Console"
           subtitle="Hyperlux"
           boatName="42 Auroris"
@@ -143,9 +147,10 @@ const IndexPage = () => {
         className="min-h-screen relative flex justify-center items-end"
         data-scrollsection
       >
-        <img
-          src={header2}
+        <Img
+          fluid={data.header2?.childImageSharp?.fluid!}
           className="absolute top-0 left-0 h-screen w-full object-cover"
+          style={{ position: 'absolute' }}
         />
         <div
           className="absolute top-0 left-0 h-screen w-full"
@@ -173,7 +178,9 @@ const IndexPage = () => {
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
-        style={{ backgroundImage: `url(${header3})` }}
+        style={{
+          backgroundImage: `url(${data.header3?.childImageSharp?.fluid?.src!})`,
+        }}
       >
         <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
         <div className="max-w-8xl sm:mx-auto flex flex-col md:flex-row md:items-center md:justify-around justify-center text-white">
@@ -192,6 +199,60 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export const query = graphql`
+  query HomePage {
+    header1: file(relativePath: { eq: "homepage-header.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    header2: file(relativePath: { eq: "homepage-header-2.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    header3: file(relativePath: { eq: "homepage-header-3.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    boat1: file(relativePath: { eq: "homepage/nighthawk.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    boat1BG: file(relativePath: { eq: "homepage/nighthawk-bg.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    boat2: file(relativePath: { eq: "homepage/auroris.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    boat2BG: file(relativePath: { eq: "homepage/auroris-bg.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
 
 const formValuesMapper = (values: any) => {
   return {
