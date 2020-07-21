@@ -14,7 +14,6 @@ import {
 import { AnimatePresence, motion } from 'framer-motion'
 import { onSubmitCreator } from '../../services/forms'
 import { cacheImages } from '../../services/images'
-import { Step } from 'react-albus'
 
 const modalStyles = {
   overlay: {
