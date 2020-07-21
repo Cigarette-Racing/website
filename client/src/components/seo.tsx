@@ -18,9 +18,9 @@ export interface SEOProps {
 }
 
 function SEO({ description = '', lang = 'en', meta = [], title }: SEOProps) {
-  const { site } = useStaticQuery(
+  const { site } = useStaticQuery<GatsbyTypes.SEOMetadataQueryQuery>(
     graphql`
-      query {
+      query SEOMetadataQuery {
         site {
           siteMetadata {
             title
@@ -32,7 +32,7 @@ function SEO({ description = '', lang = 'en', meta = [], title }: SEOProps) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription = description || site?.siteMetadata?.description
 
   return (
     <Helmet
@@ -40,7 +40,7 @@ function SEO({ description = '', lang = 'en', meta = [], title }: SEOProps) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${site?.siteMetadata?.title}`}
       meta={[
         {
           name: `description`,
@@ -64,7 +64,7 @@ function SEO({ description = '', lang = 'en', meta = [], title }: SEOProps) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: site?.siteMetadata?.author!,
         },
         {
           name: `twitter:title`,
