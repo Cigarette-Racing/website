@@ -14,7 +14,6 @@ import {
 import { AnimatePresence, motion } from 'framer-motion'
 import { onSubmitCreator } from '../../services/forms'
 import { cacheImages } from '../../services/images'
-import { Step } from 'react-albus'
 
 const modalStyles = {
   overlay: {
@@ -110,12 +109,14 @@ const FormWizard = () => (
                 name="form-name"
                 initialValue="TEST-contact"
               />
-              <Steps>
-                <LandingStep id="landing" />
-                <StepOne id="one" />
-                <StepTwo id="two" />
-                <StepThree id="three" />
-              </Steps>
+              <AnimatePresence>
+                <Steps>
+                  <LandingStep id="landing" />
+                  <StepOne id="one" />
+                  <StepTwo id="two" />
+                  <StepThree id="three" />
+                </Steps>
+              </AnimatePresence>
             </form>
           )}
         />
