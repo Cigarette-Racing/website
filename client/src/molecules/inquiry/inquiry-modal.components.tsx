@@ -22,6 +22,13 @@ import { Typography } from '../../atoms/typography'
 import { useFormState } from '../../services/forms'
 import { useWulfric } from '../wulfric'
 
+import { motion } from 'framer-motion'
+
+const stepAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+}
+
 export const FieldSetContainer: React.FC = ({ children }) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
 )
@@ -79,7 +86,10 @@ const PageStatus = () => {
 export const LandingStep: React.FC<{ id: string }> = () => {
   const { next } = useWulfric()
   return (
-    <div className="flex flex-col justify-center px-4 pb-10">
+    <motion.div
+      {...stepAnimation}
+      className="flex flex-col justify-center px-4 pb-10"
+    >
       <Typography
         className="text-white uppercase text-center mb-16 mt-20 font-bold"
         variant="p3"
@@ -105,13 +115,13 @@ export const LandingStep: React.FC<{ id: string }> = () => {
           <ArrowIcon className="text-xl" />
         </div>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 
 export const StepOne: React.FC<{ id: string }> = () => {
   return (
-    <div className="flex flex-col justify-center">
+    <motion.div {...stepAnimation} className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
         request an appointment
       </div>
@@ -148,7 +158,7 @@ export const StepOne: React.FC<{ id: string }> = () => {
       </FieldSetContainer>
       <ContinueButton />
       <PageStatus />
-    </div>
+    </motion.div>
   )
 }
 const Placeholder = (props: any) => {
@@ -163,7 +173,7 @@ const Placeholder = (props: any) => {
 
 export const StepTwo: React.FC<{ id: string }> = () => {
   return (
-    <div className="flex flex-col justify-center">
+    <motion.div {...stepAnimation} className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
         request and appointment
       </div>
@@ -293,7 +303,7 @@ export const StepTwo: React.FC<{ id: string }> = () => {
       </div>
       <ContinueButton />
       <PageStatus />
-    </div>
+    </motion.div>
   )
 }
 
@@ -307,7 +317,11 @@ export const StepThree: React.FC<{ id: string }> = () => {
 
   if (!submitSucceeded) {
     return (
-      <div className="flex flex-col justify-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex flex-col justify-center"
+      >
         <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
           request and appointment
         </div>
@@ -460,7 +474,7 @@ export const StepThree: React.FC<{ id: string }> = () => {
           Submit request
         </InPageCta>
         <PageStatus />
-      </div>
+      </motion.div>
     )
   } else {
     return <FormSuccessMessage />
@@ -471,7 +485,8 @@ export const FormSuccessMessage = () => {
   const [, setInquiryModalState] = useInquiryModalState()
 
   return (
-    <div
+    <motion.div
+      {...stepAnimation}
       className="flex items-center justify-center flex-col"
       style={{
         height: 'calc(100vh - 100px)',
@@ -496,6 +511,6 @@ export const FormSuccessMessage = () => {
       >
         Continue exploring
       </InPageCta>
-    </div>
+    </motion.div>
   )
 }
