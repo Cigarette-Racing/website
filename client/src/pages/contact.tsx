@@ -1,5 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
@@ -13,13 +15,13 @@ import {
 } from '../svgs/icons'
 import { InPageCta } from '../atoms/in-page-cta'
 import { Theme } from '../types/shared'
-
-// images
-import headerImage from '../../content/images/contact-header.jpeg'
-import footerImage from '../../content/images/contact-footer.png'
 import { useMetadataQuery } from '../services/metadata'
 
-const ContactPage = () => {
+const ContactPage = ({
+  data: images,
+}: {
+  data: GatsbyTypes.ContactImagesQuery
+}) => {
   const metadata = useMetadataQuery()
 
   return (
@@ -29,7 +31,7 @@ const ContactPage = () => {
         theme="dark"
         className="min-h-screen flex justify-center items-center text-center"
       >
-        <FullBgImage src={headerImage} />
+        <FullBgImage image={images.header as GatsbyTypes.File} />
         <div className="relative">
           <Typography variant="h1" className="mb-8">
             Born & Made
@@ -105,7 +107,7 @@ const ContactPage = () => {
         </div>
       </Section>
       <Section theme="dark" className="py-24 lg:py-48">
-        <FullBgImage src={footerImage} />
+        <FullBgImage image={images.footer as GatsbyTypes.File} />
         <div className="absolute inset-0 bg-black bg-opacity-25"></div>
         <div className="relative bg-black bg-opacity-75 px-4 py-24 md:py-32 text-center space-y-12 max-w-2xl mx-auto">
           <Typography variant="h3" md="h2">
@@ -163,6 +165,25 @@ const ContactPage = () => {
 
 export default ContactPage
 
+export const query = graphql`
+  query ContactImages {
+    header: file(relativePath: { eq: "contact-header.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    footer: file(relativePath: { eq: "contact-footer.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 3000) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`
+
 function Section({
   theme,
   className,
@@ -183,12 +204,13 @@ function Section({
   )
 }
 
-function FullBgImage({ src }: { src: string }) {
+function FullBgImage({ image }: { image: GatsbyTypes.File }) {
   return (
-    <img
-      src={src}
+    <Img
+      fluid={image.childImageSharp?.fluid}
       alt=""
       className="absolute top-0 left-0 h-full w-full object-cover"
+      style={{ position: 'absolute' }}
     />
   )
 }
