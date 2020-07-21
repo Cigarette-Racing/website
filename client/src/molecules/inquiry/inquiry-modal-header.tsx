@@ -1,15 +1,13 @@
 import React, { Fragment } from 'react'
-import { WithWizard } from 'react-albus'
-import { Line } from 'rc-progress'
 import clsx from 'clsx'
-
+import { motion } from 'framer-motion'
 import { CaretDownIcon, ArrowIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
 import { useInquiryModalState } from './inquiry-modal'
 import { useWulfric } from '../wulfric'
 
 const InquiryModalHeader: React.FC = () => {
-  const [inquiryModalState, setInquiryModalState] = useInquiryModalState()
+  const [, setInquiryModalState] = useInquiryModalState()
   const { previous, steps, currentStepIndex } = useWulfric()
 
   return (
@@ -49,11 +47,8 @@ const InquiryModalHeader: React.FC = () => {
         )}
       </header>
       {currentStepIndex > 0 && (
-        <Line
-          strokeColor="#D12026"
-          strokeLinecap="butt"
-          strokeWidth={0.4}
-          percent={(currentStepIndex / (steps.length - 1)) * 100}
+        <HeaderProgressBar
+          percentage={(currentStepIndex / (steps.length - 1)) * 100}
         />
       )}
     </Fragment>
@@ -61,3 +56,22 @@ const InquiryModalHeader: React.FC = () => {
 }
 
 export default InquiryModalHeader
+
+const between = (min: number, max: number, value: number) =>
+  Math.min(Math.max(min, value), max)
+
+export const HeaderProgressBar = ({ percentage }: { percentage: number }) => {
+  const percentageString = between(0, 100, percentage) + '%'
+  return (
+    <div className="h-2 w-full bg-gray-5">
+      <motion.div
+        className="h-full bg-red"
+        initial={{ width: 0 }}
+        animate={{ width: percentageString }}
+        transition={{ stiffness: 30 }}
+      >
+        <span className="sr-only">{percentageString}</span>
+      </motion.div>
+    </div>
+  )
+}
