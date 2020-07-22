@@ -52,6 +52,18 @@ services:
       DB_PORT: 3306
       DB_TABLE_PREFIX: ut
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    depends_on:
+      - mariadb
+    ports:
+      - 17013:80
+    volumes:
+      - /sessions
+    links:
+      - mariadb:db
+
   mariadb:
     image: mariadb:10.1
     ports:
