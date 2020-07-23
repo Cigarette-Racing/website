@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { createGlobalState, useLockBodyScroll } from 'react-use'
 import ReactModal from 'react-modal'
-import { Wizard, Steps, Step } from 'react-albus'
+import { Wizard, Steps } from '../../molecules/wulfric'
 import { Form, Field } from 'react-final-form'
 import InquiryModalHeader from './inquiry-modal-header'
 import fullBleedImage from '../../../content/images/discover-section-bg.jpeg'
@@ -111,18 +111,10 @@ const FormWizard = () => (
               />
               <AnimatePresence>
                 <Steps>
-                  <Step id="landing">
-                    <LandingStep />
-                  </Step>
-                  <Step id="one">
-                    <StepOne />
-                  </Step>
-                  <Step id="two">
-                    <StepTwo />
-                  </Step>
-                  <Step id="three">
-                    <StepThree />
-                  </Step>
+                  <LandingStep id="landing" />
+                  <StepOne id="one" />
+                  <StepTwo id="two" />
+                  <StepThree id="three" />
                 </Steps>
               </AnimatePresence>
             </form>
