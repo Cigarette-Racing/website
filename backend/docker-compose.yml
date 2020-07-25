@@ -29,6 +29,8 @@ services:
         yiisoft/yii2-redis
         craftcms/redactor
         spicyweb/craft-neo
+        nystudio107/craft-imageoptimize
+        verbb/field-manager
 
       CRAFTCMS_EMAIL: admin@company.com
       CRAFTCMS_USERNAME: admin
