@@ -24,6 +24,14 @@ export const plugins = [
       path: `${__dirname}/content/boats`,
     },
   },
+  {
+    resolve: `gatsby-source-graphql`,
+    options: {
+      typeName: 'CraftAPI',
+      fieldName: 'craftAPI',
+      url: 'http://localhost:17010/actions/graphql/api',
+    },
+  },
   `gatsby-plugin-typescript`,
   {
     resolve: `gatsby-plugin-typegen`,
