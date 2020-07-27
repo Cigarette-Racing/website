@@ -3,7 +3,7 @@ import { Field } from 'react-final-form'
 import clsx from 'clsx'
 import { Link } from 'gatsby'
 import Select, { components } from 'react-select'
-
+import { motion } from 'framer-motion'
 import { Radio } from '../../atoms/radio'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { OptionsCta } from '../../atoms/options-cta'
@@ -19,8 +19,13 @@ import { ArrowIcon } from '../../svgs/icons'
 import { CloseIcon } from '../../svgs/icons'
 import { CheckIcon } from '../../svgs/icons'
 import { Typography } from '../../atoms/typography'
-import { WithWizard } from 'react-albus'
 import { useFormState } from '../../services/forms'
+import { useWulfric } from '../wulfric'
+
+const stepAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+}
 
 export const FieldSetContainer: React.FC = ({ children }) => (
   <div className="space-y-2 px-4 lg:pl-5">{children}</div>
@@ -41,6 +46,7 @@ export const FieldSetHeader: React.FC<{ className?: string }> = ({
 }
 
 const ContinueButton = () => {
+  const { next } = useWulfric()
   const { hasValidationErrors: isInvalid } = useFormState({
     subscription: {
       hasValidationErrors: true,
@@ -48,54 +54,50 @@ const ContinueButton = () => {
   })
 
   return (
-    <WithWizard>
-      {({ next }) => (
-        <InPageCta
-          className={clsx('self-center mt-16 lg:mt-20', {
-            'opacity-50 pointer-events-none': isInvalid,
-          })}
-          variant="primary"
-          onClick={() => {
-            if (isInvalid) return
-            next()
-          }}
-        >
-          Continue
-        </InPageCta>
-      )}
-    </WithWizard>
+    <InPageCta
+      className={clsx('self-center mt-16 lg:mt-20', {
+        'opacity-50 pointer-events-none': isInvalid,
+      })}
+      variant="primary"
+      onClick={() => {
+        if (isInvalid) return
+        next()
+      }}
+    >
+      Continue
+    </InPageCta>
   )
 }
 
-const PageStatus = () => (
-  <WithWizard>
-    {({ steps, step }) => (
-      <div className="text-white self-center mt-6 font-heading italic">
-        <span className="mr-2">{`${steps.indexOf(step)}`}</span>
-        <span className="mr-2">of</span>
-        <span>3</span>
-      </div>
-    )}
-  </WithWizard>
-)
+const PageStatus = () => {
+  const { currentStepIndex } = useWulfric()
 
-export const LandingStep = () => {
   return (
-    <div className="flex flex-col justify-center px-4 pb-10">
+    <div className="text-white self-center mt-6 font-heading italic">
+      <span className="mr-2">{currentStepIndex}</span>
+      <span className="mr-2">of</span>
+      <span>3</span>
+    </div>
+  )
+}
+
+export const LandingStep: React.FC<{ id: string }> = () => {
+  const { next } = useWulfric()
+  return (
+    <motion.div
+      {...stepAnimation}
+      className="flex flex-col justify-center px-4 pb-10"
+    >
       <Typography
         className="text-white uppercase text-center mb-16 mt-20 font-bold"
         variant="p3"
       >
         at your service
       </Typography>
-      <WithWizard>
-        {({ next }) => (
-          <OptionsCta variant="secondary" theme="dark" onClick={next}>
-            Request <br className="md:hidden" />
-            an appointment
-          </OptionsCta>
-        )}
-      </WithWizard>
+      <OptionsCta variant="secondary" theme="dark" onClick={next}>
+        Request <br className="md:hidden" />
+        an appointment
+      </OptionsCta>
       {/* commenting out for soft launch */}
       {/* <OptionsCta variant="secondary" theme="dark">
         Questions & answer
@@ -111,13 +113,13 @@ export const LandingStep = () => {
           <ArrowIcon className="text-xl" />
         </div>
       </Link>
-    </div>
+    </motion.div>
   )
 }
 
-export const StepOne = () => {
+export const StepOne: React.FC<{ id: string }> = () => {
   return (
-    <div className="flex flex-col justify-center">
+    <motion.div {...stepAnimation} className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
         request an appointment
       </div>
@@ -154,7 +156,7 @@ export const StepOne = () => {
       </FieldSetContainer>
       <ContinueButton />
       <PageStatus />
-    </div>
+    </motion.div>
   )
 }
 const Placeholder = (props: any) => {
@@ -167,9 +169,9 @@ const Placeholder = (props: any) => {
   )
 }
 
-export const StepTwo = () => {
+export const StepTwo: React.FC<{ id: string }> = () => {
   return (
-    <div className="flex flex-col justify-center">
+    <motion.div {...stepAnimation} className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
         request and appointment
       </div>
@@ -299,11 +301,11 @@ export const StepTwo = () => {
       </div>
       <ContinueButton />
       <PageStatus />
-    </div>
+    </motion.div>
   )
 }
 
-export const StepThree: React.FC = () => {
+export const StepThree: React.FC<{ id: string }> = () => {
   const { hasValidationErrors, submitSucceeded } = useFormState({
     subscription: {
       hasValidationErrors: true,
@@ -313,7 +315,11 @@ export const StepThree: React.FC = () => {
 
   if (!submitSucceeded) {
     return (
-      <div className="flex flex-col justify-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex flex-col justify-center"
+      >
         <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
           request and appointment
         </div>
@@ -466,7 +472,7 @@ export const StepThree: React.FC = () => {
           Submit request
         </InPageCta>
         <PageStatus />
-      </div>
+      </motion.div>
     )
   } else {
     return <FormSuccessMessage />
@@ -477,7 +483,8 @@ export const FormSuccessMessage = () => {
   const [, setInquiryModalState] = useInquiryModalState()
 
   return (
-    <div
+    <motion.div
+      {...stepAnimation}
       className="flex items-center justify-center flex-col"
       style={{
         height: 'calc(100vh - 100px)',
@@ -502,6 +509,6 @@ export const FormSuccessMessage = () => {
       >
         Continue exploring
       </InPageCta>
-    </div>
+    </motion.div>
   )
 }

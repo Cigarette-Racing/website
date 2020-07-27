@@ -83,13 +83,26 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
     )
   }
 
+  // Preload next page of thumbnails
   useEffect(() => {
     cacheImages(
       getGallerySlice(gallery, page + 1, perPage).map(
-        (item) => item.image.childImageSharp?.fluid?.src!
+        (item) => item.thumbnail.childImageSharp?.fluid?.src!
       )
     )
   }, [page, perPage])
+
+  // Preload full-size gallery image before and after current lightboxMedia image
+  useEffect(() => {
+    if (lightboxMediaIndex === undefined) return
+    const beforeLightboxMediaImage = gallery[
+      Math.max(lightboxMediaIndex - 1, 0)
+    ].image.childImageSharp?.fluid?.src!
+    const afterLightboxMediaImage = gallery[
+      Math.min(lightboxMediaIndex + 1, gallery.length - 1)
+    ].image.childImageSharp?.fluid?.src!
+    cacheImages([beforeLightboxMediaImage, afterLightboxMediaImage])
+  }, [lightboxMediaIndex])
 
   const lightboxMedia =
     lightboxMediaIndex !== undefined ? gallery[lightboxMediaIndex] : undefined
