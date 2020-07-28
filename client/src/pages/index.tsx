@@ -42,7 +42,7 @@ const TopVideo = ({
       <Img
         key="image"
         fluid={image.childImageSharp?.fluid}
-        className="absolute top-0 left-0 h-screen w-full object-cover"
+        className="top-0 left-0 h-screen w-full object-cover"
         style={{ position: 'absolute' }}
       />
       <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
@@ -149,7 +149,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       >
         <Img
           fluid={data.header2?.childImageSharp?.fluid!}
-          className="absolute top-0 left-0 h-screen w-full object-cover"
+          className="top-0 left-0 h-screen w-full object-cover"
           style={{ position: 'absolute' }}
         />
         <div
@@ -505,6 +505,7 @@ function NewsSection() {
             maxHeight: '421px',
           }}
         >
+          {/* TODO: convert this to `Img` when we are pulling data from GraphQL */}
           <img src={item.image} className="object-cover h-full" />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}
