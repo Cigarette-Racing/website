@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
@@ -273,9 +273,9 @@ function StayConnectedForm() {
         handleSubmit: () => void
         submitSucceeded: boolean
       }) => (
-        <div>
+        <Fragment>
           {!submitSucceeded && (
-            <div>
+            <Fragment>
               <div className="flex border-b border-gray-3 mb-10 h-10 items-center">
                 <form
                   name="stay-connected"
@@ -299,7 +299,7 @@ function StayConnectedForm() {
                         <input
                           {...input}
                           type="text"
-                          className="block w-full bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
+                          className="block w-full py-3 bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
                           placeholder="Enter Email Address"
                         />
                       )
@@ -314,15 +314,14 @@ function StayConnectedForm() {
                 Want to join our exclusive community and be the first to get the
                 latest from Cigarette Racing?
               </Typography>
-            </div>
+            </Fragment>
           )}
           {submitSucceeded && (
             <Typography variant="p1" className="pb-16">
-              Thanks for subscribing! Check your inbox for a welcome email
-              soon.”
+              Thanks for subscribing! Check your inbox for a welcome email soon.
             </Typography>
           )}
-        </div>
+        </Fragment>
       )}
     />
   )
