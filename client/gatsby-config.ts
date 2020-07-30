@@ -24,6 +24,13 @@ export const plugins = [
       path: `${__dirname}/content/boats`,
     },
   },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `homepage`,
+      path: `${__dirname}/content/homepage`,
+    },
+  },
   `gatsby-plugin-typescript`,
   {
     resolve: `gatsby-plugin-typegen`,

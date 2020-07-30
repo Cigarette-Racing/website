@@ -24,8 +24,8 @@ import {
 import {
   Stat,
   CommonSectionProps,
-  findDiscoverSection,
   findHeroSection,
+  findDiscoverSection,
   getFlexibleSections,
   findGallerySection,
   findSpecsSection,

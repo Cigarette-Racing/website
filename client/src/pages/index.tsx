@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Field } from 'react-final-form'
-import { Link } from 'gatsby'
+import { Link, PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
@@ -32,10 +32,7 @@ import { useToggle } from 'react-use'
 import { onSubmitCreator } from '../services/forms'
 import { cacheImages } from '../services/images'
 
-const headerVideo =
-  'https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175'
-
-const TopVideo = () => {
+const TopVideo = ({ videoUrl }: { videoUrl: string }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   return (
     <AnimatePresence>
@@ -47,7 +44,7 @@ const TopVideo = () => {
       <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
         <ReactPlayer
           className="absolute top-0 left-0"
-          url={headerVideo}
+          url={videoUrl}
           controls={false}
           muted
           loop
@@ -70,7 +67,12 @@ const TopVideo = () => {
   )
 }
 
-const IndexPage = () => {
+const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
+  const {
+    data: { homepageYaml: homepage },
+  } = props
+  if (!homepage) return null
+
   const [, setInquiryModalState] = useInquiryModalState()
 
   return (
@@ -83,7 +85,7 @@ const IndexPage = () => {
         data-scrollsection
       >
         <div className="absolute top-0 left-0 h-screen w-full">
-          <TopVideo />
+          <TopVideo videoUrl={homepage.heroVideo} />
         </div>
         <div
           className="absolute top-0 left-0 h-screen w-full pointer-events-none"
@@ -100,14 +102,13 @@ const IndexPage = () => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            59 TIRRANNA AMG Edition
+            {homepage.heroHeader}
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10 ">
-            Performance luxury defined
+            {homepage.heroSubHeader}
           </Typography>
           <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
-            A juxtaposition highlighted by land and sea, yet united through a
-            steadfast commitment to ultimate luxury and performance.
+            {homepage.heroCopy}
           </Typography>
           <div className="flex items-center space-x-6">
             <InPageCta onClick={() => setInquiryModalState(true)}>
@@ -121,22 +122,20 @@ const IndexPage = () => {
       </section>
       {/* 2-up boats section */}
       <section className="relative md:flex" data-scrollsection>
-        <BoatFeaturette
-          backgroundImage={boat1BG}
-          boatImage={boat1}
-          contentHeader="Performance Center Console"
-          subtitle="Hyperlux"
-          boatName="41 Nighthawk"
-          url="nighthawk"
-        />
-        <BoatFeaturette
-          backgroundImage={boat2BG}
-          boatImage={boat2}
-          contentHeader="Performance Center Console"
-          subtitle="Hyperlux"
-          boatName="42 Auroris"
-          url="auroris"
-        />
+        {homepage.featuredBoats?.map((boat: any) => {
+          return (
+            <BoatFeaturette
+              backgroundImage={
+                boat.backgroundImage.childImageSharp?.fluid?.src!
+              }
+              boatImage={boat.boatImage.childImageSharp?.fluid?.src!}
+              contentHeader={boat.contentHeader}
+              subtitle={boat.subtitle}
+              boatName={boat.boatName}
+              url={boat.url}
+            />
+          )
+        })}
       </section>
       {/* Second hero section */}
       <section
@@ -459,3 +458,47 @@ function NewsSection() {
     )
   }
 }
+
+export const query = graphql`
+  query Homepage {
+    homepageYaml {
+      heroVideo
+      heroHeader
+      heroSubHeader
+      heroCopy
+      featuredBoats {
+        boatName
+        backgroundImage {
+          childImageSharp {
+            fluid(maxWidth: 1400) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        boatImage {
+          childImageSharp {
+            fluid(maxWidth: 1000) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        contentHeader
+        subtitle
+        boatUrl
+      }
+      sections {
+        name
+        header
+        subheader
+        callToAction
+        gallery {
+          title
+          url
+          siteName
+          image
+          content
+        }
+      }
+    }
+  }
+`
