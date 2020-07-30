@@ -302,7 +302,11 @@ function StayConnectedForm() {
                     className="block w-full py-3 bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
                     placeholder="Enter Email Address"
                   />
-                  <button type="submit" aria-label="Submit">
+                  <button
+                    type="submit"
+                    aria-label="Submit"
+                    className="p-4 -mr-4"
+                  >
                     <PlusIcon className="w-4 h-4" />
                   </button>
                 </form>

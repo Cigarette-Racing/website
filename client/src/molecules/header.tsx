@@ -142,6 +142,7 @@ export const Header = ({}: HeaderProps) => {
                 <button
                   className="p-2 text-2xl"
                   onClick={() => setIsMenuOpen(true)}
+                  aria-label="Toggle menu"
                 >
                   <MenuIcon />
                 </button>
