@@ -75,7 +75,7 @@ export const InquiryModal: React.FC = () => {
             className="min-h-full"
           >
             <Img
-              fluid={background.childImageSharp.fluid}
+              fluid={background?.childImageSharp?.fluid}
               className="top-0 left-0 h-full w-full object-cover"
               alt=""
               style={{ position: 'absolute' }}
