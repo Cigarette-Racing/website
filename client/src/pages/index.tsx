@@ -292,20 +292,17 @@ function StayConnectedForm() {
                     name="form-name"
                     initialValue="stay-connected"
                   />
+                  <label htmlFor="emailAddress" className="sr-only">
+                    Email Address
+                  </label>
                   <Field
+                    id="emailAddress"
                     name="emailAddress"
-                    render={({ input }) => {
-                      return (
-                        <input
-                          {...input}
-                          type="text"
-                          className="block w-full py-3 bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
-                          placeholder="Enter Email Address"
-                        />
-                      )
-                    }}
+                    component="input"
+                    className="block w-full py-3 bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
+                    placeholder="Enter Email Address"
                   />
-                  <button type="submit">
+                  <button type="submit" aria-label="Submit">
                     <PlusIcon className="w-4 h-4" />
                   </button>
                 </form>
@@ -505,7 +502,7 @@ function NewsSection() {
           }}
         >
           {/* TODO: convert this to `Img` when we are pulling data from GraphQL */}
-          <img src={item.image} className="object-cover h-full" />
+          <img src={item.image} alt="" className="object-cover h-full" />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}
           </ExternalLink>
