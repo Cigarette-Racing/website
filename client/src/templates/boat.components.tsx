@@ -7,17 +7,14 @@ import { Theme } from '../types/shared'
 import clsx from 'clsx'
 import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
 import { CircleButton } from '../atoms/circle-button'
-import { ExpandIcon, PlayIcon, ArrowIcon, CaretDownIcon } from '../svgs/icons'
+import { ArrowIcon, CaretDownIcon } from '../svgs/icons'
 import { InPageAnchor } from '../molecules/in-page-nav'
 import { VerticalHeader } from '../atoms/vertical-header'
 import { VerticalLabel } from '../atoms/vertical-label'
-import { ProgressBar } from '../atoms/progress-bar'
 import {
   Stat,
   Media,
   SpecsSection,
-  CustomizationsSection,
-  TextBlock,
   TwoColumnImageTextBlock,
   OneColumnTextBlock,
   OneColumnImageTextBlock,
@@ -25,13 +22,8 @@ import {
   Spec,
 } from '../types/boat'
 import { Tab } from '../atoms/tab'
-import { LinkCta } from '../atoms/link-cta'
 import { AnimatePresence, motion } from 'framer-motion'
-// images
-import discoverBackground from '../../content/images/discover-section-bg.jpeg'
-import customizationsBackground from '../../content/images/customization-section-bg.jpeg'
 import { useToggle } from 'react-use'
-import ReactPlayer from 'react-player'
 
 export const BoatHeader = ({
   boatImage,
@@ -79,7 +71,7 @@ export const BoatHeader = ({
     <div className="hidden bg-black bg-opacity-50 absolute inset-0 md:block"></div>
     <div className="relative z-10">
       <div className="relative flex justify-center mb-8 md:mb-10">
-        <img src={boatLogo} alt="" />
+        <img src={boatLogo} alt={boatNameLong} />
       </div>
       <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
         {stats.map((stat) => (
@@ -140,95 +132,6 @@ export const TextBlockComponent = ({
   </div>
 )
 
-const DiscoverMedia = ({ media }: { media: Media }) => {
-  const [showVideo, setShowVideo] = useState(false)
-  return (
-    // TODO: get 3:2 discover section images
-    // <AspectRatio ratio="3:2" md="16:9" lg="21:9">
-    <AspectRatio ratio="21:9">
-      <img
-        src={media.image.childImageSharp?.fluid?.src!}
-        className="absolute h-full w-full object-cover"
-      />
-      {media.videoUrl && (
-        <CircleButton
-          onClick={() => setShowVideo(true)}
-          icon={PlayIcon}
-          size="lg"
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        />
-      )}
-      <AnimatePresence>
-        {showVideo && (
-          <motion.div
-            key="video"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <ReactPlayer
-              className="absolute top-0 left-0"
-              url={media.videoUrl}
-              controls
-              playing
-              config={{
-                file: {
-                  attributes: {
-                    className: 'object-cover',
-                  },
-                },
-              }}
-              width="100%"
-              height="100%"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </AspectRatio>
-  )
-}
-
-export const DiscoverSection = ({
-  copy,
-  header,
-  media,
-  sectionTitle,
-}: {
-  sectionTitle: string
-  media: Media
-  header: string
-  copy: string
-}) => (
-  <BoatSection theme="dark" className="pb-24 overflow-hidden">
-    <InPageAnchor title={sectionTitle} />
-    <img
-      src={discoverBackground}
-      className="absolute top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
-    />
-    <div
-      className="absolute inset-0"
-      style={{
-        background:
-          'linear-gradient(360deg, #000000 46.14%, rgba(0, 0, 0, 0) 100%)',
-      }}
-    />
-    <div className="md:px-12 lg:px-16 relative max-w-5xl mx-auto">
-      <div className="hidden md:block absolute right-0 top-0">
-        <VerticalHeader theme="dark" className="mr-4">
-          {sectionTitle}
-        </VerticalHeader>
-      </div>
-      <div className="px-4 mb-16 lg:mb-20 md:mt-8 lg:mt-16">
-        <DiscoverMedia media={media} />
-      </div>
-      <TextBlockComponent
-        className="text-center px-4 max-w-2xl mx-auto lg:mb-8"
-        header={header}
-        copy={copy}
-      />
-    </div>
-  </BoatSection>
-)
-
 export const MobileSectionHeader: React.FC<{ className?: string }> = ({
   children,
   className,
@@ -266,6 +169,7 @@ export const CarouselButtons = ({
       iconClassName="transform rotate-180"
       onClick={onClickPrev}
       disabled={disabledPrev}
+      aria-label="Previous"
     />
     <CircleButton
       icon={ArrowIcon}
@@ -273,6 +177,7 @@ export const CarouselButtons = ({
       variant="secondary"
       onClick={onClickNext}
       disabled={disabledNext}
+      aria-label="Next"
     />
   </div>
 )
@@ -282,16 +187,20 @@ export const ImageWithLabel = ({
   label,
   ratio,
   src,
+  alt,
   ...rest
 }: {
   imgClassName?: string
   label?: string
-  src: string
+  src: GatsbyTypes.File
+  alt?: string
 } & AspectRatioProps) => (
   <AspectRatio ratio={ratio} {...rest}>
-    <img
-      src={src}
-      className={clsx('absolute h-full object-cover', imgClassName)}
+    <Img
+      fluid={src.childImageSharp?.fluid}
+      className={clsx('h-full w-full object-cover', imgClassName)}
+      alt={alt || ''}
+      style={{ position: 'absolute' }}
     />
     {label && (
       <VerticalLabel className="absolute bottom-0 left-0">
@@ -334,17 +243,17 @@ export const VerticalHeaderBlock = ({
 export const SideBleedImage = ({
   className,
   imgClassName,
+  media,
   ratio = '3:2',
   side,
   size = 'default',
-  src,
 }: {
   className?: string
   imgClassName?: string
+  media: Media
   ratio?: Ratio
   side: Side
   size?: 'default' | 'large'
-  src: string
 }) => (
   <div className={clsx('relative max-w-8xl mx-auto md:mt-16', className)}>
     <div
@@ -355,9 +264,11 @@ export const SideBleedImage = ({
       })}
     >
       <AspectRatio ratio={ratio}>
-        <img
-          src={src}
-          className={clsx('absolute h-full object-cover', imgClassName)}
+        <Img
+          fluid={media.image.childImageSharp?.fluid}
+          alt={media.alt || ''}
+          className={clsx('h-full w-full object-cover', imgClassName)}
+          style={{ position: 'absolute' }}
         />
       </AspectRatio>
     </div>
@@ -369,17 +280,27 @@ export const TwoUpImageBlock = ({
   images,
 }: {
   className?: string
-  images: [string, string]
+  images: [Media, Media]
 }) => (
   <div className={clsx('max-w-5xl mx-auto sm:flex', className)}>
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <img src={images[0]} className="absolute h-full w-full object-cover" />
+        <Img
+          fluid={images[0].image.childImageSharp?.fluid}
+          alt={images[0].alt || ''}
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
       </AspectRatio>
     </div>
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <img src={images[1]} className="absolute h-full w-full object-cover" />
+        <Img
+          fluid={images[1].image.childImageSharp?.fluid}
+          alt={images[1].alt || ''}
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
       </AspectRatio>
     </div>
   </div>
@@ -390,24 +311,26 @@ export const ThreeUpImageBlock = ({
   images,
 }: {
   className?: string
-  images: [string, string, string]
+  images: [Media, Media, Media]
 }) => (
   <div className={clsx('sm:flex max-w-7xl mx-auto', className)}>
-    <div className="px-4 mb-16 sm:w-1/3">
-      <AspectRatio ratio="3:4">
-        <img src={images[0]} className="absolute h-full w-full object-cover" />
-      </AspectRatio>
-    </div>
-    <div className="px-4 mb-16 sm:w-1/3">
-      <AspectRatio ratio="3:4">
-        <img src={images[1]} className="absolute h-full w-full object-cover" />
-      </AspectRatio>
-    </div>
-    <div className="px-4 mb-16 sm:w-1/3">
-      <AspectRatio ratio="3:4">
-        <img src={images[2]} className="absolute h-full w-full object-cover" />
-      </AspectRatio>
-    </div>
+    {images.map((media) => {
+      return (
+        <div
+          key={media.image.childImageSharp?.fluid?.src!}
+          className="px-4 mb-16 sm:w-1/3"
+        >
+          <AspectRatio ratio="3:4">
+            <Img
+              fluid={media.image.childImageSharp?.fluid}
+              alt={media.alt || ''}
+              className="h-full w-full object-cover"
+              style={{ position: 'absolute' }}
+            />
+          </AspectRatio>
+        </div>
+      )
+    })}
   </div>
 )
 
@@ -532,87 +455,6 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
   )
 }
 
-export const CustomizationsSectionComponent = ({
-  title,
-  options,
-}: CustomizationsSection) => (
-  <BoatSection theme="dark" className="py-24 sm:pb-16">
-    <InPageAnchor title={title} />
-    <img
-      src={customizationsBackground}
-      className="absolute top-0 h-full w-full object-cover"
-    />
-    <div
-      className="absolute inset-0"
-      style={{
-        background:
-          'linear-gradient(360deg, #000000 46.14%, rgba(0, 0, 0, 0) 100%)',
-      }}
-    ></div>
-    <div className="relative text-center mb-24 sm:mt-20 sm:mb-48">
-      <Typography variant="h3" sm="h2" lg="h1" className="mb-4">
-        Make it yours.
-      </Typography>
-      <Typography variant="e2" md="e1" className="text-gray-4">
-        Bespoke Possibilities
-      </Typography>
-    </div>
-    <div className="relative max-w-7xl mx-auto">
-      <div className="flex space-x-6 px-4 overflow-hidden mb-12 sm:mb-20">
-        {options.map(({ media, content }, index) => (
-          <BespokeOptionCard
-            key={content.header + index}
-            img={media.image.childImageSharp?.fluid?.src!}
-            {...content}
-          />
-        ))}
-      </div>
-      <div className="px-4 flex sm:justify-between items-center">
-        <div className="hidden sm:block">
-          <InPageCta variant="secondary" theme="dark">
-            Explore Bespoke Studio
-          </InPageCta>
-        </div>
-        <CarouselButtons className="mb-12 sm:mb-0" />
-      </div>
-      <LinkCta theme="dark" className="mx-auto sm:hidden">
-        Explore Bespoke Possibilities
-      </LinkCta>
-    </div>
-  </BoatSection>
-)
-
-export const BespokeOptionCard = ({
-  img,
-  header,
-  copy,
-}: { img: string } & TextBlock) => {
-  return (
-    <div className="w-56 sm:w-auto max-w-lg">
-      <AspectRatio
-        ratio="1:1"
-        sm="16:9"
-        className="relative w-56 sm:w-auto max-w-lg mb-6"
-      >
-        <img src={img} className="absolute w-full h-full object-cover" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(360deg, rgba(0, 0, 0, 0.6) 23.28%, rgba(0, 0, 0, 0) 71.29%)',
-          }}
-        ></div>
-      </AspectRatio>
-      <Typography variant="h4" className="mb-4">
-        {header}
-      </Typography>
-      <Typography variant="p3" sm="p2">
-        {copy}
-      </Typography>
-    </div>
-  )
-}
-
 export const OrderSectionComponent = ({
   boatNameLong,
   title,
@@ -625,9 +467,11 @@ export const OrderSectionComponent = ({
   return (
     <BoatSection className="pb-48 sm:py-48">
       <InPageAnchor title={title} />
-      <img
-        src={media.image.childImageSharp?.fluid?.src!}
-        className="absolute h-full w-full top-0 object-cover"
+      <Img
+        fluid={media.image.childImageSharp?.fluid}
+        alt={media.alt || ''}
+        className="h-full w-full object-cover top-0"
+        style={{ position: 'absolute' }}
       />
       <div className="absolute inset-0 bg-black bg-opacity-25"></div>
       <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
@@ -680,9 +524,11 @@ export const OneColumnImageTextBlockComponent = ({
 }: OneColumnImageTextBlock) => (
   <div className="max-w-5xl mx-auto">
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      <img
-        src={media.image.childImageSharp?.fluid?.src!}
-        className="absolute h-full w-full object-cover"
+      <Img
+        fluid={media.image.childImageSharp?.fluid}
+        alt={media.alt || ''}
+        className="h-full w-full object-cover"
+        style={{ position: 'absolute' }}
       />
     </AspectRatio>
     <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
@@ -705,7 +551,8 @@ export const TwoColumnImageTextBlockComponent = ({
       <div className="px-4 lg:px-0 mb-12 md:mb-0">
         <ImageWithLabel
           ratio="3:4"
-          src={leftColumn.media.image.childImageSharp?.fluid?.src!}
+          src={leftColumn.media.image}
+          alt={leftColumn.media.alt}
           label={leftColumn.media.label}
         />
       </div>
@@ -714,7 +561,8 @@ export const TwoColumnImageTextBlockComponent = ({
       <div className="px-4 lg:px-0 lg:pr-16">
         <ImageWithLabel
           ratio="3:4"
-          src={rightColumn.media.image.childImageSharp?.fluid?.src!}
+          src={rightColumn.media.image}
+          alt={rightColumn.media.alt}
           label={rightColumn.media.label}
         />
       </div>

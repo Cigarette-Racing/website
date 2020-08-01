@@ -8,19 +8,19 @@ import { PlusIcon } from '../svgs/icons'
 import {
   BoatHeader,
   BoatSection,
-  DiscoverSection,
   MobileSectionHeader,
   VerticalHeaderBlock,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
   SpecsSectionComponent,
-  CustomizationsSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
   OrderSectionComponent,
 } from './boat.components'
+import { CustomizationsSectionComponent } from './boat/customizations-section-component'
+import { DiscoverSection } from './boat/discover-section'
 import {
   Stat,
   CommonSectionProps,
@@ -118,7 +118,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
               className="lg:mt-32"
             />
             <SideBleedImage
-              src={headerImage.image.childImageSharp?.fluid?.src!}
+              media={headerImage}
               side={bleedDirection}
               className="lg:mt-32 md:mb-32"
               size="large"
@@ -152,11 +152,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   <ThreeUpImageBlock
                     key={index}
                     className="mb-32"
-                    images={[
-                      block.images[0].image.childImageSharp?.fluid?.src!,
-                      block.images[1].image.childImageSharp?.fluid?.src!,
-                      block.images[2].image.childImageSharp?.fluid?.src!,
-                    ]}
+                    images={block.images}
                   />
                 )
               }
@@ -165,10 +161,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   <TwoUpImageBlock
                     key={index}
                     className="mb-32"
-                    images={[
-                      block.images[0].image.childImageSharp?.fluid?.src!,
-                      block.images[1].image.childImageSharp?.fluid?.src!,
-                    ]}
+                    images={block.images}
                   />
                 )
               }

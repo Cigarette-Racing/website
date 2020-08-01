@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
+import Img from 'gatsby-image'
 import { GallerySection, GalleryMedia } from '../types/boat'
 import {
   BoatSection,
@@ -154,7 +155,7 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
               >
                 <GalleryImage
                   key={index}
-                  img={item.thumbnail.childImageSharp?.fluid?.src!}
+                  media={item}
                   hasVideo={!!item.videoUrl}
                   onClick={() => setLightboxMediaIndex(gallery.indexOf(item))}
                 />
@@ -296,20 +297,22 @@ const Lightbox = ({
 const GalleryImage = ({
   className = '',
   hasVideo,
-  img,
+  media,
   onClick,
 }: {
   className?: string
   hasVideo: boolean
-  img: string
+  media: GalleryMedia
   onClick: React.MouseEventHandler<HTMLDivElement>
 }) => {
   return (
     <div className={`max-w-xs ${className}`} role="button" onClick={onClick}>
       <AspectRatio ratio="1:1" className="relative group">
-        <img
-          src={img}
-          className="absolute h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
+        <Img
+          fluid={media.thumbnail.childImageSharp?.fluid}
+          alt={media.alt || 'Gallery image'}
+          className="h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
+          style={{ position: 'absolute' }}
         />
         <div className="absolute inset-0 bg-black transform bg-opacity-25 group-hover:bg-opacity-0 transition duration-150 ease-in-out"></div>
         <motion.div
