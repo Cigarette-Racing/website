@@ -18,6 +18,7 @@ export const SocialLink = ({
     <a
       {...props}
       target="_blank"
+      rel="noopener noreferrer"
       className={clsx(
         'text-white flex flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-6',
         className
