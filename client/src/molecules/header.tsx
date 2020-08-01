@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect, useRef, useMemo } from 'react'
 import clsx from 'clsx'
 import Headroom from 'react-headroom'
+import Img from 'gatsby-image'
 import logo from '../images/logo-white.svg'
 import { Typography } from '../atoms/typography'
 import { MenuIcon, ArrowIcon } from '../svgs/icons'
@@ -383,13 +384,13 @@ function BoatSelector({
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
           <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl overflow-hidden flex">
             <AspectRatio ratio="3:2" className="w-screen">
-              <img
-                src={
-                  boats[boatIndex].backgroundMedia.image.childImageSharp?.fluid
-                    ?.src!
+              <Img
+                fluid={
+                  boats[boatIndex].backgroundMedia.image.childImageSharp?.fluid!
                 }
-                alt=""
-                className="absolute h-full w-full object-cover"
+                alt={boats[boatIndex].backgroundMedia.alt || ''}
+                className="h-full w-full object-cover"
+                style={{ position: 'absolute' }}
               />
               <div className="bg-black opacity-50 absolute inset-0"></div>
             </AspectRatio>

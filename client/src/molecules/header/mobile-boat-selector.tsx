@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Img from 'gatsby-image'
 import { Typography } from '../../atoms/typography'
 import { ArrowIcon } from '../../svgs/icons'
 import { ReturnLink } from '../../atoms/return-link'
@@ -36,13 +37,13 @@ export const MobileBoatSelector = ({
       </div>
       <div className="-mx-4">
         <AspectRatio ratio="3:2" className="w-screen">
-          <img
-            src={
-              boats[boatIndex].backgroundMedia.image.childImageSharp?.fluid
-                ?.src!
+          <Img
+            fluid={
+              boats[boatIndex].backgroundMedia.image.childImageSharp?.fluid!
             }
-            alt=""
-            className="absolute h-full w-full object-cover"
+            alt={boats[boatIndex].backgroundMedia.alt || ''}
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
           />
           <div className="bg-black opacity-50 absolute inset-0"></div>
         </AspectRatio>
