@@ -69,9 +69,10 @@ const TopVideo = ({ videoUrl }: { videoUrl: string }) => {
 
 const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
   const {
-    data: { homepageYaml: homepage },
+    data: { homepageYaml },
   } = props
-  if (!homepage) return null
+
+  if (!homepageYaml) return null
 
   const [, setInquiryModalState] = useInquiryModalState()
 
@@ -79,13 +80,13 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
     <Layout>
       <SEO title="Home" />
       <ScrollIndicator />
-      {/* First hero section */}
+      {/* Hero section */}
       <section
         className="relative min-h-screen flex justify-center items-end overflow-hidden"
         data-scrollsection
       >
         <div className="absolute top-0 left-0 h-screen w-full">
-          <TopVideo videoUrl={homepage.heroVideo} />
+          <TopVideo videoUrl={homepageYaml.hero.video} />
         </div>
         <div
           className="absolute top-0 left-0 h-screen w-full pointer-events-none"
@@ -102,13 +103,13 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            {homepage.heroHeader}
+            {homepageYaml.hero.header}
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10 ">
-            {homepage.heroSubHeader}
+            {homepageYaml.hero.subHeader}
           </Typography>
           <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
-            {homepage.heroCopy}
+            {homepageYaml.hero.copy}
           </Typography>
           <div className="flex items-center space-x-6">
             <InPageCta onClick={() => setInquiryModalState(true)}>
@@ -122,7 +123,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
       </section>
       {/* 2-up boats section */}
       <section className="relative md:flex" data-scrollsection>
-        {homepage.featuredBoats?.map((boat: any) => {
+        {homepageYaml.featuredBoats?.map((boat: any) => {
           return (
             <BoatFeaturette
               backgroundImage={
@@ -133,17 +134,21 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
               subtitle={boat.subtitle}
               boatName={boat.boatName}
               url={boat.url}
+              key={boat.boatName}
             />
           )
         })}
       </section>
-      {/* Second hero section */}
+      {/* The Difference */}
       <section
         className="min-h-screen relative flex justify-center items-end"
         data-scrollsection
       >
         <img
-          src={header2}
+          src={
+            homepageYaml.theDifference.backgroundImage.childImageSharp?.fluid
+              ?.src!
+          }
           className="absolute top-0 left-0 h-screen w-full object-cover"
         />
         <div
@@ -155,20 +160,20 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-start sm:items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            Every Cigarette is unique
+            {homepageYaml.theDifference.header}
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10">
-            The best is only the start
+            {homepageYaml.theDifference.subHeader}
           </Typography>
           <div className="flex items-center space-x-6">
             <ComingSoonLink>
-              <LinkCta>EXPERIENCE THE DIFFERENCE</LinkCta>
+              <LinkCta>{homepageYaml.theDifference.callToAction}</LinkCta>
             </ComingSoonLink>
           </div>
         </div>
       </section>
       {/* News and press section */}
-      <NewsSection />
+      <NewsSection homepageYaml={homepageYaml} />
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
@@ -180,7 +185,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
             <Typography variant="h2">Stay connected</Typography>
           </div>
           <div className="relative px-4 max-w-md">
-            <StayConnectedForm />
+            <StayConnectedForm homepageYaml={homepageYaml} />
           </div>
         </div>
       </section>
@@ -200,7 +205,11 @@ const formValuesMapper = (values: any) => {
 
 const stayConnectedOnSubmit = onSubmitCreator(formValuesMapper)
 
-function StayConnectedForm() {
+function StayConnectedForm(props: any) {
+  const {
+    homepageYaml: { stayConnected },
+  } = props
+
   return (
     <Form
       onSubmit={stayConnectedOnSubmit}
@@ -249,15 +258,13 @@ function StayConnectedForm() {
                 </form>
               </div>
               <Typography variant="p2" className="pb-16">
-                Want to join our exclusive community and be the first to get the
-                latest from Cigarette Racing?
+                {stayConnected.callToAction}
               </Typography>
             </div>
           )}
           {submitSucceeded && (
             <Typography variant="p1" className="pb-16">
-              Thanks for subscribing! Check your inbox for a welcome email
-              soon.”
+              {stayConnected.successMessage}
             </Typography>
           )}
         </div>
@@ -305,81 +312,13 @@ function ComingSoonLink({ children }: { children: React.ReactNode }) {
   )
 }
 
-type NewsItem = {
-  url: string
-  siteName: string
-  image: string
-  title: string
-  content: string
-}
+function NewsSection(props: any) {
+  const {
+    homepageYaml: { newsAndPress },
+  } = props
 
-const newsItems: NewsItem[] = [
-  {
-    url:
-      'https://www.mercedes-amg.com/en/press-information/cigarette-boat-12th-edition.html',
-    siteName: 'mercedes-amg.com',
-    image: require('../../content/images/homepage/news-00001.jpg'),
-    title:
-      '12th special edition from Mercedes-AMG and Cigarette Racing celebrates its world debut',
-    content:
-      'Mercedes-AMG and Cigarette Racing Team continue longstanding collaboration by creating performance one-off role models for land and water.',
-  },
-  {
-    url:
-      'https://www.speedonthewater.com/performance-boat-center-on-point-again-with-cigarette-owners-rendezvous/',
-    siteName: 'speedonthewater.com',
-    image: require('../../content/images/homepage/news-00002.png'),
-    title:
-      'Performance Boat Center On Point Again With Cigarette Owners Rendezvous',
-    content:
-      'No one knew how the Cigarette Owners Rendezvous would do when it landed at the Lake of the Ozarksin the hands of Performance Boat Center...',
-  },
-  {
-    url:
-      'https://www.speedonthewater.com/gallery-of-the-week-cigarette-opens-st-tropez/',
-    siteName: 'speedonthewater.com',
-    image: require('../../content/images/homepage/news-00003.png'),
-    title: 'Gallery Of The Week: Cigarette Opens St. Tropez',
-    content:
-      'Reopened this week after its own novel coronavirus shutdown, the Port of Tropez, one of the crown jewels of the French Riviera...',
-  },
-  {
-    url:
-      'https://robbreport.com/motors/aviation/mercedes-amg-cigarette-racing-powerboat-release-miami-details-2899104/',
-    siteName: 'robbreport.com',
-    image: require('../../content/images/homepage/news-00004.png'),
-    title: 'Mercedes-AMG Unveils Its Biggest, Baddest Cigarette Boat Yet',
-    content:
-      'This insane 80 mph, 59-foot rocketship could be yours for $3 million.',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=SKOXaiH5yB4&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00005.png'),
-    title: "New Nighthawk 41 Cigarette's 88 Mph Center Console Monster!",
-    content:
-      'Some boats become legendary the moment you lay your eyes on them. This is one of them boats...',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=i8Wt97g7q_c&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00006.png'),
-    title: "The Ultimate Adventure Awaits! (Cigarette's Auroris 42 Center)",
-    content:
-      'Cigarette has changed throughout the years but the 2020 Miami Boat Show Cigarette has begun...',
-  },
-  {
-    url:
-      'https://www.youtube.com/watch?time_continue=376&v=ZMLa7pdd1T4&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00007.jpg'),
-    title: 'The King of Center Consoles! AMG Cigarette Tirranna',
-    content:
-      'The fantastic people at Cigarette Racing have come to the 2020 Miami International Boat Show...',
-  },
-]
+  const newsItems = newsAndPress.gallery
 
-function NewsSection() {
   const [page, setPage] = useState(0)
   const itemIndex = wrap(0, newsItems.length, page)
   const nextItemIndex = wrap(0, newsItems.length, page + 1)
@@ -391,7 +330,7 @@ function NewsSection() {
   }
 
   useEffect(() => {
-    cacheImages(newsItems.map((item) => item.image))
+    cacheImages(newsItems.map((item: any) => item.image))
   }, [])
 
   return (
@@ -433,7 +372,7 @@ function NewsSection() {
     </section>
   )
 
-  function renderItem(item: NewsItem) {
+  function renderItem(item: any) {
     return (
       <div key={item.url} style={{ maxWidth: '421px' }}>
         <div
@@ -443,7 +382,10 @@ function NewsSection() {
             maxHeight: '421px',
           }}
         >
-          <img src={item.image} className="object-cover h-full" />
+          <img
+            src={item.image.childImageSharp?.fluid?.src!}
+            className="object-cover h-full"
+          />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}
           </ExternalLink>
@@ -462,42 +404,64 @@ function NewsSection() {
 export const query = graphql`
   query Homepage {
     homepageYaml {
-      heroVideo
-      heroHeader
-      heroSubHeader
-      heroCopy
+      hero {
+        copy
+        header
+        subHeader
+        video
+      }
       featuredBoats {
+        boatUrl
         boatName
-        backgroundImage {
-          childImageSharp {
-            fluid(maxWidth: 1400) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
+        contentHeader
+        subtitle
         boatImage {
           childImageSharp {
             fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid
+              src
             }
           }
         }
-        contentHeader
-        subtitle
-        boatUrl
+        backgroundImage {
+          childImageSharp {
+            fluid(maxWidth: 1400) {
+              src
+            }
+          }
+        }
       }
-      sections {
+      theDifference {
+        callToAction
         name
+        subHeader
         header
-        subheader
+        backgroundImage {
+          childImageSharp {
+            fluid(maxWidth: 2000) {
+              src
+            }
+          }
+        }
+      }
+      newsAndPress {
         callToAction
         gallery {
+          content
+          siteName
           title
           url
-          siteName
-          image
-          content
+          image {
+            childImageSharp {
+              fluid(maxWidth: 2000) {
+                src
+              }
+            }
+          }
         }
+      }
+      stayConnected {
+        callToAction
+        successMessage
       }
     }
   }
