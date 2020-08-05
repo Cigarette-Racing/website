@@ -173,7 +173,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
         </div>
       </section>
       {/* News and press section */}
-      <NewsSection homepageYaml={homepageYaml} />
+      <NewsSection />
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
@@ -185,7 +185,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
             <Typography variant="h2">Stay connected</Typography>
           </div>
           <div className="relative px-4 max-w-md">
-            <StayConnectedForm homepageYaml={homepageYaml} />
+            <StayConnectedForm data={homepageYaml.stayConnected} />
           </div>
         </div>
       </section>
@@ -206,9 +206,7 @@ const formValuesMapper = (values: any) => {
 const stayConnectedOnSubmit = onSubmitCreator(formValuesMapper)
 
 function StayConnectedForm(props: any) {
-  const {
-    homepageYaml: { stayConnected },
-  } = props
+  const { data } = props
 
   return (
     <Form
@@ -258,13 +256,13 @@ function StayConnectedForm(props: any) {
                 </form>
               </div>
               <Typography variant="p2" className="pb-16">
-                {stayConnected.callToAction}
+                {data.callToAction}
               </Typography>
             </div>
           )}
           {submitSucceeded && (
             <Typography variant="p1" className="pb-16">
-              {stayConnected.successMessage}
+              {data.successMessage}
             </Typography>
           )}
         </div>
@@ -312,13 +310,81 @@ function ComingSoonLink({ children }: { children: React.ReactNode }) {
   )
 }
 
-function NewsSection(props: any) {
-  const {
-    homepageYaml: { newsAndPress },
-  } = props
+type NewsItem = {
+  url: string
+  siteName: string
+  image: string
+  title: string
+  content: string
+}
 
-  const newsItems = newsAndPress.gallery
+const newsItems: NewsItem[] = [
+  {
+    url:
+      'https://www.mercedes-amg.com/en/press-information/cigarette-boat-12th-edition.html',
+    siteName: 'mercedes-amg.com',
+    image: require('../../content/images/homepage/news-00001.jpg'),
+    title:
+      '12th special edition from Mercedes-AMG and Cigarette Racing celebrates its world debut',
+    content:
+      'Mercedes-AMG and Cigarette Racing Team continue longstanding collaboration by creating performance one-off role models for land and water.',
+  },
+  {
+    url:
+      'https://www.speedonthewater.com/performance-boat-center-on-point-again-with-cigarette-owners-rendezvous/',
+    siteName: 'speedonthewater.com',
+    image: require('../../content/images/homepage/news-00002.png'),
+    title:
+      'Performance Boat Center On Point Again With Cigarette Owners Rendezvous',
+    content:
+      'No one knew how the Cigarette Owners Rendezvous would do when it landed at the Lake of the Ozarksin the hands of Performance Boat Center...',
+  },
+  {
+    url:
+      'https://www.speedonthewater.com/gallery-of-the-week-cigarette-opens-st-tropez/',
+    siteName: 'speedonthewater.com',
+    image: require('../../content/images/homepage/news-00003.png'),
+    title: 'Gallery Of The Week: Cigarette Opens St. Tropez',
+    content:
+      'Reopened this week after its own novel coronavirus shutdown, the Port of Tropez, one of the crown jewels of the French Riviera...',
+  },
+  {
+    url:
+      'https://robbreport.com/motors/aviation/mercedes-amg-cigarette-racing-powerboat-release-miami-details-2899104/',
+    siteName: 'robbreport.com',
+    image: require('../../content/images/homepage/news-00004.png'),
+    title: 'Mercedes-AMG Unveils Its Biggest, Baddest Cigarette Boat Yet',
+    content:
+      'This insane 80 mph, 59-foot rocketship could be yours for $3 million.',
+  },
+  {
+    url: 'https://www.youtube.com/watch?v=SKOXaiH5yB4&feature=emb_title',
+    siteName: 'youtube.com',
+    image: require('../../content/images/homepage/news-00005.png'),
+    title: "New Nighthawk 41 Cigarette's 88 Mph Center Console Monster!",
+    content:
+      'Some boats become legendary the moment you lay your eyes on them. This is one of them boats...',
+  },
+  {
+    url: 'https://www.youtube.com/watch?v=i8Wt97g7q_c&feature=emb_title',
+    siteName: 'youtube.com',
+    image: require('../../content/images/homepage/news-00006.png'),
+    title: "The Ultimate Adventure Awaits! (Cigarette's Auroris 42 Center)",
+    content:
+      'Cigarette has changed throughout the years but the 2020 Miami Boat Show Cigarette has begun...',
+  },
+  {
+    url:
+      'https://www.youtube.com/watch?time_continue=376&v=ZMLa7pdd1T4&feature=emb_title',
+    siteName: 'youtube.com',
+    image: require('../../content/images/homepage/news-00007.jpg'),
+    title: 'The King of Center Consoles! AMG Cigarette Tirranna',
+    content:
+      'The fantastic people at Cigarette Racing have come to the 2020 Miami International Boat Show...',
+  },
+]
 
+function NewsSection() {
   const [page, setPage] = useState(0)
   const itemIndex = wrap(0, newsItems.length, page)
   const nextItemIndex = wrap(0, newsItems.length, page + 1)
@@ -330,7 +396,7 @@ function NewsSection(props: any) {
   }
 
   useEffect(() => {
-    cacheImages(newsItems.map((item: any) => item.image))
+    cacheImages(newsItems.map((item) => item.image))
   }, [])
 
   return (
@@ -372,7 +438,7 @@ function NewsSection(props: any) {
     </section>
   )
 
-  function renderItem(item: any) {
+  function renderItem(item: NewsItem) {
     return (
       <div key={item.url} style={{ maxWidth: '421px' }}>
         <div
@@ -382,10 +448,7 @@ function NewsSection(props: any) {
             maxHeight: '421px',
           }}
         >
-          <img
-            src={item.image.childImageSharp?.fluid?.src!}
-            className="object-cover h-full"
-          />
+          <img src={item.image} className="object-cover h-full" />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}
           </ExternalLink>
@@ -452,7 +515,7 @@ export const query = graphql`
           url
           image {
             childImageSharp {
-              fluid(maxWidth: 2000) {
+              fluid(maxWidth: 1000) {
                 src
               }
             }

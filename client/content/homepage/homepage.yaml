@@ -1,8 +1,8 @@
 hero:
-  video: https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175
   header: 59 TIRRANNA AMG EDITION
   subHeader: Performance luxury defined
   copy: A juxtaposition highlighted by land and sea, yet united through a steadfast commitment to ultimate luxury and performance.
+  video: https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175
 featuredBoats:
   - boatName: 41 Nighthawk
     boatUrl: nighthawk
