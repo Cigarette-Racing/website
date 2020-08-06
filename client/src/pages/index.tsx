@@ -141,7 +141,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
         })}
       </section>
       {/* The Difference */}
-      {/* <section
+      <section
         className="min-h-screen relative flex justify-center items-end"
         data-scrollsection
       >
@@ -172,7 +172,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
             </ComingSoonLink>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* News and press section */}
       {/* <NewsSection /> */}
       {/* Stay connected section */}
@@ -498,19 +498,19 @@ export const query = graphql`
           }
         }
       }
-      # theDifference {
-      #   callToAction
-      #   name
-      #   subHeader
-      #   header
-      #   backgroundImage {
-      #     childImageSharp {
-      #       fluid(maxWidth: 2000) {
-      #         src
-      #       }
-      #     }
-      #   }
-      # }
+      theDifference {
+        callToAction
+        name
+        subHeader
+        header
+        backgroundImage {
+          childImageSharp {
+            fluid(maxWidth: 2000) {
+              src
+            }
+          }
+        }
+      }
       # newsAndPress {
       #   callToAction
       #   gallery {
