@@ -123,7 +123,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
         </div>
       </section>
       {/* 2-up boats section */}
-      {/* <section className="relative md:flex" data-scrollsection>
+      <section className="relative md:flex" data-scrollsection>
         {homepageYaml.featuredBoats?.map((boat: any) => {
           return (
             <BoatFeaturette
@@ -139,7 +139,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
             />
           )
         })}
-      </section> */}
+      </section>
       {/* The Difference */}
       {/* <section
         className="min-h-screen relative flex justify-center items-end"
