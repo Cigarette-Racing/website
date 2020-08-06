@@ -4,12 +4,7 @@ import { Link, PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import header1 from '../../content/images/homepage-header.jpeg'
-import header2 from '../../content/images/homepage-header-2.jpeg'
 import header3 from '../../content/images/homepage-header-3.jpeg'
-import boat1 from '../../content/images/homepage/nighthawk.png'
-import boat1BG from '../../content/images/homepage/nighthawk-bg.jpeg'
-import boat2 from '../../content/images/homepage/auroris.png'
-import boat2BG from '../../content/images/homepage/auroris-bg.jpeg'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
@@ -72,6 +67,12 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
     data: { homepageYaml },
   } = props
 
+  const {
+    data: {
+      craftAPI: { entry: homepage },
+    },
+  } = props
+
   if (!homepageYaml) return null
 
   const [, setInquiryModalState] = useInquiryModalState()
@@ -86,7 +87,7 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
         data-scrollsection
       >
         <div className="absolute top-0 left-0 h-screen w-full">
-          <TopVideo videoUrl={homepageYaml.hero.video} />
+          <TopVideo videoUrl={homepage?.backgroundVideo} />
         </div>
         <div
           className="absolute top-0 left-0 h-screen w-full pointer-events-none"
@@ -103,13 +104,13 @@ const IndexPage = (props: PageProps<GatsbyTypes.HomepageQuery>) => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            {homepageYaml.hero.header}
+            {homepage.header}
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10 ">
-            {homepageYaml.hero.subHeader}
+            {homepage.subHeader}
           </Typography>
           <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
-            {homepageYaml.hero.copy}
+            {homepage.copy}
           </Typography>
           <div className="flex items-center space-x-6">
             <InPageCta onClick={() => setInquiryModalState(true)}>
@@ -466,6 +467,16 @@ function NewsSection() {
 
 export const query = graphql`
   query Homepage {
+    craftAPI {
+      entry {
+        ... on CraftAPI_homepage_homepage_Entry {
+          backgroundVideo
+          header
+          subheader
+          copy
+        }
+      }
+    }
     homepageYaml {
       hero {
         copy
