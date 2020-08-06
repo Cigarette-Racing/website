@@ -478,26 +478,26 @@ export const query = graphql`
       }
     }
     homepageYaml {
-      # featuredBoats {
-      #   boatUrl
-      #   boatName
-      #   contentHeader
-      #   subtitle
-      #   boatImage {
-      #     childImageSharp {
-      #       fluid(maxWidth: 1000) {
-      #         src
-      #       }
-      #     }
-      #   }
-      #   backgroundImage {
-      #     childImageSharp {
-      #       fluid(maxWidth: 1400) {
-      #         src
-      #       }
-      #     }
-      #   }
-      # }
+      featuredBoats {
+        boatUrl
+        boatName
+        contentHeader
+        subtitle
+        boatImage {
+          childImageSharp {
+            fluid(maxWidth: 1000) {
+              src
+            }
+          }
+        }
+        backgroundImage {
+          childImageSharp {
+            fluid(maxWidth: 1400) {
+              src
+            }
+          }
+        }
+      }
       # theDifference {
       #   callToAction
       #   name
