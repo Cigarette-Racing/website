@@ -58,15 +58,27 @@ const extractTitles = (sections: readonly any[]) =>
     .map((section) => [section.title, section.shortTitle || ''])
 
 const extractHeroSectionFromCraft = (boatEntry: any) => {
-  const heroData = {
+  return {
     backgroundMedia: boatEntry.singleMedia[0].image[0].url,
     boatNameLong: 'Long Boat name',
     headline: 'headline',
     stats: boatEntry.boatStats,
     boatLogo: boatEntry.boatLogo[0].url,
   }
+}
 
-  return heroData
+const extractDiscoverSectionFromCraft = (boatEntry: any) => {
+  return {
+    title: 'discover',
+    content: { header: 'header', copy: 'copy' },
+    media: {
+      image: '',
+      videoUrl: '',
+    },
+    // media: boatEntry
+    // header: boatEntry
+    // copy: boatEntry
+  }
 }
 
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
@@ -85,12 +97,17 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const heroData = !!boatEntry
     ? extractHeroSectionFromCraft(boatEntry)
     : findHeroSection(boat.sections!)
-  const discoverData = findDiscoverSection(boat.sections!)
+  const discoverData = !!boatEntry
+    ? extractDiscoverSectionFromCraft(boatEntry)
+    : findDiscoverSection(boat.sections!)
+
   const flexData = getFlexibleSections(boat.sections!)
   const specsData = findSpecsSection(boat.sections!)
   const galleryData = findGallerySection(boat.sections!)
   const customizationsData = findCustomizationsSection(boat.sections!)
   const orderData = findOrderSection(boat.sections!)
+
+  console.log(heroData)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -262,6 +279,19 @@ export const query = graphql`
               statLabel
               statText
               statPercentage
+            }
+          }
+          discoverMedia {
+            ... on CraftAPI_discoverMedia_video_BlockType {
+              boatVideo
+            }
+            ... on CraftAPI_discoverMedia_image_BlockType {
+              uri
+              boatImage {
+                ... on CraftAPI_s3_Asset {
+                  url(width: 1200)
+                }
+              }
             }
           }
         }

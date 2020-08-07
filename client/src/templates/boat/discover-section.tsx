@@ -30,7 +30,7 @@ export const DiscoverSection = ({
   sectionTitle,
 }: {
   sectionTitle: string
-  media: Media
+  media: Media | string
   header: string
   copy: string
 }) => {
@@ -79,12 +79,17 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
     // TODO: get 3:2 discover section images
     // <AspectRatio ratio="3:2" md="16:9" lg="21:9">
     <AspectRatio ratio="21:9">
-      <Img
-        fluid={media.image.childImageSharp?.fluid}
-        className="h-full w-full object-cover"
-        alt={media.alt || ''}
-        style={{ position: 'absolute' }}
-      />
+      {console.log(typeof media.image)}
+      {typeof media.image === 'string' ? (
+        <img src={media.image} alt="" />
+      ) : (
+        <Img
+          fluid={media.image.childImageSharp?.fluid}
+          className="h-full w-full object-cover"
+          alt={media.alt || ''}
+          style={{ position: 'absolute' }}
+        />
+      )}
       {media.videoUrl && (
         <CircleButton
           onClick={() => setShowVideo(true)}
