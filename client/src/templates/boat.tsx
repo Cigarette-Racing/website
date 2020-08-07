@@ -70,14 +70,14 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
 const extractDiscoverSectionFromCraft = (boatEntry: any) => {
   return {
     title: 'discover',
-    content: { header: 'header', copy: 'copy' },
-    media: {
-      image: '',
-      videoUrl: '',
+    content: {
+      header: boatEntry.discoverHeadline,
+      copy: boatEntry.discoverCopy,
     },
-    // media: boatEntry
-    // header: boatEntry
-    // copy: boatEntry
+    media: {
+      image: boatEntry.discoverMedia[1].boatImage[0].url,
+      videoUrl: boatEntry.discoverMedia[0].boatVideo,
+    },
   }
 }
 
@@ -106,8 +106,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const galleryData = findGallerySection(boat.sections!)
   const customizationsData = findCustomizationsSection(boat.sections!)
   const orderData = findOrderSection(boat.sections!)
-
-  console.log(heroData)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -281,6 +279,8 @@ export const query = graphql`
               statPercentage
             }
           }
+          discoverCopy
+          discoverHeadline
           discoverMedia {
             ... on CraftAPI_discoverMedia_video_BlockType {
               boatVideo

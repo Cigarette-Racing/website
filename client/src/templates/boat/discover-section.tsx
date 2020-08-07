@@ -79,9 +79,13 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
     // TODO: get 3:2 discover section images
     // <AspectRatio ratio="3:2" md="16:9" lg="21:9">
     <AspectRatio ratio="21:9">
-      {console.log(typeof media.image)}
       {typeof media.image === 'string' ? (
-        <img src={media.image} alt="" />
+        <img
+          src={media.image}
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
       ) : (
         <Img
           fluid={media.image.childImageSharp?.fluid}
