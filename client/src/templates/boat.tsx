@@ -57,6 +57,18 @@ const extractTitles = (sections: readonly any[]) =>
     )
     .map((section) => [section.title, section.shortTitle || ''])
 
+const extractHeroSectionFromCraft = (boatEntry: any) => {
+  const heroData = {
+    backgroundMedia: boatEntry.singleMedia[0].image[0].url,
+    boatNameLong: 'Long Boat name',
+    headline: 'headline',
+    stats: boatEntry.boatStats,
+    boatLogo: boatEntry.boatLogo[0].url,
+  }
+
+  return heroData
+}
+
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const {
     data: {
@@ -70,7 +82,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   if (!boat) return null
 
   const titles = extractTitles(boat.sections!)
-  const heroData = findHeroSection(boat.sections!)
+  const heroData = !!boatEntry
+    ? extractHeroSectionFromCraft(boatEntry)
+    : findHeroSection(boat.sections!)
   const discoverData = findDiscoverSection(boat.sections!)
   const flexData = getFlexibleSections(boat.sections!)
   const specsData = findSpecsSection(boat.sections!)
@@ -84,11 +98,17 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       <SEO title="Boat" />
       {heroData && (
         <BoatHeader
-          boatImage={heroData.backgroundMedia.image.childImageSharp?.fluid!}
-          boatLogo={heroData.boatLogo.image.publicURL!}
-          boatNameLong={boatEntry.boatNameLong!}
-          headline={boatEntry.headline!}
-          stats={boatEntry.boatStats! as Stat[]}
+          boatImage={
+            !!boatEntry
+              ? heroData.backgroundMedia
+              : heroData.backgroundMedia.image.childImageSharp?.fluid!
+          }
+          boatLogo={
+            !!boatEntry ? heroData.boatLogo : heroData.boatLogo.image.publicURL!
+          }
+          boatNameLong={boat.boatNameLong!}
+          headline={heroData.headline!}
+          stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
         />
       )}
@@ -221,8 +241,22 @@ export const query = graphql`
         title
         ... on CraftAPI_boats_boats_Entry {
           id
-          boatNameLong
           headline
+          slug
+          title
+          boatNameLong
+          singleMedia {
+            ... on CraftAPI_singleMedia_BlockType {
+              image {
+                url(width: 2000)
+              }
+            }
+          }
+          boatLogo {
+            ... on CraftAPI_s3_Asset {
+              url
+            }
+          }
           boatStats {
             ... on CraftAPI_boatStats_stat_BlockType {
               statLabel

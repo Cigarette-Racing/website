@@ -33,7 +33,7 @@ export const BoatHeader = ({
   headline,
   stats,
 }: {
-  boatImage: GatsbyTypes.ImageSharpFluid
+  boatImage: GatsbyTypes.ImageSharpFluid | string
   boatLogo: string
   boatNameLong: string
   onClickCta: (state: boolean) => void
@@ -43,6 +43,7 @@ export const BoatHeader = ({
   <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between">
     <div />
     <div className="relative z-10">
+      {console.log(boatImage)}
       <Typography variant="e2" md="e2" className="text-center mb-8 md:mb-4">
         {boatNameLong}
       </Typography>
@@ -66,7 +67,12 @@ export const BoatHeader = ({
       </div>
     </div>
     <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
-      <Img fluid={boatImage} alt="" className="h-full w-full object-cover" />
+      {/* conditionally render component based on Craft vs YAML */}
+      {typeof boatImage === 'string' ? (
+        <img src={boatImage} className="h-full w-full object-cover" />
+      ) : (
+        <Img fluid={boatImage} alt="" className="h-full w-full object-cover" />
+      )}
     </div>
     <div className="hidden bg-black bg-opacity-50 absolute inset-0 md:block"></div>
     <div className="relative z-10">
