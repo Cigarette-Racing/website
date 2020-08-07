@@ -26,14 +26,15 @@ const BoatFeaturette = ({
       backgroundImage: `url(${backgroundImage.childImageSharp?.fluid?.src})`,
     }}
   >
-    <div
-      className="absolute inset-0 z-10 pointer-events-none"
+    <Link
+      to={`/boats/${url}`}
+      className="absolute inset-0 z-10"
       style={{
         background:
           'linear-gradient(360deg, rgba(0, 0, 0, 0.6) 23.28%, rgba(0, 0, 0, 0) 71.29%)',
       }}
-    ></div>
-    <div className="flex flex-col h-full relative justify-between lg:justify-end">
+    ></Link>
+    <div className="flex flex-col h-full relative justify-between lg:justify-end pointer-events-none">
       <div className="relative z-0 flex-2">
         <div className="px-2 md:px-4 flex justify-center">
           <Img
@@ -55,7 +56,7 @@ const BoatFeaturette = ({
           <Typography variant="h3" xl="h2" className="mb-4 md:mb-8">
             {boatName}
           </Typography>
-          <Link to={`/boats/${url}`}>
+          <Link to={`/boats/${url}`} className="pointer-events-auto">
             <LinkCta>Learn More</LinkCta>
           </Link>
         </div>
