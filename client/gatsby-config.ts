@@ -1,5 +1,9 @@
 import metadata from './content/metadata'
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 export const siteMetadata = {
   title: `Cigarette Racing`,
   description: `Cigarette Racing`,
@@ -22,6 +26,16 @@ export const plugins = [
     options: {
       name: `boats`,
       path: `${__dirname}/content/boats`,
+    },
+  },
+  {
+    resolve: `gatsby-source-graphql`,
+    options: {
+      typeName: 'CraftAPI',
+      fieldName: 'craftAPI',
+      url: `${process.env.GATSBY_CRAFT_GRAPHQL_API}`,
+      // url: 'http://localhost:17010/actions/graphql/api',
+      // refetchInterval: 20,
     },
   },
   `gatsby-plugin-typescript`,

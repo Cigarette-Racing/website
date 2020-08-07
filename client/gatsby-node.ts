@@ -21,6 +21,7 @@ const createBoatPages: GatsbyNode['createPages'] = async ({
           boatName
           fields {
             slug
+            craftSlug
           }
         }
       }
@@ -28,7 +29,11 @@ const createBoatPages: GatsbyNode['createPages'] = async ({
   `
   const result = await graphql<{
     allBoatsYaml: {
-      nodes: { id: string; boatName: string; fields: { slug: string } }[]
+      nodes: {
+        id: string
+        boatName: string
+        fields: { slug: string; craftSlug: string }
+      }[]
     }
   }>(query)
   if (result.errors) throw result.errors
@@ -39,6 +44,7 @@ const createBoatPages: GatsbyNode['createPages'] = async ({
       component: boatTemplate,
       context: {
         id,
+        craftSlug: fields.craftSlug,
       },
     })
   })
@@ -56,6 +62,11 @@ const addSlugs: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
       node,
       name: 'slug',
       value: `/boats/${boatName.toLowerCase()}`,
+    })
+    createNodeField({
+      node,
+      name: 'craftSlug',
+      value: `${boatName.toLowerCase()}`,
     })
   }
 }

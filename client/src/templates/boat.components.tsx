@@ -75,11 +75,11 @@ export const BoatHeader = ({
       </div>
       <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
         {stats.map((stat) => (
-          <div key={stat.label} className="flex-1">
+          <div key={stat.statLabel} className="flex-1">
             <StatBlock
-              label={stat.label}
-              percentage={stat.percentage}
-              text={stat.text}
+              label={stat.statLabel}
+              percentage={stat.statPercentage}
+              text={stat.statText}
             />
           </div>
         ))}
