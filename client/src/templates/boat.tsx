@@ -59,6 +59,12 @@ const extractTitles = (sections: readonly any[]) =>
 
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const {
+    data: {
+      craftAPI: { entry: boatEntry },
+    },
+  } = props
+
+  const {
     data: { boatsYaml: boat },
   } = props
   if (!boat) return null
@@ -80,9 +86,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         <BoatHeader
           boatImage={heroData.backgroundMedia.image.childImageSharp?.fluid!}
           boatLogo={heroData.boatLogo.image.publicURL!}
-          boatNameLong={boat.boatNameLong!}
-          headline={heroData.headline!}
-          stats={heroData.stats! as Stat[]}
+          boatNameLong={boatEntry.boatNameLong!}
+          headline={boatEntry.headline!}
+          stats={boatEntry.boatStats! as Stat[]}
           onClickCta={setInquiryModalState}
         />
       )}
@@ -208,7 +214,25 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 export default BoatTemplate
 
 export const query = graphql`
-  query BoatPage($id: String!) {
+  query BoatPage($id: String!, $craftSlug: String) {
+    craftAPI {
+      entry(slug: [$craftSlug]) {
+        id
+        title
+        ... on CraftAPI_boats_boats_Entry {
+          id
+          boatNameLong
+          headline
+          boatStats {
+            ... on CraftAPI_boatStats_stat_BlockType {
+              statLabel
+              statText
+              statPercentage
+            }
+          }
+        }
+      }
+    }
     boatsYaml(id: { eq: $id }) {
       boatName
       boatNameLong
