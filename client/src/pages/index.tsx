@@ -93,7 +93,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
           className="absolute top-0 left-0 h-screen w-full pointer-events-none"
           style={{
             background:
-              'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
+              'linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 51.47%, rgba(0, 0, 0, 0.3) 100%)',
           }}
         />
         <CircleButton
