@@ -70,13 +70,19 @@ export const BoatHeader = ({
       {typeof boatImage === 'string' ? (
         <img src={boatImage} className="h-full w-full object-cover" />
       ) : (
-        <Img fluid={boatImage} alt="" className="h-full w-full object-cover" />
+        !!boatImage && (
+          <Img
+            fluid={boatImage}
+            alt=""
+            className="h-full w-full object-cover"
+          />
+        )
       )}
     </div>
     <div className="hidden bg-black bg-opacity-50 absolute inset-0 md:block"></div>
     <div className="relative z-10">
       <div className="relative flex justify-center mb-8 md:mb-10">
-        <img src={boatLogo} alt={boatNameLong} />
+        {/* <img src={boatLogo} alt={boatNameLong} /> */}
       </div>
       <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
         {stats.map((stat) => (
@@ -354,7 +360,7 @@ export const SpecsSectionComponent = ({
   boatNameLong,
 }: SpecsSection & { boatNameLong: string }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
-    categories[0].name
+    categories[0]?.name
   )
   return (
     <BoatSection className="md:py-24">
@@ -366,39 +372,42 @@ export const SpecsSectionComponent = ({
           </VerticalHeader>
         </div>
         <div className="hidden md:block px-4 space-y-2 md:w-48 lg:w-56 xl:w-64 mt-24">
-          {categories.map(({ name }) => (
-            <Tab
-              key={name}
-              className="w-auto whitespace-no-wrap"
-              active={name === selectedCategory}
-              onClick={() => setSelectedCategory(name)}
-            >
-              {name}
-            </Tab>
-          ))}
-        </div>
-        <div className="max-w-2xl w-full">
-          <div className="px-4 md:px-0 md:mb-16">
-            <Typography variant="h4">{boatNameLong}</Typography>
-          </div>
-          <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
-            {categories.map(({ name }) => (
+          {!!categories.length &&
+            categories.map(({ name }) => (
               <Tab
                 key={name}
-                className="whitespace-no-wrap"
+                className="w-auto whitespace-no-wrap"
                 active={name === selectedCategory}
                 onClick={() => setSelectedCategory(name)}
               >
                 {name}
               </Tab>
             ))}
+        </div>
+        <div className="max-w-2xl w-full">
+          <div className="px-4 md:px-0 md:mb-16">
+            <Typography variant="h4">{boatNameLong}</Typography>
+          </div>
+          <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
+            {!!categories.length &&
+              categories.map(({ name }) => (
+                <Tab
+                  key={name}
+                  className="whitespace-no-wrap"
+                  active={name === selectedCategory}
+                  onClick={() => setSelectedCategory(name)}
+                >
+                  {name}
+                </Tab>
+              ))}
           </div>
           <div className="px-4 md:px-0 grid col-gap-6 grid-cols-2 mb-10">
-            {categories
-              .find((category) => category.name === selectedCategory)!
-              .specs.map((spec, index) => (
-                <SpecAccordion key={spec.name + index} {...spec} />
-              ))}
+            {!!categories.length &&
+              categories
+                .find((category) => category.name === selectedCategory)!
+                .specs.map((spec, index) => (
+                  <SpecAccordion key={spec.name + index} {...spec} />
+                ))}
           </div>
           {/* <div className="flex justify-center md:justify-start mb-2">
             <InPageCta variant="secondary" theme="light">
@@ -489,12 +498,14 @@ export const OrderSectionComponent = ({
           style={{ position: 'absolute' }}
         />
       ) : (
-        <Img
-          fluid={media.image.childImageSharp?.fluid}
-          alt={media.alt || ''}
-          className="h-full w-full object-cover top-0"
-          style={{ position: 'absolute' }}
-        />
+        !!media && (
+          <Img
+            fluid={media.image.childImageSharp?.fluid}
+            alt={media.alt || ''}
+            className="h-full w-full object-cover top-0"
+            style={{ position: 'absolute' }}
+          />
+        )
       )}
       <div className="absolute inset-0 bg-black bg-opacity-25"></div>
       <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
