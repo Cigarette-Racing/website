@@ -58,7 +58,10 @@ export const Slider = ({ items }: SliderProps) => {
           <AnimatePresence initial={false} custom={{ direction, width }}>
             <motion.img
               key={page}
-              src={items[itemIndex].media.image.childImageSharp?.fluid?.src!}
+              src={
+                items[itemIndex].media.image.childImageSharp?.fluid?.src! ||
+                items[itemIndex]?.media?.image
+              }
               custom={{ direction, width }}
               variants={variants}
               initial="enter"

@@ -89,7 +89,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
     twoColumnImageTextBlock: 'two-column-image-text',
     twoColumnImagesBlock: 'two-column-images',
     threeColumnImagesBlock: 'three-column-images',
-    slider: 'slider',
+    sliderBlock: 'slider',
     carousel: 'carousel',
     fullWidthCarousel: 'full-width-carousel',
   }
@@ -297,10 +297,16 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   return <Carousel key={index} {...block} />
                 }
                 if (isSliderBlock(block)) {
-                  return <div>SLIDER BLOCK</div>
-                  // return <Slider key={index} {...block} />
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
+
+                  return <Slider key={index} {...block} />
                 }
                 if (isThreeColumnImagesBlock(block)) {
+                  console.log('three images up')
+
                   return (
                     <ThreeUpImageBlock
                       key={index}
@@ -490,6 +496,21 @@ export const query = graphql`
                           copy
                         }
                       }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
                           image {
