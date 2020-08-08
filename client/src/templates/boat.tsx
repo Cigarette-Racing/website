@@ -89,7 +89,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
       theme: section.theme,
       bleedDirection: section.bleedDirection,
       headerImage: !!section.headerImage.length && section.headerImage[0].url,
-      blocks: [],
+      blocks: undefined,
       moreDetails: [],
     }
   })
@@ -122,10 +122,12 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractOrderDataFromCraft = (boatEntry: any) => {
+  console.log(boatEntry)
+
   return {
     boatNameLong: boatEntry.boatNameLong,
     title: 'Order Today',
-    media: boatEntry.orderTodayBackground[0]?.url,
+    media: boatEntry.orderSectionBackground[0]?.url,
   }
 }
 
@@ -269,7 +271,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 }
                 return null
               })}
-            {!!moreDetails && moreDetails && (
+            {moreDetails && (
               <div className="flex justify-center md:mb-12">
                 <InPageCta variant="secondary" theme={theme}>
                   <span className="flex items-center">
@@ -282,16 +284,18 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           </BoatSection>
         )
       )}
-      {specsData && (
+      {!!specsData?.categories.length && (
         <SpecsSectionComponent
-          boatNameLong={boat.boatNameLong!}
+          boatNameLong={
+            !!boatEntry ? !!boatEntry.boatNameLong : boat.boatNameLong!
+          }
           {...specsData}
         />
       )}
       {galleryData && <MediaGallery {...galleryData} />}
-      {customizationsData && (
+      {/* {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
-      )}
+      )} */}
       {orderData && (
         <OrderSectionComponent
           boatNameLong={
@@ -396,7 +400,7 @@ export const query = graphql`
               }
             }
           }
-          orderTodayBackground {
+          orderSectionBackground {
             ... on CraftAPI_s3_Asset {
               url(width: 1200)
             }
