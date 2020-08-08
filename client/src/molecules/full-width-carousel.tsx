@@ -32,6 +32,8 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
     setPage(oneBasedIndex - 1)
   }
 
+  console.log(items)
+
   return (
     <div className="relative -mb-12 max-w-8xl mx-auto">
       <AspectRatio ratio="2:1">
@@ -39,8 +41,8 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
           <motion.img
             key={page}
             src={
-              items[itemIndex]?.media?.image ||
-              items[itemIndex].media.image.childImageSharp?.fluid?.src!
+              items[itemIndex].media.image.childImageSharp?.fluid?.src! ||
+              items[itemIndex].media?.image
             }
             {...animations}
             drag="x"
