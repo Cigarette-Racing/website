@@ -60,17 +60,15 @@ const extractTitles = (sections: readonly any[]) =>
 const extractHeroSectionFromCraft = (boatEntry: any) => {
   return {
     backgroundMedia: boatEntry.singleMedia[0].image[0].url,
-    boatNameLong: 'Long Boat name',
-    headline: 'headline',
+    boatNameLong: boatEntry.boatNameLong,
+    headline: boatEntry.headline,
     stats: boatEntry.boatStats,
     boatLogo: boatEntry.boatLogo[0].url,
+    boatName: boatEntry.title,
   }
 }
 
 const extractDiscoverSectionFromCraft = (boatEntry: any) => {
-  const discoverImage = boatEntry.discoverSection[0].singleMedia[0].image[0].url
-  const discoverVideo = boatEntry.discoverSection[0].singleMedia[0].videoURL
-
   return {
     title: 'discover',
     content: {
@@ -78,8 +76,8 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
       copy: boatEntry.discoverCopy,
     },
     media: {
-      image: discoverImage,
-      videoUrl: discoverVideo,
+      image: boatEntry.discoverSection[0].singleMedia[0].image[0]?.url,
+      videoUrl: boatEntry.discoverSection[0].singleMedia[0].videoURL,
     },
   }
 }
@@ -95,7 +93,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
     data: { boatsYaml: boat },
   } = props
 
-  const titles = extractTitles(boat.sections!)
+  const titles = extractTitles(!!boatEntry ? [] : boat.sections!)
   const heroData = !!boatEntry
     ? extractHeroSectionFromCraft(boatEntry)
     : findHeroSection(boat.sections!)
@@ -103,11 +101,13 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
     ? extractDiscoverSectionFromCraft(boatEntry)
     : findDiscoverSection(boat.sections!)
 
-  const flexData = getFlexibleSections(boat.sections!)
-  const specsData = findSpecsSection(boat.sections!)
-  const galleryData = findGallerySection(boat.sections!)
-  const customizationsData = findCustomizationsSection(boat.sections!)
-  const orderData = findOrderSection(boat.sections!)
+  const flexData = getFlexibleSections(!!boatEntry ? [] : boat.sections!)
+  const specsData = findSpecsSection(!!boatEntry ? [] : boat.sections!)
+  const galleryData = findGallerySection(!!boatEntry ? [] : boat.sections!)
+  const customizationsData = findCustomizationsSection(
+    !!boatEntry ? [] : boat.sections!
+  )
+  const orderData = findOrderSection(!!boatEntry ? [] : boat.sections!)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -123,14 +123,16 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           boatLogo={
             !!boatEntry ? heroData.boatLogo : heroData.boatLogo.image.publicURL!
           }
-          boatNameLong={boat.boatNameLong!}
+          boatNameLong={
+            !!boatEntry ? heroData.boatNameLong : boat.boatNameLong!
+          }
           headline={heroData.headline!}
           stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
         />
       )}
       <InPageNav
-        boatName={boat.boatName!}
+        boatName={!!boatEntry ? heroData.boatName : boat.boatName!}
         titles={titles}
         onClickInquire={setInquiryModalState}
       />
