@@ -83,13 +83,29 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
+  const blockTypes = {
+    oneColumnTextBlock: 'one-column-text',
+    oneColumnImageTextBlock: 'one-column-image-text',
+    twoColumnImageTextBlock: 'two-column-image-text',
+    twoColumnImagesBlock: 'one-column-text-block',
+    threeColumnImagesBlock: 'one-column-text-block',
+    sliderBlock: 'one-column-text-block',
+    carouselBlock: 'one-column-text-block',
+    fullWidthCarouselBlock: 'one-column-text-block',
+  }
+
   return boatEntry.flexibleSections.map((section: any) => {
+    const blocks = section.blocks.map((block) => {
+      block.type = blockTypes[block.typeHandle]
+    })
+
     return {
+      type: 'flexible',
       title: section.title,
       theme: section.theme,
       bleedDirection: section.bleedDirection,
       headerImage: !!section.headerImage.length && section.headerImage[0].url,
-      blocks: undefined,
+      blocks: section.blocks || undefined,
       moreDetails: [],
     }
   })
@@ -97,7 +113,6 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
 
 const extractSpecsSectionFromCraft = (boatEntry: any) => {
   const categories = boatEntry.boatSpecs.map((specCategory) => {
-    // const specs = specCategory.
     const specs = specCategory.children.map((specData) => {
       const specDescriptions = specData.children.map((specDesc) => {
         return specDesc.boatSpecDescription
@@ -122,11 +137,9 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractOrderDataFromCraft = (boatEntry: any) => {
-  console.log(boatEntry)
-
   return {
     boatNameLong: boatEntry.boatNameLong,
-    title: 'Order Today',
+    title: boatEntry.orderSectionTitle || 'Order Today',
     media: boatEntry.orderSectionBackground[0]?.url,
   }
 }
@@ -151,7 +164,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
     : findDiscoverSection(boat.sections!)
 
   const flexData = !!boatEntry
-    ? extractFlexibleSectionsFromCraft(boatEntry)
+    ? getFlexibleSections(extractFlexibleSectionsFromCraft(boatEntry))
     : getFlexibleSections(boat.sections!)
   const specsData = !!boatEntry
     ? extractSpecsSectionFromCraft(boatEntry)
@@ -226,12 +239,16 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             />
             {!!blocks &&
               blocks.map((block, index) => {
-                if (isTwoColumnImageTextBlock(block)) {
-                  return (
-                    <TwoColumnImageTextBlockComponent key={index} {...block} />
-                  )
-                }
+                // if (isTwoColumnImageTextBlock(block)) {
+                //   return (
+                //     <TwoColumnImageTextBlockComponent key={index} {...block} />
+                //   )
+                // }
                 if (isOneColumnTextBlock(block)) {
+                  if (block.textBlock) {
+                    block.copy = block.textBlock[0].copy
+                  }
+
                   return (
                     <OneColumnTextBlockComponent
                       key={index}
@@ -240,36 +257,36 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     />
                   )
                 }
-                if (isOneColumnImageTextBlock(block)) {
-                  return <OneColumnImageTextBlockComponent {...block} />
-                }
-                if (isCarouselBlock(block)) {
-                  return <Carousel key={index} {...block} />
-                }
-                if (isSliderBlock(block)) {
-                  return <Slider key={index} {...block} />
-                }
-                if (isThreeColumnImagesBlock(block)) {
-                  return (
-                    <ThreeUpImageBlock
-                      key={index}
-                      className="mb-32"
-                      images={block.images}
-                    />
-                  )
-                }
-                if (isTwoColumnImagesBlock(block)) {
-                  return (
-                    <TwoUpImageBlock
-                      key={index}
-                      className="mb-32"
-                      images={block.images}
-                    />
-                  )
-                }
-                if (isFullWidthCarouselBlock(block)) {
-                  return <FullWidthCarousel key={index} {...block} />
-                }
+                // if (isOneColumnImageTextBlock(block)) {
+                //   return <OneColumnImageTextBlockComponent {...block} />
+                // }
+                // if (isCarouselBlock(block)) {
+                //   return <Carousel key={index} {...block} />
+                // }
+                // if (isSliderBlock(block)) {
+                //   return <Slider key={index} {...block} />
+                // }
+                // if (isThreeColumnImagesBlock(block)) {
+                //   return (
+                //     <ThreeUpImageBlock
+                //       key={index}
+                //       className="mb-32"
+                //       images={block.images}
+                //     />
+                //   )
+                // }
+                // if (isTwoColumnImagesBlock(block)) {
+                //   return (
+                //     <TwoUpImageBlock
+                //       key={index}
+                //       className="mb-32"
+                //       images={block.images}
+                //     />
+                //   )
+                // }
+                // if (isFullWidthCarouselBlock(block)) {
+                //   return <FullWidthCarousel key={index} {...block} />
+                // }
                 return null
               })}
             {moreDetails && (
@@ -373,10 +390,10 @@ export const query = graphql`
               headerImage: image {
                 url
               }
-              children {
+              blocks: children {
                 typeHandle
                 ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
-                  textAlign
+                  align: textAlign
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
                       copy
@@ -401,6 +418,7 @@ export const query = graphql`
               }
             }
           }
+          orderSectionTitle
           orderSectionBackground {
             ... on CraftAPI_s3_Asset {
               url(width: 1200)
