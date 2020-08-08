@@ -86,6 +86,15 @@ const extractFlexibleSectionFromCraft = (boatEntry: any) => {
   return []
 }
 
+const extractOrderDataFromCraft = (boatEntry: any) => {
+  console.log(boatEntry)
+  return {
+    boatNameLong: boatEntry.boatNameLong,
+    title: 'Order Today',
+    media: boatEntry.orderTodayBackground[0]?.url,
+  }
+}
+
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const {
     data: {
@@ -113,7 +122,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const customizationsData = findCustomizationsSection(
     !!boatEntry ? [] : boat.sections!
   )
-  const orderData = findOrderSection(!!boatEntry ? [] : boat.sections!)
+  const orderData = !!boatEntry
+    ? extractOrderDataFromCraft(boatEntry)
+    : findOrderSection(!!boatEntry ? [] : boat.sections!)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -317,6 +328,11 @@ export const query = graphql`
                 textBlockHeader
                 imageBleedDirection
               }
+            }
+          }
+          orderTodayBackground {
+            ... on CraftAPI_s3_Asset {
+              url(width: 1200)
             }
           }
         }
