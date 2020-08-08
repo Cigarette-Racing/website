@@ -89,7 +89,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
       theme: section.theme,
       bleedDirection: section.bleedDirection,
       headerImage: !!section.headerImage.length && section.headerImage[0].url,
-      blocks: [],
+      blocks: undefined,
       moreDetails: [],
     }
   })
@@ -197,99 +197,105 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           copy={discoverData.content.copy}
         />
       )}
-      {flexData.map(
-        ({
-          title,
-          theme,
-          bleedDirection,
-          headerImage,
-          blocks,
-          moreDetails,
-        }) => (
-          <BoatSection key={title} theme={theme}>
-            <InPageAnchor title={title} />
-            <MobileSectionHeader>{title}</MobileSectionHeader>
-            <VerticalHeaderBlock
-              label={title}
-              side={bleedDirection === 'left' ? 'right' : 'left'}
-              theme={theme}
-              className="lg:mt-32"
-            />
-            <SideBleedImage
-              media={headerImage}
-              side={bleedDirection}
-              className="lg:mt-32 md:mb-32"
-              size="large"
-            />
-            {!!blocks &&
-              blocks.map((block, index) => {
-                if (isTwoColumnImageTextBlock(block)) {
-                  return (
-                    <TwoColumnImageTextBlockComponent key={index} {...block} />
-                  )
-                }
-                if (isOneColumnTextBlock(block)) {
-                  return (
-                    <OneColumnTextBlockComponent
-                      key={index}
-                      {...block}
-                      align={block.align ?? undefined}
-                    />
-                  )
-                }
-                if (isOneColumnImageTextBlock(block)) {
-                  return <OneColumnImageTextBlockComponent {...block} />
-                }
-                if (isCarouselBlock(block)) {
-                  return <Carousel key={index} {...block} />
-                }
-                if (isSliderBlock(block)) {
-                  return <Slider key={index} {...block} />
-                }
-                if (isThreeColumnImagesBlock(block)) {
-                  return (
-                    <ThreeUpImageBlock
-                      key={index}
-                      className="mb-32"
-                      images={block.images}
-                    />
-                  )
-                }
-                if (isTwoColumnImagesBlock(block)) {
-                  return (
-                    <TwoUpImageBlock
-                      key={index}
-                      className="mb-32"
-                      images={block.images}
-                    />
-                  )
-                }
-                if (isFullWidthCarouselBlock(block)) {
-                  return <FullWidthCarousel key={index} {...block} />
-                }
-                return null
-              })}
-            {!!moreDetails && moreDetails && (
-              <div className="flex justify-center md:mb-12">
-                <InPageCta variant="secondary" theme={theme}>
-                  <span className="flex items-center">
-                    <PlusIcon className="inline-block text-red mr-2 text-lg" />
-                    <span>More Details</span>
-                  </span>
-                </InPageCta>
-              </div>
-            )}
-          </BoatSection>
-        )
-      )}
-      {specsData && (
+      {false &&
+        flexData.map(
+          ({
+            title,
+            theme,
+            bleedDirection,
+            headerImage,
+            blocks,
+            moreDetails,
+          }) => (
+            <BoatSection key={title} theme={theme}>
+              <InPageAnchor title={title} />
+              <MobileSectionHeader>{title}</MobileSectionHeader>
+              <VerticalHeaderBlock
+                label={title}
+                side={bleedDirection === 'left' ? 'right' : 'left'}
+                theme={theme}
+                className="lg:mt-32"
+              />
+              <SideBleedImage
+                media={headerImage}
+                side={bleedDirection}
+                className="lg:mt-32 md:mb-32"
+                size="large"
+              />
+              {!!blocks &&
+                blocks.map((block, index) => {
+                  if (isTwoColumnImageTextBlock(block)) {
+                    return (
+                      <TwoColumnImageTextBlockComponent
+                        key={index}
+                        {...block}
+                      />
+                    )
+                  }
+                  if (isOneColumnTextBlock(block)) {
+                    return (
+                      <OneColumnTextBlockComponent
+                        key={index}
+                        {...block}
+                        align={block.align ?? undefined}
+                      />
+                    )
+                  }
+                  if (isOneColumnImageTextBlock(block)) {
+                    return <OneColumnImageTextBlockComponent {...block} />
+                  }
+                  if (isCarouselBlock(block)) {
+                    return <Carousel key={index} {...block} />
+                  }
+                  if (isSliderBlock(block)) {
+                    return <Slider key={index} {...block} />
+                  }
+                  if (isThreeColumnImagesBlock(block)) {
+                    return (
+                      <ThreeUpImageBlock
+                        key={index}
+                        className="mb-32"
+                        images={block.images}
+                      />
+                    )
+                  }
+                  if (isTwoColumnImagesBlock(block)) {
+                    return (
+                      <TwoUpImageBlock
+                        key={index}
+                        className="mb-32"
+                        images={block.images}
+                      />
+                    )
+                  }
+                  if (isFullWidthCarouselBlock(block)) {
+                    return <FullWidthCarousel key={index} {...block} />
+                  }
+                  return null
+                })}
+              {moreDetails && (
+                <div className="flex justify-center md:mb-12">
+                  <InPageCta variant="secondary" theme={theme}>
+                    <span className="flex items-center">
+                      <PlusIcon className="inline-block text-red mr-2 text-lg" />
+                      <span>More Details</span>
+                    </span>
+                  </InPageCta>
+                </div>
+              )}
+            </BoatSection>
+          )
+        )}
+      {!!specsData?.categories.length && (
         <SpecsSectionComponent
-          boatNameLong={boat.boatNameLong!}
+          boatNameLong={
+            !!boatEntry ? !!boatEntry.boatNameLong : boat.boatNameLong!
+          }
           {...specsData}
         />
       )}
-      {galleryData && <MediaGallery {...galleryData} />}
-      {customizationsData && (
+      {/* {galleryData && <MediaGallery {...galleryData} />} */}
+      {/* {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
       )}
       {orderData && (
@@ -300,7 +306,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           onClickCta={setInquiryModalState}
           {...orderData}
         />
-      )}
+      )} */}
       <InquiryModal />
     </Layout>
   )
