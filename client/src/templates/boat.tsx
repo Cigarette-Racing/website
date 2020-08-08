@@ -319,8 +319,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   )
                 }
                 if (isFullWidthCarouselBlock(block)) {
-                  console.log('full width CAROUSEL')
-
                   if (block?.source === 'craft') {
                     const items = createCarouselItems(block.children)
                     block.items = items
