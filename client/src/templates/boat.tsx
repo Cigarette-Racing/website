@@ -72,13 +72,51 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
   return {
     title: 'discover',
     content: {
-      header: boatEntry.discoverHeadline,
-      copy: boatEntry.discoverCopy,
+      header: boatEntry.discoverSection[0]?.textBlock[0]?.header,
+      copy: boatEntry.discoverSection[0]?.textBlock[0]?.copy,
     },
     media: {
       image: boatEntry.discoverSection[0]?.singleMedia[0]?.image[0]?.url,
       videoUrl: boatEntry.discoverSection[0]?.singleMedia[0]?.videoURL,
     },
+  }
+}
+
+const extractFlexibleSectionFromCraft = (boatEntry: any) => {
+  return []
+}
+
+const extractSpecsSectionFromCraft = (boatEntry: any) => {
+  const categories = boatEntry.boatSpecs.map((specCategory) => {
+    // const specs = specCategory.
+    const specs = specCategory.children.map((specData) => {
+      const specDescriptions = specData.children.map((specDesc) => {
+        return specDesc.boatSpecDescription
+      })
+
+      return {
+        name: specData.boatSpecName,
+        descriptions: specDescriptions,
+      }
+    })
+
+    return {
+      name: specCategory.boatSpecCategory,
+      specs,
+    }
+  })
+
+  return {
+    title: 'Specs',
+    categories,
+  }
+}
+
+const extractOrderDataFromCraft = (boatEntry: any) => {
+  return {
+    boatNameLong: boatEntry.boatNameLong,
+    title: 'Order Today',
+    media: boatEntry.orderTodayBackground[0]?.url,
   }
 }
 
@@ -101,13 +139,19 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
     ? extractDiscoverSectionFromCraft(boatEntry)
     : findDiscoverSection(boat.sections!)
 
-  const flexData = getFlexibleSections(!!boatEntry ? [] : boat.sections!)
-  const specsData = findSpecsSection(!!boatEntry ? [] : boat.sections!)
+  const flexData = !!boatEntry
+    ? extractFlexibleSectionFromCraft(boatEntry)
+    : getFlexibleSections(boat.sections!)
+  const specsData = !!boatEntry
+    ? extractSpecsSectionFromCraft(boatEntry)
+    : findSpecsSection(boat.sections!)
   const galleryData = findGallerySection(!!boatEntry ? [] : boat.sections!)
   const customizationsData = findCustomizationsSection(
     !!boatEntry ? [] : boat.sections!
   )
-  const orderData = findOrderSection(!!boatEntry ? [] : boat.sections!)
+  const orderData = !!boatEntry
+    ? extractOrderDataFromCraft(boatEntry)
+    : findOrderSection(!!boatEntry ? [] : boat.sections!)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -240,7 +284,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       )}
       {orderData && (
         <OrderSectionComponent
-          boatNameLong={boat.boatNameLong!}
+          boatNameLong={
+            !!boatEntry ? !!boatEntry.boatNameLong : boat.boatNameLong!
+          }
           onClickCta={setInquiryModalState}
           {...orderData}
         />
@@ -302,6 +348,32 @@ export const query = graphql`
                   copy
                 }
               }
+            }
+          }
+          flexibleSections {
+            ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
+              textBlockHeader
+              imageBleedDirection
+            }
+          }
+          boatSpecs {
+            ... on CraftAPI_boatSpecs_specCategory_BlockType {
+              boatSpecCategory
+              children {
+                ... on CraftAPI_boatSpecs_spec_BlockType {
+                  boatSpecName
+                  children {
+                    ... on CraftAPI_boatSpecs_description_BlockType {
+                      boatSpecDescription
+                    }
+                  }
+                }
+              }
+            }
+          }
+          orderTodayBackground {
+            ... on CraftAPI_s3_Asset {
+              url(width: 1200)
             }
           }
         }
