@@ -122,10 +122,12 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractOrderDataFromCraft = (boatEntry: any) => {
+  console.log(boatEntry)
+
   return {
     boatNameLong: boatEntry.boatNameLong,
     title: 'Order Today',
-    media: boatEntry.orderTodayBackground[0]?.url,
+    media: boatEntry.orderSectionBackground[0]?.url,
   }
 }
 
@@ -197,95 +199,91 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           copy={discoverData.content.copy}
         />
       )}
-      {false &&
-        flexData.map(
-          ({
-            title,
-            theme,
-            bleedDirection,
-            headerImage,
-            blocks,
-            moreDetails,
-          }) => (
-            <BoatSection key={title} theme={theme}>
-              <InPageAnchor title={title} />
-              <MobileSectionHeader>{title}</MobileSectionHeader>
-              <VerticalHeaderBlock
-                label={title}
-                side={bleedDirection === 'left' ? 'right' : 'left'}
-                theme={theme}
-                className="lg:mt-32"
-              />
-              <SideBleedImage
-                media={headerImage}
-                side={bleedDirection}
-                className="lg:mt-32 md:mb-32"
-                size="large"
-              />
-              {!!blocks &&
-                blocks.map((block, index) => {
-                  if (isTwoColumnImageTextBlock(block)) {
-                    return (
-                      <TwoColumnImageTextBlockComponent
-                        key={index}
-                        {...block}
-                      />
-                    )
-                  }
-                  if (isOneColumnTextBlock(block)) {
-                    return (
-                      <OneColumnTextBlockComponent
-                        key={index}
-                        {...block}
-                        align={block.align ?? undefined}
-                      />
-                    )
-                  }
-                  if (isOneColumnImageTextBlock(block)) {
-                    return <OneColumnImageTextBlockComponent {...block} />
-                  }
-                  if (isCarouselBlock(block)) {
-                    return <Carousel key={index} {...block} />
-                  }
-                  if (isSliderBlock(block)) {
-                    return <Slider key={index} {...block} />
-                  }
-                  if (isThreeColumnImagesBlock(block)) {
-                    return (
-                      <ThreeUpImageBlock
-                        key={index}
-                        className="mb-32"
-                        images={block.images}
-                      />
-                    )
-                  }
-                  if (isTwoColumnImagesBlock(block)) {
-                    return (
-                      <TwoUpImageBlock
-                        key={index}
-                        className="mb-32"
-                        images={block.images}
-                      />
-                    )
-                  }
-                  if (isFullWidthCarouselBlock(block)) {
-                    return <FullWidthCarousel key={index} {...block} />
-                  }
-                  return null
-                })}
-              {moreDetails && (
-                <div className="flex justify-center md:mb-12">
-                  <InPageCta variant="secondary" theme={theme}>
-                    <span className="flex items-center">
-                      <PlusIcon className="inline-block text-red mr-2 text-lg" />
-                      <span>More Details</span>
-                    </span>
-                  </InPageCta>
-                </div>
-              )}
-            </BoatSection>
-          )
-        )}
+      {flexData.map(
+        ({
+          title,
+          theme,
+          bleedDirection,
+          headerImage,
+          blocks,
+          moreDetails,
+        }) => (
+          <BoatSection key={title} theme={theme}>
+            <InPageAnchor title={title} />
+            <MobileSectionHeader>{title}</MobileSectionHeader>
+            <VerticalHeaderBlock
+              label={title}
+              side={bleedDirection === 'left' ? 'right' : 'left'}
+              theme={theme}
+              className="lg:mt-32"
+            />
+            <SideBleedImage
+              media={headerImage}
+              side={bleedDirection}
+              className="lg:mt-32 md:mb-32"
+              size="large"
+            />
+            {!!blocks &&
+              blocks.map((block, index) => {
+                if (isTwoColumnImageTextBlock(block)) {
+                  return (
+                    <TwoColumnImageTextBlockComponent key={index} {...block} />
+                  )
+                }
+                if (isOneColumnTextBlock(block)) {
+                  return (
+                    <OneColumnTextBlockComponent
+                      key={index}
+                      {...block}
+                      align={block.align ?? undefined}
+                    />
+                  )
+                }
+                if (isOneColumnImageTextBlock(block)) {
+                  return <OneColumnImageTextBlockComponent {...block} />
+                }
+                if (isCarouselBlock(block)) {
+                  return <Carousel key={index} {...block} />
+                }
+                if (isSliderBlock(block)) {
+                  return <Slider key={index} {...block} />
+                }
+                if (isThreeColumnImagesBlock(block)) {
+                  return (
+                    <ThreeUpImageBlock
+                      key={index}
+                      className="mb-32"
+                      images={block.images}
+                    />
+                  )
+                }
+                if (isTwoColumnImagesBlock(block)) {
+                  return (
+                    <TwoUpImageBlock
+                      key={index}
+                      className="mb-32"
+                      images={block.images}
+                    />
+                  )
+                }
+                if (isFullWidthCarouselBlock(block)) {
+                  return <FullWidthCarousel key={index} {...block} />
+                }
+                return null
+              })}
+            {moreDetails && (
+              <div className="flex justify-center md:mb-12">
+                <InPageCta variant="secondary" theme={theme}>
+                  <span className="flex items-center">
+                    <PlusIcon className="inline-block text-red mr-2 text-lg" />
+                    <span>More Details</span>
+                  </span>
+                </InPageCta>
+              </div>
+            )}
+          </BoatSection>
+        )
+      )}
       {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={
@@ -294,10 +292,10 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           {...specsData}
         />
       )}
-      {/* {galleryData && <MediaGallery {...galleryData} />} */}
+      {galleryData && <MediaGallery {...galleryData} />}
       {/* {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
-      )}
+      )} */}
       {orderData && (
         <OrderSectionComponent
           boatNameLong={
@@ -306,7 +304,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           onClickCta={setInquiryModalState}
           {...orderData}
         />
-      )} */}
+      )}
       <InquiryModal />
     </Layout>
   )
@@ -402,7 +400,7 @@ export const query = graphql`
               }
             }
           }
-          orderTodayBackground {
+          orderSectionBackground {
             ... on CraftAPI_s3_Asset {
               url(width: 1200)
             }
