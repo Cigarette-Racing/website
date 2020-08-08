@@ -198,7 +198,6 @@ export type TwoColumnImageTextBlock = {
 export function isTwoColumnImageTextBlock(
   block: Block
 ): block is TwoColumnImageTextBlock {
-  console.log(block)
   return block.type === 'two-column-image-text'
 }
 

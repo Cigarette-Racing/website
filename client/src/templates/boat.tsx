@@ -239,11 +239,11 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             />
             {!!blocks &&
               blocks.map((block, index) => {
-                // if (isTwoColumnImageTextBlock(block)) {
-                //   return (
-                //     <TwoColumnImageTextBlockComponent key={index} {...block} />
-                //   )
-                // }
+                if (isTwoColumnImageTextBlock(block)) {
+                  return (
+                    <TwoColumnImageTextBlockComponent key={index} {...block} />
+                  )
+                }
                 if (isOneColumnTextBlock(block)) {
                   if (block.textBlock) {
                     block.copy = block.textBlock[0].copy
@@ -257,9 +257,16 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     />
                   )
                 }
-                // if (isOneColumnImageTextBlock(block)) {
-                //   return <OneColumnImageTextBlockComponent {...block} />
-                // }
+                if (isOneColumnImageTextBlock(block)) {
+                  if (block.textBlock) {
+                    block.content = {
+                      copy: block.textBlock[0].copy,
+                    }
+                    block.media = block.singleMedia?.[0].image?.[0].url
+                  }
+
+                  return <OneColumnImageTextBlockComponent {...block} />
+                }
                 // if (isCarouselBlock(block)) {
                 //   return <Carousel key={index} {...block} />
                 // }
@@ -410,6 +417,23 @@ export const query = graphql`
                               url
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                  id
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      copy
+                    }
+                  }
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url
                         }
                       }
                     }
