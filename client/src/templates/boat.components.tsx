@@ -305,7 +305,6 @@ export const TwoUpImageBlock = ({
   <div className={clsx('max-w-5xl mx-auto sm:flex', className)}>
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        {console.log(images[0].singleMedia?.[0].image?.[0].url)}
         {images[0].singleMedia ? (
           <img
             src={images[0].singleMedia?.[0].image?.[0].url}
@@ -577,12 +576,21 @@ export const OneColumnImageTextBlockComponent = ({
 }: OneColumnImageTextBlock) => (
   <div className="max-w-5xl mx-auto">
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      <Img
-        fluid={media.image.childImageSharp?.fluid}
-        alt={media.alt || ''}
-        className="h-full w-full object-cover"
-        style={{ position: 'absolute' }}
-      />
+      {typeof media === 'string' ? (
+        <img
+          src={media}
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
+      ) : (
+        <Img
+          fluid={media.image.childImageSharp?.fluid}
+          alt={media.alt || ''}
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
+      )}
     </AspectRatio>
     <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
       <TextBlockComponent className="md:w-7/12" {...content} />
