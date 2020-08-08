@@ -72,14 +72,18 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
   return {
     title: 'discover',
     content: {
-      header: boatEntry.discoverHeadline,
-      copy: boatEntry.discoverCopy,
+      header: boatEntry.discoverSection[0]?.textBlock[0]?.header,
+      copy: boatEntry.discoverSection[0]?.textBlock[0]?.copy,
     },
     media: {
       image: boatEntry.discoverSection[0]?.singleMedia[0]?.image[0]?.url,
       videoUrl: boatEntry.discoverSection[0]?.singleMedia[0]?.videoURL,
     },
   }
+}
+
+const extractFlexibleSectionFromCraft = (boatEntry: any) => {
+  return []
 }
 
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
@@ -101,7 +105,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
     ? extractDiscoverSectionFromCraft(boatEntry)
     : findDiscoverSection(boat.sections!)
 
-  const flexData = getFlexibleSections(!!boatEntry ? [] : boat.sections!)
+  const flexData = !!boatEntry
+    ? extractFlexibleSectionFromCraft(boatEntry)
+    : getFlexibleSections(boat.sections!)
   const specsData = findSpecsSection(!!boatEntry ? [] : boat.sections!)
   const galleryData = findGallerySection(!!boatEntry ? [] : boat.sections!)
   const customizationsData = findCustomizationsSection(
@@ -144,6 +150,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           copy={discoverData.content.copy}
         />
       )}
+      {console.log(flexData)}
       {flexData.map(
         ({
           title,
@@ -301,6 +308,14 @@ export const query = graphql`
                   header
                   copy
                 }
+              }
+            }
+          }
+          ... on CraftAPI_boats_boats_Entry {
+            flexibleSections {
+              ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
+                textBlockHeader
+                imageBleedDirection
               }
             }
           }
