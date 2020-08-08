@@ -59,7 +59,7 @@ const extractTitles = (sections: readonly any[]) =>
 
 const extractHeroSectionFromCraft = (boatEntry: any) => {
   return {
-    backgroundMedia: boatEntry.singleMedia[0].image[0].url,
+    backgroundMedia: boatEntry.singleMedia[0]?.image[0]?.url,
     boatNameLong: boatEntry.boatNameLong,
     headline: boatEntry.headline,
     stats: boatEntry.boatStats,
