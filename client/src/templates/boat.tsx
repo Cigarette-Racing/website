@@ -175,8 +175,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       craftAPI: { entry: boatEntry },
     },
   } = props
-  console.log(boatEntry)
-
   const {
     data: { boatsYaml: boat },
   } = props
@@ -202,8 +200,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const orderData = !!boatEntry
     ? extractOrderDataFromCraft(boatEntry)
     : findOrderSection(!!boatEntry ? [] : boat.sections!)
-
-  console.log('flexData', flexData)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -314,8 +310,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   return <Slider key={index} {...block} />
                 }
                 if (isThreeColumnImagesBlock(block)) {
-                  console.log('three images up')
-
                   return (
                     <ThreeUpImageBlock
                       key={index}
@@ -347,7 +341,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                       },
                     },
                   }
-                  console.log(block, extractedBlock)
                   return (
                     <HorizontalImageTextBlockComponent {...extractedBlock} />
                   )

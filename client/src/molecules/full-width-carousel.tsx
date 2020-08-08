@@ -32,8 +32,6 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
     setPage(oneBasedIndex - 1)
   }
 
-  console.log(items)
-
   return (
     <div className="relative -mb-12 max-w-8xl mx-auto">
       <AspectRatio ratio="2:1">

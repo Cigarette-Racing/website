@@ -11,8 +11,6 @@ export const siteMetadata = {
   metadata,
 }
 
-console.log('ENV', process.env.NODE_ENV)
-
 export const plugins = [
   `gatsby-transformer-yaml`,
   `gatsby-plugin-react-helmet`,
