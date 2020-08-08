@@ -16,6 +16,8 @@ export type Media = {
   label?: string
   alt?: string
   videoUrl?: string
+  autoplayVideo?: boolean
+  // Don't worry about for n
   embedUrl?: string
   ratio?: Ratio
   treatments?: Treatment[]
