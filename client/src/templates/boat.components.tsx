@@ -305,22 +305,41 @@ export const TwoUpImageBlock = ({
   <div className={clsx('max-w-5xl mx-auto sm:flex', className)}>
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <Img
-          fluid={images[0].image.childImageSharp?.fluid}
-          alt={images[0].alt || ''}
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
-        />
+        {console.log(images[0].singleMedia?.[0].image?.[0].url)}
+        {images[0].singleMedia ? (
+          <img
+            src={images[0].singleMedia?.[0].image?.[0].url}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <Img
+            fluid={images[0].image.childImageSharp?.fluid}
+            alt={images[0].alt || ''}
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        )}
       </AspectRatio>
     </div>
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <Img
-          fluid={images[1].image.childImageSharp?.fluid}
-          alt={images[1].alt || ''}
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
-        />
+        {images[1].singleMedia ? (
+          <img
+            src={images[1].singleMedia?.[0].image?.[0].url}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <Img
+            fluid={images[1].image.childImageSharp?.fluid}
+            alt={images[1].alt || ''}
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        )}
       </AspectRatio>
     </div>
   </div>

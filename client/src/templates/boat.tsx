@@ -87,11 +87,11 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
     oneColumnTextBlock: 'one-column-text',
     oneColumnImageTextBlock: 'one-column-image-text',
     twoColumnImageTextBlock: 'two-column-image-text',
-    twoColumnImagesBlock: 'one-column-text-block',
-    threeColumnImagesBlock: 'one-column-text-block',
-    sliderBlock: 'one-column-text-block',
-    carouselBlock: 'one-column-text-block',
-    fullWidthCarouselBlock: 'one-column-text-block',
+    twoColumnImagesBlock: 'two-column-images',
+    threeColumnImagesBlock: '',
+    sliderBlock: '',
+    carouselBlock: '',
+    fullWidthCarouselBlock: '',
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
@@ -275,15 +275,15 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 //     />
                 //   )
                 // }
-                // if (isTwoColumnImagesBlock(block)) {
-                //   return (
-                //     <TwoUpImageBlock
-                //       key={index}
-                //       className="mb-32"
-                //       images={block.images}
-                //     />
-                //   )
-                // }
+                if (isTwoColumnImagesBlock(block)) {
+                  return (
+                    <TwoUpImageBlock
+                      key={index}
+                      className="mb-32"
+                      images={block.images || block.children}
+                    />
+                  )
+                }
                 // if (isFullWidthCarouselBlock(block)) {
                 //   return <FullWidthCarousel key={index} {...block} />
                 // }
@@ -397,6 +397,21 @@ export const query = graphql`
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
                       copy
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_twoColumnImagesBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_image_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
