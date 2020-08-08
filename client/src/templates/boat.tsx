@@ -63,7 +63,7 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
     boatNameLong: boatEntry.boatNameLong,
     headline: boatEntry.headline,
     stats: boatEntry.boatStats,
-    boatLogo: boatEntry.boatLogo[0].url,
+    boatLogo: boatEntry.boatLogo[0]?.url,
     boatName: boatEntry.title,
   }
 }
@@ -76,8 +76,8 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
       copy: boatEntry.discoverCopy,
     },
     media: {
-      image: boatEntry.discoverSection[0].singleMedia[0].image[0]?.url,
-      videoUrl: boatEntry.discoverSection[0].singleMedia[0].videoURL,
+      image: boatEntry.discoverSection[0]?.singleMedia[0]?.image[0]?.url,
+      videoUrl: boatEntry.discoverSection[0]?.singleMedia[0]?.videoURL,
     },
   }
 }
