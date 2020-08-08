@@ -91,10 +91,10 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
     oneColumnImageTextBlock: 'one-column-image-text',
     twoColumnImageTextBlock: 'two-column-image-text',
     twoColumnImagesBlock: 'two-column-images',
-    threeColumnImagesBlock: '',
-    sliderBlock: '',
-    carouselBlock: '',
-    fullWidthCarouselBlock: '',
+    threeColumnImagesBlock: 'three-column-images',
+    sliderBlock: 'slider',
+    carousel: 'carousel',
+    fullWidthCarousel: 'full-width-carousel',
     horizontalImageText: 'horizontal-image-text',
   }
 
@@ -102,7 +102,11 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
     const blocks = section.blocks.map((block) => {
       return {
         ...block,
-        type: blockTypes[block.typeHandle as keyof typeof blockTypes],
+        source: 'craft',
+        type:
+          block.typeHandle === 'carousel' && block.fullWidth
+            ? 'full-width-carousel'
+            : blockTypes[block.typeHandle as keyof typeof blockTypes],
       }
     })
 
@@ -149,6 +153,20 @@ const extractOrderDataFromCraft = (boatEntry: any) => {
     title: boatEntry.orderSectionTitle || 'Order Today',
     media: boatEntry.orderSectionBackground[0]?.url,
   }
+}
+
+const createCarouselItems = (items: any) => {
+  return items.map((item) => {
+    return {
+      content: {
+        copy: item.singleMedia.textBlock?.[0].copy,
+        header: item.singleMedia.textBlock?.[0].header,
+      },
+      media: {
+        image: item.singleMedia?.[0].image?.[0].url,
+      },
+    }
+  })
 }
 
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
@@ -251,12 +269,14 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
               blocks.map((block, index) => {
                 if (isTwoColumnImageTextBlock(block)) {
                   return (
-                    <TwoColumnImageTextBlockComponent key={index} {...block} />
+                    <div>TWO COLUMN IMAGE TEXT BLOCK</div>
+                    // <TwoColumnImageTextBlockComponent key={index} {...block} />
                   )
                 }
                 if (isOneColumnTextBlock(block)) {
                   if (block.textBlock) {
                     block.copy = block.textBlock[0].copy
+                    block.header = block.textBlock[0].header
                   }
 
                   return (
@@ -277,21 +297,33 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 
                   return <OneColumnImageTextBlockComponent {...block} />
                 }
-                // if (isCarouselBlock(block)) {
-                //   return <Carousel key={index} {...block} />
-                // }
-                // if (isSliderBlock(block)) {
-                //   return <Slider key={index} {...block} />
-                // }
-                // if (isThreeColumnImagesBlock(block)) {
-                //   return (
-                //     <ThreeUpImageBlock
-                //       key={index}
-                //       className="mb-32"
-                //       images={block.images}
-                //     />
-                //   )
-                // }
+                if (isCarouselBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
+
+                  return <Carousel key={index} {...block} />
+                }
+                if (isSliderBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
+
+                  return <Slider key={index} {...block} />
+                }
+                if (isThreeColumnImagesBlock(block)) {
+                  console.log('three images up')
+
+                  return (
+                    <ThreeUpImageBlock
+                      key={index}
+                      className="mb-32"
+                      images={block.images}
+                    />
+                  )
+                }
                 if (isTwoColumnImagesBlock(block)) {
                   return (
                     <TwoUpImageBlock
@@ -301,9 +333,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     />
                   )
                 }
-                // if (isFullWidthCarouselBlock(block)) {
-                //   return <FullWidthCarousel key={index} {...block} />
-                // }
                 if (isHorizontalImageTextBlock(block)) {
                   const extractedBlock: HorizontalImageTextBlock = {
                     type: 'horizontal-image-text',
@@ -322,6 +351,14 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   return (
                     <HorizontalImageTextBlockComponent {...extractedBlock} />
                   )
+                }
+                if (isFullWidthCarouselBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
+
+                  return <FullWidthCarousel key={index} {...block} />
                 }
                 return null
               })}
@@ -433,6 +470,23 @@ export const query = graphql`
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
                       copy
+                      header
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      copy
+                    }
+                  }
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url
+                        }
+                      }
                     }
                   }
                 }
@@ -451,18 +505,47 @@ export const query = graphql`
                     }
                   }
                 }
-                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                ... on CraftAPI_flexibleSections_twoColumnImageTextBlock_BlockType {
                   id
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      copy
+                }
+                ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
+                  id
+                }
+                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
+                  id
+                }
+                ... on CraftAPI_flexibleSections_carousel_BlockType {
+                  fullWidth
+                  children {
+                    typeHandle
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
                     }
                   }
-                  singleMedia {
-                    ... on CraftAPI_singleMedia_BlockType {
-                      image {
-                        ... on CraftAPI_s3_Asset {
-                          url
+                }
+                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
                         }
                       }
                     }
