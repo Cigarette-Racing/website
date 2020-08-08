@@ -18,6 +18,7 @@ import {
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
   OrderSectionComponent,
+  HorizontalImageTextBlockComponent,
 } from './boat.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
@@ -39,6 +40,8 @@ import {
   isFullWidthCarouselBlock,
   isOneColumnImageTextBlock,
   findOrderSection,
+  isHorizontalImageTextBlock,
+  HorizontalImageTextBlock,
 } from '../types/boat'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
@@ -92,11 +95,15 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
     sliderBlock: '',
     carouselBlock: '',
     fullWidthCarouselBlock: '',
+    horizontalImageText: 'horizontal-image-text',
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
     const blocks = section.blocks.map((block) => {
-      block.type = blockTypes[block.typeHandle]
+      return {
+        ...block,
+        type: blockTypes[block.typeHandle as keyof typeof blockTypes],
+      }
     })
 
     return {
@@ -105,7 +112,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
       theme: section.theme,
       bleedDirection: section.bleedDirection,
       headerImage: !!section.headerImage.length && section.headerImage[0].url,
-      blocks: section.blocks || undefined,
+      blocks,
       moreDetails: [],
     }
   })
@@ -150,6 +157,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       craftAPI: { entry: boatEntry },
     },
   } = props
+  console.log(boatEntry)
 
   const {
     data: { boatsYaml: boat },
@@ -176,6 +184,8 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const orderData = !!boatEntry
     ? extractOrderDataFromCraft(boatEntry)
     : findOrderSection(!!boatEntry ? [] : boat.sections!)
+
+  console.log('flexData', flexData)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -294,6 +304,25 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 // if (isFullWidthCarouselBlock(block)) {
                 //   return <FullWidthCarousel key={index} {...block} />
                 // }
+                if (isHorizontalImageTextBlock(block)) {
+                  const extractedBlock: HorizontalImageTextBlock = {
+                    type: 'horizontal-image-text',
+                    layout: block.layout,
+                    content: {
+                      header: block.textBlock[0].header as string,
+                      copy: block.textBlock[0].copy as string,
+                    },
+                    media: {
+                      image: {
+                        publicURL: block.singleMedia[0].image[0].url as string,
+                      },
+                    },
+                  }
+                  console.log(block, extractedBlock)
+                  return (
+                    <HorizontalImageTextBlockComponent {...extractedBlock} />
+                  )
+                }
                 return null
               })}
             {moreDetails && (
@@ -438,6 +467,25 @@ export const query = graphql`
                       }
                     }
                   }
+                }
+                ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      id
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url
+                        }
+                      }
+                    }
+                  }
+                  layout: horizontalLayout
                 }
               }
             }

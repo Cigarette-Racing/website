@@ -20,6 +20,7 @@ import {
   OneColumnImageTextBlock,
   OrderSection,
   Spec,
+  HorizontalImageTextBlock,
 } from '../types/boat'
 import { Tab } from '../atoms/tab'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -635,3 +636,26 @@ export const TwoColumnImageTextBlockComponent = ({
     </div>
   </div>
 )
+
+export const HorizontalImageTextBlockComponent = ({
+  content,
+  layout,
+  media,
+}: HorizontalImageTextBlock) => {
+  const image = <img src={media.image.publicURL} />
+  const text = (
+    <div className="w-3/4 lg:w-2/3">
+      <TextBlockComponent {...content} />
+    </div>
+  )
+  return (
+    <div className="md:flex max-w-7xl mx-auto mb-16 md:mb-32">
+      <div className="md:w-1/2 flex flex-col justify-center items-center mb-12 md:mb-0">
+        {layout === 'imageOnLeft' ? image : text}
+      </div>
+      <div className="md:w-1/2 flex flex-col justify-center items-center">
+        {layout === 'imageOnLeft' ? text : image}
+      </div>
+    </div>
+  )
+}
