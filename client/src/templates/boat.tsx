@@ -352,8 +352,27 @@ export const query = graphql`
           }
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
-              textBlockHeader
-              imageBleedDirection
+              theme
+              bleedDirection: imageBleedDirection
+              headerImage: image {
+                ... on CraftAPI_s3_Asset {
+                  id
+                  url(width: 1000)
+                }
+              }
+              children {
+                id
+                typeHandle
+                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
+                  id
+                  textAlign
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      copy
+                    }
+                  }
+                }
+              }
             }
           }
           boatSpecs {
