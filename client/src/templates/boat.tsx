@@ -68,6 +68,9 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractDiscoverSectionFromCraft = (boatEntry: any) => {
+  const discoverImage = boatEntry.discoverSection[0].singleMedia[0].image[0].url
+  const discoverVideo = boatEntry.discoverSection[0].singleMedia[0].videoURL
+
   return {
     title: 'discover',
     content: {
@@ -75,8 +78,8 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
       copy: boatEntry.discoverCopy,
     },
     media: {
-      image: boatEntry.discoverMedia[1].boatImage[0].url,
-      videoUrl: boatEntry.discoverMedia[0].boatVideo,
+      image: discoverImage,
+      videoUrl: discoverVideo,
     },
   }
 }
@@ -91,7 +94,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const {
     data: { boatsYaml: boat },
   } = props
-  if (!boat) return null
 
   const titles = extractTitles(boat.sections!)
   const heroData = !!boatEntry
@@ -249,7 +251,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 export default BoatTemplate
 
 export const query = graphql`
-  query BoatPage($id: String!, $craftSlug: String) {
+  query BoatPage($slug: String!, $craftSlug: String) {
     craftAPI {
       entry(slug: [$craftSlug]) {
         id
@@ -279,17 +281,23 @@ export const query = graphql`
               statPercentage
             }
           }
-          discoverCopy
-          discoverHeadline
-          discoverMedia {
-            ... on CraftAPI_discoverMedia_video_BlockType {
-              boatVideo
-            }
-            ... on CraftAPI_discoverMedia_image_BlockType {
-              uri
-              boatImage {
-                ... on CraftAPI_s3_Asset {
-                  url(width: 1200)
+          discoverSection {
+            ... on CraftAPI_discoverSection_discoverSection_BlockType {
+              singleMedia {
+                ... on CraftAPI_singleMedia_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      id
+                      url(width: 1000)
+                    }
+                  }
+                  videoURL
+                }
+              }
+              textBlock {
+                ... on CraftAPI_textBlock_BlockType {
+                  header
+                  copy
                 }
               }
             }
@@ -297,7 +305,7 @@ export const query = graphql`
         }
       }
     }
-    boatsYaml(id: { eq: $id }) {
+    boatsYaml(fields: { slug: { eq: $slug } }) {
       boatName
       boatNameLong
       sections {
