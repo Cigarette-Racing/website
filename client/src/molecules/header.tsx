@@ -349,16 +349,16 @@ function BoatSelector({
   isVisible: boolean
   onReset: () => void
 }) {
-  const [boatIndex, setBoatIndex] = useState(0)
-  const boats = useBoatsQuery()
+  const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
-    setBoatIndex(0)
+    setHasScrolled(false)
   }, [isVisible])
 
   const listenerProps = useOnMobileScroll(
     throttle(300, true, (deltaY: number): void => {
       if (isNaN(deltaY)) return
+      if (!hasScrolled) setHasScrolled(true)
       const step = deltaY > 0 ? 1 : -1
       setBoatIndex((index) =>
         Math.min(Math.max(0, index + step), boats.length - 1)
@@ -510,7 +510,9 @@ function BoatSelector({
         </div>
         <div className="fixed bottom-0 left-0 w-full mb-8">
           <div className="max-w-8xl mx-auto">
-            <ScrollPrompter className="" />
+            <motion.div animate={{ opacity: hasScrolled ? 0 : 1 }}>
+              <ScrollPrompter />
+            </motion.div>
           </div>
         </div>
       </div>
