@@ -159,11 +159,11 @@ export function getFlexibleSections(sections: readonly any[]) {
 type Section =
   | HeroSection
   | DiscoverSection
-  | GallerySection
-  | SpecsSection
-  | CustomizationsSection
-  | OrderSection
   | FlexibleSection
+  | CustomizationsSection
+  | SpecsSection
+  | GallerySection
+  | OrderSection
 
 // ===================================
 // BLOCKS

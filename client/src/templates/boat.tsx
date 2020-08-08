@@ -83,6 +83,7 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractFlexibleSectionFromCraft = (boatEntry: any) => {
+  console.log(boatEntry.flexibleSections)
   return []
 }
 
@@ -354,6 +355,13 @@ export const query = graphql`
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
               textBlockHeader
               imageBleedDirection
+              theme
+              image {
+                ... on CraftAPI_s3_Asset {
+                  id
+                  url(width: 1200)
+                }
+              }
             }
           }
           boatSpecs {
