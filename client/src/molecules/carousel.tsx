@@ -29,7 +29,10 @@ export const Carousel = ({ items }: CarouselProps) => {
         <AnimatePresence initial={false}>
           <motion.img
             key={page}
-            src={items[itemIndex].media.image.childImageSharp?.fluid?.src!}
+            src={
+              items[itemIndex]?.media?.image ||
+              items[itemIndex].media.image.childImageSharp?.fluid?.src!
+            }
             {...fadeAnimationProps}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}

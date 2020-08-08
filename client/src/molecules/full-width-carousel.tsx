@@ -38,7 +38,10 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
         <AnimatePresence>
           <motion.img
             key={page}
-            src={items[itemIndex].media.image.childImageSharp?.fluid?.src!}
+            src={
+              items[itemIndex]?.media?.image ||
+              items[itemIndex].media.image.childImageSharp?.fluid?.src!
+            }
             {...animations}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
