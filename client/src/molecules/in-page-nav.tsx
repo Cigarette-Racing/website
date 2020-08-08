@@ -79,14 +79,17 @@ export const InPageNav = ({
               <CaretIcon className="text-red mr-4" />
               <div className="md:hidden">
                 <Typography variant="e3" as="span">
-                  {current === titles[0][0] ? boatName : current}
+                  {console.log(!!titles.length)}
+                  {!!titles.length && current === titles[0][0]
+                    ? boatName
+                    : current}
                 </Typography>
               </div>
               <div className="hidden md:flex items-center">
                 <Typography variant="e3" as="span">
                   {boatName}
                 </Typography>
-                {current !== titles[0][0] && (
+                {!!titles.length && current !== titles[0][0] && (
                   <Fragment>
                     <AngleIcon className="h-6 mx-4" />
                     <Typography variant="e3" as="span">

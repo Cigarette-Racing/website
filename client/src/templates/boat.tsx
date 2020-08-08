@@ -57,20 +57,57 @@ const extractTitles = (sections: readonly any[]) =>
     )
     .map((section) => [section.title, section.shortTitle || ''])
 
+const extractHeroSectionFromCraft = (boatEntry: any) => {
+  return {
+    backgroundMedia: boatEntry.singleMedia[0]?.image[0]?.url,
+    boatNameLong: boatEntry.boatNameLong,
+    headline: boatEntry.headline,
+    stats: boatEntry.boatStats,
+    boatLogo: boatEntry.boatLogo[0]?.url,
+    boatName: boatEntry.title,
+  }
+}
+
+const extractDiscoverSectionFromCraft = (boatEntry: any) => {
+  return {
+    title: 'discover',
+    content: {
+      header: boatEntry.discoverHeadline,
+      copy: boatEntry.discoverCopy,
+    },
+    media: {
+      image: boatEntry.discoverSection[0]?.singleMedia[0]?.image[0]?.url,
+      videoUrl: boatEntry.discoverSection[0]?.singleMedia[0]?.videoURL,
+    },
+  }
+}
+
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
+  const {
+    data: {
+      craftAPI: { entry: boatEntry },
+    },
+  } = props
+
   const {
     data: { boatsYaml: boat },
   } = props
-  if (!boat) return null
 
-  const titles = extractTitles(boat.sections!)
-  const heroData = findHeroSection(boat.sections!)
-  const discoverData = findDiscoverSection(boat.sections!)
-  const flexData = getFlexibleSections(boat.sections!)
-  const specsData = findSpecsSection(boat.sections!)
-  const galleryData = findGallerySection(boat.sections!)
-  const customizationsData = findCustomizationsSection(boat.sections!)
-  const orderData = findOrderSection(boat.sections!)
+  const titles = extractTitles(!!boatEntry ? [] : boat.sections!)
+  const heroData = !!boatEntry
+    ? extractHeroSectionFromCraft(boatEntry)
+    : findHeroSection(boat.sections!)
+  const discoverData = !!boatEntry
+    ? extractDiscoverSectionFromCraft(boatEntry)
+    : findDiscoverSection(boat.sections!)
+
+  const flexData = getFlexibleSections(!!boatEntry ? [] : boat.sections!)
+  const specsData = findSpecsSection(!!boatEntry ? [] : boat.sections!)
+  const galleryData = findGallerySection(!!boatEntry ? [] : boat.sections!)
+  const customizationsData = findCustomizationsSection(
+    !!boatEntry ? [] : boat.sections!
+  )
+  const orderData = findOrderSection(!!boatEntry ? [] : boat.sections!)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -78,16 +115,24 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       <SEO title="Boat" />
       {heroData && (
         <BoatHeader
-          boatImage={heroData.backgroundMedia.image.childImageSharp?.fluid!}
-          boatLogo={heroData.boatLogo.image.publicURL!}
-          boatNameLong={boat.boatNameLong!}
+          boatImage={
+            !!boatEntry
+              ? heroData.backgroundMedia
+              : heroData.backgroundMedia.image.childImageSharp?.fluid!
+          }
+          boatLogo={
+            !!boatEntry ? heroData.boatLogo : heroData.boatLogo.image.publicURL!
+          }
+          boatNameLong={
+            !!boatEntry ? heroData.boatNameLong : boat.boatNameLong!
+          }
           headline={heroData.headline!}
           stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
         />
       )}
       <InPageNav
-        boatName={boat.boatName!}
+        boatName={!!boatEntry ? heroData.boatName : boat.boatName!}
         titles={titles}
         onClickInquire={setInquiryModalState}
       />
@@ -208,8 +253,61 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 export default BoatTemplate
 
 export const query = graphql`
-  query BoatPage($id: String!) {
-    boatsYaml(id: { eq: $id }) {
+  query BoatPage($slug: String!, $craftSlug: String) {
+    craftAPI {
+      entry(slug: [$craftSlug]) {
+        id
+        title
+        ... on CraftAPI_boats_boats_Entry {
+          id
+          headline
+          slug
+          title
+          boatNameLong
+          singleMedia {
+            ... on CraftAPI_singleMedia_BlockType {
+              image {
+                url(width: 2000)
+              }
+            }
+          }
+          boatLogo {
+            ... on CraftAPI_s3_Asset {
+              url
+            }
+          }
+          boatStats {
+            ... on CraftAPI_boatStats_stat_BlockType {
+              statLabel
+              statText
+              statPercentage
+            }
+          }
+          discoverSection {
+            ... on CraftAPI_discoverSection_discoverSection_BlockType {
+              singleMedia {
+                ... on CraftAPI_singleMedia_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      id
+                      url(width: 1000)
+                    }
+                  }
+                  videoURL
+                }
+              }
+              textBlock {
+                ... on CraftAPI_textBlock_BlockType {
+                  header
+                  copy
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    boatsYaml(fields: { slug: { eq: $slug } }) {
       boatName
       boatNameLong
       sections {

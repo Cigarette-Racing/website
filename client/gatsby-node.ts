@@ -6,6 +6,7 @@
 
 import { GatsbyNode, CreateSchemaCustomizationArgs } from 'gatsby'
 import { resolve } from 'path'
+import { string } from 'prop-types'
 
 const createBoatPages: GatsbyNode['createPages'] = async ({
   graphql,
@@ -21,24 +22,55 @@ const createBoatPages: GatsbyNode['createPages'] = async ({
           boatName
           fields {
             slug
+            craftSlug
           }
+        }
+      }
+      craftAPI {
+        entries(type: "boats") {
+          id
+          slug
         }
       }
     }
   `
   const result = await graphql<{
     allBoatsYaml: {
-      nodes: { id: string; boatName: string; fields: { slug: string } }[]
+      nodes: {
+        id: string
+        boatName: string
+        fields: { slug: string; craftSlug: string }
+      }[]
+    }
+    craftAPI: {
+      entries: {
+        id: string
+        slug: string
+      }[]
     }
   }>(query)
   if (result.errors) throw result.errors
+
+  result.data!.craftAPI.entries.forEach(({ id, slug }) => {
+    console.log('craft API', id, slug)
+
+    createPage({
+      path: `/boats/${slug}`,
+      component: boatTemplate,
+      context: {
+        slug: `/boats/${slug}`,
+        craftSlug: slug,
+      },
+    })
+  })
 
   result.data!.allBoatsYaml.nodes.forEach(({ id, boatName, fields }) => {
     createPage({
       path: fields.slug,
       component: boatTemplate,
       context: {
-        id,
+        slug: fields.slug,
+        craftSlug: fields.craftSlug,
       },
     })
   })
@@ -56,6 +88,11 @@ const addSlugs: GatsbyNode['onCreateNode'] = ({ node, actions }) => {
       node,
       name: 'slug',
       value: `/boats/${boatName.toLowerCase()}`,
+    })
+    createNodeField({
+      node,
+      name: 'craftSlug',
+      value: `${boatName.toLowerCase()}`,
     })
   }
 }
