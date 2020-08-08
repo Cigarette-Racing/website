@@ -79,7 +79,6 @@ export const InPageNav = ({
               <CaretIcon className="text-red mr-4" />
               <div className="md:hidden">
                 <Typography variant="e3" as="span">
-                  {console.log(!!titles.length)}
                   {!!titles.length && current === titles[0][0]
                     ? boatName
                     : current}

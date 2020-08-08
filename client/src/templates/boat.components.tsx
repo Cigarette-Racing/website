@@ -473,12 +473,21 @@ export const OrderSectionComponent = ({
   return (
     <BoatSection className="pb-48 sm:py-48">
       <InPageAnchor title={title} />
-      <Img
-        fluid={media.image.childImageSharp?.fluid}
-        alt={media.alt || ''}
-        className="h-full w-full object-cover top-0"
-        style={{ position: 'absolute' }}
-      />
+      {typeof media === 'string' ? (
+        <img
+          src={media}
+          alt=""
+          className="h-full w-full object-cover top-0"
+          style={{ position: 'absolute' }}
+        />
+      ) : (
+        <Img
+          fluid={media.image.childImageSharp?.fluid}
+          alt={media.alt || ''}
+          className="h-full w-full object-cover top-0"
+          style={{ position: 'absolute' }}
+        />
+      )}
       <div className="absolute inset-0 bg-black bg-opacity-25"></div>
       <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
         <div className="bg-black bg-opacity-75 py-16 sm:py-20 px-4 max-w-md">
