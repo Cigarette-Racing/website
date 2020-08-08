@@ -252,6 +252,19 @@ export function isFullWidthCarouselBlock(
   return block.type === 'full-width-carousel'
 }
 
+export type HorizontalImageTextBlock = {
+  type: 'horizontal-image-text'
+  media: Media
+  content: TextBlock
+  layout: 'imageOnLeft' | 'imageOnRight'
+}
+
+export function isHorizontalImageTextBlock(
+  block: Block
+): block is HorizontalImageTextBlock {
+  return block.type === 'horizontal-image-text'
+}
+
 type Block =
   | OneColumnTextBlock
   | OneColumnImageTextBlock
@@ -261,6 +274,7 @@ type Block =
   | SliderBlock
   | CarouselBlock
   | FullWidthCarouselBlock
+  | HorizontalImageTextBlock
 
 // ===================================
 // PRIMARY TYPES
