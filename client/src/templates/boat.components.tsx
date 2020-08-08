@@ -43,7 +43,6 @@ export const BoatHeader = ({
   <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between">
     <div />
     <div className="relative z-10">
-      {console.log(boatImage)}
       <Typography variant="e2" md="e2" className="text-center mb-8 md:mb-4">
         {boatNameLong}
       </Typography>
@@ -270,12 +269,21 @@ export const SideBleedImage = ({
       })}
     >
       <AspectRatio ratio={ratio}>
-        <Img
-          fluid={media.image.childImageSharp?.fluid}
-          alt={media.alt || ''}
-          className={clsx('h-full w-full object-cover', imgClassName)}
-          style={{ position: 'absolute' }}
-        />
+        {!!media?.image?.childImageSharp ? (
+          <Img
+            fluid={media.image.childImageSharp?.fluid}
+            alt={media.alt || ''}
+            className={clsx('h-full w-full object-cover', imgClassName)}
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <img
+            src={media}
+            alt=""
+            className={clsx('h-full w-full object-cover', imgClassName)}
+            style={{ position: 'absolute' }}
+          />
+        )}
       </AspectRatio>
     </div>
   </div>
