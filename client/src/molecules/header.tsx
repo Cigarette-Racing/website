@@ -18,10 +18,11 @@ import { useLocation } from '@reach/router'
 import { StatBlock } from '../atoms/stat-block'
 import { throttle } from 'throttle-debounce'
 import { AspectRatio } from '../atoms/aspect-ratio'
-import { motion, Variants } from 'framer-motion'
+import { motion, Variants, AnimatePresence } from 'framer-motion'
 import arrowWithCircleSvg from '../images/arrow-with-circle.svg'
 import { MobileBoatSelector } from './header/mobile-boat-selector'
 import { useBoatsQuery } from './header/header-data'
+import { wrap } from '@popmotion/popcorn'
 
 export type HeaderState = 'top' | 'pinned' | 'hidden'
 export const useHeaderState = createGlobalState<HeaderState>('top')
@@ -349,19 +350,28 @@ function BoatSelector({
   isVisible: boolean
   onReset: () => void
 }) {
+  const [unboundedBoatIndex, setUnboundedBoatIndex] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
+  const plainBoats = useBoatsQuery()
+  const boats = useMemo(
+    () => plainBoats.map((boat, index) => ({ ...boat, __index: index })),
+    []
+  )
+  const boatIndex = wrap(0, boats.length, unboundedBoatIndex)
 
   useEffect(() => {
+    setUnboundedBoatIndex(0)
     setHasScrolled(false)
   }, [isVisible])
 
   const listenerProps = useOnMobileScroll(
-    throttle(300, true, (deltaY: number): void => {
+    throttle(450, true, (deltaY: number): void => {
       if (isNaN(deltaY)) return
       if (!hasScrolled) setHasScrolled(true)
       const step = deltaY > 0 ? 1 : -1
-      setBoatIndex((index) =>
-        Math.min(Math.max(0, index + step), boats.length - 1)
+      setUnboundedBoatIndex(
+        (index) => index + step
+        // Math.min(Math.max(0, index + step), boats.length - 1)
       )
     })
   )
@@ -398,101 +408,115 @@ function BoatSelector({
         </div>
         <div className="fixed top-0 left-0 w-full h-full">
           <div className="max-w-5xl xl:max-w-6xl mx-auto relative top-1/2 -mt-16 px-8">
-            {boats.map((boat, index) => {
-              const collapsedHeight = 56
-              const highlightedHeight = 140
-              const stiffness = 90
-              const marginY = 40
-              const parentAnimation =
-                index !== boatIndex
-                  ? {
-                      height: collapsedHeight,
-                      translateY:
-                        (index - boatIndex) * (collapsedHeight + marginY) +
-                        (index > boatIndex
-                          ? highlightedHeight - marginY * 1.5
-                          : 0),
-                      scale: 0.85,
-                      transition: {
-                        stiffness,
-                      },
-                    }
-                  : {
-                      height: highlightedHeight,
-                      translateY: 0,
-                      scale: 1,
-                      transition: {
-                        stiffness,
-                      },
-                    }
-              const titleVariants: Variants = {
-                enter: {
-                  opacity: 0.4,
-                },
-                animate: {
-                  opacity: 1,
-                },
-              }
-              const linkVariants: Variants = {
-                enter: {
-                  opacity: 0,
-                  y: 10,
-                },
-                animate: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.15,
-                    delay: 0.2,
-                  },
-                },
-              }
-              return (
-                <motion.div
-                  key={boat.boatName}
-                  initial={false}
-                  animate={parentAnimation}
-                  className="absolute top-0 left-0  px-8"
-                >
-                  <Link
-                    to={index === boatIndex ? boat.slug! : '#'}
-                    onClick={(event) => {
-                      if (index !== boatIndex) {
-                        event.preventDefault()
-                        setBoatIndex(index)
-                      } else {
-                        onReset()
+            <AnimatePresence>
+              {centerItemInArray(boats, boatIndex).map((boat, index) => {
+                console.log(boat.boatName, boat.__index, index, boatIndex)
+                const collapsedHeight = 56
+                const highlightedHeight = 140
+                const stiffness = 90
+                const duration = 0.5
+                const marginY = 40
+                const parentAnimation =
+                  boat.__index !== boatIndex
+                    ? {
+                        height: collapsedHeight,
+                        translateY:
+                          (index - 1) * (collapsedHeight + marginY) +
+                          (index === boatIndex
+                            ? 0
+                            : index > boatIndex
+                            ? highlightedHeight - marginY * 1.5
+                            : -50),
+                        scale: 0.85,
+                        transition: {
+                          stiffness,
+                          duration,
+                        },
                       }
-                    }}
+                    : {
+                        height: highlightedHeight,
+                        translateY: 0,
+                        scale: 1,
+                        transition: {
+                          stiffness,
+                          duration,
+                        },
+                      }
+                console.log('anim', boat.boatName, parentAnimation.translateY)
+                const titleVariants: Variants = {
+                  enter: {
+                    opacity: 0.4,
+                  },
+                  animate: {
+                    opacity: 1,
+                  },
+                }
+                const linkVariants: Variants = {
+                  enter: {
+                    opacity: 0,
+                    y: 10,
+                  },
+                  animate: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.15,
+                      delay: 0.2,
+                    },
+                  },
+                }
+                return (
+                  <motion.div
+                    key={boat.boatName! + index}
+                    initial={false}
+                    exit={{ opacity: 0, scale: 0.85 }}
+                    animate={parentAnimation}
+                    className="absolute top-0 left-0  px-8 origin-left"
                   >
-                    <motion.div
-                      variants={titleVariants}
-                      initial="enter"
-                      animate={index === boatIndex ? 'animate' : 'enter'}
-                      exit="enter"
+                    <Link
+                      to={boat.__index === boatIndex ? boat.slug! : '#'}
+                      onClick={(event) => {
+                        if (boat.__index !== boatIndex) {
+                          event.preventDefault()
+                          setUnboundedBoatIndex(boat.__index)
+                        } else {
+                          onReset()
+                        }
+                      }}
                     >
-                      <Typography variant="h1" className="mb-4 text-5xl">
-                        {boat.menuName}
-                      </Typography>
-                    </motion.div>
-                    <motion.div
-                      variants={linkVariants}
-                      initial={index === boatIndex ? false : 'enter'}
-                      animate={index === boatIndex ? 'animate' : 'enter'}
-                      exit="enter"
-                    >
-                      <Typography
-                        variant="e2"
-                        className="flex space-x-6 items-center"
+                      <motion.div
+                        variants={titleVariants}
+                        initial="enter"
+                        animate={
+                          boat.__index === boatIndex ? 'animate' : 'enter'
+                        }
+                        exit="enter"
                       >
-                        <span>View Model</span>{' '}
-                        <ArrowIcon className="text-red text-xl" />
-                      </Typography>
-                    </motion.div>
-                  </Link>
-                </motion.div>
-              )
-            })}
+                        <Typography variant="h1" className="mb-4 text-5xl">
+                          {boat.menuName}
+                        </Typography>
+                      </motion.div>
+                      <motion.div
+                        variants={linkVariants}
+                        initial={boat.__index === boatIndex ? false : 'enter'}
+                        animate={
+                          boat.__index === boatIndex ? 'animate' : 'enter'
+                        }
+                        exit="enter"
+                      >
+                        <Typography
+                          variant="e2"
+                          className="flex space-x-6 items-center"
+                        >
+                          <span>View Model</span>{' '}
+                          <ArrowIcon className="text-red text-xl" />
+                        </Typography>
+                      </motion.div>
+                    </Link>
+                  </motion.div>
+                )
+              })}
+            </AnimatePresence>
           </div>
         </div>
         <div className="fixed w-full bottom-0">
@@ -518,6 +542,35 @@ function BoatSelector({
       </div>
     </Modal>
   )
+}
+
+function centerItemInArray<T>(array: T[], currentIndex: number): T[] {
+  const thresholdIndex =
+    (array.length % 2 === 0 ? array.length / 2 : Math.round(array.length / 2)) -
+    1
+  console.log('centerItemInArray', currentIndex, thresholdIndex)
+  if (currentIndex === thresholdIndex) return array
+  if (currentIndex < thresholdIndex) {
+    const numToMove = thresholdIndex - currentIndex
+    console.log(
+      'centerItemInArray2',
+      numToMove,
+      array.slice(numToMove * -1).concat(array.slice(0, numToMove * -1))
+    )
+    return array.slice(numToMove * -1).concat(array.slice(0, numToMove * -1))
+  }
+  if (currentIndex > thresholdIndex) {
+    const numToMove = currentIndex - thresholdIndex
+    console.log(
+      'centerItemInArray3',
+      numToMove,
+      array.slice(numToMove),
+      array.slice(0, numToMove),
+      array.slice(numToMove).concat(array.slice(0, numToMove))
+    )
+    return array.slice(numToMove).concat(array.slice(0, numToMove))
+  }
+  return array
 }
 
 export const useOnMobileScroll = (callback: (deltaY: number) => void) => {
