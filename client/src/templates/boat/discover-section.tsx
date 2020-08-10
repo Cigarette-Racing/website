@@ -28,13 +28,11 @@ export const DiscoverSection = ({
   header,
   media,
   sectionTitle,
-  disabledBackground,
 }: {
   sectionTitle: string
   media: Media | string
   header: string
   copy: string
-  disabledBackground: boolean
 }) => {
   const { background } = useStaticQuery<
     GatsbyTypes.DiscoverSectionBackgroundQuery
@@ -43,14 +41,12 @@ export const DiscoverSection = ({
   return (
     <BoatSection theme="dark" className="pb-24 overflow-hidden">
       <InPageAnchor title={sectionTitle} />
-      {!!disabledBackground && (
-        <Img
-          fluid={background?.childImageSharp?.fluid}
-          alt=""
-          className="top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
-          style={{ position: 'absolute' }}
-        />
-      )}
+      <Img
+        fluid={background?.childImageSharp?.fluid}
+        alt=""
+        className="top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
+        style={{ position: 'absolute' }}
+      />
       <div
         className="absolute inset-0"
         style={{
