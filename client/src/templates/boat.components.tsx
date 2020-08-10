@@ -353,23 +353,25 @@ export const ThreeUpImageBlock = ({
   images: [Media, Media, Media]
 }) => (
   <div className={clsx('sm:flex max-w-7xl mx-auto', className)}>
-    {images.map((media) => {
-      return (
-        <div
-          key={media.image.childImageSharp?.fluid?.src!}
-          className="px-4 mb-16 sm:w-1/3"
-        >
-          <AspectRatio ratio="3:4">
-            <Img
-              fluid={media.image.childImageSharp?.fluid}
-              alt={media.alt || ''}
-              className="h-full w-full object-cover"
-              style={{ position: 'absolute' }}
-            />
-          </AspectRatio>
-        </div>
-      )
-    })}
+    {!!images &&
+      !!images.length &&
+      images.map((media) => {
+        return (
+          <div
+            key={media.image.childImageSharp?.fluid?.src!}
+            className="px-4 mb-16 sm:w-1/3"
+          >
+            <AspectRatio ratio="3:4">
+              <Img
+                fluid={media.image.childImageSharp?.fluid}
+                alt={media.alt || ''}
+                className="h-full w-full object-cover"
+                style={{ position: 'absolute' }}
+              />
+            </AspectRatio>
+          </div>
+        )
+      })}
   </div>
 )
 
