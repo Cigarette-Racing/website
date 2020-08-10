@@ -52,8 +52,6 @@ const createBoatPages: GatsbyNode['createPages'] = async ({
   if (result.errors) throw result.errors
 
   result.data!.craftAPI.entries.forEach(({ id, slug }) => {
-    console.log('craft API', id, slug)
-
     createPage({
       path: `/boats/${slug}`,
       component: boatTemplate,

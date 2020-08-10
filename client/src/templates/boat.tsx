@@ -205,8 +205,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   return (
     <Layout>
       <SEO title="Boat" />
-
-      {console.log(heroData)}
       {!heroData && <div>Enter Some boat data</div>}
       {heroData && (
         <BoatHeader
@@ -381,9 +379,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         />
       )}
       {galleryData && <MediaGallery {...galleryData} />}
-      {/* {customizationsData && (
+      {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
-      )} */}
+      )}
       {orderData && (
         <OrderSectionComponent
           boatNameLong={
