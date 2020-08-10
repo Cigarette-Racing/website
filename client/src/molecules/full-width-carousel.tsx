@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
+import ReactPlayer from 'react-player'
 import { FullWidthCarouselBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { ProgressDots } from '../atoms/progress-dots'
+import { CircleButton } from '../atoms/circle-button'
+import { ArrowIcon } from '../svgs/icons'
 import { determineSwipeAction } from '../services/swiping'
 
 const animations = {
@@ -32,30 +35,61 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
     setPage(oneBasedIndex - 1)
   }
 
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+
   return (
-    <div className="relative -mb-12 max-w-8xl mx-auto">
+    <div className="relative mb-32 lg:mb-48 max-w-8xl mx-auto">
       <AspectRatio ratio="2:1">
         <AnimatePresence>
-          <motion.img
-            key={page}
-            src={
-              items[itemIndex].media?.image?.childImageSharp?.fluid?.src! ||
-              items[itemIndex].media?.image
-            }
-            {...animations}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0}
-            onDragEnd={(e, { offset, velocity }) => {
-              determineSwipeAction({
-                offset: offset.x,
-                velocity: velocity.x,
-                onSwipeLeft: () => goToItem(page + 2),
-                onSwipeRight: () => goToItem(page),
-              })
-            }}
-            className="absolute h-full w-full object-cover"
-          />
+          {!!items[itemIndex].media?.image && (
+            <motion.img
+              key={page}
+              src={
+                items[itemIndex].media?.image?.childImageSharp?.fluid?.src! ||
+                items[itemIndex].media?.image
+              }
+              {...animations}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0}
+              onDragEnd={(e, { offset, velocity }) => {
+                determineSwipeAction({
+                  offset: offset.x,
+                  velocity: velocity.x,
+                  onSwipeLeft: () => goToItem(page + 2),
+                  onSwipeRight: () => goToItem(page),
+                })
+              }}
+              className="absolute h-full w-full object-cover"
+            />
+          )}
+          {!!items[itemIndex].media?.videoURL && (
+            <motion.div
+              key="video"
+              animate={{ opacity: isVideoLoaded ? 1 : 0 }}
+            >
+              <ReactPlayer
+                className="absolute top-0 left-0"
+                url={items[itemIndex].media?.videoURL}
+                controls={false}
+                muted
+                loop
+                playing
+                onReady={() => {
+                  setIsVideoLoaded(true)
+                }}
+                config={{
+                  file: {
+                    attributes: {
+                      className: 'object-cover',
+                    },
+                  },
+                }}
+                width="100%"
+                height="100%"
+              />
+            </motion.div>
+          )}
         </AnimatePresence>
       </AspectRatio>
       <div className="absolute pb-4 bottom-0 left-1/2 transform -translate-x-1/2 z-10">
@@ -66,6 +100,26 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
           onClick={goToItem}
         />
       </div>
+      {items.length > 1 && (
+        <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex justify-between w-full px-4">
+          <CircleButton
+            icon={ArrowIcon}
+            size="sm"
+            className="hover:bg-white hover:text-red transform rotate-180"
+            onClick={(params) => {
+              goToItem(page)
+            }}
+          />
+          <CircleButton
+            icon={ArrowIcon}
+            size="sm"
+            className="hover:bg-white hover:text-red"
+            onClick={(params) => {
+              goToItem(page + 2)
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }
