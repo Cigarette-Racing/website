@@ -74,7 +74,7 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
 const extractDiscoverSectionFromCraft = (boatEntry: any) => {
   return {
     title: 'discover',
-    disableBackground: boatEntry.discoverSection[0].disableBackground,
+    disableBackground: boatEntry.discoverSection[0]?.disableBackground,
     content: {
       header: boatEntry.discoverSection[0]?.textBlock[0]?.header,
       copy: boatEntry.discoverSection[0]?.textBlock[0]?.copy,
