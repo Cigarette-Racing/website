@@ -74,7 +74,7 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
 const extractDiscoverSectionFromCraft = (boatEntry: any) => {
   return {
     title: 'discover',
-    disabledBackground: boatEntry.discoverSection.disabledBackground,
+    disableBackground: boatEntry.discoverSection[0]?.disableBackground,
     content: {
       header: boatEntry.discoverSection[0]?.textBlock[0]?.header,
       copy: boatEntry.discoverSection[0]?.textBlock[0]?.copy,
@@ -178,8 +178,8 @@ const createCarouselItems = (items: any) => {
   return items.map((item) => {
     return {
       content: {
-        copy: item.singleMedia.textBlock?.[0].copy,
-        header: item.singleMedia.textBlock?.[0].header,
+        copy: item.textBlock?.[0].copy,
+        header: item.textBlock?.[0].header,
       },
       media: {
         image: item.singleMedia?.[0].image?.[0]?.url,
@@ -259,7 +259,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           media={discoverData.media}
           header={discoverData.content.header}
           copy={discoverData.content.copy}
-          disabledBackground={discoverData.disabledBackground}
+          disableBackground={discoverData.disableBackground}
         />
       )}
       {flexData.map(
@@ -286,7 +286,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
               <SideBleedImage
                 media={headerImage}
                 side={bleedDirection}
-                className="lg:mt-32 md:mb-32"
+                className="lg:mt-32 mb-20 md:mb-32"
                 size="large"
               />
             )}
@@ -328,7 +328,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     block.items = items
                   }
 
-                  return <Carousel key={index} {...block} />
+                  return <Carousel key={index} {...block} theme={theme} />
                 }
                 if (isSliderBlock(block)) {
                   if (block?.source === 'craft') {
@@ -336,7 +336,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     block.items = items
                   }
 
-                  return <Slider key={index} {...block} />
+                  return <Slider key={index} {...block} theme={theme} />
                 }
                 if (isThreeColumnImagesBlock(block)) {
                   return (

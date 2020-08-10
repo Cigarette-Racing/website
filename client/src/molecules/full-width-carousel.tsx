@@ -36,7 +36,7 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
 
   return (
-    <div className="relative -mb-12 max-w-8xl mx-auto">
+    <div className="relative mb-32 lg:mb-48 max-w-8xl mx-auto">
       <AspectRatio ratio="2:1">
         <AnimatePresence>
           {!!items[itemIndex].media?.image && (
