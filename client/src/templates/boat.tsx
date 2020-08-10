@@ -208,6 +208,7 @@ const createCarouselItems = (items: any) => {
       },
       media: {
         image: item.singleMedia?.[0].image?.[0]?.url,
+        videoURL: item.singleMedia?.[0]?.videoURL,
       },
     }
   })
@@ -274,18 +275,22 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           <BoatSection key={title} theme={theme}>
             <InPageAnchor title={title} />
             <MobileSectionHeader>{title}</MobileSectionHeader>
-            <VerticalHeaderBlock
-              label={title}
-              side={bleedDirection === 'left' ? 'right' : 'left'}
-              theme={theme}
-              className="lg:mt-32"
-            />
-            <SideBleedImage
-              media={headerImage}
-              side={bleedDirection}
-              className="lg:mt-32 mb-20 md:mb-32"
-              size="large"
-            />
+            {!!headerImage && (
+              <VerticalHeaderBlock
+                label={title}
+                side={bleedDirection === 'left' ? 'right' : 'left'}
+                theme={theme}
+                className="lg:mt-32"
+              />
+            )}
+            {!!headerImage && (
+              <SideBleedImage
+                media={headerImage}
+                side={bleedDirection}
+                className="lg:mt-32 mb-20 md:mb-32"
+                size="large"
+              />
+            )}
             {!!blocks &&
               blocks.map((block, index) => {
                 if (isTwoColumnImageTextBlock(block)) {
@@ -380,7 +385,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 }
                 return null
               })}
-            {moreDetails && (
+            {/* {moreDetails && (
               <div className="flex justify-center md:mb-12">
                 <InPageCta variant="secondary" theme={theme}>
                   <span className="flex items-center">
@@ -389,7 +394,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   </span>
                 </InPageCta>
               </div>
-            )}
+            )} */}
           </BoatSection>
         )
       )}
@@ -555,7 +560,6 @@ export const query = graphql`
                 ... on CraftAPI_flexibleSections_carousel_BlockType {
                   fullWidth
                   children {
-                    typeHandle
                     ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
                       textBlock {
                         ... on CraftAPI_textBlock_BlockType {
@@ -569,6 +573,8 @@ export const query = graphql`
                               url
                             }
                           }
+                          autoplayVideo
+                          videoURL
                         }
                       }
                     }

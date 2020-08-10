@@ -33,7 +33,7 @@ export const Carousel = ({ items, theme }: CarouselProps) => {
           <motion.img
             key={page}
             src={
-              items[itemIndex].media.image?.childImageSharp?.fluid?.src! ||
+              items[itemIndex]?.media?.image?.childImageSharp?.fluid?.src! ||
               items[itemIndex].media.image
             }
             {...fadeAnimationProps}

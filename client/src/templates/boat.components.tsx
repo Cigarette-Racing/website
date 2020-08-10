@@ -96,10 +96,10 @@ export const BoatHeader = ({
         </Fragment>
       )}
     </div>
-    <div className="hidden bg-black bg-opacity-50 absolute inset-0 md:block"></div>
+    <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
     <div className="relative z-10">
       <div className="relative flex justify-center mb-8 md:mb-10">
-        {/* <img src={boatLogo} alt={boatNameLong} /> */}
+        {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
       </div>
       <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
         {stats.map((stat) => (
@@ -425,7 +425,7 @@ export const SpecsSectionComponent = ({
           <div className="px-4 md:px-0 md:mb-16">
             <Typography variant="h4">{boatNameLong}</Typography>
           </div>
-          <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
+          <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-10 overflow-x-auto">
             {!!categories.length &&
               categories.map(({ name }) => (
                 <Tab
@@ -662,7 +662,7 @@ export const HorizontalImageTextBlockComponent = ({
 }: HorizontalImageTextBlock) => {
   const image = <img src={media.image.publicURL} />
   const text = (
-    <div className="w-3/4 lg:w-2/3">
+    <div className="px-4 md:px-0 md:w-3/4 lg:w-2/3">
       <TextBlockComponent {...content} />
     </div>
   )
