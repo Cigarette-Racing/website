@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Img from 'gatsby-image'
 import ReactPlayer from 'react-player'
@@ -28,11 +28,13 @@ export const DiscoverSection = ({
   header,
   media,
   sectionTitle,
+  disableBackground = false,
 }: {
   sectionTitle: string
   media: Media | string
   header: string
   copy: string
+  disableBackground?: boolean
 }) => {
   const { background } = useStaticQuery<
     GatsbyTypes.DiscoverSectionBackgroundQuery
@@ -41,20 +43,32 @@ export const DiscoverSection = ({
   return (
     <BoatSection theme="dark" className="pb-24 overflow-hidden">
       <InPageAnchor title={sectionTitle} />
-      <Img
-        fluid={background?.childImageSharp?.fluid}
-        alt=""
-        className="top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
-        style={{ position: 'absolute' }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(360deg, #000000 46.14%, rgba(0, 0, 0, 0) 100%)',
-        }}
-      />
-      <div className="md:px-12 lg:px-16 relative max-w-5xl mx-auto">
+      {disableBackground ? (
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(63.57% 82.14% at 50% 39.57%, #212121 0.12%, #000000 100%)',
+          }}
+        />
+      ) : (
+        <Fragment>
+          <Img
+            fluid={background?.childImageSharp?.fluid}
+            alt=""
+            className="top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
+            style={{ position: 'absolute' }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(360deg, #000000 46.14%, rgba(0, 0, 0, 0) 100%)',
+            }}
+          />
+        </Fragment>
+      )}
+      <div className="md:px-12 lg:px-20 relative max-w-7xl mx-auto">
         <div className="hidden md:block absolute right-0 top-0">
           <VerticalHeader theme="dark" className="mr-4">
             {sectionTitle}
