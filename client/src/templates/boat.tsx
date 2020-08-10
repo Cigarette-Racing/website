@@ -271,18 +271,22 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           <BoatSection key={title} theme={theme}>
             <InPageAnchor title={title} />
             <MobileSectionHeader>{title}</MobileSectionHeader>
-            <VerticalHeaderBlock
-              label={title}
-              side={bleedDirection === 'left' ? 'right' : 'left'}
-              theme={theme}
-              className="lg:mt-32"
-            />
-            <SideBleedImage
-              media={headerImage}
-              side={bleedDirection}
-              className="lg:mt-32 md:mb-32"
-              size="large"
-            />
+            {!!headerImage && (
+              <VerticalHeaderBlock
+                label={title}
+                side={bleedDirection === 'left' ? 'right' : 'left'}
+                theme={theme}
+                className="lg:mt-32"
+              />
+            )}
+            {!!headerImage && (
+              <SideBleedImage
+                media={headerImage}
+                side={bleedDirection}
+                className="lg:mt-32 md:mb-32"
+                size="large"
+              />
+            )}
             {!!blocks &&
               blocks.map((block, index) => {
                 if (isTwoColumnImageTextBlock(block)) {
@@ -377,16 +381,16 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 }
                 return null
               })}
-            {moreDetails && (
+            {/* {moreDetails && (
               <div className="flex justify-center md:mb-12">
                 <InPageCta variant="secondary" theme={theme}>
                   <span className="flex items-center">
                     <PlusIcon className="inline-block text-red mr-2 text-lg" />
-                    {/* <span>More Details</span> */}
+                    <span>More Details</span>
                   </span>
                 </InPageCta>
               </div>
-            )}
+            )} */}
           </BoatSection>
         )
       )}
