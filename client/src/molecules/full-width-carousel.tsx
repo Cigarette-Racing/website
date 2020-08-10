@@ -39,7 +39,7 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
           <motion.img
             key={page}
             src={
-              items[itemIndex].media.image.childImageSharp?.fluid?.src! ||
+              items[itemIndex].media?.image?.childImageSharp?.fluid?.src! ||
               items[itemIndex].media?.image
             }
             {...animations}
