@@ -60,6 +60,29 @@ const extractTitles = (sections: readonly any[]) =>
     )
     .map((section) => [section.title, section.shortTitle || ''])
 
+const extractTitlesFromCraft = (
+  boatEntry: GatsbyTypes.BoatPageQuery['craftAPI']['entry']
+) => {
+  const titles: string[][] = []
+  if (!!boatEntry?.discoverSection[0]) {
+    titles.push(['Discover', ''])
+  }
+  boatEntry?.flexibleSections?.forEach((section) => {
+    titles.push([section.title, section.shortTitle || ''])
+  })
+  if (!!boatEntry?.boatSpecs) {
+    titles.push(['Specs', ''])
+  }
+  if (!!boatEntry?.gallery) {
+    titles.push(['Gallery', ''])
+  }
+  titles.push([
+    boatEntry?.orderSectionTitle || 'Order Today',
+    boatEntry?.orderSectionShortTitle || 'Order',
+  ])
+  return titles
+}
+
 const extractHeroSectionFromCraft = (boatEntry: any) => {
   return {
     backgroundMedia: boatEntry.singleMedia[0]?.image[0]?.url,
@@ -199,7 +222,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
     data: { boatsYaml: boat },
   } = props
 
-  const titles = extractTitles(!!boatEntry ? [] : boat.sections!)
+  const titles = !!boatEntry
+    ? extractTitlesFromCraft(boatEntry)
+    : extractTitles(boat.sections!)
   const heroData = !!boatEntry
     ? extractHeroSectionFromCraft(boatEntry)
     : findHeroSection(boat.sections!)
@@ -503,6 +528,7 @@ export const query = graphql`
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
               theme
               title: textBlockHeader
+              shortTitle
               bleedDirection: imageBleedDirection
               headerImage: image {
                 url
@@ -634,6 +660,7 @@ export const query = graphql`
             }
           }
           orderSectionTitle
+          orderSectionShortTitle: shortTitle
           orderSectionBackground {
             ... on CraftAPI_s3_Asset {
               url(width: 1200)
