@@ -5,6 +5,8 @@ import ReactPlayer from 'react-player'
 import { FullWidthCarouselBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { ProgressDots } from '../atoms/progress-dots'
+import { CircleButton } from '../atoms/circle-button'
+import { ArrowIcon } from '../svgs/icons'
 import { determineSwipeAction } from '../services/swiping'
 
 const animations = {
@@ -98,12 +100,16 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
           onClick={goToItem}
         />
       </div>
-      <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-        <ProgressDots
-          current={itemIndex + 1}
-          total={items.length}
-          variant="horizontal"
-          onClick={goToItem}
+      <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex justify-between w-full px-4">
+        <CircleButton
+          icon={ArrowIcon}
+          size="sm"
+          className="hover:bg-white hover:text-red transform rotate-180"
+        />
+        <CircleButton
+          icon={ArrowIcon}
+          size="sm"
+          className="hover:bg-white hover:text-red"
         />
       </div>
     </div>
