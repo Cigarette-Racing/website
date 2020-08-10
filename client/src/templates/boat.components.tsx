@@ -646,7 +646,7 @@ export const HorizontalImageTextBlockComponent = ({
 }: HorizontalImageTextBlock) => {
   const image = <img src={media.image.publicURL} />
   const text = (
-    <div className="w-3/4 lg:w-2/3">
+    <div className="px-4 md:px-0 md:w-3/4 lg:w-2/3">
       <TextBlockComponent {...content} />
     </div>
   )
