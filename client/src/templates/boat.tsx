@@ -85,7 +85,9 @@ const extractTitlesFromCraft = (
 
 const extractHeroSectionFromCraft = (boatEntry: any) => {
   return {
-    backgroundMedia: boatEntry.singleMedia[0]?.image[0]?.url,
+    image: boatEntry.singleMedia[0]?.image[0]?.url,
+    alt: boatEntry.singleMedia[0]?.alt,
+    videoUrl: boatEntry.singleMedia[0]?.videoURL,
     boatNameLong: boatEntry.boatNameLong,
     headline: boatEntry.headline,
     stats: boatEntry.boatStats,
@@ -218,35 +220,17 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       craftAPI: { entry: boatEntry },
     },
   } = props
-  const {
-    data: { boatsYaml: boat },
-  } = props
 
-  const titles = !!boatEntry
-    ? extractTitlesFromCraft(boatEntry)
-    : extractTitles(boat.sections!)
-  const heroData = !!boatEntry
-    ? extractHeroSectionFromCraft(boatEntry)
-    : findHeroSection(boat.sections!)
-  const discoverData = !!boatEntry
-    ? extractDiscoverSectionFromCraft(boatEntry)
-    : findDiscoverSection(boat.sections!)
-
-  const flexData = !!boatEntry
-    ? getFlexibleSections(extractFlexibleSectionsFromCraft(boatEntry))
-    : getFlexibleSections(boat.sections!)
-  const specsData = !!boatEntry
-    ? extractSpecsSectionFromCraft(boatEntry)
-    : findSpecsSection(boat.sections!)
-  const galleryData = !!boatEntry
-    ? extractGallerySectionFromCraft(boatEntry)
-    : findGallerySection(!!boatEntry ? [] : boat.sections!)
-  const customizationsData = findCustomizationsSection(
-    !!boatEntry ? [] : boat.sections!
+  const titles = extractTitlesFromCraft(boatEntry)
+  const heroData = extractHeroSectionFromCraft(boatEntry)
+  const discoverData = extractDiscoverSectionFromCraft(boatEntry)
+  const flexData = getFlexibleSections(
+    extractFlexibleSectionsFromCraft(boatEntry)
   )
-  const orderData = !!boatEntry
-    ? extractOrderDataFromCraft(boatEntry)
-    : findOrderSection(!!boatEntry ? [] : boat.sections!)
+  const specsData = extractSpecsSectionFromCraft(boatEntry)
+  const galleryData = extractGallerySectionFromCraft(boatEntry)
+  const customizationsData = findCustomizationsSection([])
+  const orderData = extractOrderDataFromCraft(boatEntry)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -255,26 +239,18 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       {!heroData && <div>Enter Some boat data</div>}
       {heroData && (
         <BoatHeader
-          boatImage={
-            !!boatEntry
-              ? heroData.backgroundMedia
-              : heroData.backgroundMedia?.image?.childImageSharp?.fluid!
-          }
-          boatLogo={
-            !!boatEntry
-              ? heroData.boatLogo
-              : heroData.boatLogo?.image?.publicURL!
-          }
-          boatNameLong={
-            !!boatEntry ? heroData.boatNameLong : boat.boatNameLong!
-          }
+          image={heroData.image}
+          alt={heroData.alt}
+          videoUrl={heroData.videoUrl}
+          boatLogo={heroData.boatLogo}
+          boatNameLong={heroData.boatNameLong}
           headline={heroData.headline!}
           stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
         />
       )}
       <InPageNav
-        boatName={!!boatEntry ? heroData.boatName : boat.boatName!}
+        boatName={heroData.boatName}
         titles={titles}
         onClickInquire={setInquiryModalState}
       />
@@ -424,9 +400,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       )}
       {!!specsData?.categories.length && (
         <SpecsSectionComponent
-          boatNameLong={
-            !!boatEntry ? boatEntry.boatNameLong : boat.boatNameLong!
-          }
+          boatNameLong={boatEntry.boatNameLong}
           {...specsData}
         />
       )}
@@ -438,9 +412,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       )}
       {orderData && (
         <OrderSectionComponent
-          boatNameLong={
-            !!boatEntry ? !!boatEntry.boatNameLong : boat.boatNameLong!
-          }
           onClickCta={setInquiryModalState}
           {...orderData}
         />
@@ -466,6 +437,8 @@ export const query = graphql`
           boatNameLong
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
+              alt
+              videoURL
               image {
                 url(width: 2000)
               }

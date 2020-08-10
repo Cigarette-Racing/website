@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import Img from 'gatsby-image'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
@@ -25,16 +25,21 @@ import {
 import { Tab } from '../atoms/tab'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useToggle } from 'react-use'
+import { AutoplayVideo } from '../atoms/autoplay-video'
 
 export const BoatHeader = ({
-  boatImage,
+  image,
+  alt,
+  videoUrl,
   boatLogo,
   boatNameLong,
   onClickCta,
   headline,
   stats,
 }: {
-  boatImage: GatsbyTypes.ImageSharpFluid | string
+  image: GatsbyTypes.File | string
+  alt?: string
+  videoUrl?: string
   boatLogo: string
   boatNameLong: string
   onClickCta: (state: boolean) => void
@@ -67,17 +72,28 @@ export const BoatHeader = ({
       </div>
     </div>
     <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
-      {/* conditionally render component based on Craft vs YAML */}
-      {typeof boatImage === 'string' ? (
-        <img src={boatImage} className="h-full w-full object-cover" />
+      {!!videoUrl ? (
+        <AutoplayVideo
+          image={image}
+          alt={alt}
+          videoUrl={videoUrl}
+          videoOptions={{ controls: false }}
+        />
       ) : (
-        !!boatImage && (
-          <Img
-            fluid={boatImage}
-            alt=""
-            className="h-full w-full object-cover"
-          />
-        )
+        <Fragment>
+          {/* conditionally render component based on Craft vs YAML */}
+          {typeof image === 'string' ? (
+            <img src={image} className="h-full w-full object-cover" />
+          ) : (
+            !!image && (
+              <Img
+                fluid={image.childImageSharp?.fluid!}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            )
+          )}
+        </Fragment>
       )}
     </div>
     <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
