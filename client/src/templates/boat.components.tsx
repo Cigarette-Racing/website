@@ -519,7 +519,7 @@ export const OrderSectionComponent = ({
       ) : (
         !!media && (
           <Img
-            fluid={media.image.childImageSharp?.fluid}
+            fluid={!!media.image && media.image.childImageSharp?.fluid}
             alt={media.alt || ''}
             className="h-full w-full object-cover top-0"
             style={{ position: 'absolute' }}
