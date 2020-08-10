@@ -122,6 +122,24 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
   })
 }
 
+const extractGallerySectionFromCraft = (boatEntry: any) => {
+  const galleryItems = boatEntry?.gallery.map((galleryItem) => {
+    return {
+      thumbnail: galleryItem?.thumbnail?.[0].url,
+      image: galleryItem?.image?.[0].url,
+      videoUrl: galleryItem?.videoURL,
+    }
+  })
+
+  return {
+    source: 'craft',
+    type: 'gallery',
+    title: 'Media Gallery',
+    shortTitle: 'Gallery',
+    gallery: galleryItems,
+  }
+}
+
 const extractSpecsSectionFromCraft = (boatEntry: any) => {
   const categories = boatEntry.boatSpecs.map((specCategory) => {
     const specs = specCategory.children.map((specData) => {
@@ -193,7 +211,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const specsData = !!boatEntry
     ? extractSpecsSectionFromCraft(boatEntry)
     : findSpecsSection(boat.sections!)
-  const galleryData = findGallerySection(!!boatEntry ? [] : boat.sections!)
+  const galleryData = !!boatEntry
+    ? extractGallerySectionFromCraft(boatEntry)
+    : findGallerySection(!!boatEntry ? [] : boat.sections!)
   const customizationsData = findCustomizationsSection(
     !!boatEntry ? [] : boat.sections!
   )
@@ -373,12 +393,14 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={
-            !!boatEntry ? !!boatEntry.boatNameLong : boat.boatNameLong!
+            !!boatEntry ? boatEntry.boatNameLong : boat.boatNameLong!
           }
           {...specsData}
         />
       )}
-      {galleryData && <MediaGallery {...galleryData} />}
+      {galleryData && !!galleryData.gallery.length && (
+        <MediaGallery {...galleryData} />
+      )}
       {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
       )}
@@ -420,6 +442,25 @@ export const query = graphql`
           boatLogo {
             ... on CraftAPI_s3_Asset {
               url
+            }
+          }
+          ... on CraftAPI_boats_boats_Entry {
+            gallery: multipleMedia {
+              ... on CraftAPI_multipleMedia_BlockType {
+                thumbnail: image {
+                  ... on CraftAPI_s3_Asset {
+                    title
+                    url(width: 600)
+                  }
+                }
+                image {
+                  ... on CraftAPI_s3_Asset {
+                    title
+                    url(width: 2000)
+                  }
+                }
+                videoURL
+              }
             }
           }
           boatStats {
