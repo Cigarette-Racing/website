@@ -181,7 +181,7 @@ const createCarouselItems = (items: any) => {
         header: item.singleMedia.textBlock?.[0].header,
       },
       media: {
-        image: item.singleMedia?.[0].image?.[0].url,
+        image: item.singleMedia?.[0].image?.[0]?.url,
       },
     }
   })
