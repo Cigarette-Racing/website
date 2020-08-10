@@ -210,13 +210,13 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         <BoatHeader
           boatImage={
             !!boatEntry
-              ? heroData.backgroundMedia.image?.childImageSharp?.fluid!
-              : heroData.backgroundMedia
+              ? heroData.backgroundMedia
+              : heroData.backgroundMedia?.image?.childImageSharp?.fluid!
           }
           boatLogo={
             !!boatEntry
-              ? heroData.boatLogo.image?.publicURL!
-              : heroData.boatLogo
+              ? heroData.boatLogo
+              : heroData.boatLogo?.image?.publicURL!
           }
           boatNameLong={
             !!boatEntry ? heroData.boatNameLong : boat.boatNameLong!
@@ -379,9 +379,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         />
       )}
       {galleryData && <MediaGallery {...galleryData} />}
-      {/* {customizationsData && (
+      {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
-      )} */}
+      )}
       {orderData && (
         <OrderSectionComponent
           boatNameLong={
