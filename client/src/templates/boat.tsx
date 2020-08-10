@@ -182,6 +182,7 @@ const createCarouselItems = (items: any) => {
       },
       media: {
         image: item.singleMedia?.[0].image?.[0]?.url,
+        videoURL: item.singleMedia?.[0]?.videoURL,
       },
     }
   })
@@ -557,7 +558,6 @@ export const query = graphql`
                 ... on CraftAPI_flexibleSections_carousel_BlockType {
                   fullWidth
                   children {
-                    typeHandle
                     ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
                       textBlock {
                         ... on CraftAPI_textBlock_BlockType {
@@ -571,6 +571,8 @@ export const query = graphql`
                               url
                             }
                           }
+                          autoplayVideo
+                          videoURL
                         }
                       }
                     }

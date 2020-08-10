@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
+import ReactPlayer from 'react-player'
 import { FullWidthCarouselBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { ProgressDots } from '../atoms/progress-dots'
@@ -32,6 +33,8 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
     setPage(oneBasedIndex - 1)
   }
 
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+
   return (
     <div className="relative -mb-12 max-w-8xl mx-auto">
       <AspectRatio ratio="2:1">
@@ -54,6 +57,33 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
               }}
               className="absolute h-full w-full object-cover"
             />
+          )}
+          {!!items[itemIndex].media?.videoURL && (
+            <motion.div
+              key="video"
+              animate={{ opacity: isVideoLoaded ? 1 : 0 }}
+            >
+              <ReactPlayer
+                className="absolute top-0 left-0"
+                url={items[itemIndex].media?.videoURL}
+                controls={false}
+                muted
+                loop
+                playing
+                onReady={() => {
+                  setIsVideoLoaded(true)
+                }}
+                config={{
+                  file: {
+                    attributes: {
+                      className: 'object-cover',
+                    },
+                  },
+                }}
+                width="100%"
+                height="100%"
+              />
+            </motion.div>
           )}
         </AnimatePresence>
       </AspectRatio>
