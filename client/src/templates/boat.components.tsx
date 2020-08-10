@@ -409,7 +409,7 @@ export const SpecsSectionComponent = ({
           <div className="px-4 md:px-0 md:mb-16">
             <Typography variant="h4">{boatNameLong}</Typography>
           </div>
-          <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
+          <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-10 overflow-x-auto">
             {!!categories.length &&
               categories.map(({ name }) => (
                 <Tab
