@@ -80,10 +80,10 @@ export const BoatHeader = ({
         )
       )}
     </div>
-    <div className="hidden bg-black bg-opacity-50 absolute inset-0 md:block"></div>
+    <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
     <div className="relative z-10">
       <div className="relative flex justify-center mb-8 md:mb-10">
-        {/* <img src={boatLogo} alt={boatNameLong} /> */}
+        {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
       </div>
       <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
         {stats.map((stat) => (
