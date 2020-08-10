@@ -331,7 +331,6 @@ const GalleryImage = ({
   return (
     <div className={`max-w-xs ${className}`} role="button" onClick={onClick}>
       <AspectRatio ratio="1:1" className="relative group">
-        {console.log(media)}
         {!!isCraftData ? (
           <img
             src={media.thumbnail}
