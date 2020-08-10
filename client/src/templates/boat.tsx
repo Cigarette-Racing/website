@@ -178,8 +178,8 @@ const createCarouselItems = (items: any) => {
   return items.map((item) => {
     return {
       content: {
-        copy: item.singleMedia.textBlock?.[0].copy,
-        header: item.singleMedia.textBlock?.[0].header,
+        copy: item.textBlock?.[0].copy,
+        header: item.textBlock?.[0].header,
       },
       media: {
         image: item.singleMedia?.[0].image?.[0]?.url,
@@ -323,7 +323,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     block.items = items
                   }
 
-                  return <Carousel key={index} {...block} />
+                  return <Carousel key={index} {...block} theme={theme} />
                 }
                 if (isSliderBlock(block)) {
                   if (block?.source === 'craft') {
@@ -331,7 +331,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     block.items = items
                   }
 
-                  return <Slider key={index} {...block} />
+                  return <Slider key={index} {...block} theme={theme} />
                 }
                 if (isThreeColumnImagesBlock(block)) {
                   return (
