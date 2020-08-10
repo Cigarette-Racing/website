@@ -54,7 +54,7 @@ export const DiscoverSection = ({
             'linear-gradient(360deg, #000000 46.14%, rgba(0, 0, 0, 0) 100%)',
         }}
       />
-      <div className="md:px-12 lg:px-16 relative max-w-5xl mx-auto">
+      <div className="md:px-12 lg:px-20 relative max-w-7xl mx-auto">
         <div className="hidden md:block absolute right-0 top-0">
           <VerticalHeader theme="dark" className="mr-4">
             {sectionTitle}
