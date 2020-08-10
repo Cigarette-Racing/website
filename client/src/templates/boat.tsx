@@ -282,7 +282,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             <SideBleedImage
               media={headerImage}
               side={bleedDirection}
-              className="lg:mt-32 md:mb-32"
+              className="lg:mt-32 mb-20 md:mb-32"
               size="large"
             />
             {!!blocks &&
