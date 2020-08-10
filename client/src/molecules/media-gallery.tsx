@@ -88,7 +88,7 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
   useEffect(() => {
     cacheImages(
       getGallerySlice(gallery, page + 1, perPage).map(
-        (item) => item.thumbnail.childImageSharp?.fluid?.src!
+        (item) => item.thumbnail?.childImageSharp?.fluid?.src!
       )
     )
   }, [page, perPage])
@@ -98,10 +98,10 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
     if (lightboxMediaIndex === undefined) return
     const beforeLightboxMediaImage = gallery[
       Math.max(lightboxMediaIndex - 1, 0)
-    ].image.childImageSharp?.fluid?.src!
+    ].image?.childImageSharp?.fluid?.src!
     const afterLightboxMediaImage = gallery[
       Math.min(lightboxMediaIndex + 1, gallery.length - 1)
-    ].image.childImageSharp?.fluid?.src!
+    ].image?.childImageSharp?.fluid?.src!
     cacheImages([beforeLightboxMediaImage, afterLightboxMediaImage])
   }, [lightboxMediaIndex])
 
