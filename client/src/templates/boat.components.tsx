@@ -519,7 +519,7 @@ export const OrderSectionComponent = ({
       ) : (
         !!media && (
           <Img
-            fluid={media.image.childImageSharp?.fluid}
+            fluid={!!media.image && media.image.childImageSharp?.fluid}
             alt={media.alt || ''}
             className="h-full w-full object-cover top-0"
             style={{ position: 'absolute' }}
@@ -530,7 +530,7 @@ export const OrderSectionComponent = ({
       <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
         <div className="bg-black bg-opacity-75 py-16 sm:py-20 px-4 max-w-md">
           <Typography variant="h3" sm="h2" className="mb-6">
-            Order today
+            {title}
           </Typography>
           <Typography variant="e2" className="mb-12">
             {boatNameLong}
