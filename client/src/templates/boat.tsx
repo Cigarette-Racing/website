@@ -210,11 +210,13 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         <BoatHeader
           boatImage={
             !!boatEntry
-              ? heroData.backgroundMedia
-              : heroData.backgroundMedia.image.childImageSharp?.fluid!
+              ? heroData.backgroundMedia.image?.childImageSharp?.fluid!
+              : heroData.backgroundMedia
           }
           boatLogo={
-            !!boatEntry ? heroData.boatLogo : heroData.boatLogo.image.publicURL!
+            !!boatEntry
+              ? heroData.boatLogo.image?.publicURL!
+              : heroData.boatLogo
           }
           boatNameLong={
             !!boatEntry ? heroData.boatNameLong : boat.boatNameLong!
