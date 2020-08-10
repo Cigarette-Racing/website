@@ -382,7 +382,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 <InPageCta variant="secondary" theme={theme}>
                   <span className="flex items-center">
                     <PlusIcon className="inline-block text-red mr-2 text-lg" />
-                    <span>More Details</span>
+                    {/* <span>More Details</span> */}
                   </span>
                 </InPageCta>
               </div>
