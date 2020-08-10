@@ -100,18 +100,26 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
           onClick={goToItem}
         />
       </div>
-      <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex justify-between w-full px-4">
-        <CircleButton
-          icon={ArrowIcon}
-          size="sm"
-          className="hover:bg-white hover:text-red transform rotate-180"
-        />
-        <CircleButton
-          icon={ArrowIcon}
-          size="sm"
-          className="hover:bg-white hover:text-red"
-        />
-      </div>
+      {items.length > 1 && (
+        <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex justify-between w-full px-4">
+          <CircleButton
+            icon={ArrowIcon}
+            size="sm"
+            className="hover:bg-white hover:text-red transform rotate-180"
+            onClick={(params) => {
+              goToItem(page)
+            }}
+          />
+          <CircleButton
+            icon={ArrowIcon}
+            size="sm"
+            className="hover:bg-white hover:text-red"
+            onClick={(params) => {
+              goToItem(page + 2)
+            }}
+          />
+        </div>
+      )}
     </div>
   )
 }
