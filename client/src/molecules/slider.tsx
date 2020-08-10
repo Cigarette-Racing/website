@@ -54,6 +54,7 @@ export const Slider = ({ items }: SliderProps) => {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="md:w-9/12" ref={ref}>
+        {console.log(items)}
         <AspectRatio ratio="3:2">
           <AnimatePresence initial={false} custom={{ direction, width }}>
             <motion.img

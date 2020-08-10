@@ -36,26 +36,25 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
     <div className="relative -mb-12 max-w-8xl mx-auto">
       <AspectRatio ratio="2:1">
         <AnimatePresence>
-          <motion.img
-            key={page}
-            src={
-              items[itemIndex].media?.image?.childImageSharp?.fluid?.src! ||
-              items[itemIndex].media?.image
-            }
-            {...animations}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0}
-            onDragEnd={(e, { offset, velocity }) => {
-              determineSwipeAction({
-                offset: offset.x,
-                velocity: velocity.x,
-                onSwipeLeft: () => goToItem(page + 2),
-                onSwipeRight: () => goToItem(page),
-              })
-            }}
-            className="absolute h-full w-full object-cover"
-          />
+          {!!items[itemIndex].media?.image && (
+            <motion.img
+              key={page}
+              src={items[itemIndex].media?.image}
+              {...animations}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0}
+              onDragEnd={(e, { offset, velocity }) => {
+                determineSwipeAction({
+                  offset: offset.x,
+                  velocity: velocity.x,
+                  onSwipeLeft: () => goToItem(page + 2),
+                  onSwipeRight: () => goToItem(page),
+                })
+              }}
+              className="absolute h-full w-full object-cover"
+            />
+          )}
         </AnimatePresence>
       </AspectRatio>
       <div className="absolute pb-4 bottom-0 left-1/2 transform -translate-x-1/2 z-10">
