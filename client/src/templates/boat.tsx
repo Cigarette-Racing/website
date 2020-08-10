@@ -205,18 +205,20 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   return (
     <Layout>
       <SEO title="Boat" />
+
+      {console.log(heroData)}
       {!heroData && <div>Enter Some boat data</div>}
-      {heroData && heroData.backgroundMedia && (
+      {heroData && (
         <BoatHeader
           boatImage={
             !!boatEntry
-              ? heroData.backgroundMedia.image?.childImageSharp?.fluid!
-              : heroData.backgroundMedia
+              ? heroData.backgroundMedia
+              : heroData.backgroundMedia?.image?.childImageSharp?.fluid!
           }
           boatLogo={
             !!boatEntry
-              ? heroData.boatLogo.image?.publicURL!
-              : heroData.boatLogo
+              ? heroData.boatLogo
+              : heroData.boatLogo?.image?.publicURL!
           }
           boatNameLong={
             !!boatEntry ? heroData.boatNameLong : boat.boatNameLong!
