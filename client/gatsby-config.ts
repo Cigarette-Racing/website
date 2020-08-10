@@ -34,6 +34,7 @@ export const plugins = [
       typeName: 'CraftAPI',
       fieldName: 'craftAPI',
       url: `${process.env.GATSBY_CRAFT_GRAPHQL_API}`,
+      refetchInterval: '',
     },
   },
   `gatsby-plugin-typescript`,
