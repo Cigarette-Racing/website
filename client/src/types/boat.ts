@@ -12,7 +12,7 @@ export type TextBlock = {
 type Treatment = 'desaturate' | 'grayscale'
 
 export type Media = {
-  image: GatsbyTypes.File
+  image: GatsbyTypes.File | string
   label?: string
   alt?: string
   videoUrl?: string
@@ -71,9 +71,10 @@ export function findDiscoverSection(sections: readonly any[]) {
   return sections.find(isDiscoverSection) as DiscoverSection | undefined
 }
 
-export type GalleryMedia = Media & { thumbnail: GatsbyTypes.File }
+export type GalleryMedia = Media & { thumbnail: GatsbyTypes.File | string }
 
 export type GallerySection = {
+  source?: string
   type: 'gallery'
   gallery: GalleryMedia[]
 } & CommonSectionProps
@@ -252,6 +253,19 @@ export function isFullWidthCarouselBlock(
   return block.type === 'full-width-carousel'
 }
 
+export type HorizontalImageTextBlock = {
+  type: 'horizontal-image-text'
+  media: Media
+  content: TextBlock
+  layout: 'imageOnLeft' | 'imageOnRight'
+}
+
+export function isHorizontalImageTextBlock(
+  block: Block
+): block is HorizontalImageTextBlock {
+  return block.type === 'horizontal-image-text'
+}
+
 type Block =
   | OneColumnTextBlock
   | OneColumnImageTextBlock
@@ -261,6 +275,7 @@ type Block =
   | SliderBlock
   | CarouselBlock
   | FullWidthCarouselBlock
+  | HorizontalImageTextBlock
 
 // ===================================
 // PRIMARY TYPES

@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
 import { FullWidthCarouselBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { ProgressDots } from '../atoms/progress-dots'
+import { CircleButton } from '../atoms/circle-button'
+import { ArrowIcon } from '../svgs/icons'
 import { determineSwipeAction } from '../services/swiping'
+import { AutoplayVideo } from '../atoms/autoplay-video'
 
 const animations = {
   initial: {
@@ -31,14 +34,14 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
   const goToItem = (oneBasedIndex: number) => {
     setPage(oneBasedIndex - 1)
   }
+  const media = items[itemIndex].media
 
   return (
-    <div className="relative -mb-12 max-w-8xl mx-auto">
+    <div className="relative mb-32 lg:mb-48 max-w-8xl mx-auto">
       <AspectRatio ratio="2:1">
         <AnimatePresence>
-          <motion.img
+          <motion.div
             key={page}
-            src={items[itemIndex].media.image.childImageSharp?.fluid?.src!}
             {...animations}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -52,17 +55,59 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
               })
             }}
             className="absolute h-full w-full object-cover"
-          />
+          >
+            {!!media?.videoUrl ? (
+              <AutoplayVideo
+                alt={media.alt}
+                image={media.image}
+                videoUrl={media.videoUrl}
+              />
+            ) : (
+              <img
+                src={media?.image?.childImageSharp?.fluid?.src! || media?.image}
+                className="pointer-events-none"
+              />
+            )}
+          </motion.div>
         </AnimatePresence>
       </AspectRatio>
-      <div className="absolute pb-4 bottom-0 left-1/2 transform -translate-x-1/2 z-10">
-        <ProgressDots
-          current={itemIndex + 1}
-          total={items.length}
-          variant="horizontal"
-          onClick={goToItem}
-        />
-      </div>
+      {items.length > 1 && (
+        <Fragment>
+          <div
+            className="absolute inset-0 z-10"
+            style={{
+              background:
+                'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 47.5%)',
+            }}
+          />
+          <div className="absolute pb-4 bottom-0 left-1/2 transform -translate-x-1/2 z-10">
+            <ProgressDots
+              current={itemIndex + 1}
+              total={items.length}
+              variant="horizontal"
+              onClick={goToItem}
+            />
+          </div>
+          <div className="absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex justify-between w-full px-4">
+            <CircleButton
+              icon={ArrowIcon}
+              size="sm"
+              className="hover:bg-white hover:text-red transform rotate-180"
+              onClick={(params) => {
+                goToItem(page)
+              }}
+            />
+            <CircleButton
+              icon={ArrowIcon}
+              size="sm"
+              className="hover:bg-white hover:text-red"
+              onClick={(params) => {
+                goToItem(page + 2)
+              }}
+            />
+          </div>
+        </Fragment>
+      )}
     </div>
   )
 }

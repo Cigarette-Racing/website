@@ -11,6 +11,7 @@ import {
 import { useMeasure } from 'react-use'
 import { determineSwipeAction } from '../services/swiping'
 import { fadeAnimationProps } from '../services/animations'
+import { Theme } from '../types/shared'
 
 enum Direction {
   Next = 1,
@@ -38,9 +39,11 @@ const variants = {
   },
 }
 
-export interface SliderProps extends Omit<SliderBlock, 'type'> {}
+export interface SliderProps extends Omit<SliderBlock, 'type'> {
+  theme?: Theme
+}
 
-export const Slider = ({ items }: SliderProps) => {
+export const Slider = ({ items, theme }: SliderProps) => {
   const [ref, { width }] = useMeasure<HTMLDivElement>()
   const [[page, direction], setPage] = useState([0, 0])
   const itemIndex = wrap(0, items.length, page)
@@ -58,7 +61,10 @@ export const Slider = ({ items }: SliderProps) => {
           <AnimatePresence initial={false} custom={{ direction, width }}>
             <motion.img
               key={page}
-              src={items[itemIndex].media.image.childImageSharp?.fluid?.src!}
+              src={
+                items[itemIndex].media?.image?.childImageSharp?.fluid?.src! ||
+                items[itemIndex]?.media?.image
+              }
               custom={{ direction, width }}
               variants={variants}
               initial="enter"
@@ -86,6 +92,7 @@ export const Slider = ({ items }: SliderProps) => {
             className="absolute bottom-0 pb-4 w-full z-10 md:hidden"
             onClickNext={goNext}
             onClickPrev={goPrev}
+            theme={theme}
           />
         </AspectRatio>
         <div className="md:flex justify-between items-start md:mt-10 md:mb-40">
@@ -103,6 +110,7 @@ export const Slider = ({ items }: SliderProps) => {
             className="hidden md:flex"
             onClickNext={goNext}
             onClickPrev={goPrev}
+            theme={theme}
           />
         </div>
       </div>
