@@ -636,7 +636,7 @@ export const query = graphql`
           orderSectionShortTitle: shortTitle
           orderSectionBackground {
             ... on CraftAPI_s3_Asset {
-              url(width: 1200)
+              url(width: 2800)
             }
           }
         }
