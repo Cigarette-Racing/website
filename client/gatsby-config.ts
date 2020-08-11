@@ -12,20 +12,12 @@ export const siteMetadata = {
 }
 
 export const plugins = [
-  `gatsby-transformer-yaml`,
   `gatsby-plugin-react-helmet`,
   {
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `images`,
       path: `${__dirname}/content/images`,
-    },
-  },
-  {
-    resolve: `gatsby-source-filesystem`,
-    options: {
-      name: `boats`,
-      path: `${__dirname}/content/boats`,
     },
   },
   {
