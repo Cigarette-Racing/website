@@ -109,7 +109,7 @@ const FormWizard = () => (
                 component="input"
                 type="hidden"
                 name="form-name"
-                initialValue="TEST-contact"
+                initialValue="inquiry-form"
               />
               <AnimatePresence>
                 <Steps>
@@ -132,11 +132,11 @@ export const HiddenInquiryForm = () => (
     method="post"
     netlify-honeypot="bot-field"
     data-netlify="true"
-    name="TEST-contact"
+    name="inquiry-form"
     hidden
   >
     <input type="hidden" name="bot-field" />
-    <input type="hidden" name="form-name" value="TEST-contact" />
+    <input type="hidden" name="form-name" value="inquiry-form" />
 
     <input type="text" name="firstName" />
     <input type="text" name="lastName" />

@@ -11,8 +11,6 @@ export const siteMetadata = {
   metadata,
 }
 
-console.log('ENV', process.env.NODE_ENV)
-
 export const plugins = [
   `gatsby-transformer-yaml`,
   `gatsby-plugin-react-helmet`,
@@ -36,7 +34,8 @@ export const plugins = [
       typeName: 'CraftAPI',
       fieldName: 'craftAPI',
       url: `${process.env.GATSBY_CRAFT_GRAPHQL_API}`,
-      refetchInterval: 30,
+      refetchInterval:
+        process.env.GATSBY_CRAFT_GRAPHQL_API === 'development' ? 20 : null,
     },
   },
   `gatsby-plugin-typescript`,

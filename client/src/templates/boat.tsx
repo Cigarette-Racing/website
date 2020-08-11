@@ -18,6 +18,7 @@ import {
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
   OrderSectionComponent,
+  HorizontalImageTextBlockComponent,
 } from './boat.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
@@ -39,6 +40,8 @@ import {
   isFullWidthCarouselBlock,
   isOneColumnImageTextBlock,
   findOrderSection,
+  isHorizontalImageTextBlock,
+  HorizontalImageTextBlock,
 } from '../types/boat'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
@@ -57,9 +60,34 @@ const extractTitles = (sections: readonly any[]) =>
     )
     .map((section) => [section.title, section.shortTitle || ''])
 
+const extractTitlesFromCraft = (
+  boatEntry: GatsbyTypes.BoatPageQuery['craftAPI']['entry']
+) => {
+  const titles: string[][] = []
+  if (!!boatEntry?.discoverSection?.[0]) {
+    titles.push(['Discover', ''])
+  }
+  boatEntry?.flexibleSections?.forEach((section) => {
+    titles.push([section.title, section.shortTitle || ''])
+  })
+  if (!!boatEntry?.boatSpecs) {
+    titles.push(['Specs', ''])
+  }
+  if (!!boatEntry?.gallery) {
+    titles.push(['Gallery', ''])
+  }
+  titles.push([
+    boatEntry?.orderSectionTitle || 'Order Today',
+    boatEntry?.orderSectionShortTitle || 'Order',
+  ])
+  return titles
+}
+
 const extractHeroSectionFromCraft = (boatEntry: any) => {
   return {
-    backgroundMedia: boatEntry.singleMedia[0]?.image[0]?.url,
+    image: boatEntry.singleMedia[0]?.image[0]?.url,
+    alt: boatEntry.singleMedia[0]?.alt,
+    videoUrl: boatEntry.singleMedia[0]?.videoURL,
     boatNameLong: boatEntry.boatNameLong,
     headline: boatEntry.headline,
     stats: boatEntry.boatStats,
@@ -71,6 +99,7 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
 const extractDiscoverSectionFromCraft = (boatEntry: any) => {
   return {
     title: 'discover',
+    disableBackground: boatEntry.discoverSection[0]?.disableBackground,
     content: {
       header: boatEntry.discoverSection[0]?.textBlock[0]?.header,
       copy: boatEntry.discoverSection[0]?.textBlock[0]?.copy,
@@ -82,13 +111,63 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
   }
 }
 
-const extractFlexibleSectionFromCraft = (boatEntry: any) => {
-  return []
+const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
+  const blockTypes = {
+    oneColumnTextBlock: 'one-column-text',
+    oneColumnImageTextBlock: 'one-column-image-text',
+    twoColumnImageTextBlock: 'two-column-image-text',
+    twoColumnImagesBlock: 'two-column-images',
+    threeColumnImagesBlock: 'three-column-images',
+    sliderBlock: 'slider',
+    carousel: 'carousel',
+    fullWidthCarousel: 'full-width-carousel',
+    horizontalImageText: 'horizontal-image-text',
+  }
+
+  return boatEntry.flexibleSections.map((section: any) => {
+    const blocks = section.blocks.map((block) => {
+      return {
+        ...block,
+        source: 'craft',
+        type:
+          block.typeHandle === 'carousel' && block.fullWidth
+            ? 'full-width-carousel'
+            : blockTypes[block.typeHandle as keyof typeof blockTypes],
+      }
+    })
+
+    return {
+      type: 'flexible',
+      title: section.title,
+      theme: section.theme,
+      bleedDirection: section.bleedDirection,
+      headerImage: !!section.headerImage.length && section.headerImage[0].url,
+      blocks,
+      moreDetails: [],
+    }
+  })
+}
+
+const extractGallerySectionFromCraft = (boatEntry: any) => {
+  const galleryItems = boatEntry?.gallery.map((galleryItem) => {
+    return {
+      thumbnail: galleryItem?.thumbnail?.[0].url,
+      image: galleryItem?.image?.[0].url,
+      videoUrl: galleryItem?.videoURL,
+    }
+  })
+
+  return {
+    source: 'craft',
+    type: 'gallery',
+    title: 'Media Gallery',
+    shortTitle: 'Gallery',
+    gallery: galleryItems,
+  }
 }
 
 const extractSpecsSectionFromCraft = (boatEntry: any) => {
   const categories = boatEntry.boatSpecs.map((specCategory) => {
-    // const specs = specCategory.
     const specs = specCategory.children.map((specData) => {
       const specDescriptions = specData.children.map((specDesc) => {
         return specDesc.boatSpecDescription
@@ -115,9 +194,24 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
 const extractOrderDataFromCraft = (boatEntry: any) => {
   return {
     boatNameLong: boatEntry.boatNameLong,
-    title: 'Order Today',
-    media: boatEntry.orderTodayBackground[0]?.url,
+    title: boatEntry.orderSectionTitle || 'Order Today',
+    media: boatEntry.orderSectionBackground[0]?.url,
   }
+}
+
+const createCarouselItems = (items: any) => {
+  return items.map((item) => {
+    return {
+      content: {
+        copy: item.textBlock?.[0].copy,
+        header: item.textBlock?.[0].header,
+      },
+      media: {
+        image: item.singleMedia?.[0].image?.[0]?.url,
+        videoUrl: item.singleMedia?.[0]?.videoURL,
+      },
+    }
+  })
 }
 
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
@@ -127,56 +221,39 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
     },
   } = props
 
-  const {
-    data: { boatsYaml: boat },
-  } = props
+  if (!boatEntry)
+    return <div className="text-white">{props.pageContext.craftSlug}</div>
 
-  const titles = extractTitles(!!boatEntry ? [] : boat.sections!)
-  const heroData = !!boatEntry
-    ? extractHeroSectionFromCraft(boatEntry)
-    : findHeroSection(boat.sections!)
-  const discoverData = !!boatEntry
-    ? extractDiscoverSectionFromCraft(boatEntry)
-    : findDiscoverSection(boat.sections!)
-
-  const flexData = !!boatEntry
-    ? extractFlexibleSectionFromCraft(boatEntry)
-    : getFlexibleSections(boat.sections!)
-  const specsData = !!boatEntry
-    ? extractSpecsSectionFromCraft(boatEntry)
-    : findSpecsSection(boat.sections!)
-  const galleryData = findGallerySection(!!boatEntry ? [] : boat.sections!)
-  const customizationsData = findCustomizationsSection(
-    !!boatEntry ? [] : boat.sections!
+  const titles = extractTitlesFromCraft(boatEntry)
+  const heroData = extractHeroSectionFromCraft(boatEntry)
+  const discoverData = extractDiscoverSectionFromCraft(boatEntry)
+  const flexData = getFlexibleSections(
+    extractFlexibleSectionsFromCraft(boatEntry)
   )
-  const orderData = !!boatEntry
-    ? extractOrderDataFromCraft(boatEntry)
-    : findOrderSection(!!boatEntry ? [] : boat.sections!)
+  const specsData = extractSpecsSectionFromCraft(boatEntry)
+  const galleryData = extractGallerySectionFromCraft(boatEntry)
+  const customizationsData = findCustomizationsSection([])
+  const orderData = extractOrderDataFromCraft(boatEntry)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
     <Layout>
       <SEO title="Boat" />
+      {!heroData && <div>Enter Some boat data</div>}
       {heroData && (
         <BoatHeader
-          boatImage={
-            !!boatEntry
-              ? heroData.backgroundMedia
-              : heroData.backgroundMedia.image.childImageSharp?.fluid!
-          }
-          boatLogo={
-            !!boatEntry ? heroData.boatLogo : heroData.boatLogo.image.publicURL!
-          }
-          boatNameLong={
-            !!boatEntry ? heroData.boatNameLong : boat.boatNameLong!
-          }
+          image={heroData.image}
+          alt={heroData.alt}
+          videoUrl={heroData.videoUrl}
+          boatLogo={heroData.boatLogo}
+          boatNameLong={heroData.boatNameLong}
           headline={heroData.headline!}
           stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
         />
       )}
       <InPageNav
-        boatName={!!boatEntry ? heroData.boatName : boat.boatName!}
+        boatName={heroData.boatName}
         titles={titles}
         onClickInquire={setInquiryModalState}
       />
@@ -186,6 +263,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           media={discoverData.media}
           header={discoverData.content.header}
           copy={discoverData.content.copy}
+          disableBackground={discoverData.disableBackground}
         />
       )}
       {flexData.map(
@@ -200,66 +278,117 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           <BoatSection key={title} theme={theme}>
             <InPageAnchor title={title} />
             <MobileSectionHeader>{title}</MobileSectionHeader>
-            <VerticalHeaderBlock
-              label={title}
-              side={bleedDirection === 'left' ? 'right' : 'left'}
-              theme={theme}
-              className="lg:mt-32"
-            />
-            <SideBleedImage
-              media={headerImage}
-              side={bleedDirection}
-              className="lg:mt-32 md:mb-32"
-              size="large"
-            />
-            {blocks.map((block, index) => {
-              if (isTwoColumnImageTextBlock(block)) {
-                return (
-                  <TwoColumnImageTextBlockComponent key={index} {...block} />
-                )
-              }
-              if (isOneColumnTextBlock(block)) {
-                return (
-                  <OneColumnTextBlockComponent
-                    key={index}
-                    {...block}
-                    align={block.align ?? undefined}
-                  />
-                )
-              }
-              if (isOneColumnImageTextBlock(block)) {
-                return <OneColumnImageTextBlockComponent {...block} />
-              }
-              if (isCarouselBlock(block)) {
-                return <Carousel key={index} {...block} />
-              }
-              if (isSliderBlock(block)) {
-                return <Slider key={index} {...block} />
-              }
-              if (isThreeColumnImagesBlock(block)) {
-                return (
-                  <ThreeUpImageBlock
-                    key={index}
-                    className="mb-32"
-                    images={block.images}
-                  />
-                )
-              }
-              if (isTwoColumnImagesBlock(block)) {
-                return (
-                  <TwoUpImageBlock
-                    key={index}
-                    className="mb-32"
-                    images={block.images}
-                  />
-                )
-              }
-              if (isFullWidthCarouselBlock(block)) {
-                return <FullWidthCarousel key={index} {...block} />
-              }
-              return null
-            })}
-            {moreDetails && (
+            {!!headerImage && (
+              <VerticalHeaderBlock
+                label={title}
+                side={bleedDirection === 'left' ? 'right' : 'left'}
+                theme={theme}
+                className="lg:mt-32"
+              />
+            )}
+            {!!headerImage && (
+              <SideBleedImage
+                media={headerImage}
+                side={bleedDirection}
+                className="lg:mt-32 mb-20 md:mb-32"
+                size="large"
+              />
+            )}
+            {!!blocks &&
+              blocks.map((block, index) => {
+                if (isTwoColumnImageTextBlock(block)) {
+                  return (
+                    <div>TWO COLUMN IMAGE TEXT BLOCK</div>
+                    // <TwoColumnImageTextBlockComponent key={index} {...block} />
+                  )
+                }
+                if (isOneColumnTextBlock(block)) {
+                  if (block.textBlock) {
+                    block.copy = block.textBlock[0].copy
+                    block.header = block.textBlock[0].header
+                  }
+
+                  return (
+                    <OneColumnTextBlockComponent
+                      key={index}
+                      {...block}
+                      align={block.align ?? undefined}
+                    />
+                  )
+                }
+                if (isOneColumnImageTextBlock(block)) {
+                  if (block.textBlock) {
+                    block.content = {
+                      copy: block.textBlock[0].copy,
+                    }
+                    block.media = block.singleMedia?.[0].image?.[0].url
+                  }
+
+                  return <OneColumnImageTextBlockComponent {...block} />
+                }
+                if (isCarouselBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
+
+                  return <Carousel key={index} {...block} theme={theme} />
+                }
+                if (isSliderBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
+
+                  return <Slider key={index} {...block} theme={theme} />
+                }
+                if (isThreeColumnImagesBlock(block)) {
+                  return (
+                    <ThreeUpImageBlock
+                      key={index}
+                      className="mb-32"
+                      images={block.images}
+                    />
+                  )
+                }
+                if (isTwoColumnImagesBlock(block)) {
+                  return (
+                    <TwoUpImageBlock
+                      key={index}
+                      className="mb-32"
+                      images={block.images || block.children}
+                    />
+                  )
+                }
+                if (isHorizontalImageTextBlock(block)) {
+                  const extractedBlock: HorizontalImageTextBlock = {
+                    type: 'horizontal-image-text',
+                    layout: block.layout,
+                    content: {
+                      header: block.textBlock[0].header as string,
+                      copy: block.textBlock[0].copy as string,
+                    },
+                    media: {
+                      image: {
+                        publicURL: block.singleMedia[0].image[0]?.url as string,
+                      },
+                    },
+                  }
+                  return (
+                    <HorizontalImageTextBlockComponent {...extractedBlock} />
+                  )
+                }
+                if (isFullWidthCarouselBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
+
+                  return <FullWidthCarousel key={index} {...block} />
+                }
+                return null
+              })}
+            {/* {moreDetails && (
               <div className="flex justify-center md:mb-12">
                 <InPageCta variant="secondary" theme={theme}>
                   <span className="flex items-center">
@@ -268,25 +397,24 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   </span>
                 </InPageCta>
               </div>
-            )}
+            )} */}
           </BoatSection>
         )
       )}
-      {specsData && (
+      {!!specsData?.categories.length && (
         <SpecsSectionComponent
-          boatNameLong={boat.boatNameLong!}
+          boatNameLong={boatEntry.boatNameLong}
           {...specsData}
         />
       )}
-      {galleryData && <MediaGallery {...galleryData} />}
+      {galleryData && !!galleryData.gallery.length && (
+        <MediaGallery {...galleryData} />
+      )}
       {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
       )}
       {orderData && (
         <OrderSectionComponent
-          boatNameLong={
-            !!boatEntry ? !!boatEntry.boatNameLong : boat.boatNameLong!
-          }
           onClickCta={setInquiryModalState}
           {...orderData}
         />
@@ -299,7 +427,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 export default BoatTemplate
 
 export const query = graphql`
-  query BoatPage($slug: String!, $craftSlug: String) {
+  query BoatPage($craftSlug: String) {
     craftAPI {
       entry(slug: [$craftSlug]) {
         id
@@ -312,6 +440,8 @@ export const query = graphql`
           boatNameLong
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
+              alt
+              videoURL
               image {
                 url(width: 2000)
               }
@@ -320,6 +450,25 @@ export const query = graphql`
           boatLogo {
             ... on CraftAPI_s3_Asset {
               url
+            }
+          }
+          ... on CraftAPI_boats_boats_Entry {
+            gallery: multipleMedia {
+              ... on CraftAPI_multipleMedia_BlockType {
+                thumbnail: image {
+                  ... on CraftAPI_s3_Asset {
+                    title
+                    url(width: 600)
+                  }
+                }
+                image {
+                  ... on CraftAPI_s3_Asset {
+                    title
+                    url(width: 2000)
+                  }
+                }
+                videoURL
+              }
             }
           }
           boatStats {
@@ -331,6 +480,7 @@ export const query = graphql`
           }
           discoverSection {
             ... on CraftAPI_discoverSection_discoverSection_BlockType {
+              disableBackground
               singleMedia {
                 ... on CraftAPI_singleMedia_BlockType {
                   image {
@@ -352,8 +502,122 @@ export const query = graphql`
           }
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
-              textBlockHeader
-              imageBleedDirection
+              theme
+              title: textBlockHeader
+              shortTitle
+              bleedDirection: imageBleedDirection
+              headerImage: image {
+                url
+              }
+              blocks: children {
+                typeHandle
+                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
+                  align: textAlign
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      copy
+                      header
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      copy
+                    }
+                  }
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_twoColumnImagesBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_image_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_twoColumnImageTextBlock_BlockType {
+                  id
+                }
+                ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
+                  id
+                }
+                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
+                  id
+                }
+                ... on CraftAPI_flexibleSections_carousel_BlockType {
+                  fullWidth
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                          autoplayVideo
+                          videoURL
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      id
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url
+                        }
+                      }
+                    }
+                  }
+                  layout: horizontalLayout
+                }
+              }
             }
           }
           boatSpecs {
@@ -371,178 +635,12 @@ export const query = graphql`
               }
             }
           }
-          orderTodayBackground {
+          orderSectionTitle
+          orderSectionShortTitle: shortTitle
+          orderSectionBackground {
             ... on CraftAPI_s3_Asset {
-              url(width: 1200)
+              url(width: 2800)
             }
-          }
-        }
-      }
-    }
-    boatsYaml(fields: { slug: { eq: $slug } }) {
-      boatName
-      boatNameLong
-      sections {
-        type
-        title
-        shortTitle
-        stats {
-          percentage
-          text
-          label
-        }
-        headline
-        boatLogo {
-          image {
-            publicURL
-          }
-        }
-        backgroundMedia {
-          image {
-            childImageSharp {
-              fluid(maxWidth: 2000) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-        media {
-          image {
-            childImageSharp {
-              fluid(maxWidth: 2000) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-          videoUrl
-        }
-        content {
-          header
-          copy
-        }
-        categories {
-          name
-          specs {
-            name
-            descriptions
-          }
-        }
-        gallery {
-          thumbnail: image {
-            childImageSharp {
-              fluid(maxWidth: 600) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-          image {
-            childImageSharp {
-              fluid(maxWidth: 2000) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-          videoUrl
-        }
-        options {
-          media {
-            image {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          content {
-            header
-            copy
-          }
-        }
-        theme
-        bleedDirection
-        headerImage {
-          image {
-            childImageSharp {
-              fluid(maxWidth: 2400) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-        blocks {
-          type
-          leftColumn {
-            content {
-              header
-              copy
-            }
-            media {
-              image {
-                childImageSharp {
-                  fluid(maxWidth: 2400) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-              label
-            }
-          }
-          rightColumn {
-            content {
-              header
-              copy
-            }
-            media {
-              image {
-                childImageSharp {
-                  fluid(maxWidth: 2400) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-              label
-            }
-          }
-          header
-          copy
-          align
-          items {
-            content {
-              header
-              copy
-            }
-            media {
-              image {
-                childImageSharp {
-                  fluid(maxWidth: 2400) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-          images {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 2400) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          media {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 2400) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          content {
-            header
-            copy
           }
         }
       }

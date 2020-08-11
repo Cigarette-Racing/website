@@ -10,10 +10,13 @@ import {
 } from '../templates/boat.components'
 import { determineSwipeAction } from '../services/swiping'
 import { fadeAnimationProps } from '../services/animations'
+import { Theme } from '../types/shared'
 
-export interface CarouselProps extends Omit<CarouselBlock, 'type'> {}
+export interface CarouselProps extends Omit<CarouselBlock, 'type'> {
+  theme?: Theme
+}
 
-export const Carousel = ({ items }: CarouselProps) => {
+export const Carousel = ({ items, theme }: CarouselProps) => {
   const [page, setPage] = useState(0)
   const itemIndex = wrap(0, items.length, page)
   const goNext = () => {
@@ -29,7 +32,10 @@ export const Carousel = ({ items }: CarouselProps) => {
         <AnimatePresence initial={false}>
           <motion.img
             key={page}
-            src={items[itemIndex].media.image.childImageSharp?.fluid?.src!}
+            src={
+              items[itemIndex]?.media?.image?.childImageSharp?.fluid?.src! ||
+              items[itemIndex].media.image
+            }
             {...fadeAnimationProps}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -49,6 +55,7 @@ export const Carousel = ({ items }: CarouselProps) => {
           className="absolute bottom-0 pb-4 w-full md:hidden z-10"
           onClickNext={goNext}
           onClickPrev={goPrev}
+          theme={theme}
         />
       </AspectRatio>
       <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
@@ -64,9 +71,9 @@ export const Carousel = ({ items }: CarouselProps) => {
         </AnimatePresence>
         <CarouselButtons
           className="hidden md:flex items-start"
-          theme="light"
           onClickNext={goNext}
           onClickPrev={goPrev}
+          theme={theme}
         />
       </div>
     </div>

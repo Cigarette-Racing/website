@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import Img from 'gatsby-image'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
@@ -20,20 +20,26 @@ import {
   OneColumnImageTextBlock,
   OrderSection,
   Spec,
+  HorizontalImageTextBlock,
 } from '../types/boat'
 import { Tab } from '../atoms/tab'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useToggle } from 'react-use'
+import { AutoplayVideo } from '../atoms/autoplay-video'
 
 export const BoatHeader = ({
-  boatImage,
+  image,
+  alt,
+  videoUrl,
   boatLogo,
   boatNameLong,
   onClickCta,
   headline,
   stats,
 }: {
-  boatImage: GatsbyTypes.ImageSharpFluid | string
+  image: GatsbyTypes.File | string
+  alt?: string
+  videoUrl?: string
   boatLogo: string
   boatNameLong: string
   onClickCta: (state: boolean) => void
@@ -43,7 +49,6 @@ export const BoatHeader = ({
   <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between">
     <div />
     <div className="relative z-10">
-      {console.log(boatImage)}
       <Typography variant="e2" md="e2" className="text-center mb-8 md:mb-4">
         {boatNameLong}
       </Typography>
@@ -67,17 +72,34 @@ export const BoatHeader = ({
       </div>
     </div>
     <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
-      {/* conditionally render component based on Craft vs YAML */}
-      {typeof boatImage === 'string' ? (
-        <img src={boatImage} className="h-full w-full object-cover" />
+      {!!videoUrl ? (
+        <AutoplayVideo
+          image={image}
+          alt={alt}
+          videoUrl={videoUrl}
+          videoOptions={{ controls: false }}
+        />
       ) : (
-        <Img fluid={boatImage} alt="" className="h-full w-full object-cover" />
+        <Fragment>
+          {/* conditionally render component based on Craft vs YAML */}
+          {typeof image === 'string' ? (
+            <img src={image} className="h-full w-full object-cover" />
+          ) : (
+            !!image && (
+              <Img
+                fluid={image.childImageSharp?.fluid!}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            )
+          )}
+        </Fragment>
       )}
     </div>
-    <div className="hidden bg-black bg-opacity-50 absolute inset-0 md:block"></div>
+    <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
     <div className="relative z-10">
       <div className="relative flex justify-center mb-8 md:mb-10">
-        <img src={boatLogo} alt={boatNameLong} />
+        {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
       </div>
       <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
         {stats.map((stat) => (
@@ -270,12 +292,21 @@ export const SideBleedImage = ({
       })}
     >
       <AspectRatio ratio={ratio}>
-        <Img
-          fluid={media.image.childImageSharp?.fluid}
-          alt={media.alt || ''}
-          className={clsx('h-full w-full object-cover', imgClassName)}
-          style={{ position: 'absolute' }}
-        />
+        {!!media?.image?.childImageSharp ? (
+          <Img
+            fluid={media.image.childImageSharp?.fluid}
+            alt={media.alt || ''}
+            className={clsx('h-full w-full object-cover', imgClassName)}
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <img
+            src={media}
+            alt=""
+            className={clsx('h-full w-full object-cover', imgClassName)}
+            style={{ position: 'absolute' }}
+          />
+        )}
       </AspectRatio>
     </div>
   </div>
@@ -291,22 +322,40 @@ export const TwoUpImageBlock = ({
   <div className={clsx('max-w-5xl mx-auto sm:flex', className)}>
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <Img
-          fluid={images[0].image.childImageSharp?.fluid}
-          alt={images[0].alt || ''}
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
-        />
+        {images[0].singleMedia ? (
+          <img
+            src={images[0].singleMedia?.[0].image?.[0].url}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <Img
+            fluid={images[0].image.childImageSharp?.fluid}
+            alt={images[0].alt || ''}
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        )}
       </AspectRatio>
     </div>
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <Img
-          fluid={images[1].image.childImageSharp?.fluid}
-          alt={images[1].alt || ''}
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
-        />
+        {images[1].singleMedia ? (
+          <img
+            src={images[1].singleMedia?.[0].image?.[0].url}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <Img
+            fluid={images[1].image.childImageSharp?.fluid}
+            alt={images[1].alt || ''}
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        )}
       </AspectRatio>
     </div>
   </div>
@@ -320,23 +369,25 @@ export const ThreeUpImageBlock = ({
   images: [Media, Media, Media]
 }) => (
   <div className={clsx('sm:flex max-w-7xl mx-auto', className)}>
-    {images.map((media) => {
-      return (
-        <div
-          key={media.image.childImageSharp?.fluid?.src!}
-          className="px-4 mb-16 sm:w-1/3"
-        >
-          <AspectRatio ratio="3:4">
-            <Img
-              fluid={media.image.childImageSharp?.fluid}
-              alt={media.alt || ''}
-              className="h-full w-full object-cover"
-              style={{ position: 'absolute' }}
-            />
-          </AspectRatio>
-        </div>
-      )
-    })}
+    {!!images &&
+      !!images.length &&
+      images.map((media) => {
+        return (
+          <div
+            key={media.image.childImageSharp?.fluid?.src!}
+            className="px-4 mb-16 sm:w-1/3"
+          >
+            <AspectRatio ratio="3:4">
+              <Img
+                fluid={media.image.childImageSharp?.fluid}
+                alt={media.alt || ''}
+                className="h-full w-full object-cover"
+                style={{ position: 'absolute' }}
+              />
+            </AspectRatio>
+          </div>
+        )
+      })}
   </div>
 )
 
@@ -346,7 +397,7 @@ export const SpecsSectionComponent = ({
   boatNameLong,
 }: SpecsSection & { boatNameLong: string }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>(
-    categories[0].name
+    categories[0]?.name
   )
   return (
     <BoatSection className="md:py-24">
@@ -358,39 +409,42 @@ export const SpecsSectionComponent = ({
           </VerticalHeader>
         </div>
         <div className="hidden md:block px-4 space-y-2 md:w-48 lg:w-56 xl:w-64 mt-24">
-          {categories.map(({ name }) => (
-            <Tab
-              key={name}
-              className="w-auto whitespace-no-wrap"
-              active={name === selectedCategory}
-              onClick={() => setSelectedCategory(name)}
-            >
-              {name}
-            </Tab>
-          ))}
-        </div>
-        <div className="max-w-2xl w-full">
-          <div className="px-4 md:px-0 md:mb-16">
-            <Typography variant="h4">{boatNameLong}</Typography>
-          </div>
-          <div className="md:hidden flex flex-no-wrap px-4 space-x-4 my-12 overflow-x-auto">
-            {categories.map(({ name }) => (
+          {!!categories.length &&
+            categories.map(({ name }) => (
               <Tab
                 key={name}
-                className="whitespace-no-wrap"
+                className="w-auto whitespace-no-wrap"
                 active={name === selectedCategory}
                 onClick={() => setSelectedCategory(name)}
               >
                 {name}
               </Tab>
             ))}
+        </div>
+        <div className="max-w-2xl w-full">
+          <div className="px-4 md:px-0 md:mb-16">
+            <Typography variant="h4">{boatNameLong}</Typography>
+          </div>
+          <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-10 overflow-x-auto">
+            {!!categories.length &&
+              categories.map(({ name }) => (
+                <Tab
+                  key={name}
+                  className="whitespace-no-wrap"
+                  active={name === selectedCategory}
+                  onClick={() => setSelectedCategory(name)}
+                >
+                  {name}
+                </Tab>
+              ))}
           </div>
           <div className="px-4 md:px-0 grid col-gap-6 grid-cols-2 mb-10">
-            {categories
-              .find((category) => category.name === selectedCategory)!
-              .specs.map((spec, index) => (
-                <SpecAccordion key={spec.name + index} {...spec} />
-              ))}
+            {!!categories.length &&
+              categories
+                .find((category) => category.name === selectedCategory)!
+                .specs.map((spec, index) => (
+                  <SpecAccordion key={spec.name + index} {...spec} />
+                ))}
           </div>
           {/* <div className="flex justify-center md:justify-start mb-2">
             <InPageCta variant="secondary" theme="light">
@@ -481,18 +535,20 @@ export const OrderSectionComponent = ({
           style={{ position: 'absolute' }}
         />
       ) : (
-        <Img
-          fluid={media.image.childImageSharp?.fluid}
-          alt={media.alt || ''}
-          className="h-full w-full object-cover top-0"
-          style={{ position: 'absolute' }}
-        />
+        !!media && (
+          <Img
+            fluid={!!media.image && media.image.childImageSharp?.fluid}
+            alt={media.alt || ''}
+            className="h-full w-full object-cover top-0"
+            style={{ position: 'absolute' }}
+          />
+        )
       )}
       <div className="absolute inset-0 bg-black bg-opacity-25"></div>
       <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
         <div className="bg-black bg-opacity-75 py-16 sm:py-20 px-4 max-w-md">
           <Typography variant="h3" sm="h2" className="mb-6">
-            Order today
+            {title}
           </Typography>
           <Typography variant="e2" className="mb-12">
             {boatNameLong}
@@ -539,12 +595,21 @@ export const OneColumnImageTextBlockComponent = ({
 }: OneColumnImageTextBlock) => (
   <div className="max-w-5xl mx-auto">
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      <Img
-        fluid={media.image.childImageSharp?.fluid}
-        alt={media.alt || ''}
-        className="h-full w-full object-cover"
-        style={{ position: 'absolute' }}
-      />
+      {typeof media === 'string' ? (
+        <img
+          src={media}
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
+      ) : (
+        <Img
+          fluid={media.image.childImageSharp?.fluid}
+          alt={media.alt || ''}
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
+      )}
     </AspectRatio>
     <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
       <TextBlockComponent className="md:w-7/12" {...content} />
@@ -589,3 +654,26 @@ export const TwoColumnImageTextBlockComponent = ({
     </div>
   </div>
 )
+
+export const HorizontalImageTextBlockComponent = ({
+  content,
+  layout,
+  media,
+}: HorizontalImageTextBlock) => {
+  const image = <img src={media.image.publicURL} />
+  const text = (
+    <div className="px-4 md:px-0 md:w-3/4 lg:w-2/3">
+      <TextBlockComponent {...content} />
+    </div>
+  )
+  return (
+    <div className="md:flex max-w-7xl mx-auto mb-16 md:mb-32">
+      <div className="md:w-1/2 flex flex-col justify-center items-center mb-12 md:mb-0">
+        {layout === 'imageOnLeft' ? image : text}
+      </div>
+      <div className="md:w-1/2 flex flex-col justify-center items-center">
+        {layout === 'imageOnLeft' ? text : image}
+      </div>
+    </div>
+  )
+}

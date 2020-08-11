@@ -57,15 +57,30 @@ const childAnimations = {
 
 export interface MediaGalleryProps extends GallerySection {}
 
-export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
+export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
   const showMore = useMedia('(min-width: 720px)')
   const [lightboxMediaIndex, setLightboxMediaIndex] = useState<number>()
   const [page, setPage] = useState(1) // One-based to keep ourselves sane
   const [category, setCategory] = useState<'all' | 'photos' | 'videos'>('all')
   useLockBodyScroll(lightboxMediaIndex !== undefined)
 
+  const isCraftData = source === 'craft'
+
+  const normalizedGallery = gallery.map((galleryItem) => {
+    return {
+      thumbnail:
+        galleryItem.thumbnail.childImageSharp?.fluid?.src! ||
+        galleryItem.thumbnail,
+      image:
+        galleryItem.image.childImageSharp?.fluid?.src! || galleryItem.image,
+      videoUrl: galleryItem.videoUrl,
+      fluidThumbnail: galleryItem.thumbnail.childImageSharp?.fluid,
+      fluidImage: galleryItem.image.childImageSharp?.fluid,
+    }
+  })
+
   const perPage = showMore ? 8 : 4
-  const totalPages = Math.ceil(gallery.length / perPage)
+  const totalPages = Math.ceil(normalizedGallery.length / perPage)
 
   const goNext = () => {
     setPage((page) => (page === totalPages ? page : page + 1))
@@ -75,7 +90,7 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
   }
   const goNextLightbox = () => {
     setLightboxMediaIndex((lightboxMediaIndex = -1) =>
-      Math.min(lightboxMediaIndex + 1, gallery.length - 1)
+      Math.min(lightboxMediaIndex + 1, normalizedGallery.length - 1)
     )
   }
   const goPrevLightbox = () => {
@@ -87,26 +102,28 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
   // Preload next page of thumbnails
   useEffect(() => {
     cacheImages(
-      getGallerySlice(gallery, page + 1, perPage).map(
-        (item) => item.thumbnail.childImageSharp?.fluid?.src!
-      )
+      getGallerySlice(normalizedGallery, page + 1, perPage).map((item) => {
+        return item.thumbnail
+      })
     )
   }, [page, perPage])
 
   // Preload full-size gallery image before and after current lightboxMedia image
   useEffect(() => {
     if (lightboxMediaIndex === undefined) return
-    const beforeLightboxMediaImage = gallery[
-      Math.max(lightboxMediaIndex - 1, 0)
-    ].image.childImageSharp?.fluid?.src!
-    const afterLightboxMediaImage = gallery[
-      Math.min(lightboxMediaIndex + 1, gallery.length - 1)
-    ].image.childImageSharp?.fluid?.src!
+    const beforeLightboxMediaImage =
+      normalizedGallery[Math.max(lightboxMediaIndex - 1, 0)].image
+    const afterLightboxMediaImage =
+      normalizedGallery[
+        Math.min(lightboxMediaIndex + 1, normalizedGallery.length - 1)
+      ].image
     cacheImages([beforeLightboxMediaImage, afterLightboxMediaImage])
   }, [lightboxMediaIndex])
 
   const lightboxMedia =
-    lightboxMediaIndex !== undefined ? gallery[lightboxMediaIndex] : undefined
+    lightboxMediaIndex !== undefined
+      ? normalizedGallery[lightboxMediaIndex]
+      : undefined
 
   return (
     <BoatSection theme="dark" className="sm:py-32">
@@ -129,14 +146,14 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
           <CategorySelector
             onClick={() => setCategory('photos')}
             selected={category === 'photos'}
-            disabled={!hasPhotos(gallery)}
+            disabled={!hasPhotos(normalizedGallery)}
           >
             Photos
           </CategorySelector>
           <CategorySelector
             onClick={() => setCategory('videos')}
             selected={category === 'videos'}
-            disabled={!hasVideos(gallery)}
+            disabled={!hasVideos(normalizedGallery)}
           >
             Videos
           </CategorySelector>
@@ -147,20 +164,24 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
             {...parentAnimations}
             className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col-dense sm:grid-rows-2 gap-6 px-4 mb-16"
           >
-            {getGallerySlice(gallery, page, perPage).map((item, index) => (
-              <motion.div
-                key={`${page}-${perPage}-${item.thumbnail.childImageSharp?.fluid
-                  ?.src!}`}
-                {...childAnimations}
-              >
-                <GalleryImage
-                  key={index}
-                  media={item}
-                  hasVideo={!!item.videoUrl}
-                  onClick={() => setLightboxMediaIndex(gallery.indexOf(item))}
-                />
-              </motion.div>
-            ))}
+            {getGallerySlice(normalizedGallery, page, perPage).map(
+              (item, index) => (
+                <motion.div
+                  key={`${page}-${perPage}-${item.thumbnail}`}
+                  {...childAnimations}
+                >
+                  <GalleryImage
+                    key={index}
+                    media={item}
+                    hasVideo={!!item.videoUrl}
+                    isCraftData={isCraftData}
+                    onClick={() =>
+                      setLightboxMediaIndex(normalizedGallery.indexOf(item))
+                    }
+                  />
+                </motion.div>
+              )
+            )}
           </motion.div>
         </AnimatePresence>
         <div className="flex sm:justify-between items-center px-4">
@@ -182,7 +203,7 @@ export const MediaGallery = ({ title, gallery }: MediaGalleryProps) => {
         media={lightboxMedia}
         goNext={goNextLightbox}
         goPrev={goPrevLightbox}
-        disabledNext={lightboxMediaIndex === gallery.length - 1}
+        disabledNext={lightboxMediaIndex === normalizedGallery.length - 1}
         disabledPrev={lightboxMediaIndex === 0}
       />
     </BoatSection>
@@ -268,7 +289,7 @@ const Lightbox = ({
                   />
                 ) : (
                   <motion.img
-                    src={media!.image.childImageSharp?.fluid?.src!}
+                    src={media!.image}
                     className="max-h-full max-w-full"
                   />
                 )}
@@ -298,22 +319,33 @@ const GalleryImage = ({
   className = '',
   hasVideo,
   media,
+  isCraftData,
   onClick,
 }: {
   className?: string
   hasVideo: boolean
   media: GalleryMedia
+  isCraftData: boolean
   onClick: React.MouseEventHandler<HTMLDivElement>
 }) => {
   return (
     <div className={`max-w-xs ${className}`} role="button" onClick={onClick}>
       <AspectRatio ratio="1:1" className="relative group">
-        <Img
-          fluid={media.thumbnail.childImageSharp?.fluid}
-          alt={media.alt || 'Gallery image'}
-          className="h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
-          style={{ position: 'absolute' }}
-        />
+        {!!isCraftData ? (
+          <img
+            src={media.thumbnail}
+            alt={media.alt || 'Gallery image'}
+            className="h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <Img
+            fluid={media.fluidThumbnail}
+            alt={media.alt || 'Gallery image'}
+            className="h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
+            style={{ position: 'absolute' }}
+          />
+        )}
         <div className="absolute inset-0 bg-black transform bg-opacity-25 group-hover:bg-opacity-0 transition duration-150 ease-in-out"></div>
         <motion.div
           {...childAnimations}
