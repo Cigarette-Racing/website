@@ -62,7 +62,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
             <motion.img
               key={page}
               src={
-                items[itemIndex].media.image.childImageSharp?.fluid?.src! ||
+                items[itemIndex].media?.image?.childImageSharp?.fluid?.src! ||
                 items[itemIndex]?.media?.image
               }
               custom={{ direction, width }}
