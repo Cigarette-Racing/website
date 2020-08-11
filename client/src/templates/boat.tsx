@@ -208,7 +208,7 @@ const createCarouselItems = (items: any) => {
       },
       media: {
         image: item.singleMedia?.[0].image?.[0]?.url,
-        videoURL: item.singleMedia?.[0]?.videoURL,
+        videoUrl: item.singleMedia?.[0]?.videoURL,
       },
     }
   })

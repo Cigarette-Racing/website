@@ -20,6 +20,7 @@ export const AutoplayVideo = ({
 }: AutoplayVideoProps) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const { controls = true } = videoOptions || {}
+
   return (
     <AnimatePresence>
       {/* conditionally render component based on Craft vs YAML */}
