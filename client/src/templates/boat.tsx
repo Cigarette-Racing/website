@@ -64,7 +64,7 @@ const extractTitlesFromCraft = (
   boatEntry: GatsbyTypes.BoatPageQuery['craftAPI']['entry']
 ) => {
   const titles: string[][] = []
-  if (!!boatEntry?.discoverSection[0]) {
+  if (!!boatEntry?.discoverSection?.[0]) {
     titles.push(['Discover', ''])
   }
   boatEntry?.flexibleSections?.forEach((section) => {
@@ -221,6 +221,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
     },
   } = props
 
+  if (!boatEntry)
+    return <div className="text-white">{props.pageContext.craftSlug}</div>
+
   const titles = extractTitlesFromCraft(boatEntry)
   const heroData = extractHeroSectionFromCraft(boatEntry)
   const discoverData = extractDiscoverSectionFromCraft(boatEntry)
@@ -367,7 +370,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     },
                     media: {
                       image: {
-                        publicURL: block.singleMedia[0].image[0].url as string,
+                        publicURL: block.singleMedia[0].image[0]?.url as string,
                       },
                     },
                   }
