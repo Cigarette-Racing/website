@@ -11,7 +11,7 @@ export default {
   },
   email: {
     support: 'support@cigaretteracing.com',
-    hello: 'hello@cigaretteracing.com',
+    contact: 'contact@cigaretteracing.com',
   },
   social: {
     youtube: 'https://www.youtube.com/user/CigaretteRacingTeam',

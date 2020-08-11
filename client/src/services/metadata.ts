@@ -19,7 +19,7 @@ export const useMetadataQuery = () => {
               }
               email {
                 support
-                hello
+                contact
               }
               social {
                 youtube
