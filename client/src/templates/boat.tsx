@@ -512,14 +512,15 @@ export const query = graphql`
                   align: textAlign
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
-                      copy
                       header
+                      copy
                     }
                   }
                 }
                 ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
+                      header
                       copy
                     }
                   }
@@ -563,6 +564,7 @@ export const query = graphql`
                     ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
                       textBlock {
                         ... on CraftAPI_textBlock_BlockType {
+                          header
                           copy
                         }
                       }
