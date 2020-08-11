@@ -56,8 +56,8 @@ const ContactPage = ({
                 </a>
               </IconWithContent>
               <IconWithContent icon={MailIcon}>
-                <a href={`mailto:${metadata?.email?.hello}`}>
-                  {metadata?.email?.hello}
+                <a href={`mailto:${metadata?.email?.contact}`}>
+                  {metadata?.email?.contact}
                 </a>
               </IconWithContent>
               <IconWithContent icon={MapIcon}>
