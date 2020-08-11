@@ -18,11 +18,13 @@ export const MobileBoatSelector = ({
   onReturn: () => void
 }) => {
   const [boatIndex, setBoatIndex] = useState(0)
+  const [hasScrolled, setHasScrolled] = useState(false)
   const boats = useBoatsQuery()
 
   const listenerProps = useOnMobileScroll(
     throttle(200, true, (deltaY: number): void => {
       if (isNaN(deltaY) || Math.abs(deltaY) < 1) return
+      if (!hasScrolled) setHasScrolled(true)
       const step = deltaY > 0 ? 1 : -1
       setBoatIndex((index) =>
         Math.min(Math.max(0, index + step), boats.length - 1)
@@ -124,7 +126,9 @@ export const MobileBoatSelector = ({
           )
         })}
       </div>
-      <ScrollPrompter className="fixed bottom-0 right-0" />
+      <motion.div animate={{ opacity: hasScrolled ? 0 : 1 }}>
+        <ScrollPrompter className="fixed bottom-0 right-0" />
+      </motion.div>
     </div>
   )
 }
