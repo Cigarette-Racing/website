@@ -395,7 +395,6 @@ export const PowertrainSectionComponent = ({ heroImage, options }) => {
   const [selectedOption, setSelectedOption] = useState<string>(options[0]?.name)
   return (
     <BoatSection className="pb-24 overflow-hidden">
-      {console.log(heroImage)}
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         <div className="px-4 mb-16 lg:mb-20 md:mt-8 lg:mt-16">
