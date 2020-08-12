@@ -421,8 +421,8 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 
                 if (isMoreDetailsBlock(block)) {
                   console.log(block)
-                  return null
-                  // return <MoreDetailsBlockComponent {...block} />
+
+                  return <MoreDetailsBlockComponent {...block} />
                 }
 
                 if (isPowertrainBlock(block)) {
@@ -430,8 +430,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     block
                   )
 
-                  return null
-                  // return <PowertrainSectionComponent {...powertrainData} />
+                  return <PowertrainSectionComponent {...powertrainData} />
                 }
                 return null
               })}
@@ -682,25 +681,25 @@ export const query = graphql`
                   }
                   layout: horizontalLayout
                 }
-                # ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                #   image {
-                #     ... on CraftAPI_s3_Asset {
-                #       url(width: 1000)
-                #     }
-                #   }
-                #   typeHandle
-                #   powertrainOptions: children {
-                #     ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                #       textBlockHeader
-                #       details: children {
-                #         ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
-                #           textBlockCopy
-                #           textBlockHeader
-                #         }
-                #       }
-                #     }
-                #   }
-                # }
+                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      url(width: 1000)
+                    }
+                  }
+                  typeHandle
+                  powertrainOptions: children {
+                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
+                      textBlockHeader
+                      details: children {
+                        ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
+                          textBlockCopy
+                          textBlockHeader
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           }
