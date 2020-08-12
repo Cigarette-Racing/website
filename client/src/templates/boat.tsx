@@ -701,23 +701,27 @@ export const query = graphql`
                 #   }
                 # }
                 ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                  image {
-                    ... on CraftAPI_s3_Asset {
-                      url(width: 1000)
-                    }
-                  }
-                  typeHandle
+                  id
                   children {
-                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlockHeader
-                      children {
-                        ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
-                          textBlockHeader
-                          textBlockCopy
-                        }
-                      }
-                    }
+                    id
                   }
+                  # image {
+                  #   ... on CraftAPI_s3_Asset {
+                  #     url(width: 1000)
+                  #   }
+                  # }
+                  # typeHandle
+                  # children {
+                  #   ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
+                  #     textBlockHeader
+                  #     children {
+                  #       ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
+                  #         textBlockHeader
+                  #         textBlockCopy
+                  #       }
+                  #     }
+                  #   }
+                  # }
                 }
               }
             }
