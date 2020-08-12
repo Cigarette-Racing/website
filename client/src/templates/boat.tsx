@@ -702,25 +702,10 @@ export const query = graphql`
                 # }
                 ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
                   children {
-                    id
+                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
+                      textBlockHeader
+                    }
                   }
-                  # image {
-                  #   ... on CraftAPI_s3_Asset {
-                  #     url(width: 1000)
-                  #   }
-                  # }
-                  # typeHandle
-                  # children {
-                  #   ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                  #     textBlockHeader
-                  #     children {
-                  #       ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
-                  #         textBlockHeader
-                  #         textBlockCopy
-                  #       }
-                  #     }
-                  #   }
-                  # }
                 }
               }
             }
