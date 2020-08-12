@@ -705,10 +705,7 @@ export const query = graphql`
                     ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
                       textBlockHeader
                       children {
-                        ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
-                          textBlockCopy
-                          textBlockHeader
-                        }
+                        id
                       }
                     }
                   }
