@@ -701,7 +701,6 @@ export const query = graphql`
                 #   }
                 # }
                 ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                  id
                   children {
                     id
                   }
