@@ -420,6 +420,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 }
 
                 if (isMoreDetailsBlock(block)) {
+                  if (!!block.moreDetails.length) return null
                   return <MoreDetailsBlockComponent {...block} />
                 }
 
