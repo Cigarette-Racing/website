@@ -26,8 +26,7 @@ export const plugins = [
       typeName: 'CraftAPI',
       fieldName: 'craftAPI',
       url: `${process.env.GATSBY_CRAFT_GRAPHQL_API}`,
-      refetchInterval:
-        process.env.GATSBY_CRAFT_GRAPHQL_API === 'development' ? 20 : null,
+      refetchInterval: process.env.NODE_ENV === 'development' ? 20 : null,
     },
   },
   `gatsby-plugin-typescript`,
