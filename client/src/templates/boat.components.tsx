@@ -607,38 +607,59 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
   )
 }
 
-export const MoreDetailsBlockComponent = () => {
+export const MoreDetailsBlockComponent = ({ buttonText, children }: any) => {
   const [isOpen, toggleIsOpen] = useToggle(false)
-  // const isClickable = descriptions.length > 1
-  // return block.children.map((child) => {
-  //   const extractedBlock: HorizontalImageTextBlock = {
-  //     type: 'horizontal-image-text',
-  //     layout: child.layout,
-  //     content: {
-  //       header: child.textBlock[0].header as string,
-  //       copy: child.textBlock[0].copy as string,
-  //     },
-  //     media: {
-  //       image: {
-  //         publicURL: child.singleMedia[0].image[0]
-  //           ?.url as string,
-  //       },
-  //     },
-  //   }
-
+  const isClickable = children.length > 1
   return (
-    <div className="flex justify-center md:mb-12">
-      <InPageCta variant="secondary">
-        <span className="flex items-center">
-          <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
-          {/* <span>{block.buttonText}</span> */}
-          <span>MORE DETAILS</span>
-        </span>
-      </InPageCta>
+    <div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="descriptions"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: 'auto' },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            {children.map((child: any) => {
+              const extractedBlock: HorizontalImageTextBlock = {
+                type: 'horizontal-image-text',
+                layout: child.layout,
+                content: {
+                  header: child.textBlock[0].header as string,
+                  copy: child.textBlock[0].copy as string,
+                },
+                media: {
+                  image: {
+                    publicURL: child.singleMedia[0].image[0]?.url as string,
+                  },
+                },
+              }
+
+              return <HorizontalImageTextBlockComponent {...extractedBlock} />
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="flex justify-center md:mb-12">
+        <InPageCta
+          variant="secondary"
+          onClick={() => {
+            toggleIsOpen()
+          }}
+        >
+          <span className="flex items-center">
+            <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+            <span>{buttonText}</span>
+          </span>
+        </InPageCta>
+      </div>
     </div>
   )
-
-  return <div>More Details</div>
 }
 
 export const OrderSectionComponent = ({

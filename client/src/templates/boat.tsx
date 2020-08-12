@@ -203,8 +203,6 @@ const extractPowertrainDataFromCMS = (block: any) => {
 
 const extractPowertrainDataFromFlexData = (block: any) => {
   const options = block.powertrainOptions.map((option: any) => {
-    console.log(option)
-
     const details = option.details.map((detail) => {
       return {
         name: detail.textBlockHeader,
@@ -422,7 +420,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 }
 
                 if (isMoreDetailsBlock(block)) {
-                  return <MoreDetailsBlockComponent />
+                  return <MoreDetailsBlockComponent {...block} />
                 }
 
                 if (isPowertrainBlock(block)) {
@@ -589,7 +587,7 @@ export const query = graphql`
                   children {
                     ... on CraftAPI_flexibleSections_moreDetailsItem_BlockType {
                       id
-                      horizontalLayout
+                      layout: horizontalLayout
                       textBlock {
                         ... on CraftAPI_textBlock_BlockType {
                           header
