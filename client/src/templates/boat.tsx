@@ -420,7 +420,8 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 }
 
                 if (isMoreDetailsBlock(block)) {
-                  if (!!block.moreDetails.length) return null
+                  console.log(block)
+
                   return <MoreDetailsBlockComponent {...block} />
                 }
 
@@ -573,7 +574,6 @@ export const query = graphql`
                 url
               }
               blocks: children {
-                typeHandle
                 ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
                   align: textAlign
                   textBlock {
@@ -584,8 +584,9 @@ export const query = graphql`
                   }
                 }
                 ... on CraftAPI_flexibleSections_moreDetails_BlockType {
+                  typeHandle
                   buttonText: textBlockHeader
-                  moreDetails: children {
+                  children {
                     ... on CraftAPI_flexibleSections_moreDetailsItem_BlockType {
                       layout: horizontalLayout
                       textBlock {
