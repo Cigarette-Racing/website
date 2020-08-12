@@ -584,9 +584,8 @@ export const query = graphql`
                 }
                 ... on CraftAPI_flexibleSections_moreDetails_BlockType {
                   buttonText: textBlockHeader
-                  children {
+                  moreDetails: children {
                     ... on CraftAPI_flexibleSections_moreDetailsItem_BlockType {
-                      id
                       layout: horizontalLayout
                       textBlock {
                         ... on CraftAPI_textBlock_BlockType {
@@ -616,7 +615,7 @@ export const query = graphql`
                     ... on CraftAPI_singleMedia_BlockType {
                       image {
                         ... on CraftAPI_s3_Asset {
-                          url
+                          url(width: 1000)
                         }
                       }
                     }
@@ -629,7 +628,7 @@ export const query = graphql`
                         ... on CraftAPI_singleMedia_BlockType {
                           image {
                             ... on CraftAPI_s3_Asset {
-                              url
+                              url(width: 1000)
                             }
                           }
                         }
@@ -693,7 +692,6 @@ export const query = graphql`
                   }
                   singleMedia {
                     ... on CraftAPI_singleMedia_BlockType {
-                      id
                       image {
                         ... on CraftAPI_s3_Asset {
                           url
