@@ -607,9 +607,9 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
   )
 }
 
-export const MoreDetailsBlockComponent = ({ buttonText, children }: any) => {
+export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
   const [isOpen, toggleIsOpen] = useToggle(false)
-  const isClickable = children.length > 1
+  const isClickable = details.length > 1
   return (
     <div>
       <AnimatePresence initial={false}>
@@ -625,7 +625,7 @@ export const MoreDetailsBlockComponent = ({ buttonText, children }: any) => {
             }}
             transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
           >
-            {children.map((child: any) => {
+            {details.map((child: any) => {
               const extractedBlock: HorizontalImageTextBlock = {
                 type: 'horizontal-image-text',
                 layout: child.layout,
@@ -640,7 +640,7 @@ export const MoreDetailsBlockComponent = ({ buttonText, children }: any) => {
                 },
               }
 
-              return <HorizontalImageTextBlockComponent {...extractedBlock} />
+              // return <HorizontalImageTextBlockComponent {...extractedBlock} />
             })}
           </motion.div>
         )}

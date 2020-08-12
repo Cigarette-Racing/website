@@ -586,7 +586,7 @@ export const query = graphql`
                 ... on CraftAPI_flexibleSections_moreDetails_BlockType {
                   typeHandle
                   buttonText: textBlockHeader
-                  children {
+                  details: children {
                     ... on CraftAPI_flexibleSections_moreDetailsItem_BlockType {
                       layout: horizontalLayout
                       textBlock {
@@ -595,15 +595,15 @@ export const query = graphql`
                           copy
                         }
                       }
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url(width: 1000)
-                            }
-                          }
-                        }
-                      }
+                      # singleMedia {
+                      #   ... on CraftAPI_singleMedia_BlockType {
+                      #     image {
+                      #       ... on CraftAPI_s3_Asset {
+                      #         url(width: 1000)
+                      #       }
+                      #     }
+                      #   }
+                      # }
                     }
                   }
                 }
