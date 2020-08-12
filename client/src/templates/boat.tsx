@@ -202,7 +202,7 @@ const extractPowertrainDataFromCMS = (block: any) => {
 }
 
 const extractPowertrainDataFromFlexData = (block: any) => {
-  const options = block.powertrainOptions.map((option: any) => {
+  const options = block?.powertrainOptions?.map((option: any) => {
     const details = option.details.map((detail) => {
       return {
         name: detail.textBlockHeader,
