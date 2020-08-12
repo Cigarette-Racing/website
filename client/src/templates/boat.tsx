@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { InPageCta } from '../atoms/in-page-cta'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
-import { PlusIcon } from '../svgs/icons'
+import { PlusIcon, CaretDownIcon } from '../svgs/icons'
 import {
   BoatHeader,
   BoatSection,
@@ -20,6 +20,7 @@ import {
   OneColumnImageTextBlockComponent,
   OrderSectionComponent,
   HorizontalImageTextBlockComponent,
+  MoreDetailsBlockComponent,
 } from './boat.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
@@ -196,25 +197,29 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
   }
 }
 
-const extractPowertrainDataFromCMS = (boatEntry: any) => {
-  const options = boatEntry.powertrainOptionsSection[0]?.options.map(
-    (option: any) => {
-      const details = option.details.map((detail) => {
-        return {
-          name: detail.textBlockHeader,
-          info: detail.textBlockCopy,
-        }
-      })
+const extractPowertrainDataFromCMS = (block: any) => {
+  return null
+}
 
+const extractPowertrainDataFromFlexData = (block: any) => {
+  const options = block.powertrainOptions.map((option: any) => {
+    console.log(option)
+
+    const details = option.details.map((detail) => {
       return {
-        name: option.textBlockHeader,
-        details,
+        name: detail.textBlockHeader,
+        info: detail.textBlockCopy,
       }
+    })
+
+    return {
+      name: option.textBlockHeader,
+      details,
     }
-  )
+  })
 
   return {
-    heroImage: boatEntry.powertrainHeroImage,
+    heroImage: block?.image?.[0].url,
     options,
   }
 }
@@ -417,53 +422,18 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 }
 
                 if (isMoreDetailsBlock(block)) {
-                  console.log(block)
-                  return null
-                  // const extractedBlock: HorizontalImageTextBlock = {
-                  //   type: 'horizontal-image-text',
-                  //   layout: block.layout,
-                  //   content: {
-                  //     header: block.textBlock[0].header as string,
-                  //     copy: block.textBlock[0].copy as string,
-                  //   },
-                  //   media: {
-                  //     image: {
-                  //       publicURL: block.singleMedia[0].image[0]?.url as string,
-                  //     },
-                  //   },
-                  // }
-                  // return (
-                  //   <HorizontalImageTextBlockComponent {...extractedBlock} />
-                  // )
+                  return <MoreDetailsBlockComponent />
                 }
-                // if (isPowertrainBlock(block)) {
-                //   const categories = block.children.map((category) => {
-                //     return {
-                //       name: category.textBlockHeader,
-                //       options: category.textBlock,
-                //     }
-                //   })
 
-                //   return (
-                //     <PowertrainSectionComponent
-                //       heroImage={block?.image?.[0].url}
-                //       categories={categories}
-                //     />
-                //   )
-                // }
+                if (isPowertrainBlock(block)) {
+                  const powertrainData = extractPowertrainDataFromFlexData(
+                    block
+                  )
+
+                  return <PowertrainSectionComponent {...powertrainData} />
+                }
                 return null
               })}
-            {/* flex Module */}
-            {/* {moreDetails && (
-              <div className="flex justify-center md:mb-12">
-                <InPageCta variant="secondary" theme={theme}>
-                  <span className="flex items-center">
-                    <PlusIcon className="inline-block text-red mr-2 text-lg" />
-                    <span>More Details</span>
-                  </span>
-                </InPageCta>
-              </div>
-            )} */}
           </BoatSection>
         )
       )}
@@ -474,9 +444,10 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         />
       )}
 
-      {!!powertrainData?.options?.length && (
-        <PowertrainSectionComponent {...powertrainData} />
-      )}
+      {
+        !!powertrainData?.options?.length && null
+        // <PowertrainSectionComponent {...powertrainData} />
+      }
 
       {galleryData && !!galleryData.gallery.length && (
         <MediaGallery {...galleryData} />
@@ -614,7 +585,7 @@ export const query = graphql`
                   }
                 }
                 ... on CraftAPI_flexibleSections_moreDetails_BlockType {
-                  textBlockHeader
+                  buttonText: textBlockHeader
                   children {
                     ... on CraftAPI_flexibleSections_moreDetailsItem_BlockType {
                       id
@@ -737,19 +708,19 @@ export const query = graphql`
                 ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
                   image {
                     ... on CraftAPI_s3_Asset {
-                      id
-                      url(width: 2000)
+                      url(width: 1000)
                     }
                   }
-                  children {
+                  typeHandle
+                  powertrainOptions: children {
                     ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
+                      textBlockHeader
+                      details: children {
+                        ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
+                          textBlockCopy
+                          textBlockHeader
                         }
                       }
-                      textBlockHeader
                     }
                   }
                 }

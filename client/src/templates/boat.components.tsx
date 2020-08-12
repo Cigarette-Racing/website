@@ -404,7 +404,7 @@ export const PowertrainSectionComponent = ({
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         <div className="px-4 md:mb-12 md:mt-8 lg:mt-16">
-          <img src={heroImage?.[0].url} alt="" />
+          <img src={heroImage} alt="" />
         </div>
         <div className="md:flex max-w-5xl w-full px-4">
           <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-14 overflow-x-auto">
@@ -605,6 +605,40 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
       </AnimatePresence>
     </div>
   )
+}
+
+export const MoreDetailsBlockComponent = () => {
+  const [isOpen, toggleIsOpen] = useToggle(false)
+  // const isClickable = descriptions.length > 1
+  // return block.children.map((child) => {
+  //   const extractedBlock: HorizontalImageTextBlock = {
+  //     type: 'horizontal-image-text',
+  //     layout: child.layout,
+  //     content: {
+  //       header: child.textBlock[0].header as string,
+  //       copy: child.textBlock[0].copy as string,
+  //     },
+  //     media: {
+  //       image: {
+  //         publicURL: child.singleMedia[0].image[0]
+  //           ?.url as string,
+  //       },
+  //     },
+  //   }
+
+  return (
+    <div className="flex justify-center md:mb-12">
+      <InPageCta variant="secondary">
+        <span className="flex items-center">
+          <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+          {/* <span>{block.buttonText}</span> */}
+          <span>MORE DETAILS</span>
+        </span>
+      </InPageCta>
+    </div>
+  )
+
+  return <div>More Details</div>
 }
 
 export const OrderSectionComponent = ({
