@@ -398,7 +398,9 @@ export const PowertrainSectionComponent = ({
   heroImage: string
   options: any
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>(options[0]?.name)
+  const [selectedOption, setSelectedOption] = useState<string>(
+    options?.[0]?.name
+  )
   return (
     <BoatSection className="pb-24 overflow-hidden">
       <InPageAnchor title="Powertrain Options" />
@@ -408,7 +410,8 @@ export const PowertrainSectionComponent = ({
         </div>
         <div className="md:flex max-w-5xl w-full px-4">
           <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-14 overflow-x-auto">
-            {!!options.length &&
+            {!!options &&
+              !!options.length &&
               options.map(({ name }) => (
                 <PowertrainTab
                   key={name}
@@ -421,7 +424,8 @@ export const PowertrainSectionComponent = ({
               ))}
           </div>
           <div className="hidden md:block md:flex-1 space-y-4">
-            {!!options.length &&
+            {!!options &&
+              !!options.length &&
               options.map(({ name }: any) => (
                 <PowertrainTab
                   key={name}
@@ -434,7 +438,8 @@ export const PowertrainSectionComponent = ({
               ))}
           </div>
           <div className="flex-1 space-y-4 mt-2 pl-4 md:pl-12">
-            {!!options.length &&
+            {!!options &&
+              !!options.length &&
               options
                 .find((option: any) => option.name === selectedOption)
                 .details.map((detail: any) => (
