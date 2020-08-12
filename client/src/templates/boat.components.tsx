@@ -640,7 +640,7 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
                 },
               }
 
-              // return <HorizontalImageTextBlockComponent {...extractedBlock} />
+              return <HorizontalImageTextBlockComponent {...extractedBlock} />
             })}
           </motion.div>
         )}
