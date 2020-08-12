@@ -391,35 +391,53 @@ export const ThreeUpImageBlock = ({
   </div>
 )
 
-export const PowertrainSectionComponent = ({ heroImage, options }) => {
+export const PowertrainSectionComponent = ({
+  heroImage,
+  options,
+}: {
+  heroImage: string
+  options: any
+}) => {
   const [selectedOption, setSelectedOption] = useState<string>(options[0]?.name)
   return (
     <BoatSection className="pb-24 overflow-hidden">
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
-        <div className="px-4 mb-16 lg:mb-20 md:mt-8 lg:mt-16">
+        <div className="px-4 md:mb-12 md:mt-8 lg:mt-16">
           <img src={heroImage?.[0].url} alt="" />
         </div>
-        <div className="max-w-4xl flex w-full">
-          <div className="flex-1 space-y-4">
+        <div className="md:flex max-w-5xl w-full px-4">
+          <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-14 overflow-x-auto">
             {!!options.length &&
               options.map(({ name }) => (
-                <Tab
+                <PowertrainTab
                   key={name}
                   className="whitespace-no-wrap"
-                  variant="h3"
                   active={name === selectedOption}
                   onClick={() => setSelectedOption(name)}
                 >
                   {name}
-                </Tab>
+                </PowertrainTab>
               ))}
           </div>
-          <div className="flex-1 space-y-4">
+          <div className="hidden md:block md:flex-1 space-y-4">
+            {!!options.length &&
+              options.map(({ name }: any) => (
+                <PowertrainTab
+                  key={name}
+                  className="whitespace-no-wrap"
+                  active={name === selectedOption}
+                  onClick={() => setSelectedOption(name)}
+                >
+                  {name}
+                </PowertrainTab>
+              ))}
+          </div>
+          <div className="flex-1 space-y-4 mt-2 pl-4 md:pl-12">
             {!!options.length &&
               options
-                .find((option) => option.name === selectedOption)
-                .details.map((detail, index) => (
+                .find((option: any) => option.name === selectedOption)
+                .details.map((detail: any) => (
                   <ul>
                     <li>
                       <Typography variant="e3">{detail.name}</Typography>
@@ -429,36 +447,6 @@ export const PowertrainSectionComponent = ({ heroImage, options }) => {
                 ))}
           </div>
         </div>
-        {/* <div className="hidden md:block px-4 space-y-2 w-full mt-24"></div> */}
-        {/* <div className="max-w-2xl w-full">
-          <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-10 overflow-x-auto">
-            <div>
-              {!!options.length &&
-                options.map(({ name }) => (
-                  <Tab
-                    key={name}
-                    className="whitespace-no-wrap"
-                    active={name === selectedOption}
-                    onClick={() => setSelectedOption(name)}
-                  >
-                    {name}
-                  </Tab>
-                ))}
-            </div>
-            <div>
-              {!!options.length &&
-                options
-                  .find((option) => option.name === selectedOption)
-                  .details.map((detail, index) => (
-                    <div>
-                      {' '}
-                      <span>{detail.name}</span> <span>{detail.info}</span>{' '}
-                    </div>
-                  ))}
-            </div>
-          </div>
-
-        </div> */}
       </div>
     </BoatSection>
   )
@@ -531,6 +519,36 @@ export const SpecsSectionComponent = ({
         </div>
       </div>
     </BoatSection>
+  )
+}
+
+interface PowertrainTabProps
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
+  active?: boolean
+  as?: keyof JSX.IntrinsicElements | React.ReactType
+}
+
+export const PowertrainTab = ({
+  active,
+  as: Comp = 'button',
+  className,
+  children,
+  ...props
+}: PowertrainTabProps) => {
+  return (
+    <Comp
+      {...props}
+      className={clsx('block py-px border-b border-transparent', className, {
+        'text-red border-red': active,
+      })}
+    >
+      <Typography variant="e3" md="h4" as="span">
+        {children}
+      </Typography>
+    </Comp>
   )
 }
 

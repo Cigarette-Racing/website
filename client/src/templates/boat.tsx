@@ -453,6 +453,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 // }
                 return null
               })}
+            {/* flex Module */}
             {/* {moreDetails && (
               <div className="flex justify-center md:mb-12">
                 <InPageCta variant="secondary" theme={theme}>
