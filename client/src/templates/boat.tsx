@@ -701,12 +701,9 @@ export const query = graphql`
                 #   }
                 # }
                 ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                  children {
-                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlockHeader
-                      children {
-                        id
-                      }
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      url(width: 2000)
                     }
                   }
                 }
