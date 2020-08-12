@@ -488,9 +488,7 @@ function BoatSelector({
                         className="absolute top-0 left-0  px-8 origin-left"
                       >
                         <Link
-                          to={
-                            index === boatIndex ? `/boats/${boat.slug!}` : '#'
-                          }
+                          to={index === boatIndex ? boat.slug! : '#'}
                           onClick={(event) => {
                             if (index !== boatIndex) {
                               event.preventDefault()
