@@ -391,6 +391,80 @@ export const ThreeUpImageBlock = ({
   </div>
 )
 
+export const PowertrainSectionComponent = ({ heroImage, options }) => {
+  const [selectedOption, setSelectedOption] = useState<string>(options[0]?.name)
+  return (
+    <BoatSection className="pb-24 overflow-hidden">
+      {console.log(heroImage)}
+      <InPageAnchor title="Powertrain Options" />
+      <div className="relative max-w-7xl mx-auto flex flex-col items-center">
+        <div className="px-4 mb-16 lg:mb-20 md:mt-8 lg:mt-16">
+          <img src={heroImage?.[0].url} alt="" />
+        </div>
+        <div className="max-w-4xl flex w-full">
+          <div className="flex-1 space-y-4">
+            {!!options.length &&
+              options.map(({ name }) => (
+                <Tab
+                  key={name}
+                  className="whitespace-no-wrap"
+                  variant="h3"
+                  active={name === selectedOption}
+                  onClick={() => setSelectedOption(name)}
+                >
+                  {name}
+                </Tab>
+              ))}
+          </div>
+          <div className="flex-1 space-y-4">
+            {!!options.length &&
+              options
+                .find((option) => option.name === selectedOption)
+                .details.map((detail, index) => (
+                  <ul>
+                    <li>
+                      <Typography variant="e3">{detail.name}</Typography>
+                      <Typography variant="p3">{detail.info}</Typography>
+                    </li>
+                  </ul>
+                ))}
+          </div>
+        </div>
+        {/* <div className="hidden md:block px-4 space-y-2 w-full mt-24"></div> */}
+        {/* <div className="max-w-2xl w-full">
+          <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-10 overflow-x-auto">
+            <div>
+              {!!options.length &&
+                options.map(({ name }) => (
+                  <Tab
+                    key={name}
+                    className="whitespace-no-wrap"
+                    active={name === selectedOption}
+                    onClick={() => setSelectedOption(name)}
+                  >
+                    {name}
+                  </Tab>
+                ))}
+            </div>
+            <div>
+              {!!options.length &&
+                options
+                  .find((option) => option.name === selectedOption)
+                  .details.map((detail, index) => (
+                    <div>
+                      {' '}
+                      <span>{detail.name}</span> <span>{detail.info}</span>{' '}
+                    </div>
+                  ))}
+            </div>
+          </div>
+
+        </div> */}
+      </div>
+    </BoatSection>
+  )
+}
+
 export const SpecsSectionComponent = ({
   title,
   categories,
@@ -399,6 +473,7 @@ export const SpecsSectionComponent = ({
   const [selectedCategory, setSelectedCategory] = useState<string>(
     categories[0]?.name
   )
+
   return (
     <BoatSection className="md:py-24">
       <InPageAnchor title={title} />

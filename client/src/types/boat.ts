@@ -190,6 +190,14 @@ export function isOneColumnImageTextBlock(
   return block.type === 'one-column-image-text'
 }
 
+export type PowertrainBlock = {
+  type: 'powertrain'
+} & ImageWithText
+
+export function isPowertrainBlock(block: Block): block is PowertrainBlock {
+  return block.type === 'powertrain'
+}
+
 export type TwoColumnImageTextBlock = {
   type: 'two-column-image-text'
   leftColumn: ImageWithText
@@ -276,6 +284,7 @@ type Block =
   | CarouselBlock
   | FullWidthCarouselBlock
   | HorizontalImageTextBlock
+  | PowertrainBlock
 
 // ===================================
 // PRIMARY TYPES
