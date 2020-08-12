@@ -39,6 +39,7 @@ import {
   isThreeColumnImagesBlock,
   isSliderBlock,
   isFullWidthCarouselBlock,
+  isMoreDetailsBlock,
   isOneColumnImageTextBlock,
   isPowertrainBlock,
   findOrderSection,
@@ -125,6 +126,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
     fullWidthCarousel: 'full-width-carousel',
     horizontalImageText: 'horizontal-image-text',
     powertrainOptions: 'powertrain',
+    moreDetails: 'more-details',
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
@@ -413,6 +415,26 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 
                   return <FullWidthCarousel key={index} {...block} />
                 }
+                // START HERE
+                // if (isMoreDetailsBlock(block)) {
+                //   console.log(block)
+                //   const extractedBlock: HorizontalImageTextBlock = {
+                //     type: 'horizontal-image-text',
+                //     layout: block.layout,
+                //     content: {
+                //       header: block.textBlock[0].header as string,
+                //       copy: block.textBlock[0].copy as string,
+                //     },
+                //     media: {
+                //       image: {
+                //         publicURL: block.singleMedia[0].image[0]?.url as string,
+                //       },
+                //     },
+                //   }
+                //   return (
+                //     <HorizontalImageTextBlockComponent {...extractedBlock} />
+                //   )
+                // }
                 // if (isPowertrainBlock(block)) {
                 //   const categories = block.children.map((category) => {
                 //     console.log(category)
@@ -587,6 +609,30 @@ export const query = graphql`
                     ... on CraftAPI_textBlock_BlockType {
                       copy
                       header
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_moreDetails_BlockType {
+                  textBlockHeader
+                  children {
+                    ... on CraftAPI_flexibleSections_moreDetailsItem_BlockType {
+                      id
+                      horizontalLayout
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1000)
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }
