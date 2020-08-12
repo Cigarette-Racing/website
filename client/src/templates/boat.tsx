@@ -707,15 +707,9 @@ export const query = graphql`
                     }
                   }
                   typeHandle
-                  powertrainOptions: children {
+                  children {
                     ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
                       textBlockHeader
-                      details: children {
-                        ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
-                          textBlockCopy
-                          textBlockHeader
-                        }
-                      }
                     }
                   }
                 }
