@@ -202,6 +202,7 @@ const extractPowertrainDataFromCMS = (block: any) => {
 }
 
 const extractPowertrainDataFromFlexData = (block: any) => {
+  return null
   const options = block?.powertrainOptions?.map((option: any) => {
     const details = option.details.map((detail) => {
       return {
@@ -419,19 +420,19 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   return <FullWidthCarousel key={index} {...block} />
                 }
 
-                if (isMoreDetailsBlock(block)) {
-                  console.log(block)
+                // if (isMoreDetailsBlock(block)) {
+                //   console.log(block)
 
-                  return <MoreDetailsBlockComponent {...block} />
-                }
+                //   return <MoreDetailsBlockComponent {...block} />
+                // }
 
-                if (isPowertrainBlock(block)) {
-                  const powertrainData = extractPowertrainDataFromFlexData(
-                    block
-                  )
+                // if (isPowertrainBlock(block)) {
+                //   const powertrainData = extractPowertrainDataFromFlexData(
+                //     block
+                //   )
 
-                  return <PowertrainSectionComponent {...powertrainData} />
-                }
+                //   return <PowertrainSectionComponent {...powertrainData} />
+                // }
                 return null
               })}
           </BoatSection>
@@ -561,30 +562,6 @@ export const query = graphql`
                     }
                   }
                 }
-                # ... on CraftAPI_flexibleSections_moreDetails_BlockType {
-                #   typeHandle
-                #   buttonText: textBlockHeader
-                #   details: children {
-                #     ... on CraftAPI_flexibleSections_moreDetailsItem_BlockType {
-                #       layout: horizontalLayout
-                #       textBlock {
-                #         ... on CraftAPI_textBlock_BlockType {
-                #           header
-                #           copy
-                #         }
-                #       }
-                #       singleMedia {
-                #         ... on CraftAPI_singleMedia_BlockType {
-                #           image {
-                #             ... on CraftAPI_s3_Asset {
-                #               url(width: 1000)
-                #             }
-                #           }
-                #         }
-                #       }
-                #     }
-                #   }
-                # }
                 ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
@@ -680,36 +657,6 @@ export const query = graphql`
                     }
                   }
                   layout: horizontalLayout
-                }
-                # ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                #   image {
-                #     ... on CraftAPI_s3_Asset {
-                #       url(width: 1000)
-                #     }
-                #   }
-                #   typeHandle
-                #   powertrainOptions: children {
-                #     ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                #       textBlockHeader
-                #       details: children {
-                #         ... on CraftAPI_flexibleSections_powertrainOptionDetail_BlockType {
-                #           textBlockCopy
-                #           textBlockHeader
-                #         }
-                #       }
-                #     }
-                #   }
-                # }
-
-                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                  image {
-                    ... on CraftAPI_s3_Asset {
-                      url(width: 2000)
-                    }
-                  }
-                  children {
-                    id
-                  }
                 }
               }
             }
