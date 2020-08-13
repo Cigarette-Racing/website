@@ -617,13 +617,13 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            key="descriptions"
+            key="moredetails"
             initial="collapsed"
             animate="open"
             exit="collapsed"
             variants={{
               open: { opacity: 1, height: 'auto' },
-              collapsed: { opacity: 0, height: 0 },
+              collapsed: { opacity: 0, height: '20px' },
             }}
             transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
           >
@@ -641,25 +641,24 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
                   },
                 },
               }
-
               return <HorizontalImageTextBlockComponent {...extractedBlock} />
             })}
           </motion.div>
         )}
+        <div className="flex justify-center md:mb-12">
+          <InPageCta
+            variant="secondary"
+            onClick={() => {
+              toggleIsOpen()
+            }}
+          >
+            <span className="flex items-center">
+              <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+              <span>{buttonText}</span>
+            </span>
+          </InPageCta>
+        </div>
       </AnimatePresence>
-      <div className="flex justify-center md:mb-12">
-        <InPageCta
-          variant="secondary"
-          onClick={() => {
-            toggleIsOpen()
-          }}
-        >
-          <span className="flex items-center">
-            <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
-            <span>{buttonText}</span>
-          </span>
-        </InPageCta>
-      </div>
     </div>
   )
 }
