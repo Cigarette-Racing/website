@@ -221,10 +221,21 @@ export const StepTwo: React.FC<{ id: string }> = () => {
                     label: 'Tirranna',
                   },
                   {
-                    value: 'nighthawk',
-                    label: 'Nighthawk',
+                    value: '50ss',
+                    label: `50' Marauder SS`,
                   },
-                  { value: 'model 3', label: 'Model 3' },
+                  {
+                    value: '38topgun',
+                    label: `38' Top Gun`,
+                  },
+                  { value: '515', label: '515' },
+                  { value: `42' X`, label: '42x' },
+                  { value: `39' GTS`, label: '39gts' },
+                  {
+                    value: 'nighthawk',
+                    label: `41' Nighthawk`,
+                  },
+                  { value: `42' Auroris`, label: 'auroris' },
                 ]}
                 styles={{
                   placeholder: (base) => ({
