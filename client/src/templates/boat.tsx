@@ -14,7 +14,7 @@ import {
   TwoUpImageBlock,
   ThreeUpImageBlock,
   SpecsSectionComponent,
-  // PowertrainSectionComponent,
+  PowertrainSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
@@ -194,28 +194,26 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
   }
 }
 
-// const extractPowertrainDataFromCMS = (boatEntry: any) => {
-//   const options = boatEntry.powertrainOptionsSection[0]?.options.map(
-//     (option: any) => {
-//       const details = option.details.map((detail) => {
-//         return {
-//           name: detail.textBlockHeader,
-//           info: detail.textBlockCopy,
-//         }
-//       })
+const extractPowertrainDataFromCMS = (boatEntry: any) => {
+  const options = boatEntry.powertrainOptions.map((option: any) => {
+    const details = option.children.map((detail) => {
+      return {
+        name: detail.textBlockHeader,
+        info: detail.textBlockCopy,
+      }
+    })
 
-//       return {
-//         name: option.textBlockHeader,
-//         details,
-//       }
-//     }
-//   )
+    return {
+      name: option.textBlockHeader,
+      details,
+    }
+  })
 
-//   return {
-//     heroImage: boatEntry.powertrainHeroImage,
-//     options,
-//   }
-// }
+  return {
+    heroImage: boatEntry.powertrainOptionsHeader,
+    options,
+  }
+}
 
 const extractOrderDataFromCraft = (boatEntry: any) => {
   return {
@@ -260,7 +258,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const galleryData = extractGallerySectionFromCraft(boatEntry)
   const customizationsData = findCustomizationsSection([])
   const orderData = extractOrderDataFromCraft(boatEntry)
-  // const powertrainData = extractPowertrainDataFromCMS(boatEntry)
+  const powertrainData = extractPowertrainDataFromCMS(boatEntry)
 
   const [, setInquiryModalState] = useInquiryModalState()
   return (
@@ -452,10 +450,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         />
       )}
 
-      {/* {!!powertrainData?.options?.length && (
+      {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
-      )} */}
-
+      )}
       {galleryData && !!galleryData.gallery.length && (
         <MediaGallery {...galleryData} />
       )}
