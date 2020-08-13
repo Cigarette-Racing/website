@@ -527,6 +527,28 @@ export const query = graphql`
               statPercentage
             }
           }
+
+          powertrainOptionsHeader {
+            ... on CraftAPI_s3_Asset {
+              url(width: 2000)
+            }
+          }
+          powertrainOptionsHeader {
+            ... on CraftAPI_s3_Asset {
+              url(width: 2000)
+            }
+          }
+          powertrainOptions {
+            ... on CraftAPI_powertrainOptions_option_BlockType {
+              textBlockHeader
+              children {
+                ... on CraftAPI_powertrainOptions_optionDetail_BlockType {
+                  textBlockCopy
+                  textBlockHeader
+                }
+              }
+            }
+          }
           discoverSection {
             ... on CraftAPI_discoverSection_discoverSection_BlockType {
               disableBackground
