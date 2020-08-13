@@ -527,12 +527,6 @@ export const query = graphql`
               statPercentage
             }
           }
-
-          powertrainOptionsHeader {
-            ... on CraftAPI_s3_Asset {
-              url(width: 2000)
-            }
-          }
           powertrainOptionsHeader {
             ... on CraftAPI_s3_Asset {
               url(width: 2000)
