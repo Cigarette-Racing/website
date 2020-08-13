@@ -617,7 +617,7 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            key="moredetails"
+            key="descriptions"
             initial="collapsed"
             animate="open"
             exit="collapsed"
@@ -645,20 +645,20 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
             })}
           </motion.div>
         )}
-        <div className="flex justify-center md:mb-12">
-          <InPageCta
-            variant="secondary"
-            onClick={() => {
-              toggleIsOpen()
-            }}
-          >
-            <span className="flex items-center">
-              <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
-              <span>{buttonText}</span>
-            </span>
-          </InPageCta>
-        </div>
       </AnimatePresence>
+      <div className="flex justify-center md:mb-12">
+        <InPageCta
+          variant="secondary"
+          onClick={() => {
+            toggleIsOpen()
+          }}
+        >
+          <span className="flex items-center">
+            <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+            <span>{buttonText}</span>
+          </span>
+        </InPageCta>
+      </div>
     </div>
   )
 }
