@@ -20,6 +20,7 @@ import {
   OneColumnImageTextBlockComponent,
   OrderSectionComponent,
   HorizontalImageTextBlockComponent,
+  MoreDetailsBlockComponent,
 } from './boat.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
@@ -42,6 +43,7 @@ import {
   isOneColumnImageTextBlock,
   isPowertrainBlock,
   findOrderSection,
+  isMoreDetailsBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
 } from '../types/boat'
@@ -125,6 +127,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
     fullWidthCarousel: 'full-width-carousel',
     horizontalImageText: 'horizontal-image-text',
     powertrainOptions: 'powertrain',
+    moreDetails: 'more-details',
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
@@ -412,7 +415,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   return <FullWidthCarousel key={index} {...block} />
                 }
                 if (isPowertrainBlock(block)) {
-                  console.log(block)
                   const options = block.children.map((option: any) => {
                     const details = option.children.map((detail) => {
                       return {
@@ -434,19 +436,29 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 
                   return <PowertrainSectionComponent {...powertrainData} />
                 }
+
+                if (isMoreDetailsBlock(block)) {
+                  const buttonText = block.textBlockHeader
+
+                  const details = block.children.map((detail) => {
+                    return {
+                      layout: detail.horizontalLayout,
+                      header: detail.textBlock?.[0].header,
+                      copy: detail.textBlock?.[0].copy,
+                      image: detail.singleMedia?.[0].image?.[0].url,
+                    }
+                  })
+
+                  const moreDetailsData = {
+                    buttonText,
+                    details,
+                  }
+
+                  return <MoreDetailsBlockComponent {...moreDetailsData} />
+                }
+
                 return null
               })}
-            {/* flex Module */}
-            {/* {moreDetails && (
-              <div className="flex justify-center md:mb-12">
-                <InPageCta variant="secondary" theme={theme}>
-                  <span className="flex items-center">
-                    <PlusIcon className="inline-block text-red mr-2 text-lg" />
-                    <span>More Details</span>
-                  </span>
-                </InPageCta>
-              </div>
-            )} */}
           </BoatSection>
         )
       )}
@@ -456,7 +468,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           {...specsData}
         />
       )}
-      {console.log(powertrainData)}
       {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
       )}
@@ -579,6 +590,33 @@ export const query = graphql`
               }
               blocks: children {
                 typeHandle
+                ... on CraftAPI_flexibleSections_moreDetails_BlockType {
+                  textBlockHeader
+                  children {
+                    ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
+                      id
+                      horizontalLayout
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          copy
+                          header
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          id
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              id
+                              url(width: 2000)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
                 ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
                   image {
                     ... on CraftAPI_s3_Asset {
