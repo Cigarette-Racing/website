@@ -40,7 +40,7 @@ import {
   isSliderBlock,
   isFullWidthCarouselBlock,
   isOneColumnImageTextBlock,
-  // isPowertrainBlock,
+  isPowertrainBlock,
   findOrderSection,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
@@ -124,7 +124,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
     carousel: 'carousel',
     fullWidthCarousel: 'full-width-carousel',
     horizontalImageText: 'horizontal-image-text',
-    // powertrainOptions: 'powertrain',
+    powertrainOptions: 'powertrain',
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
@@ -411,22 +411,29 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 
                   return <FullWidthCarousel key={index} {...block} />
                 }
-                // if (isPowertrainBlock(block)) {
-                //   const categories = block.children.map((category) => {
-                //     console.log(category)
-                //     return {
-                //       name: category.textBlockHeader,
-                //       options: category.textBlock,
-                //     }
-                //   })
+                if (isPowertrainBlock(block)) {
+                  console.log(block)
+                  const options = block.children.map((option: any) => {
+                    const details = option.children.map((detail) => {
+                      return {
+                        name: detail.textBlockHeader,
+                        info: detail.textBlockCopy,
+                      }
+                    })
 
-                //   return (
-                //     <PowertrainSectionComponent
-                //       heroImage={block?.image?.[0].url}
-                //       categories={categories}
-                //     />
-                //   )
-                // }
+                    return {
+                      name: option.textBlockHeader,
+                      details,
+                    }
+                  })
+
+                  const powertrainData = {
+                    heroImage: block?.image,
+                    options,
+                  }
+
+                  return <PowertrainSectionComponent {...powertrainData} />
+                }
                 return null
               })}
             {/* flex Module */}
@@ -449,7 +456,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           {...specsData}
         />
       )}
-
+      {console.log(powertrainData)}
       {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
       )}
@@ -573,6 +580,12 @@ export const query = graphql`
               blocks: children {
                 typeHandle
                 ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      id
+                      url(width: 2000)
+                    }
+                  }
                   children {
                     ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
                       textBlockHeader
