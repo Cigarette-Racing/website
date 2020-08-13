@@ -398,14 +398,15 @@ export const PowertrainSectionComponent = ({
   heroImage: string
   options: any
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>(options[0]?.name)
+  const [selectedOption, setSelectedOption] = useState<string>(
+    options?.[0]?.name
+  )
   return (
     <BoatSection className="pb-24 overflow-hidden">
-      {console.log(heroImage)}
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         <div className="px-4 md:mb-12 md:mt-8 lg:mt-16">
-          <img src={heroImage?.[0].url} alt="" />
+          <img src={heroImage?.[0]?.url} alt="" />
         </div>
         <div className="md:flex max-w-5xl w-full px-4">
           <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-14 overflow-x-auto">
