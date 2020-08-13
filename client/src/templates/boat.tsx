@@ -195,24 +195,22 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractPowertrainDataFromCMS = (boatEntry: any) => {
-  const options = boatEntry.powertrainOptionsSection[0]?.options.map(
-    (option: any) => {
-      const details = option.details.map((detail) => {
-        return {
-          name: detail.textBlockHeader,
-          info: detail.textBlockCopy,
-        }
-      })
-
+  const options = boatEntry.powertrainOptions.map((option: any) => {
+    const details = option.children.map((detail) => {
       return {
-        name: option.textBlockHeader,
-        details,
+        name: detail.textBlockHeader,
+        info: detail.textBlockCopy,
       }
+    })
+
+    return {
+      name: option.textBlockHeader,
+      details,
     }
-  )
+  })
 
   return {
-    heroImage: boatEntry.powertrainHeroImage,
+    heroImage: boatEntry.powertrainOptionsHeader,
     options,
   }
 }
@@ -413,22 +411,29 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 
                   return <FullWidthCarousel key={index} {...block} />
                 }
-                // if (isPowertrainBlock(block)) {
-                //   const categories = block.children.map((category) => {
-                //     console.log(category)
-                //     return {
-                //       name: category.textBlockHeader,
-                //       options: category.textBlock,
-                //     }
-                //   })
+                if (isPowertrainBlock(block)) {
+                  console.log(block)
+                  const options = block.children.map((option: any) => {
+                    const details = option.children.map((detail) => {
+                      return {
+                        name: detail.textBlockHeader,
+                        info: detail.textBlockCopy,
+                      }
+                    })
 
-                //   return (
-                //     <PowertrainSectionComponent
-                //       heroImage={block?.image?.[0].url}
-                //       categories={categories}
-                //     />
-                //   )
-                // }
+                    return {
+                      name: option.textBlockHeader,
+                      details,
+                    }
+                  })
+
+                  const powertrainData = {
+                    heroImage: block?.image,
+                    options,
+                  }
+
+                  return <PowertrainSectionComponent {...powertrainData} />
+                }
                 return null
               })}
             {/* flex Module */}
@@ -451,11 +456,10 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           {...specsData}
         />
       )}
-
+      {console.log(powertrainData)}
       {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
       )}
-
       {galleryData && !!galleryData.gallery.length && (
         <MediaGallery {...galleryData} />
       )}
@@ -501,23 +505,21 @@ export const query = graphql`
               url
             }
           }
-          ... on CraftAPI_boats_boats_Entry {
-            gallery: multipleMedia {
-              ... on CraftAPI_multipleMedia_BlockType {
-                thumbnail: image {
-                  ... on CraftAPI_s3_Asset {
-                    title
-                    url(width: 600)
-                  }
+          gallery: multipleMedia {
+            ... on CraftAPI_multipleMedia_BlockType {
+              thumbnail: image {
+                ... on CraftAPI_s3_Asset {
+                  title
+                  url(width: 600)
                 }
-                image {
-                  ... on CraftAPI_s3_Asset {
-                    title
-                    url(width: 2000)
-                  }
-                }
-                videoURL
               }
+              image {
+                ... on CraftAPI_s3_Asset {
+                  title
+                  url(width: 2000)
+                }
+              }
+              videoURL
             }
           }
           boatStats {
@@ -525,6 +527,22 @@ export const query = graphql`
               statLabel
               statText
               statPercentage
+            }
+          }
+          powertrainOptionsHeader {
+            ... on CraftAPI_s3_Asset {
+              url(width: 2000)
+            }
+          }
+          powertrainOptions {
+            ... on CraftAPI_powertrainOptions_option_BlockType {
+              textBlockHeader
+              children {
+                ... on CraftAPI_powertrainOptions_optionDetail_BlockType {
+                  textBlockCopy
+                  textBlockHeader
+                }
+              }
             }
           }
           discoverSection {
@@ -549,27 +567,6 @@ export const query = graphql`
               }
             }
           }
-          powertrainHeroImage {
-            ... on CraftAPI_s3_Asset {
-              id
-              url(width: 2000)
-            }
-          }
-          powertrainOptionsSection: powertrainOptions {
-            ... on CraftAPI_powertrainOptions_options_BlockType {
-              options: children {
-                ... on CraftAPI_powertrainOptions_option_BlockType {
-                  textBlockHeader
-                  details: children {
-                    ... on CraftAPI_powertrainOptions_detail_BlockType {
-                      textBlockHeader
-                      textBlockCopy
-                    }
-                  }
-                }
-              }
-            }
-          }
 
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
@@ -582,6 +579,25 @@ export const query = graphql`
               }
               blocks: children {
                 typeHandle
+                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      id
+                      url(width: 2000)
+                    }
+                  }
+                  children {
+                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
+                      textBlockHeader
+                      children {
+                        ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
+                          textBlockCopy
+                          textBlockHeader
+                        }
+                      }
+                    }
+                  }
+                }
                 ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
                   align: textAlign
                   textBlock {
@@ -687,25 +703,6 @@ export const query = graphql`
                     }
                   }
                   layout: horizontalLayout
-                }
-                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                  image {
-                    ... on CraftAPI_s3_Asset {
-                      id
-                      url(width: 2000)
-                    }
-                  }
-                  children {
-                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                      textBlockHeader
-                    }
-                  }
                 }
               }
             }
