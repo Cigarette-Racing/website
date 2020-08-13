@@ -700,11 +700,15 @@ export const query = graphql`
                 #     }
                 #   }
                 # }
+
                 ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
                   image {
                     ... on CraftAPI_s3_Asset {
                       url(width: 2000)
                     }
+                  }
+                  children {
+                    id
                   }
                 }
               }
