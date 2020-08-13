@@ -609,6 +609,61 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
   )
 }
 
+export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
+  const [isOpen, toggleIsOpen] = useToggle(false)
+  const isClickable = details.length > 1
+  return (
+    <div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="descriptions"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: 'auto' },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            {details.map((child: any) => {
+              const extractedBlock: HorizontalImageTextBlock = {
+                type: 'horizontal-image-text',
+                layout: child.layout,
+                content: {
+                  header: child.header as string,
+                  copy: child.copy as string,
+                },
+                media: {
+                  image: {
+                    publicURL: child.image as string,
+                  },
+                },
+              }
+
+              return <HorizontalImageTextBlockComponent {...extractedBlock} />
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="flex justify-center md:mb-12">
+        <InPageCta
+          variant="secondary"
+          onClick={() => {
+            toggleIsOpen()
+          }}
+        >
+          <span className="flex items-center">
+            <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+            <span>{buttonText}</span>
+          </span>
+        </InPageCta>
+      </div>
+    </div>
+  )
+}
+
 export const OrderSectionComponent = ({
   boatNameLong,
   title,
