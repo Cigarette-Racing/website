@@ -498,23 +498,21 @@ export const query = graphql`
               url
             }
           }
-          ... on CraftAPI_boats_boats_Entry {
-            gallery: multipleMedia {
-              ... on CraftAPI_multipleMedia_BlockType {
-                thumbnail: image {
-                  ... on CraftAPI_s3_Asset {
-                    title
-                    url(width: 600)
-                  }
+          gallery: multipleMedia {
+            ... on CraftAPI_multipleMedia_BlockType {
+              thumbnail: image {
+                ... on CraftAPI_s3_Asset {
+                  title
+                  url(width: 600)
                 }
-                image {
-                  ... on CraftAPI_s3_Asset {
-                    title
-                    url(width: 2000)
-                  }
-                }
-                videoURL
               }
+              image {
+                ... on CraftAPI_s3_Asset {
+                  title
+                  url(width: 2000)
+                }
+              }
+              videoURL
             }
           }
           boatStats {
