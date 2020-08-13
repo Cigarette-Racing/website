@@ -572,6 +572,19 @@ export const query = graphql`
               }
               blocks: children {
                 typeHandle
+                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
+                      textBlockHeader
+                      children {
+                        ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
+                          textBlockCopy
+                          textBlockHeader
+                        }
+                      }
+                    }
+                  }
+                }
                 ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
                   align: textAlign
                   textBlock {
