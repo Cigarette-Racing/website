@@ -274,6 +274,15 @@ export function isHorizontalImageTextBlock(
   return block.type === 'horizontal-image-text'
 }
 
+export type MoreDetailsBlock = {
+  type: 'more-details'
+  items: HorizontalImageTextBlock[]
+}
+
+export function isMoreDetailsBlock(block: Block): block is MoreDetailsBlock {
+  return block.type === 'more-details'
+}
+
 type Block =
   | OneColumnTextBlock
   | OneColumnImageTextBlock
@@ -285,6 +294,7 @@ type Block =
   | FullWidthCarouselBlock
   | HorizontalImageTextBlock
   | PowertrainBlock
+  | MoreDetailsBlock
 
 // ===================================
 // PRIMARY TYPES
