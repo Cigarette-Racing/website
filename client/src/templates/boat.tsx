@@ -97,6 +97,7 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
     stats: boatEntry.boatStats,
     boatLogo: boatEntry.boatLogo[0]?.url,
     boatName: boatEntry.title,
+    ctaText: boatEntry.ctaText,
   }
 }
 
@@ -278,6 +279,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           headline={heroData.headline!}
           stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
+          ctaText={heroData.ctaText}
         />
       )}
       <InPageNav
@@ -502,6 +504,7 @@ export const query = graphql`
           slug
           title
           boatNameLong
+          ctaText: textBlockHeader
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
               alt
