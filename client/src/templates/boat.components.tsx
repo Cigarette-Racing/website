@@ -62,12 +62,8 @@ export const BoatHeader = ({
         {headline}
       </Typography>
       <div className="relative mb-4 justify-center hidden md:flex">
-        <InPageCta
-          onClick={() => {
-            onClickCta(true)
-          }}
-        >
-          Request Info
+        <InPageCta link={true} href="#discover">
+          Explore More
         </InPageCta>
       </div>
     </div>
