@@ -33,6 +33,7 @@ export const BoatHeader = ({
   videoUrl,
   boatLogo,
   boatNameLong,
+  ctaText,
   onClickCta,
   headline,
   stats,
@@ -43,6 +44,7 @@ export const BoatHeader = ({
   boatLogo: string
   boatNameLong: string
   onClickCta: (state: boolean) => void
+  ctaText?: string
   headline: string
   stats: Stat[]
 }) => (
@@ -63,7 +65,7 @@ export const BoatHeader = ({
       </Typography>
       <div className="relative mb-4 justify-center hidden md:flex">
         <InPageCta link={true} href="#discover">
-          Explore More
+          {ctaText || `Explore more`}
         </InPageCta>
       </div>
     </div>
