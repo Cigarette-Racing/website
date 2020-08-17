@@ -133,7 +133,7 @@ export const BoatHeader = ({
           Request Info
         </InPageCta>
       </div>
-      <div className="fixed bottom-0 left-0 w-full mb-8">
+      <div className="hidden md:block fixed bottom-0 left-0 w-full mb-8">
         <div className="max-w-7xl mx-auto">
           <motion.div animate={{ opacity: hasScrolled ? 0 : 1 }}>
             <ScrollPrompter />
