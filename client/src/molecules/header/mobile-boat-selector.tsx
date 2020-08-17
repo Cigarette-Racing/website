@@ -39,10 +39,8 @@ export const MobileBoatSelector = ({
       </div>
       <div className="-mx-4">
         <AspectRatio ratio="3:2" className="w-screen">
-          <Img
-            fluid={
-              boats[boatIndex].backgroundMedia.image.childImageSharp?.fluid!
-            }
+          <img
+            src={boats[boatIndex].backgroundMedia.image.publicUrl}
             alt={boats[boatIndex].backgroundMedia.alt || ''}
             className="h-full w-full object-cover"
             style={{ position: 'absolute' }}
@@ -85,7 +83,7 @@ export const MobileBoatSelector = ({
               className="absolute top-0 left-0 w-full"
             >
               <Link
-                to={index === boatIndex ? boat.slug! : '#'}
+                to={index === boatIndex ? `/boats/${boat.slug!}` : '#'}
                 onClick={(event) => {
                   if (index !== boatIndex) {
                     event.preventDefault()
