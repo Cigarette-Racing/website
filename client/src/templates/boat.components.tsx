@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import Img from 'gatsby-image'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
@@ -10,6 +10,7 @@ import { CircleButton } from '../atoms/circle-button'
 import { ArrowIcon, CaretDownIcon } from '../svgs/icons'
 import { InPageAnchor } from '../molecules/in-page-nav'
 import { VerticalHeader } from '../atoms/vertical-header'
+import { ScrollPrompter } from '../molecules/header'
 import { VerticalLabel } from '../atoms/vertical-label'
 import {
   Stat,
@@ -23,7 +24,7 @@ import {
   HorizontalImageTextBlock,
 } from '../types/boat'
 import { Tab } from '../atoms/tab'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useViewportScroll } from 'framer-motion'
 import { useToggle } from 'react-use'
 import { AutoplayVideo } from '../atoms/autoplay-video'
 
@@ -47,81 +48,101 @@ export const BoatHeader = ({
   ctaText?: string
   headline: string
   stats: Stat[]
-}) => (
-  <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between">
-    <div />
-    <div className="relative z-10">
-      <Typography variant="e2" md="e2" className="text-center mb-8 md:mb-4">
-        {boatNameLong}
-      </Typography>
-      <Typography
-        variant="h4"
-        md="h3"
-        lg="h2"
-        xl="h1"
-        className="text-center mb-8 md:mb-10 max-w-2xl lg:max-w-3xl mx-auto"
-      >
-        {headline}
-      </Typography>
-      <div className="relative mb-4 justify-center hidden md:flex">
-        <InPageCta link={true} href="#discover">
-          {ctaText || `Explore more`}
+}) => {
+  const [hasScrolled, setHasScrolled] = useState(false)
+  const { scrollY } = useViewportScroll()
+
+  scrollY.onChange((x) => {
+    x > 10 ? setHasScrolled(true) : setHasScrolled(false)
+  })
+
+  useEffect(() => {
+    setHasScrolled(false)
+  }, [])
+
+  return (
+    <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between">
+      <div />
+      <div className="relative z-10">
+        <Typography variant="e2" md="e2" className="text-center mb-8 md:mb-4">
+          {boatNameLong}
+        </Typography>
+        <Typography
+          variant="h4"
+          md="h3"
+          lg="h2"
+          xl="h1"
+          className="text-center mb-8 md:mb-10 max-w-2xl lg:max-w-3xl mx-auto"
+        >
+          {headline}
+        </Typography>
+        <div className="relative mb-4 justify-center hidden md:flex">
+          <InPageCta link={true} href="#discover">
+            {ctaText || `Explore more`}
+          </InPageCta>
+        </div>
+      </div>
+      <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
+        {!!videoUrl ? (
+          <AutoplayVideo
+            image={image}
+            alt={alt}
+            videoUrl={videoUrl}
+            videoOptions={{ controls: false }}
+          />
+        ) : (
+          <Fragment>
+            {/* conditionally render component based on Craft vs YAML */}
+            {typeof image === 'string' ? (
+              <img src={image} className="h-full w-full object-cover" />
+            ) : (
+              !!image && (
+                <Img
+                  fluid={image.childImageSharp?.fluid!}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              )
+            )}
+          </Fragment>
+        )}
+      </div>
+      <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
+      <div className="relative z-10">
+        <div className="relative flex justify-center mb-8 md:mb-10">
+          {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
+        </div>
+        <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
+          {stats.map((stat) => (
+            <div key={stat.label || stat.statLabel} className="flex-1">
+              <StatBlock
+                label={stat.label || stat.statLabel}
+                percentage={stat.percentage || stat.statPercentage}
+                text={stat.text || stat.statText}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="relative mb-4 flex justify-center md:hidden">
+        <InPageCta
+          onClick={() => {
+            onClickCta(true)
+          }}
+        >
+          Request Info
         </InPageCta>
       </div>
-    </div>
-    <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
-      {!!videoUrl ? (
-        <AutoplayVideo
-          image={image}
-          alt={alt}
-          videoUrl={videoUrl}
-          videoOptions={{ controls: false }}
-        />
-      ) : (
-        <Fragment>
-          {/* conditionally render component based on Craft vs YAML */}
-          {typeof image === 'string' ? (
-            <img src={image} className="h-full w-full object-cover" />
-          ) : (
-            !!image && (
-              <Img
-                fluid={image.childImageSharp?.fluid!}
-                alt=""
-                className="h-full w-full object-cover"
-              />
-            )
-          )}
-        </Fragment>
-      )}
-    </div>
-    <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
-    <div className="relative z-10">
-      <div className="relative flex justify-center mb-8 md:mb-10">
-        {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
+      <div className="fixed bottom-0 left-0 w-full mb-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div animate={{ opacity: hasScrolled ? 0 : 1 }}>
+            <ScrollPrompter />
+          </motion.div>
+        </div>
       </div>
-      <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
-        {stats.map((stat) => (
-          <div key={stat.label || stat.statLabel} className="flex-1">
-            <StatBlock
-              label={stat.label || stat.statLabel}
-              percentage={stat.percentage || stat.statPercentage}
-              text={stat.text || stat.statText}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-    <div className="relative mb-4 flex justify-center md:hidden">
-      <InPageCta
-        onClick={() => {
-          onClickCta(true)
-        }}
-      >
-        Request Info
-      </InPageCta>
-    </div>
-  </section>
-)
+    </section>
+  )
+}
 
 export const BoatSection: React.FC<{ theme?: Theme; className?: string }> = ({
   children,
