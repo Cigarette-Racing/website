@@ -82,7 +82,7 @@ export const BoatHeader = ({
           </InPageCta>
         </div>
       </div>
-      <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
+      <div className="mb-8 absolute h-full top-0 w-full">
         {!!videoUrl ? (
           <AutoplayVideo
             image={image}
