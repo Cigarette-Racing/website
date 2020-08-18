@@ -2,9 +2,7 @@ import React from 'react'
 import { PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
-import { InPageCta } from '../atoms/in-page-cta'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
-import { PlusIcon } from '../svgs/icons'
 import {
   BoatHeader,
   BoatSection,
@@ -97,6 +95,7 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
     stats: boatEntry.boatStats,
     boatLogo: boatEntry.boatLogo[0]?.url,
     boatName: boatEntry.title,
+    ctaText: boatEntry.ctaText,
   }
 }
 
@@ -131,7 +130,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
-    const blocks = section.blocks.map((block) => {
+    const blocks = section.blocks.map((block: any) => {
       return {
         ...block,
         source: 'craft',
@@ -278,6 +277,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           headline={heroData.headline!}
           stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
+          ctaText={heroData.ctaText}
         />
       )}
       <InPageNav
@@ -375,7 +375,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     <ThreeUpImageBlock
                       key={index}
                       className="mb-32"
-                      images={block.images}
+                      images={block.children}
                     />
                   )
                 }
@@ -502,6 +502,7 @@ export const query = graphql`
           slug
           title
           boatNameLong
+          ctaText: textBlockHeader
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
               alt
@@ -680,7 +681,20 @@ export const query = graphql`
                   id
                 }
                 ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
-                  id
+                  children {
+                    typeHandle
+                    ... on CraftAPI_flexibleSections_image_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1000)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
                 ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
                   id

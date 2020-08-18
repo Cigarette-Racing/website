@@ -74,7 +74,7 @@ export const Header = ({}: HeaderProps) => {
       return (
         <Link to={link} key={text}>
           <Typography
-            variant="e3"
+            variant="e2"
             key={text}
             className="p-2 whitespace-no-wrap"
           >
@@ -99,7 +99,7 @@ export const Header = ({}: HeaderProps) => {
           key={text}
         >
           <Typography
-            variant="e3"
+            variant="e2"
             key={text}
             className="p-2 whitespace-no-wrap"
           >
@@ -164,7 +164,7 @@ export const Header = ({}: HeaderProps) => {
               {isMobileMenu || (!isAtTop && !isHovering) ? (
                 <div>
                   <Link to="/contact">
-                    <Typography variant="e3" className="p-2 whitespace-no-wrap">
+                    <Typography variant="e2" className="p-2 whitespace-no-wrap">
                       Contact
                     </Typography>
                   </Link>
@@ -207,7 +207,7 @@ function ComingSoonLink({ text }: { text: string }) {
       className="relative cursor-default"
     >
       <Typography
-        variant="e3"
+        variant="e2 "
         className={clsx('p-2 whitespace-no-wrap opacity-25', {
           invisible: isActive,
         })}
@@ -217,7 +217,7 @@ function ComingSoonLink({ text }: { text: string }) {
       {isActive && (
         <div className="absolute top-0 left-0 h-full w-full flex justify-center items-center">
           <Typography
-            variant="e3"
+            variant="e2"
             className="whitespace-no-wrap opacity-75 text-center"
           >
             Coming
