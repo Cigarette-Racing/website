@@ -270,7 +270,12 @@ export const VerticalHeaderBlock = ({
   theme: Theme
   side: Side
 }) => (
-  <div className={clsx('max-w-7xl mx-auto relative md:mt-16', className)}>
+  <div
+    className={clsx(
+      'max-w-7xl 2xl:max-w-8xl mx-auto relative md:mt-16',
+      className
+    )}
+  >
     <div
       className={clsx('hidden md:block absolute top-0', {
         'left-0': side === 'left',
@@ -302,7 +307,7 @@ export const SideBleedImage = ({
   side: Side
   size?: 'default' | 'large'
 }) => (
-  <div className={clsx('relative max-w-8xl mx-auto md:mt-16', className)}>
+  <div className={clsx('relative mx-auto md:mt-16', className)}>
     <div
       className={clsx('w-full md:w-11/12 lg:w-10/12', {
         'ml-auto': side === 'right',
