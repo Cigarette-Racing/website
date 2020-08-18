@@ -229,6 +229,8 @@ export type ThreeColumnImagesBlock = {
 export function isThreeColumnImagesBlock(
   block: Block
 ): block is ThreeColumnImagesBlock {
+  console.log(block)
+
   return block.type === 'three-column-images'
 }
 
