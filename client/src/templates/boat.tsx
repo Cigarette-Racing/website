@@ -25,11 +25,7 @@ import { DiscoverSection } from './boat/discover-section'
 import {
   Stat,
   CommonSectionProps,
-  findDiscoverSection,
-  findHeroSection,
   getFlexibleSections,
-  findGallerySection,
-  findSpecsSection,
   findCustomizationsSection,
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
@@ -40,7 +36,6 @@ import {
   isFullWidthCarouselBlock,
   isOneColumnImageTextBlock,
   isPowertrainBlock,
-  findOrderSection,
   isMoreDetailsBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
@@ -53,14 +48,6 @@ import {
   InquiryModal,
   useInquiryModalState,
 } from '../molecules/inquiry/inquiry-modal'
-
-const extractTitles = (sections: readonly any[]) =>
-  (sections as ({ type: string } & CommonSectionProps)[])
-    .filter(
-      (section) =>
-        section.type !== 'hero' && !section.type.includes('DISABLED__')
-    )
-    .map((section) => [section.title, section.shortTitle || ''])
 
 const extractTitlesFromCraft = (
   boatEntry: GatsbyTypes.BoatPageQuery['craftAPI']['entry']
@@ -294,174 +281,163 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           disableBackground={discoverData.disableBackground}
         />
       )}
-      {flexData.map(
-        ({
-          title,
-          theme,
-          bleedDirection,
-          headerImage,
-          blocks,
-          moreDetails,
-        }) => (
-          <BoatSection key={title} theme={theme}>
-            <InPageAnchor title={title} />
-            <MobileSectionHeader>{title}</MobileSectionHeader>
-            {!!headerImage && (
-              <VerticalHeaderBlock
-                label={title}
-                side={bleedDirection === 'left' ? 'right' : 'left'}
-                theme={theme}
-                className="lg:mt-32"
-              />
-            )}
-            {!!headerImage && (
-              <SideBleedImage
-                media={headerImage}
-                side={bleedDirection}
-                className="lg:mt-32 mb-20 md:mb-32"
-                size="large"
-              />
-            )}
-            {!!blocks &&
-              blocks.map((block, index) => {
-                if (isTwoColumnImageTextBlock(block)) {
-                  return (
-                    <TwoColumnImageTextBlockComponent key={index} {...block} />
-                  )
+      {flexData.map(({ title, theme, bleedDirection, headerImage, blocks }) => (
+        <BoatSection key={title} theme={theme}>
+          <InPageAnchor title={title} />
+          <MobileSectionHeader>{title}</MobileSectionHeader>
+          {!!headerImage && (
+            <VerticalHeaderBlock
+              label={title}
+              side={bleedDirection === 'left' ? 'right' : 'left'}
+              theme={theme}
+              className="lg:mt-32"
+            />
+          )}
+          {!!headerImage && (
+            <SideBleedImage
+              media={headerImage}
+              side={bleedDirection}
+              className="lg:mt-32 mb-20 md:mb-32"
+              size="large"
+            />
+          )}
+          {!!blocks &&
+            blocks.map((block, index) => {
+              if (isTwoColumnImageTextBlock(block)) {
+                return (
+                  <TwoColumnImageTextBlockComponent key={index} {...block} />
+                )
+              }
+              if (isOneColumnTextBlock(block)) {
+                if (block.textBlock) {
+                  block.copy = block.textBlock[0].copy
+                  block.header = block.textBlock[0].header
                 }
-                if (isOneColumnTextBlock(block)) {
-                  if (block.textBlock) {
-                    block.copy = block.textBlock[0].copy
-                    block.header = block.textBlock[0].header
-                  }
 
-                  return (
-                    <OneColumnTextBlockComponent
-                      key={index}
-                      {...block}
-                      align={block.align ?? undefined}
-                    />
-                  )
-                }
-                if (isOneColumnImageTextBlock(block)) {
-                  if (block.textBlock) {
-                    block.content = {
-                      copy: block.textBlock[0].copy,
-                      header: block.textBlock[0].header,
-                    }
-                    block.media = block.singleMedia?.[0].image?.[0].url
+                return (
+                  <OneColumnTextBlockComponent
+                    key={index}
+                    {...block}
+                    align={block.align ?? undefined}
+                  />
+                )
+              }
+              if (isOneColumnImageTextBlock(block)) {
+                if (block.textBlock) {
+                  block.content = {
+                    copy: block.textBlock[0].copy,
+                    header: block.textBlock[0].header,
                   }
+                  block.media = block.singleMedia?.[0].image?.[0].url
+                }
 
-                  return <OneColumnImageTextBlockComponent {...block} />
+                return <OneColumnImageTextBlockComponent {...block} />
+              }
+              if (isCarouselBlock(block)) {
+                if (block?.source === 'craft') {
+                  const items = createCarouselItems(block.children)
+                  block.items = items
                 }
-                if (isCarouselBlock(block)) {
-                  if (block?.source === 'craft') {
-                    const items = createCarouselItems(block.children)
-                    block.items = items
-                  }
 
-                  return <Carousel key={index} {...block} theme={theme} />
+                return <Carousel key={index} {...block} theme={theme} />
+              }
+              if (isSliderBlock(block)) {
+                if (block?.source === 'craft') {
+                  const items = createCarouselItems(block.children)
+                  block.items = items
                 }
-                if (isSliderBlock(block)) {
-                  if (block?.source === 'craft') {
-                    const items = createCarouselItems(block.children)
-                    block.items = items
-                  }
 
-                  return <Slider key={index} {...block} theme={theme} />
-                }
-                if (isThreeColumnImagesBlock(block)) {
-                  return (
-                    <ThreeUpImageBlock
-                      key={index}
-                      className="mb-32"
-                      images={block.children}
-                    />
-                  )
-                }
-                if (isTwoColumnImagesBlock(block)) {
-                  return (
-                    <TwoUpImageBlock
-                      key={index}
-                      className="mb-32"
-                      images={block.images || block.children}
-                    />
-                  )
-                }
-                if (isHorizontalImageTextBlock(block)) {
-                  const extractedBlock: HorizontalImageTextBlock = {
-                    type: 'horizontal-image-text',
-                    layout: block.layout,
-                    content: {
-                      header: block.textBlock[0].header as string,
-                      copy: block.textBlock[0].copy as string,
+                return <Slider key={index} {...block} theme={theme} />
+              }
+              if (isThreeColumnImagesBlock(block)) {
+                return (
+                  <ThreeUpImageBlock
+                    key={index}
+                    className="mb-32"
+                    images={block.children}
+                  />
+                )
+              }
+              if (isTwoColumnImagesBlock(block)) {
+                return (
+                  <TwoUpImageBlock
+                    key={index}
+                    className="mb-32"
+                    images={block.images || block.children}
+                  />
+                )
+              }
+              if (isHorizontalImageTextBlock(block)) {
+                const extractedBlock: HorizontalImageTextBlock = {
+                  type: 'horizontal-image-text',
+                  layout: block.layout,
+                  content: {
+                    header: block.textBlock[0].header as string,
+                    copy: block.textBlock[0].copy as string,
+                  },
+                  media: {
+                    image: {
+                      publicURL: block.singleMedia[0].image[0]?.url as string,
                     },
-                    media: {
-                      image: {
-                        publicURL: block.singleMedia[0].image[0]?.url as string,
-                      },
-                    },
-                  }
-                  return (
-                    <HorizontalImageTextBlockComponent {...extractedBlock} />
-                  )
+                  },
                 }
-                if (isFullWidthCarouselBlock(block)) {
-                  if (block?.source === 'craft') {
-                    const items = createCarouselItems(block.children)
-                    block.items = items
-                  }
-
-                  return <FullWidthCarousel key={index} {...block} />
+                return <HorizontalImageTextBlockComponent {...extractedBlock} />
+              }
+              if (isFullWidthCarouselBlock(block)) {
+                if (block?.source === 'craft') {
+                  const items = createCarouselItems(block.children)
+                  block.items = items
                 }
-                if (isPowertrainBlock(block)) {
-                  const options = block.children.map((option: any) => {
-                    const details = option.children.map((detail) => {
-                      return {
-                        name: detail.textBlockHeader,
-                        info: detail.textBlockCopy,
-                      }
-                    })
 
+                return <FullWidthCarousel key={index} {...block} />
+              }
+              if (isPowertrainBlock(block)) {
+                const options = block.children.map((option: any) => {
+                  const details = option.children.map((detail) => {
                     return {
-                      name: option.textBlockHeader,
-                      details,
+                      name: detail.textBlockHeader,
+                      info: detail.textBlockCopy,
                     }
                   })
 
-                  const powertrainData = {
-                    heroImage: block?.image,
-                    options,
-                  }
-
-                  return <PowertrainSectionComponent {...powertrainData} />
-                }
-
-                if (isMoreDetailsBlock(block)) {
-                  const buttonText = block.textBlockHeader
-
-                  const details = block.children.map((detail) => {
-                    return {
-                      layout: detail.horizontalLayout,
-                      header: detail.textBlock?.[0].header,
-                      copy: detail.textBlock?.[0].copy,
-                      image: detail.singleMedia?.[0].image?.[0].url,
-                    }
-                  })
-
-                  const moreDetailsData = {
-                    buttonText,
+                  return {
+                    name: option.textBlockHeader,
                     details,
                   }
+                })
 
-                  return <MoreDetailsBlockComponent {...moreDetailsData} />
+                const powertrainData = {
+                  heroImage: block?.image,
+                  options,
                 }
 
-                return null
-              })}
-          </BoatSection>
-        )
-      )}
+                return <PowertrainSectionComponent {...powertrainData} />
+              }
+
+              if (isMoreDetailsBlock(block)) {
+                const buttonText = block.textBlockHeader
+
+                const details = block.children.map((detail) => {
+                  return {
+                    layout: detail.horizontalLayout,
+                    header: detail.textBlock?.[0].header,
+                    copy: detail.textBlock?.[0].copy,
+                    image: detail.singleMedia?.[0].image?.[0].url,
+                  }
+                })
+
+                const moreDetailsData = {
+                  buttonText,
+                  details,
+                }
+
+                return <MoreDetailsBlockComponent {...moreDetailsData} />
+              }
+
+              return null
+            })}
+        </BoatSection>
+      ))}
       {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={boatEntry.boatNameLong}
@@ -610,7 +586,7 @@ export const query = graphql`
                           image {
                             ... on CraftAPI_s3_Asset {
                               id
-                              url(width: 2000)
+                              url(width: 2400)
                             }
                           }
                         }
@@ -622,7 +598,7 @@ export const query = graphql`
                   image {
                     ... on CraftAPI_s3_Asset {
                       id
-                      url(width: 2000)
+                      url(width: 2400)
                     }
                   }
                   children {
@@ -653,7 +629,7 @@ export const query = graphql`
                       label
                       image {
                         ... on CraftAPI_s3_Asset {
-                          url(width: 1000)
+                          url(width: 2400)
                         }
                       }
                     }
@@ -674,7 +650,7 @@ export const query = graphql`
                           label
                           image {
                             ... on CraftAPI_s3_Asset {
-                              url(width: 1000)
+                              url(width: 1400)
                             }
                           }
                         }
@@ -691,7 +667,7 @@ export const query = graphql`
                           label
                           image {
                             ... on CraftAPI_s3_Asset {
-                              url(width: 1000)
+                              url(width: 1400)
                             }
                           }
                         }
