@@ -325,7 +325,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             {!!blocks &&
               blocks.map((block, index) => {
                 if (isTwoColumnImageTextBlock(block)) {
-                  console.log(block)
                   return (
                     <TwoColumnImageTextBlockComponent key={index} {...block} />
                   )
@@ -348,6 +347,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   if (block.textBlock) {
                     block.content = {
                       copy: block.textBlock[0].copy,
+                      header: block.textBlock[0].header,
                     }
                     block.media = block.singleMedia?.[0].image?.[0].url
                   }
@@ -599,8 +599,8 @@ export const query = graphql`
                       horizontalLayout
                       textBlock {
                         ... on CraftAPI_textBlock_BlockType {
-                          copy
                           header
+                          copy
                         }
                       }
                       singleMedia {
@@ -641,24 +641,27 @@ export const query = graphql`
                   align: textAlign
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
-                      copy
                       header
+                      copy
                     }
                   }
                 }
                 ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      copy
-                    }
-                  }
                   singleMedia {
                     ... on CraftAPI_singleMedia_BlockType {
+                      alt
+                      label
                       image {
                         ... on CraftAPI_s3_Asset {
-                          url
+                          url(width: 1000)
                         }
                       }
+                    }
+                  }
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
                     }
                   }
                 }
@@ -695,8 +698,8 @@ export const query = graphql`
                       }
                       textBlock {
                         ... on CraftAPI_textBlock_BlockType {
-                          copy
                           header
+                          copy
                         }
                       }
                     }
@@ -727,6 +730,7 @@ export const query = graphql`
                     ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
                       textBlock {
                         ... on CraftAPI_textBlock_BlockType {
+                          header
                           copy
                         }
                       }
