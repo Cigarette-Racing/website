@@ -148,6 +148,7 @@ export const BoatSection: React.FC<{ theme?: Theme; className?: string }> = ({
   children,
   className,
   theme = 'light',
+  ...rest
 }) => (
   <section
     className={clsx(
@@ -157,26 +158,10 @@ export const BoatSection: React.FC<{ theme?: Theme; className?: string }> = ({
       },
       className
     )}
+    {...rest}
   >
     {children}
   </section>
-)
-
-export const TextBlockComponent = ({
-  className = '',
-  copy,
-  header,
-}: {
-  className?: string
-  header: string
-  copy: string
-}) => (
-  <div className={className}>
-    <Typography variant="e2" className="mb-4">
-      {header}
-    </Typography>
-    <Typography variant="p2">{copy}</Typography>
-  </div>
 )
 
 export const MobileSectionHeader: React.FC<{ className?: string }> = ({
@@ -259,39 +244,6 @@ export const ImageWithLabel = ({
 
 type Side = 'left' | 'right'
 
-export const VerticalHeaderBlock = ({
-  className,
-  label,
-  side,
-  theme,
-}: {
-  className?: string
-  label: string
-  theme: Theme
-  side: Side
-}) => (
-  <div
-    className={clsx(
-      'max-w-7xl 2xl:max-w-8xl mx-auto relative md:mt-16',
-      className
-    )}
-  >
-    <div
-      className={clsx('hidden md:block absolute top-0', {
-        'left-0': side === 'left',
-        'right-0': side === 'right',
-      })}
-    >
-      <VerticalHeader
-        theme={theme}
-        className={clsx({ 'ml-4': side === 'left', 'mr-4': side === 'right' })}
-      >
-        {label}
-      </VerticalHeader>
-    </div>
-  </div>
-)
-
 export const SideBleedImage = ({
   className,
   imgClassName,
@@ -307,7 +259,10 @@ export const SideBleedImage = ({
   side: Side
   size?: 'default' | 'large'
 }) => (
-  <div className={clsx('relative mx-auto md:mt-16', className)}>
+  <div
+    className={clsx('relative mx-auto md:mt-16', className)}
+    data-block-type="SideBleedImage"
+  >
     <div
       className={clsx('w-full md:w-11/12 lg:w-10/12', {
         'ml-auto': side === 'right',
@@ -333,85 +288,6 @@ export const SideBleedImage = ({
         )}
       </AspectRatio>
     </div>
-  </div>
-)
-
-export const TwoUpImageBlock = ({
-  className,
-  images,
-}: {
-  className?: string
-  images: [Media, Media]
-}) => (
-  <div className={clsx('max-w-5xl mx-auto sm:flex', className)}>
-    <div className="px-4 mb-16 md:mb-0 flex-1">
-      <AspectRatio ratio="3:4">
-        {images[0].singleMedia ? (
-          <img
-            src={images[0].singleMedia?.[0].image?.[0].url}
-            alt=""
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        ) : (
-          <Img
-            fluid={images[0].image.childImageSharp?.fluid}
-            alt={images[0].alt || ''}
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        )}
-      </AspectRatio>
-    </div>
-    <div className="px-4 mb-16 md:mb-0 flex-1">
-      <AspectRatio ratio="3:4">
-        {images[1].singleMedia ? (
-          <img
-            src={images[1].singleMedia?.[0].image?.[0].url}
-            alt=""
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        ) : (
-          <Img
-            fluid={images[1].image.childImageSharp?.fluid}
-            alt={images[1].alt || ''}
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        )}
-      </AspectRatio>
-    </div>
-  </div>
-)
-
-export const ThreeUpImageBlock = ({
-  className,
-  images,
-}: {
-  className?: string
-  images: [Media, Media, Media]
-}) => (
-  <div className={clsx('sm:flex max-w-7xl mx-auto', className)}>
-    {!!images &&
-      !!images.length &&
-      images.map((media) => {
-        return (
-          <div
-            key={media?.singleMedia?.[0].image?.[0].url}
-            className="px-4 mb-16 sm:w-1/3"
-          >
-            <AspectRatio ratio="3:4">
-              <img
-                src={media?.singleMedia?.[0].image?.[0].url}
-                alt={media.alt || ''}
-                className="h-full w-full object-cover"
-                style={{ position: 'absolute' }}
-              />
-            </AspectRatio>
-          </div>
-        )
-      })}
   </div>
 )
 
@@ -488,7 +364,10 @@ export const SpecsSectionComponent = ({
   )
 
   return (
-    <BoatSection className="md:py-24 bg-offWhite">
+    <BoatSection
+      className="md:py-24 bg-offWhite"
+      data-section-type="Specs Section"
+    >
       <InPageAnchor title={title} />
       <div className="relative flex max-w-7xl mx-auto">
         <div className="hidden md:block absolute right-0 top-0">
@@ -633,60 +512,6 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
   )
 }
 
-export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
-  const [isOpen, toggleIsOpen] = useToggle(false)
-  const isClickable = details.length > 1
-  return (
-    <div>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="descriptions"
-            initial="collapsed"
-            animate="open"
-            exit="collapsed"
-            variants={{
-              open: { opacity: 1, height: 'auto' },
-              collapsed: { opacity: 0, height: '20px' },
-            }}
-            transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
-          >
-            {details.map((child: any) => {
-              const extractedBlock: HorizontalImageTextBlock = {
-                type: 'horizontal-image-text',
-                layout: child.layout,
-                content: {
-                  header: child.header as string,
-                  copy: child.copy as string,
-                },
-                media: {
-                  image: {
-                    publicURL: child.image as string,
-                  },
-                },
-              }
-              return <HorizontalImageTextBlockComponent {...extractedBlock} />
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <div className="flex justify-center md:mb-12">
-        <InPageCta
-          variant="secondary"
-          onClick={() => {
-            toggleIsOpen()
-          }}
-        >
-          <span className="flex items-center">
-            <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
-            <span>{buttonText}</span>
-          </span>
-        </InPageCta>
-      </div>
-    </div>
-  )
-}
-
 export const OrderSectionComponent = ({
   boatNameLong,
   title,
@@ -697,7 +522,10 @@ export const OrderSectionComponent = ({
   onClickCta: (state: boolean) => void
 }) => {
   return (
-    <BoatSection className="pb-48 sm:py-48">
+    <BoatSection
+      className="pb-48 sm:py-48"
+      data-section-type="OrderSectionComponent"
+    >
       <InPageAnchor title={title} />
       {typeof media === 'string' ? (
         <img
@@ -748,7 +576,10 @@ export const OneColumnTextBlockComponent = ({
   header,
   copy,
 }: OneColumnTextBlock) => (
-  <div className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto">
+  <div
+    className="my-12 px-4 xl:pl-0 mb-32 max-w-5xl mx-auto"
+    data-block-type="OneColumnTextBlockComponent"
+  >
     <TextBlockComponent
       className={clsx({
         'max-w-lg mr-auto text-left': align === 'left',
@@ -765,7 +596,10 @@ export const OneColumnImageTextBlockComponent = ({
   content,
   media,
 }: OneColumnImageTextBlock) => (
-  <div className="max-w-7xl mx-auto">
+  <div
+    className="max-w-7xl mx-auto"
+    data-block-type="OneColumnImageTextBlockComponent"
+  >
     <AspectRatio ratio="3:2" className="overflow-hidden">
       {typeof media === 'string' ? (
         <img
@@ -795,7 +629,10 @@ export const OneColumnImageTextBlockComponent = ({
 export const TwoColumnImageTextBlockComponent = ({
   children,
 }: TwoColumnImageTextBlock) => (
-  <div className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto">
+  <div
+    className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto"
+    data-block-type="TwoColumnImageTextBlockComponent"
+  >
     <div className="md:w-1/2 lg:pr-12">
       <TextBlockComponent
         className="my-12 px-4 lg:px-0 lg:ml-12 md:mb-32 lg:mb-48"
@@ -843,7 +680,10 @@ export const HorizontalImageTextBlockComponent = ({
     </div>
   )
   return (
-    <div className="md:flex max-w-7xl mx-auto mb-16 md:mb-32">
+    <div
+      className="md:flex max-w-7xl mx-auto mb-16 md:mb-32"
+      data-block-type="HorizontalImageTextBlockComponent"
+    >
       <div className="md:w-1/2 flex flex-col justify-center items-center mb-12 md:mb-0">
         {layout === 'imageOnLeft' ? image : text}
       </div>
@@ -853,3 +693,192 @@ export const HorizontalImageTextBlockComponent = ({
     </div>
   )
 }
+
+export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
+  const [isOpen, toggleIsOpen] = useToggle(false)
+  const isClickable = details.length > 1
+  return (
+    <div data-block-type="MoreDetailsBlockComponent">
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="descriptions"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: 'auto' },
+              collapsed: { opacity: 0, height: '20px' },
+            }}
+            transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            {details.map((child: any) => {
+              const extractedBlock: HorizontalImageTextBlock = {
+                type: 'horizontal-image-text',
+                layout: child.layout,
+                content: {
+                  header: child.header as string,
+                  copy: child.copy as string,
+                },
+                media: {
+                  image: {
+                    publicURL: child.image as string,
+                  },
+                },
+              }
+              return <HorizontalImageTextBlockComponent {...extractedBlock} />
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <div className="flex justify-center md:mb-12">
+        <InPageCta
+          variant="secondary"
+          onClick={() => {
+            toggleIsOpen()
+          }}
+        >
+          <span className="flex items-center">
+            <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+            <span>{buttonText}</span>
+          </span>
+        </InPageCta>
+      </div>
+    </div>
+  )
+}
+
+export const TwoUpImageBlock = ({
+  className,
+  images,
+}: {
+  className?: string
+  images: [Media, Media]
+}) => (
+  <div
+    className={clsx('max-w-5xl mx-auto sm:flex', className)}
+    data-block-type="TwoUpImageBlock"
+  >
+    <div className="px-4 mb-16 md:mb-0 flex-1">
+      <AspectRatio ratio="3:4">
+        {images[0].singleMedia ? (
+          <img
+            src={images[0].singleMedia?.[0].image?.[0].url}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <Img
+            fluid={images[0].image.childImageSharp?.fluid}
+            alt={images[0].alt || ''}
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        )}
+      </AspectRatio>
+    </div>
+    <div className="px-4 mb-16 md:mb-0 flex-1">
+      <AspectRatio ratio="3:4">
+        {images[1].singleMedia ? (
+          <img
+            src={images[1].singleMedia?.[0].image?.[0].url}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <Img
+            fluid={images[1].image.childImageSharp?.fluid}
+            alt={images[1].alt || ''}
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        )}
+      </AspectRatio>
+    </div>
+  </div>
+)
+
+export const ThreeUpImageBlock = ({
+  className,
+  images,
+}: {
+  className?: string
+  images: [Media, Media, Media]
+}) => (
+  <div
+    className={clsx('sm:flex max-w-7xl mx-auto', className)}
+    data-block-type="ThreeUpImageBlock"
+  >
+    {!!images &&
+      !!images.length &&
+      images.map((media) => {
+        return (
+          <div
+            key={media?.singleMedia?.[0].image?.[0].url}
+            className="px-4 mb-16 sm:w-1/3"
+          >
+            <AspectRatio ratio="3:4">
+              <img
+                src={media?.singleMedia?.[0].image?.[0].url}
+                alt={media.alt || ''}
+                className="h-full w-full object-cover"
+                style={{ position: 'absolute' }}
+              />
+            </AspectRatio>
+          </div>
+        )
+      })}
+  </div>
+)
+
+export const TextBlockComponent = ({
+  className = '',
+  copy,
+  header,
+}: {
+  className?: string
+  header: string
+  copy: string
+}) => (
+  <div className={className} data-block-type="TextBlockComponent">
+    <Typography variant="e2" className="mb-4">
+      {header}
+    </Typography>
+    <Typography variant="p2">{copy}</Typography>
+  </div>
+)
+
+export const VerticalHeaderBlock = ({
+  className,
+  label,
+  side,
+  theme,
+}: {
+  className?: string
+  label: string
+  theme: Theme
+  side: Side
+}) => (
+  <div
+    className={clsx(
+      'max-w-7xl 2xl:max-w-8xl mx-auto relative md:mt-16',
+      className
+    )}
+  >
+    <div
+      className={clsx('hidden md:block absolute top-0', {
+        'left-0': side === 'left',
+        'right-0': side === 'right',
+      })}
+    >
+      <VerticalHeader
+        theme={theme}
+        className={clsx({ 'ml-4': side === 'left', 'mr-4': side === 'right' })}
+      >
+        {label}
+      </VerticalHeader>
+    </div>
+  </div>
+)
