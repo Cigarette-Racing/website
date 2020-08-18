@@ -130,7 +130,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
-    const blocks = section.blocks.map((block) => {
+    const blocks = section.blocks.map((block: any) => {
       return {
         ...block,
         source: 'craft',
@@ -375,7 +375,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     <ThreeUpImageBlock
                       key={index}
                       className="mb-32"
-                      images={block.images}
+                      images={block.children}
                     />
                   )
                 }
@@ -681,7 +681,20 @@ export const query = graphql`
                   id
                 }
                 ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
-                  id
+                  children {
+                    typeHandle
+                    ... on CraftAPI_flexibleSections_image_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1000)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
                 ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
                   id
