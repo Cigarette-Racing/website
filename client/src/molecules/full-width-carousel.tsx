@@ -37,7 +37,7 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
   const media = items[itemIndex].media
 
   return (
-    <div className="relative mb-32 lg:mb-48 max-w-8xl mx-auto">
+    <div className="relative mb-32 lg:mb-48 mx-auto">
       <AspectRatio ratio="2:1">
         <AnimatePresence>
           <motion.div
