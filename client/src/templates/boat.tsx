@@ -521,7 +521,7 @@ export const query = graphql`
               thumbnail: image {
                 ... on CraftAPI_s3_Asset {
                   title
-                  url(width: 600)
+                  url(width: 1000)
                 }
               }
               image {
@@ -542,7 +542,7 @@ export const query = graphql`
           }
           powertrainOptionsHeader {
             ... on CraftAPI_s3_Asset {
-              url(width: 2000)
+              url(width: 2800)
             }
           }
           powertrainOptions {
@@ -564,7 +564,7 @@ export const query = graphql`
                   image {
                     ... on CraftAPI_s3_Asset {
                       id
-                      url(width: 1000)
+                      url(width: 2800)
                     }
                   }
                   videoURL
