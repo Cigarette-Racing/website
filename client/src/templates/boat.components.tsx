@@ -450,7 +450,7 @@ export const PowertrainTab = ({
         'text-red border-red': active,
       })}
     >
-      <Typography variant="e3" md="h4" as="span">
+      <Typography variant="e3-lower" md="h4" as="span" className="normal-case">
         {children}
       </Typography>
     </Comp>
