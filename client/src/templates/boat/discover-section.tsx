@@ -41,7 +41,11 @@ export const DiscoverSection = ({
   >(query)
 
   return (
-    <BoatSection theme="dark" className="pb-24 overflow-hidden">
+    <BoatSection
+      theme="dark"
+      className="pb-24 overflow-hidden"
+      data-section-type="Discover"
+    >
       <InPageAnchor title={sectionTitle} />
       {disableBackground ? (
         <div

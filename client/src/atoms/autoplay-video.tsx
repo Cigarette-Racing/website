@@ -45,6 +45,7 @@ export const AutoplayVideo = ({
           className="absolute top-0 left-0"
           url={videoUrl}
           controls={controls}
+          playsinline={true}
           muted
           loop
           playing
