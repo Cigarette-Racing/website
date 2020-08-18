@@ -488,7 +488,7 @@ export const SpecsSectionComponent = ({
   )
 
   return (
-    <BoatSection className="md:py-24">
+    <BoatSection className="md:py-24 bg-offWhite">
       <InPageAnchor title={title} />
       <div className="relative flex max-w-7xl mx-auto">
         <div className="hidden md:block absolute right-0 top-0">
@@ -511,7 +511,7 @@ export const SpecsSectionComponent = ({
         </div>
         <div className="max-w-2xl w-full">
           <div className="px-4 md:px-0 md:mb-16">
-            <Typography variant="h4">{boatNameLong}</Typography>
+            <Typography variant="h4">{boatNameLong} Specs</Typography>
           </div>
           <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-10 overflow-x-auto">
             {!!categories.length &&
