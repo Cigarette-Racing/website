@@ -17,7 +17,7 @@ export interface CircleButtonProps
 }
 
 const containerPrimaryClasses =
-  'bg-black bg-opacity-50 border-transparent text-white backdrop-blur-1'
+  'bg-black bg-opacity-25 border-transparent text-white backdrop-blur-1'
 const containerSecondaryClasses = 'border-red backdrop-blur-2'
 const containerSecondaryDarkClasses =
   'text-white hover:text-black hover:bg-white hover:border-white'
