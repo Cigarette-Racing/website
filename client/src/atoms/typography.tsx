@@ -14,6 +14,9 @@ type TypographyVariant =
   | 'e1' // Eyebrow 1
   | 'e2' // Eyebrow 2
   | 'e3' // Eyebrow 3
+  | 'e1-normal' // Eyebrow 1 normal case
+  | 'e2-normal' // Eyebrow 2 normal case
+  | 'e3-normal' // Eyebrow 3 normal case
 
 export interface TypographyProps<T> extends React.HTMLAttributes<T> {
   /** Typographic variant to use */

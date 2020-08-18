@@ -67,6 +67,15 @@ Utilities
   .type-e3 {
     @apply text-mi tracking-wider leading-normal font-bold font-body uppercase;
   }
+  .type-e1-normal {
+    @apply text-mi tracking-wider leading-normal font-bold font-body;
+  }
+  .type-e2-normal {
+    @apply text-mi tracking-wider leading-normal font-bold font-body;
+  }
+  .type-e3-normal {
+    @apply text-mi tracking-wider leading-normal font-bold font-body;
+  }
 }
 
 /* Utilities with responsive variants */
