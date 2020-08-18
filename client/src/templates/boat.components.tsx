@@ -765,7 +765,7 @@ export const OneColumnImageTextBlockComponent = ({
   content,
   media,
 }: OneColumnImageTextBlock) => (
-  <div className="max-w-5xl mx-auto">
+  <div className="max-w-7xl mx-auto">
     <AspectRatio ratio="3:2" className="overflow-hidden">
       {typeof media === 'string' ? (
         <img
@@ -783,8 +783,11 @@ export const OneColumnImageTextBlockComponent = ({
         />
       )}
     </AspectRatio>
-    <div className="md:flex justify-between my-8 mb-20 md:mb-24 px-4 xl:px-0 ">
-      <TextBlockComponent className="md:w-7/12" {...content} />
+    <div className="md:flex justify-center my-8 md:my-16 mb-20 md:mb-24 px-4 xl:px-0 ">
+      <TextBlockComponent
+        className="md:w-7/12 text-center max-w-6xl"
+        {...content}
+      />
     </div>
   </div>
 )
