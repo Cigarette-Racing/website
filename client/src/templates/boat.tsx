@@ -325,9 +325,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             {!!blocks &&
               blocks.map((block, index) => {
                 if (isTwoColumnImageTextBlock(block)) {
+                  console.log(block)
                   return (
-                    <div>TWO COLUMN IMAGE TEXT BLOCK</div>
-                    // <TwoColumnImageTextBlockComponent key={index} {...block} />
+                    <TwoColumnImageTextBlockComponent key={index} {...block} />
                   )
                 }
                 if (isOneColumnTextBlock(block)) {
@@ -667,9 +667,11 @@ export const query = graphql`
                     ... on CraftAPI_flexibleSections_image_BlockType {
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
+                          alt
+                          label
                           image {
                             ... on CraftAPI_s3_Asset {
-                              url
+                              url(width: 1000)
                             }
                           }
                         }
@@ -678,7 +680,27 @@ export const query = graphql`
                   }
                 }
                 ... on CraftAPI_flexibleSections_twoColumnImageTextBlock_BlockType {
-                  id
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          alt
+                          label
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1000)
+                            }
+                          }
+                        }
+                      }
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          copy
+                          header
+                        }
+                      }
+                    }
+                  }
                 }
                 ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
                   children {
