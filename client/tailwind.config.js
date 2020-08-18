@@ -94,6 +94,7 @@ module.exports = {
       red: '#d12026',
       black: '#000000',
       white: '#ffffff',
+      offWhite: '#F4F4F4',
       gray: {
         0: '#131313',
         1: '#333333',
