@@ -243,8 +243,8 @@ export const ImageWithLabel = ({
   alt?: string
 } & AspectRatioProps) => (
   <AspectRatio ratio={ratio} {...rest}>
-    <Img
-      fluid={src.childImageSharp?.fluid}
+    <img
+      src={src}
       className={clsx('h-full w-full object-cover', imgClassName)}
       alt={alt || ''}
       style={{ position: 'absolute' }}
@@ -785,38 +785,39 @@ export const OneColumnImageTextBlockComponent = ({
 )
 
 export const TwoColumnImageTextBlockComponent = ({
-  leftColumn,
-  rightColumn,
+  children,
 }: TwoColumnImageTextBlock) => (
   <div className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto">
     <div className="md:w-1/2 lg:pr-12">
       <TextBlockComponent
         className="my-12 px-4 lg:px-0 lg:ml-12 md:mb-32 lg:mb-48"
-        header={leftColumn.content.header}
-        copy={leftColumn.content.copy}
+        header={children?.[0].textBlock?.[0].header}
+        copy={children?.[0].textBlock?.[0].copy}
       />
       <div className="px-4 lg:px-0 mb-12 md:mb-0">
         <ImageWithLabel
           ratio="3:4"
-          src={leftColumn.media.image}
-          alt={leftColumn.media.alt}
-          label={leftColumn.media.label}
+          src={children[0].singleMedia?.[0].image?.[0].url}
+          alt={children[0].singleMedia?.[0].alt}
+          label={children[0].singleMedia?.[0].label}
         />
       </div>
     </div>
     <div className="md:w-1/2 lg:pl-12">
       <div className="px-4 lg:px-0 lg:pr-16">
+        {children[1].singleMedia?.alt}
         <ImageWithLabel
           ratio="3:4"
-          src={rightColumn.media.image}
-          alt={rightColumn.media.alt}
-          label={rightColumn.media.label}
+          src={children?.[1].singleMedia?.[0].image?.[0].url}
+          alt={children[1].singleMedia?.[0].alt}
+          label={children[1].singleMedia?.[0].label}
         />
       </div>
+      {console.log(children?.[1])}
       <TextBlockComponent
         className="my-10 md:my-16 px-4 lg:px-0 lg:pr-16"
-        header={rightColumn.content.header}
-        copy={rightColumn.content.copy}
+        header={children?.[1].textBlock?.[0].header}
+        copy={children?.[1].textBlock?.[0].copy}
       />
     </div>
   </div>
