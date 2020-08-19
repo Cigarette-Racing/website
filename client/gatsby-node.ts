@@ -62,16 +62,16 @@ const createBoatPages: GatsbyNode['createPages'] = async ({
     })
   })
 
-  result.data!.allBoatsYaml.nodes.forEach(({ id, boatName, fields }) => {
-    createPage({
-      path: fields.slug,
-      component: boatTemplate,
-      context: {
-        slug: fields.slug,
-        craftSlug: fields.craftSlug,
-      },
-    })
-  })
+  // result.data!.allBoatsYaml.nodes.forEach(({ id, boatName, fields }) => {
+  //   createPage({
+  //     path: fields.slug,
+  //     component: boatTemplate,
+  //     context: {
+  //       slug: fields.slug,
+  //       craftSlug: fields.craftSlug,
+  //     },
+  //   })
+  // })
 }
 
 export const createPages: GatsbyNode['createPages'] = async (...args) => {
