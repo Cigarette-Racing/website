@@ -601,20 +601,32 @@ export const OneColumnImageTextBlockComponent = ({
     data-block-type="OneColumnImageTextBlockComponent"
   >
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      {typeof media === 'string' ? (
-        <img
-          src={media}
-          alt=""
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
+      {console.log(media)}
+      {!!media.videoURL ? (
+        <AutoplayVideo
+          image={media.image}
+          alt={media.alt}
+          videoUrl={media.videoURL}
+          videoOptions={{ controls: false }}
         />
       ) : (
-        <Img
-          fluid={media.image.childImageSharp?.fluid}
-          alt={media.alt || ''}
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
-        />
+        <Fragment>
+          {typeof media === 'string' ? (
+            <img
+              src={media.image}
+              alt=""
+              className="h-full w-full object-cover"
+              style={{ position: 'absolute' }}
+            />
+          ) : (
+            <Img
+              fluid={media.image.childImageSharp?.fluid}
+              alt={media.alt || ''}
+              className="h-full w-full object-cover"
+              style={{ position: 'absolute' }}
+            />
+          )}
+        </Fragment>
       )}
     </AspectRatio>
     <div className="md:flex justify-center my-8 md:my-16 mb-20 md:mb-24 px-4 xl:px-0 ">

@@ -222,6 +222,7 @@ const createCarouselItems = (items: any) => {
       media: {
         image: item.singleMedia?.[0].image?.[0]?.url,
         videoUrl: item.singleMedia?.[0]?.videoURL,
+        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
       },
     }
   })
@@ -324,11 +325,16 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
               }
               if (isOneColumnImageTextBlock(block)) {
                 if (block.textBlock) {
+                  console.log(block.singleMedia)
                   block.content = {
                     copy: block.textBlock[0].copy,
                     header: block.textBlock[0].header,
                   }
-                  block.media = block.singleMedia?.[0].image?.[0].url
+                  block.media = {
+                    image: block.singleMedia?.[0].image?.[0].url,
+                    videoURL: block.singleMedia?.[0].videoURL,
+                    autoplayVideo: block.singleMedia?.[0].autoplayVideo,
+                  }
                 }
 
                 return <OneColumnImageTextBlockComponent {...block} />
@@ -482,6 +488,7 @@ export const query = graphql`
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
               alt
+              autoplayVideo
               videoURL
               image {
                 url(width: 2000)
@@ -538,13 +545,14 @@ export const query = graphql`
               disableBackground
               singleMedia {
                 ... on CraftAPI_singleMedia_BlockType {
+                  autoplayVideo
+                  videoURL
                   image {
                     ... on CraftAPI_s3_Asset {
                       id
                       url(width: 2800)
                     }
                   }
-                  videoURL
                 }
               }
               textBlock {
@@ -627,6 +635,8 @@ export const query = graphql`
                     ... on CraftAPI_singleMedia_BlockType {
                       alt
                       label
+                      autoplayVideo
+                      videoURL
                       image {
                         ... on CraftAPI_s3_Asset {
                           url(width: 2400)
@@ -648,6 +658,8 @@ export const query = graphql`
                         ... on CraftAPI_singleMedia_BlockType {
                           alt
                           label
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url(width: 1400)
@@ -665,6 +677,8 @@ export const query = graphql`
                         ... on CraftAPI_singleMedia_BlockType {
                           alt
                           label
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url(width: 1400)
@@ -687,6 +701,8 @@ export const query = graphql`
                     ... on CraftAPI_flexibleSections_image_BlockType {
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url(width: 1000)
@@ -712,13 +728,13 @@ export const query = graphql`
                       }
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url
                             }
                           }
-                          autoplayVideo
-                          videoURL
                         }
                       }
                     }
@@ -729,6 +745,8 @@ export const query = graphql`
                     ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url
@@ -748,7 +766,8 @@ export const query = graphql`
                   }
                   singleMedia {
                     ... on CraftAPI_singleMedia_BlockType {
-                      id
+                      autoplayVideo
+                      videoURL
                       image {
                         ... on CraftAPI_s3_Asset {
                           url
