@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Img from 'gatsby-image'
 import ReactPlayer from 'react-player'
 import { graphql, useStaticQuery } from 'gatsby'
+import { Waypoint } from 'react-waypoint'
 import { InPageAnchor } from '../../molecules/in-page-nav'
 import { VerticalHeader } from '../../atoms/vertical-header'
 import { Media } from '../../types/boat'
@@ -93,6 +94,7 @@ export const DiscoverSection = ({
 
 const DiscoverMedia = ({ media }: { media: Media }) => {
   const [showVideo, setShowVideo] = useState(false)
+  const [autoPlayVideo, setAutoPlayVideo] = useState(false)
   if (!media.image) {
     return null
   }
@@ -125,7 +127,16 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
         />
       )}
       <AnimatePresence>
-        {showVideo && (
+        <Waypoint
+          onEnter={() => {
+            setAutoPlayVideo(true)
+          }}
+          onLeave={() => {
+            setAutoPlayVideo(false)
+          }}
+          topOffset={0}
+          bottomOffset={`50%`}
+        >
           <motion.div
             key="video"
             initial={{ opacity: 0 }}
@@ -134,8 +145,10 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
             <ReactPlayer
               className="absolute top-0 left-0"
               url={media.videoUrl}
-              controls
-              playing
+              controls={true}
+              playsinline={true}
+              muted
+              playing={autoPlayVideo}
               config={{
                 file: {
                   attributes: {
@@ -147,7 +160,7 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
               height="100%"
             />
           </motion.div>
-        )}
+        </Waypoint>
       </AnimatePresence>
     </AspectRatio>
   )

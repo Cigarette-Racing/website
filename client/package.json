@@ -6,12 +6,11 @@
   "scripts": {
     "add-deploy-branch": "node ./scripts/enableDeliveryBranchDeploy.js",
     "build": "gatsby build",
-    "develop": "npm run clean:graphql && gatsby develop -H 0.0.0.0 -p 17007",
+    "develop": "gatsby develop -H 0.0.0.0 -p 17007",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve -p 17008",
     "clean": "gatsby clean",
-    "clean:graphql": "rm -rf ./.cache/caches/gatsby-source-graphql",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "type-check": "tsc --noEmit",
     "storybook": "start-storybook -c ./stories/.storybook -p 17009",
@@ -45,6 +44,7 @@
     "react-player": "^2.5.0",
     "react-select": "^3.1.0",
     "react-use": "^15.1.1",
+    "react-waypoint": "^9.0.3",
     "throttle-debounce": "^2.2.1"
   },
   "devDependencies": {
