@@ -78,20 +78,20 @@ export const InPageNav = ({
             >
               <CaretIcon className="text-red mr-4" />
               <div className="md:hidden">
-                <Typography variant="e3" as="span">
+                <Typography variant="e2" as="span">
                   {!!titles.length && current === titles[0][0]
                     ? boatName
                     : current}
                 </Typography>
               </div>
               <div className="hidden md:flex items-center">
-                <Typography variant="e3" as="span">
+                <Typography variant="e2" as="span">
                   {boatName}
                 </Typography>
                 {!!titles.length && current !== titles[0][0] && (
                   <Fragment>
                     <AngleIcon className="h-6 mx-4" />
-                    <Typography variant="e3" as="span">
+                    <Typography variant="e2" as="span">
                       {current}
                     </Typography>
                   </Fragment>
@@ -103,7 +103,7 @@ export const InPageNav = ({
                 onClickInquire(true)
               }}
             >
-              <Typography variant="e3">Inquire</Typography>
+              <Typography variant="e2">Inquire</Typography>
             </button>
           </div>
         </div>
@@ -149,7 +149,7 @@ function DropdownMenu({
         return (
           <a href={`#${slugify(long)}`} onClick={() => toggleIsMenuOpen(false)}>
             <Typography
-              variant="e3"
+              variant="e2"
               as="span"
               className={clsx('whitespace-no-wrap', {
                 'text-red': long === current,
@@ -200,7 +200,7 @@ function MobileMenu({
           className="h-20 flex items-center"
         >
           <CaretUpIcon className="text-red mr-4" />
-          <Typography variant="e3">{boatName}</Typography>
+          <Typography variant="e2">{boatName}</Typography>
         </button>
         <div className="mt-10 flex flex-col items-start">
           {titles.map(([link]) => {
