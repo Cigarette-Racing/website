@@ -127,6 +127,8 @@ module.exports = {
     extend: {
       screens: {
         xs: '420px',
+        '2xl': '1440px',
+        '3xl': '1920px',
       },
       fontSize: {
         mi: '0.625rem', // 10px ("mi" === "mini")
@@ -169,6 +171,7 @@ module.exports = {
         '7xl': '80rem',
         '8xl': '90rem',
         '9xl': '100rem',
+        '10xl': '110rem',
         '1': '0.25rem',
         '2': '0.5rem',
         '3': '0.75rem',
