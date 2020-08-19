@@ -264,7 +264,7 @@ export const SideBleedImage = ({
     data-block-type="SideBleedImage"
   >
     <div
-      className={clsx('w-full md:w-11/12 lg:w-10/12', {
+      className={clsx('w-full md:w-11/12 lg:w-10/12 xl:w-9/12', {
         'ml-auto': side === 'right',
         'mr-auto': side === 'left',
         'xl:w-9/12': size === 'default',
@@ -863,7 +863,7 @@ export const VerticalHeaderBlock = ({
 }) => (
   <div
     className={clsx(
-      'max-w-7xl 2xl:max-w-8xl mx-auto relative md:mt-16',
+      'max-w-7xl 3xl:max-w-10xl mx-auto relative md:mt-16',
       className
     )}
   >
