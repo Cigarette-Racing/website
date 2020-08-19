@@ -19,7 +19,7 @@ export interface CircleButtonProps
 const containerPrimaryClasses =
   'bg-black bg-opacity-25 border-transparent text-white backdrop-blur-1'
 const containerSecondaryClasses =
-  'bg-black bg-opacity-25 md:bg-transparent text-white md:text-black border-red backdrop-blur-2'
+  'bg-black bg-opacity-25 md:bg-transparent text-white border-red backdrop-blur-2'
 const containerSecondaryDarkClasses =
   'text-white hover:text-black hover:bg-white hover:border-white'
 const containerSecondaryLightClasses =
@@ -37,6 +37,7 @@ export const CircleButton = ({
   className,
   ...props
 }: CircleButtonProps) => {
+  console.log(theme, variant)
   return (
     <button
       type="button"
