@@ -365,7 +365,7 @@ export const SpecsSectionComponent = ({
 
   return (
     <BoatSection
-      className="md:py-24 bg-offWhite"
+      className="md:py-24 bg-offWhite overflow-hidden"
       data-section-type="Specs Section"
     >
       <InPageAnchor title={title} />
@@ -605,7 +605,6 @@ export const OneColumnImageTextBlockComponent = ({
     data-block-type="OneColumnImageTextBlockComponent"
   >
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      {console.log(typeof media.image)}
       {!!media.videoURL ? (
         <AutoplayVideo
           image={media.image}
@@ -646,7 +645,7 @@ export const TwoColumnImageTextBlockComponent = ({
   children,
 }: TwoColumnImageTextBlock) => (
   <div
-    className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto"
+    className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-7xl mx-auto"
     data-block-type="TwoColumnImageTextBlockComponent"
   >
     <div className="md:w-1/2 lg:pr-12">
@@ -771,7 +770,7 @@ export const TwoUpImageBlock = ({
   images: [Media, Media]
 }) => (
   <div
-    className={clsx('max-w-5xl mx-auto sm:flex', className)}
+    className={clsx('max-w-7xl mx-auto sm:flex', className)}
     data-block-type="TwoUpImageBlock"
   >
     <div className="px-4 mb-16 md:mb-0 flex-1">
