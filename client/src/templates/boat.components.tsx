@@ -264,7 +264,7 @@ export const SideBleedImage = ({
     data-block-type="SideBleedImage"
   >
     <div
-      className={clsx('w-full md:w-11/12 lg:w-10/12', {
+      className={clsx('w-full md:w-11/12 lg:w-10/12 xl:w-9/12', {
         'ml-auto': side === 'right',
         'mr-auto': side === 'left',
         'xl:w-9/12': size === 'default',
@@ -365,7 +365,7 @@ export const SpecsSectionComponent = ({
 
   return (
     <BoatSection
-      className="md:py-24 bg-offWhite"
+      className="md:py-24 bg-offWhite overflow-hidden"
       data-section-type="Specs Section"
     >
       <InPageAnchor title={title} />
@@ -446,9 +446,13 @@ export const PowertrainTab = ({
   return (
     <Comp
       {...props}
-      className={clsx('block py-px border-b border-transparent', className, {
-        'text-red border-red': active,
-      })}
+      className={clsx(
+        'block py-px border-b border-transparent hover:text-red',
+        className,
+        {
+          'text-red border-red': active,
+        }
+      )}
     >
       <Typography variant="e3-lower" md="h4" as="span" className="normal-case">
         {children}
@@ -582,9 +586,9 @@ export const OneColumnTextBlockComponent = ({
   >
     <TextBlockComponent
       className={clsx({
-        'max-w-lg mr-auto text-left': align === 'left',
-        'max-w-xl mx-auto text-center': align === 'center',
-        'max-w-lg ml-auto text-right': align === 'right',
+        'max-w-xl mr-auto text-left': align === 'left',
+        'max-w-2xl mx-auto text-center': align === 'center',
+        'max-w-xl ml-auto text-right': align === 'right',
       })}
       header={header}
       copy={copy}
@@ -601,25 +605,36 @@ export const OneColumnImageTextBlockComponent = ({
     data-block-type="OneColumnImageTextBlockComponent"
   >
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      {typeof media === 'string' ? (
-        <img
-          src={media}
-          alt=""
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
+      {!!media.videoURL ? (
+        <AutoplayVideo
+          image={media.image}
+          alt={media.alt}
+          videoUrl={media.videoURL}
+          videoOptions={{ controls: false }}
         />
       ) : (
-        <Img
-          fluid={media.image.childImageSharp?.fluid}
-          alt={media.alt || ''}
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
-        />
+        <Fragment>
+          {typeof media.image === 'string' ? (
+            <img
+              src={media.image}
+              alt=""
+              className="h-full w-full object-cover"
+              style={{ position: 'absolute' }}
+            />
+          ) : (
+            <Img
+              fluid={media.image.childImageSharp?.fluid}
+              alt={media.alt || ''}
+              className="h-full w-full object-cover"
+              style={{ position: 'absolute' }}
+            />
+          )}
+        </Fragment>
       )}
     </AspectRatio>
     <div className="md:flex justify-center my-8 md:my-16 mb-20 md:mb-24 px-4 xl:px-0 ">
       <TextBlockComponent
-        className="md:w-7/12 text-center max-w-6xl"
+        className="md:w-3/4 text-center max-w-6xl"
         {...content}
       />
     </div>
@@ -630,7 +645,7 @@ export const TwoColumnImageTextBlockComponent = ({
   children,
 }: TwoColumnImageTextBlock) => (
   <div
-    className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-6xl mx-auto"
+    className="md:flex md:mb-24 md:px-12 lg:px-16 max-w-7xl mx-auto"
     data-block-type="TwoColumnImageTextBlockComponent"
   >
     <div className="md:w-1/2 lg:pr-12">
@@ -658,7 +673,6 @@ export const TwoColumnImageTextBlockComponent = ({
           label={children[1].singleMedia?.[0].label}
         />
       </div>
-      {console.log(children?.[1])}
       <TextBlockComponent
         className="my-10 md:my-16 px-4 lg:px-0 lg:pr-16"
         header={children?.[1].textBlock?.[0].header}
@@ -756,7 +770,7 @@ export const TwoUpImageBlock = ({
   images: [Media, Media]
 }) => (
   <div
-    className={clsx('max-w-5xl mx-auto sm:flex', className)}
+    className={clsx('max-w-7xl mx-auto sm:flex', className)}
     data-block-type="TwoUpImageBlock"
   >
     <div className="px-4 mb-16 md:mb-0 flex-1">
@@ -863,7 +877,7 @@ export const VerticalHeaderBlock = ({
 }) => (
   <div
     className={clsx(
-      'max-w-7xl 2xl:max-w-8xl mx-auto relative md:mt-16',
+      'max-w-7xl 3xl:max-w-10xl mx-auto relative md:mt-16',
       className
     )}
   >

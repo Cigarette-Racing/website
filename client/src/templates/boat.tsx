@@ -222,6 +222,7 @@ const createCarouselItems = (items: any) => {
       media: {
         image: item.singleMedia?.[0].image?.[0]?.url,
         videoUrl: item.singleMedia?.[0]?.videoURL,
+        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
       },
     }
   })
@@ -328,7 +329,11 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     copy: block.textBlock[0].copy,
                     header: block.textBlock[0].header,
                   }
-                  block.media = block.singleMedia?.[0].image?.[0].url
+                  block.media = {
+                    image: block.singleMedia?.[0].image?.[0].url,
+                    videoURL: block.singleMedia?.[0].videoURL,
+                    autoplayVideo: block.singleMedia?.[0].autoplayVideo,
+                  }
                 }
 
                 return <OneColumnImageTextBlockComponent {...block} />
@@ -342,10 +347,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 return <Carousel key={index} {...block} theme={theme} />
               }
               if (isSliderBlock(block)) {
-                if (block?.source === 'craft') {
-                  const items = createCarouselItems(block.children)
-                  block.items = items
-                }
+                // if (block?.source === 'craft') {
+                //   const items = createCarouselItems(block.children)
+                //   block.items = items
+                // }
+
+                return null
 
                 return <Slider key={index} {...block} theme={theme} />
               }
@@ -482,6 +489,7 @@ export const query = graphql`
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
               alt
+              autoplayVideo
               videoURL
               image {
                 url(width: 2000)
@@ -538,13 +546,14 @@ export const query = graphql`
               disableBackground
               singleMedia {
                 ... on CraftAPI_singleMedia_BlockType {
+                  autoplayVideo
+                  videoURL
                   image {
                     ... on CraftAPI_s3_Asset {
                       id
                       url(width: 2800)
                     }
                   }
-                  videoURL
                 }
               }
               textBlock {
@@ -627,6 +636,8 @@ export const query = graphql`
                     ... on CraftAPI_singleMedia_BlockType {
                       alt
                       label
+                      autoplayVideo
+                      videoURL
                       image {
                         ... on CraftAPI_s3_Asset {
                           url(width: 2400)
@@ -648,6 +659,8 @@ export const query = graphql`
                         ... on CraftAPI_singleMedia_BlockType {
                           alt
                           label
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url(width: 1400)
@@ -665,6 +678,8 @@ export const query = graphql`
                         ... on CraftAPI_singleMedia_BlockType {
                           alt
                           label
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url(width: 1400)
@@ -687,6 +702,8 @@ export const query = graphql`
                     ... on CraftAPI_flexibleSections_image_BlockType {
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url(width: 1000)
@@ -696,9 +713,6 @@ export const query = graphql`
                       }
                     }
                   }
-                }
-                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
-                  id
                 }
                 ... on CraftAPI_flexibleSections_carousel_BlockType {
                   fullWidth
@@ -712,13 +726,13 @@ export const query = graphql`
                       }
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url
                             }
                           }
-                          autoplayVideo
-                          videoURL
                         }
                       }
                     }
@@ -727,8 +741,16 @@ export const query = graphql`
                 ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
                   children {
                     ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
                           image {
                             ... on CraftAPI_s3_Asset {
                               url
@@ -748,7 +770,8 @@ export const query = graphql`
                   }
                   singleMedia {
                     ... on CraftAPI_singleMedia_BlockType {
-                      id
+                      autoplayVideo
+                      videoURL
                       image {
                         ... on CraftAPI_s3_Asset {
                           url
