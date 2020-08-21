@@ -4,6 +4,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+console.log(process.env.NODE_ENV)
+
 export const siteMetadata = {
   title: `Cigarette Racing`,
   description: `Cigarette Racing`,
@@ -25,7 +27,7 @@ export const plugins = [
     options: {
       typeName: 'CraftAPI',
       fieldName: 'craftAPI',
-      url: `${process.env.GATSBY_CRAFT_GRAPHQL_API}`,
+      url: `https://cigracingapi.frb.io/actions/graphql/api`,
       refetchInterval: process.env.NODE_ENV === 'development' ? 20 : null,
     },
   },
