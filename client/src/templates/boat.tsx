@@ -325,7 +325,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
               }
               if (isOneColumnImageTextBlock(block)) {
                 if (block.textBlock) {
-                  console.log(block.singleMedia)
                   block.content = {
                     copy: block.textBlock[0].copy,
                     header: block.textBlock[0].header,
@@ -348,10 +347,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 return <Carousel key={index} {...block} theme={theme} />
               }
               if (isSliderBlock(block)) {
-                if (block?.source === 'craft') {
-                  const items = createCarouselItems(block.children)
-                  block.items = items
-                }
+                // if (block?.source === 'craft') {
+                //   const items = createCarouselItems(block.children)
+                //   block.items = items
+                // }
+
+                return null
 
                 return <Slider key={index} {...block} theme={theme} />
               }
@@ -713,9 +714,6 @@ export const query = graphql`
                     }
                   }
                 }
-                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
-                  id
-                }
                 ... on CraftAPI_flexibleSections_carousel_BlockType {
                   fullWidth
                   children {
@@ -743,6 +741,12 @@ export const query = graphql`
                 ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
                   children {
                     ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
                       singleMedia {
                         ... on CraftAPI_singleMedia_BlockType {
                           autoplayVideo

@@ -446,9 +446,13 @@ export const PowertrainTab = ({
   return (
     <Comp
       {...props}
-      className={clsx('block py-px border-b border-transparent', className, {
-        'text-red border-red': active,
-      })}
+      className={clsx(
+        'block py-px border-b border-transparent hover:text-red',
+        className,
+        {
+          'text-red border-red': active,
+        }
+      )}
     >
       <Typography variant="e3-lower" md="h4" as="span" className="normal-case">
         {children}
@@ -601,7 +605,6 @@ export const OneColumnImageTextBlockComponent = ({
     data-block-type="OneColumnImageTextBlockComponent"
   >
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      {console.log(media)}
       {!!media.videoURL ? (
         <AutoplayVideo
           image={media.image}
@@ -670,7 +673,6 @@ export const TwoColumnImageTextBlockComponent = ({
           label={children[1].singleMedia?.[0].label}
         />
       </div>
-      {console.log(children?.[1])}
       <TextBlockComponent
         className="my-10 md:my-16 px-4 lg:px-0 lg:pr-16"
         header={children?.[1].textBlock?.[0].header}

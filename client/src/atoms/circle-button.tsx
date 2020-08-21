@@ -37,7 +37,6 @@ export const CircleButton = ({
   className,
   ...props
 }: CircleButtonProps) => {
-  console.log(theme, variant)
   return (
     <button
       type="button"
