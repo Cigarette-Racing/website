@@ -55,7 +55,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto" data-block-type="Slider">
+    <div className="max-w-7xl mx-auto" data-block-type="Slider">
       <div className="md:w-9/12" ref={ref}>
         <AspectRatio ratio="3:2">
           <AnimatePresence initial={false} custom={{ direction, width }}>
