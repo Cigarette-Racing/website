@@ -605,6 +605,7 @@ export const OneColumnImageTextBlockComponent = ({
     data-block-type="OneColumnImageTextBlockComponent"
   >
     <AspectRatio ratio="3:2" className="overflow-hidden">
+      {console.log(typeof media.image)}
       {!!media.videoURL ? (
         <AutoplayVideo
           image={media.image}
@@ -614,7 +615,7 @@ export const OneColumnImageTextBlockComponent = ({
         />
       ) : (
         <Fragment>
-          {typeof media === 'string' ? (
+          {typeof media.image === 'string' ? (
             <img
               src={media.image}
               alt=""
