@@ -586,9 +586,9 @@ export const OneColumnTextBlockComponent = ({
   >
     <TextBlockComponent
       className={clsx({
-        'max-w-lg mr-auto text-left': align === 'left',
-        'max-w-xl mx-auto text-center': align === 'center',
-        'max-w-lg ml-auto text-right': align === 'right',
+        'max-w-xl mr-auto text-left': align === 'left',
+        'max-w-2xl mx-auto text-center': align === 'center',
+        'max-w-xl ml-auto text-right': align === 'right',
       })}
       header={header}
       copy={copy}
@@ -634,7 +634,7 @@ export const OneColumnImageTextBlockComponent = ({
     </AspectRatio>
     <div className="md:flex justify-center my-8 md:my-16 mb-20 md:mb-24 px-4 xl:px-0 ">
       <TextBlockComponent
-        className="md:w-7/12 text-center max-w-6xl"
+        className="md:w-3/4 text-center max-w-6xl"
         {...content}
       />
     </div>
