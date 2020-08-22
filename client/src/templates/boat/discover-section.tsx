@@ -1,9 +1,10 @@
 import React, { useState, Fragment } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useLockBodyScroll } from 'react-use'
 import Img from 'gatsby-image'
 import ReactPlayer from 'react-player'
 import { graphql, useStaticQuery } from 'gatsby'
-import { Waypoint } from 'react-waypoint'
+import ReactModal from 'react-modal'
 import { InPageAnchor } from '../../molecules/in-page-nav'
 import { VerticalHeader } from '../../atoms/vertical-header'
 import { Media } from '../../types/boat'
@@ -95,73 +96,81 @@ export const DiscoverSection = ({
 const DiscoverMedia = ({ media }: { media: Media }) => {
   const [showVideo, setShowVideo] = useState(false)
   const [autoPlayVideo, setAutoPlayVideo] = useState(false)
+  useLockBodyScroll(showVideo)
+
   if (!media.image) {
     return null
+  }
+
+  const modalStyles = {
+    overlay: {
+      background: 'transparent',
+      zIndex: 50,
+    },
+    content: {
+      background: 'transparent',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      padding: 0,
+      border: 'none',
+      borderRadius: 0,
+      overflow: 'hidden',
+    },
   }
 
   return (
     // TODO: get 3:2 discover section images
     // <AspectRatio ratio="3:2" md="16:9" lg="21:9">
-    <AspectRatio ratio="21:9">
-      {typeof media.image === 'string' ? (
-        <img
-          src={media.image}
-          alt=""
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
-        />
-      ) : (
-        <Img
-          fluid={media.image.childImageSharp?.fluid}
-          className="h-full w-full object-cover"
-          alt={media.alt || ''}
-          style={{ position: 'absolute' }}
-        />
-      )}
-      {media.videoUrl && (
-        <CircleButton
-          onClick={() => setShowVideo(true)}
-          icon={PlayIcon}
-          size="lg"
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        />
-      )}
-      <AnimatePresence>
-        <Waypoint
-          onEnter={() => {
-            setAutoPlayVideo(true)
+    <Fragment>
+      <ReactModal
+        style={modalStyles}
+        isOpen={showVideo!}
+        shouldCloseOnOverlayClick={true}
+      >
+        <ReactPlayer
+          className="absolute top-0 left-0"
+          url={media.videoUrl}
+          controls
+          muted
+          playing={showVideo}
+          config={{
+            file: {
+              attributes: {
+                className: 'object-cover',
+              },
+            },
           }}
-          onLeave={() => {
-            setAutoPlayVideo(false)
-          }}
-          topOffset={0}
-          bottomOffset={`50%`}
-        >
-          <motion.div
-            key="video"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <ReactPlayer
-              className="absolute top-0 left-0"
-              url={media.videoUrl}
-              controls={true}
-              playsinline={true}
-              muted
-              playing={autoPlayVideo}
-              config={{
-                file: {
-                  attributes: {
-                    className: 'object-cover',
-                  },
-                },
-              }}
-              width="100%"
-              height="100%"
-            />
-          </motion.div>
-        </Waypoint>
-      </AnimatePresence>
-    </AspectRatio>
+          width="100%"
+          height="100%"
+        />
+      </ReactModal>
+      <AspectRatio ratio="21:9">
+        {typeof media.image === 'string' ? (
+          <img
+            src={media.image}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
+        ) : (
+          <Img
+            fluid={media.image.childImageSharp?.fluid}
+            className="h-full w-full object-cover"
+            alt={media.alt || ''}
+            style={{ position: 'absolute' }}
+          />
+        )}
+        {media.videoUrl && (
+          <CircleButton
+            onClick={() => setShowVideo(true)}
+            icon={PlayIcon}
+            size="lg"
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          />
+        )}
+      </AspectRatio>
+    </Fragment>
   )
 }
