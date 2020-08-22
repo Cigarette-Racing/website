@@ -340,7 +340,7 @@ export const PowertrainSectionComponent = ({
               options
                 .find((option: any) => option.name === selectedOption)
                 .details.map((detail: any) => (
-                  <ul>
+                  <ul key={detail.name}>
                     <li>
                       <Typography variant="e3">{detail.name}</Typography>
                       <Typography variant="p3">{detail.info}</Typography>
