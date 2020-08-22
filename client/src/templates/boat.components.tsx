@@ -34,6 +34,7 @@ export const BoatHeader = ({
   videoUrl,
   boatLogo,
   boatNameLong,
+  eyebrow,
   ctaText,
   onClickCta,
   headline,
@@ -44,6 +45,7 @@ export const BoatHeader = ({
   videoUrl?: string
   boatLogo: string
   boatNameLong: string
+  eyebrow: string
   onClickCta: (state: boolean) => void
   ctaText?: string
   headline: string
@@ -65,7 +67,7 @@ export const BoatHeader = ({
       <div />
       <div className="relative z-10">
         <Typography variant="e2" md="e2" className="text-center mb-8 md:mb-4">
-          {boatNameLong}
+          {eyebrow || boatNameLong}
         </Typography>
         <Typography
           variant="h4"
