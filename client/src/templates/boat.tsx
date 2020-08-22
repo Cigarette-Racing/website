@@ -353,7 +353,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   }
                 }
 
-                return <OneColumnImageTextBlockComponent {...block} />
+                return (
+                  <OneColumnImageTextBlockComponent key={index} {...block} />
+                )
               }
               if (isCarouselBlock(block)) {
                 if (block?.source === 'craft') {
@@ -403,7 +405,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     },
                   },
                 }
-                return <HorizontalImageTextBlockComponent {...extractedBlock} />
+                return (
+                  <HorizontalImageTextBlockComponent
+                    key={index}
+                    {...extractedBlock}
+                  />
+                )
               }
               if (isFullWidthCarouselBlock(block)) {
                 if (block?.source === 'craft') {
