@@ -8,7 +8,6 @@ import {
   CarouselButtons,
   TextBlockComponent,
 } from '../templates/boat.components'
-import { useMeasure } from 'react-use'
 import { determineSwipeAction } from '../services/swiping'
 import { fadeAnimationProps } from '../services/animations'
 import { Theme } from '../types/shared'
@@ -19,23 +18,34 @@ enum Direction {
 }
 
 const variants = {
-  enter: ({ direction, width }: { direction: Direction; width: number }) => {
-    return {
-      x: direction === Direction.Next ? 500 : -500,
-      opacity: 0,
-    }
+  enter: {
+    opacity: 0,
   },
   center: {
     zIndex: 1,
-    x: 0,
     opacity: 1,
   },
-  exit: ({ direction, width }: { direction: Direction; width: number }) => {
-    return {
-      zIndex: 0,
-      x: direction === Direction.Prev ? 500 : -500,
-      opacity: 0,
-    }
+  exit: {
+    zIndex: 0,
+    opacity: 0,
+  },
+}
+
+const secondaryVariants = {
+  enter: {
+    opacity: 0,
+    scale: 0.8,
+  },
+  center: {
+    opacity: 0.35,
+    scale: 0.85,
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    transition: {
+      duration: 0.1,
+    },
   },
 }
 
@@ -44,9 +54,9 @@ export interface SliderProps extends Omit<SliderBlock, 'type'> {
 }
 
 export const Slider = ({ items, theme }: SliderProps) => {
-  const [ref, { width }] = useMeasure<HTMLDivElement>()
-  const [[page, direction], setPage] = useState([0, 0])
+  const [[page], setPage] = useState([0, 0])
   const itemIndex = wrap(0, items.length, page)
+  const nextItemIndex = wrap(0, items.length, page + 1)
   const goNext = () => {
     setPage([page + 1, Direction.Next])
   }
@@ -56,16 +66,15 @@ export const Slider = ({ items, theme }: SliderProps) => {
 
   return (
     <div className="max-w-7xl mx-auto" data-block-type="Slider">
-      <div className="md:w-9/12" ref={ref}>
+      <div className="md:w-9/12">
         <AspectRatio ratio="3:2">
-          <AnimatePresence initial={false} custom={{ direction, width }}>
+          <AnimatePresence initial={false}>
             <motion.img
               key={page}
               src={
                 items[itemIndex].media?.image?.childImageSharp?.fluid?.src! ||
                 items[itemIndex]?.media?.image
               }
-              custom={{ direction, width }}
               variants={variants}
               initial="enter"
               animate="center"
@@ -87,6 +96,35 @@ export const Slider = ({ items, theme }: SliderProps) => {
               }}
               className="absolute h-full w-full object-cover"
             />
+            <motion.div
+              key={`secondary${page}`}
+              variants={secondaryVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: 'spring', stiffness: 300, damping: 200 },
+                opacity: { duration: 0.4 },
+              }}
+              className="absolute h-full w-full object-cover"
+              style={{ left: 'calc(100% + 0px)' }}
+            >
+              <img
+                src={
+                  items[nextItemIndex].media?.image?.childImageSharp?.fluid
+                    ?.src! || items[nextItemIndex]?.media?.image
+                }
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    theme === 'dark'
+                      ? 'linear-gradient(to right, transparent, black 45%)'
+                      : 'linear-gradient(to right, transparent, white 45%)',
+                }}
+              />
+            </motion.div>
           </AnimatePresence>
           <CarouselButtons
             className="absolute bottom-0 pb-4 w-full z-10 md:hidden"
