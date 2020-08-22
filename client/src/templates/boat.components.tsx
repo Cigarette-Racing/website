@@ -147,8 +147,7 @@ export const BoatHeader = ({
 export const BoatSection: React.FC<{
   theme?: Theme
   className?: string
-  hasIntroCarousel?: boolean
-}> = ({ children, className, hasIntroCarousel, theme = 'light', ...rest }) => (
+}> = ({ children, className, theme = 'light', ...rest }) => (
   <section
     className={clsx(
       'relative py-12',

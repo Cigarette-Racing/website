@@ -8,6 +8,7 @@ import { CircleButton } from '../atoms/circle-button'
 import { ArrowIcon } from '../svgs/icons'
 import { determineSwipeAction } from '../services/swiping'
 import { AutoplayVideo } from '../atoms/autoplay-video'
+import clsx from 'clsx'
 
 const animations = {
   initial: {
@@ -28,7 +29,10 @@ const animations = {
 export interface FullWidthCarouselProps
   extends Omit<FullWidthCarouselBlock, 'type'> {}
 
-export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
+export const FullWidthCarousel = ({
+  items,
+  blockPosition,
+}: FullWidthCarouselProps) => {
   const [page, setPage] = useState(0)
   const itemIndex = wrap(0, items.length, page)
   const goToItem = (oneBasedIndex: number) => {
@@ -36,8 +40,16 @@ export const FullWidthCarousel = ({ items }: FullWidthCarouselProps) => {
   }
   const media = items[itemIndex].media
 
+  console.log(blockPosition)
+
   return (
-    <div className="relative mb-32 lg:mb-48 mx-auto">
+    <div
+      className={clsx('relative mx-auto', {
+        'md:-mt-32 first': blockPosition === 'first',
+        'mb-32 lg:mb-48 middle': blockPosition === 'middle',
+        '-mb-12 last': blockPosition === 'last',
+      })}
+    >
       <AspectRatio ratio="2:1">
         <AnimatePresence>
           <motion.div
