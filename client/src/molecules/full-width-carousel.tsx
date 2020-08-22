@@ -40,8 +40,6 @@ export const FullWidthCarousel = ({
   }
   const media = items[itemIndex].media
 
-  console.log(blockPosition)
-
   return (
     <div
       className={clsx('relative mx-auto', {
@@ -86,7 +84,7 @@ export const FullWidthCarousel = ({
       {items.length > 1 && (
         <Fragment>
           <div
-            className="absolute inset-0 z-10"
+            className="absolute inset-0 z-10 pointer-events-none"
             style={{
               background:
                 'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 47.5%)',
