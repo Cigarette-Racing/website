@@ -78,6 +78,7 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
     alt: boatEntry.singleMedia[0]?.alt,
     videoUrl: boatEntry.singleMedia[0]?.videoURL,
     boatNameLong: boatEntry.boatNameLong,
+    eyebrow: boatEntry.eyebrow,
     headline: boatEntry.headline,
     stats: boatEntry.boatStats,
     boatLogo: boatEntry.boatLogo[0]?.url,
@@ -117,16 +118,29 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
-    const blocks = section.blocks.map((block: any) => {
-      return {
-        ...block,
-        source: 'craft',
-        type:
-          block.typeHandle === 'carousel' && block.fullWidth
-            ? 'full-width-carousel'
-            : blockTypes[block.typeHandle as keyof typeof blockTypes],
+    const blocks = section.blocks.map(
+      (block: any, index: Number, blocks: Array) => {
+        const getBlockPosition = () => {
+          if (index === 0) {
+            return 'first'
+          }
+          if (index === blocks.length - 1) {
+            return 'last'
+          }
+          return 'middle'
+        }
+
+        return {
+          ...block,
+          source: 'craft',
+          blockPosition: getBlockPosition(),
+          type:
+            block.typeHandle === 'carousel' && block.fullWidth
+              ? 'full-width-carousel'
+              : blockTypes[block.typeHandle as keyof typeof blockTypes],
+        }
       }
-    })
+    )
 
     return {
       type: 'flexible',
@@ -262,6 +276,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           videoUrl={heroData.videoUrl}
           boatLogo={heroData.boatLogo}
           boatNameLong={heroData.boatNameLong}
+          eyebrow={heroData.eyebrow}
           headline={heroData.headline!}
           stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
@@ -294,13 +309,15 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
               className="lg:mt-32"
             />
           )}
-          {!!headerImage && (
+          {!!headerImage ? (
             <SideBleedImage
               media={headerImage}
               side={bleedDirection}
               className="lg:mt-32 mb-20 md:mb-32"
               size="large"
             />
+          ) : (
+            <div className="md:pt-20"></div>
           )}
           {!!blocks &&
             blocks.map((block, index) => {
@@ -347,12 +364,10 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                 return <Carousel key={index} {...block} theme={theme} />
               }
               if (isSliderBlock(block)) {
-                // if (block?.source === 'craft') {
-                //   const items = createCarouselItems(block.children)
-                //   block.items = items
-                // }
-
-                return null
+                if (block?.source === 'craft') {
+                  const items = createCarouselItems(block.children)
+                  block.items = items
+                }
 
                 return <Slider key={index} {...block} theme={theme} />
               }
@@ -485,6 +500,7 @@ export const query = graphql`
           slug
           title
           boatNameLong
+          eyebrow
           ctaText: textBlockHeader
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {

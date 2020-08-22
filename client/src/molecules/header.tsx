@@ -544,7 +544,7 @@ function BoatSelector({
                 ))}
               </div>
             </div>
-            <div className="fixed bottom-0 left-0 w-full mb-8">
+            <div className="fixed bottom-0 left-0 w-full mb-8 pointer-events-none">
               <div className="max-w-8xl mx-auto">
                 <motion.div animate={{ opacity: hasScrolled ? 0 : 1 }}>
                   <ScrollPrompter />
