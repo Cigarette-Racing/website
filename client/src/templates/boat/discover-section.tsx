@@ -132,7 +132,6 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
         isOpen={showVideo!}
         contentLabel="onRequestClose Example"
         onRequestClose={() => {
-          console.log('on request close')
           setShowVideo(false)
         }}
       >
