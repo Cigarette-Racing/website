@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, useRef, Fragment } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useLockBodyScroll } from 'react-use'
 import Img from 'gatsby-image'
@@ -12,6 +12,7 @@ import { BoatSection, TextBlockComponent } from '../boat.components'
 import { AspectRatio } from '../../atoms/aspect-ratio'
 import { CircleButton } from '../../atoms/circle-button'
 import { PlayIcon } from '../../svgs/icons'
+import CloseCursor from '../../images/close-cursor.png'
 
 const query = graphql`
   query DiscoverSectionBackground {
@@ -102,6 +103,8 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
     return null
   }
 
+  const videoPlayer = useRef(null)
+
   const modalStyles = {
     overlay: {
       background: 'transparent',
@@ -127,24 +130,46 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
       <ReactModal
         style={modalStyles}
         isOpen={showVideo!}
-        shouldCloseOnOverlayClick={true}
+        contentLabel="onRequestClose Example"
+        onRequestClose={() => {
+          console.log('on request close')
+          setShowVideo(false)
+        }}
       >
-        <ReactPlayer
-          className="absolute top-0 left-0"
-          url={media.videoUrl}
-          controls
-          muted
-          playing={showVideo}
-          config={{
-            file: {
-              attributes: {
-                className: 'object-cover',
-              },
-            },
+        <div
+          style={{
+            cursor: `url(${CloseCursor}) 28 28, auto`,
           }}
-          width="100%"
-          height="100%"
-        />
+        >
+          <button
+            onClick={() => {
+              setShowVideo(false)
+            }}
+          >
+            close
+          </button>
+          <ReactPlayer
+            ref={videoPlayer}
+            className="absolute top-0 left-0"
+            url={media.videoUrl}
+            controls
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              setShowVideo(false)
+            }}
+            playing={showVideo}
+            config={{
+              file: {
+                attributes: {
+                  className: 'object-cover',
+                },
+              },
+            }}
+            width="100%"
+            height="100%"
+          />
+        </div>
       </ReactModal>
       <AspectRatio ratio="21:9">
         {typeof media.image === 'string' ? (
