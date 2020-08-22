@@ -146,7 +146,6 @@ type FlexibleSection = {
   bleedDirection: 'left' | 'right'
   headerImage: Media
   blocks: Block[]
-  moreDetails?: Block[]
 } & CommonSectionProps
 
 function isFlexibleSection(section: any): section is FlexibleSection {
