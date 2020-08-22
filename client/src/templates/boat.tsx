@@ -78,6 +78,7 @@ const extractHeroSectionFromCraft = (boatEntry: any) => {
     alt: boatEntry.singleMedia[0]?.alt,
     videoUrl: boatEntry.singleMedia[0]?.videoURL,
     boatNameLong: boatEntry.boatNameLong,
+    eyebrow: boatEntry.eyebrow,
     headline: boatEntry.headline,
     stats: boatEntry.boatStats,
     boatLogo: boatEntry.boatLogo[0]?.url,
@@ -275,6 +276,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
           videoUrl={heroData.videoUrl}
           boatLogo={heroData.boatLogo}
           boatNameLong={heroData.boatNameLong}
+          eyebrow={heroData.eyebrow}
           headline={heroData.headline!}
           stats={heroData.stats! as Stat[]}
           onClickCta={setInquiryModalState}
@@ -498,6 +500,7 @@ export const query = graphql`
           slug
           title
           boatNameLong
+          eyebrow
           ctaText: textBlockHeader
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
