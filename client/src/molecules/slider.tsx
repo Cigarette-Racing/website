@@ -1,5 +1,5 @@
 // Adapted from https://codesandbox.io/s/framer-motion-image-gallery-pqvx3
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
 import { SliderBlock } from '../types/boat'
@@ -11,6 +11,7 @@ import {
 import { determineSwipeAction } from '../services/swiping'
 import { fadeAnimationProps } from '../services/animations'
 import { Theme } from '../types/shared'
+import { cacheImages } from '../services/images'
 
 enum Direction {
   Next = 1,
@@ -63,6 +64,15 @@ export const Slider = ({ items, theme }: SliderProps) => {
   const goPrev = () => {
     setPage([page - 1, Direction.Prev])
   }
+
+  useEffect(() => {
+    cacheImages(
+      items.map(
+        (item) =>
+          item?.media?.image?.childImageSharp?.fluid?.src! || item?.media?.image
+      )
+    )
+  }, [])
 
   return (
     <div className="max-w-7xl mx-auto" data-block-type="Slider">
