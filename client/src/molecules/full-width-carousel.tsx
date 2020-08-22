@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
 import { FullWidthCarouselBlock } from '../types/boat'
@@ -9,6 +9,7 @@ import { ArrowIcon } from '../svgs/icons'
 import { determineSwipeAction } from '../services/swiping'
 import { AutoplayVideo } from '../atoms/autoplay-video'
 import clsx from 'clsx'
+import { cacheImages } from '../services/images'
 
 const animations = {
   initial: {
@@ -39,6 +40,15 @@ export const FullWidthCarousel = ({
     setPage(oneBasedIndex - 1)
   }
   const media = items[itemIndex].media
+
+  useEffect(() => {
+    cacheImages(
+      items.map(
+        (item) =>
+          item?.media?.image?.childImageSharp?.fluid?.src! || item?.media?.image
+      )
+    )
+  }, [])
 
   return (
     <div
