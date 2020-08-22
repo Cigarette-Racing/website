@@ -23,12 +23,23 @@ export const AutoplayVideo = ({
 
   return (
     <AnimatePresence>
-      <img
-        key="image"
-        src={image}
-        className="absolute h-full w-full object-cover"
-        alt={alt || ''}
-      />
+      {/* conditionally render component based on Craft vs YAML */}
+      {typeof image === 'string' ? (
+        <img
+          key="image"
+          src={image}
+          className="absolute h-full w-full object-cover"
+          alt={alt || ''}
+        />
+      ) : (
+        <Img
+          key="image"
+          fluid={image.childImageSharp?.fluid}
+          className="top-0 left-0 h-screen w-full object-cover"
+          style={{ position: 'absolute' }}
+          alt={alt || ''}
+        />
+      )}
       <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
         <ReactPlayer
           className="absolute top-0 left-0"
