@@ -40,7 +40,7 @@ export const BoatHeader = ({
   headline,
   stats,
 }: {
-  image: GatsbyTypes.File | string
+  image: string
   alt?: string
   videoUrl?: string
   boatLogo: string
@@ -94,18 +94,7 @@ export const BoatHeader = ({
           />
         ) : (
           <Fragment>
-            {/* conditionally render component based on Craft vs YAML */}
-            {typeof image === 'string' ? (
-              <img src={image} className="h-full w-full object-cover" />
-            ) : (
-              !!image && (
-                <Img
-                  fluid={image.childImageSharp?.fluid!}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
-              )
-            )}
+            <img src={image} className="h-full w-full object-cover" />
           </Fragment>
         )}
       </div>
@@ -271,21 +260,12 @@ export const SideBleedImage = ({
       })}
     >
       <AspectRatio ratio={ratio}>
-        {!!media?.image?.childImageSharp ? (
-          <Img
-            fluid={media.image.childImageSharp?.fluid}
-            alt={media.alt || ''}
-            className={clsx('h-full w-full object-cover', imgClassName)}
-            style={{ position: 'absolute' }}
-          />
-        ) : (
-          <img
-            src={media}
-            alt=""
-            className={clsx('h-full w-full object-cover', imgClassName)}
-            style={{ position: 'absolute' }}
-          />
-        )}
+        <img
+          src={media}
+          alt=""
+          className={clsx('h-full w-full object-cover', imgClassName)}
+          style={{ position: 'absolute' }}
+        />
       </AspectRatio>
     </div>
   </div>
@@ -531,23 +511,12 @@ export const OrderSectionComponent = ({
       data-section-type="OrderSectionComponent"
     >
       <InPageAnchor title={title} />
-      {typeof media === 'string' ? (
-        <img
-          src={media}
-          alt=""
-          className="h-full w-full object-cover top-0"
-          style={{ position: 'absolute' }}
-        />
-      ) : (
-        !!media && (
-          <Img
-            fluid={!!media.image && media.image.childImageSharp?.fluid}
-            alt={media.alt || ''}
-            className="h-full w-full object-cover top-0"
-            style={{ position: 'absolute' }}
-          />
-        )
-      )}
+      <img
+        src={media}
+        alt=""
+        className="h-full w-full object-cover top-0"
+        style={{ position: 'absolute' }}
+      />
       <div className="absolute inset-0 bg-black bg-opacity-25"></div>
       <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
         <div className="bg-black bg-opacity-75 py-16 sm:py-20 px-4 max-w-md">
@@ -614,21 +583,12 @@ export const OneColumnImageTextBlockComponent = ({
         />
       ) : (
         <Fragment>
-          {typeof media.image === 'string' ? (
-            <img
-              src={media.image}
-              alt=""
-              className="h-full w-full object-cover"
-              style={{ position: 'absolute' }}
-            />
-          ) : (
-            <Img
-              fluid={media.image.childImageSharp?.fluid}
-              alt={media.alt || ''}
-              className="h-full w-full object-cover"
-              style={{ position: 'absolute' }}
-            />
-          )}
+          <img
+            src={media.image}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
         </Fragment>
       )}
     </AspectRatio>
@@ -775,40 +735,22 @@ export const TwoUpImageBlock = ({
   >
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        {images[0].singleMedia ? (
-          <img
-            src={images[0].singleMedia?.[0].image?.[0].url}
-            alt=""
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        ) : (
-          <Img
-            fluid={images[0].image.childImageSharp?.fluid}
-            alt={images[0].alt || ''}
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        )}
+        <img
+          src={images[0].singleMedia?.[0].image?.[0].url}
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
       </AspectRatio>
     </div>
     <div className="px-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        {images[1].singleMedia ? (
-          <img
-            src={images[1].singleMedia?.[0].image?.[0].url}
-            alt=""
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        ) : (
-          <Img
-            fluid={images[1].image.childImageSharp?.fluid}
-            alt={images[1].alt || ''}
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        )}
+        <img
+          src={images[1].singleMedia?.[0].image?.[0].url}
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
       </AspectRatio>
     </div>
   </div>
