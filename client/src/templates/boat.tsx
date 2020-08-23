@@ -119,7 +119,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
 
   return boatEntry.flexibleSections.map((section: any) => {
     const blocks = section.blocks.map(
-      (block: any, index: Number, blocks: Array) => {
+      (block: any, index: Number, blocks: any[]) => {
         const getBlockPosition = () => {
           if (index === 0) {
             return 'first'
@@ -353,7 +353,9 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   }
                 }
 
-                return <OneColumnImageTextBlockComponent {...block} />
+                return (
+                  <OneColumnImageTextBlockComponent key={index} {...block} />
+                )
               }
               if (isCarouselBlock(block)) {
                 if (block?.source === 'craft') {
@@ -403,7 +405,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     },
                   },
                 }
-                return <HorizontalImageTextBlockComponent {...extractedBlock} />
+                return (
+                  <HorizontalImageTextBlockComponent
+                    key={index}
+                    {...extractedBlock}
+                  />
+                )
               }
               if (isFullWidthCarouselBlock(block)) {
                 if (block?.source === 'craft') {

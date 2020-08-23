@@ -8,7 +8,12 @@ import { throttle } from 'throttle-debounce'
 import { AspectRatio } from '../../atoms/aspect-ratio'
 import { motion } from 'framer-motion'
 import { useOnMobileScroll, ScrollPrompter } from '../header'
-import { useBoatsQuery } from './header-data'
+import {
+  useBoatsQuery,
+  HeaderBoatMenuCategories,
+  categoriesToDisplay,
+} from './header-data'
+import clsx from 'clsx'
 
 export const MobileBoatSelector = ({
   onClose,
@@ -17,9 +22,14 @@ export const MobileBoatSelector = ({
   onClose: () => void
   onReturn: () => void
 }) => {
+  const [boatCategory, setBoatCategory] = useState<HeaderBoatMenuCategories>(
+    'performanceCenterConsole'
+  )
   const [boatIndex, setBoatIndex] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
-  const boats = useBoatsQuery()
+  const boatsByCategory = useBoatsQuery()
+
+  const boats = boatsByCategory[boatCategory] || []
 
   const listenerProps = useOnMobileScroll(
     throttle(200, true, (deltaY: number): void => {
@@ -36,6 +46,31 @@ export const MobileBoatSelector = ({
     <div className="min-h-screen" {...listenerProps}>
       <div className="h-16 flex items-center">
         <ReturnLink onClick={onReturn}>Back</ReturnLink>
+      </div>
+      <div className="w-screen h-10 bg-gray-0 -mx-4 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 flex items-center h-full space-x-6 overflow-x-auto">
+          {Object.keys(boatsByCategory).map(
+            (category: HeaderBoatMenuCategories) => {
+              if (!categoriesToDisplay[category]) return null
+              return (
+                <button
+                  key={category}
+                  className="p-2 whitespace-no-wrap"
+                  onClick={() => setBoatCategory(category)}
+                >
+                  <Typography
+                    variant="e3"
+                    className={clsx({
+                      'text-gray-3': boatCategory !== category,
+                    })}
+                  >
+                    {categoriesToDisplay[category]}
+                  </Typography>
+                </button>
+              )
+            }
+          )}
+        </div>
       </div>
       <div className="-mx-4">
         <AspectRatio ratio="3:2" className="w-screen">
