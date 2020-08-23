@@ -21,7 +21,11 @@ import { AspectRatio } from '../atoms/aspect-ratio'
 import { motion, Variants, AnimatePresence } from 'framer-motion'
 import arrowWithCircleSvg from '../images/arrow-with-circle.svg'
 import { MobileBoatSelector } from './header/mobile-boat-selector'
-import { useBoatsQuery } from './header/header-data'
+import {
+  useBoatsQuery,
+  HeaderBoatMenuCategories,
+  categoriesToDisplay,
+} from './header/header-data'
 import { cacheImages } from '../services/images'
 
 export type HeaderState = 'top' | 'pinned' | 'hidden'
@@ -140,7 +144,7 @@ export const Header = ({}: HeaderProps) => {
         >
           <div className="max-w-7xl mx-auto h-full px-4 flex justify-between items-center">
             <div className="w-1/3 flex justify-start">
-              {isMobileMenu || (!isAtTop && !isHovering) ? (
+              {(isMobileMenu || (!isAtTop && !isHovering)) && !isMenuOpen ? (
                 <button
                   className="p-2 text-2xl"
                   onClick={() => setIsMenuOpen(true)}
@@ -161,7 +165,7 @@ export const Header = ({}: HeaderProps) => {
               </Link>
             </div>
             <div className="w-1/3 flex justify-end">
-              {isMobileMenu || (!isAtTop && !isHovering) ? (
+              {(isMobileMenu || (!isAtTop && !isHovering)) && !isMenuOpen ? (
                 <div>
                   <Link to="/contact">
                     <Typography variant="e2" className="p-2 whitespace-no-wrap">
@@ -207,7 +211,7 @@ function ComingSoonLink({ text }: { text: string }) {
       className="relative cursor-default"
     >
       <Typography
-        variant="e2 "
+        variant="e2"
         className={clsx('p-2 whitespace-no-wrap opacity-25', {
           invisible: isActive,
         })}
@@ -353,18 +357,29 @@ function BoatSelector({
   isVisible: boolean
   onReset: () => void
 }) {
+  const [boatCategory, setBoatCategory] = useState<HeaderBoatMenuCategories>(
+    'performanceCenterConsole'
+  )
   const [boatIndex, setBoatIndex] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
-  const boats = useBoatsQuery()
+  const boatsByCategory = useBoatsQuery()
+
+  const boats = boatsByCategory[boatCategory] || []
+  const nextIndex = boatIndex < boats.length - 1 ? boatIndex + 1 : 0
+  const prevIndex = boatIndex > 0 ? boatIndex - 1 : boats.length - 1
 
   useEffect(() => {
-    cacheImages([boats[0]?.backgroundMedia?.image?.publicUrl].filter(Boolean))
+    cacheImages([boats[0]?.backgroundMedia.image.publicUrl!].filter(Boolean))
   }, [])
 
   useEffect(() => {
     setBoatIndex(0)
     setHasScrolled(false)
   }, [isVisible])
+
+  useEffect(() => {
+    setBoatIndex(0)
+  }, [boatCategory])
 
   const listenerProps = useOnMobileScroll(
     throttle(300, true, (deltaY: number): void => {
@@ -399,26 +414,77 @@ function BoatSelector({
             aria-modal="true"
             {...listenerProps}
           >
+            <div className="absolute top-0 left-0 w-full h-10 bg-gray-0 mt-20 z-10">
+              <div className="max-w-7xl mx-auto px-4 flex items-center h-full space-x-12">
+                {Object.keys(boatsByCategory).map(
+                  (category: HeaderBoatMenuCategories) => {
+                    if (!categoriesToDisplay[category]) return null
+                    return (
+                      <button
+                        key={category}
+                        className="p-2"
+                        onClick={() => setBoatCategory(category)}
+                      >
+                        <Typography
+                          variant="e3"
+                          className={clsx({
+                            'text-gray-3': boatCategory !== category,
+                          })}
+                        >
+                          {categoriesToDisplay[category]}
+                        </Typography>
+                      </button>
+                    )
+                  }
+                )}
+              </div>
+            </div>
             <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
               <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl overflow-hidden flex">
                 <AspectRatio ratio="3:2" className="w-screen">
-                  {!!boats[boatIndex].backgroundMedia.image.childImageSharp ? (
+                  {!!boats[boatIndex]?.backgroundMedia.image.childImageSharp ? (
                     <Img
                       fluid={
-                        boats[boatIndex].backgroundMedia.image.childImageSharp
+                        boats[boatIndex]?.backgroundMedia.image.childImageSharp
                           ?.fluid!
                       }
-                      alt={boats[boatIndex].backgroundMedia.alt || ''}
+                      alt={boats[boatIndex]?.backgroundMedia.alt || ''}
                       className="h-full w-full object-cover"
                       style={{ position: 'absolute' }}
                     />
                   ) : (
                     <img
-                      src={boats[boatIndex].backgroundMedia.image.publicUrl}
-                      alt={boats[boatIndex].backgroundMedia.alt || ''}
+                      src={boats[boatIndex]?.backgroundMedia.image.publicUrl}
+                      alt={boats[boatIndex]?.backgroundMedia.alt || ''}
                       className="absolute h-full w-full object-cover"
                     />
                   )}
+                  <div className="bg-black opacity-50 absolute inset-0"></div>
+                </AspectRatio>
+              </div>
+              <div
+                className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
+                style={{ right: 'calc(100% - 4vw)' }}
+              >
+                <AspectRatio ratio="3:2" className="w-screen max-w-full">
+                  <img
+                    src={boats[prevIndex]?.backgroundMedia.image.publicUrl}
+                    alt={boats[prevIndex]?.backgroundMedia.alt || ''}
+                    className="absolute h-full w-full object-cover"
+                  />
+                  <div className="bg-black opacity-50 absolute inset-0"></div>
+                </AspectRatio>
+            </div>
+              <div
+                className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
+                style={{ left: 'calc(100% - 4vw)' }}
+              >
+                <AspectRatio ratio="3:2" className="w-screen max-w-full">
+                  <img
+                    src={boats[nextIndex]?.backgroundMedia.image.publicUrl}
+                    alt={boats[nextIndex]?.backgroundMedia.alt || ''}
+                    className="absolute h-full w-full object-cover"
+                  />
                   <div className="bg-black opacity-50 absolute inset-0"></div>
                 </AspectRatio>
               </div>
