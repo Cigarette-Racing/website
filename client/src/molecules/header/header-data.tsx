@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
-import orderBy from 'lodash/orderBy'
+import { pipe, groupBy, mapValues, orderBy } from 'lodash/fp'
 import { Stat } from '../../types/boat'
 
 export const useBoatsQuery = () => {
@@ -24,6 +24,7 @@ export const useBoatsQuery = () => {
                 ... on CraftAPI_boatMetadata_BlockType {
                   menuName
                   menuSortOrder
+                  menuCategory
                 }
               }
               backgroundMedia: singleMedia {
@@ -45,15 +46,24 @@ export const useBoatsQuery = () => {
   return extractBoats(data)
 }
 
+export type HeaderBoatMenuCategories =
+  | 'performanceCenterConsole'
+  | 'heritage'
+  | 'highPerformance'
+  | 'none'
+
 const extractBoats = (data: GatsbyTypes.HeaderBoatsMenuQuery) => {
-  const menuItems = data.craftAPI.entries?.map((entry) => {
+  // Use .flatMap to convince Typescript that there will never be
+  // `undefined` values in the array... 🤦‍♂️
+  const menuItems = data.craftAPI.entries?.flatMap((entry) => {
     if (entry?.__typename !== 'CraftAPI_boats_boats_Entry') {
-      return
+      return []
     }
     return {
       boatName: entry?.title!,
       menuName: entry?.boatMetadata?.[0]?.menuName! || entry?.boatNameLong!,
       menuOrder: (entry?.boatMetadata?.[0]?.menuSortOrder as Number) || 0,
+      menuCategory: entry?.boatMetadata?.[0]?.menuCategory || 'none',
       slug: entry?.slug!,
       stats: entry?.stats?.map(
         (stat) =>
@@ -71,5 +81,18 @@ const extractBoats = (data: GatsbyTypes.HeaderBoatsMenuQuery) => {
       },
     }
   })
-  return orderBy(menuItems, ['menuOrder'])
+
+  const preparedMenuItems = pipe(
+    groupBy('menuCategory'),
+    mapValues(orderBy(['menuOrder'])(['asc']))
+  )(menuItems) as Record<HeaderBoatMenuCategories, typeof menuItems>
+
+  return preparedMenuItems
+}
+
+export const categoriesToDisplay: Record<HeaderBoatMenuCategories, string> = {
+  performanceCenterConsole: 'Performance Center Console',
+  highPerformance: 'High Performance',
+  heritage: '',
+  none: '',
 }
