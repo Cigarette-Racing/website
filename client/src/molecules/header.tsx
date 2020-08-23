@@ -518,7 +518,7 @@ function BoatScrollList({
   setHasScrolled: React.Dispatch<React.SetStateAction<boolean>>
   onReset: () => void
 }) {
-  const scrollRef = useRef(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const { y } = useScroll(scrollRef)
   console.log('scroll stats', y)
 
@@ -583,7 +583,11 @@ function BoatScrollList({
                 onClick={(event) => {
                   if (index !== boatIndex) {
                     event.preventDefault()
-                    setBoatIndex(index)
+                    scrollRef.current!.scrollTo({
+                      left: 0,
+                      top: ITEM_HEIGHT * index,
+                      behavior: 'smooth',
+                    })
                   } else {
                     onReset()
                   }
