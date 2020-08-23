@@ -4,11 +4,10 @@ import { wrap } from '@popmotion/popcorn'
 import { FullWidthCarouselBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { ProgressDots } from '../atoms/progress-dots'
-import { CircleButton } from '../atoms/circle-button'
-import { ArrowIcon } from '../svgs/icons'
 import { determineSwipeAction } from '../services/swiping'
 import { AutoplayVideo } from '../atoms/autoplay-video'
 import clsx from 'clsx'
+import { CarouselButtons } from '../templates/boat.components'
 
 const animations = {
   initial: {
@@ -98,24 +97,15 @@ export const FullWidthCarousel = ({
               onClick={goToItem}
             />
           </div>
-          <div className="hidden absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 md:flex justify-between w-full px-4">
-            <CircleButton
-              icon={ArrowIcon}
-              size="md"
-              className="border-red hover:bg-white hover:text-red transform rotate-180"
-              onClick={(params) => {
-                goToItem(page)
-              }}
-            />
-            <CircleButton
-              icon={ArrowIcon}
-              size="md"
-              className="border-red hover:bg-white hover:text-red"
-              onClick={(params) => {
-                goToItem(page + 2)
-              }}
-            />
-          </div>
+          <CarouselButtons
+            className="hidden absolute bottom-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 md:flex justify-between w-full px-4"
+            onClickNext={() => {
+              goToItem(page + 2)
+            }}
+            onClickPrev={() => {
+              goToItem(page)
+            }}
+          />
         </Fragment>
       )}
     </div>
