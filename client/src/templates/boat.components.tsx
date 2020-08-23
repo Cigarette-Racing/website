@@ -5,9 +5,9 @@ import { InPageCta } from '../atoms/in-page-cta'
 import { StatBlock } from '../atoms/stat-block'
 import { Theme } from '../types/shared'
 import clsx from 'clsx'
-import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
+import { ArrowIcon, CaretDownIcon, CaretUpIcon } from '../svgs/icons'
 import { CircleButton } from '../atoms/circle-button'
-import { ArrowIcon, CaretDownIcon } from '../svgs/icons'
+import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
 import { InPageAnchor } from '../molecules/in-page-nav'
 import { VerticalHeader } from '../atoms/vertical-header'
 import { ScrollPrompter } from '../molecules/header'
@@ -271,21 +271,12 @@ export const SideBleedImage = ({
       })}
     >
       <AspectRatio ratio={ratio}>
-        {!!media?.image?.childImageSharp ? (
-          <Img
-            fluid={media.image.childImageSharp?.fluid}
-            alt={media.alt || ''}
-            className={clsx('h-full w-full object-cover', imgClassName)}
-            style={{ position: 'absolute' }}
-          />
-        ) : (
-          <img
-            src={media}
-            alt=""
-            className={clsx('h-full w-full object-cover', imgClassName)}
-            style={{ position: 'absolute' }}
-          />
-        )}
+        <img
+          src={media}
+          alt=""
+          className={clsx('h-full w-full object-cover', imgClassName)}
+          style={{ position: 'absolute' }}
+        />
       </AspectRatio>
     </div>
   </div>
@@ -614,21 +605,12 @@ export const OneColumnImageTextBlockComponent = ({
         />
       ) : (
         <Fragment>
-          {typeof media.image === 'string' ? (
-            <img
-              src={media.image}
-              alt=""
-              className="h-full w-full object-cover"
-              style={{ position: 'absolute' }}
-            />
-          ) : (
-            <Img
-              fluid={media.image.childImageSharp?.fluid}
-              alt={media.alt || ''}
-              className="h-full w-full object-cover"
-              style={{ position: 'absolute' }}
-            />
-          )}
+          <img
+            src={media.image}
+            alt=""
+            className="h-full w-full object-cover"
+            style={{ position: 'absolute' }}
+          />
         </Fragment>
       )}
     </AspectRatio>
@@ -713,38 +695,27 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
   const isClickable = details.length > 1
   return (
     <div data-block-type="MoreDetailsBlockComponent">
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="descriptions"
-            initial="collapsed"
-            animate="open"
-            exit="collapsed"
-            variants={{
-              open: { opacity: 1, height: 'auto' },
-              collapsed: { opacity: 0, height: '20px' },
-            }}
-            transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
-          >
-            {details.map((child: any) => {
-              const extractedBlock: HorizontalImageTextBlock = {
-                type: 'horizontal-image-text',
-                layout: child.layout,
-                content: {
-                  header: child.header as string,
-                  copy: child.copy as string,
+      {isOpen && (
+        <div>
+          {details.map((child: any) => {
+            const extractedBlock: HorizontalImageTextBlock = {
+              type: 'horizontal-image-text',
+              layout: child.layout,
+              content: {
+                header: child.header as string,
+                copy: child.copy as string,
+              },
+              media: {
+                image: {
+                  publicURL: child.image as string,
                 },
-                media: {
-                  image: {
-                    publicURL: child.image as string,
-                  },
-                },
-              }
-              return <HorizontalImageTextBlockComponent {...extractedBlock} />
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
+              },
+            }
+            return <HorizontalImageTextBlockComponent {...extractedBlock} />
+          })}
+        </div>
+      )}
+
       <div className="flex justify-center md:mb-12">
         <InPageCta
           variant="secondary"
@@ -753,7 +724,11 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
           }}
         >
           <span className="flex items-center">
-            <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+            {isOpen ? (
+              <CaretUpIcon className="inline-block text-red mr-2 text-lg" />
+            ) : (
+              <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+            )}
             <span>{buttonText}</span>
           </span>
         </InPageCta>
