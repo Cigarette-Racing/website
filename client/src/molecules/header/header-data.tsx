@@ -118,7 +118,7 @@ const extractBoats = (data: GatsbyTypes.HeaderBoatsMenuQuery) => {
 }
 
 export const categoriesToDisplay: Record<HeaderBoatMenuCategories, string> = {
-  all: 'All',
+  all: 'All Boats',
   performanceCenterConsole: 'Performance Center Console',
   highPerformance: 'High Performance',
   heritage: '',
