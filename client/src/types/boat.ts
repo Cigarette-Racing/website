@@ -12,7 +12,7 @@ export type TextBlock = {
 type Treatment = 'desaturate' | 'grayscale'
 
 export type Media = {
-  image: GatsbyTypes.File | string
+  image: string
   label?: string
   alt?: string
   videoUrl?: string
@@ -71,7 +71,7 @@ export function findDiscoverSection(sections: readonly any[]) {
   return sections.find(isDiscoverSection) as DiscoverSection | undefined
 }
 
-export type GalleryMedia = Media & { thumbnail: GatsbyTypes.File | string }
+export type GalleryMedia = Media & { thumbnail: string }
 
 export type GallerySection = {
   source?: string

@@ -25,7 +25,7 @@ export const InPageCta: React.FC<
       | React.HTMLAttributes<HTMLButtonElement>
       | React.AnchorHTMLAttributes<HTMLLinkElement>
     )
-> = ({ className, variant = 'primary', theme, children, ...rest }) => {
+> = ({ className, variant = 'primary', theme, children, link, ...rest }) => {
   const classNames = clsx(
     baseClasses,
     {
@@ -36,7 +36,7 @@ export const InPageCta: React.FC<
     },
     className
   )
-  if (isLink(rest)) {
+  if (isLink(!!link, rest)) {
     return (
       <a {...rest} className={classNames}>
         <Typography variant="e2" as="span">
@@ -45,7 +45,7 @@ export const InPageCta: React.FC<
       </a>
     )
   }
-  if (isButton(rest)) {
+  if (isButton(!!link, rest)) {
     return (
       <button type="button" {...rest} className={classNames}>
         <Typography variant="e2" as="span">
@@ -57,10 +57,10 @@ export const InPageCta: React.FC<
   return null
 }
 
-function isLink(rest: any): rest is HTMLLinkElement {
-  return !!rest.link
+function isLink(link: boolean, rest: any): rest is HTMLLinkElement {
+  return link
 }
 
-function isButton(rest: any): rest is HTMLButtonElement {
-  return !rest.link
+function isButton(link: boolean, rest: any): rest is HTMLButtonElement {
+  return link
 }
