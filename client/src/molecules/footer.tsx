@@ -90,12 +90,6 @@ export const Footer = ({}: FooterProps) => {
         <div className="text-gray-4">
           <Typography variant="p3">
             © {new Date().getFullYear()} Cigarette Racing. All rights reserved.
-            <br />
-            <br />
-            Site by{' '}
-            <a href="https://www.maneragency.com/" className="text-red">
-              Maner Agency
-            </a>
           </Typography>
         </div>
       </div>
