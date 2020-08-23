@@ -171,21 +171,12 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
         </div>
       </ReactModal>
       <AspectRatio ratio="21:9">
-        {typeof media.image === 'string' ? (
-          <img
-            src={media.image}
-            alt=""
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-        ) : (
-          <Img
-            fluid={media.image.childImageSharp?.fluid}
-            className="h-full w-full object-cover"
-            alt={media.alt || ''}
-            style={{ position: 'absolute' }}
-          />
-        )}
+        <img
+          src={media.image}
+          alt=""
+          className="h-full w-full object-cover"
+          style={{ position: 'absolute' }}
+        />
         {media.videoUrl && (
           <CircleButton
             onClick={() => setShowVideo(true)}
