@@ -28,12 +28,7 @@ export const Carousel = ({ items, theme }: CarouselProps) => {
   }
 
   useEffect(() => {
-    cacheImages(
-      items.map(
-        (item) =>
-          item?.media?.image?.childImageSharp?.fluid?.src! || item?.media?.image
-      )
-    )
+    cacheImages(items.map((item) => item?.media?.image))
   }, [])
 
   return (
@@ -42,10 +37,7 @@ export const Carousel = ({ items, theme }: CarouselProps) => {
         <AnimatePresence initial={false}>
           <motion.img
             key={page}
-            src={
-              items[itemIndex]?.media?.image?.childImageSharp?.fluid?.src! ||
-              items[itemIndex].media.image
-            }
+            src={items[itemIndex].media.image}
             {...fadeAnimationProps}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}

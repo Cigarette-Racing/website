@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
-import Img from 'gatsby-image'
 import { GallerySection, GalleryMedia } from '../types/boat'
 import {
   BoatSection,
@@ -64,18 +63,11 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
   const [category, setCategory] = useState<'all' | 'photos' | 'videos'>('all')
   useLockBodyScroll(lightboxMediaIndex !== undefined)
 
-  const isCraftData = source === 'craft'
-
   const normalizedGallery = gallery.map((galleryItem) => {
     return {
-      thumbnail:
-        galleryItem.thumbnail.childImageSharp?.fluid?.src! ||
-        galleryItem.thumbnail,
-      image:
-        galleryItem.image.childImageSharp?.fluid?.src! || galleryItem.image,
+      thumbnail: galleryItem.thumbnail,
+      image: galleryItem.image,
       videoUrl: galleryItem.videoUrl,
-      fluidThumbnail: galleryItem.thumbnail.childImageSharp?.fluid,
-      fluidImage: galleryItem.image.childImageSharp?.fluid,
     }
   })
 
@@ -174,7 +166,6 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
                     key={index}
                     media={item}
                     hasVideo={!!item.videoUrl}
-                    isCraftData={isCraftData}
                     onClick={() =>
                       setLightboxMediaIndex(normalizedGallery.indexOf(item))
                     }
@@ -319,33 +310,22 @@ const GalleryImage = ({
   className = '',
   hasVideo,
   media,
-  isCraftData,
   onClick,
 }: {
   className?: string
   hasVideo: boolean
   media: GalleryMedia
-  isCraftData: boolean
   onClick: React.MouseEventHandler<HTMLDivElement>
 }) => {
   return (
     <div className={`max-w-xs ${className}`} role="button" onClick={onClick}>
       <AspectRatio ratio="1:1" className="relative group">
-        {!!isCraftData ? (
-          <img
-            src={media.thumbnail}
-            alt={media.alt || 'Gallery image'}
-            className="h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
-            style={{ position: 'absolute' }}
-          />
-        ) : (
-          <Img
-            fluid={media.fluidThumbnail}
-            alt={media.alt || 'Gallery image'}
-            className="h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
-            style={{ position: 'absolute' }}
-          />
-        )}
+        <img
+          src={media.thumbnail}
+          alt={media.alt || 'Gallery image'}
+          className="h-full w-full object-cover sm:filter-grayscale group-hover:filter-none transition duration-150 ease-in-out"
+          style={{ position: 'absolute' }}
+        />
         <div className="absolute inset-0 bg-black transform bg-opacity-25 group-hover:bg-opacity-0 transition duration-150 ease-in-out"></div>
         <motion.div
           {...childAnimations}

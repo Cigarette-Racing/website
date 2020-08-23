@@ -27,7 +27,9 @@ const animations = {
   },
 }
 export interface FullWidthCarouselProps
-  extends Omit<FullWidthCarouselBlock, 'type'> {}
+  extends Omit<FullWidthCarouselBlock, 'type'> {
+  blockPosition: 'first' | 'middle' | 'last'
+}
 
 export const FullWidthCarousel = ({
   items,
@@ -41,12 +43,7 @@ export const FullWidthCarousel = ({
   const media = items[itemIndex].media
 
   useEffect(() => {
-    cacheImages(
-      items.map(
-        (item) =>
-          item?.media?.image?.childImageSharp?.fluid?.src! || item?.media?.image
-      )
-    )
+    cacheImages(items.map((item) => item?.media?.image))
   }, [])
 
   return (
@@ -82,10 +79,7 @@ export const FullWidthCarousel = ({
                 videoUrl={media.videoUrl}
               />
             ) : (
-              <img
-                src={media?.image?.childImageSharp?.fluid?.src! || media?.image}
-                className="pointer-events-none"
-              />
+              <img src={media?.image} className="pointer-events-none" />
             )}
           </motion.div>
         </AnimatePresence>

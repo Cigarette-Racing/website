@@ -66,12 +66,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
   }
 
   useEffect(() => {
-    cacheImages(
-      items.map(
-        (item) =>
-          item?.media?.image?.childImageSharp?.fluid?.src! || item?.media?.image
-      )
-    )
+    cacheImages(items.map((item) => item?.media?.image))
   }, [])
 
   return (
@@ -81,10 +76,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
           <AnimatePresence initial={false}>
             <motion.img
               key={page}
-              src={
-                items[itemIndex].media?.image?.childImageSharp?.fluid?.src! ||
-                items[itemIndex]?.media?.image
-              }
+              src={items[itemIndex]?.media?.image}
               variants={variants}
               initial="enter"
               animate="center"
@@ -119,12 +111,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
               className="absolute h-full w-full object-cover"
               style={{ left: 'calc(100% + 0px)' }}
             >
-              <img
-                src={
-                  items[nextItemIndex].media?.image?.childImageSharp?.fluid
-                    ?.src! || items[nextItemIndex]?.media?.image
-                }
-              />
+              <img src={items[nextItemIndex]?.media?.image} />
               <div
                 className="absolute inset-0"
                 style={{
