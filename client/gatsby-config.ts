@@ -28,7 +28,7 @@ export const plugins = [
       typeName: 'CraftAPI',
       fieldName: 'craftAPI',
       url: `https://cigracingapi.frb.io/actions/graphql/api`,
-      refetchInterval: process.env.NODE_ENV === 'development' ? 20 : null,
+      refetchInterval: process.env.NODE_ENV === 'development' ? 300 : null,
     },
   },
   `gatsby-plugin-typescript`,
