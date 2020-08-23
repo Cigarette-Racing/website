@@ -1,8 +1,9 @@
-import React, { useState, useRef, Fragment } from 'react'
+import React, { useState, Fragment } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useLockBodyScroll } from 'react-use'
 import Img from 'gatsby-image'
 import ReactPlayer from 'react-player'
+import { Waypoint } from 'react-waypoint'
 import { graphql, useStaticQuery } from 'gatsby'
 import ReactModal from 'react-modal'
 import { InPageAnchor } from '../../molecules/in-page-nav'
@@ -97,13 +98,12 @@ export const DiscoverSection = ({
 const DiscoverMedia = ({ media }: { media: Media }) => {
   const [showVideo, setShowVideo] = useState(false)
   const [autoPlayVideo, setAutoPlayVideo] = useState(false)
+  const [playFullScreenVideo, setPlayFullScreenVideo] = useState(false)
   useLockBodyScroll(showVideo)
 
   if (!media.image) {
     return null
   }
-
-  const videoPlayer = useRef(null)
 
   const modalStyles = {
     overlay: {
@@ -140,15 +140,7 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
             cursor: `url(${CloseCursor}) 28 28, auto`,
           }}
         >
-          <button
-            onClick={() => {
-              setShowVideo(false)
-            }}
-          >
-            close
-          </button>
           <ReactPlayer
-            ref={videoPlayer}
             className="absolute top-0 left-0"
             url={media.videoUrl}
             controls
@@ -170,22 +162,61 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
           />
         </div>
       </ReactModal>
-      <AspectRatio ratio="21:9">
-        <img
-          src={media.image}
-          alt=""
-          className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
-        />
-        {media.videoUrl && (
-          <CircleButton
-            onClick={() => setShowVideo(true)}
-            icon={PlayIcon}
-            size="lg"
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          />
-        )}
-      </AspectRatio>
+      <Waypoint
+        onEnter={() => {
+          console.log('Enter')
+          setAutoPlayVideo(true)
+        }}
+        onLeave={() => {
+          console.log('Leave')
+          setAutoPlayVideo(false)
+        }}
+        bottomOffset={100}
+      >
+        <div className="waypoint">
+          <AspectRatio ratio="21:9">
+            <img
+              src={media.image}
+              alt=""
+              className="h-full w-full object-cover"
+              style={{ position: 'absolute' }}
+            />
+            <AnimatePresence>
+              <motion.div
+                key="video"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {media.videoUrl && (
+                  <CircleButton
+                    onClick={() => setShowVideo(true)}
+                    icon={PlayIcon}
+                    size="lg"
+                    className="z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                  />
+                )}
+                <ReactPlayer
+                  className="absolute top-0 left-0"
+                  url={media.videoUrl}
+                  controls={false}
+                  playsinline={true}
+                  muted
+                  playing={autoPlayVideo}
+                  config={{
+                    file: {
+                      attributes: {
+                        className: 'object-cover',
+                      },
+                    },
+                  }}
+                  width="100%"
+                  height="100%"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </AspectRatio>
+        </div>
+      </Waypoint>
     </Fragment>
   )
 }
