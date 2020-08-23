@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby'
-import { pipe, groupBy, mapValues, orderBy } from 'lodash/fp'
+import { pipe, groupBy, mapValues, orderBy, cloneDeep } from 'lodash/fp'
 import { Stat } from '../../types/boat'
 
 export const useBoatsQuery = () => {
@@ -47,6 +47,7 @@ export const useBoatsQuery = () => {
 }
 
 export type HeaderBoatMenuCategories =
+  | 'all'
   | 'performanceCenterConsole'
   | 'heritage'
   | 'highPerformance'
@@ -99,15 +100,25 @@ const extractBoats = (data: GatsbyTypes.HeaderBoatsMenuQuery) => {
     }
   )
 
+  const menuItemsClone = cloneDeep(menuItems)
+
+  const menuItemsAll = menuItemsClone?.map((item) => {
+    item.menuCategory = 'all'
+    return item
+  })
+
+  const menuItemsWithAll = menuItemsAll?.concat(menuItems)
+
   const preparedMenuItems = pipe(
     groupBy('menuCategory'),
     mapValues(orderBy(['menuOrder'])(['asc']))
-  )(menuItems) as Record<HeaderBoatMenuCategories, typeof menuItems>
+  )(menuItemsWithAll) as Record<HeaderBoatMenuCategories, typeof menuItems>
 
   return preparedMenuItems
 }
 
 export const categoriesToDisplay: Record<HeaderBoatMenuCategories, string> = {
+  all: 'All',
   performanceCenterConsole: 'Performance Center Console',
   highPerformance: 'High Performance',
   heritage: '',
