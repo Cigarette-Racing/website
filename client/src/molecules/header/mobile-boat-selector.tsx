@@ -23,7 +23,7 @@ export const MobileBoatSelector = ({
   onReturn: () => void
 }) => {
   const [boatCategory, setBoatCategory] = useState<HeaderBoatMenuCategories>(
-    'performanceCenterConsole'
+    'all'
   )
   const [boatIndex, setBoatIndex] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
@@ -43,12 +43,12 @@ export const MobileBoatSelector = ({
   )
 
   return (
-    <div className="min-h-screen" {...listenerProps}>
+    <div className="min-h-screen">
       <div className="h-16 flex items-center">
         <ReturnLink onClick={onReturn}>Back</ReturnLink>
       </div>
       <div className="w-screen h-10 bg-gray-0 -mx-4 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 flex items-center h-full space-x-6 overflow-x-auto">
+        <div className="max-w-7xl mx-auto px-4 flex items-center h-full space-x-6 overflow-x-auto  pr-8">
           {Object.keys(boatsByCategory).map(
             (category: HeaderBoatMenuCategories) => {
               if (!categoriesToDisplay[category]) return null
@@ -72,92 +72,94 @@ export const MobileBoatSelector = ({
           )}
         </div>
       </div>
-      <div className="-mx-4">
-        <AspectRatio ratio="3:2" className="w-screen">
-          <img
-            src={boats[boatIndex].backgroundMedia.image.publicUrl}
-            alt={boats[boatIndex].backgroundMedia.alt || ''}
-            className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
-          />
-          <div className="bg-black opacity-50 absolute inset-0"></div>
-        </AspectRatio>
-      </div>
-      <div className="relative -mt-6">
-        {boats.map((boat, index) => {
-          const collapsedHeight = 56
-          const highlightedHeight = 80
-          const parentAnimation =
-            index === boatIndex
-              ? {
-                  height: highlightedHeight,
-                  translateY: 0,
-                  scale: 1,
-                  opacity: 1,
-                }
-              : index > boatIndex
-              ? {
-                  height: collapsedHeight,
-                  translateY:
-                    (index - boatIndex) * collapsedHeight + highlightedHeight,
-                  scale: 0.85,
-                  opacity: 1,
-                }
-              : {
-                  height: collapsedHeight,
-                  translateY: (index - boatIndex) * collapsedHeight,
-                  scale: 0.5,
-                  opacity: 0,
-                }
-          return (
-            <motion.div
-              key={boat.boatName}
-              initial={false}
-              animate={parentAnimation}
-              transition={{ stiffness: 90 }}
-              className="absolute top-0 left-0 w-full"
-            >
-              <Link
-                to={index === boatIndex ? `/boats/${boat.slug!}` : '#'}
-                onClick={(event) => {
-                  if (index !== boatIndex) {
-                    event.preventDefault()
-                    setBoatIndex(index)
-                  } else {
-                    // Hack because the menu closes faster than the page navigates.
-                    // Using a 32ms timeout generally gives the route enough time
-                    // to change before closing the menu.
-                    setTimeout(onClose, 32)
+      <div {...listenerProps}>
+        <div className="-mx-4">
+          <AspectRatio ratio="3:2" className="w-screen">
+            <img
+              src={boats[boatIndex].backgroundMedia.image.publicUrl}
+              alt={boats[boatIndex].backgroundMedia.alt || ''}
+              className="h-full w-full object-cover"
+              style={{ position: 'absolute' }}
+            />
+            <div className="bg-black opacity-50 absolute inset-0"></div>
+          </AspectRatio>
+        </div>
+        <div className="relative -mt-6">
+          {boats.map((boat, index) => {
+            const collapsedHeight = 56
+            const highlightedHeight = 80
+            const parentAnimation =
+              index === boatIndex
+                ? {
+                    height: highlightedHeight,
+                    translateY: 0,
+                    scale: 1,
+                    opacity: 1,
                   }
-                }}
-                className="text-center"
+                : index > boatIndex
+                ? {
+                    height: collapsedHeight,
+                    translateY:
+                      (index - boatIndex) * collapsedHeight + highlightedHeight,
+                    scale: 0.85,
+                    opacity: 1,
+                  }
+                : {
+                    height: collapsedHeight,
+                    translateY: (index - boatIndex) * collapsedHeight,
+                    scale: 0.5,
+                    opacity: 0,
+                  }
+            return (
+              <motion.div
+                key={boat.boatName}
+                initial={false}
+                animate={parentAnimation}
+                transition={{ stiffness: 90 }}
+                className="absolute top-0 left-0 w-full"
               >
-                <motion.div
-                  animate={{ opacity: index === boatIndex ? 1 : 0.4 }}
-                >
-                  <Typography variant="h3" className="mb-4">
-                    {boat.menuName}
-                  </Typography>
-                </motion.div>
-                <motion.div
-                  initial={false}
-                  animate={{
-                    opacity: index === boatIndex ? 1 : 0,
-                    scale: index === boatIndex ? 1 : 0.5,
+                <Link
+                  to={index === boatIndex ? `/boats/${boat.slug!}` : '#'}
+                  onClick={(event) => {
+                    if (index !== boatIndex) {
+                      event.preventDefault()
+                      setBoatIndex(index)
+                    } else {
+                      // Hack because the menu closes faster than the page navigates.
+                      // Using a 32ms timeout generally gives the route enough time
+                      // to change before closing the menu.
+                      setTimeout(onClose, 32)
+                    }
                   }}
+                  className="text-center"
                 >
-                  <Typography
-                    variant="e1"
-                    className="flex space-x-6 items-center justify-center"
+                  <motion.div
+                    animate={{ opacity: index === boatIndex ? 1 : 0.4 }}
                   >
-                    <span>View Model</span>{' '}
-                    <ArrowIcon className="text-red text-xl" />
-                  </Typography>
-                </motion.div>
-              </Link>
-            </motion.div>
-          )
-        })}
+                    <Typography variant="h3" className="mb-4">
+                      {boat.menuName}
+                    </Typography>
+                  </motion.div>
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      opacity: index === boatIndex ? 1 : 0,
+                      scale: index === boatIndex ? 1 : 0.5,
+                    }}
+                  >
+                    <Typography
+                      variant="e1"
+                      className="flex space-x-6 items-center justify-center"
+                    >
+                      <span>View Model</span>{' '}
+                      <ArrowIcon className="text-red text-xl" />
+                    </Typography>
+                  </motion.div>
+                </Link>
+              </motion.div>
+            )
+          })}
+        </div>
       </div>
       <motion.div animate={{ opacity: hasScrolled ? 0 : 1 }}>
         <ScrollPrompter className="fixed bottom-0 right-0" />
