@@ -429,44 +429,12 @@ function BoatSelector({
                 )}
               </div>
             </div>
-            <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
-              <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl overflow-hidden flex">
-                <AspectRatio ratio="3:2" className="w-screen">
-                  <img
-                    src={boats[boatIndex]?.backgroundMedia.image.publicUrl}
-                    alt={boats[boatIndex]?.backgroundMedia.alt || ''}
-                    className="absolute h-full w-full object-cover"
-                  />
-                  <div className="bg-black opacity-50 absolute inset-0"></div>
-                </AspectRatio>
-              </div>
-              <div
-                className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
-                style={{ right: 'calc(100% - 4vw)' }}
-              >
-                <AspectRatio ratio="3:2" className="w-screen max-w-full">
-                  <img
-                    src={boats[prevIndex]?.backgroundMedia.image.publicUrl}
-                    alt={boats[prevIndex]?.backgroundMedia.alt || ''}
-                    className="absolute h-full w-full object-cover"
-                  />
-                  <div className="bg-black opacity-50 absolute inset-0"></div>
-                </AspectRatio>
-              </div>
-              <div
-                className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
-                style={{ left: 'calc(100% - 4vw)' }}
-              >
-                <AspectRatio ratio="3:2" className="w-screen max-w-full">
-                  <img
-                    src={boats[nextIndex]?.backgroundMedia.image.publicUrl}
-                    alt={boats[nextIndex]?.backgroundMedia.alt || ''}
-                    className="absolute h-full w-full object-cover"
-                  />
-                  <div className="bg-black opacity-50 absolute inset-0"></div>
-                </AspectRatio>
-              </div>
-            </div>
+            <BackgroundImages
+              boats={boats}
+              boatIndex={boatIndex}
+              nextIndex={nextIndex}
+              prevIndex={prevIndex}
+            />
             <div className="fixed top-0 left-0 w-full h-full">
               <div className="max-w-5xl xl:max-w-6xl mx-auto relative top-1/2 -mt-16 px-8">
                 <BoatScrollList
@@ -505,6 +473,88 @@ function BoatSelector({
   )
 }
 
+const imageAnimations = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    zIndex: 1,
+    opacity: 1,
+  },
+  exit: {
+    zIndex: 0,
+    opacity: 0.5,
+  },
+  transition: {
+    opacity: { duration: 0.2 },
+  },
+}
+
+function BackgroundImages({
+  boats,
+  boatIndex,
+  nextIndex,
+  prevIndex,
+}: {
+  boats: HeaderBoat[]
+  boatIndex: number
+  nextIndex: number
+  prevIndex: number
+}) {
+  return (
+    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
+      <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl overflow-hidden flex">
+        <AspectRatio ratio="3:2" className="w-screen">
+          <AnimatePresence>
+            <motion.img
+              key={boatIndex}
+              {...imageAnimations}
+              src={boats[boatIndex]?.backgroundMedia.image.publicUrl}
+              alt={boats[boatIndex]?.backgroundMedia.alt || ''}
+              className="absolute h-full w-full object-cover"
+            />
+          </AnimatePresence>
+          <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
+        </AspectRatio>
+      </div>
+      <div
+        className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
+        style={{ right: 'calc(100% - 4vw)' }}
+      >
+        <AspectRatio ratio="3:2" className="w-screen max-w-full">
+          <AnimatePresence>
+            <motion.img
+              key={prevIndex}
+              {...imageAnimations}
+              src={boats[prevIndex]?.backgroundMedia.image.publicUrl}
+              alt={boats[prevIndex]?.backgroundMedia.alt || ''}
+              className="absolute h-full w-full object-cover"
+            />
+          </AnimatePresence>
+          <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
+        </AspectRatio>
+      </div>
+      <div
+        className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
+        style={{ left: 'calc(100% - 4vw)' }}
+      >
+        <AspectRatio ratio="3:2" className="w-screen max-w-full">
+          <AnimatePresence>
+            <motion.img
+              key={nextIndex}
+              {...imageAnimations}
+              src={boats[nextIndex]?.backgroundMedia.image.publicUrl}
+              alt={boats[nextIndex]?.backgroundMedia.alt || ''}
+              className="absolute h-full w-full object-cover"
+            />
+          </AnimatePresence>
+          <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
+        </AspectRatio>
+      </div>
+    </div>
+  )
+}
+
 function BoatScrollList({
   boats,
   boatIndex,
@@ -534,7 +584,6 @@ function BoatScrollList({
 
   useEffect(() => {
     const currentlyHighlightedIndex = Math.round(y / ITEM_HEIGHT)
-    // console.log('currentlyHightlightedIndex', currentlyHighlightedIndex)
     setBoatIndex(clamp(currentlyHighlightedIndex, 0, boats.length - 1))
   }, [y])
 
