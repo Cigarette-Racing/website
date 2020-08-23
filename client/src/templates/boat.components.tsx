@@ -152,7 +152,7 @@ export const BoatSection: React.FC<{
 }> = ({ children, className, theme = 'light', ...rest }) => (
   <section
     className={clsx(
-      'relative py-12',
+      'relative py-12 overflow-hidden',
       {
         'bg-black text-white': theme === 'dark',
       },
