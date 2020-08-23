@@ -119,7 +119,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
 
   return boatEntry.flexibleSections.map((section: any) => {
     const blocks = section.blocks.map(
-      (block: any, index: Number, blocks: Array) => {
+      (block: any, index: Number, blocks: any[]) => {
         const getBlockPosition = () => {
           if (index === 0) {
             return 'first'
@@ -347,7 +347,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                     header: block.textBlock[0].header,
                   }
                   block.media = {
-                    image: block.singleMedia?.[0].image?.[0].url,
+                    image: block.singleMedia?.[0].image?.[0]?.url,
                     videoURL: block.singleMedia?.[0].videoURL,
                     autoplayVideo: block.singleMedia?.[0].autoplayVideo,
                   }
