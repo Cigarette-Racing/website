@@ -360,7 +360,7 @@ function BoatSelector({
   onReset: () => void
 }) {
   const [boatCategory, setBoatCategory] = useState<HeaderBoatMenuCategories>(
-    'performanceCenterConsole'
+    'all'
   )
   const [boatIndex, setBoatIndex] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
@@ -570,7 +570,6 @@ function BoatScrollList({
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const { y } = useScroll(scrollRef)
-  console.log('scroll stats', y)
 
   useEffect(() => {
     if (y === 0) return
@@ -670,7 +669,6 @@ function convertPercentageToExponentialEasing(
   dividend: number
 ) {
   const power = 3
-  console.log('maths', divisor, dividend, divisor ** power / dividend ** power)
   return divisor ** power / dividend ** power
 }
 
