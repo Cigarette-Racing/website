@@ -444,8 +444,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
               }
 
               if (isMoreDetailsBlock(block)) {
-                console.log('got more details block')
-
                 const buttonText = block.textBlockHeader
 
                 const details = block.children.map((detail) => {

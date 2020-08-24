@@ -2,6 +2,7 @@ import React, { useState, Fragment, useEffect, useRef, useMemo } from 'react'
 import clsx from 'clsx'
 import Headroom from 'react-headroom'
 import Img from 'gatsby-image'
+import { useFooterMenuState } from './footer'
 import logo from '../images/logo-white.svg'
 import { Typography } from '../atoms/typography'
 import { MenuIcon, ArrowIcon } from '../svgs/icons'
@@ -30,8 +31,15 @@ import {
 import { cacheImages } from '../services/images'
 import clamp from 'lodash/clamp'
 
+export type MenuState = true | false
+export const useMenuState = createGlobalState<MenuState>(false)
+
 export type HeaderState = 'top' | 'pinned' | 'hidden'
 export const useHeaderState = createGlobalState<HeaderState>('top')
+export const useSelectedSectionState = createGlobalState('')
+export const useSelectedBoatCategoryState = createGlobalState<
+  HeaderBoatMenuCategories
+>('all')
 
 // Hack for Storybook
 Modal.setAppElement(
@@ -65,11 +73,12 @@ export interface HeaderProps {}
 
 export const Header = ({}: HeaderProps) => {
   const [isHovering, setIsHovering] = useToggle(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [selectedSection, setSelectedSection] = useState('')
+  const [selectedSection, setSelectedSection] = useSelectedSectionState()
   const isMobileMenu = useMedia('(max-width: 767px)')
   const [isAtTop, setIsAtTop] = useState(true)
+  const [isMenuOpen, setIsMenuOpen] = useMenuState()
   const [, setHeaderState] = useHeaderState()
+  const [menuOpenedFromFooter, setMenuOpenedFromFooter] = useFooterMenuState()
   useLockBodyScroll(isMenuOpen || !!selectedSection)
 
   // @ts-ignore
@@ -186,6 +195,7 @@ export const Header = ({}: HeaderProps) => {
       </Headroom>
       <BoatSelector
         isVisible={selectedSection === 'boats' && !isMobileMenu}
+        menuOpenedFromFooter={menuOpenedFromFooter}
         onReset={() => {
           setIsMenuOpen(false)
           setSelectedSection('')
@@ -354,14 +364,14 @@ function ComingSoonMobileLink({ text }: { text: string }) {
 
 function BoatSelector({
   isVisible,
+  menuOpenedFromFooter,
   onReset,
 }: {
   isVisible: boolean
+  menuOpenedFromFooter: boolean
   onReset: () => void
 }) {
-  const [boatCategory, setBoatCategory] = useState<HeaderBoatMenuCategories>(
-    'all'
-  )
+  const [boatCategory, setBoatCategory] = useSelectedBoatCategoryState()
   const [boatIndex, setBoatIndex] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
   const boatsByCategory = useBoatsQuery()
@@ -386,7 +396,11 @@ function BoatSelector({
   return (
     <Modal
       isOpen={isVisible}
-      className={{ base: 'absolute inset-0', afterOpen: '', beforeClose: '' }}
+      className={{
+        base: 'absolute inset-0 BOATMENU',
+        afterOpen: '',
+        beforeClose: '',
+      }}
       overlayClassName="fixed inset-0 z-30"
       onRequestClose={onReset}
       closeTimeoutMS={250}
@@ -404,7 +418,12 @@ function BoatSelector({
             role="dialog"
             aria-modal="true"
           >
-            <div className="absolute top-0 left-0 w-full h-10 bg-gray-0 mt-20 z-10">
+            <div
+              className={clsx(
+                'absolute top-0 left-0 w-full h-10 bg-gray-0 z-10',
+                { 'mt-20': !menuOpenedFromFooter }
+              )}
+            >
               <div className="max-w-7xl mx-auto px-4 flex items-center h-full space-x-12">
                 {Object.keys(boatsByCategory).map(
                   (category: HeaderBoatMenuCategories) => {

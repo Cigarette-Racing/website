@@ -101,7 +101,6 @@ export const BoatHeader = ({
       <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
       <div className="relative z-10">
         <div className="relative flex justify-center mb-8 md:mb-10">
-          {console.log(boatLogo)}
           {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
         </div>
         <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
@@ -125,7 +124,7 @@ export const BoatHeader = ({
           Request Info
         </InPageCta>
       </div>
-      <div className="hidden md:block fixed bottom-0 left-0 w-full mb-8">
+      <div className="hidden md:block fixed bottom-0 left-0 w-full mb-8 pointer-events-none">
         <div className="max-w-7xl mx-auto">
           <motion.div animate={{ opacity: hasScrolled ? 0 : 1 }}>
             <ScrollPrompter />
