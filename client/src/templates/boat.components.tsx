@@ -63,7 +63,7 @@ export const BoatHeader = ({
   }, [])
 
   return (
-    <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between">
+    <section className="bg-black text-white pt-32 pb-4 md:min-h-screen md:flex flex-col justify-between relative">
       <div />
       <div className="relative z-10">
         <Typography variant="e2" md="e2" className="text-center mb-8 md:mb-4">
@@ -84,7 +84,7 @@ export const BoatHeader = ({
           </InPageCta>
         </div>
       </div>
-      <div className="mb-8 absolute h-full top-0 w-full">
+      <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
         {!!videoUrl ? (
           <AutoplayVideo
             image={image}
@@ -101,6 +101,7 @@ export const BoatHeader = ({
       <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
       <div className="relative z-10">
         <div className="relative flex justify-center mb-8 md:mb-10">
+          {console.log(boatLogo)}
           {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
         </div>
         <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
@@ -673,39 +674,56 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
   const isClickable = details.length > 1
   return (
     <div data-block-type="MoreDetailsBlockComponent">
-      {isOpen && (
-        <div>
-          {details.map((child: any) => {
-            const extractedBlock: HorizontalImageTextBlock = {
-              type: 'horizontal-image-text',
-              layout: child.layout,
-              content: {
-                header: child.header as string,
-                copy: child.copy as string,
-              },
-              media: {
-                image: {
-                  publicURL: child.image as string,
-                },
-              },
-            }
-            return <HorizontalImageTextBlockComponent {...extractedBlock} />
-          })}
-        </div>
-      )}
-
-      <div className="flex justify-center md:mb-12">
+      <div className="overflow-hidden">
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              key="descriptions"
+              initial="collapsed"
+              animate="open"
+              exit="collapsed"
+              variants={{
+                open: { opacity: 1, height: 'auto' },
+                collapsed: { opacity: 0, height: 0 },
+              }}
+              transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
+            >
+              <div>
+                {details.map((child: any) => {
+                  const extractedBlock: HorizontalImageTextBlock = {
+                    type: 'horizontal-image-text',
+                    layout: child.layout,
+                    content: {
+                      header: child.header as string,
+                      copy: child.copy as string,
+                    },
+                    media: {
+                      image: {
+                        publicURL: child.image as string,
+                      },
+                    },
+                  }
+                  return (
+                    <HorizontalImageTextBlockComponent {...extractedBlock} />
+                  )
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      <div className="flex justify-center md:mb-20">
         <InPageCta
           variant="secondary"
           onClick={() => {
             toggleIsOpen()
           }}
         >
-          <span className="flex items-center">
+          <span className="flex items-center group">
             {isOpen ? (
-              <CaretUpIcon className="inline-block text-red mr-2 text-lg" />
+              <CaretUpIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
             ) : (
-              <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+              <CaretDownIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
             )}
             <span>{buttonText}</span>
           </span>
