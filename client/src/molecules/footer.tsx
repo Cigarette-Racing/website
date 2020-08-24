@@ -5,6 +5,7 @@ import {
   useSelectedSectionState,
   useSelectedBoatCategoryState,
 } from './header'
+import { useInquiryModalState } from '../molecules/inquiry/inquiry-modal'
 import logo from '../images/logo-white.svg'
 import { SocialLink } from '../atoms/social-link'
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from '../svgs/icons'
@@ -44,7 +45,7 @@ const footerLinks = [
   {
     header: 'Contact Us',
     links: [
-      { name: 'Request Info', url: 'mailto:contact@cigaretteracing.com' },
+      { name: 'Request Info', clickAction: 'openInquiryForm' },
       { name: 'Media & Press', url: 'mailto:contact@cigaretteracing.com' },
       { name: 'Careers', url: 'mailto:contact@cigaretteracing.com' },
       { name: 'Support', url: 'mailto:contact@cigaretteracing.com' },
@@ -102,6 +103,7 @@ export const Footer = ({}: FooterProps) => {
   const [, setSelectedSection] = useSelectedSectionState()
   const [, setMenuOpenedFromFooter] = useFooterMenuState()
   const [, setBoatCategory] = useSelectedBoatCategoryState()
+  const [, setInquiryModalState] = useInquiryModalState()
 
   return (
     <footer className="max-w-full lg:max-w-5xl mx-auto bg-black text-white py-24 px-4">
@@ -134,7 +136,24 @@ export const Footer = ({}: FooterProps) => {
                       </a>
                     )}
                     {linkGroup.header === 'Contact Us' && (
-                      <a href={link.url}>{link.name}</a>
+                      <div>
+                        {link.clickAction && (
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault()
+                              link.clickAction === 'openInquiryForm' &&
+                                setInquiryModalState(true)
+                            }}
+                          >
+                            {link.name}
+                          </a>
+                        )}
+                        {!link.clickAction && (
+                          <a href={link.url}>{link.name}</a>
+                        )}
+                      </div>
+                      // <a href={link.url}>{link.name}</a>
                     )}
                     {linkGroup.disabled && (
                       <a
