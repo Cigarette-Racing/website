@@ -712,18 +712,18 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
           )}
         </AnimatePresence>
       </div>
-      <div className="flex justify-center md:mb-12">
+      <div className="flex justify-center md:mb-20">
         <InPageCta
           variant="secondary"
           onClick={() => {
             toggleIsOpen()
           }}
         >
-          <span className="flex items-center">
+          <span className="flex items-center group">
             {isOpen ? (
-              <CaretUpIcon className="inline-block text-red mr-2 text-lg" />
+              <CaretUpIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
             ) : (
-              <CaretDownIcon className="inline-block text-red mr-2 text-lg" />
+              <CaretDownIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
             )}
             <span>{buttonText}</span>
           </span>
