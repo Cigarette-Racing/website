@@ -112,14 +112,14 @@ export const Footer = ({}: FooterProps) => {
           return (
             <div key={linkGroup.header}>
               <Typography
-                variant="e3"
+                variant="e2"
                 className={clsx('mb-4', { 'opacity-50': linkGroup.disabled })}
               >
                 {linkGroup.header}
               </Typography>
               {linkGroup.links.map((link) => {
                 return (
-                  <Typography variant="p3" className="mb-1" key={link.name}>
+                  <Typography variant="p2" className="mb-1" key={link.name}>
                     {/* {link.url && <a href={link.url || '#'}>{link.name}</a>} */}
                     {linkGroup.header === 'Our Boats' && (
                       <a
