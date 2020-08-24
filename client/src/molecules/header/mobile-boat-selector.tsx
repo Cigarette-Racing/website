@@ -7,7 +7,11 @@ import { Link } from 'gatsby'
 import { throttle } from 'throttle-debounce'
 import { AspectRatio } from '../../atoms/aspect-ratio'
 import { motion } from 'framer-motion'
-import { useOnMobileScroll, ScrollPrompter } from '../header'
+import {
+  useOnMobileScroll,
+  ScrollPrompter,
+  useSelectedBoatCategoryState,
+} from '../header'
 import {
   useBoatsQuery,
   HeaderBoatMenuCategories,
@@ -22,9 +26,7 @@ export const MobileBoatSelector = ({
   onClose: () => void
   onReturn: () => void
 }) => {
-  const [boatCategory, setBoatCategory] = useState<HeaderBoatMenuCategories>(
-    'all'
-  )
+  const [boatCategory, setBoatCategory] = useSelectedBoatCategoryState()
   const [boatIndex, setBoatIndex] = useState(0)
   const [hasScrolled, setHasScrolled] = useState(false)
   const boatsByCategory = useBoatsQuery()
