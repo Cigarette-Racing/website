@@ -164,11 +164,9 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
       </ReactModal>
       <Waypoint
         onEnter={() => {
-          console.log('Enter')
           setAutoPlayVideo(true)
         }}
         onLeave={() => {
-          console.log('Leave')
           setAutoPlayVideo(false)
         }}
         bottomOffset={100}
