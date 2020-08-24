@@ -30,8 +30,12 @@ import {
 import { cacheImages } from '../services/images'
 import clamp from 'lodash/clamp'
 
+export type MenuState = true | false
+export const useMenuState = createGlobalState<MenuState>(false)
+
 export type HeaderState = 'top' | 'pinned' | 'hidden'
 export const useHeaderState = createGlobalState<HeaderState>('top')
+export const useSelectedSectionState = createGlobalState('')
 
 // Hack for Storybook
 Modal.setAppElement(
@@ -65,10 +69,10 @@ export interface HeaderProps {}
 
 export const Header = ({}: HeaderProps) => {
   const [isHovering, setIsHovering] = useToggle(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [selectedSection, setSelectedSection] = useState('')
+  const [selectedSection, setSelectedSection] = useSelectedSectionState()
   const isMobileMenu = useMedia('(max-width: 767px)')
   const [isAtTop, setIsAtTop] = useState(true)
+  const [isMenuOpen, setIsMenuOpen] = useMenuState()
   const [, setHeaderState] = useHeaderState()
   useLockBodyScroll(isMenuOpen || !!selectedSection)
 
@@ -386,7 +390,11 @@ function BoatSelector({
   return (
     <Modal
       isOpen={isVisible}
-      className={{ base: 'absolute inset-0', afterOpen: '', beforeClose: '' }}
+      className={{
+        base: 'absolute inset-0 BOATMENU',
+        afterOpen: '',
+        beforeClose: '',
+      }}
       overlayClassName="fixed inset-0 z-30"
       onRequestClose={onReset}
       closeTimeoutMS={250}

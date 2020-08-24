@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMenuState, useSelectedSectionState } from './header'
 import logo from '../images/logo-white.svg'
 import { SocialLink } from '../atoms/social-link'
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from '../svgs/icons'
@@ -8,20 +9,55 @@ import { useMetadataQuery } from '../services/metadata'
 const footerLinks = [
   {
     header: 'Our Boats',
-    links: ['All Boats', 'Center Console', 'High Performance', 'Heritage'],
+    links: [
+      {
+        name: 'All Boats',
+        category: 'all',
+        url: null,
+        clickAction: (e) => {
+          e.preventDefault()
+          console.log('url Click!')
+        },
+      },
+      {
+        name: 'Center Console',
+        category: 'performanceCenterConsole',
+        url: null,
+        clickAction: (e) => {
+          e.preventDefault()
+          console.log('url Click!')
+        },
+      },
+      {
+        name: 'High Performance',
+        category: 'highPerformance',
+        url: null,
+        clickAction: (e) => {
+          e.preventDefault()
+          console.log('url Click!')
+        },
+      },
+      {
+        name: 'Heritage',
+        url: null,
+        action: () => {
+          console.log('url Click!')
+        },
+      },
+    ],
   },
-  {
-    header: 'The Difference',
-    links: ['Design Studio', 'Performance', 'Construction'],
-  },
-  {
-    header: 'Our World',
-    links: ['About Us', 'Brand Stories', 'News & Events'],
-  },
-  {
-    header: 'Contact Us',
-    links: ['Request Info', 'Media & Press', 'Careers', 'Support'],
-  },
+  // {
+  //   header: 'The Difference',
+  //   links: ['Design Studio', 'Performance', 'Construction'],
+  // },
+  // {
+  //   header: 'Our World',
+  //   links: ['About Us', 'Brand Stories', 'News & Events'],
+  // },
+  // {
+  //   header: 'Contact Us',
+  //   links: ['Request Info', 'Media & Press', 'Careers', 'Support'],
+  // },
 ]
 
 const socialLinks = [
@@ -50,6 +86,9 @@ export const Footer = ({}: FooterProps) => {
   // @ts-ignore
   const src: string = logo
 
+  const [globalMenuState, setGlobalMenuState] = useMenuState()
+  const [selectedSection, setSelectedSection] = useSelectedSectionState()
+
   return (
     <footer className="max-w-full lg:max-w-5xl mx-auto bg-black text-white py-24 px-4">
       <div className="mb-16 grid flex grid-cols-max-2 row-gap-16 col-gap-4 sm:grid-cols-max-4 justify-around">
@@ -61,8 +100,20 @@ export const Footer = ({}: FooterProps) => {
               </Typography>
               {linkGroup.links.map((link) => {
                 return (
-                  <Typography variant="p3" className="mb-1" key={link}>
-                    <a href="#">{link}</a>
+                  <Typography variant="p3" className="mb-1" key={link.name}>
+                    {/* {link.url && <a href={link.url || '#'}>{link.name}</a>} */}
+                    {link.clickAction && (
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setGlobalMenuState(true)
+                          setSelectedSection('boats')
+                        }}
+                      >
+                        {link.name}
+                      </a>
+                    )}
                   </Typography>
                 )
               })}
