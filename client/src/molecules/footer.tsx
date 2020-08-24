@@ -1,10 +1,16 @@
 import React from 'react'
-import { useMenuState, useSelectedSectionState } from './header'
+import { createGlobalState } from 'react-use'
+import {
+  useMenuState,
+  useSelectedSectionState,
+  useSelectedBoatCategoryState,
+} from './header'
 import logo from '../images/logo-white.svg'
 import { SocialLink } from '../atoms/social-link'
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from '../svgs/icons'
 import { Typography } from '../atoms/typography'
 import { useMetadataQuery } from '../services/metadata'
+import clsx from 'clsx'
 
 const footerLinks = [
   {
@@ -14,50 +20,54 @@ const footerLinks = [
         name: 'All Boats',
         category: 'all',
         url: null,
-        clickAction: (e) => {
-          e.preventDefault()
-          console.log('url Click!')
-        },
+        clickAction: true,
       },
       {
         name: 'Center Console',
         category: 'performanceCenterConsole',
         url: null,
-        clickAction: (e) => {
-          e.preventDefault()
-          console.log('url Click!')
-        },
+        clickAction: true,
       },
       {
         name: 'High Performance',
         category: 'highPerformance',
         url: null,
-        clickAction: (e) => {
-          e.preventDefault()
-          console.log('url Click!')
-        },
+        clickAction: true,
       },
       {
         name: 'Heritage',
         url: null,
-        action: () => {
-          console.log('url Click!')
-        },
+        action: true,
       },
     ],
   },
-  // {
-  //   header: 'The Difference',
-  //   links: ['Design Studio', 'Performance', 'Construction'],
-  // },
-  // {
-  //   header: 'Our World',
-  //   links: ['About Us', 'Brand Stories', 'News & Events'],
-  // },
-  // {
-  //   header: 'Contact Us',
-  //   links: ['Request Info', 'Media & Press', 'Careers', 'Support'],
-  // },
+  {
+    header: 'Contact Us',
+    links: [
+      { name: 'Request Info', url: 'mailto:contact@cigaretteracing.com' },
+      { name: 'Media & Press', url: 'mailto:contact@cigaretteracing.com' },
+      { name: 'Careers', url: 'mailto:contact@cigaretteracing.com' },
+      { name: 'Support', url: 'mailto:contact@cigaretteracing.com' },
+    ],
+  },
+  {
+    disabled: true,
+    header: 'The Difference',
+    links: [
+      { name: 'Design Studio', url: '#' },
+      { name: 'Performance', url: '#' },
+      { name: 'Construction', url: '#' },
+    ],
+  },
+  {
+    disabled: true,
+    header: 'Our World',
+    links: [
+      { name: 'About Us', url: '#' },
+      { name: 'Brand Stories', url: '#' },
+      { name: 'News & Events', url: '#' },
+    ],
+  },
 ]
 
 const socialLinks = [
@@ -78,6 +88,8 @@ const socialLinks = [
   },
 ] as const
 
+export const useFooterMenuState = createGlobalState(false)
+
 export interface FooterProps {}
 
 export const Footer = ({}: FooterProps) => {
@@ -86,8 +98,10 @@ export const Footer = ({}: FooterProps) => {
   // @ts-ignore
   const src: string = logo
 
-  const [globalMenuState, setGlobalMenuState] = useMenuState()
-  const [selectedSection, setSelectedSection] = useSelectedSectionState()
+  const [, setGlobalMenuState] = useMenuState()
+  const [, setSelectedSection] = useSelectedSectionState()
+  const [, setMenuOpenedFromFooter] = useFooterMenuState()
+  const [, setBoatCategory] = useSelectedBoatCategoryState()
 
   return (
     <footer className="max-w-full lg:max-w-5xl mx-auto bg-black text-white py-24 px-4">
@@ -95,21 +109,37 @@ export const Footer = ({}: FooterProps) => {
         {footerLinks.map((linkGroup) => {
           return (
             <div key={linkGroup.header}>
-              <Typography variant="e3" className="mb-4">
+              <Typography
+                variant="e3"
+                className={clsx('mb-4', { 'opacity-50': linkGroup.disabled })}
+              >
                 {linkGroup.header}
               </Typography>
               {linkGroup.links.map((link) => {
                 return (
                   <Typography variant="p3" className="mb-1" key={link.name}>
                     {/* {link.url && <a href={link.url || '#'}>{link.name}</a>} */}
-                    {link.clickAction && (
+                    {linkGroup.header === 'Our Boats' && (
                       <a
                         href="#"
                         onClick={(e) => {
                           e.preventDefault()
                           setGlobalMenuState(true)
+                          setMenuOpenedFromFooter(true)
+                          setBoatCategory(link.category)
                           setSelectedSection('boats')
                         }}
+                      >
+                        {link.name}
+                      </a>
+                    )}
+                    {linkGroup.header === 'Contact Us' && (
+                      <a href={link.url}>{link.name}</a>
+                    )}
+                    {linkGroup.disabled && (
+                      <a
+                        className="opacity-50 cursor-not-allowed"
+                        href={link.url}
                       >
                         {link.name}
                       </a>
