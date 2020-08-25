@@ -10,6 +10,14 @@ export const siteMetadata = {
   title: `Cigarette Racing`,
   description: `Cigarette Racing`,
   author: `@cigaretteracing`,
+  siteUrl:
+    // Optional override from .env file
+    process.env.SITE_URL ||
+    // Next 3 from Netlify (https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata)
+    process.env.DEPLOY_PRIME_URL ||
+    process.env.DEPLOY_URL ||
+    process.env.URL ||
+    '',
   metadata,
 }
 
@@ -74,6 +82,7 @@ export const plugins = [
       trackingId: process.env.GOOGLE_ANALYTICS_ID,
     },
   },
+  `gatsby-plugin-sitemap`,
   // this (optional) plugin enables Progressive Web App + Offline functionality
   // To learn more, visit: https://gatsby.dev/offline
   // `gatsby-plugin-offline`,
