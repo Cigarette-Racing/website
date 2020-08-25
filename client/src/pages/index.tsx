@@ -117,7 +117,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
             <InPageCta onClick={() => setInquiryModalState(true)}>
               Request Info
             </InPageCta>
-            <Link to="/boats/tirranna">
+            <Link to="/boats/59-tirranna">
               <LinkCta>Learn More</LinkCta>
             </Link>
           </div>
@@ -130,8 +130,8 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
           boatImage={data.boat1 as GatsbyTypes.File}
           contentHeader="Performance Center Console"
           subtitle="Hyperlux"
-          boatName="41 Nighthawk"
-          url="nighthawk"
+          boatName="42 X"
+          url="42-x"
         />
         <BoatFeaturette
           backgroundImage={data.boat2BG as GatsbyTypes.File}
@@ -139,7 +139,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
           contentHeader="Performance Center Console"
           subtitle="Hyperlux"
           boatName="42 Auroris"
-          url="auroris"
+          url="42-auroris"
         />
       </section>
       {/* Second hero section */}
@@ -223,7 +223,7 @@ export const query = graphql`
         }
       }
     }
-    boat1: file(relativePath: { eq: "homepage/nighthawk.png" }) {
+    boat1: file(relativePath: { eq: "homepage/42XGold.png" }) {
       childImageSharp {
         fluid(maxWidth: 3000) {
           ...GatsbyImageSharpFluid
@@ -237,7 +237,7 @@ export const query = graphql`
         }
       }
     }
-    boat2: file(relativePath: { eq: "homepage/auroris.png" }) {
+    boat2: file(relativePath: { eq: "homepage/42AurorisBlackandWhite.png" }) {
       childImageSharp {
         fluid(maxWidth: 3000) {
           ...GatsbyImageSharpFluid

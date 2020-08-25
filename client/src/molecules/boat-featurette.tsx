@@ -21,7 +21,7 @@ const BoatFeaturette = ({
   url: string
 }) => (
   <div
-    className="bg-cover relative justify-center md:w-1/2 min-h-screen-half md:min-h-screen bg-black text-white pt-4 md:pt-0"
+    className="bg-cover relative justify-center md:w-1/2 md:min-h-screen bg-black text-white pt-4 md:pt-0"
     style={{
       backgroundImage: `url(${backgroundImage.childImageSharp?.fluid?.src})`,
     }}
@@ -35,15 +35,15 @@ const BoatFeaturette = ({
       }}
     ></Link>
     <div className="flex flex-col h-full relative justify-between lg:justify-end pointer-events-none">
-      <div className="relative z-0 flex-2">
-        <div className="px-2 md:px-4 flex h-full justify-center">
+      <div className="relative z-0 h-full">
+        <div className="px-2 py-12 md:py-0 md:px-4 flex h-full justify-center">
           <Img
             fluid={boatImage.childImageSharp?.fluid}
-            className="h-full w-full object-cover max-w-3/4 md:max-w-1/2"
+            className="w-full self-center max-w-3/4 md:max-w-11/12"
           />
         </div>
       </div>
-      <div className="absolute flex flex-col justify-between md:justify-end h-full w-full">
+      <div className="md:absolute flex flex-col justify-between md:justify-end h-full w-full">
         <div className="relative z-20 px-4 md:px order-first md:order-none">
           <ContentHeader
             subtitle={subtitle}
