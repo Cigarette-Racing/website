@@ -98,7 +98,7 @@ export const BoatHeader = ({
           </Fragment>
         )}
       </div>
-      <div className="hidden bg-black bg-opacity-25 absolute inset-0 md:block"></div>
+      <div className="hidden bg-black bg-opacity-10 absolute inset-0 md:block"></div>
       <div className="relative z-10">
         <div className="relative flex justify-center mb-8 md:mb-10">
           {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
@@ -517,7 +517,7 @@ export const OrderSectionComponent = ({
         className="h-full w-full object-cover top-0"
         style={{ position: 'absolute' }}
       />
-      <div className="absolute inset-0 bg-black bg-opacity-25"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-10"></div>
       <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
         <div className="bg-black bg-opacity-75 py-16 sm:py-20 px-4 max-w-md">
           <Typography variant="h3" sm="h2" className="mb-6">
