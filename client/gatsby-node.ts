@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-import { GatsbyNode, CreateSchemaCustomizationArgs } from 'gatsby'
+import { GatsbyNode } from 'gatsby'
 import { resolve } from 'path'
 
 const createBoatPages: GatsbyNode['createPages'] = async ({
