@@ -17,7 +17,8 @@ export const siteMetadata = {
     process.env.DEPLOY_PRIME_URL ||
     process.env.DEPLOY_URL ||
     process.env.URL ||
-    '',
+    // Default to localhost
+    'http://localhost:17007',
   metadata,
 }
 
