@@ -167,9 +167,9 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
             The best is only the start
           </Typography>
           <div className="flex items-center space-x-6">
-            <ComingSoonLink>
+            {/* <ComingSoonLink>
               <LinkCta>EXPERIENCE THE DIFFERENCE</LinkCta>
-            </ComingSoonLink>
+            </ComingSoonLink> */}
           </div>
         </div>
       </section>
