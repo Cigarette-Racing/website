@@ -56,12 +56,12 @@ type LinkItem = {
 
 const leftLinks: LinkItem[] = [
   { text: 'Boats', section: 'boats' },
-  { text: 'Our world' },
-  { text: 'The Difference' },
+  // { text: 'Our world' },
+  // { text: 'The Difference' },
 ]
 const rightLinks: LinkItem[] = [
-  { text: 'Owners' },
-  { text: 'Store' },
+  // { text: 'Owners' },
+  { text: 'Store', link: 'https://cigaretteracingstore.com/' },
   { text: 'Contact', link: '/contact' },
 ]
 const allLinks = [{ text: 'Home', link: '/' } as LinkItem].concat(
