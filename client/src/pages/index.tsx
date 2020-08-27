@@ -76,7 +76,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
 
   return (
     <Layout>
-      <SEO title="Home" image={data.header1.publicURL} />
+      <SEO image={data.header1.publicURL} />
       <ScrollIndicator />
       {/* First hero section */}
       <section
