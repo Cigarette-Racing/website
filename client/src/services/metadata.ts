@@ -18,8 +18,10 @@ export const useMetadataQuery = () => {
                 zip
               }
               email {
+                inquiries
                 support
                 contact
+                careers
               }
               social {
                 youtube
