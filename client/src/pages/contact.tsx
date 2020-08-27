@@ -97,13 +97,13 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
             header="Inquiries"
             buttonText="Request An Appointment"
             copy="Your Cigarette Racing journey begins here. Request info and schedule an appointment today."
-            email={metadata?.email?.support!}
+            email={metadata?.email?.inquiries!}
           />
           <ContentColumn
             header="Media & Press"
             buttonText="Get In Touch"
             copy="From press kits to partnerships — lets work together towards something great."
-            email={metadata?.email?.support!}
+            email={metadata?.email?.contact!}
           />
         </div>
       </Section>
@@ -117,7 +117,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           <InPageCta
             variant="secondary"
             theme="dark"
-            href={`mailto:${metadata?.email?.support}`}
+            href={`mailto:${metadata?.email?.careers}`}
             link
           >
             Start a Career
@@ -129,7 +129,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           <Typography variant="h3">Owner support</Typography>
           <Typography variant="p3">
             Whatever you need, our team is dedicated to help you get the most
-            out of your Cigarette Racing boat.
+            out of your Cigarette.
           </Typography>
           <InPageCta
             variant="secondary"
@@ -147,7 +147,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           <div className="space-y-8 pt-4">
             <Typography variant="p2" className="max-w-md">
               Whatever you need, our team is dedicated to help you get the most
-              out of your Cigarette Racing boat.
+              out of your Cigarette.
             </Typography>
             <InPageCta
               variant="secondary"

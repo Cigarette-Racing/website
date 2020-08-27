@@ -10,8 +10,10 @@ export default {
     zip: '33054',
   },
   email: {
+    inquiries: 'sales@cigaretteracing.com',
     support: 'support@cigaretteracing.com',
     contact: 'contact@cigaretteracing.com',
+    careers: 'sbjobs@cigaretteracing.com',
   },
   social: {
     youtube: 'https://www.youtube.com/user/CigaretteRacingTeam',
