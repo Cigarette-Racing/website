@@ -41,7 +41,7 @@ function SEO({
     `
   )
 
-  const safeTitle = title || site?.siteMetadata?.title
+  const seoTitle = title || site?.siteMetadata?.title
   const metaDescription = description || site?.siteMetadata?.description
   const canonicalUrl = slug
     ? `${site?.siteMetadata.siteUrl!}${slug}`
@@ -54,9 +54,10 @@ function SEO({
   return (
     <Helmet
       htmlAttributes={{ lang }}
+      defaultTitle={site?.siteMetadata?.title}
       titleTemplate={`%s | ${site?.siteMetadata?.title}`}
     >
-      <title>{safeTitle}</title>
+      {title && <title>{title}</title>}
       <meta name="description" content={metaDescription} />
       <meta name="image" content={imageUrl} />
       {imageUrl && <link rel="canonical" href={canonicalUrl} />}
@@ -64,14 +65,14 @@ function SEO({
       {/* OpenGraph tags */}
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={safeTitle} />
+      <meta property="og:title" content={seoTitle} />
       <meta property="og:description" content={metaDescription} />
       {imageUrl && <meta property="og:image" content={imageUrl} />}
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={site?.siteMetadata?.author!} />
-      <meta name="twitter:title" content={safeTitle} />
+      <meta name="twitter:title" content={seoTitle} />
       <meta name="twitter:description" content={metaDescription} />
       {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
