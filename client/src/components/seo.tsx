@@ -15,7 +15,7 @@ export interface SEOProps {
   lang?: string
   meta?: React.ReactNode[]
   slug?: string
-  title: string
+  title?: string
 }
 
 function SEO({
@@ -41,6 +41,7 @@ function SEO({
     `
   )
 
+  const safeTitle = title || site?.siteMetadata?.title
   const metaDescription = description || site?.siteMetadata?.description
   const canonicalUrl = slug
     ? `${site?.siteMetadata.siteUrl!}${slug}`
@@ -55,24 +56,24 @@ function SEO({
       htmlAttributes={{ lang }}
       titleTemplate={`%s | ${site?.siteMetadata?.title}`}
     >
-      <title>{title}</title>
+      <title>{safeTitle}</title>
       <meta name="description" content={metaDescription} />
       <meta name="image" content={imageUrl} />
-      <link rel="canonical" href={canonicalUrl} />
+      {imageUrl && <link rel="canonical" href={canonicalUrl} />}
 
       {/* OpenGraph tags */}
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={safeTitle} />
       <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={imageUrl} />
+      {imageUrl && <meta property="og:image" content={imageUrl} />}
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={site?.siteMetadata?.author!} />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={safeTitle} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={imageUrl} />
+      {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
       {/* Additional tags */}
       {meta}
