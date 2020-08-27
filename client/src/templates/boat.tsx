@@ -267,7 +267,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const [, setInquiryModalState] = useInquiryModalState()
   return (
     <Layout>
-      <SEO title="Boat" />
+      <SEO title={heroData.boatName} slug={props.path} image={heroData.image} />
       {!heroData && <div>Enter Some boat data</div>}
       {heroData && (
         <BoatHeader

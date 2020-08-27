@@ -76,7 +76,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO image={data.header1.publicURL} />
       <ScrollIndicator />
       {/* First hero section */}
       <section
@@ -203,6 +203,7 @@ export default IndexPage
 export const query = graphql`
   query HomePage {
     header1: file(relativePath: { eq: "homepage-header.jpeg" }) {
+      publicURL
       childImageSharp {
         fluid(maxWidth: 3000) {
           ...GatsbyImageSharpFluid

@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import Img from 'gatsby-image'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
@@ -17,16 +17,17 @@ import { InPageCta } from '../atoms/in-page-cta'
 import { Theme } from '../types/shared'
 import { useMetadataQuery } from '../services/metadata'
 
-const ContactPage = ({
-  data: images,
-}: {
-  data: GatsbyTypes.ContactImagesQuery
-}) => {
+const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
   const metadata = useMetadataQuery()
+  const { data: images } = props
 
   return (
     <Layout>
-      <SEO title="Contact Us" />
+      <SEO
+        title="Contact Us"
+        slug={props.path}
+        image={images.header?.publicURL!}
+      />
       <Section
         theme="dark"
         className="min-h-screen flex justify-center items-center text-center"
@@ -168,6 +169,7 @@ export default ContactPage
 export const query = graphql`
   query ContactImages {
     header: file(relativePath: { eq: "contact-header.jpeg" }) {
+      publicURL
       childImageSharp {
         fluid(maxWidth: 3000) {
           ...GatsbyImageSharpFluid
