@@ -128,8 +128,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         <BoatFeaturette
           backgroundImage={data.boat1BG as GatsbyTypes.File}
           boatImage={data.boat1 as GatsbyTypes.File}
-          contentHeader="Performance Center Console"
-          subtitle="Hyperlux"
+          contentHeader="High Performance"
           boatName="42 X"
           url="42-x"
         />
