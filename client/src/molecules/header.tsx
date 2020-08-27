@@ -86,6 +86,19 @@ export const Header = ({}: HeaderProps) => {
 
   const renderLinks = ({ text, link, section }: LinkItem): JSX.Element => {
     if (link) {
+      if (link.startsWith('http')) {
+        return (
+          <a href={link} key={text} target="_blank" rel="noopener noreferrer">
+            <Typography
+              variant="e2"
+              key={text}
+              className="p-2 whitespace-no-wrap"
+            >
+              {text}
+            </Typography>
+          </a>
+        )
+      }
       return (
         <Link to={link} key={text}>
           <Typography
