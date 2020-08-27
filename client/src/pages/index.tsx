@@ -238,7 +238,7 @@ export const query = graphql`
         }
       }
     }
-    boat2: file(relativePath: { eq: "homepage/42AurorisBlackandWhite.png" }) {
+    boat2: file(relativePath: { eq: "homepage/Homepage-Auroris.png" }) {
       childImageSharp {
         fluid(maxWidth: 3000) {
           ...GatsbyImageSharpFluid
