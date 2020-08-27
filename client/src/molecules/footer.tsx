@@ -47,8 +47,8 @@ const footerLinks = [
     links: [
       { name: 'Request Info', clickAction: 'openInquiryForm' },
       { name: 'Media & Press', url: 'mailto:contact@cigaretteracing.com' },
-      { name: 'Careers', url: 'mailto:contact@cigaretteracing.com' },
-      { name: 'Support', url: 'mailto:contact@cigaretteracing.com' },
+      { name: 'Careers', url: 'mailto:sbjobs@cigaretteracing.com' },
+      { name: 'Support', url: 'mailto:support@cigaretteracing.com' },
     ],
   },
   {
