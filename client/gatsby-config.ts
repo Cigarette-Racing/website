@@ -8,7 +8,7 @@ console.log(process.env.NODE_ENV)
 
 export const siteMetadata = {
   title: `Cigarette Racing`,
-  description: `Cigarette Racing`,
+  description: `The world champion racing team defining performance boating since 1969.`,
   author: `@cigaretteracing`,
   siteUrl:
     // Optional override from .env file
