@@ -35,11 +35,6 @@ const footerLinks = [
         url: null,
         clickAction: true,
       },
-      {
-        name: 'Heritage',
-        url: null,
-        action: true,
-      },
     ],
   },
   {
