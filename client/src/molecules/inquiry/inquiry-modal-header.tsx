@@ -14,27 +14,28 @@ const InquiryModalHeader: React.FC = () => {
     <Fragment>
       <header
         className={clsx(
-          'bg-white flex px-4',
-          currentStepIndex !== 0 ? 'items-start justify-center' : 'justify-end',
-          'sm:items-center flex-col relative h-20'
+          'relative h-20 bg-white flex px-4 items-center',
+          currentStepIndex !== 0
+            ? 'justify-start sm:justify-center'
+            : 'justify-center'
         )}
       >
         {currentStepIndex === 0 && (
           <button
-            className="flex items-center justify-end flex-col pb-2"
+            className="relative flex items-center justify-center py-2"
             onClick={() => {
               setInquiryModalState(false)
             }}
           >
-            <Typography className="uppercase font-bold pb-1" variant="e2">
+            <Typography className="uppercase font-bold" variant="e2">
               close
             </Typography>
-            <CaretDownIcon className="text-red" />
+            <CaretDownIcon className="absolute top-1/1 text-red" />
           </button>
         )}
         {currentStepIndex > 0 && (
           <button
-            className="flex items-center justify-center"
+            className="flex items-center justify-center py-2"
             onClick={() => {
               previous()
             }}

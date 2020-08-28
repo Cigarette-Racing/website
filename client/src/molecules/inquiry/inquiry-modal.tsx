@@ -81,7 +81,7 @@ export const InquiryModal: React.FC = () => {
               style={{ position: 'absolute' }}
             />
             <div
-              className="pb-5 min-h-screen"
+              className="pb-5 min-h-screen max-h-screen overflow-y-auto"
               style={{
                 background:
                   'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
