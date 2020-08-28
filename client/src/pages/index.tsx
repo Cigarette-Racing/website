@@ -102,7 +102,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
           size="lg"
           className="absolute top-2/5 sm:hidden hidden"
         />
-        <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-center">
+        <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left flex flex-col items-start md:items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
             59 TIRRANNA AMG Edition
           </ContentHeader>
