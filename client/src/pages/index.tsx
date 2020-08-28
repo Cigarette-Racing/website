@@ -114,9 +114,9 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
             steadfast commitment to ultimate luxury and performance.
           </Typography>
           <div className="flex items-center space-x-6">
-            <InPageCta onClick={() => setInquiryModalState(true)}>
+            {/* <InPageCta onClick={() => setInquiryModalState(true)}>
               Request Info
-            </InPageCta>
+            </InPageCta> */}
             <Link to="/boats/59-tirranna">
               <LinkCta>Learn More</LinkCta>
             </Link>
