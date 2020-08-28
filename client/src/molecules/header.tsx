@@ -100,7 +100,7 @@ export const Header = ({}: HeaderProps) => {
         )
       }
       return (
-        <Link to={link} key={text}>
+        <Link to={link} key={text} onClick={() => setSelectedSection('')}>
           <Typography
             variant="e2"
             key={text}
@@ -183,7 +183,7 @@ export const Header = ({}: HeaderProps) => {
               )}
             </div>
             <div className="w-1/3 flex justify-center">
-              <Link to="/">
+              <Link to="/" onClick={() => setSelectedSection('')}>
                 <img src={src} alt="Cigarette Racing" className="h-16 py-2" />
                 <span className="sr-only">Home</span>
               </Link>
@@ -191,7 +191,7 @@ export const Header = ({}: HeaderProps) => {
             <div className="w-1/3 flex justify-end">
               {(isMobileMenu || (!isAtTop && !isHovering)) && !isMenuOpen ? (
                 <div>
-                  <Link to="/contact">
+                  <Link to="/contact" onClick={() => setSelectedSection('')}>
                     <Typography variant="e2" className="p-2 whitespace-no-wrap">
                       Contact
                     </Typography>
@@ -208,16 +208,16 @@ export const Header = ({}: HeaderProps) => {
       </Headroom>
       <BoatSelector
         isVisible={selectedSection === 'boats' && !isMobileMenu}
-        menuOpenedFromFooter={menuOpenedFromFooter}
+        menuOpenedFromFooter={!!menuOpenedFromFooter}
         onReset={() => {
           setIsMenuOpen(false)
           setSelectedSection('')
         }}
       />
       <MobileMenu
-        isMenuOpen={isMenuOpen && isMobileMenu}
+        isMenuOpen={!!isMenuOpen && isMobileMenu}
         setIsMenuOpen={setIsMenuOpen}
-        selectedSection={selectedSection}
+        selectedSection={selectedSection!}
         setSelectedSection={setSelectedSection}
       />
     </Fragment>
