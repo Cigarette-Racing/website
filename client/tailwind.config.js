@@ -43,10 +43,10 @@ const fractionalTopRightBottomLeft = plugin(({ addUtilities }) => {
   const classesPairs = 'top,right,bottom,left'
     .split(',')
     .map((position) =>
-      range(2, 6)
+      range(1, 6)
         .concat(12)
         .map((divisor) =>
-          range(1, divisor - 1).map((dividend) => [
+          range(1, Math.max(divisor - 1, 1)).map((dividend) => [
             `.${position}-${dividend}\\/${divisor}`,
             { [position]: toPercentString(dividend, divisor) },
           ])

@@ -84,6 +84,11 @@ export const Header = ({}: HeaderProps) => {
   // @ts-ignore
   const src: string = logo
 
+  const closeMenu = () => {
+    setSelectedSection('')
+    setIsMenuOpen(false)
+  }
+
   const renderLinks = ({ text, link, section }: LinkItem): JSX.Element => {
     if (link) {
       if (link.startsWith('http')) {
@@ -100,7 +105,7 @@ export const Header = ({}: HeaderProps) => {
         )
       }
       return (
-        <Link to={link} key={text}>
+        <Link to={link} key={text} onClick={() => closeMenu()}>
           <Typography
             variant="e2"
             key={text}
@@ -183,7 +188,7 @@ export const Header = ({}: HeaderProps) => {
               )}
             </div>
             <div className="w-1/3 flex justify-center">
-              <Link to="/">
+              <Link to="/" onClick={() => closeMenu()}>
                 <img src={src} alt="Cigarette Racing" className="h-16 py-2" />
                 <span className="sr-only">Home</span>
               </Link>
@@ -191,7 +196,7 @@ export const Header = ({}: HeaderProps) => {
             <div className="w-1/3 flex justify-end">
               {(isMobileMenu || (!isAtTop && !isHovering)) && !isMenuOpen ? (
                 <div>
-                  <Link to="/contact">
+                  <Link to="/contact" onClick={() => closeMenu()}>
                     <Typography variant="e2" className="p-2 whitespace-no-wrap">
                       Contact
                     </Typography>
@@ -208,16 +213,13 @@ export const Header = ({}: HeaderProps) => {
       </Headroom>
       <BoatSelector
         isVisible={selectedSection === 'boats' && !isMobileMenu}
-        menuOpenedFromFooter={menuOpenedFromFooter}
-        onReset={() => {
-          setIsMenuOpen(false)
-          setSelectedSection('')
-        }}
+        menuOpenedFromFooter={!!menuOpenedFromFooter}
+        onReset={closeMenu}
       />
       <MobileMenu
-        isMenuOpen={isMenuOpen && isMobileMenu}
+        isMenuOpen={!!isMenuOpen && isMobileMenu}
         setIsMenuOpen={setIsMenuOpen}
-        selectedSection={selectedSection}
+        selectedSection={selectedSection!}
         setSelectedSection={setSelectedSection}
       />
     </Fragment>
