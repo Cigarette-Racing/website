@@ -19,25 +19,27 @@ import { useMetadataQuery } from '../services/metadata'
 
 const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
   const metadata = useMetadataQuery()
-  const { data: images } = props
+  const {
+    data: { craftAPI: data },
+  } = props
 
   return (
     <Layout>
       <SEO
         title="Contact Us"
         slug={props.path}
-        image={images.header?.publicURL!}
+        image={data.entry.heroBackground[0].image[0].url!}
       />
       <Section
         theme="dark"
         className="min-h-screen flex justify-center items-center text-center"
       >
-        <FullBgImage image={images.header as GatsbyTypes.File} />
+        <FullBgImage image={data.entry.heroBackground[0].image[0].url!} />
         <div className="relative">
           <Typography variant="h1" className="mb-8">
-            Born & Made
+            {data.entry.title}
           </Typography>
-          <Typography variant="e1">Miami, Florida</Typography>
+          <Typography variant="e1">{data.entry.subtitle}</Typography>
         </div>
       </Section>
       <Section theme="dark" className="py-20 lg:py-12">
@@ -96,69 +98,84 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
         className="py-20 divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x"
       >
         <div className="divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x max-w-6xl mx-auto w-full">
-          <ContentColumn
-            header="Inquiries"
-            buttonText="Request An Appointment"
-            copy="Your Cigarette Racing journey begins here. Request info and schedule an appointment today."
-            email={metadata.emailAddresses?.inquiries!}
-          />
-          <ContentColumn
-            header="Media & Press"
-            buttonText="Get In Touch"
-            copy="From press kits to partnerships — lets work together towards something great."
-            email={metadata.emailAddresses?.contact!}
-          />
+          {data.entry.contact2ColumnContent.map(
+            ({ contactContentBlock: blocks }) => {
+              const [block] = blocks
+              return (
+                <ContentColumn
+                  key={block.header}
+                  header={block.header}
+                  buttonText={
+                    block.buttonLabel || metadata.emailAddresses?.[block.email]!
+                  }
+                  copy={block.text}
+                  email={metadata.emailAddresses?.[block.email]!}
+                />
+              )
+            }
+          )}
         </div>
       </Section>
       <Section theme="dark" className="py-24 lg:py-48">
-        <FullBgImage image={images.footer as GatsbyTypes.File} />
+        <FullBgImage
+          image={data.entry.careers[0].singleMedia[0].image[0].url}
+        />
         <div className="absolute inset-0 bg-black bg-opacity-25"></div>
         <div className="relative bg-black bg-opacity-75 px-4 py-24 md:py-32 text-center space-y-12 max-w-2xl mx-auto">
           <Typography variant="h3" md="h2">
-            Work at Cigarette
+            {data.entry.careers[0].contactContentBlock[0].header}
           </Typography>
           <InPageCta
             variant="secondary"
             theme="dark"
-            href={`mailto:${metadata.emailAddresses?.careers}`}
+            href={`mailto:${
+              metadata.emailAddresses?.[
+                data.entry.careers[0].contactContentBlock[0].email
+              ]
+            }`}
             link
           >
-            Start a Career
+            {data.entry.careers[0].contactContentBlock[0].buttonLabel ||
+              metadata.emailAddresses?.[
+                data.entry.careers[0].contactContentBlock[0].email
+              ]}
           </InPageCta>
         </div>
       </Section>
       <Section theme="dark" className="py-32">
         <div className="space-y-8 text-center lg:hidden">
-          <Typography variant="h3">Owner support</Typography>
-          <Typography variant="p3">
-            Whatever you need, our team is dedicated to help you get the most
-            out of your Cigarette.
-          </Typography>
+          <Typography variant="h3">{data.entry.support[0].header}</Typography>
+          <Typography variant="p3">{data.entry.support[0].text}</Typography>
           <InPageCta
             variant="secondary"
             theme="dark"
-            href={`mailto:${metadata.emailAddresses?.support}`}
+            href={`mailto:${
+              metadata.emailAddresses?.[data.entry.support[0].email]
+            }`}
             link
           >
-            {metadata.emailAddresses?.support}
+            {data.entry.support[0].buttonLabel ||
+              metadata.emailAddresses?.[data.entry.support[0].email]}
           </InPageCta>
         </div>
         <div className="hidden lg:flex justify-between max-w-4xl xl:max-w-5xl mx-auto">
           <div>
-            <Typography variant="h2">Owner support</Typography>
+            <Typography variant="h2">{data.entry.support[0].header}</Typography>
           </div>
           <div className="space-y-8 pt-4">
             <Typography variant="p2" className="max-w-md">
-              Whatever you need, our team is dedicated to help you get the most
-              out of your Cigarette.
+              {data.entry.support[0].text}
             </Typography>
             <InPageCta
               variant="secondary"
               theme="dark"
-              href={`mailto:${metadata.emailAddresses?.support}`}
+              href={`mailto:${
+                metadata.emailAddresses?.[data.entry.support[0].email]
+              }`}
               link
             >
-              {metadata.emailAddresses?.support}
+              {data.entry.support[0].buttonLabel ||
+                metadata.emailAddresses?.[data.entry.support[0].email]}
             </InPageCta>
           </div>
         </div>
@@ -170,19 +187,62 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
 export default ContactPage
 
 export const query = graphql`
-  query ContactImages {
-    header: file(relativePath: { eq: "contact-header.jpeg" }) {
-      publicURL
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    footer: file(relativePath: { eq: "contact-footer.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
+  query Contact {
+    craftAPI {
+      entry(slug: "contact") {
+        ... on CraftAPI_contact_contact_Entry {
+          subtitle: textBlockCopy
+          title: textBlockHeader
+          heroBackground: singleMedia {
+            ... on CraftAPI_singleMedia_BlockType {
+              image {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+            }
+          }
+          contact2ColumnContent {
+            ... on CraftAPI_contact2ColumnContent_column_BlockType {
+              contactContentBlock {
+                ... on CraftAPI_contactContentBlock_BlockType {
+                  email
+                  text
+                  buttonLabel
+                  header
+                }
+              }
+            }
+          }
+          support: contactContentBlock {
+            ... on CraftAPI_contactContentBlock_BlockType {
+              email
+              header
+              buttonLabel
+              text
+            }
+          }
+          careers: contactCareers {
+            ... on CraftAPI_contactCareers_careers_BlockType {
+              contactContentBlock {
+                ... on CraftAPI_contactContentBlock_BlockType {
+                  email
+                  text
+                  header
+                  buttonLabel
+                }
+              }
+              singleMedia {
+                ... on CraftAPI_singleMedia_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -209,10 +269,10 @@ function Section({
   )
 }
 
-function FullBgImage({ image }: { image: GatsbyTypes.File }) {
+function FullBgImage({ image }: { image: string }) {
   return (
-    <Img
-      fluid={image.childImageSharp?.fluid}
+    <img
+      src={image}
       alt=""
       className="absolute top-0 left-0 h-full w-full object-cover"
       style={{ position: 'absolute' }}
