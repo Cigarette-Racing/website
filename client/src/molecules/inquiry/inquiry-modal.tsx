@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createGlobalState, useLockBodyScroll } from 'react-use'
 import ReactModal from 'react-modal'
 import Img from 'gatsby-image'
@@ -59,11 +59,13 @@ export const InquiryModal: React.FC = () => {
   // useLockBodyScroll(inquiryModalState)
   const animationDuration = 0.5
 
-  if (inquiryModalState) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = 'auto'
-  }
+  useEffect(() => {
+    if (inquiryModalState) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [])
 
   return (
     <ReactModal
