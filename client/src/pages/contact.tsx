@@ -52,20 +52,20 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
             </div>
             <div className="relative space-y-24 text-center py-20 lg:space-y-12 lg:pl-24 lg:py-12">
               <IconWithContent icon={PhoneIcon}>
-                <a href={`tel:${metadata?.phoneNumber?.raw}`}>
-                  {metadata?.phoneNumber?.pretty}
+                <a href={`tel:${metadata.phoneNumber?.raw}`}>
+                  {metadata.phoneNumber?.pretty}
                 </a>
               </IconWithContent>
               <IconWithContent icon={MailIcon}>
-                <a href={`mailto:${metadata?.email?.contact}`}>
-                  {metadata?.email?.contact}
+                <a href={`mailto:${metadata.emailAddresses?.contact}`}>
+                  {metadata.emailAddresses?.contact}
                 </a>
               </IconWithContent>
               <IconWithContent icon={MapIcon}>
                 <address className="not-italic">
-                  {metadata?.address?.street}, <br className="lg:hidden" />
-                  {metadata?.address?.city}, {metadata?.address?.state}{' '}
-                  {metadata?.address?.zip}
+                  {metadata.address?.street}, <br className="lg:hidden" />
+                  {metadata.address?.city}, {metadata.address?.state}{' '}
+                  {metadata.address?.zip}
                 </address>
               </IconWithContent>
             </div>
@@ -75,13 +75,16 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
               Stay Connected
             </Typography>
             <div className="flex justify-center space-x-16 text-2xl lg:justify-start">
-              <IconLink href={metadata?.social?.youtube!} icon={YoutubeIcon} />
               <IconLink
-                href={metadata?.social?.instagram!}
+                href={metadata.socialLinks?.youtube!}
+                icon={YoutubeIcon}
+              />
+              <IconLink
+                href={metadata.socialLinks?.instagram!}
                 icon={InstagramIcon}
               />
               <IconLink
-                href={metadata?.social?.facebook!}
+                href={metadata.socialLinks?.facebook!}
                 icon={FacebookIcon}
               />
             </div>
@@ -97,13 +100,13 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
             header="Inquiries"
             buttonText="Request An Appointment"
             copy="Your Cigarette Racing journey begins here. Request info and schedule an appointment today."
-            email={metadata?.email?.inquiries!}
+            email={metadata.emailAddresses?.inquiries!}
           />
           <ContentColumn
             header="Media & Press"
             buttonText="Get In Touch"
             copy="From press kits to partnerships — lets work together towards something great."
-            email={metadata?.email?.contact!}
+            email={metadata.emailAddresses?.contact!}
           />
         </div>
       </Section>
@@ -117,7 +120,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           <InPageCta
             variant="secondary"
             theme="dark"
-            href={`mailto:${metadata?.email?.careers}`}
+            href={`mailto:${metadata.emailAddresses?.careers}`}
             link
           >
             Start a Career
@@ -134,10 +137,10 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           <InPageCta
             variant="secondary"
             theme="dark"
-            href={`mailto:${metadata?.email?.support}`}
+            href={`mailto:${metadata.emailAddresses?.support}`}
             link
           >
-            {metadata?.email?.support}
+            {metadata.emailAddresses?.support}
           </InPageCta>
         </div>
         <div className="hidden lg:flex justify-between max-w-4xl xl:max-w-5xl mx-auto">
@@ -152,10 +155,10 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
             <InPageCta
               variant="secondary"
               theme="dark"
-              href={`mailto:${metadata?.email?.support}`}
+              href={`mailto:${metadata.emailAddresses?.support}`}
               link
             >
-              {metadata?.email?.support}
+              {metadata.emailAddresses?.support}
             </InPageCta>
           </div>
         </div>
