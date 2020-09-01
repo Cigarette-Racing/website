@@ -77,6 +77,7 @@ export const FullWidthCarousel = ({
                 alt={media.alt}
                 image={media.image}
                 videoUrl={media.videoUrl}
+                videoOptions={{ controls: false }}
               />
             ) : (
               <img src={media?.image} className="pointer-events-none" />
