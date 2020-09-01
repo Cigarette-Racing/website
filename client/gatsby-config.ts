@@ -1,5 +1,3 @@
-import metadata from './content/metadata'
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
@@ -19,7 +17,6 @@ export const siteMetadata = {
     process.env.URL ||
     // Default to localhost
     'http://localhost:17007',
-  metadata,
 }
 
 export const plugins = [

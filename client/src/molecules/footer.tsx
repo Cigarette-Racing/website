@@ -172,7 +172,7 @@ export const Footer = ({}: FooterProps) => {
           className="w-20 hidden sm:block"
         />
         {socialLinks.map((linkProps) => {
-          const href = metadata?.social?.[linkProps.key]!
+          const href = metadata.socialLinks?.[linkProps.key]!
           return <SocialLink {...linkProps} href={href} />
         })}
       </div>
