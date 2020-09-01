@@ -56,8 +56,14 @@ export const useInquiryModalState = createGlobalState<boolean>(false)
 export const InquiryModal: React.FC = () => {
   const { background } = useInquiryImages()
   const [inquiryModalState] = useInquiryModalState()
-  useLockBodyScroll(inquiryModalState)
+  // useLockBodyScroll(inquiryModalState)
   const animationDuration = 0.5
+
+  if (inquiryModalState) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = 'auto'
+  }
 
   return (
     <ReactModal
@@ -100,7 +106,7 @@ const FormWizard = () => (
   <Wizard>
     <InquiryModalHeader />
     <div className="text-white flex flex-col items-center justify-center relative">
-      <div className="w-full max-w-2xl">
+      <div className="w-full max-w-2xl pb-20">
         <Form
           onSubmit={inquiryOnSubmit}
           render={({ handleSubmit }) => (
