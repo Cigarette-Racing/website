@@ -13,8 +13,8 @@ const BoatFeaturette = ({
   boatName,
   url,
 }: {
-  backgroundImage: GatsbyTypes.File
-  boatImage: GatsbyTypes.File
+  backgroundImage: string
+  boatImage: string
   contentHeader: string
   subtitle: string
   boatName: string
@@ -23,7 +23,7 @@ const BoatFeaturette = ({
   <div
     className="bg-cover relative justify-center md:w-1/2 md:min-h-screen bg-black text-white pt-4 md:pt-0"
     style={{
-      backgroundImage: `url(${backgroundImage.childImageSharp?.fluid?.src})`,
+      backgroundImage: `url(${backgroundImage})`,
     }}
   >
     <Link
@@ -37,8 +37,8 @@ const BoatFeaturette = ({
     <div className="flex flex-col h-full relative justify-between lg:justify-end pointer-events-none">
       <div className="relative z-0 h-full">
         <div className="px-2 py-12 md:py-0 md:px-4 flex h-full justify-center">
-          <Img
-            fluid={boatImage.childImageSharp?.fluid}
+          <img
+            src={boatImage}
             className="w-full self-center max-w-3/4 md:max-w-11/12"
           />
         </div>
