@@ -222,8 +222,8 @@ export const query = graphql`
               }
             }
           }
-          connectsection {
-            ... on CraftAPI_connectsection_BlockType {
+          connectSection {
+            ... on CraftAPI_connectSection_BlockType {
               theTitle
               theContent
               successMessage
