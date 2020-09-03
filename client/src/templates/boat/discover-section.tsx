@@ -1,10 +1,8 @@
 import React, { useState, Fragment } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useLockBodyScroll } from 'react-use'
-import Img from 'gatsby-image'
 import ReactPlayer from 'react-player'
 import { Waypoint } from 'react-waypoint'
-import { graphql, useStaticQuery } from 'gatsby'
 import ReactModal from 'react-modal'
 import { InPageAnchor } from '../../molecules/in-page-nav'
 import { VerticalHeader } from '../../atoms/vertical-header'
@@ -14,18 +12,7 @@ import { AspectRatio } from '../../atoms/aspect-ratio'
 import { CircleButton } from '../../atoms/circle-button'
 import { PlayIcon } from '../../svgs/icons'
 import CloseCursor from '../../images/close-cursor.png'
-
-const query = graphql`
-  query DiscoverSectionBackground {
-    background: file(relativePath: { eq: "discover-section-bg.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
+import { useBackgroundsQuery } from '../../services/backgrounds'
 
 export const DiscoverSection = ({
   copy,
@@ -35,14 +22,12 @@ export const DiscoverSection = ({
   disableBackground = false,
 }: {
   sectionTitle: string
-  media: Media | string
+  media: Media
   header: string
   copy: string
   disableBackground?: boolean
 }) => {
-  const { background } = useStaticQuery<
-    GatsbyTypes.DiscoverSectionBackgroundQuery
-  >(query)
+  const { discoverSection: background } = useBackgroundsQuery()
 
   return (
     <BoatSection
@@ -61,11 +46,10 @@ export const DiscoverSection = ({
         />
       ) : (
         <Fragment>
-          <Img
-            fluid={background?.childImageSharp?.fluid}
+          <img
+            src={background}
             alt=""
-            className="top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
-            style={{ position: 'absolute' }}
+            className="absolute top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
           />
           <div
             className="absolute inset-0"
@@ -98,7 +82,7 @@ export const DiscoverSection = ({
 const DiscoverMedia = ({ media }: { media: Media }) => {
   const [showVideo, setShowVideo] = useState(false)
   const [autoPlayVideo, setAutoPlayVideo] = useState(false)
-  const [playFullScreenVideo, setPlayFullScreenVideo] = useState(false)
+  const [] = useState(false)
   useLockBodyScroll(showVideo)
 
   if (!media.image) {
