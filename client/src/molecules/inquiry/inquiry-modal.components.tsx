@@ -505,7 +505,7 @@ export const FormSuccessMessage = () => {
         <CheckIcon className="mr-4" />
         <Typography variant="e2">request received</Typography>
       </div>
-      <Typography className="mb-12" variant="h3" md="h2">
+      <Typography className="mb-12 text-center" variant="h3" md="h2">
         Thank you for your interest
       </Typography>
       <Typography variant="p2" className="max-w-xs text-center mb-10">
