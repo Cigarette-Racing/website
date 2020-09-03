@@ -173,7 +173,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         </div>
       </section>
       {/* News and press section */}
-      <NewsSection />
+      <NewsSection newsItems={craftNewsToNewsItem(data.craftAPI.news)} />
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
@@ -201,6 +201,26 @@ export default IndexPage
 
 export const query = graphql`
   query HomePage {
+    craftAPI {
+      news: entries(orderBy: "dateCreated", type: "news", inReverse: true) {
+        ... on CraftAPI_news_news_Entry {
+          title
+          textContent
+          siteName
+          imageObject {
+            ... on CraftAPI_imageObject_BlockType {
+              image {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+              altTag
+            }
+          }
+          urlLink
+        }
+      }
+    }
     header1: file(relativePath: { eq: "homepage-header.jpeg" }) {
       publicURL
       childImageSharp {
@@ -375,73 +395,16 @@ type NewsItem = {
   content: string
 }
 
-const newsItems: NewsItem[] = [
-  {
-    url:
-      'https://www.mercedes-amg.com/en/press-information/cigarette-boat-12th-edition.html',
-    siteName: 'mercedes-amg.com',
-    image: require('../../content/images/homepage/news-00001.jpg'),
-    title:
-      '12th special edition from Mercedes-AMG and Cigarette Racing celebrates its world debut',
-    content:
-      'Mercedes-AMG and Cigarette Racing Team continue longstanding collaboration by creating performance one-off role models for land and water.',
-  },
-  {
-    url:
-      'https://www.speedonthewater.com/performance-boat-center-on-point-again-with-cigarette-owners-rendezvous/',
-    siteName: 'speedonthewater.com',
-    image: require('../../content/images/homepage/news-00002.png'),
-    title:
-      'Performance Boat Center On Point Again With Cigarette Owners Rendezvous',
-    content:
-      'No one knew how the Cigarette Owners Rendezvous would do when it landed at the Lake of the Ozarksin the hands of Performance Boat Center...',
-  },
-  {
-    url:
-      'https://www.speedonthewater.com/gallery-of-the-week-cigarette-opens-st-tropez/',
-    siteName: 'speedonthewater.com',
-    image: require('../../content/images/homepage/news-00003.png'),
-    title: 'Gallery Of The Week: Cigarette Opens St. Tropez',
-    content:
-      'Reopened this week after its own novel coronavirus shutdown, the Port of Tropez, one of the crown jewels of the French Riviera...',
-  },
-  {
-    url:
-      'https://robbreport.com/motors/aviation/mercedes-amg-cigarette-racing-powerboat-release-miami-details-2899104/',
-    siteName: 'robbreport.com',
-    image: require('../../content/images/homepage/news-00004.png'),
-    title: 'Mercedes-AMG Unveils Its Biggest, Baddest Cigarette Boat Yet',
-    content:
-      'This insane 80 mph, 59-foot rocketship could be yours for $3 million.',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=SKOXaiH5yB4&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00005.png'),
-    title: "New Nighthawk 41 Cigarette's 88 Mph Center Console Monster!",
-    content:
-      'Some boats become legendary the moment you lay your eyes on them. This is one of them boats...',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=i8Wt97g7q_c&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00006.png'),
-    title: "The Ultimate Adventure Awaits! (Cigarette's Auroris 42 Center)",
-    content:
-      'Cigarette has changed throughout the years but the 2020 Miami Boat Show Cigarette has begun...',
-  },
-  {
-    url:
-      'https://www.youtube.com/watch?time_continue=376&v=ZMLa7pdd1T4&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00007.jpg'),
-    title: 'The King of Center Consoles! AMG Cigarette Tirranna',
-    content:
-      'The fantastic people at Cigarette Racing have come to the 2020 Miami International Boat Show...',
-  },
-]
+const craftNewsToNewsItem = (apiNewsItems: any[]): NewsItem[] =>
+  apiNewsItems.map((item) => ({
+    content: item.textContent,
+    image: item.imageObject[0].image[0].url,
+    siteName: item.siteName,
+    title: item.title,
+    url: item.urlLink,
+  }))
 
-function NewsSection() {
+function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
   const [page, setPage] = useState(0)
   const itemIndex = wrap(0, newsItems.length, page)
   const nextItemIndex = wrap(0, newsItems.length, page + 1)
