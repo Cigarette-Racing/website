@@ -77,7 +77,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
   const connectContent = data.craftAPI.home.connectsection[0]
 
   const difference = data.craftAPI.home.differenceSection[0]
-  const connect = data.craftAPI.home.connectsection[0]
+  const connect = data.craftAPI.home.connectSection[0]
 
   return (
     <Layout>
