@@ -330,7 +330,8 @@ function StayConnectedForm() {
                                   !meta.invalid || !meta.touched,
                               },
                               {
-                                'placeholder-red': meta.invalid && meta.touched,
+                                'placeholder-grey':
+                                  meta.invalid && meta.touched,
                               }
                             )}
                           />
