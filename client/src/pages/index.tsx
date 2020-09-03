@@ -74,6 +74,8 @@ const TopVideo = ({
 const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
   const [, setInquiryModalState] = useInquiryModalState()
 
+  const connectContent = data.craftAPI.home.connectsection[0]
+
   return (
     <Layout>
       <SEO image={data.header1.publicURL} />
@@ -184,10 +186,13 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
         <div className="max-w-8xl sm:mx-auto flex flex-col md:flex-row md:items-center md:justify-around justify-center text-white">
           <div className="relative pb-16 px-4">
-            <Typography variant="h2">Stay connected</Typography>
+            <Typography variant="h2">{connectContent.theTitle}</Typography>
           </div>
           <div className="relative px-4 max-w-md">
-            <StayConnectedForm />
+            <StayConnectedForm
+              content={connectContent.theContent}
+              successMessage={connectContent.successMessage}
+            />
           </div>
         </div>
       </section>
@@ -202,6 +207,16 @@ export default IndexPage
 export const query = graphql`
   query HomePage {
     craftAPI {
+      home: entry(slug: "homepage") {
+          connectsection {
+            ... on CraftAPI_connectsection_BlockType {
+              theTitle
+              theContent
+              successMessage
+            }
+          }
+        }
+      }
       news: entries(orderBy: "dateCreated", type: "news", inReverse: true) {
         ... on CraftAPI_news_news_Entry {
           title
@@ -282,7 +297,13 @@ const formValuesMapper = (values: any) => {
 
 const stayConnectedOnSubmit = onSubmitCreator(formValuesMapper)
 
-function StayConnectedForm() {
+function StayConnectedForm({
+  content,
+  successMessage,
+}: {
+  content: string
+  successMessage: string
+}) {
   return (
     <Form
       onSubmit={stayConnectedOnSubmit}
@@ -332,14 +353,13 @@ function StayConnectedForm() {
                 </form>
               </div>
               <Typography variant="p2" className="pb-16">
-                Want to join our exclusive community and be the first to get the
-                latest from Cigarette Racing?
+                {content}
               </Typography>
             </Fragment>
           )}
           {submitSucceeded && (
             <Typography variant="p1" className="pb-16">
-              Thanks for subscribing! Check your inbox for a welcome email soon.
+              {successMessage}
             </Typography>
           )}
         </Fragment>
