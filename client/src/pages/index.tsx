@@ -321,7 +321,6 @@ function StayConnectedForm() {
                           <input
                             {...input}
                             autoComplete="off"
-                            name={name}
                             placeholder="ENTER EMAIL ADDRESS"
                             className={clsx(
                               'font-body text-sm appearance-none bg-transparent outline-none w-full py-3',
