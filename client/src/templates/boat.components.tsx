@@ -655,7 +655,7 @@ export const HorizontalImageTextBlockComponent = ({
   )
   return (
     <div
-      className="md:flex max-w-7xl mx-auto mb-16 md:mb-32"
+      className="md:flex max-w-7xl mx-auto pb-16 md:pb-32"
       data-block-type="HorizontalImageTextBlockComponent"
     >
       <div className="md:w-1/2 flex flex-col justify-center items-center mb-12 md:mb-0">
