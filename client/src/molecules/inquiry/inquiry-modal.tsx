@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import { createGlobalState, useLockBodyScroll } from 'react-use'
+import { createGlobalState } from 'react-use'
 import ReactModal from 'react-modal'
-import Img from 'gatsby-image'
 import { Wizard, Steps } from '../../molecules/wulfric'
 import { Form, Field } from 'react-final-form'
 import InquiryModalHeader from './inquiry-modal-header'
@@ -13,7 +12,7 @@ import {
 } from './inquiry-modal.components'
 import { AnimatePresence, motion } from 'framer-motion'
 import { onSubmitCreator } from '../../services/forms'
-import { useInquiryImages } from './inquiry-modal-data'
+import { useBackgroundsQuery } from '../../services/backgrounds'
 
 const modalStyles = {
   overlay: {
@@ -54,7 +53,7 @@ const inquiryOnSubmit = onSubmitCreator(formValuesMapper)
 export const useInquiryModalState = createGlobalState<boolean>(false)
 
 export const InquiryModal: React.FC = () => {
-  const { background } = useInquiryImages()
+  const { inquiryModal: background } = useBackgroundsQuery()
   const [inquiryModalState] = useInquiryModalState()
   // useLockBodyScroll(inquiryModalState)
   const animationDuration = 0.5
@@ -82,11 +81,10 @@ export const InquiryModal: React.FC = () => {
             transition={{ stiffness: 100, duration: animationDuration }}
             className="min-h-full"
           >
-            <Img
-              fluid={background?.childImageSharp?.fluid}
-              className="top-0 left-0 h-full w-full object-cover"
+            <img
+              src={background}
+              className="absolute top-0 left-0 h-full w-full object-cover"
               alt=""
-              style={{ position: 'absolute' }}
             />
             <div
               className="pb-5 min-h-screen max-h-screen overflow-y-auto"
