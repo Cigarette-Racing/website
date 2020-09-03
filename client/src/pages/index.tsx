@@ -76,6 +76,9 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
 
   const connectContent = data.craftAPI.home.connectsection[0]
 
+  const difference = data.craftAPI.home.differenceSection[0]
+  const connect = data.craftAPI.home.connectsection[0]
+
   return (
     <Layout>
       <SEO image={data.header1.publicURL} />
@@ -148,10 +151,9 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         className="min-h-screen relative flex justify-center items-end"
         data-scrollsection
       >
-        <Img
-          fluid={data.header2?.childImageSharp?.fluid!}
-          className="top-0 left-0 h-screen w-full object-cover"
-          style={{ position: 'absolute' }}
+        <img
+          src={difference.backgroundImage[0].url}
+          className="absolute top-0 left-0 h-screen w-full object-cover"
         />
         <div
           className="absolute top-0 left-0 h-screen w-full"
@@ -162,10 +164,10 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-start sm:items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            Every Cigarette is unique
+            {difference.subtitle}
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10">
-            The best is only the start
+            {difference.theTitle}
           </Typography>
           <div className="flex items-center space-x-6">
             {/* <ComingSoonLink>
@@ -186,12 +188,12 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
         <div className="max-w-8xl sm:mx-auto flex flex-col md:flex-row md:items-center md:justify-around justify-center text-white">
           <div className="relative pb-16 px-4">
-            <Typography variant="h2">{connectContent.theTitle}</Typography>
+            <Typography variant="h2">{connect.theTitle}</Typography>
           </div>
           <div className="relative px-4 max-w-md">
             <StayConnectedForm
-              content={connectContent.theContent}
-              successMessage={connectContent.successMessage}
+              content={connect.theContent}
+              successMessage={connect.successMessage}
             />
           </div>
         </div>
@@ -208,6 +210,17 @@ export const query = graphql`
   query HomePage {
     craftAPI {
       home: entry(slug: "homepage") {
+          differenceSection {
+            ... on CraftAPI_differenceSection_BlockType {
+              theTitle
+              subtitle
+              backgroundImage {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+            }
+          }
           connectsection {
             ... on CraftAPI_connectsection_BlockType {
               theTitle
