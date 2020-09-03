@@ -210,6 +210,7 @@ export const query = graphql`
   query HomePage {
     craftAPI {
       home: entry(slug: "homepage") {
+        ... on CraftAPI_homepage_homepage_Entry {
           differenceSection {
             ... on CraftAPI_differenceSection_BlockType {
               theTitle
