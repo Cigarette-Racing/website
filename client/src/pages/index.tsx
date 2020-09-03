@@ -1,12 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
-import { InPageCta } from '../atoms/in-page-cta'
 import { LinkCta } from '../atoms/link-cta'
 import { PlusIcon, PlayIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
@@ -14,7 +12,6 @@ import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
 import {
   InquiryModal,
-  useInquiryModalState,
   HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
 import BoatFeaturette from '../molecules/boat-featurette'
@@ -26,24 +23,14 @@ import { useToggle } from 'react-use'
 import { onSubmitCreator } from '../services/forms'
 import { cacheImages } from '../services/images'
 
-const HEADER_VIDEO =
-  'https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175'
-
-const TopVideo = ({
-  image,
-  videoUrl,
-}: {
-  image: GatsbyTypes.File
-  videoUrl: string
-}) => {
+const TopVideo = ({ image, videoUrl }: { image: string; videoUrl: string }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   return (
     <AnimatePresence>
-      <Img
+      <img
         key="image"
-        fluid={image.childImageSharp?.fluid}
-        className="top-0 left-0 h-screen w-full object-cover"
-        style={{ position: 'absolute' }}
+        src={image}
+        className="absolute top-0 left-0 h-screen w-full object-cover"
       />
       <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
         <ReactPlayer
@@ -72,17 +59,19 @@ const TopVideo = ({
 }
 
 const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
-  const [, setInquiryModalState] = useInquiryModalState()
-
-  const connectContent = data.craftAPI.home.connectsection[0]
-
-  const featured = data.craftAPI.home.home2UpBoats
-  const difference = data.craftAPI.home.differenceSection[0]
-  const connect = data.craftAPI.home.connectSection[0]
+  const heroImage = data.craftAPI.home?.singleMedia?.[0]?.image?.[0]?.url
+  const heroVideo = data.craftAPI.home?.singleMedia?.[0]?.videoURL
+  const heroBoat = data.craftAPI.home?.boatLink?.[0] || {}
+  const heroContent = data.craftAPI.home?.textBlock?.[0] || {}
+  const featured = data.craftAPI.home?.home2UpBoats || []
+  const difference = data.craftAPI.home?.differenceSection?.[0] || {}
+  const connect = data.craftAPI.home?.connectSection?.[0] || {}
+  const connectBackground =
+    data.craftAPI.home?.connectSectionBackground?.[0]?.url
 
   return (
     <Layout>
-      <SEO image={data.header1.publicURL} />
+      <SEO image={heroImage} />
       <ScrollIndicator />
       {/* First hero section */}
       <section
@@ -90,10 +79,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         data-scrollsection
       >
         <div className="absolute top-0 left-0 h-screen w-full">
-          <TopVideo
-            image={data.header1 as GatsbyTypes.File}
-            videoUrl={HEADER_VIDEO}
-          />
+          <TopVideo image={heroImage} videoUrl={heroVideo} />
         </div>
         <div
           className="absolute top-0 left-0 h-screen w-full pointer-events-none"
@@ -110,20 +96,19 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left flex flex-col items-start md:items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            59 TIRRANNA AMG Edition
+            {heroBoat.boatMetadata?.[0]?.menuName}
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10 ">
-            Performance luxury defined
+            {heroContent.header}
           </Typography>
           <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
-            A juxtaposition highlighted by land and sea, yet united through a
-            steadfast commitment to ultimate luxury and performance.
+            {heroContent.copy}
           </Typography>
           <div className="flex items-center space-x-6">
             {/* <InPageCta onClick={() => setInquiryModalState(true)}>
               Request Info
             </InPageCta> */}
-            <Link to="/boats/59-tirranna">
+            <Link to={`/boats/${heroBoat.slug}`}>
               <LinkCta>Learn More</LinkCta>
             </Link>
           </div>
@@ -132,20 +117,24 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       {/* 2-up boats section */}
       <section className="relative md:flex" data-scrollsection>
         <BoatFeaturette
-          backgroundImage={featured[0].background[0].url}
-          boatImage={featured[0].boatImage[0].image[0].url}
-          contentHeader={featured[0].boatLink[0].boatMetadata[0].menuCategory}
-          subtitle={featured[0].textBlockCopy}
-          boatName={featured[0].boatLink[0].title}
-          url={featured[0].boatLink[0].slug}
+          backgroundImage={featured?.[0]?.background?.[0]?.url}
+          boatImage={featured?.[0]?.boatImage?.[0]?.image?.[0]?.url}
+          contentHeader={
+            featured?.[0]?.boatLink?.[0]?.boatMetadata?.[0]?.menuCategory
+          }
+          subtitle={featured?.[0]?.textBlockCopy}
+          boatName={featured?.[0]?.boatLink?.[0]?.title}
+          url={featured?.[0]?.boatLink?.[0]?.slug}
         />
         <BoatFeaturette
-          backgroundImage={featured[1].background[0].url}
-          boatImage={featured[1].boatImage[0].image[0].url}
-          contentHeader={featured[1].boatLink[0].boatMetadata[0].menuCategory}
-          subtitle={featured[1].textBlockCopy}
-          boatName={featured[1].boatLink[0].title}
-          url={featured[1].boatLink[0].slug}
+          backgroundImage={featured?.[1]?.background?.[0]?.url}
+          boatImage={featured?.[1]?.boatImage?.[0]?.image?.[0]?.url}
+          contentHeader={
+            featured?.[1]?.boatLink?.[0]?.boatMetadata?.[0]?.menuCategory
+          }
+          subtitle={featured?.[1]?.textBlockCopy}
+          boatName={featured?.[1]?.boatLink?.[0]?.title}
+          url={featured?.[1]?.boatLink?.[0]?.slug}
         />
       </section>
       {/* Second hero section */}
@@ -183,9 +172,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
-        style={{
-          backgroundImage: `url(${data.header3?.childImageSharp?.fluid?.src!})`,
-        }}
+        style={{ backgroundImage: `url(${connectBackground})` }}
       >
         <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
         <div className="max-w-8xl sm:mx-auto flex flex-col md:flex-row md:items-center md:justify-around justify-center text-white">
@@ -213,6 +200,32 @@ export const query = graphql`
     craftAPI {
       home: entry(slug: "homepage") {
         ... on CraftAPI_homepage_homepage_Entry {
+          boatLink {
+            slug
+            ... on CraftAPI_boats_boats_Entry {
+              boatMetadata {
+                ... on CraftAPI_boatMetadata_BlockType {
+                  menuName
+                }
+              }
+            }
+          }
+          singleMedia {
+            ... on CraftAPI_singleMedia_BlockType {
+              videoURL
+              image {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+            }
+          }
+          textBlock {
+            ... on CraftAPI_textBlock_BlockType {
+              header
+              copy
+            }
+          }
           home2UpBoats {
             ... on CraftAPI_home2UpBoats_column_BlockType {
               boatLink {
@@ -261,6 +274,11 @@ export const query = graphql`
               successMessage
             }
           }
+          connectSectionBackground: image {
+            ... on CraftAPI_s3_Asset {
+              url
+            }
+          }
         }
       }
       news: entries(orderBy: "dateCreated", type: "news", inReverse: true) {
@@ -279,56 +297,6 @@ export const query = graphql`
             }
           }
           urlLink
-        }
-      }
-    }
-    header1: file(relativePath: { eq: "homepage-header.jpeg" }) {
-      publicURL
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    header2: file(relativePath: { eq: "homepage-header-2.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    header3: file(relativePath: { eq: "homepage-header-3.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    boat1: file(relativePath: { eq: "homepage/42XGold.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    boat1BG: file(relativePath: { eq: "homepage/nighthawk-bg.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    boat2: file(relativePath: { eq: "homepage/Homepage-Auroris.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    boat2BG: file(relativePath: { eq: "homepage/auroris-bg.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
         }
       }
     }
@@ -534,7 +502,6 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
             maxHeight: '421px',
           }}
         >
-          {/* TODO: convert this to `Img` when we are pulling data from GraphQL */}
           <img src={item.image} alt="" className="object-cover h-full" />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}
