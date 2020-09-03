@@ -17,6 +17,7 @@ import {
   useInquiryModalState,
   HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
+import { requiredEmail } from '../atoms/text-input'
 import BoatFeaturette from '../molecules/boat-featurette'
 import ReactPlayer from 'react-player'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -301,6 +302,7 @@ function StayConnectedForm() {
                     component="input"
                     className="block w-full py-3 bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
                     placeholder="Enter Email Address"
+                    validate={requiredEmail}
                   />
                   <button
                     type="submit"
