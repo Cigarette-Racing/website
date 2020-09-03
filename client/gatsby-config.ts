@@ -1,10 +1,7 @@
-import metadata from './content/metadata'
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-
-console.log(process.env.NODE_ENV)
+import express, { Application } from 'express'
 
 export const siteMetadata = {
   title: `Cigarette Racing`,
@@ -19,7 +16,6 @@ export const siteMetadata = {
     process.env.URL ||
     // Default to localhost
     'http://localhost:17007',
-  metadata,
 }
 
 export const plugins = [
@@ -88,3 +84,13 @@ export const plugins = [
   // To learn more, visit: https://gatsby.dev/offline
   // `gatsby-plugin-offline`,
 ]
+
+// Realistically handle form submissions locally
+export const developMiddleware = (app: Application) => {
+  app.use(express.urlencoded())
+  app.post('/', (req, res) => {
+    console.log(`Form submissions for "${req.body['form-name']}":`)
+    console.log(JSON.stringify(req.body, null, 2))
+    res.send()
+  })
+}

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Form, Field } from 'react-final-form'
 import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { ContentHeader } from '../atoms/content-header'
@@ -14,7 +13,6 @@ import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
 import {
   InquiryModal,
-  useInquiryModalState,
   HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
 import BoatFeaturette from '../molecules/boat-featurette'
@@ -26,24 +24,14 @@ import { useToggle } from 'react-use'
 import { onSubmitCreator } from '../services/forms'
 import { cacheImages } from '../services/images'
 
-const HEADER_VIDEO =
-  'https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175'
-
-const TopVideo = ({
-  image,
-  videoUrl,
-}: {
-  image: GatsbyTypes.File
-  videoUrl: string
-}) => {
+const TopVideo = ({ image, videoUrl }: { image: string; videoUrl: string }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   return (
     <AnimatePresence>
-      <Img
+      <img
         key="image"
-        fluid={image.childImageSharp?.fluid}
-        className="top-0 left-0 h-screen w-full object-cover"
-        style={{ position: 'absolute' }}
+        src={image}
+        className="absolute top-0 left-0 h-screen w-full object-cover"
       />
       <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
         <ReactPlayer
@@ -72,11 +60,19 @@ const TopVideo = ({
 }
 
 const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
-  const [, setInquiryModalState] = useInquiryModalState()
+  const heroImage = data.craftAPI.home?.singleMedia?.[0]?.image?.[0]?.url
+  const heroVideo = data.craftAPI.home?.singleMedia?.[0]?.videoURL
+  const heroBoat = data.craftAPI.home?.boatLink?.[0] || {}
+  const heroContent = data.craftAPI.home?.textBlock?.[0] || {}
+  const featured = data.craftAPI.home?.home2UpBoats || []
+  const difference = data.craftAPI.home?.differenceSection?.[0] || {}
+  const connect = data.craftAPI.home?.connectSection?.[0] || {}
+  const connectBackground =
+    data.craftAPI.home?.connectSectionBackground?.[0]?.url
 
   return (
     <Layout>
-      <SEO image={data.header1.publicURL} />
+      <SEO image={heroImage} />
       <ScrollIndicator />
       {/* First hero section */}
       <section
@@ -84,10 +80,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         data-scrollsection
       >
         <div className="absolute top-0 left-0 h-screen w-full">
-          <TopVideo
-            image={data.header1 as GatsbyTypes.File}
-            videoUrl={HEADER_VIDEO}
-          />
+          <TopVideo image={heroImage} videoUrl={heroVideo} />
         </div>
         <div
           className="absolute top-0 left-0 h-screen w-full pointer-events-none"
@@ -104,20 +97,19 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left flex flex-col items-start md:items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            59 TIRRANNA AMG Edition
+            {heroBoat.boatMetadata?.[0]?.menuName}
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10 ">
-            Performance luxury defined
+            {heroContent.header}
           </Typography>
           <Typography variant="p1" className="mb-10 max-w-2xl hidden sm:block">
-            A juxtaposition highlighted by land and sea, yet united through a
-            steadfast commitment to ultimate luxury and performance.
+            {heroContent.copy}
           </Typography>
           <div className="flex items-center space-x-6">
             {/* <InPageCta onClick={() => setInquiryModalState(true)}>
               Request Info
             </InPageCta> */}
-            <Link to="/boats/59-tirranna">
+            <Link to={`/boats/${heroBoat.slug}`}>
               <LinkCta>Learn More</LinkCta>
             </Link>
           </div>
@@ -125,31 +117,26 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       </section>
       {/* 2-up boats section */}
       <section className="relative md:flex" data-scrollsection>
-        <BoatFeaturette
-          backgroundImage={data.boat1BG as GatsbyTypes.File}
-          boatImage={data.boat1 as GatsbyTypes.File}
-          contentHeader="High Performance"
-          boatName="42 X"
-          url="42-x"
-        />
-        <BoatFeaturette
-          backgroundImage={data.boat2BG as GatsbyTypes.File}
-          boatImage={data.boat2 as GatsbyTypes.File}
-          contentHeader="Performance Center Console"
-          subtitle="Hyperlux"
-          boatName="42 Auroris"
-          url="42-auroris"
-        />
+        {featured.map((boat) => (
+          <BoatFeaturette
+            key={boat.boatLink?.[0]?.title}
+            backgroundImage={boat.background?.[0]?.url}
+            boatImage={boat.boatImage?.[0]?.image?.[0]?.url}
+            contentHeader={boat.boatLink?.[0]?.boatMetadata?.[0]?.menuCategory}
+            subtitle={boat.textBlockCopy}
+            boatName={boat.boatLink?.[0]?.title}
+            url={boat.boatLink?.[0]?.slug}
+          />
+        ))}
       </section>
       {/* Second hero section */}
       <section
         className="min-h-screen relative flex justify-center items-end"
         data-scrollsection
       >
-        <Img
-          fluid={data.header2?.childImageSharp?.fluid!}
-          className="top-0 left-0 h-screen w-full object-cover"
-          style={{ position: 'absolute' }}
+        <img
+          src={difference.backgroundImage?.[0]?.url}
+          className="absolute top-0 left-0 h-screen w-full object-cover"
         />
         <div
           className="absolute top-0 left-0 h-screen w-full"
@@ -160,10 +147,10 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         />
         <div className="relative z-10 max-w-6xl mb-12 px-4 sm:mb-24 text-white text-left sm:text-center flex flex-col items-start sm:items-center">
           <ContentHeader className="mb-4 self-start -ml-2 sm:self-auto mb:ml-0">
-            Every Cigarette is unique
+            {difference.subtitle}
           </ContentHeader>
           <Typography variant="h2" md="h1" className="mb-10">
-            The best is only the start
+            {difference.theTitle}
           </Typography>
           <div className="flex items-center space-x-6">
             {/* <ComingSoonLink>
@@ -173,21 +160,22 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         </div>
       </section>
       {/* News and press section */}
-      <NewsSection />
+      <NewsSection newsItems={craftNewsToNewsItem(data.craftAPI.news || [])} />
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
-        style={{
-          backgroundImage: `url(${data.header3?.childImageSharp?.fluid?.src!})`,
-        }}
+        style={{ backgroundImage: `url(${connectBackground})` }}
       >
         <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
         <div className="max-w-8xl sm:mx-auto flex flex-col md:flex-row md:items-center md:justify-around justify-center text-white">
           <div className="relative pb-16 px-4">
-            <Typography variant="h2">Stay connected</Typography>
+            <Typography variant="h2">{connect.theTitle}</Typography>
           </div>
           <div className="relative px-4 max-w-md">
-            <StayConnectedForm />
+            <StayConnectedForm
+              content={connect.theContent}
+              successMessage={connect.successMessage}
+            />
           </div>
         </div>
       </section>
@@ -201,53 +189,106 @@ export default IndexPage
 
 export const query = graphql`
   query HomePage {
-    header1: file(relativePath: { eq: "homepage-header.jpeg" }) {
-      publicURL
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
+    craftAPI {
+      home: entry(slug: "homepage") {
+        ... on CraftAPI_homepage_homepage_Entry {
+          boatLink {
+            slug
+            ... on CraftAPI_boats_boats_Entry {
+              boatMetadata {
+                ... on CraftAPI_boatMetadata_BlockType {
+                  menuName
+                }
+              }
+            }
+          }
+          singleMedia {
+            ... on CraftAPI_singleMedia_BlockType {
+              videoURL
+              image {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+            }
+          }
+          textBlock {
+            ... on CraftAPI_textBlock_BlockType {
+              header
+              copy
+            }
+          }
+          home2UpBoats {
+            ... on CraftAPI_home2UpBoats_column_BlockType {
+              boatLink {
+                ... on CraftAPI_boats_boats_Entry {
+                  title
+                  slug
+                  boatMetadata {
+                    ... on CraftAPI_boatMetadata_BlockType {
+                      menuCategory(label: true)
+                    }
+                  }
+                }
+              }
+              background: image {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+              boatImage: imageObject {
+                ... on CraftAPI_imageObject_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      url
+                    }
+                  }
+                }
+              }
+              textBlockCopy
+            }
+          }
+          differenceSection {
+            ... on CraftAPI_differenceSection_BlockType {
+              theTitle
+              subtitle
+              backgroundImage {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+            }
+          }
+          connectSection {
+            ... on CraftAPI_connectSection_BlockType {
+              theTitle
+              theContent
+              successMessage
+            }
+          }
+          connectSectionBackground: image {
+            ... on CraftAPI_s3_Asset {
+              url
+            }
+          }
         }
       }
-    }
-    header2: file(relativePath: { eq: "homepage-header-2.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    header3: file(relativePath: { eq: "homepage-header-3.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    boat1: file(relativePath: { eq: "homepage/42XGold.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    boat1BG: file(relativePath: { eq: "homepage/nighthawk-bg.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    boat2: file(relativePath: { eq: "homepage/Homepage-Auroris.png" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    boat2BG: file(relativePath: { eq: "homepage/auroris-bg.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
+      news: entries(orderBy: "dateCreated", type: "news", inReverse: true) {
+        ... on CraftAPI_news_news_Entry {
+          title
+          textContent
+          siteName
+          imageObject {
+            ... on CraftAPI_imageObject_BlockType {
+              image {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+              altTag
+            }
+          }
+          urlLink
         }
       }
     }
@@ -262,7 +303,13 @@ const formValuesMapper = (values: any) => {
 
 const stayConnectedOnSubmit = onSubmitCreator(formValuesMapper)
 
-function StayConnectedForm() {
+function StayConnectedForm({
+  content,
+  successMessage,
+}: {
+  content: string
+  successMessage: string
+}) {
   return (
     <Form
       onSubmit={stayConnectedOnSubmit}
@@ -312,14 +359,13 @@ function StayConnectedForm() {
                 </form>
               </div>
               <Typography variant="p2" className="pb-16">
-                Want to join our exclusive community and be the first to get the
-                latest from Cigarette Racing?
+                {content}
               </Typography>
             </Fragment>
           )}
           {submitSucceeded && (
             <Typography variant="p1" className="pb-16">
-              Thanks for subscribing! Check your inbox for a welcome email soon.
+              {successMessage}
             </Typography>
           )}
         </Fragment>
@@ -375,73 +421,16 @@ type NewsItem = {
   content: string
 }
 
-const newsItems: NewsItem[] = [
-  {
-    url:
-      'https://www.mercedes-amg.com/en/press-information/cigarette-boat-12th-edition.html',
-    siteName: 'mercedes-amg.com',
-    image: require('../../content/images/homepage/news-00001.jpg'),
-    title:
-      '12th special edition from Mercedes-AMG and Cigarette Racing celebrates its world debut',
-    content:
-      'Mercedes-AMG and Cigarette Racing Team continue longstanding collaboration by creating performance one-off role models for land and water.',
-  },
-  {
-    url:
-      'https://www.speedonthewater.com/performance-boat-center-on-point-again-with-cigarette-owners-rendezvous/',
-    siteName: 'speedonthewater.com',
-    image: require('../../content/images/homepage/news-00002.png'),
-    title:
-      'Performance Boat Center On Point Again With Cigarette Owners Rendezvous',
-    content:
-      'No one knew how the Cigarette Owners Rendezvous would do when it landed at the Lake of the Ozarksin the hands of Performance Boat Center...',
-  },
-  {
-    url:
-      'https://www.speedonthewater.com/gallery-of-the-week-cigarette-opens-st-tropez/',
-    siteName: 'speedonthewater.com',
-    image: require('../../content/images/homepage/news-00003.png'),
-    title: 'Gallery Of The Week: Cigarette Opens St. Tropez',
-    content:
-      'Reopened this week after its own novel coronavirus shutdown, the Port of Tropez, one of the crown jewels of the French Riviera...',
-  },
-  {
-    url:
-      'https://robbreport.com/motors/aviation/mercedes-amg-cigarette-racing-powerboat-release-miami-details-2899104/',
-    siteName: 'robbreport.com',
-    image: require('../../content/images/homepage/news-00004.png'),
-    title: 'Mercedes-AMG Unveils Its Biggest, Baddest Cigarette Boat Yet',
-    content:
-      'This insane 80 mph, 59-foot rocketship could be yours for $3 million.',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=SKOXaiH5yB4&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00005.png'),
-    title: "New Nighthawk 41 Cigarette's 88 Mph Center Console Monster!",
-    content:
-      'Some boats become legendary the moment you lay your eyes on them. This is one of them boats...',
-  },
-  {
-    url: 'https://www.youtube.com/watch?v=i8Wt97g7q_c&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00006.png'),
-    title: "The Ultimate Adventure Awaits! (Cigarette's Auroris 42 Center)",
-    content:
-      'Cigarette has changed throughout the years but the 2020 Miami Boat Show Cigarette has begun...',
-  },
-  {
-    url:
-      'https://www.youtube.com/watch?time_continue=376&v=ZMLa7pdd1T4&feature=emb_title',
-    siteName: 'youtube.com',
-    image: require('../../content/images/homepage/news-00007.jpg'),
-    title: 'The King of Center Consoles! AMG Cigarette Tirranna',
-    content:
-      'The fantastic people at Cigarette Racing have come to the 2020 Miami International Boat Show...',
-  },
-]
+const craftNewsToNewsItem = (apiNewsItems: any[]): NewsItem[] =>
+  apiNewsItems.map((item) => ({
+    content: item.textContent,
+    image: item.imageObject?.[0]?.image?.[0]?.url,
+    siteName: item.siteName,
+    title: item.title,
+    url: item.urlLink,
+  }))
 
-function NewsSection() {
+function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
   const [page, setPage] = useState(0)
   const itemIndex = wrap(0, newsItems.length, page)
   const nextItemIndex = wrap(0, newsItems.length, page + 1)
@@ -505,7 +494,6 @@ function NewsSection() {
             maxHeight: '421px',
           }}
         >
-          {/* TODO: convert this to `Img` when we are pulling data from GraphQL */}
           <img src={item.image} alt="" className="object-cover h-full" />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}

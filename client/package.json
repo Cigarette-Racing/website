@@ -11,6 +11,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve -p 17008",
     "clean": "gatsby clean",
+    "clean:graphql": "rm -rf ./.cache/caches/gatsby-source-graphql",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "type-check": "tsc --noEmit",
     "storybook": "start-storybook -c ./stories/.storybook -p 17009",
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.4.0",
+    "@types/express": "^4.17.8",
     "@types/node": "^14.0.27",
     "gatsby-plugin-manifest": "^2.4.16",
     "gatsby-plugin-offline": "^3.2.15",
