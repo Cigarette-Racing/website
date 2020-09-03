@@ -76,6 +76,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
 
   const connectContent = data.craftAPI.home.connectsection[0]
 
+  const featured = data.craftAPI.home.home2UpBoats
   const difference = data.craftAPI.home.differenceSection[0]
   const connect = data.craftAPI.home.connectSection[0]
 
@@ -131,19 +132,20 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       {/* 2-up boats section */}
       <section className="relative md:flex" data-scrollsection>
         <BoatFeaturette
-          backgroundImage={data.boat1BG as GatsbyTypes.File}
-          boatImage={data.boat1 as GatsbyTypes.File}
-          contentHeader="High Performance"
-          boatName="42 X"
-          url="42-x"
+          backgroundImage={featured[0].background[0].url}
+          boatImage={featured[0].boatImage[0].image[0].url}
+          contentHeader={featured[0].boatLink[0].boatMetadata[0].menuCategory}
+          subtitle={featured[0].textBlockCopy}
+          boatName={featured[0].boatLink[0].title}
+          url={featured[0].boatLink[0].slug}
         />
         <BoatFeaturette
-          backgroundImage={data.boat2BG as GatsbyTypes.File}
-          boatImage={data.boat2 as GatsbyTypes.File}
-          contentHeader="Performance Center Console"
-          subtitle="Hyperlux"
-          boatName="42 Auroris"
-          url="42-auroris"
+          backgroundImage={featured[1].background[0].url}
+          boatImage={featured[1].boatImage[0].image[0].url}
+          contentHeader={featured[1].boatLink[0].boatMetadata[0].menuCategory}
+          subtitle={featured[1].textBlockCopy}
+          boatName={featured[1].boatLink[0].title}
+          url={featured[1].boatLink[0].slug}
         />
       </section>
       {/* Second hero section */}
@@ -211,6 +213,36 @@ export const query = graphql`
     craftAPI {
       home: entry(slug: "homepage") {
         ... on CraftAPI_homepage_homepage_Entry {
+          home2UpBoats {
+            ... on CraftAPI_home2UpBoats_column_BlockType {
+              boatLink {
+                ... on CraftAPI_boats_boats_Entry {
+                  title
+                  slug
+                  boatMetadata {
+                    ... on CraftAPI_boatMetadata_BlockType {
+                      menuCategory(label: true)
+                    }
+                  }
+                }
+              }
+              background: image {
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
+              }
+              boatImage: imageObject {
+                ... on CraftAPI_imageObject_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      url
+                    }
+                  }
+                }
+              }
+              textBlockCopy
+            }
+          }
           differenceSection {
             ... on CraftAPI_differenceSection_BlockType {
               theTitle
