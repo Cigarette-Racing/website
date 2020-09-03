@@ -116,26 +116,17 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       </section>
       {/* 2-up boats section */}
       <section className="relative md:flex" data-scrollsection>
-        <BoatFeaturette
-          backgroundImage={featured?.[0]?.background?.[0]?.url}
-          boatImage={featured?.[0]?.boatImage?.[0]?.image?.[0]?.url}
-          contentHeader={
-            featured?.[0]?.boatLink?.[0]?.boatMetadata?.[0]?.menuCategory
-          }
-          subtitle={featured?.[0]?.textBlockCopy}
-          boatName={featured?.[0]?.boatLink?.[0]?.title}
-          url={featured?.[0]?.boatLink?.[0]?.slug}
-        />
-        <BoatFeaturette
-          backgroundImage={featured?.[1]?.background?.[0]?.url}
-          boatImage={featured?.[1]?.boatImage?.[0]?.image?.[0]?.url}
-          contentHeader={
-            featured?.[1]?.boatLink?.[0]?.boatMetadata?.[0]?.menuCategory
-          }
-          subtitle={featured?.[1]?.textBlockCopy}
-          boatName={featured?.[1]?.boatLink?.[0]?.title}
-          url={featured?.[1]?.boatLink?.[0]?.slug}
-        />
+        {featured.map((boat) => (
+          <BoatFeaturette
+            key={boat.boatLink?.[0]?.title}
+            backgroundImage={boat.background?.[0]?.url}
+            boatImage={boat.boatImage?.[0]?.image?.[0]?.url}
+            contentHeader={boat.boatLink?.[0]?.boatMetadata?.[0]?.menuCategory}
+            subtitle={boat.textBlockCopy}
+            boatName={boat.boatLink?.[0]?.title}
+            url={boat.boatLink?.[0]?.slug}
+          />
+        ))}
       </section>
       {/* Second hero section */}
       <section
@@ -143,7 +134,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         data-scrollsection
       >
         <img
-          src={difference.backgroundImage[0].url}
+          src={difference.backgroundImage?.[0]?.url}
           className="absolute top-0 left-0 h-screen w-full object-cover"
         />
         <div
@@ -168,7 +159,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         </div>
       </section>
       {/* News and press section */}
-      <NewsSection newsItems={craftNewsToNewsItem(data.craftAPI.news)} />
+      <NewsSection newsItems={craftNewsToNewsItem(data.craftAPI.news || [])} />
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
@@ -432,7 +423,7 @@ type NewsItem = {
 const craftNewsToNewsItem = (apiNewsItems: any[]): NewsItem[] =>
   apiNewsItems.map((item) => ({
     content: item.textContent,
-    image: item.imageObject[0].image[0].url,
+    image: item.imageObject?.[0]?.image?.[0]?.url,
     siteName: item.siteName,
     title: item.title,
     url: item.urlLink,
