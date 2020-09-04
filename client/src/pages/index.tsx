@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react'
+import clsx from 'clsx'
 import { Form, Field } from 'react-final-form'
 import { Link, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
@@ -15,6 +16,7 @@ import {
   InquiryModal,
   HiddenInquiryForm,
 } from '../molecules/inquiry/inquiry-modal'
+import { requiredEmail } from '../atoms/text-input'
 import BoatFeaturette from '../molecules/boat-featurette'
 import ReactPlayer from 'react-player'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -345,17 +347,55 @@ function StayConnectedForm({
                   <Field
                     id="emailAddress"
                     name="emailAddress"
-                    component="input"
                     className="block w-full py-3 bg-transparent text-white input-placeholder font-body text-sm tracking-wide"
                     placeholder="Enter Email Address"
+                    validate={requiredEmail}
+                    render={({ input, meta }) => {
+                      return (
+                        <Fragment>
+                          <Typography
+                            className={clsx(
+                              'absolute opacity-0 transform -translate-y-4 transition duration-150',
+                              {
+                                'opacity-100 -translate-y-6':
+                                  meta.invalid && meta.touched,
+                              }
+                            )}
+                            variant="p3"
+                          >
+                            Please enter a valid email address
+                          </Typography>
+                          <input
+                            {...input}
+                            autoComplete="off"
+                            placeholder="ENTER EMAIL ADDRESS"
+                            className={clsx(
+                              'font-body text-sm appearance-none bg-transparent outline-none w-full py-3',
+                              {
+                                'placeholder-white':
+                                  !meta.invalid || !meta.touched,
+                              },
+                              {
+                                'placeholder-grey':
+                                  meta.invalid && meta.touched,
+                              }
+                            )}
+                          />
+                          <button
+                            type="submit"
+                            aria-label="Submit"
+                            className={clsx('p-4 -mr-4 disabled:opacity-50', {
+                              'cursor-not-allowed':
+                                meta.invalid && meta.touched,
+                            })}
+                            disabled={meta.invalid && meta.touched}
+                          >
+                            <PlusIcon className="w-4 h-4" />
+                          </button>
+                        </Fragment>
+                      )
+                    }}
                   />
-                  <button
-                    type="submit"
-                    aria-label="Submit"
-                    className="p-4 -mr-4"
-                  >
-                    <PlusIcon className="w-4 h-4" />
-                  </button>
                 </form>
               </div>
               <Typography variant="p2" className="pb-16">
