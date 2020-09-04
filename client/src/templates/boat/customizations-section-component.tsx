@@ -1,6 +1,5 @@
 import React from 'react'
 import Img from 'gatsby-image'
-import { useStaticQuery, graphql } from 'gatsby'
 import { Typography } from '../../atoms/typography'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { AspectRatio } from '../../atoms/aspect-ratio'
@@ -8,35 +7,21 @@ import { InPageAnchor } from '../../molecules/in-page-nav'
 import { Media, CustomizationsSection, TextBlock } from '../../types/boat'
 import { LinkCta } from '../../atoms/link-cta'
 import { BoatSection, CarouselButtons } from '../boat.components'
-
-const query = graphql`
-  query CustomizationsSectionBackground {
-    background: file(relativePath: { eq: "customization-section-bg.jpeg" }) {
-      childImageSharp {
-        fluid(maxWidth: 3000) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`
+import { useBackgroundsQuery } from '../../services/backgrounds'
 
 export const CustomizationsSectionComponent = ({
   title,
   options,
 }: CustomizationsSection) => {
-  const { background } = useStaticQuery<
-    GatsbyTypes.CustomizationsSectionBackgroundQuery
-  >(query)
+  const { customizationSection: background } = useBackgroundsQuery()
 
   return (
     <BoatSection theme="dark" className="py-24 sm:pb-16">
       <InPageAnchor title={title} />
-      <Img
-        fluid={background?.childImageSharp?.fluid}
+      <img
+        src={background}
         alt=""
-        className="top-0 h-full w-full object-cover"
-        style={{ position: 'absolute' }}
+        className="absolute top-0 h-full w-full object-cover"
       />
       <div
         className="absolute inset-0"
