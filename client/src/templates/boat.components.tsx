@@ -79,7 +79,17 @@ export const BoatHeader = ({
           {headline}
         </Typography>
         <div className="relative mb-4 justify-center hidden md:flex">
-          <InPageCta link={true} href="#discover">
+          <InPageCta
+            onClick={() => {
+              const discoverSection = document.getElementById('discover')
+              const discoverTopOffset = discoverSection?.offsetParent?.offsetTop
+              window.scroll({
+                top: discoverTopOffset,
+                behavior: 'smooth',
+              })
+            }}
+            href="#discover"
+          >
             {ctaText || `Explore more`}
           </InPageCta>
         </div>
