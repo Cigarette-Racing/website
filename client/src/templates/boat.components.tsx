@@ -444,7 +444,7 @@ export const PowertrainTab = ({
         }
       )}
     >
-      <Typography variant="e3-lower" md="h4" as="span" className="normal-case">
+      <Typography variant="h5" md="h4" as="span" className="normal-case">
         {children}
       </Typography>
     </Comp>
