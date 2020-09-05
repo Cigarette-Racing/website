@@ -79,7 +79,7 @@ export const InquiryModal: React.FC = () => {
             animate={{ y: 0 }}
             exit={{ y: '100vh' }}
             transition={{ stiffness: 100, duration: animationDuration }}
-            className="min-h-full"
+            className="min-h-full bg-gray-0"
           >
             <img
               src={background}
