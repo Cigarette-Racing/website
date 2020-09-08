@@ -125,7 +125,7 @@ export const BoatHeader = ({
           ))}
         </div>
       </div>
-      <div className="relative mb-4 flex justify-center md:hidden">
+      <div className="relative mb-4 flex justify-center hidden">
         <InPageCta
           onClick={() => {
             onClickCta(true)
