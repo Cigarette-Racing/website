@@ -721,7 +721,7 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
           )}
         </AnimatePresence>
       </div>
-      <div className="flex justify-center md:mb-20">
+      <div className="flex justify-center mb-10 md:mb-20">
         <InPageCta
           variant="secondary"
           onClick={() => {
