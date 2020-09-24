@@ -79,7 +79,16 @@ export const Header = ({}: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useMenuState()
   const [, setHeaderState] = useHeaderState()
   const [menuOpenedFromFooter, setMenuOpenedFromFooter] = useFooterMenuState()
-  useLockBodyScroll(isMenuOpen || !!selectedSection)
+
+  useEffect(() => {
+    if (isMenuOpen || !!selectedSection) {
+      document.body.style.overflow = 'hidden'
+      document.body.style.position = 'relative'
+    } else {
+      document.body.style.overflow = 'auto'
+      document.body.style.position = 'static'
+    }
+  }, [isMenuOpen, selectedSection])
 
   // @ts-ignore
   const src: string = logo
@@ -412,7 +421,7 @@ function BoatSelector({
     <Modal
       isOpen={isVisible}
       className={{
-        base: 'absolute inset-0 BOATMENU',
+        base: 'absolute inset-0',
         afterOpen: '',
         beforeClose: '',
       }}

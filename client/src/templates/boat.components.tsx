@@ -125,7 +125,7 @@ export const BoatHeader = ({
           ))}
         </div>
       </div>
-      <div className="relative mb-4 flex justify-center md:hidden">
+      <div className="relative mb-4 flex justify-center hidden">
         <InPageCta
           onClick={() => {
             onClickCta(true)
@@ -444,7 +444,7 @@ export const PowertrainTab = ({
         }
       )}
     >
-      <Typography variant="e3-lower" md="h4" as="span" className="normal-case">
+      <Typography variant="h5" md="h4" as="span" className="normal-case">
         {children}
       </Typography>
     </Comp>
@@ -753,7 +753,7 @@ export const TwoUpImageBlock = ({
     className={clsx('max-w-7xl mx-auto sm:flex', className)}
     data-block-type="TwoUpImageBlock"
   >
-    <div className="px-4 mb-16 md:mb-0 flex-1">
+    <div className="first:pr-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
         <img
           src={images[0].singleMedia?.[0].image?.[0].url}
@@ -763,7 +763,7 @@ export const TwoUpImageBlock = ({
         />
       </AspectRatio>
     </div>
-    <div className="px-4 mb-16 md:mb-0 flex-1">
+    <div className="last:pl-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
         <img
           src={images[1].singleMedia?.[0].image?.[0].url}
