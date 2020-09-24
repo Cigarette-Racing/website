@@ -61,8 +61,10 @@ export const InquiryModal: React.FC = () => {
   useEffect(() => {
     if (inquiryModalState) {
       document.body.style.overflow = 'hidden'
+      document.body.style.position = 'relative'
     } else {
       document.body.style.overflow = 'auto'
+      document.body.style.position = 'static'
     }
   }, [])
 
