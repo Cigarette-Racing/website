@@ -108,8 +108,9 @@ export const Slider = ({ items, theme }: SliderProps) => {
                 x: { type: 'spring', stiffness: 300, damping: 200 },
                 opacity: { duration: 0.4 },
               }}
-              className="absolute h-full w-full object-cover"
+              className="absolute h-full w-full object-cover cursor-pointer"
               style={{ left: 'calc(100% + 0px)' }}
+              onClick={goNext}
             >
               <img src={items[nextItemIndex]?.media?.image} />
               <div
