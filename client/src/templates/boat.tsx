@@ -156,9 +156,10 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
 
 const extractGallerySectionFromCraft = (boatEntry: any) => {
   const galleryItems = boatEntry?.gallery.map((galleryItem) => {
+    console.log(galleryItem)
     return {
-      thumbnail: galleryItem?.thumbnail?.[0].url,
-      image: galleryItem?.image?.[0].url,
+      thumbnail: galleryItem?.image?.[0].thumbnail,
+      image: galleryItem?.image?.[0].full,
       videoUrl: galleryItem?.videoURL,
     }
   })
@@ -526,16 +527,11 @@ export const query = graphql`
           }
           gallery: multipleMedia {
             ... on CraftAPI_multipleMedia_BlockType {
-              thumbnail: image {
-                ... on CraftAPI_s3_Asset {
-                  title
-                  url(width: 1000)
-                }
-              }
               image {
                 ... on CraftAPI_s3_Asset {
                   title
-                  url(width: 2000)
+                  thumbnail: url(width: 1000)
+                  full: url(width: 2000)
                 }
               }
               videoURL
