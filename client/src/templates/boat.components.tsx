@@ -683,7 +683,24 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
   const isClickable = details.length > 1
   return (
     <div data-block-type="MoreDetailsBlockComponent">
-      <div className="overflow-hidden">
+      <div className="flex justify-center mb-10 md:mb-20">
+        <InPageCta
+          variant="secondary"
+          onClick={() => {
+            toggleIsOpen()
+          }}
+        >
+          <span className="flex items-center group">
+            {isOpen ? (
+              <CaretUpIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
+            ) : (
+              <CaretDownIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
+            )}
+            <span>{buttonText}</span>
+          </span>
+        </InPageCta>
+      </div>
+      <div className="overflow-hidden mb-10">
         <AnimatePresence initial={false}>
           {isOpen && (
             <motion.div
@@ -695,7 +712,7 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
                 open: { opacity: 1, height: 'auto' },
                 collapsed: { opacity: 0, height: 0 },
               }}
-              transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
             >
               <div>
                 {details.map((child: any) => {
@@ -720,23 +737,6 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-      <div className="flex justify-center mb-10 md:mb-20">
-        <InPageCta
-          variant="secondary"
-          onClick={() => {
-            toggleIsOpen()
-          }}
-        >
-          <span className="flex items-center group">
-            {isOpen ? (
-              <CaretUpIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
-            ) : (
-              <CaretDownIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
-            )}
-            <span>{buttonText}</span>
-          </span>
-        </InPageCta>
       </div>
     </div>
   )
