@@ -52,7 +52,7 @@ const BoatFeaturette = ({
             {contentHeader}
           </ContentHeader>
         </div>
-        <div className="relative z-20 px-4 md:px-8 pb-6 md:pb-20">
+        <div className="relative z-20 px-4 md:px-8 pb-6 md:pb-12">
           <Typography variant="h3" xl="h2" className="mb-4 md:mb-8">
             {boatName}
           </Typography>
