@@ -451,56 +451,22 @@ export const PowertrainTab = ({
   )
 }
 
-const NOOP = () => {}
-
 const SpecAccordion = ({ name, descriptions }: Spec) => {
-  const [isOpen, toggleIsOpen] = useToggle(false)
-  const isClickable = descriptions.length > 1
   return (
     <div className="py-8 border-t border-gray-5">
-      <div
-        className={clsx('mb-2 flex', {
-          'cursor-pointer focus:outline-none select-none': isClickable,
-        })}
-        tabIndex={isClickable ? 0 : undefined}
-        onClick={isClickable ? () => toggleIsOpen() : NOOP}
-      >
+      <div className={clsx('mb-2 flex', {})}>
         <Typography variant="e3" className="flex-1">
           {name}
         </Typography>
-        {isClickable && (
-          <motion.div
-            initial={false}
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <CaretDownIcon className="text-red" />
-          </motion.div>
-        )}
       </div>
-      <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
-        {descriptions[0]}
-      </Typography>
       <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="descriptions"
-            initial="collapsed"
-            animate="open"
-            exit="collapsed"
-            variants={{
-              open: { opacity: 1, height: 'auto' },
-              collapsed: { opacity: 0, height: 0 },
-            }}
-            transition={{ duration: 0.2, ease: [0.04, 0.62, 0.23, 0.98] }}
-          >
-            {descriptions.slice(1).map((description) => (
-              <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
-                {description}
-              </Typography>
-            ))}
-          </motion.div>
-        )}
+        <div>
+          {descriptions.slice(1).map((description) => (
+            <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
+              {description}
+            </Typography>
+          ))}
+        </div>
       </AnimatePresence>
     </div>
   )
