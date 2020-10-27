@@ -203,7 +203,7 @@ module.exports = {
     textColor: ['responsive', 'hover', 'focus', 'group-hover'],
     translate: ['responsive', 'hover', 'focus', 'group-hover'],
     opacity: ['responsive', 'hover', 'focus', 'group-hover', 'disabled'],
-    padding: ['first', 'last'],
+    padding: ['responsive', 'hover', 'focus', 'group-hover', 'first', 'last'],
   },
   plugins: [
     gridColsMax,
