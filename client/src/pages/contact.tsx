@@ -58,11 +58,6 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
                   {metadata.phoneNumber?.pretty}
                 </a>
               </IconWithContent>
-              <IconWithContent icon={MailIcon}>
-                <a href={`mailto:${metadata.emailAddresses?.contact}`}>
-                  {metadata.emailAddresses?.contact}
-                </a>
-              </IconWithContent>
               <IconWithContent icon={MapIcon}>
                 <address className="not-italic">
                   {metadata.address?.street}, <br className="lg:hidden" />
