@@ -8,7 +8,7 @@ import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 // import { InPageCta } from '../atoms/in-page-cta'
 import { LinkCta } from '../atoms/link-cta'
-import { PlusIcon, PlayIcon } from '../svgs/icons'
+import { PlusIcon, PlayIcon, ArrowIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
@@ -508,7 +508,10 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
           <div key={newsItems[itemIndex].url}>
             {renderItem(newsItems[itemIndex])}
           </div>
-          <div key={newsItems[nextItemIndex].url} className="hidden sm:block">
+          <div
+            key={newsItems[nextItemIndex].url}
+            className="hidden sm:block group relative"
+          >
             {renderItem(newsItems[nextItemIndex])}
           </div>
         </div>
@@ -526,7 +529,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
 
   function renderItem(item: NewsItem) {
     return (
-      <div key={item.url} style={{ maxWidth: '421px' }}>
+      <a href={item.url} key={item.url} style={{ maxWidth: '421px' }}>
         <div
           className="relative w-screen h-screen-w -mx-4 xs:mx-0 mb-6"
           style={{
@@ -545,7 +548,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
         <Typography variant="p2" className="text-gray-2">
           {item.content}
         </Typography>
-      </div>
+      </a>
     )
   }
 }
