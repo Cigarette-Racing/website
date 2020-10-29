@@ -8,7 +8,7 @@ import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 // import { InPageCta } from '../atoms/in-page-cta'
 import { LinkCta } from '../atoms/link-cta'
-import { PlusIcon, PlayIcon, ArrowIcon } from '../svgs/icons'
+import { PlusIcon, PlayIcon, ArrowIcon, ExternalLinkIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
@@ -486,7 +486,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
   }, [])
 
   return (
-    <section className="p-4 py-12 sm:py-40 bg-white min-h-screen sm:min-h-0 flex sm:block items-center overflow-hidden">
+    <section className="bg-white min-h-screen sm:min-h-0 flex sm:block items-center overflow-hidden">
       <div className="max-w-8xl sm:mx-auto sm:flex">
         <div className="sm:w-1/2 md:pl-8 lg:pl-16 xl:pl-24">
           <Typography variant="h3" sm="h2" className="mb-4 sm:mb-16">
@@ -504,15 +504,23 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
             onClickPrev={goPrev}
           />
         </div>
-        <div className="flex sm:w-1/2 space-x-6">
-          <div key={newsItems[itemIndex].url}>
-            {renderItem(newsItems[itemIndex])}
-          </div>
-          <div
-            key={newsItems[nextItemIndex].url}
-            className="hidden sm:block group relative"
-          >
-            {renderItem(newsItems[nextItemIndex])}
+        <div className="sm:w-1/2">
+          <div className="flex space-x-6" style={{ width: '110%' }}>
+            {/* <div className="bg-red flex-1">CONTENT</div>
+            <div className="bg-red flex-1">CONTENT</div> */}
+
+            <div
+              key={newsItems[itemIndex].url}
+              className="group relative flex-1"
+            >
+              {renderItem(newsItems[itemIndex])}
+            </div>
+            <div
+              key={newsItems[nextItemIndex].url}
+              className="hidden sm:block group relative flex-1"
+            >
+              {renderItem(newsItems[nextItemIndex])}
+            </div>
           </div>
         </div>
         <div className="flex justify-start">
@@ -529,18 +537,22 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
 
   function renderItem(item: NewsItem) {
     return (
-      <a href={item.url} key={item.url} style={{ maxWidth: '421px' }}>
+      <a href={item.url} key={item.url}>
         <div
-          className="relative w-screen h-screen-w -mx-4 xs:mx-0 mb-6"
-          style={{
-            maxWidth: '421px',
-            maxHeight: '421px',
-          }}
+          style={{ paddingTop: '100%' }}
+          className="relative -mx-4 xs:mx-0 mb-6 w-full"
         >
-          <img src={item.image} alt="" className="object-cover h-full" />
-          <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
-            {item.siteName}
-          </ExternalLink>
+          <img
+            src={item.image}
+            alt=""
+            className="absolute top-0 left-0 h-full w-full object-cover object-center"
+          />
+          <div className="absolute top-0 mt-6 ml-4 bg-black bg-opacity-25 rounded-full py-2 px-4 flex items-center backdrop-blur-3 text-white">
+            <ExternalLinkIcon className="mr-2" />
+            <Typography variant="p3" as="span">
+              {item.siteName}
+            </Typography>
+          </div>
         </div>
         <Typography variant="h4" className="mb-2">
           {item.title}
