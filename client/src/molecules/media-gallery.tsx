@@ -100,6 +100,13 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
     )
   }
 
+  // Handle when we filter the images but are potentially on a page number that's too high
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages)
+    }
+  }, [category])
+
   // Preload next page of thumbnails
   useEffect(() => {
     cacheImages(
