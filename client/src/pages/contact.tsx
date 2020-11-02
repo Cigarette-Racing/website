@@ -88,7 +88,8 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           </div>
         </div>
       </Section>
-      <Section
+      {/* Removing for now: https://trello.com/c/X44hNZIA/182-disable-owner-support-media-press-inquiries-on-the-contact-page-do-not-delete-these-as-the-client-wants-to-utilize-them-in-time */}
+      {/* <Section
         theme="light"
         className="py-20 divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x"
       >
@@ -110,7 +111,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
             }
           )}
         </div>
-      </Section>
+      </Section> */}
       <Section theme="dark" className="py-24 lg:py-48">
         <FullBgImage
           image={data.entry.careers[0].singleMedia[0].image[0].url}
@@ -137,7 +138,8 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           </InPageCta>
         </div>
       </Section>
-      <Section theme="dark" className="py-32">
+      {/* Removing for now: https://trello.com/c/X44hNZIA/182-disable-owner-support-media-press-inquiries-on-the-contact-page-do-not-delete-these-as-the-client-wants-to-utilize-them-in-time */}
+      {/* <Section theme="dark" className="py-32">
         <div className="space-y-8 text-center lg:hidden">
           <Typography variant="h3">{data.entry.support[0].header}</Typography>
           <Typography variant="p3">{data.entry.support[0].text}</Typography>
@@ -174,7 +176,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
             </InPageCta>
           </div>
         </div>
-      </Section>
+      </Section> */}
     </Layout>
   )
 }

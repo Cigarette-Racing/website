@@ -6,6 +6,7 @@ import {
   useSelectedBoatCategoryState,
 } from './header'
 import { useInquiryModalState } from '../molecules/inquiry/inquiry-modal'
+import { Link } from 'gatsby'
 import logo from '../images/logo-white.svg'
 import { SocialLink } from '../atoms/social-link'
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from '../svgs/icons'
@@ -40,10 +41,10 @@ const footerLinks = [
   {
     header: 'Contact Us',
     links: [
-      { name: 'Request Info', clickAction: 'openInquiryForm' },
-      { name: 'Media & Press', url: 'mailto:contact@cigaretteracing.com' },
-      { name: 'Careers', url: 'mailto:sbjobs@cigaretteracing.com' },
-      { name: 'Support', url: 'mailto:support@cigaretteracing.com' },
+      { name: 'Request Info', url: '/contact' },
+      { name: 'Media & Press', mailto: 'mailto:contact@cigaretteracing.com' },
+      { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
+      { name: 'Support', mailto: 'mailto:support@cigaretteracing.com' },
     ],
   },
   {
@@ -144,8 +145,11 @@ export const Footer = ({}: FooterProps) => {
                             {link.name}
                           </a>
                         )}
-                        {!link.clickAction && (
-                          <a href={link.url}>{link.name}</a>
+                        {!link.clickAction && link.mailto && (
+                          <a href={link.mailto}>{link.name}</a>
+                        )}
+                        {!link.clickAction && link.url && (
+                          <Link to={link.url}>{link.name}</Link>
                         )}
                       </div>
                       // <a href={link.url}>{link.name}</a>
