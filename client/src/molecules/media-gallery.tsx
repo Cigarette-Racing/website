@@ -70,9 +70,18 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
       videoUrl: galleryItem.videoUrl,
     }
   })
+  const filteredGallery = normalizedGallery.filter((item) => {
+    if (category === 'photos') {
+      return !item.videoUrl
+    }
+    if (category === 'videos') {
+      return !!item.videoUrl
+    }
+    return true
+  })
 
   const perPage = showMore ? 8 : 4
-  const totalPages = Math.ceil(normalizedGallery.length / perPage)
+  const totalPages = Math.ceil(filteredGallery.length / perPage)
 
   const goNext = () => {
     setPage((page) => (page === totalPages ? page : page + 1))
@@ -82,7 +91,7 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
   }
   const goNextLightbox = () => {
     setLightboxMediaIndex((lightboxMediaIndex = -1) =>
-      Math.min(lightboxMediaIndex + 1, normalizedGallery.length - 1)
+      Math.min(lightboxMediaIndex + 1, filteredGallery.length - 1)
     )
   }
   const goPrevLightbox = () => {
@@ -91,10 +100,17 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
     )
   }
 
+  // Handle when we filter the images but are potentially on a page number that's too high
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages)
+    }
+  }, [category])
+
   // Preload next page of thumbnails
   useEffect(() => {
     cacheImages(
-      getGallerySlice(normalizedGallery, page + 1, perPage).map((item) => {
+      getGallerySlice(filteredGallery, page + 1, perPage).map((item) => {
         return item.thumbnail
       })
     )
@@ -104,17 +120,17 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
   useEffect(() => {
     if (lightboxMediaIndex === undefined) return
     const beforeLightboxMediaImage =
-      normalizedGallery[Math.max(lightboxMediaIndex - 1, 0)].image
+      filteredGallery[Math.max(lightboxMediaIndex - 1, 0)].image
     const afterLightboxMediaImage =
-      normalizedGallery[
-        Math.min(lightboxMediaIndex + 1, normalizedGallery.length - 1)
+      filteredGallery[
+        Math.min(lightboxMediaIndex + 1, filteredGallery.length - 1)
       ].image
     cacheImages([beforeLightboxMediaImage, afterLightboxMediaImage])
   }, [lightboxMediaIndex])
 
   const lightboxMedia =
     lightboxMediaIndex !== undefined
-      ? normalizedGallery[lightboxMediaIndex]
+      ? filteredGallery[lightboxMediaIndex]
       : undefined
 
   return (
@@ -156,7 +172,7 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
             {...parentAnimations}
             className="grid grid-cols-2 sm:grid-cols-none sm:grid-flow-col-dense sm:grid-rows-2 gap-6 px-4 mb-16"
           >
-            {getGallerySlice(normalizedGallery, page, perPage).map(
+            {getGallerySlice(filteredGallery, page, perPage).map(
               (item, index) => (
                 <motion.div
                   key={`${page}-${perPage}-${item.thumbnail}`}
@@ -167,7 +183,7 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
                     media={item}
                     hasVideo={!!item.videoUrl}
                     onClick={() =>
-                      setLightboxMediaIndex(normalizedGallery.indexOf(item))
+                      setLightboxMediaIndex(filteredGallery.indexOf(item))
                     }
                   />
                 </motion.div>
@@ -194,7 +210,7 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
         media={lightboxMedia}
         goNext={goNextLightbox}
         goPrev={goPrevLightbox}
-        disabledNext={lightboxMediaIndex === normalizedGallery.length - 1}
+        disabledNext={lightboxMediaIndex === filteredGallery.length - 1}
         disabledPrev={lightboxMediaIndex === 0}
       />
     </BoatSection>
