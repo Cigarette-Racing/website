@@ -719,7 +719,7 @@ export const TwoUpImageBlock = ({
     className={clsx('max-w-7xl mx-auto sm:flex', className)}
     data-block-type="TwoUpImageBlock"
   >
-    <div className="first:pr-4 mb-16 md:mb-0 flex-1">
+    <div className="sm:first:pr-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
         <img
           src={images[0].singleMedia?.[0].image?.[0].url}
@@ -729,7 +729,7 @@ export const TwoUpImageBlock = ({
         />
       </AspectRatio>
     </div>
-    <div className="last:pl-4 mb-16 md:mb-0 flex-1">
+    <div className="sm:last:pl-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
         <img
           src={images[1].singleMedia?.[0].image?.[0].url}

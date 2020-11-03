@@ -4,6 +4,7 @@ import { Typography } from '../atoms/typography'
 import { CaretDownIcon, CaretUpIcon, AngleIcon } from '../svgs/icons'
 import Modal from 'react-modal'
 import { useMedia, useToggle } from 'react-use'
+import { Link } from 'gatsby'
 import { useHeaderState } from './header'
 
 const slugify = (str: string) =>
@@ -98,13 +99,9 @@ export const InPageNav = ({
                 )}
               </div>
             </button>
-            <button
-              onClick={() => {
-                onClickInquire(true)
-              }}
-            >
+            <Link to="/contact">
               <Typography variant="e2">Inquire</Typography>
-            </button>
+            </Link>
           </div>
         </div>
         {!isMobileMenu && isMenuOpen && (
