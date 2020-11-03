@@ -541,8 +541,12 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
       <a
         href={item.url}
         key={item.url}
-        className="block w-screen h-screen-w"
-        style={{ width: slideWidth, maxWidth: slideMaxWidth }}
+        className="block w-screen"
+        style={{
+          width: slideWidth,
+          maxWidth: slideMaxWidth,
+          minHeight: windowSize.width / 2,
+        }}
       >
         <div style={{ paddingTop: '100%' }} className="relative xs:mx-0 mb-6">
           <img
