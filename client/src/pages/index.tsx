@@ -8,7 +8,7 @@ import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 // import { InPageCta } from '../atoms/in-page-cta'
 import { LinkCta } from '../atoms/link-cta'
-import { PlusIcon, PlayIcon, ArrowIcon, ExternalLinkIcon } from '../svgs/icons'
+import { PlusIcon, PlayIcon, ExternalLinkIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
@@ -506,9 +506,6 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
         </div>
         <div className="sm:w-1/2">
           <div className="flex space-x-6" style={{ width: '110%' }}>
-            {/* <div className="bg-red flex-1">CONTENT</div>
-            <div className="bg-red flex-1">CONTENT</div> */}
-
             <div
               key={newsItems[itemIndex].url}
               className="group relative flex-1"
