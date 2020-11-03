@@ -8,7 +8,7 @@ import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 // import { InPageCta } from '../atoms/in-page-cta'
 import { LinkCta } from '../atoms/link-cta'
-import { PlusIcon, PlayIcon } from '../svgs/icons'
+import { PlusIcon, PlayIcon, ExternalLinkIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
@@ -22,7 +22,7 @@ import ReactPlayer from 'react-player'
 import { AnimatePresence, motion } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
 import { CarouselButtons } from '../templates/boat.components'
-import { useToggle } from 'react-use'
+import { useToggle, useMedia, useWindowSize } from 'react-use'
 import { onSubmitCreator } from '../services/forms'
 import { cacheImages } from '../services/images'
 
@@ -472,6 +472,7 @@ const craftNewsToNewsItem = (apiNewsItems: any[]): NewsItem[] =>
 
 function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
   const [page, setPage] = useState(0)
+  const isMobile = useMedia('(max-width: 767px)')
   const itemIndex = wrap(0, newsItems.length, page)
   const nextItemIndex = wrap(0, newsItems.length, page + 1)
   const goNext = () => {
@@ -485,36 +486,44 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
     cacheImages(newsItems.map((item) => item.image))
   }, [])
 
+  const sliderWidth = isMobile ? '100%' : '110%'
+  const windowSize = useWindowSize()
+
   return (
-    <section className="p-4 py-12 sm:py-40 bg-white min-h-screen sm:min-h-0 flex sm:block items-center overflow-hidden">
-      <div className="max-w-8xl sm:mx-auto sm:flex">
-        <div className="sm:w-1/2 md:pl-8 lg:pl-16 xl:pl-24">
-          <Typography variant="h3" sm="h2" className="mb-4 sm:mb-16">
-            News <br className="hidden sm:block" />& press
+    <section className="md:p-4 py-12 md:py-40 bg-white flex sm:block items-center overflow-hidden">
+      <div className="max-w-8xl md:mx-auto md:flex">
+        <div className="pl-4 md:w-1/2 md:pl-8 lg:pl-16 xl:pl-24">
+          <Typography variant="h3" md="h2" className="mb-4 md:mb-16">
+            News <br className="hidden md:block" />& press
           </Typography>
           <ComingSoonLink>
-            <LinkCta className="hidden sm:flex text-black mb-40">
+            <LinkCta className="hidden md:flex text-black mb-40">
               Visit the News Room
             </LinkCta>
           </ComingSoonLink>
           <CarouselButtons
-            className="mt-10 space-x-4 hidden sm:block"
+            className="mt-10 space-x-4 hidden md:block"
             theme="light"
             onClickNext={goNext}
             onClickPrev={goPrev}
           />
         </div>
-        <div className="flex sm:w-1/2 space-x-6">
-          <div key={newsItems[itemIndex].url}>
+
+        <div className="flex md:w-1/2 space-x-6">
+          <div key={newsItems[itemIndex].url} className="group relative flex-1">
             {renderItem(newsItems[itemIndex])}
           </div>
-          <div key={newsItems[nextItemIndex].url} className="hidden sm:block">
+          <div
+            key={newsItems[nextItemIndex].url}
+            className="hidden md:block group relative flex-1"
+          >
             {renderItem(newsItems[nextItemIndex])}
           </div>
         </div>
-        <div className="flex justify-start">
+
+        <div className="flex justify-start pl-4 md-pl-0">
           <CarouselButtons
-            className="mt-10 space-x-4 sm:hidden"
+            className="mt-10 space-x-4 md:hidden"
             theme="light"
             onClickNext={goNext}
             onClickPrev={goPrev}
@@ -525,27 +534,36 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
   )
 
   function renderItem(item: NewsItem) {
+    const slideWidth = isMobile ? '100%' : windowSize.width * 0.3
+    const slideMaxWidth = isMobile ? '100%' : '421px'
+
     return (
-      <div key={item.url} style={{ maxWidth: '421px' }}>
-        <div
-          className="relative w-screen h-screen-w -mx-4 xs:mx-0 mb-6"
-          style={{
-            maxWidth: '421px',
-            maxHeight: '421px',
-          }}
-        >
-          <img src={item.image} alt="" className="object-cover h-full" />
-          <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
-            {item.siteName}
-          </ExternalLink>
+      <a
+        href={item.url}
+        key={item.url}
+        className="block w-screen h-screen-w"
+        style={{ width: slideWidth, maxWidth: slideMaxWidth }}
+      >
+        <div style={{ paddingTop: '100%' }} className="relative xs:mx-0 mb-6">
+          <img
+            src={item.image}
+            alt=""
+            className="absolute top-0 left-0 h-full w-full object-cover object-center"
+          />
+          <div className="absolute top-0 mt-6 ml-4 bg-black bg-opacity-25 rounded-full py-2 px-4 flex items-center backdrop-blur-3 text-white">
+            <ExternalLinkIcon className="mr-2" />
+            <Typography variant="p3" as="span">
+              {item.siteName}
+            </Typography>
+          </div>
         </div>
-        <Typography variant="h4" className="mb-2">
+        <Typography variant="h5" md="h4" className="pl-4 md:pl-0 mb-2">
           {item.title}
         </Typography>
-        <Typography variant="p2" className="text-gray-2">
+        <Typography variant="p3" md="p2" className="pl-4 md:pl-0 text-gray-2">
           {item.content}
         </Typography>
-      </div>
+      </a>
     )
   }
 }
