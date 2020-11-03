@@ -8,7 +8,7 @@ import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 // import { InPageCta } from '../atoms/in-page-cta'
 import { LinkCta } from '../atoms/link-cta'
-import { PlusIcon, PlayIcon, ExternalLinkIcon } from '../svgs/icons'
+import { PlusIcon, PlayIcon, ExternalLinkIcon, ArrowIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
@@ -472,6 +472,7 @@ const craftNewsToNewsItem = (apiNewsItems: any[]): NewsItem[] =>
 
 function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
   const [page, setPage] = useState(0)
+  const [showNextArrow, setShowNextArrow] = useState(false)
   const isMobile = useMedia('(max-width: 767px)')
   const itemIndex = wrap(0, newsItems.length, page)
   const nextItemIndex = wrap(0, newsItems.length, page + 1)
@@ -488,6 +489,9 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
 
   const sliderWidth = isMobile ? '100%' : '110%'
   const windowSize = useWindowSize()
+
+  const nextArrowTopPos =
+    windowSize.width * 0.3 > 421 ? '210' : (windowSize.width * 0.3) / 2
 
   return (
     <section className="md:p-4 py-12 md:py-40 bg-white flex sm:block items-center overflow-hidden">
@@ -509,16 +513,40 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
           />
         </div>
 
-        <div className="flex md:w-1/2 space-x-6">
+        <div className="flex md:w-1/2 space-x-6 relative">
           <div key={newsItems[itemIndex].url} className="group relative flex-1">
             {renderItem(newsItems[itemIndex])}
           </div>
           <div
             key={newsItems[nextItemIndex].url}
             className="hidden md:block group relative flex-1"
+            onMouseEnter={() => {
+              setShowNextArrow(true)
+            }}
+            onMouseLeave={() => {
+              setShowNextArrow(false)
+            }}
           >
             {renderItem(newsItems[nextItemIndex])}
           </div>
+          <CircleButton
+            className={clsx(
+              'absolute z-10 opacity-0 bg-white',
+              showNextArrow && 'opacity-100'
+            )}
+            style={{
+              top: `${nextArrowTopPos}px`,
+              right: '0',
+            }}
+            icon={ArrowIcon}
+            iconClassName="text-black"
+            variant="primary"
+            onClick={goNext}
+            onMouseEnter={() => {
+              setShowNextArrow(true)
+            }}
+            aria-label="Next"
+          />
         </div>
 
         <div className="flex justify-start pl-4 md-pl-0">
