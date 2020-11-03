@@ -486,7 +486,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
   }, [])
 
   return (
-    <section className="bg-white min-h-screen sm:min-h-0 flex sm:block items-center overflow-hidden">
+    <section className="p-4 py-12 sm:py-40 bg-white min-h-screen sm:min-h-0 flex sm:block items-center overflow-hidden">
       <div className="max-w-8xl sm:mx-auto sm:flex">
         <div className="sm:w-1/2 md:pl-8 lg:pl-16 xl:pl-24">
           <Typography variant="h3" sm="h2" className="mb-4 sm:mb-16">
