@@ -284,15 +284,23 @@ export const SideBleedImage = ({
 export const PowertrainSectionComponent = ({
   heroImage,
   options,
+  moreDetails,
 }: {
   heroImage: string
   options: any
+  moreDetails: any
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>(
     options?.[0]?.name
   )
   return (
-    <BoatSection className="pb-24 overflow-hidden">
+    <BoatSection
+      className={clsx('overflow-hidden', {
+        'pb-0': moreDetails?.details?.length,
+        'pb-24': !moreDetails?.details?.length,
+      })}
+      data-section-type="Powertrain Section"
+    >
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         <div className="px-4 md:mb-12 md:mt-8 lg:mt-16">
@@ -340,6 +348,11 @@ export const PowertrainSectionComponent = ({
           </div>
         </div>
       </div>
+      {!!moreDetails?.details?.length && (
+        <div className="pt-10">
+          <MoreDetailsBlockComponent {...moreDetails} />
+        </div>
+      )}
     </BoatSection>
   )
 }
@@ -462,7 +475,11 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
       <AnimatePresence initial={false}>
         <div>
           {descriptions.slice(1).map((description) => (
-            <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
+            <Typography
+              key={description}
+              variant="p3"
+              className="mb-2 text-gray-2 md:w-11/12"
+            >
               {description}
             </Typography>
           ))}
@@ -646,7 +663,6 @@ export const HorizontalImageTextBlockComponent = ({
 
 export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
   const [isOpen, toggleIsOpen] = useToggle(false)
-  const isClickable = details.length > 1
   return (
     <div data-block-type="MoreDetailsBlockComponent">
       <div className="flex justify-center mb-10 md:mb-20">
@@ -681,7 +697,7 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
               transition={{ duration: 0.5, ease: 'easeInOut' }}
             >
               <div>
-                {details.map((child: any) => {
+                {details.map((child: any, index: number) => {
                   const extractedBlock: HorizontalImageTextBlock = {
                     type: 'horizontal-image-text',
                     layout: child.layout,
@@ -696,7 +712,10 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
                     },
                   }
                   return (
-                    <HorizontalImageTextBlockComponent {...extractedBlock} />
+                    <HorizontalImageTextBlockComponent
+                      key={`${child.header} - ${index}`}
+                      {...extractedBlock}
+                    />
                   )
                 })}
               </div>
