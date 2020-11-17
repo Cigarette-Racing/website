@@ -42,9 +42,9 @@ const footerLinks = [
     header: 'Contact Us',
     links: [
       { name: 'Request Info', url: '/contact' },
-      { name: 'Media & Press', mailto: 'mailto:contact@cigaretteracing.com' },
+      // { name: 'Media & Press', mailto: 'mailto:contact@cigaretteracing.com' },
       { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
-      { name: 'Support', mailto: 'mailto:support@cigaretteracing.com' },
+      // { name: 'Support', mailto: 'mailto:support@cigaretteracing.com' },
     ],
   },
   {
