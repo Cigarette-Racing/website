@@ -659,7 +659,7 @@ export const query = graphql`
                       videoURL
                       image {
                         ... on CraftAPI_s3_Asset {
-                          url(width: 2400)
+                          url
                         }
                       }
                     }

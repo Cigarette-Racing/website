@@ -68,50 +68,6 @@ export const plugins = [
     },
   },
   {
-    resolve: 'gatsby-plugin-imgix',
-    options: {
-      // Imgix source domain. This is required.
-      domain: 'cigarette-racing.imgix.net',
-
-      // Imgix source secure URL token. Providing this will automatically
-      // secure all of your image URLs. This is required if your source type
-      // is a Web Proxy.
-      // See: https://docs.imgix.com/setup/securing-images
-      //
-      // Note that this is a private key and should be hidden behind an
-      // environment variable.
-      // See: https://www.gatsbyjs.org/docs/environment-variables/#server-side-nodejs
-      secureUrlToken: process.env.IMGIX_TOKEN,
-
-      // Imgix source type. If your source type is a Web Proxy, set this to
-      // "webProxy". Otherwise, you may omit this field. URLs provided to the
-      // plugin will automatically be converted to a Web Proxy-compatible URL
-      // if set to "webProxy".
-      sourceType: 'webProxy',
-
-      // List of fields to copy into `fields` as Imgix images. You may list
-      // as many fields as needed.
-      fields: [
-        {
-          // The node type containing the image to copy.
-          nodeType: 'imageSharp',
-
-          // Name of the new field to create. If you set this to
-          // "featuredImage", a field at `fields.featuredImage` will be
-          // created.
-          fieldName: 'homepageHero',
-
-          // Function to get the URL in the node. This function should return
-          // the URL as a string. If your field contains an array of URLs,
-          // change the `getUrl` option name to `getUrls`.
-          getUrl: (entry: any) => {
-            console.log('entry')
-          },
-        },
-      ],
-    },
-  },
-  {
     resolve: `gatsby-plugin-google-analytics`,
     options: {
       trackingId: process.env.GOOGLE_ANALYTICS_ID,
