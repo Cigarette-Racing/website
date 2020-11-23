@@ -137,7 +137,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         data-scrollsection
       >
         <img
-          src={difference.backgroundImage?.[0]?.url}
+          src={`${difference.backgroundImage?.[0]?.url}?w=1500&q=30`}
           className="absolute top-0 left-0 h-screen w-full object-cover"
         />
         <div
@@ -166,7 +166,9 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
-        style={{ backgroundImage: `url(${connectBackground})` }}
+        style={{
+          backgroundImage: `url(${connectBackground}?fmt=jpg&q=30&w=2000)`,
+        }}
       >
         <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
         <div className="max-w-8xl sm:mx-auto flex flex-col md:flex-row md:items-center md:justify-around justify-center text-white">
@@ -534,7 +536,11 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
             maxHeight: '421px',
           }}
         >
-          <img src={item.image} alt="" className="object-cover h-full" />
+          <img
+            src={`${item.image}?fm=jpg&w=500&dpr=2&q=30`}
+            alt="news item"
+            className="object-cover h-full"
+          />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}
           </ExternalLink>

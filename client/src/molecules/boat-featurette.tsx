@@ -23,7 +23,7 @@ const BoatFeaturette = ({
   <div
     className="bg-cover relative justify-center md:w-1/2 md:min-h-screen bg-black text-white pt-4 md:pt-0"
     style={{
-      backgroundImage: `url(${backgroundImage})`,
+      backgroundImage: `url(${backgroundImage}?fmt=jpg&q=30 )`,
     }}
   >
     <Link
@@ -38,7 +38,7 @@ const BoatFeaturette = ({
       <div className="relative z-0 h-full">
         <div className="px-2 py-12 md:py-0 md:px-4 flex h-full justify-center">
           <img
-            src={boatImage}
+            src={`${boatImage}`}
             className="w-full self-center max-w-3/4 md:max-w-11/12"
           />
         </div>
