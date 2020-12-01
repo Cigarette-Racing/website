@@ -104,14 +104,14 @@ export const BoatHeader = ({
           />
         ) : (
           <Fragment>
-            <Imgix src={image} className="h-full w-full object-cover" />
+            <img src={image} className="h-full w-full object-cover" />
           </Fragment>
         )}
       </div>
       <div className="hidden bg-black bg-opacity-10 absolute inset-0 md:block"></div>
       <div className="relative z-10">
         <div className="relative flex justify-center mb-8 md:mb-10">
-          {!!boatLogo && <Imgix src={boatLogo} alt={boatNameLong} />}
+          {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
         </div>
         <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
           {stats.map((stat) => (
@@ -227,7 +227,7 @@ export const ImageWithLabel = ({
   alt?: string
 } & AspectRatioProps) => (
   <AspectRatio ratio={ratio} {...rest}>
-    <Imgix
+    <img
       src={src}
       className={clsx('h-full w-full object-cover', imgClassName)}
       alt={alt || ''}
