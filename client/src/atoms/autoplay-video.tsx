@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Img from 'gatsby-image'
+import Imgix from 'react-imgix'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactPlayer from 'react-player'
 
@@ -23,7 +23,7 @@ export const AutoplayVideo = ({
 
   return (
     <AnimatePresence>
-      <img
+      <Imgix
         key="image"
         src={image}
         className="absolute h-full w-full object-cover"
