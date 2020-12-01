@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { createGlobalState } from 'react-use'
 import ReactModal from 'react-modal'
+import Imgix from 'react-imgix'
 import { Wizard, Steps } from '../../molecules/wulfric'
 import { Form, Field } from 'react-final-form'
 import InquiryModalHeader from './inquiry-modal-header'
@@ -83,7 +84,7 @@ export const InquiryModal: React.FC = () => {
             transition={{ stiffness: 100, duration: animationDuration }}
             className="min-h-full bg-gray-0"
           >
-            <img
+            <Imgix
               src={background}
               className="absolute top-0 left-0 h-full w-full object-cover"
               alt=""

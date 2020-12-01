@@ -1,6 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
+import Imgix from 'react-imgix'
 import { FullWidthCarouselBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { ProgressDots } from '../atoms/progress-dots'
@@ -80,7 +81,7 @@ export const FullWidthCarousel = ({
                 videoOptions={{ controls: false }}
               />
             ) : (
-              <img src={media?.image} className="pointer-events-none" />
+              <Imgix src={media?.image} className="pointer-events-none" />
             )}
           </motion.div>
         </AnimatePresence>

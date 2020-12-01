@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import clsx from 'clsx'
 import { Form, Field } from 'react-final-form'
 import { Link, graphql } from 'gatsby'
+import Imgix from 'react-imgix'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { ContentHeader } from '../atoms/content-header'
@@ -30,7 +31,7 @@ const TopVideo = ({ image, videoUrl }: { image: string; videoUrl: string }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   return (
     <AnimatePresence>
-      <img
+      <Imgix
         key="image"
         src={image}
         className="absolute top-0 left-0 h-screen w-full object-cover"
@@ -136,7 +137,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         className="min-h-screen relative flex justify-center items-end"
         data-scrollsection
       >
-        <img
+        <Imgix
           src={difference.backgroundImage?.[0]?.url}
           className="absolute top-0 left-0 h-screen w-full object-cover"
         />
@@ -534,7 +535,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
             maxHeight: '421px',
           }}
         >
-          <img src={item.image} alt="" className="object-cover h-full" />
+          <Imgix src={item.image} alt="" className="object-cover h-full" />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}
           </ExternalLink>
