@@ -156,7 +156,6 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
 
 const extractGallerySectionFromCraft = (boatEntry: any) => {
   const galleryItems = boatEntry?.gallery.map((galleryItem) => {
-    console.log(galleryItem)
     return {
       thumbnail: galleryItem?.image?.[0].thumbnail,
       image: galleryItem?.image?.[0].full,
