@@ -270,7 +270,7 @@ export const SideBleedImage = ({
       })}
     >
       <AspectRatio ratio={ratio}>
-        <Imgix
+        <img
           src={media}
           alt=""
           className={clsx('h-full w-full object-cover', imgClassName)}
@@ -296,7 +296,7 @@ export const PowertrainSectionComponent = ({
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         <div className="px-4 md:mb-12 md:mt-8 lg:mt-16">
-          <Imgix src={heroImage?.[0]?.url} alt="" />
+          <img src={heroImage?.[0]?.url} alt="" />
         </div>
         <div className="md:flex max-w-5xl w-full px-4">
           <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-14 overflow-x-auto">
@@ -487,7 +487,7 @@ export const OrderSectionComponent = ({
       data-section-type="OrderSectionComponent"
     >
       <InPageAnchor title={title} />
-      <Imgix
+      <img
         src={media}
         alt=""
         className="h-full w-full object-cover top-0"
@@ -559,7 +559,7 @@ export const OneColumnImageTextBlockComponent = ({
         />
       ) : (
         <Fragment>
-          <Imgix
+          <img
             src={media.image}
             alt=""
             className="h-full w-full object-cover"
@@ -623,7 +623,7 @@ export const HorizontalImageTextBlockComponent = ({
   layout,
   media,
 }: HorizontalImageTextBlock) => {
-  const image = <Imgix src={media.image.publicURL} />
+  const image = <img src={media.image.publicURL} />
   const text = (
     <div className="px-4 md:px-0 md:w-3/4 lg:w-2/3">
       <TextBlockComponent {...content} />
@@ -721,7 +721,7 @@ export const TwoUpImageBlock = ({
   >
     <div className="sm:first:pr-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <Imgix
+        <img
           src={images[0].singleMedia?.[0].image?.[0].url}
           alt=""
           className="h-full w-full object-cover"
@@ -731,7 +731,7 @@ export const TwoUpImageBlock = ({
     </div>
     <div className="sm:last:pl-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <Imgix
+        <img
           src={images[1].singleMedia?.[0].image?.[0].url}
           alt=""
           className="h-full w-full object-cover"
@@ -762,7 +762,7 @@ export const ThreeUpImageBlock = ({
             className="px-4 mb-16 sm:w-1/3"
           >
             <AspectRatio ratio="3:4">
-              <Imgix
+              <img
                 src={media?.singleMedia?.[0].image?.[0].url}
                 alt={media.alt || ''}
                 className="h-full w-full object-cover"
