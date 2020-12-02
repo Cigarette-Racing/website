@@ -33,6 +33,8 @@ const TopVideo = ({ image, videoUrl }: { image: string; videoUrl: string }) => {
     <AnimatePresence>
       <Imgix
         key="image"
+        width={1000}
+        imgixParams={{ q: 30, dpr: 2 }}
         src={image}
         className="absolute top-0 left-0 h-screen w-full object-cover"
       />
@@ -140,6 +142,8 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         <Imgix
           src={difference.backgroundImage?.[0]?.url}
           className="absolute top-0 left-0 h-screen w-full object-cover"
+          width={1000}
+          imgixParams={{ q: 30, dpr: 2 }}
         />
         <div
           className="absolute top-0 left-0 h-screen w-full"
@@ -167,7 +171,9 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       {/* Stay connected section */}
       <section
         className="relative xl:py-48 py-40 bg-cover bg-center min-h-screen sm:min-h-0 flex sm:block items-center"
-        style={{ backgroundImage: `url(${connectBackground})` }}
+        style={{
+          backgroundImage: `url(${connectBackground}?width=1000&dpr=2&q=30)`,
+        }}
       >
         <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
         <div className="max-w-8xl sm:mx-auto flex flex-col md:flex-row md:items-center md:justify-around justify-center text-white">
@@ -535,7 +541,13 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
             maxHeight: '421px',
           }}
         >
-          <Imgix src={item.image} alt="" className="object-cover h-full" />
+          <Imgix
+            src={item.image}
+            htmlAttributes={{ alt: 'news item' }}
+            width={500}
+            imgixParams={{ q: 30, dpr: 2 }}
+            className="object-cover h-full"
+          />
           <ExternalLink href={item.url} className="absolute top-0 mt-6 ml-4">
             {item.siteName}
           </ExternalLink>
