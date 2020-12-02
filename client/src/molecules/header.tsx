@@ -198,7 +198,7 @@ export const Header = ({}: HeaderProps) => {
             </div>
             <div className="w-1/3 flex justify-center">
               <Link to="/" onClick={() => closeMenu()}>
-                <img src={src} alt="Cigarette Racing" className="h-16 py-2" />
+                <Imgix src={src} alt="Cigarette Racing" className="h-16 py-2" />
                 <span className="sr-only">Home</span>
               </Link>
             </div>
@@ -745,7 +745,7 @@ export const ScrollPrompter = ({ className }: { className?: string }) => {
         className
       )}
     >
-      <img src={arrowWithCircleSvg} alt="" className="transform rotate-180" />
+      <Imgix src={arrowWithCircleSvg} alt="" className="transform rotate-180" />
       <Typography variant="e3" theme="dark" className="whitespace-no-wrap">
         Scroll
       </Typography>

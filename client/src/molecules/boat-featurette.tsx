@@ -37,7 +37,7 @@ const BoatFeaturette = ({
     <div className="flex flex-col h-full relative justify-between lg:justify-end pointer-events-none">
       <div className="relative z-0 h-full">
         <div className="px-2 py-12 md:py-0 md:px-4 flex h-full justify-center">
-          <img
+          <Imgix
             src={boatImage}
             className="w-full self-center max-w-3/4 md:max-w-11/12"
           />
