@@ -23,7 +23,7 @@ export const AutoplayVideo = ({
 
   return (
     <AnimatePresence>
-      <Imgix
+      <img
         key="image"
         src={image}
         className="absolute h-full w-full object-cover"
