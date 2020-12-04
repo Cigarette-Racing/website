@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
+import Imgix from 'react-imgix'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 import { LinkCta } from '../atoms/link-cta'
@@ -23,7 +23,7 @@ const BoatFeaturette = ({
   <div
     className="bg-cover relative justify-center md:w-1/2 md:min-h-screen bg-black text-white pt-4 md:pt-0"
     style={{
-      backgroundImage: `url(${backgroundImage})`,
+      backgroundImage: `url(${backgroundImage}?w=1000&q=30&dpr=2)`,
     }}
   >
     <Link
@@ -37,9 +37,11 @@ const BoatFeaturette = ({
     <div className="flex flex-col h-full relative justify-between lg:justify-end pointer-events-none">
       <div className="relative z-0 h-full">
         <div className="px-2 py-12 md:py-0 md:px-4 flex h-full justify-center">
-          <img
+          <Imgix
             src={boatImage}
             className="w-full self-center max-w-3/4 md:max-w-11/12"
+            imgixParams={{ q: 30, dpr: 2 }}
+            htmlAttributes={{ alt: 'boat featurette' }}
           />
         </div>
       </div>

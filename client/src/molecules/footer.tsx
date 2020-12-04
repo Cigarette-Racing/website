@@ -1,5 +1,6 @@
 import React from 'react'
 import { createGlobalState } from 'react-use'
+import Imgix from 'react-imgix'
 import {
   useMenuState,
   useSelectedSectionState,
@@ -170,9 +171,9 @@ export const Footer = ({}: FooterProps) => {
         })}
       </div>
       <div className="h-32 DISABLED__border-t border-b border-gray-1 flex justify-around items-center">
-        <img
+        <Imgix
           src={src}
-          alt="Cigarette Racing"
+          htmlAttributes={{ alt: 'Cigarette Racing' }}
           className="w-20 hidden sm:block"
         />
         {socialLinks.map((linkProps) => {
@@ -181,7 +182,7 @@ export const Footer = ({}: FooterProps) => {
         })}
       </div>
       <div className="py-12 space-x-12 flex sm:justify-center sm:text-center">
-        <img
+        <Imgix
           src={src}
           alt="Cigarette Racing"
           className="w-20 block sm:hidden"
