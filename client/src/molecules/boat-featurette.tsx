@@ -23,7 +23,7 @@ const BoatFeaturette = ({
   <div
     className="bg-cover relative justify-center md:w-1/2 md:min-h-screen bg-black text-white pt-4 md:pt-0"
     style={{
-      backgroundImage: `url(${backgroundImage})`,
+      backgroundImage: `url(${backgroundImage}?w=1000&q=30&dpr=2)`,
     }}
   >
     <Link
@@ -40,6 +40,8 @@ const BoatFeaturette = ({
           <Imgix
             src={boatImage}
             className="w-full self-center max-w-3/4 md:max-w-11/12"
+            imgixParams={{ q: 30, dpr: 2 }}
+            htmlAttributes={{ alt: 'boat featurette' }}
           />
         </div>
       </div>

@@ -544,7 +544,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
           <Imgix
             src={item.image}
             htmlAttributes={{ alt: 'news item' }}
-            width={500}
+            width={1000}
             imgixParams={{ q: 30, dpr: 2 }}
             className="object-cover h-full"
           />

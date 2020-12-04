@@ -173,7 +173,7 @@ export const Footer = ({}: FooterProps) => {
       <div className="h-32 DISABLED__border-t border-b border-gray-1 flex justify-around items-center">
         <Imgix
           src={src}
-          alt="Cigarette Racing"
+          htmlAttributes={{ alt: 'Cigarette Racing' }}
           className="w-20 hidden sm:block"
         />
         {socialLinks.map((linkProps) => {
