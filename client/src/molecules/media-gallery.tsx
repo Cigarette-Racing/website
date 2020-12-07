@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
-import Imgix from 'react-imgix'
 import { GallerySection, GalleryMedia } from '../types/boat'
 import {
   BoatSection,
@@ -337,7 +336,7 @@ const GalleryImage = ({
   return (
     <div className={`max-w-xs ${className}`} role="button" onClick={onClick}>
       <AspectRatio ratio="1:1" className="relative group">
-        <Imgix
+        <img
           src={media.thumbnail}
           alt={media.alt || 'Gallery image'}
           className="h-full w-full object-cover group-hover:filter-none transition duration-150 ease-in-out"

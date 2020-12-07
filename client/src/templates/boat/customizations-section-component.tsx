@@ -1,6 +1,5 @@
 import React from 'react'
 import Img from 'gatsby-image'
-import Imgix from 'react-imgix'
 import { Typography } from '../../atoms/typography'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { AspectRatio } from '../../atoms/aspect-ratio'
@@ -19,7 +18,7 @@ export const CustomizationsSectionComponent = ({
   return (
     <BoatSection theme="dark" className="py-24 sm:pb-16">
       <InPageAnchor title={title} />
-      <Imgix
+      <img
         src={background}
         alt=""
         className="absolute top-0 h-full w-full object-cover"

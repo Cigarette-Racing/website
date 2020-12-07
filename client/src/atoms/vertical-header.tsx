@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx'
-import Imgix from 'react-imgix'
 import { Typography } from './typography'
 import adornmentDark from '../images/vertical-header-dark.svg'
 import adornmentLight from '../images/vertical-header-light.svg'
@@ -28,7 +27,7 @@ export const VerticalHeader: React.FC<VerticalHeaderProps> = ({
         className
       )}
     >
-      <Imgix src={adornment} alt="" className="transform rotate-180" />
+      <img src={adornment} alt="" className="transform rotate-180" />
       <Typography variant="h4" className="mt-8 whitespace-no-wrap">
         {children}
       </Typography>

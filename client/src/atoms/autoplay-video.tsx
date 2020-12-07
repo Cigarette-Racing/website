@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Imgix from 'react-imgix'
+import Img from 'gatsby-image'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactPlayer from 'react-player'
 
