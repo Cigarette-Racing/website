@@ -4,7 +4,6 @@ import { useLockBodyScroll } from 'react-use'
 import ReactPlayer from 'react-player'
 import { Waypoint } from 'react-waypoint'
 import ReactModal from 'react-modal'
-import Imgix from 'react-imgix'
 import { InPageAnchor } from '../../molecules/in-page-nav'
 import { VerticalHeader } from '../../atoms/vertical-header'
 import { Media } from '../../types/boat'
@@ -47,7 +46,7 @@ export const DiscoverSection = ({
         />
       ) : (
         <Fragment>
-          <Imgix
+          <img
             src={background}
             alt=""
             className="absolute top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
@@ -158,7 +157,7 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
       >
         <div className="waypoint">
           <AspectRatio ratio="21:9">
-            <Imgix
+            <img
               src={media.image}
               alt=""
               className="h-full w-full object-cover"

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
-import Imgix from 'react-imgix'
 import { SliderBlock } from '../types/boat'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import {
@@ -113,7 +112,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
               style={{ left: 'calc(100% + 0px)' }}
               onClick={goNext}
             >
-              <Imgix src={items[nextItemIndex]?.media?.image} />
+              <img src={items[nextItemIndex]?.media?.image} />
               <div
                 className="absolute inset-0"
                 style={{
