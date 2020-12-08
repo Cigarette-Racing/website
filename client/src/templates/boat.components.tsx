@@ -269,7 +269,6 @@ export const SideBleedImage = ({
     className={clsx('relative mx-auto md:mt-16', className)}
     data-block-type="SideBleedImage"
   >
-    {console.log(media)}
     <div
       className={clsx('w-full md:w-11/12 lg:w-10/12 xl:w-9/12', {
         'ml-auto': side === 'right',
