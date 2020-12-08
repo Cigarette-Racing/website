@@ -198,6 +198,17 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractPowertrainDataFromCMS = (boatEntry: any) => {
+  const moreDetailsInfo = boatEntry?.powertrainMoreDetails?.[0]?.children.map(
+    (detail) => {
+      return {
+        layout: detail.horizontalLayout,
+        header: detail.textBlock?.[0]?.header,
+        copy: detail.textBlock?.[0]?.copy,
+        image: detail.singleMedia?.[0].image?.[0]?.url,
+      }
+    }
+  )
+
   const options = boatEntry.powertrainOptions.map((option: any) => {
     const details = option.children.map((detail) => {
       return {
@@ -215,6 +226,10 @@ const extractPowertrainDataFromCMS = (boatEntry: any) => {
   return {
     heroImage: boatEntry.powertrainOptionsHeader,
     options,
+    moreDetails: {
+      buttonText: boatEntry?.powertrainMoreDetails?.[0]?.textBlockHeader,
+      details: moreDetailsInfo,
+    },
   }
 }
 
@@ -440,7 +455,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   options,
                 }
 
-                return <PowertrainSectionComponent {...powertrainData} />
+                return (
+                  <PowertrainSectionComponent
+                    key="powertrain-section"
+                    {...powertrainData}
+                  />
+                )
               }
 
               if (isMoreDetailsBlock(block)) {
@@ -462,7 +482,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
 
                 return (
                   <MoreDetailsBlockComponent
-                    key={Math.random()}
+                    key={`more-details ${block.textBlockHeader}`}
                     {...moreDetailsData}
                   />
                 )
@@ -560,6 +580,29 @@ export const query = graphql`
                 ... on CraftAPI_powertrainOptions_optionDetail_BlockType {
                   textBlockCopy
                   textBlockHeader
+                }
+              }
+            }
+          }
+          powertrainMoreDetails {
+            ... on CraftAPI_powertrainMoreDetails_moreDetails_BlockType {
+              textBlockHeader
+              children {
+                ... on CraftAPI_powertrainMoreDetails_moreDetailsImageCopy_BlockType {
+                  horizontalLayout
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      image {
+                        url(width: 1000)
+                      }
+                    }
+                  }
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
                 }
               }
             }

@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx'
-import Imgix from 'react-imgix'
 import { Typography } from './typography'
 import adornmentDark from '../images/vertical-header-dark.svg'
 import adornmentLight from '../images/vertical-header-light.svg'

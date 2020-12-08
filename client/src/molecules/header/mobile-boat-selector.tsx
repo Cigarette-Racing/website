@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Img from 'gatsby-image'
-import Imgix from 'react-imgix'
 import { Typography } from '../../atoms/typography'
 import { ArrowIcon } from '../../svgs/icons'
 import { ReturnLink } from '../../atoms/return-link'
@@ -78,7 +77,7 @@ export const MobileBoatSelector = ({
       <div {...listenerProps}>
         <div className="-mx-4">
           <AspectRatio ratio="3:2" className="w-screen">
-            <Imgix
+            <img
               src={boats[boatIndex].backgroundMedia.image.publicUrl}
               alt={boats[boatIndex].backgroundMedia.alt || ''}
               className="h-full w-full object-cover"

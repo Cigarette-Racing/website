@@ -233,7 +233,7 @@ export const ImageWithLabel = ({
   alt?: string
 } & AspectRatioProps) => (
   <AspectRatio ratio={ratio} {...rest}>
-    <Imgix
+    <img
       src={src}
       width={1000}
       className={clsx('h-full w-full object-cover', imgClassName)}
@@ -293,15 +293,23 @@ export const SideBleedImage = ({
 export const PowertrainSectionComponent = ({
   heroImage,
   options,
+  moreDetails,
 }: {
   heroImage: string
   options: any
+  moreDetails: any
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>(
     options?.[0]?.name
   )
   return (
-    <BoatSection className="pb-24 overflow-hidden">
+    <BoatSection
+      className={clsx('overflow-hidden', {
+        'pb-0': moreDetails?.details?.length,
+        'pb-24': !moreDetails?.details?.length,
+      })}
+      data-section-type="Powertrain Section"
+    >
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         <div className="px-4 md:mb-12 md:mt-8 lg:mt-16">
@@ -354,6 +362,11 @@ export const PowertrainSectionComponent = ({
           </div>
         </div>
       </div>
+      {!!moreDetails?.details?.length && (
+        <div className="pt-10">
+          <MoreDetailsBlockComponent {...moreDetails} />
+        </div>
+      )}
     </BoatSection>
   )
 }
@@ -475,7 +488,7 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
       </div>
       <AnimatePresence initial={false}>
         <div>
-          {descriptions.slice(1).map((description) => (
+          {descriptions.map((description) => (
             <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
               {description}
             </Typography>
@@ -696,7 +709,7 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
               transition={{ duration: 0.5, ease: 'easeInOut' }}
             >
               <div>
-                {details.map((child: any) => {
+                {details.map((child: any, index: number) => {
                   const extractedBlock: HorizontalImageTextBlock = {
                     type: 'horizontal-image-text',
                     layout: child.layout,
@@ -739,7 +752,7 @@ export const TwoUpImageBlock = ({
   >
     <div className="sm:first:pr-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <Imgix
+        <img
           src={images[0].singleMedia?.[0].image?.[0].url}
           htmlAttributes={{ alt: '', style: { position: 'absolute' } }}
           width={1000}
@@ -780,7 +793,7 @@ export const ThreeUpImageBlock = ({
             className="px-4 mb-16 sm:w-1/3"
           >
             <AspectRatio ratio="3:4">
-              <Imgix
+              <img
                 src={media?.singleMedia?.[0].image?.[0].url}
                 htmlAttributes={{
                   alt: media.alt || '',

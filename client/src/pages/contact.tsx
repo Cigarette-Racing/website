@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { graphql, PageProps } from 'gatsby'
-import Imgix from 'react-imgix'
+import Img from 'gatsby-image'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
@@ -268,7 +268,7 @@ function Section({
 
 function FullBgImage({ image }: { image: string }) {
   return (
-    <Imgix
+    <img
       src={image}
       alt=""
       className="absolute top-0 left-0 h-full w-full object-cover"
