@@ -425,9 +425,11 @@ export const SpecsSectionComponent = ({
             {!!categories.length &&
               categories
                 .find((category) => category.name === selectedCategory)!
-                .specs.map((spec, index) => (
-                  <SpecAccordion key={spec.name + index} {...spec} />
-                ))}
+                .specs.map((spec, index) => {
+                  return (
+                    <SpecAccordion key={`${spec.name} ${index}`} {...spec} />
+                  )
+                })}
           </div>
           {/* <div className="flex justify-center md:justify-start mb-2">
             <InPageCta variant="secondary" theme="light">
@@ -488,7 +490,11 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
       <AnimatePresence initial={false}>
         <div>
           {descriptions.map((description) => (
-            <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
+            <Typography
+              key={description}
+              variant="p3"
+              className="mb-2 text-gray-2 md:w-11/12"
+            >
               {description}
             </Typography>
           ))}
