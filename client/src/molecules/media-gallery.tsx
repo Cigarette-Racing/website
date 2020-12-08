@@ -339,9 +339,12 @@ const GalleryImage = ({
       <AspectRatio ratio="1:1" className="relative group">
         <Imgix
           src={media.thumbnail}
-          alt={media.alt || 'Gallery image'}
+          imgixParams={{ ar: '1:1' }}
+          htmlAttributes={{
+            alt: media.alt || 'Gallery image',
+            style: { position: 'absolute' },
+          }}
           className="h-full w-full object-cover group-hover:filter-none transition duration-150 ease-in-out"
-          style={{ position: 'absolute' }}
         />
         <div className="absolute inset-0 bg-black transform bg-opacity-25 group-hover:bg-opacity-0 transition duration-150 ease-in-out"></div>
         <motion.div

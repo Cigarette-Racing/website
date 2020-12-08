@@ -28,7 +28,7 @@ export const VerticalHeader: React.FC<VerticalHeaderProps> = ({
         className
       )}
     >
-      <Imgix src={adornment} alt="" className="transform rotate-180" />
+      <img src={adornment} alt="" className="transform rotate-180" />
       <Typography variant="h4" className="mt-8 whitespace-no-wrap">
         {children}
       </Typography>

@@ -160,9 +160,9 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
           <AspectRatio ratio="21:9">
             <Imgix
               src={media.image}
-              alt=""
+              imgixParams={{ ar: '21:9' }}
+              htmlAttributes={{ alt: '', style: { position: 'absolute' } }}
               className="h-full w-full object-cover"
-              style={{ position: 'absolute' }}
             />
             <AnimatePresence>
               <motion.div

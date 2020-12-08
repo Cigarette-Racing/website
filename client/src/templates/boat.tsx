@@ -460,7 +460,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
                   details,
                 }
 
-                return <MoreDetailsBlockComponent {...moreDetailsData} />
+                return (
+                  <MoreDetailsBlockComponent
+                    key={Math.random()}
+                    {...moreDetailsData}
+                  />
+                )
               }
 
               return null

@@ -129,7 +129,7 @@ export function findCustomizationsSection(sections: readonly any[]) {
 
 export type OrderSection = {
   type: 'order'
-  media: Media
+  media: string
 } & CommonSectionProps
 
 function isOrderSection(section: any): section is OrderSection {

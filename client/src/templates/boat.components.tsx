@@ -104,14 +104,20 @@ export const BoatHeader = ({
           />
         ) : (
           <Fragment>
-            <Imgix src={image} className="h-full w-full object-cover" />
+            <Imgix
+              width={1000}
+              src={image}
+              className="h-full w-full object-cover"
+            />
           </Fragment>
         )}
       </div>
       <div className="hidden bg-black bg-opacity-10 absolute inset-0 md:block"></div>
       <div className="relative z-10">
         <div className="relative flex justify-center mb-8 md:mb-10">
-          {!!boatLogo && <Imgix src={boatLogo} alt={boatNameLong} />}
+          {!!boatLogo && (
+            <Imgix width={120} src={boatLogo} alt={boatNameLong} />
+          )}
         </div>
         <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
           {stats.map((stat) => (
@@ -229,6 +235,7 @@ export const ImageWithLabel = ({
   <AspectRatio ratio={ratio} {...rest}>
     <Imgix
       src={src}
+      width={1000}
       className={clsx('h-full w-full object-cover', imgClassName)}
       alt={alt || ''}
       style={{ position: 'absolute' }}
@@ -253,7 +260,7 @@ export const SideBleedImage = ({
 }: {
   className?: string
   imgClassName?: string
-  media: Media
+  media: string
   ratio?: Ratio
   side: Side
   size?: 'default' | 'large'
@@ -262,6 +269,7 @@ export const SideBleedImage = ({
     className={clsx('relative mx-auto md:mt-16', className)}
     data-block-type="SideBleedImage"
   >
+    {console.log(media)}
     <div
       className={clsx('w-full md:w-11/12 lg:w-10/12 xl:w-9/12', {
         'ml-auto': side === 'right',
@@ -271,10 +279,11 @@ export const SideBleedImage = ({
     >
       <AspectRatio ratio={ratio}>
         <Imgix
+          width={1000}
+          imgixParams={{ ar: ratio }}
           src={media}
-          alt=""
+          htmlAttributes={{ alt: '', style: { position: 'absolute' } }}
           className={clsx('h-full w-full object-cover', imgClassName)}
-          style={{ position: 'absolute' }}
         />
       </AspectRatio>
     </div>
@@ -296,7 +305,12 @@ export const PowertrainSectionComponent = ({
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         <div className="px-4 md:mb-12 md:mt-8 lg:mt-16">
-          <Imgix src={heroImage?.[0]?.url} alt="" />
+          <Imgix
+            width={1000}
+            src={heroImage?.[0]?.url}
+            htmlAttributes={{ alt: '' }}
+            imgixParams={{ ar: '3:2' }}
+          />
         </div>
         <div className="md:flex max-w-5xl w-full px-4">
           <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-14 overflow-x-auto">
@@ -488,10 +502,10 @@ export const OrderSectionComponent = ({
     >
       <InPageAnchor title={title} />
       <Imgix
+        width={1000}
         src={media}
-        alt=""
+        htmlAttributes={{ alt: '', style: { position: 'absolute' } }}
         className="h-full w-full object-cover top-0"
-        style={{ position: 'absolute' }}
       />
       <div className="absolute inset-0 bg-black bg-opacity-10"></div>
       <div className="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
@@ -560,10 +574,11 @@ export const OneColumnImageTextBlockComponent = ({
       ) : (
         <Fragment>
           <Imgix
+            width={1000}
             src={media.image}
-            alt=""
+            htmlAttributes={{ alt: '', style: { position: 'absolute' } }}
+            imgixParams={{ ar: '3:2' }}
             className="h-full w-full object-cover"
-            style={{ position: 'absolute' }}
           />
         </Fragment>
       )}
@@ -592,6 +607,7 @@ export const TwoColumnImageTextBlockComponent = ({
       />
       <div className="px-4 lg:px-0 mb-12 md:mb-0">
         <ImageWithLabel
+          data-component-type="Image With Label"
           ratio="3:4"
           src={children[0].singleMedia?.[0].image?.[0].url}
           alt={children[0].singleMedia?.[0].alt}
@@ -623,7 +639,7 @@ export const HorizontalImageTextBlockComponent = ({
   layout,
   media,
 }: HorizontalImageTextBlock) => {
-  const image = <Imgix src={media.image.publicURL} />
+  const image = <Imgix width={1000} src={media.image.publicURL} />
   const text = (
     <div className="px-4 md:px-0 md:w-3/4 lg:w-2/3">
       <TextBlockComponent {...content} />
@@ -646,7 +662,6 @@ export const HorizontalImageTextBlockComponent = ({
 
 export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
   const [isOpen, toggleIsOpen] = useToggle(false)
-  const isClickable = details.length > 1
   return (
     <div data-block-type="MoreDetailsBlockComponent">
       <div className="flex justify-center mb-10 md:mb-20">
@@ -696,7 +711,10 @@ export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
                     },
                   }
                   return (
-                    <HorizontalImageTextBlockComponent {...extractedBlock} />
+                    <HorizontalImageTextBlockComponent
+                      key={child.header}
+                      {...extractedBlock}
+                    />
                   )
                 })}
               </div>
@@ -723,19 +741,19 @@ export const TwoUpImageBlock = ({
       <AspectRatio ratio="3:4">
         <Imgix
           src={images[0].singleMedia?.[0].image?.[0].url}
-          alt=""
+          htmlAttributes={{ alt: '', style: { position: 'absolute' } }}
+          width={1000}
           className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
         />
       </AspectRatio>
     </div>
     <div className="sm:last:pl-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
         <Imgix
+          width={1000}
           src={images[1].singleMedia?.[0].image?.[0].url}
-          alt=""
+          htmlAttributes={{ alt: '', style: { position: 'absolute' } }}
           className="h-full w-full object-cover"
-          style={{ position: 'absolute' }}
         />
       </AspectRatio>
     </div>
@@ -764,9 +782,13 @@ export const ThreeUpImageBlock = ({
             <AspectRatio ratio="3:4">
               <Imgix
                 src={media?.singleMedia?.[0].image?.[0].url}
-                alt={media.alt || ''}
+                htmlAttributes={{
+                  alt: media.alt || '',
+                  style: { position: 'absolute' },
+                }}
+                imgixParams={{ ar: '3:4' }}
+                width={1000}
                 className="h-full w-full object-cover"
-                style={{ position: 'absolute' }}
               />
             </AspectRatio>
           </div>
