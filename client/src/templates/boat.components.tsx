@@ -751,7 +751,7 @@ export const TwoUpImageBlock = ({
   >
     <div className="sm:first:pr-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
-        <img
+        <Imgix
           src={images[0].singleMedia?.[0].image?.[0].url}
           htmlAttributes={{ alt: '', style: { position: 'absolute' } }}
           width={1000}
@@ -792,7 +792,7 @@ export const ThreeUpImageBlock = ({
             className="px-4 mb-16 sm:w-1/3"
           >
             <AspectRatio ratio="3:4">
-              <img
+              <Imgix
                 src={media?.singleMedia?.[0].image?.[0].url}
                 htmlAttributes={{
                   alt: media.alt || '',
