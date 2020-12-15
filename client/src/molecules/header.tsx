@@ -546,13 +546,13 @@ function BackgroundImages({
 }) {
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
-      <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl overflow-hidden flex">
+      <div className="w-full h-full overflow-hidden flex">
         <AspectRatio ratio="3:2" className="w-screen">
           <AnimatePresence>
             <motion.img
               key={boatIndex}
               {...imageAnimations}
-              src={boats[boatIndex]?.backgroundMedia.image.publicUrl}
+              src={`${boats[boatIndex]?.backgroundMedia.image.publicUrl}?q=30&w=2000`}
               alt={boats[boatIndex]?.backgroundMedia.alt || ''}
               className="absolute h-full w-full object-cover"
             />
@@ -561,7 +561,7 @@ function BackgroundImages({
         </AspectRatio>
       </div>
       <div
-        className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
+        className="absolute w-full h-full"
         style={{ right: 'calc(100% - 4vw)' }}
       >
         <AspectRatio ratio="3:2" className="w-screen max-w-full">
@@ -569,7 +569,7 @@ function BackgroundImages({
             <motion.img
               key={prevIndex}
               {...imageAnimations}
-              src={boats[prevIndex]?.backgroundMedia.image.publicUrl}
+              src={`${boats[prevIndex]?.backgroundMedia.image.publicUrl}?q=30&w=2000`}
               alt={boats[prevIndex]?.backgroundMedia.alt || ''}
               className="absolute h-full w-full object-cover"
             />
@@ -578,7 +578,7 @@ function BackgroundImages({
         </AspectRatio>
       </div>
       <div
-        className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
+        className="absolute w-full h-full"
         style={{ left: 'calc(100% - 4vw)' }}
       >
         <AspectRatio ratio="3:2" className="w-screen max-w-full">
@@ -586,7 +586,7 @@ function BackgroundImages({
             <motion.img
               key={nextIndex}
               {...imageAnimations}
-              src={boats[nextIndex]?.backgroundMedia.image.publicUrl}
+              src={`${boats[nextIndex]?.backgroundMedia.image.publicUrl}?q=30&w=2000`}
               alt={boats[nextIndex]?.backgroundMedia.alt || ''}
               className="absolute h-full w-full object-cover"
             />
