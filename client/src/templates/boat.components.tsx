@@ -131,7 +131,7 @@ export const BoatHeader = ({
             onClickCta(true)
           }}
         >
-          Request Info
+          Request Information
         </InPageCta>
       </div>
       <div className="hidden md:block fixed bottom-0 left-0 w-full mb-8 pointer-events-none">
@@ -521,7 +521,7 @@ export const OrderSectionComponent = ({
                 onClickCta(true)
               }}
             >
-              Request Info
+              Request Information
             </InPageCta>
           </div>
         </div>
