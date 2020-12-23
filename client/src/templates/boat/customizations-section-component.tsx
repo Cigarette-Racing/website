@@ -1,5 +1,5 @@
 import React from 'react'
-import Img from 'gatsby-image'
+import { Slider } from '../../molecules/slider'
 import { Typography } from '../../atoms/typography'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { AspectRatio } from '../../atoms/aspect-ratio'
@@ -13,6 +13,7 @@ export const CustomizationsSectionComponent = ({
   title,
   options,
 }: CustomizationsSection) => {
+  console.log('custom section')
   const { customizationSection: background } = useBackgroundsQuery()
 
   return (
@@ -39,15 +40,7 @@ export const CustomizationsSectionComponent = ({
         </Typography>
       </div>
       <div className="relative max-w-7xl mx-auto">
-        <div className="flex space-x-6 px-4 overflow-hidden mb-12 sm:mb-20">
-          {options.map(({ media, content }, index) => (
-            <BespokeOptionCard
-              key={content.header + index}
-              media={media}
-              {...content}
-            />
-          ))}
-        </div>
+        <Slider key={`bespoke-slider`} items={options} />
         <div className="px-4 flex sm:justify-between items-center">
           <div className="hidden sm:block">
             <InPageCta variant="secondary" theme="dark">
@@ -74,11 +67,11 @@ const BespokeOptionCard = ({
       <AspectRatio
         ratio="1:1"
         sm="16:9"
-        className="relative w-56 sm:w-auto max-w-lg mb-6"
+        className="relative sm:w-auto w-56 max-w-lg mb-6"
       >
-        <Img
-          fluid={media.image.childImageSharp?.fluid}
-          alt={media.alt || ''}
+        <img
+          src={media.image}
+          alt={media.image.alt || ''}
           className="h-full w-full object-cover"
           style={{ position: 'absolute' }}
         />

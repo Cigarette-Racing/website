@@ -172,6 +172,23 @@ const extractGallerySectionFromCraft = (boatEntry: any) => {
   }
 }
 
+const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
+  const options = boatEntry?.bespokeOptions?.map((option: any) => {
+    console.log(option.media)
+    return {
+      media: {
+        image: option.singleMedia?.[0].image?.[0].url,
+      },
+      content: { header: 'header', copy: 'lorem' },
+    }
+  })
+
+  return {
+    title: 'Make it Yours',
+    options,
+  }
+}
+
 const extractSpecsSectionFromCraft = (boatEntry: any) => {
   const categories = boatEntry.boatSpecs.map((specCategory) => {
     const specs = specCategory.children.map((specData) => {
@@ -275,7 +292,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   )
   const specsData = extractSpecsSectionFromCraft(boatEntry)
   const galleryData = extractGallerySectionFromCraft(boatEntry)
-  const customizationsData = findCustomizationsSection([])
+  const customizationsData = extractCustomizationsSectionFromCraft(boatEntry)
   const orderData = extractOrderDataFromCraft(boatEntry)
   const powertrainData = extractPowertrainDataFromCMS(boatEntry)
 
@@ -504,6 +521,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       {galleryData && !!galleryData.gallery.length && (
         <MediaGallery {...galleryData} />
       )}
+      {console.log(customizationsData)}
       {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
       )}
@@ -566,6 +584,25 @@ export const query = graphql`
               statLabel
               statText
               statPercentage
+            }
+          }
+          bespokeOptions {
+            ... on CraftAPI_bespokeOptions_option_BlockType {
+              textBlock {
+                ... on CraftAPI_textBlock_BlockType {
+                  copy
+                  header
+                }
+              }
+              singleMedia {
+                ... on CraftAPI_singleMedia_BlockType {
+                  image {
+                    url(width: 1000)
+                  }
+                  label
+                  title
+                }
+              }
             }
           }
           powertrainOptionsHeader {
