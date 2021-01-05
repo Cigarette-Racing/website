@@ -547,7 +547,7 @@ function BackgroundImages({
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
       <div className="w-full h-full overflow-hidden flex">
-        <AspectRatio ratio="3:2" className="w-screen">
+        <div className="w-screen">
           <AnimatePresence>
             <motion.img
               key={boatIndex}
@@ -558,35 +558,7 @@ function BackgroundImages({
             />
           </AnimatePresence>
           <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
-        </AspectRatio>
-      </div>
-      <div className="absolute w-full h-full" style={{ right: '-100%' }}>
-        <AspectRatio ratio="3:2" className="w-screen max-w-full">
-          <AnimatePresence>
-            <motion.img
-              key={prevIndex}
-              {...imageAnimations}
-              src={`${boats[prevIndex]?.backgroundMedia.image.publicUrl}?q=30&w=2000`}
-              alt={boats[prevIndex]?.backgroundMedia.alt || ''}
-              className="absolute h-full w-full object-cover"
-            />
-          </AnimatePresence>
-          <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
-        </AspectRatio>
-      </div>
-      <div className="absolute w-full h-full" style={{ left: '-100%' }}>
-        <AspectRatio ratio="3:2" className="w-screen max-w-full">
-          <AnimatePresence>
-            <motion.img
-              key={nextIndex}
-              {...imageAnimations}
-              src={`${boats[nextIndex]?.backgroundMedia.image.publicUrl}?q=30&w=2000`}
-              alt={boats[nextIndex]?.backgroundMedia.alt || ''}
-              className="absolute h-full w-full object-cover"
-            />
-          </AnimatePresence>
-          <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
-        </AspectRatio>
+        </div>
       </div>
     </div>
   )
