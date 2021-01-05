@@ -182,13 +182,19 @@ export const Header = ({}: HeaderProps) => {
         >
           <div className="max-w-7xl mx-auto h-full px-4 flex justify-between items-center">
             <div className="w-1/3 flex justify-start">
-              {(isMobileMenu || (!isAtTop && !isHovering)) && !isMenuOpen ? (
+              {isMobileMenu && !isMenuOpen ? (
                 <button
-                  className="p-2 text-2xl"
+                  className="flex items-center p-2 text-2xl"
                   onClick={() => setIsMenuOpen(true)}
                   aria-label="Toggle menu"
                 >
                   <MenuIcon />
+                  <Typography
+                    variant="e2"
+                    className="pl-2 whitespace-no-wrap md:hidden"
+                  >
+                    Menu
+                  </Typography>
                 </button>
               ) : (
                 <div className="flex space-x-4 xl:space-x-6">
@@ -203,7 +209,8 @@ export const Header = ({}: HeaderProps) => {
               </Link>
             </div>
             <div className="w-1/3 flex justify-end">
-              {(isMobileMenu || (!isAtTop && !isHovering)) && !isMenuOpen ? (
+              {console.log(isMobileMenu)}
+              {isMobileMenu && !isMenuOpen ? (
                 <div>
                   <Link to="/contact" onClick={() => closeMenu()}>
                     <Typography variant="e2" className="p-2 whitespace-no-wrap">
@@ -213,6 +220,7 @@ export const Header = ({}: HeaderProps) => {
                 </div>
               ) : (
                 <div className="flex space-x-4 xl:space-x-6">
+                  {console.log(rightLinks)}
                   {rightLinks.map(renderLinks)}
                 </div>
               )}
