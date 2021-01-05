@@ -1,20 +1,55 @@
 import React from 'react'
-import { Slider } from '../../molecules/slider'
+// import { Slider } from '../../molecules/slider'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import { ArrowIcon } from '../../svgs/icons'
+import { CircleButton } from '../../atoms/circle-button'
 import { Typography } from '../../atoms/typography'
 import { InPageCta } from '../../atoms/in-page-cta'
 import { AspectRatio } from '../../atoms/aspect-ratio'
 import { InPageAnchor } from '../../molecules/in-page-nav'
 import { Media, CustomizationsSection, TextBlock } from '../../types/boat'
 import { LinkCta } from '../../atoms/link-cta'
-import { BoatSection, CarouselButtons } from '../boat.components'
+import { BoatSection } from '../boat.components'
 import { useBackgroundsQuery } from '../../services/backgrounds'
+
+const PrevArrow = ({ className, style, onClick }) => {
+  return (
+    <CircleButton
+      icon={ArrowIcon}
+      variant="secondary"
+      iconClassName="transform rotate-180"
+      onClick={onClick}
+      aria-label="Previous"
+    />
+  )
+}
+
+const NextArrow = ({ className, style, onClick }) => {
+  return (
+    <CircleButton
+      icon={ArrowIcon}
+      variant="secondary"
+      iconClassName="transform rotate-180"
+      onClick={onClick}
+      aria-label="Previous"
+    />
+  )
+}
 
 export const CustomizationsSectionComponent = ({
   title,
   options,
 }: CustomizationsSection) => {
-  console.log('custom section')
   const { customizationSection: background } = useBackgroundsQuery()
+
+  const sliderSettings = {
+    slidesToShow: 2,
+    arrows: false,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  }
 
   return (
     <BoatSection theme="dark" className="py-24 sm:pb-16">
@@ -40,14 +75,43 @@ export const CustomizationsSectionComponent = ({
         </Typography>
       </div>
       <div className="relative max-w-7xl mx-auto">
-        <Slider key={`bespoke-slider`} items={options} />
+        <Slider {...sliderSettings}>
+          {options.map((option, index) => {
+            return (
+              <BespokeOptionCard
+                key={`bespoke-option-${index}`}
+                media={option.media}
+                header={option.content.header}
+                copy={option.content.copy}
+              />
+            )
+          })}
+        </Slider>
         <div className="px-4 flex sm:justify-between items-center">
           <div className="hidden sm:block">
             <InPageCta variant="secondary" theme="dark">
               Explore Bespoke Studio
             </InPageCta>
           </div>
-          <CarouselButtons className="mb-12 sm:mb-0" />
+          <div>
+            <CircleButton
+              icon={ArrowIcon}
+              theme={theme}
+              variant="secondary"
+              iconClassName="transform rotate-180"
+              onClick={onClickPrev}
+              disabled={disabledPrev}
+              aria-label="Previous"
+            />
+            <CircleButton
+              icon={ArrowIcon}
+              theme={theme}
+              variant="secondary"
+              onClick={onClickNext}
+              disabled={disabledNext}
+              aria-label="Next"
+            />
+          </div>
         </div>
         <LinkCta theme="dark" className="mx-auto sm:hidden">
           Explore Bespoke Possibilities

@@ -174,7 +174,6 @@ const extractGallerySectionFromCraft = (boatEntry: any) => {
 
 const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
   const options = boatEntry?.bespokeOptions?.map((option: any) => {
-    console.log(option.media)
     return {
       media: {
         image: option.singleMedia?.[0].image?.[0].url,
