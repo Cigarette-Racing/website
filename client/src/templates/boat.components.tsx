@@ -126,11 +126,7 @@ export const BoatHeader = ({
         </div>
       </div>
       <div className="relative mb-4 flex justify-center hidden">
-        <InPageCta
-          onClick={() => {
-            onClickCta(true)
-          }}
-        >
+        <InPageCta href="/contact" link>
           Request Information
         </InPageCta>
       </div>
@@ -516,11 +512,7 @@ export const OrderSectionComponent = ({
             {boatNameLong}
           </Typography>
           <div className="flex justify-center">
-            <InPageCta
-              onClick={() => {
-                onClickCta(true)
-              }}
-            >
+            <InPageCta href="/contact" link>
               Request Information
             </InPageCta>
           </div>
