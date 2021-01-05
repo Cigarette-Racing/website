@@ -560,7 +560,7 @@ function BackgroundImages({
           <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
         </AspectRatio>
       </div>
-      <div className="absolute w-full h-full" style={{ right: '0' }}>
+      <div className="absolute w-full h-full" style={{ right: '-100%' }}>
         <AspectRatio ratio="3:2" className="w-screen max-w-full">
           <AnimatePresence>
             <motion.img
@@ -574,7 +574,7 @@ function BackgroundImages({
           <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
         </AspectRatio>
       </div>
-      <div className="absolute w-full h-full" style={{ left: '0' }}>
+      <div className="absolute w-full h-full" style={{ left: '-100%' }}>
         <AspectRatio ratio="3:2" className="w-screen max-w-full">
           <AnimatePresence>
             <motion.img
