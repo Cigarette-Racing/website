@@ -123,3 +123,7 @@ Utilities
   @apply bg-opacity-50 backdrop-blur-4;
   background-image: none;
 }
+
+.slick-slide.faded {
+  opacity: 0.5;
+}

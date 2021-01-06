@@ -178,7 +178,10 @@ const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
       media: {
         image: option.singleMedia?.[0].image?.[0].url,
       },
-      content: { header: 'header', copy: 'lorem' },
+      content: {
+        header: option.textBlock?.[0]?.header,
+        copy: option.textBlock?.[0]?.copy,
+      },
     }
   })
 
@@ -520,7 +523,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       {galleryData && !!galleryData.gallery.length && (
         <MediaGallery {...galleryData} />
       )}
-      {console.log(customizationsData)}
       {customizationsData && (
         <CustomizationsSectionComponent {...customizationsData} />
       )}
@@ -589,8 +591,8 @@ export const query = graphql`
             ... on CraftAPI_bespokeOptions_option_BlockType {
               textBlock {
                 ... on CraftAPI_textBlock_BlockType {
-                  copy
                   header
+                  copy
                 }
               }
               singleMedia {

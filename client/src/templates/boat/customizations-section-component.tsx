@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 // import { Slider } from '../../molecules/slider'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -6,11 +6,9 @@ import 'slick-carousel/slick/slick-theme.css'
 import { ArrowIcon } from '../../svgs/icons'
 import { CircleButton } from '../../atoms/circle-button'
 import { Typography } from '../../atoms/typography'
-import { InPageCta } from '../../atoms/in-page-cta'
 import { AspectRatio } from '../../atoms/aspect-ratio'
 import { InPageAnchor } from '../../molecules/in-page-nav'
 import { Media, CustomizationsSection, TextBlock } from '../../types/boat'
-import { LinkCta } from '../../atoms/link-cta'
 import { BoatSection } from '../boat.components'
 import { useBackgroundsQuery } from '../../services/backgrounds'
 
@@ -44,11 +42,51 @@ export const CustomizationsSectionComponent = ({
 }: CustomizationsSection) => {
   const { customizationSection: background } = useBackgroundsQuery()
 
+  const sliderRef = useRef()
+
   const sliderSettings = {
-    slidesToShow: 2,
+    ref: sliderRef,
+    slidesToShow: 3,
     arrows: false,
+    touchThreshold: 10,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    onInit: () => {
+      // document.querySelectorAll('.slick-active')[2].classList.add('faded')
+    },
+    beforeChange: (oldIndex, newIndex) => {
+      // console.log(oldIndex, newIndex)
+      // document.querySelector('.slick-active.faded').classList.remove('faded')
+    },
+    afterChange: () => {
+      console.log('after change!', sliderRef.current)
+    },
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ],
   }
 
   return (
@@ -74,64 +112,62 @@ export const CustomizationsSectionComponent = ({
           Bespoke Possibilities
         </Typography>
       </div>
-      <div className="relative max-w-7xl mx-auto">
-        <Slider {...sliderSettings}>
-          {options.map((option, index) => {
-            return (
-              <BespokeOptionCard
-                key={`bespoke-option-${index}`}
-                media={option.media}
-                header={option.content.header}
-                copy={option.content.copy}
-              />
-            )
-          })}
-        </Slider>
-        <div className="px-4 flex sm:justify-between items-center">
-          <div className="hidden sm:block">
-            <InPageCta variant="secondary" theme="dark">
-              Explore Bespoke Studio
-            </InPageCta>
-          </div>
-          <div>
-            <CircleButton
-              icon={ArrowIcon}
-              theme={theme}
-              variant="secondary"
-              iconClassName="transform rotate-180"
-              onClick={onClickPrev}
-              disabled={disabledPrev}
-              aria-label="Previous"
-            />
-            <CircleButton
-              icon={ArrowIcon}
-              theme={theme}
-              variant="secondary"
-              onClick={onClickNext}
-              disabled={disabledNext}
-              aria-label="Next"
-            />
-          </div>
+      <div
+        className="relative overflow-hidden pl-16 -mt-32"
+        style={{ width: `calc(100% + 280px)` }}
+      >
+        <div className="slider-wrapper">
+          <Slider {...sliderSettings}>
+            {options.map((option, index) => {
+              return (
+                <BespokeOptionCard
+                  index={index}
+                  key={`bespoke-option-${index}`}
+                  media={option.media}
+                  header={option.content.header}
+                  copy={option.content.copy}
+                />
+              )
+            })}
+          </Slider>
         </div>
-        <LinkCta theme="dark" className="mx-auto sm:hidden">
-          Explore Bespoke Possibilities
-        </LinkCta>
+      </div>
+      <div className="relative flex justify-end px-12 mt-12">
+        <CircleButton
+          className="mr-4"
+          icon={ArrowIcon}
+          variant="secondary"
+          iconClassName="transform rotate-180"
+          onClick={() => {
+            sliderRef.current.slickPrev()
+          }}
+          aria-label="Previous"
+        />
+        <CircleButton
+          icon={ArrowIcon}
+          variant="secondary"
+          onClick={() => {
+            sliderRef.current.slickNext()
+          }}
+          aria-label="Next"
+        />
       </div>
     </BoatSection>
   )
 }
 
 const BespokeOptionCard = ({
+  index,
   media,
   header,
   copy,
 }: { media: Media } & TextBlock) => {
   return (
-    <div className="w-56 sm:w-auto max-w-lg">
+    <div data-index={index} className="w-56 sm:w-auto max-w-10xl px-4">
       <AspectRatio
         ratio="1:1"
         sm="16:9"
-        className="relative sm:w-auto w-56 max-w-lg mb-6"
+        className="relative sm:w-auto w-56 max-w-10xl mb-6"
       >
         <img
           src={media.image}
