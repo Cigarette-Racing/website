@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+import { useToggle, useMedia, useWindowSize } from 'react-use'
 // import { Slider } from '../../molecules/slider'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -42,6 +43,10 @@ export const CustomizationsSectionComponent = ({
 }: CustomizationsSection) => {
   const { customizationSection: background } = useBackgroundsQuery()
 
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+
+  const isMobile = useMedia('(max-width: 767px)')
+
   const sliderRef = useRef()
 
   const sliderSettings = {
@@ -53,13 +58,18 @@ export const CustomizationsSectionComponent = ({
     prevArrow: <PrevArrow />,
     onInit: () => {
       // document.querySelectorAll('.slick-active')[2].classList.add('faded')
+      console.log(sliderRef)
+      // get last instead of 3rd one
     },
     beforeChange: (oldIndex, newIndex) => {
-      // console.log(oldIndex, newIndex)
+      console.log(oldIndex, newIndex)
+
+      // console.log(document.querySelectorAll('.slick-active'))
       // document.querySelector('.slick-active.faded').classList.remove('faded')
+      // document.querySelectorAll('.slick-active')[2].classList.add('faded')
     },
     afterChange: () => {
-      console.log('after change!', sliderRef.current)
+      // console.log(document.querySelectorAll('.slick-active'))
     },
     responsive: [
       {
@@ -89,6 +99,8 @@ export const CustomizationsSectionComponent = ({
     ],
   }
 
+  const sliderWidth = !isMobile ? `calc(100% + 280px)` : 'auto'
+
   return (
     <BoatSection theme="dark" className="py-24 sm:pb-16">
       <InPageAnchor title={title} />
@@ -113,8 +125,8 @@ export const CustomizationsSectionComponent = ({
         </Typography>
       </div>
       <div
-        className="relative overflow-hidden pl-16 -mt-32"
-        style={{ width: `calc(100% + 280px)` }}
+        className="relative overflow-hidden lg:pl-16 -mt-16"
+        style={{ width: sliderWidth }}
       >
         <div className="slider-wrapper">
           <Slider {...sliderSettings}>
@@ -132,7 +144,7 @@ export const CustomizationsSectionComponent = ({
           </Slider>
         </div>
       </div>
-      <div className="relative flex justify-end px-12 mt-12">
+      <div className="relative flex justify-end px-12 mt-20">
         <CircleButton
           className="mr-4"
           icon={ArrowIcon}
@@ -161,13 +173,15 @@ const BespokeOptionCard = ({
   media,
   header,
   copy,
-}: { media: Media } & TextBlock) => {
+}: { index: number; media: Media } & TextBlock) => {
   return (
-    <div data-index={index} className="w-56 sm:w-auto max-w-10xl px-4">
+    <div
+      data-index={index}
+      className="sm:max-w-full sm:w-auto lg:max-w-10xl px-4"
+    >
       <AspectRatio
         ratio="1:1"
-        sm="16:9"
-        className="relative sm:w-auto w-56 max-w-10xl mb-6"
+        className="relative sm:max-w-full sm:w-auto lg:max-w-10xl mb-6"
       >
         <img
           src={media.image}
