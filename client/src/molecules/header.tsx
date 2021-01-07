@@ -182,13 +182,19 @@ export const Header = ({}: HeaderProps) => {
         >
           <div className="max-w-7xl mx-auto h-full px-4 flex justify-between items-center">
             <div className="w-1/3 flex justify-start">
-              {(isMobileMenu || (!isAtTop && !isHovering)) && !isMenuOpen ? (
+              {isMobileMenu && !isMenuOpen ? (
                 <button
-                  className="p-2 text-2xl"
+                  className="flex items-center p-2 text-2xl"
                   onClick={() => setIsMenuOpen(true)}
                   aria-label="Toggle menu"
                 >
                   <MenuIcon />
+                  <Typography
+                    variant="e2"
+                    className="pl-2 whitespace-no-wrap md:hidden"
+                  >
+                    Menu
+                  </Typography>
                 </button>
               ) : (
                 <div className="flex space-x-4 xl:space-x-6">
@@ -203,7 +209,8 @@ export const Header = ({}: HeaderProps) => {
               </Link>
             </div>
             <div className="w-1/3 flex justify-end">
-              {(isMobileMenu || (!isAtTop && !isHovering)) && !isMenuOpen ? (
+              {console.log(isMobileMenu)}
+              {isMobileMenu && !isMenuOpen ? (
                 <div>
                   <Link to="/contact" onClick={() => closeMenu()}>
                     <Typography variant="e2" className="p-2 whitespace-no-wrap">
@@ -213,6 +220,7 @@ export const Header = ({}: HeaderProps) => {
                 </div>
               ) : (
                 <div className="flex space-x-4 xl:space-x-6">
+                  {console.log(rightLinks)}
                   {rightLinks.map(renderLinks)}
                 </div>
               )}
@@ -546,53 +554,19 @@ function BackgroundImages({
 }) {
   return (
     <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center">
-      <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl overflow-hidden flex">
-        <AspectRatio ratio="3:2" className="w-screen">
+      <div className="w-full h-full overflow-hidden flex">
+        <div className="w-screen">
           <AnimatePresence>
             <motion.img
               key={boatIndex}
               {...imageAnimations}
-              src={boats[boatIndex]?.backgroundMedia.image.publicUrl}
+              src={`${boats[boatIndex]?.backgroundMedia.image.publicUrl}?q=30&w=2000`}
               alt={boats[boatIndex]?.backgroundMedia.alt || ''}
               className="absolute h-full w-full object-cover"
             />
           </AnimatePresence>
           <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
-        </AspectRatio>
-      </div>
-      <div
-        className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
-        style={{ right: 'calc(100% - 4vw)' }}
-      >
-        <AspectRatio ratio="3:2" className="w-screen max-w-full">
-          <AnimatePresence>
-            <motion.img
-              key={prevIndex}
-              {...imageAnimations}
-              src={boats[prevIndex]?.backgroundMedia.image.publicUrl}
-              alt={boats[prevIndex]?.backgroundMedia.alt || ''}
-              className="absolute h-full w-full object-cover"
-            />
-          </AnimatePresence>
-          <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
-        </AspectRatio>
-      </div>
-      <div
-        className="absolute max-w-xl lg:max-w-2xl xl:max-w-3xl"
-        style={{ left: 'calc(100% - 4vw)' }}
-      >
-        <AspectRatio ratio="3:2" className="w-screen max-w-full">
-          <AnimatePresence>
-            <motion.img
-              key={nextIndex}
-              {...imageAnimations}
-              src={boats[nextIndex]?.backgroundMedia.image.publicUrl}
-              alt={boats[nextIndex]?.backgroundMedia.alt || ''}
-              className="absolute h-full w-full object-cover"
-            />
-          </AnimatePresence>
-          <div className="bg-black opacity-50 absolute inset-0 z-10"></div>
-        </AspectRatio>
+        </div>
       </div>
     </div>
   )
