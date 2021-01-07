@@ -523,7 +523,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       {galleryData && !!galleryData.gallery.length && (
         <MediaGallery {...galleryData} />
       )}
-      {customizationsData && (
+      {customizationsData && customizationsData.options.length > 0 && (
         <CustomizationsSectionComponent {...customizationsData} />
       )}
       {orderData && (
