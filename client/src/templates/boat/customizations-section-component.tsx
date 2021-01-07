@@ -83,23 +83,17 @@ export const CustomizationsSectionComponent = ({
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
+
       // You can unslick at a given breakpoint now by adding:
       // settings: "unslick"
       // instead of a settings object
     ],
   }
 
-  const sliderWidth = !isMobile ? `calc(100% + 280px)` : 'auto'
+  const sliderWidth = !isMobile ? `calc(100% + 280px)` : `calc(100% + 180px)`
 
   return (
     <BoatSection theme="dark" className="py-24 sm:pb-16">
@@ -144,7 +138,7 @@ export const CustomizationsSectionComponent = ({
           </Slider>
         </div>
       </div>
-      <div className="relative flex justify-end px-12 mt-20">
+      <div className="relative flex lg:justify-end pl-4 lg:px-12 mt-10 lg:mt-20">
         <CircleButton
           className="mr-4"
           icon={ArrowIcon}
