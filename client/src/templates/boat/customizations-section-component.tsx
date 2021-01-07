@@ -171,10 +171,10 @@ const BespokeOptionCard = ({
   return (
     <div
       data-index={index}
-      className="sm:max-w-full sm:w-auto lg:max-w-10xl px-4"
+      className="sm:max-w-full sm:w-auto lg:max-w-10xl px-2"
     >
       <AspectRatio
-        ratio="1:1"
+        ratio="16:9"
         className="relative sm:max-w-full sm:w-auto lg:max-w-10xl mb-6"
       >
         <img
