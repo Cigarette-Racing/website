@@ -770,6 +770,7 @@ export const query = graphql`
                         ... on CraftAPI_singleMedia_BlockType {
                           autoplayVideo
                           videoURL
+                          label
                           image {
                             ... on CraftAPI_s3_Asset {
                               url(width: 1000)
