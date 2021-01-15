@@ -39,11 +39,11 @@ const NextArrow = ({ className, style, onClick }) => {
 
 export const CustomizationsSectionComponent = ({
   title,
+  subtitle,
+  backgroundImage,
   options,
 }: CustomizationsSection) => {
   const { customizationSection: background } = useBackgroundsQuery()
-
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
 
   const isMobile = useMedia('(max-width: 767px)')
 
@@ -56,14 +56,9 @@ export const CustomizationsSectionComponent = ({
     touchThreshold: 10,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    onInit: () => {
-      // document.querySelectorAll('.slick-active')[2].classList.add('faded')
-      console.log(sliderRef)
-      // get last instead of 3rd one
-    },
+    onInit: () => {},
     beforeChange: (oldIndex, newIndex) => {
-      console.log(oldIndex, newIndex)
-
+      // console.log(oldIndex, newIndex)
       // console.log(document.querySelectorAll('.slick-active'))
       // document.querySelector('.slick-active.faded').classList.remove('faded')
       // document.querySelectorAll('.slick-active')[2].classList.add('faded')
@@ -99,7 +94,7 @@ export const CustomizationsSectionComponent = ({
     <BoatSection theme="dark" className="py-24 sm:pb-16">
       <InPageAnchor title={title} />
       <img
-        src={background}
+        src={`${backgroundImage || background}?q=30&w=2000`}
         alt=""
         className="absolute top-0 h-full w-full object-cover"
       />
@@ -112,10 +107,10 @@ export const CustomizationsSectionComponent = ({
       />
       <div className="relative text-center mb-24 sm:mt-20 sm:mb-48">
         <Typography variant="h3" sm="h2" lg="h1" className="mb-4">
-          Make it yours.
+          {title}
         </Typography>
         <Typography variant="e2" md="e1" className="text-gray-4">
-          Bespoke Possibilities
+          {subtitle}
         </Typography>
       </div>
       <div
@@ -178,7 +173,7 @@ const BespokeOptionCard = ({
         className="relative sm:max-w-full sm:w-auto lg:max-w-10xl mb-6"
       >
         <img
-          src={media.image}
+          src={`${media.image}?q=30&w=1000`}
           alt={media.image.alt || ''}
           className="h-full w-full object-cover"
           style={{ position: 'absolute' }}

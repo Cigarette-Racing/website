@@ -209,7 +209,6 @@ export const Header = ({}: HeaderProps) => {
               </Link>
             </div>
             <div className="w-1/3 flex justify-end">
-              {console.log(isMobileMenu)}
               {isMobileMenu && !isMenuOpen ? (
                 <div>
                   <Link to="/contact" onClick={() => closeMenu()}>
@@ -220,7 +219,6 @@ export const Header = ({}: HeaderProps) => {
                 </div>
               ) : (
                 <div className="flex space-x-4 xl:space-x-6">
-                  {console.log(rightLinks)}
                   {rightLinks.map(renderLinks)}
                 </div>
               )}

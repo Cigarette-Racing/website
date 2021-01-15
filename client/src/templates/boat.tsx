@@ -186,7 +186,9 @@ const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
   })
 
   return {
-    title: 'Make it Yours',
+    title: boatEntry.bespokeSectionCustomTitle || 'Make it Yours',
+    subtitle: boatEntry.bespokeSectionCustomSubtitle || 'Bespoke Possibilities',
+    backgroundImage: boatEntry.bespokeBackgroundImage?.[0].url,
     options,
   }
 }
@@ -606,6 +608,11 @@ export const query = graphql`
               }
             }
           }
+          bespokeBackgroundImage {
+            url
+          }
+          bespokeSectionCustomTitle
+          bespokeSectionCustomSubtitle
           powertrainOptionsHeader {
             ... on CraftAPI_s3_Asset {
               url(width: 2800)
