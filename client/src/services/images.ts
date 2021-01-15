@@ -3,6 +3,8 @@ function createImageCacher() {
   const createImage = (url: string): void => {
     if (cache[url]) return
 
+    console.log(url)
+
     const img = new Image()
     img.src = url
 
