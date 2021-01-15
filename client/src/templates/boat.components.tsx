@@ -760,7 +760,6 @@ export const ThreeUpImageBlock = ({
     className={clsx('sm:flex max-w-7xl mx-auto', className)}
     data-block-type="ThreeUpImageBlock"
   >
-    {console.log(images)}
     {!!images &&
       !!images.length &&
       images.map((media) => {
