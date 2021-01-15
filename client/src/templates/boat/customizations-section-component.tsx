@@ -45,6 +45,8 @@ export const CustomizationsSectionComponent = ({
 }: CustomizationsSection) => {
   const { customizationSection: background } = useBackgroundsQuery()
 
+  const [currentSliderIndex, setCurrentSliderIndex] = useState(0)
+
   const isMobile = useMedia('(max-width: 767px)')
 
   const sliderRef = useRef()
@@ -58,13 +60,14 @@ export const CustomizationsSectionComponent = ({
     prevArrow: <PrevArrow />,
     onInit: () => {},
     beforeChange: (oldIndex, newIndex) => {
+      console.log(sliderRef.current)
       // console.log(oldIndex, newIndex)
       // console.log(document.querySelectorAll('.slick-active'))
       // document.querySelector('.slick-active.faded').classList.remove('faded')
       // document.querySelectorAll('.slick-active')[2].classList.add('faded')
     },
-    afterChange: () => {
-      // console.log(document.querySelectorAll('.slick-active'))
+    afterChange: (index: number) => {
+      setCurrentSliderIndex(index)
     },
     responsive: [
       {
@@ -114,7 +117,7 @@ export const CustomizationsSectionComponent = ({
         </Typography>
       </div>
       <div
-        className="relative overflow-hidden lg:pl-16 -mt-16"
+        className="relative overflow-hidden lg:pl-16 md:-mt-16"
         style={{ width: sliderWidth }}
       >
         <div className="slider-wrapper">
@@ -123,6 +126,7 @@ export const CustomizationsSectionComponent = ({
               return (
                 <BespokeOptionCard
                   index={index}
+                  sliderIndex={currentSliderIndex}
                   key={`bespoke-option-${index}`}
                   media={option.media}
                   header={option.content.header}
@@ -159,10 +163,11 @@ export const CustomizationsSectionComponent = ({
 
 const BespokeOptionCard = ({
   index,
+  sliderIndex,
   media,
   header,
   copy,
-}: { index: number; media: Media } & TextBlock) => {
+}: { index: number; sliderIndex: number; media: Media } & TextBlock) => {
   return (
     <div
       data-index={index}
