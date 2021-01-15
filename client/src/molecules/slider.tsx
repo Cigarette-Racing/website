@@ -76,7 +76,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
           <AnimatePresence initial={false}>
             <motion.img
               key={page}
-              src={items[itemIndex]?.media?.image}
+              src={`${items[itemIndex]?.media?.image}?q=30&w=2000`}
               variants={variants}
               initial="enter"
               animate="center"

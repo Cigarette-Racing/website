@@ -104,7 +104,10 @@ export const BoatHeader = ({
           />
         ) : (
           <Fragment>
-            <img src={image} className="h-full w-full object-cover" />
+            <img
+              src={`${image}?q=30&w=2000`}
+              className="h-full w-full object-cover"
+            />
           </Fragment>
         )}
       </div>
@@ -224,7 +227,7 @@ export const ImageWithLabel = ({
 } & AspectRatioProps) => (
   <AspectRatio ratio={ratio} {...rest}>
     <img
-      src={src}
+      src={`${src}?q=30&w=1000`}
       className={clsx('h-full w-full object-cover', imgClassName)}
       alt={alt || ''}
       style={{ position: 'absolute' }}
@@ -267,7 +270,7 @@ export const SideBleedImage = ({
     >
       <AspectRatio ratio={ratio}>
         <img
-          src={media}
+          src={`${media}?q=30&w=2000`}
           alt=""
           className={clsx('h-full w-full object-cover', imgClassName)}
           style={{ position: 'absolute' }}
@@ -300,7 +303,7 @@ export const PowertrainSectionComponent = ({
       <InPageAnchor title="Powertrain Options" />
       <div className="relative max-w-7xl mx-auto flex flex-col items-center">
         <div className="px-4 md:mb-12 md:mt-8 lg:mt-16">
-          <img src={heroImage?.[0]?.url} alt="" />
+          <img src={`${heroImage?.[0]?.url}?q=30&w=2000`} alt="" />
         </div>
         <div className="md:flex max-w-5xl w-full px-4">
           <div className="md:hidden flex flex-no-wrap p-4 space-x-4 my-14 overflow-x-auto">
@@ -497,7 +500,7 @@ export const OrderSectionComponent = ({
     >
       <InPageAnchor title={title} />
       <img
-        src={media}
+        src={`${media}?q=30&w=2400`}
         alt=""
         className="h-full w-full object-cover top-0"
         style={{ position: 'absolute' }}
@@ -565,7 +568,7 @@ export const OneColumnImageTextBlockComponent = ({
       ) : (
         <Fragment>
           <img
-            src={media.image}
+            src={`${media.image}?q=30&w=2000`}
             alt=""
             className="h-full w-full object-cover"
             style={{ position: 'absolute' }}
@@ -628,7 +631,7 @@ export const HorizontalImageTextBlockComponent = ({
   layout,
   media,
 }: HorizontalImageTextBlock) => {
-  const image = <img src={media.image.publicURL} />
+  const image = <img src={`${media.image.publicURL}?q=30&w=2000`} />
   const text = (
     <div className="px-4 md:px-0 md:w-3/4 lg:w-2/3">
       <TextBlockComponent {...content} />
@@ -729,7 +732,7 @@ export const TwoUpImageBlock = ({
     <div className="sm:first:pr-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
         <img
-          src={images[0].singleMedia?.[0].image?.[0].url}
+          src={`${images[0].singleMedia?.[0].image?.[0].url}?q=30&w=1000`}
           alt=""
           className="h-full w-full object-cover"
           style={{ position: 'absolute' }}

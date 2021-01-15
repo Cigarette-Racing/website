@@ -23,7 +23,7 @@ const BoatFeaturette = ({
   <div
     className="bg-cover relative justify-center md:w-1/2 md:min-h-screen bg-black text-white pt-4 md:pt-0"
     style={{
-      backgroundImage: `url(${backgroundImage})`,
+      backgroundImage: `url(${backgroundImage}?q=30&w=1500)`,
     }}
   >
     <Link

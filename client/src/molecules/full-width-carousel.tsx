@@ -43,7 +43,7 @@ export const FullWidthCarousel = ({
   const media = items[itemIndex].media
 
   useEffect(() => {
-    cacheImages(items.map((item) => item?.media?.image))
+    cacheImages(items.map((item) => `${item?.media?.image}?q=30&w=1500`))
   }, [])
 
   return (
@@ -80,7 +80,10 @@ export const FullWidthCarousel = ({
                 videoOptions={{ controls: false }}
               />
             ) : (
-              <img src={media?.image} className="pointer-events-none" />
+              <img
+                src={`${media?.image}?q=30&w=2000`}
+                className="pointer-events-none"
+              />
             )}
           </motion.div>
         </AnimatePresence>

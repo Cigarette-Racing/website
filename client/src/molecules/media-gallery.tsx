@@ -111,7 +111,7 @@ export const MediaGallery = ({ source, title, gallery }: MediaGalleryProps) => {
   useEffect(() => {
     cacheImages(
       getGallerySlice(filteredGallery, page + 1, perPage).map((item) => {
-        return item.thumbnail
+        return `${item.thumbnail}?q=30&w=750`
       })
     )
   }, [page, perPage])
@@ -296,7 +296,7 @@ const Lightbox = ({
                   />
                 ) : (
                   <motion.img
-                    src={media!.image}
+                    src={`${media!.image}?q=30&w=1500`}
                     className="max-h-full max-w-full"
                   />
                 )}
@@ -337,7 +337,7 @@ const GalleryImage = ({
     <div className={`max-w-xs ${className}`} role="button" onClick={onClick}>
       <AspectRatio ratio="1:1" className="relative group">
         <img
-          src={media.thumbnail}
+          src={`${media.thumbnail}?q=30&w=750`}
           alt={media.alt || 'Gallery image'}
           className="h-full w-full object-cover group-hover:filter-none transition duration-150 ease-in-out"
           style={{ position: 'absolute' }}
