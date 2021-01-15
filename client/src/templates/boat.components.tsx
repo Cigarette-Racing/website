@@ -760,6 +760,7 @@ export const ThreeUpImageBlock = ({
     className={clsx('sm:flex max-w-7xl mx-auto', className)}
     data-block-type="ThreeUpImageBlock"
   >
+    {console.log(images)}
     {!!images &&
       !!images.length &&
       images.map((media) => {
@@ -768,14 +769,12 @@ export const ThreeUpImageBlock = ({
             key={media?.singleMedia?.[0].image?.[0].url}
             className="px-4 mb-16 sm:w-1/3"
           >
-            <AspectRatio ratio="3:4">
-              <img
-                src={media?.singleMedia?.[0].image?.[0].url}
-                alt={media.alt || ''}
-                className="h-full w-full object-cover"
-                style={{ position: 'absolute' }}
-              />
-            </AspectRatio>
+            <ImageWithLabel
+              ratio="3:4"
+              src={media?.singleMedia?.[0].image?.[0].url}
+              alt={media.alt || ''}
+              label={media?.singleMedia?.[0].label}
+            />
           </div>
         )
       })}
