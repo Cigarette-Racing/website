@@ -188,7 +188,7 @@ const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
   return {
     title: boatEntry.bespokeSectionCustomTitle || 'Make it Yours',
     subtitle: boatEntry.bespokeSectionCustomSubtitle || 'Bespoke Possibilities',
-    backgroundImage: boatEntry.bespokeBackgroundImage?.[0].url,
+    backgroundImage: boatEntry.bespokeBackgroundImage?.[0]?.url,
     options,
   }
 }
