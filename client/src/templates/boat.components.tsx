@@ -763,7 +763,6 @@ export const ThreeUpImageBlock = ({
     className={clsx('sm:flex max-w-7xl mx-auto', className)}
     data-block-type="ThreeUpImageBlock"
   >
-    {console.log(images)}
     {!!images &&
       !!images.length &&
       images.map((media) => {
@@ -774,7 +773,7 @@ export const ThreeUpImageBlock = ({
           >
             <ImageWithLabel
               ratio="3:4"
-              src={media?.singleMedia?.[0].image?.[0].url}
+              src={`${media?.singleMedia?.[0].image?.[0].url}?q=30&w=1000`}
               alt={media.alt || ''}
               label={media?.singleMedia?.[0].label}
             />

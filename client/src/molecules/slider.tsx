@@ -66,7 +66,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
   }
 
   useEffect(() => {
-    cacheImages(items.map((item) => item?.media?.image))
+    cacheImages(items.map((item) => `${item?.media?.image}?q=30&w=2000&fm=jpg`))
   }, [])
 
   return (
@@ -76,7 +76,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
           <AnimatePresence initial={false}>
             <motion.img
               key={page}
-              src={`${items[itemIndex]?.media?.image}?q=30&w=2000`}
+              src={`${items[itemIndex]?.media?.image}?q=30&w=2000&fm=jpg`}
               variants={variants}
               initial="enter"
               animate="center"
