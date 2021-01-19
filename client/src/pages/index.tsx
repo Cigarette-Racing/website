@@ -32,7 +32,7 @@ const TopVideo = ({ image, videoUrl }: { image: string; videoUrl: string }) => {
     <AnimatePresence>
       <img
         key="image"
-        src={image}
+        src={`${image}?q=30&w=2000&fm=jpg`}
         className="absolute top-0 left-0 h-screen w-full object-cover"
       />
       <motion.div key="video" animate={{ opacity: isVideoLoaded ? 1 : 0 }}>
@@ -137,7 +137,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
         data-scrollsection
       >
         <img
-          src={difference.backgroundImage?.[0]?.url}
+          src={`${difference.backgroundImage?.[0]?.url}?q=30&w=2000`}
           className="absolute top-0 left-0 h-screen w-full object-cover"
         />
         <div
@@ -484,7 +484,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
   }
 
   useEffect(() => {
-    cacheImages(newsItems.map((item) => item.image))
+    cacheImages(newsItems.map((item) => `${item.image}?q=30&w=1000&fm=jpg`))
   }, [])
 
   const sliderWidth = isMobile ? '100%' : '110%'
@@ -578,7 +578,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
       >
         <div style={{ paddingTop: '100%' }} className="relative xs:mx-0 mb-6">
           <img
-            src={item.image}
+            src={`${item.image}?q=30&w=1000&fm=jpg`}
             alt=""
             className="absolute top-0 left-0 h-full w-full object-cover object-center"
           />

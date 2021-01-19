@@ -25,7 +25,7 @@ export const AutoplayVideo = ({
     <AnimatePresence>
       <img
         key="image"
-        src={image}
+        src={`${image}?q=30&w=2000`}
         className="absolute h-full w-full object-cover"
         alt={alt || ''}
       />

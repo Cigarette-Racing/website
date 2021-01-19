@@ -158,7 +158,7 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
         <div className="waypoint">
           <AspectRatio ratio="21:9">
             <img
-              src={media.image}
+              src={`${media.image}?q=0&w=2000`}
               alt=""
               className="h-full w-full object-cover"
               style={{ position: 'absolute' }}

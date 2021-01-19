@@ -286,7 +286,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       {!heroData && <div>Enter Some boat data</div>}
       {heroData && (
         <BoatHeader
-          image={heroData.image}
+          image={`${heroData.image}?q=30&w=2000`}
           alt={heroData.alt}
           videoUrl={heroData.videoUrl}
           boatLogo={heroData.boatLogo}

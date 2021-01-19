@@ -269,7 +269,7 @@ function Section({
 function FullBgImage({ image }: { image: string }) {
   return (
     <img
-      src={image}
+      src={`${image}?q=30&w=2000&fm=jpg`}
       alt=""
       className="absolute top-0 left-0 h-full w-full object-cover"
       style={{ position: 'absolute' }}

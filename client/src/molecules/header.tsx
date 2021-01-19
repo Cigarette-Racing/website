@@ -411,7 +411,11 @@ function BoatSelector({
   const prevIndex = boatIndex > 0 ? boatIndex - 1 : boats.length - 1
 
   useEffect(() => {
-    cacheImages([boats[0]?.backgroundMedia.image.publicUrl!].filter(Boolean))
+    cacheImages(
+      [`${boats[0]?.backgroundMedia.image.publicUrl!}?q=30&w=2000`].filter(
+        Boolean
+      )
+    )
   }, [])
 
   useEffect(() => {
