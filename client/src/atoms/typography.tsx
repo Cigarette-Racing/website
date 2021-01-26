@@ -39,6 +39,7 @@ export interface TypographyProps<T> extends React.HTMLAttributes<T> {
 
 export function Typography<T extends HTMLElement = HTMLDivElement>({
   as: Component = 'div',
+  style,
   variant,
   sm,
   md,
@@ -50,6 +51,7 @@ export function Typography<T extends HTMLElement = HTMLDivElement>({
 }: React.PropsWithChildren<TypographyProps<T>>) {
   return (
     <Component
+      style={style}
       className={clsx(
         `type-${variant}`,
         {

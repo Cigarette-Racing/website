@@ -22,6 +22,7 @@ import {
 } from './boat.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
+import SpecsAndFeaturesSection from '../components/SpecsAndFeatures'
 import {
   Stat,
   CommonSectionProps,
@@ -303,6 +304,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         titles={titles}
         onClickInquire={setInquiryModalState}
       />
+      <SpecsAndFeaturesSection />
       {discoverData && (
         <DiscoverSection
           sectionTitle={discoverData.title!}

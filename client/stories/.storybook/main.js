@@ -3,10 +3,10 @@ const { resolve } = require('path')
 const pathToSvgs = resolve(__dirname, '../../src/svgs')
 
 module.exports = {
-  stories: ['../**/*.stories.js'],
+  stories: ['../components/*.stories.js'],
   addons: [
     '@storybook/addon-actions',
-    '@storybook/addon-backgrounds',
+    // '@storybook/addon-backgrounds',
     '@storybook/addon-knobs',
     '@storybook/addon-links',
     '@storybook/addon-viewport',

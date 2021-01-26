@@ -1,11 +1,13 @@
 {
-  "include": ["./src/**/*"],
+  "exclude": ["src/**"],
   "compilerOptions": {
     "target": "es2018",
     "module": "commonjs",
     "lib": ["dom", "ES2020"],
     "jsx": "react",
-    "strict": true,
+    "strict": false,
+    "checkJs": false,
+    "noEmitOnError": true,
     "esModuleInterop": true,
     "skipLibCheck": true
   }
