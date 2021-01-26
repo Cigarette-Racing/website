@@ -123,3 +123,12 @@ Utilities
   @apply bg-opacity-50 backdrop-blur-4;
   background-image: none;
 }
+
+.slick-slide {
+  opacity: 1;
+  transition: opacity 0.6s;
+}
+
+.slick-slide {
+  /* opacity: 0.5; */
+}

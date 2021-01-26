@@ -172,6 +172,27 @@ const extractGallerySectionFromCraft = (boatEntry: any) => {
   }
 }
 
+const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
+  const options = boatEntry?.bespokeOptions?.map((option: any) => {
+    return {
+      media: {
+        image: option.singleMedia?.[0].image?.[0].url,
+      },
+      content: {
+        header: option.textBlock?.[0]?.header,
+        copy: option.textBlock?.[0]?.copy,
+      },
+    }
+  })
+
+  return {
+    title: boatEntry.bespokeSectionCustomTitle || 'Make it Yours',
+    subtitle: boatEntry.bespokeSectionCustomSubtitle || 'Bespoke Possibilities',
+    backgroundImage: boatEntry.bespokeBackgroundImage?.[0]?.url,
+    options,
+  }
+}
+
 const extractSpecsSectionFromCraft = (boatEntry: any) => {
   const categories = boatEntry.boatSpecs.map((specCategory) => {
     const specs = specCategory.children.map((specData) => {
@@ -275,7 +296,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   )
   const specsData = extractSpecsSectionFromCraft(boatEntry)
   const galleryData = extractGallerySectionFromCraft(boatEntry)
-  const customizationsData = findCustomizationsSection([])
+  const customizationsData = extractCustomizationsSectionFromCraft(boatEntry)
   const orderData = extractOrderDataFromCraft(boatEntry)
   const powertrainData = extractPowertrainDataFromCMS(boatEntry)
 
@@ -504,7 +525,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       {galleryData && !!galleryData.gallery.length && (
         <MediaGallery {...galleryData} />
       )}
-      {customizationsData && (
+      {customizationsData && customizationsData.options.length > 0 && (
         <CustomizationsSectionComponent {...customizationsData} />
       )}
       {orderData && (
@@ -568,6 +589,30 @@ export const query = graphql`
               statPercentage
             }
           }
+          bespokeOptions {
+            ... on CraftAPI_bespokeOptions_option_BlockType {
+              textBlock {
+                ... on CraftAPI_textBlock_BlockType {
+                  header
+                  copy
+                }
+              }
+              singleMedia {
+                ... on CraftAPI_singleMedia_BlockType {
+                  image {
+                    url(width: 1000)
+                  }
+                  label
+                  title
+                }
+              }
+            }
+          }
+          bespokeBackgroundImage {
+            url
+          }
+          bespokeSectionCustomTitle
+          bespokeSectionCustomSubtitle
           powertrainOptionsHeader {
             ... on CraftAPI_s3_Asset {
               url(width: 2800)
