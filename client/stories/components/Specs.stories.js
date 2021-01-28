@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 import SpecsAndFeaturesSection, {
   SpecFeatureToggleButtons,
   SpecFeatureToggleSwitch,
-} from '../../src/components/SpecsAndFeatures'
+} from '../../src/components/specsAndFeatures/SpecsAndFeatures'
 
 export default {
   title: 'Components/SpecsAndFeatures',

@@ -22,7 +22,7 @@ import {
 } from './boat.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
-import SpecsAndFeaturesSection from '../components/SpecsAndFeatures'
+import SpecsAndFeaturesSection from '../components/specsAndFeatures/SpecsAndFeatures'
 import {
   Stat,
   CommonSectionProps,
