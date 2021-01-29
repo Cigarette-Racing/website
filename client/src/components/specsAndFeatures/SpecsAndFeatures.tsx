@@ -106,29 +106,31 @@ const SpecsAndFeaturesSection = () => {
         </div>
       </div>
       <div className="relative">
-        <AnimatePresence initial={false} exitBeforeEnter>
-          {selectedCategory === 'specs' && (
-            <motion.div
-              key="specs"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <SpecsSection unitToggle={isToggled} />
-            </motion.div>
-          )}
-          {selectedCategory === 'features' && (
-            <motion.div
-              key="features"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="w-full min-h-screen"
-            >
-              <FeaturesSection />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div className="flex" style={{ width: `200vw` }}>
+          <AnimatePresence initial={false} exitBeforeEnter>
+            {selectedCategory === 'specs' && (
+              <motion.div
+                key="specs"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <SpecsSection unitToggle={isToggled} />
+              </motion.div>
+            )}
+            {selectedCategory === 'features' && (
+              <motion.div
+                key="features"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="w-screen min-h-screen"
+              >
+                <FeaturesSection />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </BoatSection>
   )

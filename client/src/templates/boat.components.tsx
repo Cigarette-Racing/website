@@ -474,7 +474,11 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
       <AnimatePresence initial={false}>
         <div>
           {descriptions.map((description) => (
-            <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
+            <Typography
+              key={description}
+              variant="p3"
+              className="mb-2 text-gray-2 md:w-11/12"
+            >
               {description}
             </Typography>
           ))}
