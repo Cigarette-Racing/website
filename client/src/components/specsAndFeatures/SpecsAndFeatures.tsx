@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import clsx from 'clsx'
 import { AnimatePresence, motion, useCycle } from 'framer-motion'
 import { ToggleButtons } from './ToggleButtons'
@@ -76,11 +76,23 @@ const specs = [
 
 const SpecsAndFeaturesSection = () => {
   const [isToggled, setIsToggled] = useState(false)
+  const containerRef = useRef(null)
+  const specsContainerRef = useRef(null)
+  const featuresContainerRef = useRef(null)
   const [selectedCategory, setSelectedCategory] = useState('specs')
-  const [animate, toggleFeature] = useCycle(
-    { height: '263px' },
-    { height: '500px' }
-  )
+  const [containerHeight, setContainerHeight] = useState(null)
+  const [specsHeight, setSpecsHeight] = useState(null)
+  const [featuresHeight, setFeaturesHeight] = useState(null)
+
+  useEffect(() => {
+    setContainerHeight(containerRef.current.offsetHeight)
+    setSpecsHeight(specsContainerRef.current.offsetHeight)
+    setFeaturesHeight(featuresContainerRef.current.offsetHeight)
+  }, [])
+
+  console.log(containerHeight, specsHeight, featuresHeight, selectedCategory)
+
+  const height = selectedCategory === 'specs' ? specsHeight : featuresHeight
 
   return (
     <BoatSection
@@ -106,31 +118,37 @@ const SpecsAndFeaturesSection = () => {
         </div>
       </div>
       <div className="relative">
-        <div className="flex" style={{ width: `200vw` }}>
-          <AnimatePresence initial={false} exitBeforeEnter>
-            {selectedCategory === 'specs' && (
-              <motion.div
-                key="specs"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <SpecsSection unitToggle={isToggled} />
-              </motion.div>
-            )}
-            {selectedCategory === 'features' && (
-              <motion.div
-                key="features"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="w-screen min-h-screen"
-              >
-                <FeaturesSection />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        <motion.div
+          className="flex overflow-hidden"
+          animate={{ height: `${height}px` }}
+          ref={containerRef}
+          style={{ width: '200vw', height: `${height}px` }}
+        >
+          <motion.div
+            animate={{ opacity: selectedCategory === 'specs' ? 1 : 0 }}
+            className="w-screen bg-red"
+          >
+            <div>
+              <SpecsSection
+                specRef={specsContainerRef}
+                unitToggle={isToggled}
+              />
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ x: '-100%' }}
+            animate={{
+              opacity: selectedCategory === 'features' ? 1 : 0,
+              y: selectedCategory === 'features' ? 0 : '100%',
+            }}
+            className="w-screen bg-gray-4 transform -translate-x-full"
+          >
+            <div>
+              {console.log(featuresContainerRef.current.offsetHeight)}
+              <FeaturesSection featuresRef={featuresContainerRef} />
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </BoatSection>
   )

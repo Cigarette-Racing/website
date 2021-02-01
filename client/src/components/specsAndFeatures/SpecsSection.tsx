@@ -4,11 +4,12 @@ import { Typography } from '../../atoms/typography'
 import { AnimatePresence, motion, useCycle } from 'framer-motion'
 import specs from './data'
 
-console.log(specs)
-
-const SpecsSection = ({ unitToggle }) => {
+const SpecsSection = ({ unitToggle, specRef }) => {
   return (
-    <div className="specs grid grid-cols-3 sm:grid-cols-5 gap-6 w-full max-w-5xl 3xl:max-w-10xl m-auto">
+    <div
+      ref={specRef}
+      className="specs grid grid-cols-3 sm:grid-cols-5 gap-6 w-screen"
+    >
       {specs.map((spec, index) => {
         return (
           <div

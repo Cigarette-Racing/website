@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { motion, useCycle } from 'framer-motion'
 
-const FeaturesSection = () => {
+const FeaturesSection = ({ featuresRef }) => {
   const [animate, toggleFeature] = useCycle(
     { height: '263px' },
     { height: '500px' }
   )
   return (
-    <div className="relative">
+    <div className="relative" ref={featuresRef}>
       <div className="w-full">
         <motion.div
           className="w-full bg-gray-3 mb-6"
