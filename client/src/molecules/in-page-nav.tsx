@@ -125,7 +125,7 @@ export const InPageNav = ({
 
 export const InPageAnchor = ({ title }: { title: string }) => (
   <a
-    className="absolute inset-0 -z-index-1"
+    className="absolute inset-0 -z-index-1 mt-px"
     id={slugify(title)}
     data-in-page-nav={title}
   ></a>
