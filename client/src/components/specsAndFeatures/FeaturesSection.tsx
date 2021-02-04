@@ -6,6 +6,56 @@ import { Typography } from '../../atoms/typography'
 import DeckBg from '../../images/specs-features-deck-bg.jpg'
 import features from './feature-data'
 
+const AnimatedBorder = styled.div`
+  height: 1px;
+  background-color: #fff;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+  &:before {
+    content: '';
+    height: 1px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    width: 100%;
+    display: block;
+    transition: transform 0.2s ease;
+    transform: translate3d(-100%, 0, 0);
+  }
+`
+
+const Header = styled.header`
+  &:hover {
+    ${AnimatedBorder} {
+      &:before {
+        transform: translate3d(0, 0, 0);
+      }
+      /* background-color: red; */
+    }
+  }
+`
+
+const CloseX = styled.div`
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 48px;
+  width: 48px;
+  position: absolute;
+  top: 19px;
+  right: 19px;
+  border-radius: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.5s ease
+  /* transition:  */
+  /* color: ${(props) => {
+    console.log(props)
+  }}; */
+`
+
 const StyledFeatureLi = styled.li`
   div::before {
     display: inline-block;
@@ -63,16 +113,42 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
           backgroundSize: isOpen ? '110%' : '100%',
         }}
       >
-        <motion.header
-          className="flex items-center content-center cursor-pointer"
+        <Header
+          as={motion.header}
+          className="flex items-center content-center justify-center cursor-pointer relative group"
           style={{ height: '240px', width: '100%' }}
           initial={false}
           onClick={() => setExpanded(isOpen ? false : i)}
         >
-          <Typography className="text-center w-full" variant="h3">
+          <CloseX
+            as={motion.div}
+            isOpen={isOpen}
+            initial={{ x: 0 }}
+            animate={{ rotate: isOpen ? -45 : 0 }}
+            className="group-hover:bg-red"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <line
+                x1="8.41675"
+                x2="8.41675"
+                y2="16"
+                stroke="white"
+                strokeWidth="1.5"
+              />
+              <line
+                y1="7.58301"
+                x2="16"
+                y2="7.58301"
+                stroke="white"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </CloseX>
+          <Typography variant="h3">
             {feature.name}
+            <AnimatedBorder />
           </Typography>
-        </motion.header>
+        </Header>
         <AnimatePresence initial={false}>
           {isOpen && (
             <motion.section
@@ -97,7 +173,7 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
                       <ul className="w-full">
                         {data.details.map((detail) => {
                           return (
-                            <StyledFeatureLi className="mb-6">
+                            <StyledFeatureLi key={detail} className="mb-6">
                               <Typography variant="p3">{detail}</Typography>
                             </StyledFeatureLi>
                           )
