@@ -304,7 +304,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         titles={titles}
         onClickInquire={setInquiryModalState}
       />
-      <SpecsAndFeaturesSection />
       {discoverData && (
         <DiscoverSection
           sectionTitle={discoverData.title!}
@@ -494,6 +493,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             })}
         </BoatSection>
       ))}
+      {boatEntry.slug === '59-tirranna' && <SpecsAndFeaturesSection />}
       {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={boatEntry.boatNameLong}

@@ -128,11 +128,11 @@ const SpecsAndFeaturesSection = () => {
         >
           <motion.div
             animate={{ opacity: selectedCategory === 'specs' ? 1 : 0 }}
-            className="w-screen bg-red"
+            className="w-screen"
           >
             <div
               ref={specsContainerRef}
-              className="specs grid grid-cols-3 sm:grid-cols-5 gap-6 w-screen"
+              className="specs grid grid-cols-3 sm:grid-cols-5 gap-6 max-w-screen-xl m-auto"
             >
               <SpecsSection unitToggle={isToggled} />
             </div>

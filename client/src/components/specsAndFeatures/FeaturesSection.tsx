@@ -50,17 +50,17 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
   return (
     <div className="max-w-screen-xl w-full mb-6">
       <motion.div
-        whileHover={{ backgroundSize: '105%' }}
+        whileHover={{ backgroundSize: '110%' }}
         style={{
           backgroundImage: `url(${DeckBg})`,
           backgroundSize: '100%',
           backgroundPosition: 'top center',
         }}
         className="overflow-hidden m-auto"
-        initial={{ width: '90%' }}
+        initial={{ width: '90%', backgroundSize: '100%' }}
         animate={{
-          width: isOpen ? '100%' : '90%',
-          backgroundSize: isOpen ? '105%' : '100%',
+          // width: isOpen ? '110%' : '100%',
+          backgroundSize: isOpen ? '110%' : '100%',
         }}
       >
         <motion.header
