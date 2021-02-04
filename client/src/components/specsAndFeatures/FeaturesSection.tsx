@@ -34,7 +34,7 @@ const FeaturesSection = () => {
               i={i}
               expanded={expanded}
               setExpanded={setExpanded}
-              key={`feature-${feature}`}
+              key={`feature-${feature.name}`}
             />
           )
         })}
@@ -57,7 +57,7 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
           backgroundPosition: 'top center',
         }}
         className="overflow-hidden m-auto"
-        initial={{ width: '90%', backgroundSize: '100%' }}
+        initial={{ width: '100%', backgroundSize: '100%' }}
         animate={{
           // width: isOpen ? '110%' : '100%',
           backgroundSize: isOpen ? '110%' : '100%',
