@@ -129,7 +129,7 @@ export const BoatHeader = ({
         </div>
       </div>
       <div className="relative mb-4 flex justify-center hidden">
-        <InPageCta href="/contact" link>
+        <InPageCta href="/contact" link={true}>
           Request Information
         </InPageCta>
       </div>
@@ -519,7 +519,7 @@ export const OrderSectionComponent = ({
             {boatNameLong}
           </Typography>
           <div className="flex justify-center">
-            <InPageCta href="/contact" link>
+            <InPageCta href="/contact" link={true}>
               Request Information
             </InPageCta>
           </div>

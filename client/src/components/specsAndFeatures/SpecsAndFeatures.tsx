@@ -85,14 +85,17 @@ const SpecsAndFeaturesSection = () => {
   const [featuresHeight, setFeaturesHeight] = useState(null)
 
   useEffect(() => {
-    setContainerHeight(containerRef.current.offsetHeight)
-    setSpecsHeight(specsContainerRef.current.offsetHeight)
-    setFeaturesHeight(featuresContainerRef.current.offsetHeight)
+    // setContainerHeight(containerRef.current.offsetHeight)
+    // setSpecsHeight(specsContainerRef.current.offsetHeight)
+    // setFeaturesHeight(featuresContainerRef.current.offsetHeight)
   }, [])
 
-  console.log(containerHeight, specsHeight, featuresHeight, selectedCategory)
+  const height =
+    selectedCategory === 'specs'
+      ? specsContainerRef?.current?.offsetHeight
+      : featuresContainerRef?.current?.offsetHeight
 
-  const height = selectedCategory === 'specs' ? specsHeight : featuresHeight
+  console.log(height)
 
   return (
     <BoatSection
@@ -120,19 +123,18 @@ const SpecsAndFeaturesSection = () => {
       <div className="relative">
         <motion.div
           className="flex overflow-hidden"
-          animate={{ height: `${height}px` }}
           ref={containerRef}
-          style={{ width: '200vw', height: `${height}px` }}
+          style={{ width: '200vw' }}
         >
           <motion.div
             animate={{ opacity: selectedCategory === 'specs' ? 1 : 0 }}
             className="w-screen bg-red"
           >
-            <div>
-              <SpecsSection
-                specRef={specsContainerRef}
-                unitToggle={isToggled}
-              />
+            <div
+              ref={specsContainerRef}
+              className="specs grid grid-cols-3 sm:grid-cols-5 gap-6 w-screen"
+            >
+              <SpecsSection unitToggle={isToggled} />
             </div>
           </motion.div>
           <motion.div
@@ -141,11 +143,10 @@ const SpecsAndFeaturesSection = () => {
               opacity: selectedCategory === 'features' ? 1 : 0,
               y: selectedCategory === 'features' ? 0 : '100%',
             }}
-            className="w-screen bg-gray-4 transform -translate-x-full"
+            className="w-screen transform -translate-x-full"
           >
-            <div>
-              {console.log(featuresContainerRef.current.offsetHeight)}
-              <FeaturesSection featuresRef={featuresContainerRef} />
+            <div className="relative" ref={featuresContainerRef}>
+              <FeaturesSection />
             </div>
           </motion.div>
         </motion.div>
