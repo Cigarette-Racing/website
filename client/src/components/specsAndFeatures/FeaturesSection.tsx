@@ -3,12 +3,11 @@ import { motion, useCycle, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 
 import { Typography } from '../../atoms/typography'
-import DeckBg from '../../images/specs-features-deck-bg.jpg'
 import features from './feature-data'
 
 const AnimatedBorder = styled.div`
   height: 1px;
-  background-color: #fff;
+  /* background-color: #fff; */
   margin-top: 10px;
   position: relative;
   overflow: hidden;
@@ -16,14 +15,17 @@ const AnimatedBorder = styled.div`
     content: '';
     height: 1px;
     background: linear-gradient(
-      to bottom,
+      to right,
       rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 100%
+      rgba(255, 255, 255, 1) 30%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 1) 52%,
+      rgba(255, 255, 255, 1) 100%
     );
-    width: 100%;
+    width: 400%;
     display: block;
-    transition: transform 0.2s ease;
-    transform: translate3d(-100%, 0, 0);
+    transition: transform 1s ease;
+    transform: translate3d(-60%, 0, 0);
   }
 `
 
@@ -100,18 +102,8 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
   return (
     <div className="max-w-screen-xl w-full mb-6">
       <motion.div
-        whileHover={{ backgroundSize: '110%' }}
-        style={{
-          backgroundImage: `url(${DeckBg})`,
-          backgroundSize: '100%',
-          backgroundPosition: 'top center',
-        }}
+        style={{ border: 'solid #fff 1px' }}
         className="overflow-hidden m-auto"
-        initial={{ width: '100%', backgroundSize: '100%' }}
-        animate={{
-          // width: isOpen ? '110%' : '100%',
-          backgroundSize: isOpen ? '110%' : '100%',
-        }}
       >
         <Header
           as={motion.header}

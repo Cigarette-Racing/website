@@ -143,6 +143,7 @@ const SpecsAndFeaturesSection = () => {
               opacity: selectedCategory === 'features' ? 1 : 0,
               y: selectedCategory === 'features' ? 0 : '100%',
             }}
+            transition={{ type: 'tween' }}
             className="w-screen transform -translate-x-full"
           >
             <div className="relative" ref={featuresContainerRef}>
