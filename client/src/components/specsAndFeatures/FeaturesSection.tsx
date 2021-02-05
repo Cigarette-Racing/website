@@ -5,13 +5,33 @@ import styled from 'styled-components'
 import { Typography } from '../../atoms/typography'
 import features from './feature-data'
 
+const StrikeThrough = styled.div`
+  position: absolute;
+  height: 2px;
+  top: 40%;
+  background: red;
+  width: 100%;
+  transition: transform 0.5s ease;
+  transform: translate3d(-100%, 0, 0);
+
+  &.open {
+    transform: translate3d(0, 0, 0);
+  }
+`
+
 const AnimatedBorder = styled.div`
+  transition: opacity 0.5s ease;
+
+  &.open {
+    opacity: 0;
+  }
+
   height: 1px;
   /* background-color: #fff; */
   margin-top: 10px;
   position: relative;
   overflow: hidden;
-  &:before {
+  &:after {
     content: '';
     height: 1px;
     background: linear-gradient(
@@ -32,10 +52,9 @@ const AnimatedBorder = styled.div`
 const Header = styled.header`
   &:hover {
     ${AnimatedBorder} {
-      &:before {
+      &:after {
         transform: translate3d(0, 0, 0);
       }
-      /* background-color: red; */
     }
   }
 `
@@ -82,11 +101,11 @@ const FeaturesSection = () => {
           // return <Feature key={`feature-${feature}`} />
           return (
             <FeatureAccordion
+              key={feature.name}
               feature={feature}
               i={i}
               expanded={expanded}
               setExpanded={setExpanded}
-              key={`feature-${feature.name}`}
             />
           )
         })}
@@ -136,9 +155,10 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
               />
             </svg>
           </CloseX>
-          <Typography variant="h3">
+          <Typography className="relative overflow-hidden" variant="h3">
+            <StrikeThrough className={`${isOpen ? 'open' : 'closed'}`} />
             {feature.name}
-            <AnimatedBorder />
+            <AnimatedBorder className={`${isOpen ? 'open' : 'closed'}`} />
           </Typography>
         </Header>
         <AnimatePresence initial={false}>
