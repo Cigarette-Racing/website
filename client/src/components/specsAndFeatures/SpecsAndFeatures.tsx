@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useMedia } from 'react-use'
 import clsx from 'clsx'
 import { AnimatePresence, motion, useCycle } from 'framer-motion'
 import { ToggleButtons } from './ToggleButtons'
@@ -83,6 +84,9 @@ const SpecsAndFeaturesSection = () => {
   const [containerHeight, setContainerHeight] = useState(null)
   const [specsHeight, setSpecsHeight] = useState(null)
   const [featuresHeight, setFeaturesHeight] = useState(null)
+  const isMobile = useMedia('(max-width: 767px)')
+
+  console.log(isMobile)
 
   useEffect(() => {
     // setContainerHeight(containerRef.current.offsetHeight)
@@ -100,18 +104,18 @@ const SpecsAndFeaturesSection = () => {
   return (
     <BoatSection
       theme="dark"
-      className="pb-24 overflow-hidden min-h-screen"
+      className="pb-10 sm:pb-24 overflow-hidden min-h-screen"
       data-section-type="Specs And Features"
     >
-      <div className="md:px-12 lg:px-20 relative mx-auto min-h-full">
-        <div className="flex items-center justify-between mb-20">
+      <div className="bg-gray-1 sm:bg-transparent py-4 px-8 md:px-12 lg:px-20 relative mx-auto min-h-full mb-8">
+        <div className="flex items-center justify-between sm:mb-20">
           <ToggleButtons
             selectedCategory={selectedCategory}
             onCategoryClick={setSelectedCategory}
           />
           <ToggleSwitch
             className={clsx(
-              'transition-opacity duration-150 ease-in-out',
+              'transition-opacity duration-150 ease-in-out hidden md:flex',
               selectedCategory === 'specs' ? 'opacity-100' : 'opacity-0'
             )}
             isToggled={isToggled}
@@ -120,7 +124,7 @@ const SpecsAndFeaturesSection = () => {
           />
         </div>
       </div>
-      <div className="relative">
+      <div className="relative" style={{ height: height }}>
         <motion.div
           className="flex overflow-hidden"
           ref={containerRef}
@@ -132,7 +136,7 @@ const SpecsAndFeaturesSection = () => {
           >
             <div
               ref={specsContainerRef}
-              className="specs grid grid-cols-3 sm:grid-cols-5 gap-6 max-w-screen-xl m-auto"
+              className="specs grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 sm:gap-6 max-w-screen-xl m-auto px-6 sm:px-0"
             >
               <SpecsSection unitToggle={isToggled} />
             </div>

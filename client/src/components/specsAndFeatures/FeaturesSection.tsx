@@ -95,7 +95,7 @@ const FeaturesSection = () => {
   const [expanded, setExpanded] = useState<false | number>(false)
 
   return (
-    <div className="relative">
+    <div className="relative px-6 sm:px-0">
       <div className="w-full flex flex-col items-center">
         {features.map((feature, i) => {
           // return <Feature key={`feature-${feature}`} />
@@ -161,17 +161,17 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
             <AnimatedBorder className={`${isOpen ? 'open' : 'closed'}`} />
           </Typography>
         </Header>
-        <AnimatePresence initial={false}>
+        <AnimatePresence>
           {isOpen && (
             <motion.section
-              className="px-40"
+              className="px-10 sm:px-20 md:px-40"
               key="content"
               initial="collapsed"
               animate="open"
               exit="collapsed"
               variants={{
-                open: { opacity: 1, height: 'auto' },
-                collapsed: { opacity: 0, height: 0 },
+                open: { y: 0, opacity: 1, height: 'auto' },
+                collapsed: { y: 100, opacity: 0, height: 0 },
               }}
               transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
             >

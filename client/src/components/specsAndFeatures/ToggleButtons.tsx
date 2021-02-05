@@ -8,7 +8,7 @@ export const ToggleButtons = ({ selectedCategory, onCategoryClick }) => {
     selectedCategory === 'features' ? 'primary' : 'secondary'
 
   return (
-    <div className="flex bg-gray-3 sm:bg-opacity-0">
+    <div className="flex">
       <InPageCta
         onClick={() => {
           onCategoryClick('specs')

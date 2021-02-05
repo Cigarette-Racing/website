@@ -11,13 +11,17 @@ const SpecsSection = ({ unitToggle }) => {
         return (
           <div
             key={`${spec.title}-${index}`}
-            className="spec py-4 border-white border-solid first:border-t border-b last:border-b-0 sm:border-0 sm:first:border-t-0"
+            className="spec py-4 border-gray-1 border-solid first:border-t-0 border-b last:border-b-0 sm:border-0 sm:first:border-t-0"
           >
-            <Typography className="text-left mb-2" theme="dark" variant="e2">
+            <Typography
+              className="text-center sm:text-left mb-2"
+              theme="dark"
+              variant="e2"
+            >
               {spec.title}
             </Typography>
             <Typography
-              className="text-left relative min-h-6"
+              className="text-center sm:text-left relative min-h-6"
               style={{ minHeight: '20px' }}
               theme="dark"
               variant="p3"
@@ -25,7 +29,7 @@ const SpecsSection = ({ unitToggle }) => {
               <AnimatePresence exitBeforeEnter>
                 {unitToggle ? (
                   <motion.span
-                    className="absolute top-0 left-0"
+                    className="sm:absolute top-0 left-0"
                     key="us"
                     animate={{}}
                     transition={{ duration: 0.2 }}
@@ -35,7 +39,7 @@ const SpecsSection = ({ unitToggle }) => {
                   </motion.span>
                 ) : (
                   <motion.span
-                    className="absolute top-0 left-0"
+                    className="sm:absolute top-0 left-0"
                     key="metric"
                     exit={{ opacity: 0 }}
                   >
