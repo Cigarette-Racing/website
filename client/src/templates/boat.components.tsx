@@ -104,10 +104,7 @@ export const BoatHeader = ({
           />
         ) : (
           <Fragment>
-            <img
-              src={`${image}?q=30&w=2000`}
-              className="h-full w-full object-cover"
-            />
+            <img src={`${image}`} className="h-full w-full object-cover" />
           </Fragment>
         )}
       </div>

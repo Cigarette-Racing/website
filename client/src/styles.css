@@ -176,3 +176,11 @@ Utilities
 .spec:nth-child(5n + 1):nth-last-child(-n + 5) ~ .spec {
   background-color: #d12026;
 } */
+.slick-slide {
+  opacity: 1;
+  transition: opacity 0.6s;
+}
+
+.slick-slide {
+  /* opacity: 0.5; */
+}
