@@ -2,13 +2,17 @@ import React from 'react'
 import clsx from 'clsx'
 import { InPageCta } from '../../atoms/in-page-cta'
 
-export const ToggleButtons = ({ selectedCategory, onCategoryClick }) => {
+export const ToggleButtons = ({
+  className,
+  selectedCategory,
+  onCategoryClick,
+}) => {
   const specBtnVariant = selectedCategory === 'specs' ? 'primary' : 'secondary'
   const featureBtnVariant =
     selectedCategory === 'features' ? 'primary' : 'secondary'
 
   return (
-    <div className="flex">
+    <div className={`${className} flex justify-center py-6 px-4 sm:mb-16`}>
       <InPageCta
         onClick={() => {
           onCategoryClick('specs')

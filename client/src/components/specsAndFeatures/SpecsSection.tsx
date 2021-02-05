@@ -11,7 +11,7 @@ const SpecsSection = ({ unitToggle }) => {
         return (
           <div
             key={`${spec.title}-${index}`}
-            className="spec py-4 border-gray-1 border-solid first:border-t-0 border-b last:border-b-0 sm:border-0 sm:first:border-t-0"
+            className="spec py-4 border-gray-1 border-solid first:border-t border-b last:border-b-0 sm:border-0 sm:first:border-t-0"
           >
             <Typography
               className="text-center sm:text-left mb-2"

@@ -494,12 +494,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         </BoatSection>
       ))}
       {boatEntry.slug === '59-tirranna' && <SpecsAndFeaturesSection />}
-      {!!specsData?.categories.length && (
+      {/* {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={boatEntry.boatNameLong}
           {...specsData}
         />
-      )}
+      )} */}
       {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
       )}

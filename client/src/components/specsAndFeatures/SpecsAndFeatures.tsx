@@ -1,79 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useMedia } from 'react-use'
 import clsx from 'clsx'
-import { AnimatePresence, motion, useCycle } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { ToggleButtons } from './ToggleButtons'
 import { ToggleSwitch } from './ToggleSwitch'
 import SpecsSection from './SpecsSection'
 import FeaturesSection from './FeaturesSection'
 import { BoatSection } from '../../templates/boat.components'
-
-const specs = [
-  {
-    title: `LOA`,
-    info: { us: `18-m`, metric: `56` },
-  },
-  {
-    title: `LOA W/ OUTBOARDS`,
-    info: { us: `19-m`, metric: `56` },
-  },
-  {
-    title: `BEAM`,
-    info: { us: `4.3m`, metric: `56` },
-  },
-  {
-    title: `weight`,
-    info: { us: `14,100-kg`, metric: `56` },
-  },
-  {
-    title: `fuel capacity`,
-    info: { us: `3785-L`, metric: `56` },
-  },
-  {
-    title: `Diesel Capacity`,
-    info: { us: `132.5-L`, metric: `56` },
-  },
-  {
-    title: `FRESH WATER`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `BLACK WATER`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `DRAFT`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `DEADRISE`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `DEADRISE`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `DEADRISE`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `DEADRISE`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `DEADRISE`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `DEADRISE`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-  {
-    title: `DEADRISE`,
-    info: { us: `61' 8"`, metric: `56` },
-  },
-]
 
 const SpecsAndFeaturesSection = () => {
   const [isToggled, setIsToggled] = useState(false)
@@ -86,20 +19,19 @@ const SpecsAndFeaturesSection = () => {
   const [featuresHeight, setFeaturesHeight] = useState(null)
   const isMobile = useMedia('(max-width: 767px)')
 
-  console.log(isMobile)
+  const [featureState, setFeatureState] = useState(null)
 
   useEffect(() => {
-    // setContainerHeight(containerRef.current.offsetHeight)
-    // setSpecsHeight(specsContainerRef.current.offsetHeight)
-    // setFeaturesHeight(featuresContainerRef.current.offsetHeight)
-  }, [])
+    setContainerHeight(
+      selectedCategory === 'specs'
+        ? specsContainerRef?.current?.offsetHeight
+        : featuresContainerRef?.current?.offsetHeight
+    )
+    console.log('re-render')
+    return () => {}
+  }, [featureState, selectedCategory])
 
-  const height =
-    selectedCategory === 'specs'
-      ? specsContainerRef?.current?.offsetHeight
-      : featuresContainerRef?.current?.offsetHeight
-
-  console.log(height)
+  console.log(containerHeight)
 
   return (
     <BoatSection
@@ -107,24 +39,31 @@ const SpecsAndFeaturesSection = () => {
       className="pb-10 sm:pb-24 overflow-hidden min-h-screen"
       data-section-type="Specs And Features"
     >
-      <div className="bg-gray-1 sm:bg-transparent py-4 px-8 md:px-12 lg:px-20 relative mx-auto min-h-full mb-8">
-        <div className="flex items-center justify-between sm:mb-20">
+      <div className="py-4 md:px-12 lg:px-20 relative mx-auto min-h-full">
+        <div className="flex items-center justify-center sm:items-baseline sm:justify-between flex-col sm:flex-row sm:mb-4">
           <ToggleButtons
+            className="bg-gray-1 sm:bg-transparent w-full sm:w-auto"
             selectedCategory={selectedCategory}
             onCategoryClick={setSelectedCategory}
           />
-          <ToggleSwitch
-            className={clsx(
-              'transition-opacity duration-150 ease-in-out hidden md:flex',
-              selectedCategory === 'specs' ? 'opacity-100' : 'opacity-0'
+          <AnimatePresence>
+            {selectedCategory === 'specs' && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, height: 0 }}
+              >
+                <ToggleSwitch
+                  isToggled={isToggled}
+                  onToggle={() => setIsToggled(!isToggled)}
+                  choices={['US', 'METRIC']}
+                />
+              </motion.div>
             )}
-            isToggled={isToggled}
-            onToggle={() => setIsToggled(!isToggled)}
-            choices={['US', 'METRIC']}
-          />
+          </AnimatePresence>
         </div>
       </div>
-      <div className="relative" style={{ height: height }}>
+      <div className="relative" style={{ height: containerHeight }}>
         <motion.div
           className="flex overflow-hidden"
           ref={containerRef}
@@ -150,8 +89,11 @@ const SpecsAndFeaturesSection = () => {
             transition={{ type: 'tween' }}
             className="w-screen transform -translate-x-full"
           >
-            <div className="relative" ref={featuresContainerRef}>
-              <FeaturesSection />
+            <div ref={featuresContainerRef} className="relative">
+              <FeaturesSection
+                featureState={featureState}
+                setFeatureState={setFeatureState}
+              />
             </div>
           </motion.div>
         </motion.div>

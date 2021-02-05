@@ -622,7 +622,7 @@ function BoatScrollList({
         {boats.map((boat, index) => {
           const isCurrentThreshold = ITEM_HEIGHT / 2
           const top = innerHeight + ITEM_HEIGHT * index - y
-          // console.log('top', top)
+
           const absoluteOffsetFromCenter = Math.abs(innerHeight - top)
           const animationPercentage =
             absoluteOffsetFromCenter < isCurrentThreshold
@@ -633,7 +633,7 @@ function BoatScrollList({
                   Math.abs(absoluteOffsetFromCenter - isCurrentThreshold * 2),
                   isCurrentThreshold
                 )
-          // console.log('animationPercentage', animationPercentage)
+
           const scale = 0.85 + 0.15 * animationPercentage
           const opacity = 0.4 + 0.6 * animationPercentage
           return (

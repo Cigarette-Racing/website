@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { motion, useCycle, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 
@@ -70,11 +70,7 @@ const CloseX = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.5s ease
-  /* transition:  */
-  /* color: ${(props) => {
-    console.log(props)
-  }}; */
+  transition: background-color 0.5s ease;
 `
 
 const StyledFeatureLi = styled.li`
@@ -91,7 +87,7 @@ const StyledFeatureLi = styled.li`
   }
 `
 
-const FeaturesSection = () => {
+const FeaturesSection = ({ featureState, setFeatureState }) => {
   const [expanded, setExpanded] = useState<false | number>(false)
 
   return (
@@ -106,6 +102,7 @@ const FeaturesSection = () => {
               i={i}
               expanded={expanded}
               setExpanded={setExpanded}
+              setFeatureState={setFeatureState}
             />
           )
         })}
@@ -114,16 +111,20 @@ const FeaturesSection = () => {
   )
 }
 
-const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
+const FeatureAccordion = ({
+  i,
+  expanded,
+  setExpanded,
+  feature,
+  setFeatureState,
+}) => {
   const isOpen = i === expanded
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
   // them in and out while also only rendering the contents of open accordions
+  setFeatureState(isOpen)
   return (
     <div className="max-w-screen-xl w-full mb-6">
-      <motion.div
-        style={{ border: 'solid #fff 1px' }}
-        className="overflow-hidden m-auto"
-      >
+      <motion.div className="overflow-hidden m-auto border-gray-4 border-solid border">
         <Header
           as={motion.header}
           className="flex items-center content-center justify-center cursor-pointer relative group"
@@ -169,6 +170,9 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
               initial="collapsed"
               animate="open"
               exit="collapsed"
+              onAnimationComplete={() => {
+                setFeatureState(expanded)
+              }}
               variants={{
                 open: { y: 0, opacity: 1, height: 'auto' },
                 collapsed: { y: 100, opacity: 0, height: 0 },
@@ -178,7 +182,7 @@ const FeatureAccordion = ({ i, expanded, setExpanded, feature }) => {
               <div className="grid grid-cols-2 gap-10 pb-20">
                 {feature.data.map((data) => {
                   return (
-                    <div>
+                    <div key={data.title}>
                       <Typography className="mb-8" variant="e2">
                         {data.title}
                       </Typography>
