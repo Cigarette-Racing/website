@@ -47,7 +47,7 @@ export const DiscoverSection = ({
       ) : (
         <Fragment>
           <img
-            src={background}
+            src={`${background}?q=30&w=3000`}
             alt=""
             className="absolute top-0 left-0 h-full w-full object-cover filter-grayscale z-auto"
           />
@@ -158,7 +158,7 @@ const DiscoverMedia = ({ media }: { media: Media }) => {
         <div className="waypoint">
           <AspectRatio ratio="21:9">
             <img
-              src={`${media.image}?q=0&w=2000`}
+              src={`${media.image}?q=50&w=3000`}
               alt=""
               className="h-full w-full object-cover"
               style={{ position: 'absolute' }}

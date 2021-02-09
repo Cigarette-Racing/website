@@ -112,6 +112,8 @@ export function findSpecsSection(sections: readonly any[]) {
 
 export type CustomizationsSection = {
   type: 'customizations'
+  backgroundImage: string
+  subtitle: string
   options: ImageWithText[]
 } & CommonSectionProps
 
