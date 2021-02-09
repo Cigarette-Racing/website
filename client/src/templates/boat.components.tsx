@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import Img from 'gatsby-image'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
 import { StatBlock } from '../atoms/stat-block'

@@ -1,6 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { useMedia } from 'react-use'
-import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ToggleButtons } from './ToggleButtons'
 import { ToggleSwitch } from './ToggleSwitch'
@@ -15,9 +13,6 @@ const SpecsAndFeaturesSection = () => {
   const featuresContainerRef = useRef(null)
   const [selectedCategory, setSelectedCategory] = useState('specs')
   const [containerHeight, setContainerHeight] = useState(null)
-  const [specsHeight, setSpecsHeight] = useState(null)
-  const [featuresHeight, setFeaturesHeight] = useState(null)
-  const isMobile = useMedia('(max-width: 767px)')
 
   const [featureState, setFeatureState] = useState(null)
 
@@ -27,11 +22,7 @@ const SpecsAndFeaturesSection = () => {
         ? specsContainerRef?.current?.offsetHeight
         : featuresContainerRef?.current?.offsetHeight
     )
-    console.log('re-render')
-    return () => {}
   }, [featureState, selectedCategory])
-
-  console.log(containerHeight)
 
   return (
     <BoatSection
