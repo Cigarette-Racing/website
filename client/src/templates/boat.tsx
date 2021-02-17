@@ -22,7 +22,7 @@ import {
 } from './boat.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
-import SpecsAndFeaturesSection from '../components/specsAndFeatures/SpecsAndFeatures'
+import SpecsAndFeaturesSection from '../components/specsAndFeatures/SpecificationsAndFeatures'
 import {
   Stat,
   CommonSectionProps,
@@ -194,28 +194,60 @@ const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
   }
 }
 
-const extractSpecsSectionFromCraft = (boatEntry: any) => {
-  const categories = boatEntry.boatSpecs.map((specCategory) => {
-    const specs = specCategory.children.map((specData) => {
-      const specDescriptions = specData.children.map((specDesc) => {
-        return specDesc.boatSpecDescription
+const extractSpecsAndFeaturesFromCraft = (boatEntry: any) => {
+  const getSpecs = () => {
+    const specificationsCategories = boatEntry.boatSpecifications.map(
+      (specificationCategory) => {
+        const specifications = specificationCategory.children.map(
+          (specification) => {
+            return {
+              specificationValueMetric: specification.specificationValueMetric,
+              specificationValueUS: specification.specificationValueUS,
+            }
+          }
+        )
+
+        return {
+          name: specificationCategory.specificationLabel,
+          specifications,
+        }
+      }
+    )
+
+    return {
+      title: 'Specifications',
+      specificationsCategories,
+    }
+  }
+
+  const getFeatures = () => {
+    const featureCategories = boatEntry.boatFeatures.map((featureCategory) => {
+      const features = featureCategory.children.map((featureData) => {
+        const featureDescriptions = featureData.children.map((featureDesc) => {
+          return featureDesc.boatFeatureDescription
+        })
+
+        return {
+          name: featureData.boatFeatureName,
+          descriptions: featureDescriptions,
+        }
       })
 
       return {
-        name: specData.boatSpecName,
-        descriptions: specDescriptions,
+        name: featureCategory.boatFeatureCategory,
+        features,
       }
     })
 
     return {
-      name: specCategory.boatSpecCategory,
-      specs,
+      title: 'Features',
+      featureCategories,
     }
-  })
+  }
 
   return {
-    title: 'Specs',
-    categories,
+    specifications: getSpecs(),
+    features: getFeatures(),
   }
 }
 
@@ -295,7 +327,8 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const flexData = getFlexibleSections(
     extractFlexibleSectionsFromCraft(boatEntry)
   )
-  const specsData = extractSpecsSectionFromCraft(boatEntry)
+  // const specsData = extractSpecsSectionFromCraft(boatEntry)
+  const specsAndFeaturesData = extractSpecsAndFeaturesFromCraft(boatEntry)
   const galleryData = extractGallerySectionFromCraft(boatEntry)
   const customizationsData = extractCustomizationsSectionFromCraft(boatEntry)
   const orderData = extractOrderDataFromCraft(boatEntry)
@@ -514,7 +547,10 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             })}
         </BoatSection>
       ))}
-      {boatEntry.slug === '59-tirranna' && <SpecsAndFeaturesSection />}
+      {!!specsAndFeaturesData && (
+        <SpecsAndFeaturesSection {...specsAndFeaturesData} />
+      )}
+
       {/* {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={boatEntry.boatNameLong}
@@ -909,6 +945,38 @@ export const query = graphql`
                       boatSpecDescription
                     }
                   }
+                }
+              }
+            }
+          }
+          boatFeatures {
+            ... on CraftAPI_boatFeatures_featureCategory_BlockType {
+              boatFeatureCategory
+              children {
+                ... on CraftAPI_boatFeatures_featureCategory_BlockType {
+                  boatFeatureCategory
+                }
+                ... on CraftAPI_boatFeatures_feature_BlockType {
+                  boatFeatureName
+                  children {
+                    ... on CraftAPI_boatFeatures_description_BlockType {
+                      boatFeatureDescription
+                    }
+                  }
+                }
+                ... on CraftAPI_boatFeatures_description_BlockType {
+                  boatFeatureDescription
+                }
+              }
+            }
+          }
+          boatSpecifications {
+            ... on CraftAPI_boatSpecifications_specificationName_BlockType {
+              specificationLabel
+              children {
+                ... on CraftAPI_boatSpecifications_specificationValue_BlockType {
+                  specificationValueMetric
+                  specificationValueUS
                 }
               }
             }

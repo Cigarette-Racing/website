@@ -2,11 +2,13 @@ import React, { useState, useRef, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ToggleButtons } from './ToggleButtons'
 import { ToggleSwitch } from './ToggleSwitch'
-import SpecsSection from './SpecsSection'
+import SpecsSection from './SpecificationsSection'
 import FeaturesSection from './FeaturesSection'
 import { BoatSection } from '../../templates/boat.components'
 
-const SpecsAndFeaturesSection = () => {
+const SpecsAndFeaturesSection = ({ specifications, features }) => {
+  console.log(specifications, features)
+
   const [isToggled, setIsToggled] = useState(false)
   const containerRef = useRef(null)
   const specsContainerRef = useRef(null)

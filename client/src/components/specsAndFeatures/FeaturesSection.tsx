@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react'
-import { motion, useCycle, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 
 import { Typography } from '../../atoms/typography'
-import features from './feature-data'
 
 const StrikeThrough = styled.div`
   position: absolute;
