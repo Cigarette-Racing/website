@@ -43,6 +43,43 @@ const createBoatPages: GatsbyNode['createPages'] = async ({
   })
 }
 
+const createLabPages: GatsbyNode['createPages'] = async ({
+  graphql,
+  actions,
+}) => {
+  const { createPage } = actions
+  const labTemplate = resolve(__dirname, 'src/templates/lab.tsx')
+  const query = /* GraphQL */ `
+    query AllLabs {
+      craftAPI {
+        entries(type: "labs") {
+          slug
+        }
+      }
+    }
+  `
+  const result = await graphql<{
+    craftAPI: {
+      entries: {
+        slug: string
+      }[]
+    }
+  }>(query)
+  if (result.errors) throw result.errors
+
+  result.data!.craftAPI.entries.forEach(({ slug }) => {
+    createPage({
+      path: `/labs/${slug}`,
+      component: labTemplate,
+      context: {
+        slug: `/labs/${slug}`,
+        craftSlug: slug,
+      },
+    })
+  })
+}
+
 export const createPages: GatsbyNode['createPages'] = async (...args) => {
   await createBoatPages(...args)
+  await createLabPages(...args)
 }
