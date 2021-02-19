@@ -198,18 +198,22 @@ const extractSpecsAndFeaturesFromCraft = (boatEntry: any) => {
   const getSpecs = () => {
     const specificationsCategories = boatEntry.boatSpecifications.map(
       (specificationCategory) => {
+        const metricValues = []
+        const usValues = []
+
         const specifications = specificationCategory.children.map(
           (specification) => {
-            return {
-              specificationValueMetric: specification.specificationValueMetric,
-              specificationValueUS: specification.specificationValueUS,
-            }
+            metricValues.push(specification.specificationValueMetric)
+            usValues.push(specification.specificationValueUS)
           }
         )
 
         return {
           name: specificationCategory.specificationLabel,
-          specifications,
+          values: {
+            metricValues,
+            usValues,
+          },
         }
       }
     )

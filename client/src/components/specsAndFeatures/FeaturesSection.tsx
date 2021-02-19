@@ -92,7 +92,8 @@ const FeaturesSection = ({ featureState, setFeatureState }) => {
   return (
     <div className="relative px-6 sm:px-0">
       <div className="w-full flex flex-col items-center">
-        {features.map((feature, i) => {
+        <h1>FEATURES</h1>
+        {/* {features.map((feature, i) => {
           // return <Feature key={`feature-${feature}`} />
           return (
             <FeatureAccordion
@@ -104,7 +105,7 @@ const FeaturesSection = ({ featureState, setFeatureState }) => {
               setFeatureState={setFeatureState}
             />
           )
-        })}
+        })} */}
       </div>
     </div>
   )

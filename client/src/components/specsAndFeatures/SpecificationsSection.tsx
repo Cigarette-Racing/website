@@ -1,62 +1,85 @@
 import React, { Fragment } from 'react'
 import { Typography } from '../../atoms/typography'
-import { AnimatePresence, motion, useCycle } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const SpecsSection = ({ specificationsCategories, title, unitToggle }) => {
   return (
-    <Fragment>
+    <div className="grid-cols-1 px-4 ">
       {specificationsCategories.map((specification, index) => {
         return (
-          <div
+          <Specification
             key={`${specification.name}-${index}`}
-            className="specification py-4 border-gray-1 border-solid first:border-t border-b last:border-b-0 sm:border-0 sm:first:border-t-0"
-          >
-            <Typography
-              className="text-center sm:text-left mb-2"
-              theme="dark"
-              variant="e2"
-            >
-              {specification.name}
-            </Typography>
-            <Typography
-              className="text-center sm:text-left relative min-h-6"
-              style={{ minHeight: '20px' }}
-              theme="dark"
-              variant="p3"
-            >
-              <AnimatePresence exitBeforeEnter>
-                {specification.specifications.map((specificationDetail) => {
-                  return unitToggle ? (
-                    <motion.span
-                      className="sm:absolute top-0 left-0"
-                      key="us"
-                      animate={{}}
-                      transition={{ duration: 0.2 }}
-                      exit={{ opacity: 0 }}
-                    >
-                      {specificationDetail.specificationValueUS}
-                    </motion.span>
-                  ) : (
-                    <motion.span
-                      className="sm:absolute top-0 left-0"
-                      key="metric"
-                      exit={{ opacity: 0 }}
-                    >
-                      {specificationDetail.specificationValueMetric}
-                    </motion.span>
-                  )
-                  // console.log(
-                  //   specificationDetail.specificationValueMetric,
-                  //   specificationDetail.specificationValueUS
-                  // )
-                })}
-              </AnimatePresence>
-            </Typography>
-          </div>
+            unitToggle={unitToggle}
+            {...specification}
+          />
         )
       })}
-    </Fragment>
+    </div>
+  )
+}
+
+const Specification = ({ name, values, unitToggle }) => {
+  return (
+    <div className="py-6 border-gray-2 border-solid border-b first:border-t">
+      <Typography className="text-center mb-3" variant="e3">
+        {name}
+      </Typography>
+      <AnimatePresence exitBeforeEnter>
+        {!unitToggle && (
+          <SpecificationValueMotionDiv key="us">
+            {values.metricValues.map((value) => {
+              return <Typography variant="p2">{value}</Typography>
+            })}
+          </SpecificationValueMotionDiv>
+        )}
+        {unitToggle && (
+          <SpecificationValueMotionDiv key="metric">
+            {values.usValues.map((value) => {
+              return <Typography variant="p2">{value}</Typography>
+            })}
+          </SpecificationValueMotionDiv>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+const SpecificationValueMotionDiv = ({ children, key }) => {
+  return (
+    <motion.div
+      key={key}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="text-center w-full"
+    >
+      {children}
+    </motion.div>
   )
 }
 
 export default SpecsSection
+
+// <div
+//   key={`${specification.name}-${index}`}
+//   className="specification py-4 border-gray-1 border-solid first:border-t border-b last:border-b-0 sm:border-0 sm:first:border-t-0"
+// >
+//   <Typography
+//     className="text-center sm:text-left mb-2"
+//     theme="dark"
+//     variant="e2"
+//   >
+//     {specification.name}
+//   </Typography>
+//   <Typography
+//     className="text-center sm:text-left relative min-h-6"
+//     style={{ minHeight: '20px' }}
+//     theme="dark"
+//     variant="p3"
+//   >
+//     {specification.specifications.map((specificationDetail) => {
+//       // console.log(specificationDetail.specificationValueMetric)
+//     })}
+//   </Typography>
+// </div>

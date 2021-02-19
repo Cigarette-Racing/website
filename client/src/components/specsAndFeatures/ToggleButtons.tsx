@@ -8,7 +8,6 @@ export const ToggleButtons = ({
   selectedCategory,
   onCategoryClick,
 }) => {
-  console.log(selectedCategory)
   const specBtnVariant =
     selectedCategory === 'specifications' ? 'primary' : 'secondary'
   const featureBtnVariant =
