@@ -9,13 +9,7 @@ import { useToggle } from 'react-use'
 
 const SpecsAndFeaturesSection = ({ specifications, features }) => {
   const [isToggled, setIsToggled] = useToggle(false)
-  const containerRef = useRef(null)
-  const specificationsContainerRef = useRef(null)
-  const featuresContainerRef = useRef(null)
   const [selectedCategory, setSelectedCategory] = useState('specifications')
-  const [containerHeight, setContainerHeight] = useState(null)
-
-  const [featureState, setFeatureState] = useState(null)
 
   const showUnitToggle = selectedCategory === 'specifications' ? true : false
 
@@ -27,31 +21,33 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
     >
       <ToggleButtons
         options={['Specifications', 'Features']}
-        className="toggleBtns"
+        className="toggleButtons"
         selectedCategory={selectedCategory}
         onCategoryClick={setSelectedCategory}
       />
-      <AnimatePresence>
-        <motion.div
+      {/* <AnimatePresence> */}
+      {/* <motion.div
           initial={{ opacity: 1, height: 'auto' }}
           animate={{
             opacity: showUnitToggle ? 1 : 0,
             height: showUnitToggle ? 'auto' : 0,
           }}
           transition={{ ease: [0.45, 0, 0.55, 1] }}
-        >
-          <ToggleSwitch
-            isToggled={isToggled}
-            onToggle={setIsToggled}
-            choices={['US', 'Metric']}
-          />
-        </motion.div>
-      </AnimatePresence>
+        > */}
+      {showUnitToggle && (
+        <ToggleSwitch
+          isToggled={isToggled}
+          onToggle={setIsToggled}
+          choices={['US', 'Metric']}
+        />
+      )}
+      {/* </motion.div> */}
+      {/* </AnimatePresence> */}
 
       {selectedCategory === 'specifications' ? (
         <SpecificationsSection unitToggle={isToggled} {...specifications} />
       ) : (
-        <FeaturesSection />
+        <FeaturesSection {...features} />
       )}
     </BoatSection>
   )

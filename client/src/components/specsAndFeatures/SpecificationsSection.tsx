@@ -47,7 +47,6 @@ const Specification = ({ name, values, unitToggle }) => {
 const SpecificationValueMotionDiv = ({ children, key }) => {
   return (
     <motion.div
-      key={key}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, Fragment } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 
@@ -11,7 +11,7 @@ const StrikeThrough = styled.div`
   background: red;
   width: 100%;
   transition: transform 0.5s ease;
-  transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-101%, 0, 0);
 
   &.open {
     transform: translate3d(0, 0, 0);
@@ -58,7 +58,7 @@ const Header = styled.header`
   }
 `
 
-const CloseX = styled.div`
+const Close = styled.div`
   background-color: rgba(255, 255, 255, 0.5);
   height: 48px;
   width: 48px;
@@ -86,26 +86,69 @@ const StyledFeatureLi = styled.li`
   }
 `
 
-const FeaturesSection = ({ featureState, setFeatureState }) => {
+const FeaturesSection = ({ title, featureCategories }) => {
   const [expanded, setExpanded] = useState<false | number>(false)
 
   return (
     <div className="relative px-6 sm:px-0">
       <div className="w-full flex flex-col items-center">
-        <h1>FEATURES</h1>
-        {/* {features.map((feature, i) => {
-          // return <Feature key={`feature-${feature}`} />
+        {featureCategories.map((featureCategory, i) => {
+          const isOpen = i === expanded
+
           return (
-            <FeatureAccordion
-              key={feature.name}
-              feature={feature}
-              i={i}
-              expanded={expanded}
-              setExpanded={setExpanded}
-              setFeatureState={setFeatureState}
-            />
+            <div className="feature w-full">
+              <Header
+                className="relative p-12 text-center flex items-center content-center justify-center cursor-pointer group"
+                onClick={() => setExpanded(isOpen ? false : i)}
+              >
+                <CloseX isOpen={isOpen} />
+                <Typography className="relative overflow-hidden" variant="h3">
+                  <StrikeThrough className={`${isOpen ? 'open' : 'closed'}`} />
+                  {featureCategory.name}
+                  <AnimatedBorder className={`${isOpen ? 'open' : 'closed'}`} />
+                </Typography>
+              </Header>
+              {isOpen && (
+                <div className="feature-body">
+                  {featureCategory.features.length === 0 && (
+                    <div
+                      key={`no features`}
+                      className="pt-10 border-b border-solid border-gray-2"
+                    >
+                      <Typography variant="e2" className="mb-6 text-center">
+                        Details Coming Soon!
+                      </Typography>
+                    </div>
+                  )}
+                  {featureCategory.features.map((feature, i) => {
+                    return (
+                      <div
+                        key={`${feature.name}-${i}`}
+                        className="pt-10 border-b border-solid border-gray-2"
+                      >
+                        <Typography variant="e2" className="mb-6">
+                          {feature.name}
+                        </Typography>
+
+                        <ul>
+                          {feature.descriptions.map((description) => {
+                            return (
+                              <StyledFeatureLi className="mb-6">
+                                <Typography variant="p3">
+                                  {description}
+                                </Typography>
+                              </StyledFeatureLi>
+                            )
+                          })}
+                        </ul>
+                      </div>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
           )
-        })} */}
+        })}
       </div>
     </div>
   )
@@ -132,30 +175,8 @@ const FeatureAccordion = ({
           initial={false}
           onClick={() => setExpanded(isOpen ? false : i)}
         >
-          <CloseX
-            as={motion.div}
-            isOpen={isOpen}
-            initial={{ x: 0 }}
-            animate={{ rotate: isOpen ? -45 : 0 }}
-            className="group-hover:bg-red"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <line
-                x1="8.41675"
-                x2="8.41675"
-                y2="16"
-                stroke="white"
-                strokeWidth="1.5"
-              />
-              <line
-                y1="7.58301"
-                x2="16"
-                y2="7.58301"
-                stroke="white"
-                strokeWidth="1.5"
-              />
-            </svg>
-          </CloseX>
+          <CloseX isOpen={isOpen} />
+
           <Typography className="relative overflow-hidden" variant="h3">
             <StrikeThrough className={`${isOpen ? 'open' : 'closed'}`} />
             {feature.name}
@@ -204,6 +225,35 @@ const FeatureAccordion = ({
         </AnimatePresence>
       </motion.div>
     </div>
+  )
+}
+
+const CloseX = ({ isOpen }) => {
+  return (
+    <Close
+      as={motion.div}
+      isOpen={isOpen}
+      initial={{ x: 0 }}
+      animate={{ rotate: isOpen ? -45 : 0 }}
+      className="group-hover:bg-red"
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <line
+          x1="8.41675"
+          x2="8.41675"
+          y2="16"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <line
+          y1="7.58301"
+          x2="16"
+          y2="7.58301"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+      </svg>
+    </Close>
   )
 }
 
