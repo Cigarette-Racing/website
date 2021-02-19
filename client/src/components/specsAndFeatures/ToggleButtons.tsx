@@ -14,7 +14,7 @@ export const ToggleButtons = ({
     selectedCategory === 'features' ? 'primary' : 'secondary'
 
   return (
-    <div className={`${className} flex justify-center py-6 px-4 sm:mb-16`}>
+    <div className={`${className} flex justify-center py-6 px-4 sm:p-0`}>
       <InPageCta
         onClick={() => {
           onCategoryClick('specifications')

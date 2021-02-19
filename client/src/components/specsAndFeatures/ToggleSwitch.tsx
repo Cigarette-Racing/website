@@ -4,7 +4,7 @@ import { Typography } from '../../atoms/typography'
 
 export const ToggleSwitch = ({ isToggled, onToggle, choices }) => {
   return (
-    <div className="flex justify-center py-12 sm:py-0">
+    <div className="flex justify-center sm:align-middle sm:items-center py-12 sm:py-0">
       <Typography className="mr-3 sm:mr-4" variant="p3" theme="dark">
         {choices[0]}
       </Typography>

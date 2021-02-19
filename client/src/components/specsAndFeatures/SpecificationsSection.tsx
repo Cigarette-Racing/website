@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 const SpecsSection = ({ specificationsCategories, title, unitToggle }) => {
   return (
-    <div className="grid-cols-1 px-4 ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-6 max-w-screen-xl m-auto lg:px-0">
       {specificationsCategories.map((specification, index) => {
         return (
           <Specification
@@ -20,8 +20,8 @@ const SpecsSection = ({ specificationsCategories, title, unitToggle }) => {
 
 const Specification = ({ name, values, unitToggle }) => {
   return (
-    <div className="py-6 border-gray-2 border-solid border-b first:border-t">
-      <Typography className="text-center mb-3" variant="e3">
+    <div className="py-6 border-gray-2 border-solid border-b first:border-t sm:border-none">
+      <Typography className="text-center mb-3 sm:text-left" variant="e3">
         {name}
       </Typography>
       <AnimatePresence exitBeforeEnter>
@@ -47,11 +47,12 @@ const Specification = ({ name, values, unitToggle }) => {
 const SpecificationValueMotionDiv = ({ children, key }) => {
   return (
     <motion.div
+      key={key}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className="text-center w-full"
+      className="text-center sm:text-left w-full"
     >
       {children}
     </motion.div>

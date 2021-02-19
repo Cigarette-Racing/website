@@ -90,15 +90,15 @@ const FeaturesSection = ({ title, featureCategories }) => {
   const [expanded, setExpanded] = useState<false | number>(false)
 
   return (
-    <div className="relative px-6 sm:px-0">
+    <div className="relative px-6 max-w-screen-xl m-auto lg:px-0">
       <div className="w-full flex flex-col items-center">
         {featureCategories.map((featureCategory, i) => {
           const isOpen = i === expanded
 
           return (
-            <div className="feature w-full">
+            <div className="feature w-full border-solid border-gray-1 border mb-6">
               <Header
-                className="relative p-12 text-center flex items-center content-center justify-center cursor-pointer group"
+                className="relative p-12 md:py-24 text-center flex items-center content-center justify-center cursor-pointer group"
                 onClick={() => setExpanded(isOpen ? false : i)}
               >
                 <CloseX isOpen={isOpen} />
@@ -109,13 +109,13 @@ const FeaturesSection = ({ title, featureCategories }) => {
                 </Typography>
               </Header>
               {isOpen && (
-                <div className="feature-body">
+                <div className="feature-body px-6 lg:grid-cols-2 lg:px-32 lg:grid lg:col-gap-10 lg:pb-16">
                   {featureCategory.features.length === 0 && (
                     <div
                       key={`no features`}
-                      className="pt-10 border-b border-solid border-gray-2"
+                      className="pt-10 border-b border-solid border-gray-2 lg:border-none"
                     >
-                      <Typography variant="e2" className="mb-6 text-center">
+                      <Typography variant="e2" className="mb-10 text-center">
                         Details Coming Soon!
                       </Typography>
                     </div>
@@ -124,7 +124,7 @@ const FeaturesSection = ({ title, featureCategories }) => {
                     return (
                       <div
                         key={`${feature.name}-${i}`}
-                        className="pt-10 border-b border-solid border-gray-2"
+                        className="pt-10 border-b border-solid border-gray-2 last:border-b-0 lg:border-none"
                       >
                         <Typography variant="e2" className="mb-6">
                           {feature.name}
@@ -133,7 +133,10 @@ const FeaturesSection = ({ title, featureCategories }) => {
                         <ul>
                           {feature.descriptions.map((description) => {
                             return (
-                              <StyledFeatureLi className="mb-6">
+                              <StyledFeatureLi
+                                key={description}
+                                className="mb-6"
+                              >
                                 <Typography variant="p3">
                                   {description}
                                 </Typography>

@@ -19,14 +19,15 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
       className="pb-10 sm:pb-24 overflow-hidden"
       data-section-type="Specs And Features"
     >
-      <ToggleButtons
-        options={['Specifications', 'Features']}
-        className="toggleButtons"
-        selectedCategory={selectedCategory}
-        onCategoryClick={setSelectedCategory}
-      />
-      {/* <AnimatePresence> */}
-      {/* <motion.div
+      <div className="sm:flex justify-between align-middle content-center px-6 lg:px-0 sm:mb-10 max-w-screen-xl lg:mx-auto">
+        <ToggleButtons
+          options={['Specifications', 'Features']}
+          className="toggleButtons"
+          selectedCategory={selectedCategory}
+          onCategoryClick={setSelectedCategory}
+        />
+        {/* <AnimatePresence> */}
+        {/* <motion.div
           initial={{ opacity: 1, height: 'auto' }}
           animate={{
             opacity: showUnitToggle ? 1 : 0,
@@ -34,13 +35,14 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
           }}
           transition={{ ease: [0.45, 0, 0.55, 1] }}
         > */}
-      {showUnitToggle && (
-        <ToggleSwitch
-          isToggled={isToggled}
-          onToggle={setIsToggled}
-          choices={['US', 'Metric']}
-        />
-      )}
+        {showUnitToggle && (
+          <ToggleSwitch
+            isToggled={isToggled}
+            onToggle={setIsToggled}
+            choices={['US', 'Metric']}
+          />
+        )}
+      </div>
       {/* </motion.div> */}
       {/* </AnimatePresence> */}
 
