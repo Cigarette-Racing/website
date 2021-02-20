@@ -26,13 +26,21 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
           selectedCategory={selectedCategory}
           onCategoryClick={setSelectedCategory}
         />
-        {showUnitToggle && (
-          <ToggleSwitch
-            isToggled={isToggled}
-            onToggle={setIsToggled}
-            choices={['US', 'Metric']}
-          />
-        )}
+        <AnimatePresence initial={false}>
+          {showUnitToggle && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <ToggleSwitch
+                isToggled={isToggled}
+                onToggle={setIsToggled}
+                choices={['US', 'Metric']}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <AnimatePresence exitBeforeEnter initial={false}>
