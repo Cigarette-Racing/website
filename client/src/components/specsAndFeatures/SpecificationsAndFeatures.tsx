@@ -26,15 +26,6 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
           selectedCategory={selectedCategory}
           onCategoryClick={setSelectedCategory}
         />
-        {/* <AnimatePresence> */}
-        {/* <motion.div
-          initial={{ opacity: 1, height: 'auto' }}
-          animate={{
-            opacity: showUnitToggle ? 1 : 0,
-            height: showUnitToggle ? 'auto' : 0,
-          }}
-          transition={{ ease: [0.45, 0, 0.55, 1] }}
-        > */}
         {showUnitToggle && (
           <ToggleSwitch
             isToggled={isToggled}
@@ -43,17 +34,15 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
           />
         )}
       </div>
-      {/* </motion.div> */}
-      {/* </AnimatePresence> */}
 
       <AnimatePresence exitBeforeEnter initial={false}>
         {console.log(selectedCategory)}
         {selectedCategory === 'specifications' && (
           <motion.div
             key="specifications"
-            initial={{ opacity: 0, y: '50%' }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '50%' }}
+            exit={{ opacity: 0, y: 50 }}
             transition={{ ease: [0.45, 0, 0.5, 0.1] }}
           >
             {console.log('specs')}
@@ -63,9 +52,9 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
         {selectedCategory === 'features' && (
           <motion.div
             key="features"
-            initial={{ opacity: 0, y: '50%' }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '50%' }}
+            exit={{ opacity: 0, y: 50 }}
             transition={{ ease: [0.45, 0, 0.5, 0.1] }}
           >
             {console.log('features')}

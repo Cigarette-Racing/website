@@ -20,7 +20,7 @@ const SpecsSection = ({ specificationsCategories, title, unitToggle }) => {
 
 const Specification = ({ name, values, unitToggle }) => {
   return (
-    <div className="py-6 border-gray-2 border-solid border-b first:border-t sm:border-none">
+    <div className="py-6 border-gray-2 border-solid border-b first:border-t last:border-b-0 sm:border-none">
       <Typography className="text-center mb-3 sm:text-left" variant="e3">
         {name}
       </Typography>

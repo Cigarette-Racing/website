@@ -111,18 +111,26 @@ const FeaturesSection = ({ title, featureCategories }) => {
                   <AnimatedBorder className={`${isOpen ? 'open' : 'closed'}`} />
                 </Typography>
               </Header>
-              {isOpen && (
-                <div className="feature-body px-6 lg:grid-cols-2 lg:px-32 lg:grid lg:col-gap-10 lg:pb-16">
+
+              <motion.div
+                initial={{ height: 0 }}
+                animate={{ height: isOpen ? 'auto' : 0 }}
+                exit={{ height: 0 }}
+                transition={{ ease: [0.45, 0, 0.55, 1] }}
+                className="overflow-hidden feature-body px-6"
+              >
+                <div className="lg:grid-cols-2 lg:px-32 lg:grid lg:col-gap-10 pb-10">
                   {featureCategory.features.length === 0 && (
                     <div
                       key={`no features`}
-                      className="pt-10 border-b border-solid border-gray-2 lg:border-none"
+                      className="border-b border-solid border-gray-2 lg:border-none"
                     >
                       <Typography variant="e2" className="mb-10 text-center">
                         Details Coming Soon!
                       </Typography>
                     </div>
                   )}
+
                   {featureCategory.features.map((feature, i) => {
                     return (
                       <div
@@ -133,25 +141,27 @@ const FeaturesSection = ({ title, featureCategories }) => {
                           {feature.name}
                         </Typography>
 
-                        <ul>
-                          {feature.descriptions.map((description) => {
-                            return (
-                              <StyledFeatureLi
-                                key={description}
-                                className="mb-6"
-                              >
-                                <Typography variant="p3">
-                                  {description}
-                                </Typography>
-                              </StyledFeatureLi>
-                            )
-                          })}
-                        </ul>
+                        {!!feature.descriptions.length && (
+                          <ul className="mb-10">
+                            {feature.descriptions.map((description) => {
+                              return (
+                                <StyledFeatureLi
+                                  key={description}
+                                  className="mb-6"
+                                >
+                                  <Typography variant="p3">
+                                    {description}
+                                  </Typography>
+                                </StyledFeatureLi>
+                              )
+                            })}
+                          </ul>
+                        )}
                       </div>
                     )
                   })}
                 </div>
-              )}
+              </motion.div>
             </div>
           )
         })}
