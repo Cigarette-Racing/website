@@ -26,14 +26,18 @@ const Specification = ({ name, values, unitToggle }) => {
       </Typography>
       <AnimatePresence exitBeforeEnter>
         {!unitToggle && (
-          <SpecificationValueMotionDiv key="us">
-            {values.metricValues.map((value) => {
-              return <Typography variant="p2">{value}</Typography>
+          <SpecificationValueMotionDiv valueKey="us">
+            {values.metricValues.map((value, i) => {
+              return (
+                <Typography key={`${value}-${i}`} variant="p2">
+                  {value}
+                </Typography>
+              )
             })}
           </SpecificationValueMotionDiv>
         )}
         {unitToggle && (
-          <SpecificationValueMotionDiv key="metric">
+          <SpecificationValueMotionDiv valueKey="metric">
             {values.usValues.map((value) => {
               return <Typography variant="p2">{value}</Typography>
             })}
@@ -44,10 +48,10 @@ const Specification = ({ name, values, unitToggle }) => {
   )
 }
 
-const SpecificationValueMotionDiv = ({ children, key }) => {
+const SpecificationValueMotionDiv = ({ children, valueKey }) => {
   return (
     <motion.div
-      key={key}
+      key={valueKey}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

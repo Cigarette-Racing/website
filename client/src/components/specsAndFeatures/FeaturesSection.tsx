@@ -96,7 +96,10 @@ const FeaturesSection = ({ title, featureCategories }) => {
           const isOpen = i === expanded
 
           return (
-            <div className="feature w-full border-solid border-gray-1 border mb-6">
+            <div
+              key={`${featureCategory}-${i}`}
+              className="feature w-full border-solid border-gray-1 border mb-6"
+            >
               <Header
                 className="relative p-12 md:py-24 text-center flex items-center content-center justify-center cursor-pointer group"
                 onClick={() => setExpanded(isOpen ? false : i)}

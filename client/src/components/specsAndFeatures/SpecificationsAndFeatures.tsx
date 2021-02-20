@@ -46,12 +46,47 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
       {/* </motion.div> */}
       {/* </AnimatePresence> */}
 
-      {selectedCategory === 'specifications' ? (
-        <SpecificationsSection unitToggle={isToggled} {...specifications} />
-      ) : (
-        <FeaturesSection {...features} />
-      )}
+      <AnimatePresence exitBeforeEnter initial={false}>
+        {console.log(selectedCategory)}
+        {selectedCategory === 'specifications' && (
+          <motion.div
+            key="specifications"
+            initial={{ opacity: 0, y: '50%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '50%' }}
+            transition={{ ease: [0.45, 0, 0.5, 0.1] }}
+          >
+            {console.log('specs')}
+            <SpecificationsSection unitToggle={isToggled} {...specifications} />
+          </motion.div>
+        )}
+        {selectedCategory === 'features' && (
+          <motion.div
+            key="features"
+            initial={{ opacity: 0, y: '50%' }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: '50%' }}
+            transition={{ ease: [0.45, 0, 0.5, 0.1] }}
+          >
+            {console.log('features')}
+            <FeaturesSection {...features} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </BoatSection>
+  )
+}
+
+const MotionSection = ({ children, initial, ...rest }) => {
+  return (
+    <motion.div
+      animate={{ top: 0, opacity: 1 }}
+      initial={initial}
+      exit={{ opacity: 0, top: '-50%' }}
+      {...rest}
+    >
+      {children}
+    </motion.div>
   )
 }
 
