@@ -2,7 +2,18 @@ import React, { Fragment } from 'react'
 import { Typography } from '../../atoms/typography'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const SpecsSection = ({ specificationsCategories, title, unitToggle }) => {
+const SpecificationsSection = ({
+  specificationsCategories,
+  title,
+  unitToggle,
+}) => {
+  console.log(specificationsCategories, 'wtf')
+  if (!specificationsCategories.length) {
+    return (
+      <div className="max-w-screen-xl m-auto">Specifications coming soon!</div>
+    )
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-6 max-w-screen-xl m-auto lg:px-0">
       {specificationsCategories.map((specification, index) => {
@@ -63,4 +74,4 @@ const SpecificationValueMotionDiv = ({ children, valueKey }) => {
   )
 }
 
-export default SpecsSection
+export default SpecificationsSection

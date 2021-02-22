@@ -13,6 +13,9 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
 
   const showUnitToggle = selectedCategory === 'specifications' ? true : false
 
+  const hasSpecifications = !!specifications.specificationsCategories.length
+  const hasFeatures = !!features.featureCategories.length
+
   return (
     <BoatSection
       theme="dark"

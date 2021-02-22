@@ -87,6 +87,10 @@ const StyledFeatureLi = styled.li`
 `
 
 const FeaturesSection = ({ title, featureCategories }) => {
+  if (!featureCategories.length) {
+    return <div className="max-w-screen-xl m-auto">Features coming soon!</div>
+  }
+
   const [expanded, setExpanded] = useState<false | number>(false)
 
   return (
