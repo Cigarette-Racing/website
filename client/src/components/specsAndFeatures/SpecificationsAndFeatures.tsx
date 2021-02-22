@@ -44,7 +44,6 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
       </div>
 
       <AnimatePresence exitBeforeEnter initial={false}>
-        {console.log(selectedCategory)}
         {selectedCategory === 'specifications' && (
           <motion.div
             key="specifications"
@@ -53,7 +52,6 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
             exit={{ opacity: 0, y: 50 }}
             transition={{ ease: [0.45, 0, 0.5, 0.1] }}
           >
-            {console.log('specs')}
             <SpecificationsSection unitToggle={isToggled} {...specifications} />
           </motion.div>
         )}
@@ -65,7 +63,6 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
             exit={{ opacity: 0, y: 50 }}
             transition={{ ease: [0.45, 0, 0.5, 0.1] }}
           >
-            {console.log('features')}
             <FeaturesSection {...features} />
           </motion.div>
         )}

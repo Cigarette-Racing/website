@@ -64,26 +64,3 @@ const SpecificationValueMotionDiv = ({ children, valueKey }) => {
 }
 
 export default SpecsSection
-
-// <div
-//   key={`${specification.name}-${index}`}
-//   className="specification py-4 border-gray-1 border-solid first:border-t border-b last:border-b-0 sm:border-0 sm:first:border-t-0"
-// >
-//   <Typography
-//     className="text-center sm:text-left mb-2"
-//     theme="dark"
-//     variant="e2"
-//   >
-//     {specification.name}
-//   </Typography>
-//   <Typography
-//     className="text-center sm:text-left relative min-h-6"
-//     style={{ minHeight: '20px' }}
-//     theme="dark"
-//     variant="p3"
-//   >
-//     {specification.specifications.map((specificationDetail) => {
-//       // console.log(specificationDetail.specificationValueMetric)
-//     })}
-//   </Typography>
-// </div>
