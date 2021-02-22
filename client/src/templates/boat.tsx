@@ -221,18 +221,18 @@ const extractSpecsSectionFromCraft = (boatEntry: any) => {
 
 const extractSpecsAndFeaturesFromCraft = (boatEntry: any) => {
   const getSpecs = () => {
-    const specificationsCategories = boatEntry.boatSpecifications.map(
+    const specificationsCategories = boatEntry?.boatSpecifications?.map(
       (specificationCategory: any) => {
         const metricValues: any = []
         const usValues: any = []
 
-        specificationCategory.children.map((specification: any) => {
+        specificationCategory?.children?.map((specification: any) => {
           metricValues.push(specification.specificationValueMetric)
           usValues.push(specification.specificationValueUS)
         })
 
         return {
-          name: specificationCategory.specificationLabel,
+          name: specificationCategory?.specificationLabel,
           values: {
             metricValues,
             usValues,
@@ -248,23 +248,27 @@ const extractSpecsAndFeaturesFromCraft = (boatEntry: any) => {
   }
 
   const getFeatures = () => {
-    const featureCategories = boatEntry.boatFeatures.map((featureCategory) => {
-      const features = featureCategory.children.map((featureData) => {
-        const featureDescriptions = featureData.children.map((featureDesc) => {
-          return featureDesc.boatFeatureDescription
+    const featureCategories = boatEntry?.boatFeatures?.map(
+      (featureCategory: any) => {
+        const features = featureCategory?.children?.map((featureData: any) => {
+          const featureDescriptions = featureData?.children?.map(
+            (featureDesc: any) => {
+              return featureDesc.boatFeatureDescription
+            }
+          )
+
+          return {
+            name: featureData.boatFeatureName,
+            descriptions: featureDescriptions,
+          }
         })
 
         return {
-          name: featureData.boatFeatureName,
-          descriptions: featureDescriptions,
+          name: featureCategory.boatFeatureCategory,
+          features,
         }
-      })
-
-      return {
-        name: featureCategory.boatFeatureCategory,
-        features,
       }
-    })
+    )
 
     return {
       title: 'Features',
