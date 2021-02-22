@@ -16,6 +16,10 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
   const hasSpecifications = !!specifications.specificationsCategories.length
   const hasFeatures = !!features.featureCategories.length
 
+  if (!hasSpecifications && !hasFeatures) {
+    return null
+  }
+
   return (
     <BoatSection
       theme="dark"
