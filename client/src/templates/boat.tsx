@@ -1,5 +1,6 @@
 import React from 'react'
 import { PageProps, graphql } from 'gatsby'
+import clsx from 'clsx'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
