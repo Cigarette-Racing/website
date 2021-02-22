@@ -60,7 +60,6 @@ export const CustomizationsSectionComponent = ({
     prevArrow: <PrevArrow />,
     onInit: () => {},
     beforeChange: (oldIndex, newIndex) => {
-      console.log(sliderRef.current)
       // console.log(oldIndex, newIndex)
       // console.log(document.querySelectorAll('.slick-active'))
       // document.querySelector('.slick-active.faded').classList.remove('faded')

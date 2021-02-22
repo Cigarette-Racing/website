@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import Img from 'gatsby-image'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
 import { StatBlock } from '../atoms/stat-block'
@@ -126,7 +125,7 @@ export const BoatHeader = ({
         </div>
       </div>
       <div className="relative mb-4 flex justify-center hidden">
-        <InPageCta href="/contact" link>
+        <InPageCta href="/contact" link={true}>
           Request Information
         </InPageCta>
       </div>
@@ -471,7 +470,11 @@ const SpecAccordion = ({ name, descriptions }: Spec) => {
       <AnimatePresence initial={false}>
         <div>
           {descriptions.map((description) => (
-            <Typography variant="p3" className="mb-2 text-gray-2 md:w-11/12">
+            <Typography
+              key={description}
+              variant="p3"
+              className="mb-2 text-gray-2 md:w-11/12"
+            >
               {description}
             </Typography>
           ))}
@@ -512,7 +515,7 @@ export const OrderSectionComponent = ({
             {boatNameLong}
           </Typography>
           <div className="flex justify-center">
-            <InPageCta href="/contact" link>
+            <InPageCta href="/contact" link={true}>
               Request Information
             </InPageCta>
           </div>
