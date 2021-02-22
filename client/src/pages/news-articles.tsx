@@ -10,40 +10,39 @@ import { Typography } from '../atoms/typography'
 import SEO from '../components/seo'
 import { ValueContainer } from 'react-select/src/components/containers'
 
-const Underline = styled.span`
-  display: inline-block;
-  transform: translateY(4px);
-  margin-right: 4px;
-  width: 55px;
-  height: 2px;
-`
-
-const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
+const NewsArticlesTemplate = (
+  props: PageProps<GatsbyTypes.newsArticlesPageQuery>
+) => {
   const {
     data: {
-      craftAPI: { entries: labEntries, entry: LandingPage },
+      craftAPI: { entries: newsArticleEntries, entry: LandingPage },
     },
   } = props
 
-  const firstLabEntry = labEntries.slice(0, 1)[0]
-  const allButFirstLabEntries = labEntries.slice(1)
+  console.log(newsArticleEntries, 'wtf')
+  const firstNewsArticleEntry = newsArticleEntries.slice(0, 1)[0]
+  const allButFirstNewsArticleEntries = newsArticleEntries.slice(1)
 
   return (
     <Layout>
-      <GenericSection className="pt-48" theme="dark">
-        <SEO title="Labs" slug={props.path} />
+      <GenericSection className="pt-48">
+        <SEO title="All News" slug={props.path} />
+        <div className="tracking-wide text-gray-5 capitalize whitespace-no-wrap font-normal text-8xl leading-10 font-heading mb-8">
+          {LandingPage.title}
+        </div>
         <div className="px-4 max-w-screen-xl m-auto">
-          <div className="tracking-wide lowercase text-white text-8xl font-light leading-10 font-heading mb-8">
-            <Underline className="bg-red" />
-            {LandingPage.title}
-          </div>
           <Typography className="mb-24" variant="p3">
             {LandingPage.articleExcerpt}
           </Typography>
           <DropdownNav />
-          <PrimaryLab labEntry={firstLabEntry} />
-          {allButFirstLabEntries.map((labEntry: any) => {
-            return <Lab key={`${labEntry.id}`} labEntry={labEntry} />
+          <FeaturedNewsArticle newsArticleEntry={firstNewsArticleEntry} />
+          {allButFirstNewsArticleEntries.map((newsArticleEntry: any) => {
+            return (
+              <NewsArticle
+                key={`${newsArticleEntry.id}`}
+                newsArticleEntry={newsArticleEntry}
+              />
+            )
           })}
         </div>
       </GenericSection>
@@ -51,71 +50,54 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
   )
 }
 
-const PrimaryLab = ({ labEntry }: any) => {
+const FeaturedNewsArticle = ({ newsArticleEntry }: any) => {
   return (
     <div className="border-b border-solid border-gray-1 mb-5">
-      <img
-        className="sm:hidden"
-        src={`${labEntry.imageObject[0].image[0].url}?q=30&w=1000`}
-        alt=""
-      />
-      <div className="categories mt-10 mb-2">
-        {labEntry.articleCategories.length > 1 && (
-          <div className="flex items-center justify-center">
-            <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
-            {labEntry.articleCategories.map((category: any) => {
-              return <Typography variant="e3">{category.title}</Typography>
-            })}
-          </div>
-        )}
-        {labEntry.articleCategories.length === 1 && (
-          <div className="flex items-center justify-center">
-            <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
-            <Typography variant="e3">
-              {labEntry.articleCategories[0].title}
-            </Typography>
-          </div>
-        )}
-      </div>
+      {/* <img
+          className="sm:hidden"
+          src={`${newsArticleEntry?.imageObject?.[0]?.image?.[0]?.url}?q=30&w=1000`}
+          alt=""
+        /> */}
+      {console.log(newsArticleEntry)}
       <div className="text-center">
         <Typography className="mb-4" variant="h4">
-          {labEntry.title}
+          {newsArticleEntry.title}
         </Typography>
         <Typography className="mb-24" variant="p3">
-          {labEntry.articleExcerpt}
+          {newsArticleEntry.articleExcerpt}
         </Typography>
       </div>
       <img
         className="hidden sm:block"
-        src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
+        // src={`${newsArticleEntry.imageObject[0].image[0].url}?q=30&w=2400`}
         alt=""
       />
     </div>
   )
 }
 
-const Lab = ({ labEntry }: any) => {
+const NewsArticle = ({ newsArticleEntry }: any) => {
   return (
     <div className="border-b border-solid border-gray-1 mb-5">
-      <img
+      {/* <img
         className="sm:hidden"
-        src={`${labEntry.imageObject[0].image[0].url}?q=30&w=1000`}
+        src={`${newsArticleEntry.imageObject[0].image[0].url}?q=30&w=1000`}
         alt=""
-      />
-      <Categories categories={labEntry.articleCategories} />
+      /> */}
+      <Categories categories={newsArticleEntry.articleCategories} />
       <div className="text-center">
         <Typography className="mb-4" variant="h4">
-          {labEntry.title}
+          {newsArticleEntry.title}
         </Typography>
         <Typography className="mb-24" variant="p3">
-          {labEntry.articleExcerpt}
+          {newsArticleEntry.articleExcerpt}
         </Typography>
       </div>
-      <img
+      {/* <img
         className="hidden sm:block"
-        src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
+        src={`${newsArticleEntry.imageObject[0].image[0].url}?q=30&w=2400`}
         alt=""
-      />
+      /> */}
     </div>
   )
 }
@@ -173,7 +155,7 @@ const DropdownNav = () => {
     <Select
       className="mb-12"
       options={options}
-      placeholder={'EXPLORE LABS'}
+      placeholder={'EXPLORE STORIES'}
       components={{
         ValueContainer: (props) => (
           <components.ValueContainer {...props}>
@@ -189,12 +171,12 @@ const DropdownNav = () => {
       styles={{
         placeholder: (base) => ({
           ...base,
-          color: '#fff',
+          color: '#000',
         }),
         control: (base) => ({
           ...base,
           background: 'rgba(255,255,255,0.1)',
-          border: '1px solid #fff',
+          border: '1px solid #e0e0e0',
           borderRadius: '40px',
         }),
         clearIndicator: () => ({
@@ -216,11 +198,11 @@ const DropdownNav = () => {
           ...base,
           order: 2,
           padding: '10px 0',
-          color: '#fff',
+          color: '#000',
         }),
         singleValue: (base) => ({
           ...base,
-          color: '#fff',
+          color: '#000',
         }),
         menu: (base) => ({
           ...base,
@@ -240,34 +222,30 @@ const DropdownNav = () => {
   )
 }
 
-export default LabsTemplate
+export default NewsArticlesTemplate
 
 export const query = graphql`
   query {
     craftAPI {
-      entry(type: "landingPage") {
-        ... on CraftAPI_labs_landingPage_Entry {
+      entries(type: "newsArticle") {
+        ... on CraftAPI_newsArticles_newsArticle_Entry {
+          id
           articleExcerpt
           title
-        }
-      }
-      entries(section: "labs", hasDescendants: false) {
-        id
-        slug
-        title
-        typeHandle
-        ... on CraftAPI_labs_labs_Entry {
           articleCategories {
+            id
             title
           }
-          articleExcerpt
-          imageObject {
-            ... on CraftAPI_imageObject_BlockType {
-              image {
-                url
-              }
-            }
+          articleTags {
+            id
+            title
           }
+        }
+      }
+      entry(type: "newsArticles") {
+        ... on CraftAPI_newsArticles_newsArticles_Entry {
+          id
+          title
         }
       }
     }
