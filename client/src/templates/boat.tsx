@@ -194,19 +194,42 @@ const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
   }
 }
 
+const extractSpecsSectionFromCraft = (boatEntry: any) => {
+  const categories = boatEntry.boatSpecs.map((specCategory: any) => {
+    const specs = specCategory.children.map((specData: any) => {
+      const specDescriptions = specData.children.map((specDesc: any) => {
+        return specDesc.boatSpecDescription
+      })
+
+      return {
+        name: specData.boatSpecName,
+        descriptions: specDescriptions,
+      }
+    })
+
+    return {
+      name: specCategory.boatSpecCategory,
+      specs,
+    }
+  })
+
+  return {
+    title: 'Specs',
+    categories,
+  }
+}
+
 const extractSpecsAndFeaturesFromCraft = (boatEntry: any) => {
   const getSpecs = () => {
     const specificationsCategories = boatEntry.boatSpecifications.map(
-      (specificationCategory) => {
-        const metricValues = []
-        const usValues = []
+      (specificationCategory: any) => {
+        const metricValues: any = []
+        const usValues: any = []
 
-        const specifications = specificationCategory.children.map(
-          (specification) => {
-            metricValues.push(specification.specificationValueMetric)
-            usValues.push(specification.specificationValueUS)
-          }
-        )
+        specificationCategory.children.map((specification: any) => {
+          metricValues.push(specification.specificationValueMetric)
+          usValues.push(specification.specificationValueUS)
+        })
 
         return {
           name: specificationCategory.specificationLabel,
@@ -331,7 +354,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
   const flexData = getFlexibleSections(
     extractFlexibleSectionsFromCraft(boatEntry)
   )
-  // const specsData = extractSpecsSectionFromCraft(boatEntry)
+  const specsData = extractSpecsSectionFromCraft(boatEntry)
   const specsAndFeaturesData = extractSpecsAndFeaturesFromCraft(boatEntry)
   const galleryData = extractGallerySectionFromCraft(boatEntry)
   const customizationsData = extractCustomizationsSectionFromCraft(boatEntry)
@@ -555,12 +578,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         <SpecsAndFeaturesSection {...specsAndFeaturesData} />
       )}
 
-      {/* {!!specsData?.categories.length && (
+      {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={boatEntry.boatNameLong}
           {...specsData}
         />
-      )} */}
+      )}
       {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
       )}
