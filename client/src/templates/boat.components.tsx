@@ -558,17 +558,17 @@ export const OneColumnImageTextBlockComponent = ({
     data-block-type="OneColumnImageTextBlockComponent"
   >
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      {!!media.videoURL ? (
+      {!!media?.videoURL ? (
         <AutoplayVideo
-          image={media.image}
-          alt={media.alt}
-          videoUrl={media.videoURL}
+          image={media?.image}
+          alt={media?.alt}
+          videoUrl={media?.videoURL}
           videoOptions={{ controls: false }}
         />
       ) : (
         <Fragment>
           <img
-            src={`${media.image}?q=30&w=2000`}
+            src={`${media?.image}?q=30&w=2000`}
             alt=""
             className="h-full w-full object-cover"
             style={{ position: 'absolute' }}

@@ -45,6 +45,8 @@ import {
   HorizontalImageTextBlock,
 } from '../types/boat'
 
+import MoreArticlesSlider from '../molecules/more-articles-slider'
+
 const extractFlexibleSectionsFromCraft = (labEntry: any) => {
   const blockTypes = {
     oneColumnTextBlock: 'one-column-text',
@@ -109,193 +111,197 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
   )
 
   const date = new Date(labEntry.dateCreated)
-  console.log(flexData)
 
   return (
     <Layout>
-      <GenericSection className="pt-48" theme="dark">
-        <SEO title={labEntry.title} slug={props.path} />
-        <DropdownNav />
-        <Categories align="left" categories={labEntry.articleCategories} />
-        <div>
-          <Typography className="mb-4" variant="h4">
-            {labEntry.title}
-          </Typography>
+      <GenericSection className="pt-32" theme="dark">
+        <div className="px-4 max-w-screen-xl m-auto">
+          <SEO title={labEntry.title} slug={props.path} />
+          <DropdownNav />
+          <Categories align="left" categories={labEntry.articleCategories} />
+          <div>
+            <Typography className="mb-4" variant="h4">
+              {labEntry.title}
+            </Typography>
 
-          <Typography className="mb-24" variant="p3">
-            {labEntry.articleExcerpt}
+            <Typography className="mb-24" variant="p3">
+              {labEntry.articleExcerpt}
+            </Typography>
+          </div>
+          <Typography variant="e3" className="date">
+            {`${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}`}
           </Typography>
+          <img
+            src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
+            alt=""
+          />
         </div>
-        <Typography variant="e3" className="date">
-          {`${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}`}
-        </Typography>
-        <img
-          src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
-          alt=""
-        />
       </GenericSection>
-      {flexData.map(({ title, theme, bleedDirection, headerImage, blocks }) => (
-        <GenericSection theme="dark">
-          {!!blocks &&
-            blocks.map((block, index) => {
-              if (isTwoColumnImageTextBlock(block)) {
-                return (
-                  <TwoColumnImageTextBlockComponent key={index} {...block} />
-                )
-              }
-              if (isOneColumnTextBlock(block)) {
-                if (block.textBlock) {
-                  block.copy = block.textBlock[0].copy
-                  block.header = block.textBlock[0].header
+      {flexData.map(
+        ({ title, theme, bleedDirection, headerImage, blocks }, i) => (
+          <GenericSection key={i} theme="dark">
+            {!!blocks &&
+              blocks.map((block, index) => {
+                if (isTwoColumnImageTextBlock(block)) {
+                  return (
+                    <TwoColumnImageTextBlockComponent key={index} {...block} />
+                  )
                 }
-
-                console.log(block)
-
-                return (
-                  <OneColumnTextBlockComponent
-                    key={index}
-                    {...block}
-                    align={block.align ?? undefined}
-                  />
-                )
-              }
-              if (isOneColumnImageTextBlock(block)) {
-                if (block.textBlock) {
-                  block.content = {
-                    copy: block.textBlock[0].copy,
-                    header: block.textBlock[0].header,
+                if (isOneColumnTextBlock(block)) {
+                  if (block.textBlock) {
+                    block.copy = block.textBlock[0].copy
+                    block.header = block.textBlock[0].header
                   }
-                  block.media = {
-                    image: block.singleMedia?.[0].image?.[0]?.url,
-                    videoURL: block.singleMedia?.[0].videoURL,
-                    autoplayVideo: block.singleMedia?.[0].autoplayVideo,
+
+                  console.log(block)
+
+                  return (
+                    <OneColumnTextBlockComponent
+                      key={index}
+                      {...block}
+                      align={block.align ?? undefined}
+                    />
+                  )
+                }
+                if (isOneColumnImageTextBlock(block)) {
+                  if (block.textBlock) {
+                    block.content = {
+                      copy: block.textBlock[0].copy,
+                      header: block.textBlock[0].header,
+                    }
+                    block.media = {
+                      image: block.singleMedia?.[0].image?.[0]?.url,
+                      videoURL: block.singleMedia?.[0].videoURL,
+                      autoplayVideo: block.singleMedia?.[0].autoplayVideo,
+                    }
                   }
-                }
 
-                return (
-                  <OneColumnImageTextBlockComponent key={index} {...block} />
-                )
-              }
-              if (isCarouselBlock(block)) {
-                if (block?.source === 'craft') {
-                  const items = createCarouselItems(block.children)
-                  block.items = items
+                  return (
+                    <OneColumnImageTextBlockComponent key={index} {...block} />
+                  )
                 }
+                if (isCarouselBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
 
-                return <Carousel key={index} {...block} theme={theme} />
-              }
-              if (isSliderBlock(block)) {
-                if (block?.source === 'craft') {
-                  const items = createCarouselItems(block.children)
-                  block.items = items
+                  return <Carousel key={index} {...block} theme={theme} />
                 }
+                if (isSliderBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
 
-                return <Slider key={index} {...block} theme={theme} />
-              }
-              if (isThreeColumnImagesBlock(block)) {
-                return (
-                  <ThreeUpImageBlock
-                    key={index}
-                    className="mb-32"
-                    images={block.children}
-                  />
-                )
-              }
-              if (isTwoColumnImagesBlock(block)) {
-                return (
-                  <TwoUpImageBlock
-                    key={index}
-                    className="mb-32"
-                    images={block.images || block.children}
-                  />
-                )
-              }
-              if (isHorizontalImageTextBlock(block)) {
-                const extractedBlock: HorizontalImageTextBlock = {
-                  type: 'horizontal-image-text',
-                  layout: block.layout,
-                  content: {
-                    header: block.textBlock[0].header as string,
-                    copy: block.textBlock[0].copy as string,
-                  },
-                  media: {
-                    image: {
-                      publicURL: block.singleMedia[0].image[0]?.url as string,
+                  return <Slider key={index} {...block} theme={theme} />
+                }
+                if (isThreeColumnImagesBlock(block)) {
+                  return (
+                    <ThreeUpImageBlock
+                      key={index}
+                      className="mb-32"
+                      images={block.children}
+                    />
+                  )
+                }
+                if (isTwoColumnImagesBlock(block)) {
+                  return (
+                    <TwoUpImageBlock
+                      key={index}
+                      className="mb-32"
+                      images={block.images || block.children}
+                    />
+                  )
+                }
+                if (isHorizontalImageTextBlock(block)) {
+                  const extractedBlock: HorizontalImageTextBlock = {
+                    type: 'horizontal-image-text',
+                    layout: block.layout,
+                    content: {
+                      header: block.textBlock[0].header as string,
+                      copy: block.textBlock[0].copy as string,
                     },
-                  },
+                    media: {
+                      image: {
+                        publicURL: block.singleMedia[0].image[0]?.url as string,
+                      },
+                    },
+                  }
+                  return (
+                    <HorizontalImageTextBlockComponent
+                      key={index}
+                      {...extractedBlock}
+                    />
+                  )
                 }
-                return (
-                  <HorizontalImageTextBlockComponent
-                    key={index}
-                    {...extractedBlock}
-                  />
-                )
-              }
-              if (isFullWidthCarouselBlock(block)) {
-                if (block?.source === 'craft') {
-                  const items = createCarouselItems(block.children)
-                  block.items = items
-                }
+                if (isFullWidthCarouselBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
 
-                return <FullWidthCarousel key={index} {...block} />
-              }
-              if (isPowertrainBlock(block)) {
-                const options = block.children.map((option: any) => {
-                  const details = option.children.map((detail) => {
+                  return <FullWidthCarousel key={index} {...block} />
+                }
+                if (isPowertrainBlock(block)) {
+                  const options = block.children.map((option: any) => {
+                    const details = option.children.map((detail) => {
+                      return {
+                        name: detail.textBlockHeader,
+                        info: detail.textBlockCopy,
+                      }
+                    })
+
                     return {
-                      name: detail.textBlockHeader,
-                      info: detail.textBlockCopy,
+                      name: option.textBlockHeader,
+                      details,
                     }
                   })
 
-                  return {
-                    name: option.textBlockHeader,
+                  const powertrainData = {
+                    heroImage: block?.image,
+                    options,
+                  }
+
+                  return (
+                    <PowertrainSectionComponent
+                      key="powertrain-section"
+                      {...powertrainData}
+                    />
+                  )
+                }
+
+                if (isMoreDetailsBlock(block)) {
+                  const buttonText = block.textBlockHeader
+
+                  const details = block.children.map((detail) => {
+                    return {
+                      layout: detail.horizontalLayout,
+                      header: detail.textBlock?.[0]?.header,
+                      copy: detail.textBlock?.[0]?.copy,
+                      image: detail.singleMedia?.[0].image?.[0]?.url,
+                    }
+                  })
+
+                  const moreDetailsData = {
+                    buttonText,
                     details,
                   }
-                })
 
-                const powertrainData = {
-                  heroImage: block?.image,
-                  options,
+                  return (
+                    <MoreDetailsBlockComponent
+                      key={`more-details ${block.textBlockHeader}`}
+                      {...moreDetailsData}
+                    />
+                  )
                 }
 
-                return (
-                  <PowertrainSectionComponent
-                    key="powertrain-section"
-                    {...powertrainData}
-                  />
-                )
-              }
-
-              if (isMoreDetailsBlock(block)) {
-                const buttonText = block.textBlockHeader
-
-                const details = block.children.map((detail) => {
-                  return {
-                    layout: detail.horizontalLayout,
-                    header: detail.textBlock?.[0]?.header,
-                    copy: detail.textBlock?.[0]?.copy,
-                    image: detail.singleMedia?.[0].image?.[0]?.url,
-                  }
-                })
-
-                const moreDetailsData = {
-                  buttonText,
-                  details,
-                }
-
-                return (
-                  <MoreDetailsBlockComponent
-                    key={`more-details ${block.textBlockHeader}`}
-                    {...moreDetailsData}
-                  />
-                )
-              }
-
-              return null
-            })}
-        </GenericSection>
-      ))}
+                return null
+              })}
+          </GenericSection>
+        )
+      )}
+      <MoreArticlesSlider />
     </Layout>
   )
 }
@@ -305,6 +311,10 @@ export default LabTemplate
 export const query = graphql`
   query LabPage($craftSlug: String) {
     craftAPI {
+      categories(group: "articleCategories") {
+        id
+        title
+      }
       entry(slug: [$craftSlug]) {
         ... on CraftAPI_labs_labs_Entry {
           id
@@ -321,6 +331,7 @@ export const query = graphql`
               }
             }
           }
+
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
               theme
@@ -330,8 +341,39 @@ export const query = graphql`
               headerImage: image {
                 url
               }
+
               blocks: children {
                 typeHandle
+                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
+                  align: textAlign
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      alt
+                      label
+                      autoplayVideo
+                      videoURL
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url(width: 2400)
+                        }
+                      }
+                    }
+                  }
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                }
                 ... on CraftAPI_flexibleSections_moreDetails_BlockType {
                   textBlockHeader
                   children {
@@ -375,15 +417,6 @@ export const query = graphql`
                           textBlockHeader
                         }
                       }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
-                  align: textAlign
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
                     }
                   }
                 }

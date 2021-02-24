@@ -36,7 +36,11 @@ export const Categories = ({
         </div>
       )}
       {categories.length === 1 && (
-        <div className="flex items-center justify-center">
+        <div
+          className={`flex items-center ${
+            align === 'left' ? 'justify-start' : 'justify-center'
+          }`}
+        >
           <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
           <Typography variant="e3">{categories[0].title}</Typography>
         </div>
@@ -45,12 +49,9 @@ export const Categories = ({
   )
 }
 
-export const DropdownNav = () => {
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ]
+export const DropdownNav = ({ options }) => {
+  console.log(options)
+
   return (
     <Select
       className="mb-12"

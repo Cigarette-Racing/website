@@ -6,6 +6,7 @@ import { CaretDownIcon, AngleIcon } from '../svgs/icons'
 import { Layout } from '../components/layout'
 import { Typography } from '../atoms/typography'
 import SEO from '../components/seo'
+import { useCategoriesQuery } from '../molecules/categories-data'
 
 import {
   GenericSection,
@@ -22,11 +23,26 @@ const Underline = styled.span`
 `
 
 const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
+  const categoriesQuery = useCategoriesQuery()
+
   const {
     data: {
       craftAPI: { entries: labEntries, entry: LandingPage },
     },
   } = props
+
+  const {
+    craftAPI: { categories },
+  } = categoriesQuery
+
+  const convertCategoriesToOptions = (categories) => {
+    return categories.map((category, i) => {
+      return {
+        value: category.title,
+        label: category.title,
+      }
+    })
+  }
 
   const firstLabEntry = labEntries.slice(0, 1)[0]
   const allButFirstLabEntries = labEntries.slice(1)
@@ -43,7 +59,7 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
           <Typography className="mb-24" variant="p3">
             {LandingPage.articleExcerpt}
           </Typography>
-          <DropdownNav />
+          <DropdownNav options={convertCategoriesToOptions(categories)} />
           <PrimaryLab labEntry={firstLabEntry} />
           {allButFirstLabEntries.map((labEntry: any) => {
             return <Lab key={`${labEntry.id}`} labEntry={labEntry} />
