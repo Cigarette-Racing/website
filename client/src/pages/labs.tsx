@@ -14,7 +14,7 @@ import {
   DropdownNav,
 } from '../templates/article.components'
 
-const Underline = styled.span`
+export const Underline = styled.span`
   display: inline-block;
   transform: translateY(4px);
   margin-right: 4px;

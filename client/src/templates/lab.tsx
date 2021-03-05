@@ -153,8 +153,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                     block.header = block.textBlock[0].header
                   }
 
-                  console.log(block)
-
                   return (
                     <OneColumnTextBlockComponent
                       key={index}

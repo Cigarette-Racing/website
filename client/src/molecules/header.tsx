@@ -18,7 +18,6 @@ import Modal from 'react-modal'
 import { Link } from 'gatsby'
 import { useLocation } from '@reach/router'
 import { StatBlock } from '../atoms/stat-block'
-import { AspectRatio } from '../atoms/aspect-ratio'
 import { motion, AnimatePresence } from 'framer-motion'
 import arrowWithCircleSvg from '../images/arrow-with-circle.svg'
 import { MobileBoatSelector } from './header/mobile-boat-selector'
@@ -30,6 +29,7 @@ import {
 } from './header/header-data'
 import { cacheImages } from '../services/images'
 import clamp from 'lodash/clamp'
+import { OurWorldMenu } from './header/our-world-menu'
 
 export type MenuState = true | false
 export const useMenuState = createGlobalState<MenuState>(false)
@@ -56,7 +56,7 @@ type LinkItem = {
 
 const leftLinks: LinkItem[] = [
   { text: 'Boats', section: 'boats' },
-  { text: 'Our world' },
+  { text: 'Our world', section: 'our world' },
   // { text: 'The Difference' },
 ]
 const rightLinks: LinkItem[] = [
@@ -89,7 +89,6 @@ export const Header = ({}: HeaderProps) => {
       document.body.style.position = 'static'
     }
   }, [isMenuOpen, selectedSection])
-
   // @ts-ignore
   const src: string = logo
 
@@ -231,6 +230,7 @@ export const Header = ({}: HeaderProps) => {
         menuOpenedFromFooter={!!menuOpenedFromFooter}
         onReset={closeMenu}
       />
+      <OurWorldMenu isVisible={selectedSection === 'our world'} />
       <MobileMenu
         isMenuOpen={!!isMenuOpen && isMobileMenu}
         setIsMenuOpen={setIsMenuOpen}
@@ -306,7 +306,7 @@ function MobileMenu({
         role="dialog"
         aria-modal="true"
       >
-        {selectedSection === '' ? (
+        {selectedSection === '' && (
           <Fragment>
             <div className="h-16 flex items-center">
               <ReturnLink onClick={() => setIsMenuOpen(false)}>Back</ReturnLink>
@@ -333,7 +333,7 @@ function MobileMenu({
                 if (section) {
                   return (
                     <button
-                      className="relative mb-2"
+                      className="relative py-2 mb-2"
                       onClick={() => {
                         if (selectedSection === section) {
                           setSelectedSection('')
@@ -355,7 +355,8 @@ function MobileMenu({
               })}
             </div>
           </Fragment>
-        ) : selectedSection === 'boats' ? (
+        )}
+        {selectedSection === 'boats' && (
           <MobileBoatSelector
             onReturn={() => setSelectedSection('')}
             onClose={() => {
@@ -363,7 +364,16 @@ function MobileMenu({
               setSelectedSection('')
             }}
           />
-        ) : null}
+        )}
+        {selectedSection === 'our world' && (
+          <div
+            onClick={() => {
+              setSelectedSection('')
+            }}
+          >
+            <OurWorldMenu isVisible={selectedSection === 'our world'} />
+          </div>
+        )}
       </div>
     </Modal>
   )

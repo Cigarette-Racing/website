@@ -50,8 +50,6 @@ export const Categories = ({
 }
 
 export const DropdownNav = ({ options }) => {
-  console.log(options)
-
   return (
     <Select
       className="mb-12"
