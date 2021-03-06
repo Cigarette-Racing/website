@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { PageProps, graphql, Link } from 'gatsby'
 import Select, { components } from 'react-select'
@@ -23,7 +23,10 @@ export const Underline = styled.span`
 `
 
 const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
-  const categoriesQuery = useCategoriesQuery()
+  const [filterCategory, setFilterCategory] = useState({
+    value: 'all',
+    label: 'All',
+  })
 
   const {
     data: {
@@ -31,21 +34,29 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
     },
   } = props
 
-  const {
-    craftAPI: { categories },
-  } = categoriesQuery
+  const options = useCategoriesQuery()
 
-  const convertCategoriesToOptions = (categories) => {
-    return categories.map((category, i) => {
-      return {
-        value: category.title,
-        label: category.title,
-      }
-    })
-  }
+  console.log(options)
 
   const firstLabEntry = labEntries.slice(0, 1)[0]
   const allButFirstLabEntries = labEntries.slice(1)
+
+  const filteredLabEntries = labEntries.filter((entry) => {
+    if (filterCategory.label === 'All') {
+      return entry
+    }
+
+    const hasCategory = entry.articleCategories.map((category) => {
+      if (category.title === filterCategory.label) {
+        return true
+      } else {
+        return false
+      }
+    })
+    if (hasCategory[0]) {
+      return entry
+    }
+  })
 
   return (
     <Layout>
@@ -59,9 +70,17 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
           <Typography className="mb-24" variant="p3">
             {LandingPage.articleExcerpt}
           </Typography>
-          <DropdownNav options={convertCategoriesToOptions(categories)} />
-          <PrimaryLab labEntry={firstLabEntry} />
-          {allButFirstLabEntries.map((labEntry: any) => {
+          <DropdownNav
+            placeholder="Explore _Labs"
+            options={options}
+            onChange={(option) => {
+              setFilterCategory(option)
+            }}
+          />
+          {filterCategory.value === 'all' && (
+            <PrimaryLab labEntry={firstLabEntry} />
+          )}
+          {filteredLabEntries.map((labEntry: any) => {
             return <Lab key={`${labEntry.id}`} labEntry={labEntry} />
           })}
         </div>

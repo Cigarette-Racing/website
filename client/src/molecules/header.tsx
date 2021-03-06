@@ -230,7 +230,10 @@ export const Header = ({}: HeaderProps) => {
         menuOpenedFromFooter={!!menuOpenedFromFooter}
         onReset={closeMenu}
       />
-      <OurWorldMenu isVisible={selectedSection === 'our world'} />
+      <OurWorldMenu
+        isVisible={selectedSection === 'our world'}
+        onReset={closeMenu}
+      />
       <MobileMenu
         isMenuOpen={!!isMenuOpen && isMobileMenu}
         setIsMenuOpen={setIsMenuOpen}

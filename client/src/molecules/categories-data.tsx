@@ -17,8 +17,32 @@ export const useCategoriesQuery = () => {
   return extractCategories(data)
 }
 
+const convertCategoriesToOptions = (categories) => {
+  const categoryOptions = []
+
+  categoryOptions.push({
+    id: '1',
+    value: 'all',
+    label: 'All',
+  })
+
+  categories.map((category) => {
+    categoryOptions.push({
+      id: category.id,
+      value: category.title,
+      label: category.title,
+    })
+  })
+
+  return categoryOptions
+}
+
 const extractCategories = (data: any) => {
-  return data
+  const {
+    craftAPI: { categories },
+  } = data
+
+  return convertCategoriesToOptions(categories)
 }
 
 // export type HeaderBoatMenuCategories =

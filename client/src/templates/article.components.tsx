@@ -49,22 +49,33 @@ export const Categories = ({
   )
 }
 
-export const DropdownNav = ({ options }) => {
+export const DropdownNav = ({ placeholder, options, onChange }) => {
+  console.log(options)
   return (
     <Select
       className="mb-12"
       options={options}
-      placeholder={'EXPLORE LABS'}
+      placeholder={placeholder}
+      onChange={onChange}
+      menuPortalTarget={document.querySelector('body')}
       components={{
+        DropdownIndicator: (props) => (
+          <components.DropdownIndicator {...props}>
+            <CaretDownIcon />
+          </components.DropdownIndicator>
+        ),
         ValueContainer: (props) => (
           <components.ValueContainer {...props}>
             <Typography variant="e2">{props.children}</Typography>
           </components.ValueContainer>
         ),
-        DropdownIndicator: (props) => (
-          <components.DropdownIndicator {...props}>
-            <CaretDownIcon />
-          </components.DropdownIndicator>
+        Option: (props) => (
+          <components.Option
+            {...props}
+            className="py-3 text-center bg-transparent text-white hover:bg-gray-1 hover:text-gray-3"
+          >
+            <Typography variant="e1">{props.children}</Typography>
+          </components.Option>
         ),
       }}
       styles={{
@@ -109,12 +120,7 @@ export const DropdownNav = ({ options }) => {
         }),
         option: (base, state) => ({
           ...base,
-          background: 'transparent',
-          color: '#fff',
-          '&:hover': {
-            color: '#000',
-            background: '#D12026',
-          },
+          background: state.isSelected ? 'red' : 'blue',
         }),
       }}
     />

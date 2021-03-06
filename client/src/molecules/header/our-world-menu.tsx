@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal'
-import clsx from 'clsx'
+import { PageProps, graphql, Link } from 'gatsby'
 import { ReturnLink } from '../../atoms/return-link'
 import { Typography } from '../../atoms/typography'
 import { Underline } from './../../pages/labs'
@@ -38,9 +38,13 @@ const our_world_sections = [
   },
 ]
 
-export const OurWorldMenu = ({ isVisible }: { isVisible: boolean }) => {
-  console.log(isVisible)
-
+export const OurWorldMenu = ({
+  isVisible,
+  onReset,
+}: {
+  isVisible: boolean
+  onReset: () => void
+}) => {
   return (
     <Modal
       isOpen={isVisible}
@@ -59,8 +63,9 @@ export const OurWorldMenu = ({ isVisible }: { isVisible: boolean }) => {
         <div className="pt-24 grid grid-cols-2 h-full">
           {our_world_sections.map((section) => {
             return (
-              <a
-                href={section.url}
+              <Link
+                to={section.url}
+                onClick={() => onReset()}
                 className="flex flex-col justify-start items-start px-3"
               >
                 <img src={section.hero} alt="" />
@@ -74,7 +79,7 @@ export const OurWorldMenu = ({ isVisible }: { isVisible: boolean }) => {
                 <Typography variant="p2" className="text-white">
                   {section.headline}
                 </Typography>
-              </a>
+              </Link>
             )
           })}
         </div>
