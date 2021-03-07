@@ -49,9 +49,17 @@ export const Categories = ({
   )
 }
 
-const bodyElement = document.body
+const bodyElement = !!document ? document.body : null
 
 export const DropdownNav = ({ placeholder, options, onChange }) => {
+  const [state, setstate] = useState()
+
+  useEffect(() => {
+    setstate(document?.body)
+
+    return () => {}
+  }, [])
+
   return (
     <div>
       <Select
@@ -59,7 +67,7 @@ export const DropdownNav = ({ placeholder, options, onChange }) => {
         options={options}
         placeholder={placeholder}
         onChange={onChange}
-        menuPortalTarget={bodyElement}
+        menuPortalTarget={state}
         components={{
           DropdownIndicator: (props) => (
             <components.DropdownIndicator {...props}>
