@@ -49,10 +49,8 @@ export const Categories = ({
   )
 }
 
-const bodyElement = !!document ? document.body : null
-
 export const DropdownNav = ({ placeholder, options, onChange }) => {
-  const [state, setstate] = useState()
+  const [state, setstate] = useState({})
 
   useEffect(() => {
     setstate(document?.body)
