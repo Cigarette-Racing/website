@@ -5,6 +5,7 @@ import Select, { components } from 'react-select'
 import { CaretDownIcon, AngleIcon } from '../svgs/icons'
 import { Layout } from '../components/layout'
 import { Typography } from '../atoms/typography'
+import { AspectRatio } from '../atoms/aspect-ratio'
 import SEO from '../components/seo'
 import { useCategoriesQuery } from '../molecules/categories-data'
 
@@ -62,7 +63,7 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
     <Layout>
       <GenericSection className="pt-48" theme="dark">
         <SEO title="Labs" slug={props.path} />
-        <div className="px-4 max-w-screen-xl m-auto">
+        <div className="px-4 max-w-screen-sm m-auto">
           <div className="tracking-wide lowercase text-white text-8xl font-light leading-10 font-heading mb-8">
             <Underline className="bg-red" />
             {LandingPage.title}
@@ -77,12 +78,15 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
               setFilterCategory(option)
             }}
           />
-          {filterCategory.value === 'all' && (
-            <PrimaryLab labEntry={firstLabEntry} />
+
+          {!!filteredLabEntries.length ? (
+            filteredLabEntries.map((labEntry: any) => (
+              <Lab key={`${labEntry.id}`} labEntry={labEntry} />
+            ))
+          ) : (
+            <div>No Entries</div>
           )}
-          {filteredLabEntries.map((labEntry: any) => {
-            return <Lab key={`${labEntry.id}`} labEntry={labEntry} />
-          })}
+          {console.log()}
         </div>
       </GenericSection>
     </Layout>
@@ -94,44 +98,43 @@ const PrimaryLab = ({ labEntry }: any) => {
     <Link to={`${labEntry.slug}`}>
       <div
         data-type="lab-entry"
-        className="border-b border-solid border-gray-1 mb-5"
+        className="border-b border-solid border-gray-1 mb-5 flex flex-col"
       >
-        <img
-          className="sm:hidden"
-          src={`${labEntry.imageObject[0].image[0].url}?q=30&w=1000`}
-          alt=""
-        />
-        <div className="categories mt-10 mb-2">
-          {labEntry.articleCategories.length > 1 && (
-            <div className="flex items-center justify-center">
-              <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
-              {labEntry.articleCategories.map((category: any) => {
-                return <Typography variant="e3">{category.title}</Typography>
-              })}
-            </div>
-          )}
-          {labEntry.articleCategories.length === 1 && (
-            <div className="flex items-center justify-center">
-              <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
-              <Typography variant="e3">
-                {labEntry.articleCategories[0].title}
-              </Typography>
-            </div>
-          )}
+        <AspectRatio ratio="1:1">
+          <img
+            className="h-full w-full object-cover absolute"
+            src={`${labEntry.imageObject[0].image[0].url}?q=30&w=1000`}
+            alt=""
+          />
+        </AspectRatio>
+        <div>
+          <div className="categories mt-10 mb-2">
+            {labEntry.articleCategories.length > 1 && (
+              <div className="flex items-center justify-center">
+                <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
+                {labEntry.articleCategories.map((category: any) => {
+                  return <Typography variant="e3">{category.title}</Typography>
+                })}
+              </div>
+            )}
+            {labEntry.articleCategories.length === 1 && (
+              <div className="flex items-center justify-center">
+                <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
+                <Typography variant="e3">
+                  {labEntry.articleCategories[0].title}
+                </Typography>
+              </div>
+            )}
+          </div>
+          <div className="text-center">
+            <Typography className="mb-4" variant="h4">
+              {labEntry.title}
+            </Typography>
+            <Typography className="max-w-screen-sm m-auto mb-24" variant="p3">
+              {labEntry.articleExcerpt}
+            </Typography>
+          </div>
         </div>
-        <div className="text-center">
-          <Typography className="mb-4" variant="h4">
-            {labEntry.title}
-          </Typography>
-          <Typography className="mb-24" variant="p3">
-            {labEntry.articleExcerpt}
-          </Typography>
-        </div>
-        <img
-          className="hidden sm:block"
-          src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
-          alt=""
-        />
       </div>
     </Link>
   )
@@ -144,25 +147,22 @@ const Lab = ({ labEntry }: any) => {
         data-type="lab-entry"
         className="border-b border-solid border-gray-1 mb-5"
       >
-        <img
-          className="sm:hidden"
-          src={`${labEntry.imageObject[0].image[0].url}?q=30&w=1000`}
-          alt=""
-        />
+        <AspectRatio ratio="1:1" className="">
+          <img
+            className="absolute h-full w-full object-cover"
+            src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
+            alt=""
+          />
+        </AspectRatio>
         <Categories categories={labEntry.articleCategories} />
         <div className="text-center">
           <Typography className="mb-4" variant="h4">
             {labEntry.title}
           </Typography>
-          <Typography className="mb-24" variant="p3">
+          <Typography className="max-w-screen-sm m-auto mb-24" variant="p3">
             {labEntry.articleExcerpt}
           </Typography>
         </div>
-        <img
-          className="hidden sm:block"
-          src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
-          alt=""
-        />
       </div>
     </Link>
   )

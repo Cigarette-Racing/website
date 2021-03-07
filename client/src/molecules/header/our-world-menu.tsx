@@ -64,6 +64,7 @@ export const OurWorldMenu = ({
           {our_world_sections.map((section) => {
             return (
               <Link
+                key={section.url}
                 to={section.url}
                 onClick={() => onReset()}
                 className="flex flex-col justify-start items-start px-3"

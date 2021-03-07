@@ -15,7 +15,7 @@ export const Categories = ({
   align,
 }: {
   categories: any[]
-  align: string
+  align?: string
 }) => {
   return (
     <div className="categories mt-10 mb-2">
@@ -50,7 +50,6 @@ export const Categories = ({
 }
 
 export const DropdownNav = ({ placeholder, options, onChange }) => {
-  console.log(options)
   return (
     <Select
       className="mb-12"
@@ -72,7 +71,7 @@ export const DropdownNav = ({ placeholder, options, onChange }) => {
         Option: (props) => (
           <components.Option
             {...props}
-            className="py-3 text-center bg-transparent text-white hover:bg-gray-1 hover:text-gray-3"
+            className="py-3 text-center bg-transparent text-white hover:bg-gray-1 hover:text-gray-6"
           >
             <Typography variant="e1">{props.children}</Typography>
           </components.Option>
@@ -120,7 +119,13 @@ export const DropdownNav = ({ placeholder, options, onChange }) => {
         }),
         option: (base, state) => ({
           ...base,
-          background: state.isSelected ? 'red' : 'blue',
+          color: '#fff',
+          cursor: 'pointer',
+          backgroundColor: state.isSelected ? '#d12026' : 'transparent',
+          '&:active': {
+            backgroundColor: '#d12026',
+            color: '#fff',
+          },
         }),
       }}
     />
