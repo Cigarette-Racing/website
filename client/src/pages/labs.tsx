@@ -93,39 +93,24 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
   )
 }
 
-const PrimaryLab = ({ labEntry }: any) => {
+const Lab = ({ labEntry }: any) => {
   return (
     <Link to={`${labEntry.slug}`}>
       <div
         data-type="lab-entry"
-        className="border-b border-solid border-gray-1 mb-5 flex flex-col"
+        className="border-b border-solid border-gray-1 mb-5 md:flex"
       >
-        <AspectRatio ratio="1:1">
-          <img
-            className="h-full w-full object-cover absolute"
-            src={`${labEntry.imageObject[0].image[0].url}?q=30&w=1000`}
-            alt=""
-          />
-        </AspectRatio>
-        <div>
-          <div className="categories mt-10 mb-2">
-            {labEntry.articleCategories.length > 1 && (
-              <div className="flex items-center justify-center">
-                <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
-                {labEntry.articleCategories.map((category: any) => {
-                  return <Typography variant="e3">{category.title}</Typography>
-                })}
-              </div>
-            )}
-            {labEntry.articleCategories.length === 1 && (
-              <div className="flex items-center justify-center">
-                <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
-                <Typography variant="e3">
-                  {labEntry.articleCategories[0].title}
-                </Typography>
-              </div>
-            )}
-          </div>
+        <div className="w-1/2">
+          <AspectRatio ratio="1:1" className="">
+            <img
+              className="absolute h-full w-full object-cover"
+              src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
+              alt=""
+            />
+          </AspectRatio>
+        </div>
+        <div className="w-1/2">
+          <Categories categories={labEntry.articleCategories} />
           <div className="text-center">
             <Typography className="mb-4" variant="h4">
               {labEntry.title}
@@ -134,34 +119,6 @@ const PrimaryLab = ({ labEntry }: any) => {
               {labEntry.articleExcerpt}
             </Typography>
           </div>
-        </div>
-      </div>
-    </Link>
-  )
-}
-
-const Lab = ({ labEntry }: any) => {
-  return (
-    <Link to={`${labEntry.slug}`}>
-      <div
-        data-type="lab-entry"
-        className="border-b border-solid border-gray-1 mb-5"
-      >
-        <AspectRatio ratio="1:1" className="">
-          <img
-            className="absolute h-full w-full object-cover"
-            src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
-            alt=""
-          />
-        </AspectRatio>
-        <Categories categories={labEntry.articleCategories} />
-        <div className="text-center">
-          <Typography className="mb-4" variant="h4">
-            {labEntry.title}
-          </Typography>
-          <Typography className="max-w-screen-sm m-auto mb-24" variant="p3">
-            {labEntry.articleExcerpt}
-          </Typography>
         </div>
       </div>
     </Link>

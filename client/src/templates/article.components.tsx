@@ -56,7 +56,7 @@ export const DropdownNav = ({ placeholder, options, onChange }) => {
       options={options}
       placeholder={placeholder}
       onChange={onChange}
-      menuPortalTarget={document.querySelector('body')}
+      menuPortalTarget={document?.body}
       components={{
         DropdownIndicator: (props) => (
           <components.DropdownIndicator {...props}>
@@ -71,7 +71,7 @@ export const DropdownNav = ({ placeholder, options, onChange }) => {
         Option: (props) => (
           <components.Option
             {...props}
-            className="py-3 text-center bg-transparent text-white hover:bg-gray-1 hover:text-gray-6"
+            className="py-3 text-center bg-transparent screen text-white hover:bg-gray-1 hover:text-gray-6"
           >
             <Typography variant="e1">{props.children}</Typography>
           </components.Option>
