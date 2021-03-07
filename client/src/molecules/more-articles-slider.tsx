@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const MoreArticlesSlider = () => {
-  const getWidth = () => window.innerWidth
+  const [state, setstate] = useState(null)
+
+  useEffect(() => {
+    setstate(window.innerWidth)
+  }, [])
 
   return (
     <div className="relative w-full h-full m-auto overflow-hidden">
       <div
         className="sliderContent transform ease-out flex"
-        style={{ width: `${getWidth()}` }}
+        style={{ width: `${state}` }}
       ></div>
     </div>
   )
