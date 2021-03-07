@@ -37,11 +37,6 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
 
   const options = useCategoriesQuery()
 
-  console.log(options)
-
-  const firstLabEntry = labEntries.slice(0, 1)[0]
-  const allButFirstLabEntries = labEntries.slice(1)
-
   const filteredLabEntries = labEntries.filter((entry) => {
     if (filterCategory.label === 'All') {
       return entry
@@ -86,7 +81,6 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
           ) : (
             <div>No Entries</div>
           )}
-          {console.log()}
         </div>
       </GenericSection>
     </Layout>
@@ -95,7 +89,7 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
 
 const Lab = ({ labEntry }: any) => {
   return (
-    <Link to={`${labEntry.slug}`}>
+    <Link to={`${labEntry.slug}`} className="block">
       <div
         data-type="lab-entry"
         className="border-b border-solid border-gray-1 mb-5 md:flex"

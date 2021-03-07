@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import styled from 'styled-components'
 import { PageProps, graphql, Link } from 'gatsby'
@@ -50,13 +50,19 @@ export const Categories = ({
 }
 
 export const DropdownNav = ({ placeholder, options, onChange }) => {
+  let menuPortalTarget = null
+
+  useEffect(() => {
+    menuPortalTarget = document.body
+  }, [])
+
   return (
     <Select
       className="mb-12"
       options={options}
       placeholder={placeholder}
       onChange={onChange}
-      menuPortalTarget={document?.body}
+      menuPortalTarget={menuPortalTarget || ''}
       components={{
         DropdownIndicator: (props) => (
           <components.DropdownIndicator {...props}>
