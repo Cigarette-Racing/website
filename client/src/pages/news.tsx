@@ -8,7 +8,7 @@ import { CaretDownIcon, CaretUpIcon, AngleIcon } from '../svgs/icons'
 import { Layout } from '../components/layout'
 import { Typography } from '../atoms/typography'
 import SEO from '../components/seo'
-import { ValueContainer } from 'react-select/src/components/containers'
+import { useCategoriesQuery } from '../molecules/categories-data'
 
 const NewsArticlesTemplate = (
   props: PageProps<GatsbyTypes.newsArticlesPageQuery>
@@ -19,7 +19,6 @@ const NewsArticlesTemplate = (
     },
   } = props
 
-  console.log(newsArticleEntries, 'wtf')
   const firstNewsArticleEntry = newsArticleEntries.slice(0, 1)[0]
   const allButFirstNewsArticleEntries = newsArticleEntries.slice(1)
 
@@ -53,11 +52,6 @@ const NewsArticlesTemplate = (
 const FeaturedNewsArticle = ({ newsArticleEntry }: any) => {
   return (
     <div className="border-b border-solid border-gray-1 mb-5">
-      {/* <img
-          className="sm:hidden"
-          src={`${newsArticleEntry?.imageObject?.[0]?.image?.[0]?.url}?q=30&w=1000`}
-          alt=""
-        /> */}
       {console.log(newsArticleEntry)}
       <div className="text-center">
         <Typography className="mb-4" variant="h4">
@@ -146,11 +140,7 @@ export const GenericSection: React.FC<{
 )
 
 const DropdownNav = () => {
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ]
+  const options = useCategoriesQuery()
   return (
     <Select
       className="mb-12"

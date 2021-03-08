@@ -49,7 +49,7 @@ export const Categories = ({
   )
 }
 
-export const DropdownNav = ({ placeholder, options, onChange }) => {
+export const DropdownNav = ({ placeholder, options, onChange, className }) => {
   const [state, setstate] = useState({})
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export const DropdownNav = ({ placeholder, options, onChange }) => {
   return (
     <div>
       <Select
-        className="mb-12"
+        className={`mb-12 ${className}`}
         options={options}
         placeholder={placeholder}
         onChange={onChange}

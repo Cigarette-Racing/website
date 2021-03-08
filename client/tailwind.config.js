@@ -144,6 +144,7 @@ module.exports = {
         '6xl': '4.5rem', // 72px
         '7xl': '5rem', // 80px
         '8xl': '5.5rem', // 88px
+        huge: '10rem',
       },
       lineHeight: {
         none: '1',
@@ -219,7 +220,9 @@ module.exports = {
       'disabled',
     ],
     padding: ['responsive', 'hover', 'focus', 'group-hover', 'first', 'last'],
+    margin: ['responsive', 'first', 'last', 'odd'],
     borderWidth: ['responsive', 'first', 'last'],
+    order: ['responsive', 'odd', 'even', 'first', 'last'],
   },
   plugins: [
     gridColsMax,
