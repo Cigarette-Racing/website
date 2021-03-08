@@ -94,7 +94,7 @@ const Lab = ({ labEntry }: any) => {
         data-type="lab-entry"
         className="border-b border-solid border-gray-1 mb-5 md:flex"
       >
-        <div className="w-1/2">
+        <div className="md:w-1/2">
           <AspectRatio ratio="1:1" className="">
             <img
               className="absolute h-full w-full object-cover"
@@ -103,7 +103,7 @@ const Lab = ({ labEntry }: any) => {
             />
           </AspectRatio>
         </div>
-        <div className="w-1/2">
+        <div className="md:w-1/2">
           <Categories categories={labEntry.articleCategories} />
           <div className="text-center">
             <Typography className="mb-4" variant="h4">
