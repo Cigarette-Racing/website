@@ -107,7 +107,7 @@ const Lab = ({ labEntry, index }: any) => {
         </div>
         <div className={`${index === 0 ? 'w-full' : 'md:w-1/2'}`}>
           <Categories categories={labEntry.articleCategories} />
-          <div className="text-center">
+          <div className="text-center px-3">
             <Typography className="mb-4" variant="h4">
               {labEntry.title}
             </Typography>
