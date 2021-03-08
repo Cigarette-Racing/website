@@ -22,7 +22,7 @@ export const Underline = styled.span`
   height: 2px;
 `
 
-const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
+const LabsPage = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
   const [filterCategory, setFilterCategory] = useState({
     value: 'all',
     label: 'All',
@@ -191,7 +191,7 @@ const Lab = ({ labEntry, index, isPrimary = false }: any) => {
   )
 }
 
-export default LabsTemplate
+export default LabsPage
 
 export const query = graphql`
   query {

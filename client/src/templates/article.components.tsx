@@ -49,7 +49,13 @@ export const Categories = ({
   )
 }
 
-export const DropdownNav = ({ placeholder, options, onChange, className }) => {
+export const DropdownNav = ({
+  placeholder,
+  options,
+  onChange,
+  className,
+  theme = 'dark',
+}) => {
   const [state, setstate] = useState({})
 
   useEffect(() => {
@@ -89,12 +95,12 @@ export const DropdownNav = ({ placeholder, options, onChange, className }) => {
         styles={{
           placeholder: (base) => ({
             ...base,
-            color: '#fff',
+            color: theme === 'dark' ? '#fff' : '#000',
           }),
           control: (base) => ({
             ...base,
             background: 'rgba(255,255,255,0.1)',
-            border: '1px solid #fff',
+            border: theme === 'dark' ? '1px solid #fff' : '1px solid #e0e0e0',
             borderRadius: '40px',
           }),
           clearIndicator: () => ({
@@ -116,11 +122,11 @@ export const DropdownNav = ({ placeholder, options, onChange, className }) => {
             ...base,
             order: 2,
             padding: '10px 0',
-            color: '#fff',
+            color: theme === 'dark' ? '#fff' : '#000',
           }),
           singleValue: (base) => ({
             ...base,
-            color: '#fff',
+            color: theme === 'dark' ? '#fff' : '#000',
           }),
           menu: (base) => ({
             ...base,
