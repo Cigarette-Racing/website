@@ -75,8 +75,8 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
           />
 
           {!!filteredLabEntries.length ? (
-            filteredLabEntries.map((labEntry: any) => (
-              <Lab key={`${labEntry.id}`} labEntry={labEntry} />
+            filteredLabEntries.map((labEntry: any, i: number) => (
+              <Lab key={`${labEntry.id}`} index={i} labEntry={labEntry} />
             ))
           ) : (
             <div>No Entries</div>
@@ -87,14 +87,16 @@ const LabsTemplate = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
   )
 }
 
-const Lab = ({ labEntry }: any) => {
+const Lab = ({ labEntry, index }: any) => {
   return (
     <Link to={`${labEntry.slug}`} className="block">
       <div
         data-type="lab-entry"
-        className="border-b border-solid border-gray-1 mb-5 md:flex"
+        className={`border-b border-solid border-gray-1 mb-5 md:flex ${
+          index === 0 ? 'flex-col' : ''
+        }`}
       >
-        <div className="md:w-1/2">
+        <div className={`${index === 0 ? 'w-full' : 'md:w-1/2'}`}>
           <AspectRatio ratio="1:1" className="">
             <img
               className="absolute h-full w-full object-cover"
@@ -103,7 +105,7 @@ const Lab = ({ labEntry }: any) => {
             />
           </AspectRatio>
         </div>
-        <div className="md:w-1/2">
+        <div className={`${index === 0 ? 'w-full' : 'md:w-1/2'}`}>
           <Categories categories={labEntry.articleCategories} />
           <div className="text-center">
             <Typography className="mb-4" variant="h4">
