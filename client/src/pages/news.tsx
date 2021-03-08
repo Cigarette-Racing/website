@@ -53,7 +53,7 @@ const NewsArticlesPage = (
     <Layout>
       <GenericSection className="pt-48">
         <SEO title="All News" slug={props.path} />
-        <div className="relative flex justify-center tracking-wide text-gray-5 capitalize whitespace-no-wrap font-normal text-9xl leading-10 font-heading mb-8 text-center">
+        <div className="relative flex justify-center tracking-wide text-gray-5 capitalize whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-8 text-center">
           <span>{LandingPage.title}</span>
         </div>
         <div className="px-4 max-w-screen-xl m-auto">
@@ -69,6 +69,33 @@ const NewsArticlesPage = (
               setFilterCategory(option)
             }}
           />
+          <ul className="hidden md:flex justify-center pb-12 ">
+            {options.map((option) => {
+              const selected = option.label === filterCategory.label
+              return (
+                <li
+                  key={option.label}
+                  className="mx-5 cursor-pointer relative"
+                  onClick={() => {
+                    setFilterCategory(option)
+                  }}
+                >
+                  {selected && (
+                    <span
+                      className="md:block absolute bg-red top-1/2 transform -translate-y-1/2"
+                      style={{ height: '2px', width: '100%' }}
+                    ></span>
+                  )}
+                  <Typography
+                    variant="e1"
+                    className={clsx({ ['text-gray-4']: !selected })}
+                  >
+                    {option.label}
+                  </Typography>
+                </li>
+              )
+            })}
+          </ul>
           {/* <NewsDropdownNav /> */}
           {filterCategory.value === 'all' ? (
             <UnFilteredList entries={articleEntries} />
