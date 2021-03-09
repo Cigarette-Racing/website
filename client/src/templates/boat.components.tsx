@@ -796,7 +796,16 @@ export const TextBlockComponent = ({
     <Typography variant="e2" className="mb-4">
       {header}
     </Typography>
-    <Typography variant="p2">{copy}</Typography>
+    {copy
+      ?.split('\n')
+      ?.filter(Boolean)
+      .map((p) => {
+        return (
+          <Typography className="mb-4 last:mb-0" key={p} variant="p2">
+            {p}
+          </Typography>
+        )
+      })}
   </div>
 )
 
