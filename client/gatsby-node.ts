@@ -84,11 +84,14 @@ const createNewsArticlePages: GatsbyNode['createPages'] = async ({
   actions,
 }) => {
   const { createPage } = actions
-  const createNewsArticlePages = resolve(__dirname, 'src/templates/news.tsx')
+  const newsArticleTemplate = resolve(
+    __dirname,
+    'src/templates/news-article.tsx'
+  )
   const query = /* GraphQL */ `
     query AllLabs {
       craftAPI {
-        entries(type: "newsArticles") {
+        entries(type: "newsArticle") {
           slug
         }
       }
@@ -106,7 +109,7 @@ const createNewsArticlePages: GatsbyNode['createPages'] = async ({
   result.data!.craftAPI.entries.forEach(({ slug }) => {
     createPage({
       path: `/news/${slug}`,
-      component: createNewsArticlePages,
+      component: newsArticleTemplate,
       context: {
         slug: `/news/${slug}`,
         craftSlug: slug,

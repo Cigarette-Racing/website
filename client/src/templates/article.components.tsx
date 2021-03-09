@@ -12,13 +12,15 @@ import { ValueContainer } from 'react-select/src/components/containers'
 
 export const Categories = ({
   categories = [],
+  className,
   align,
 }: {
   categories: any[]
+  className?: string
   align?: string
 }) => {
   return (
-    <div className="categories mt-10 mb-2">
+    <div className={`categories mt-10 mb-4 ${className}`}>
       {categories.length > 1 && (
         <div
           className={`flex items-center ${

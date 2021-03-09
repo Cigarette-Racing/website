@@ -22,7 +22,7 @@ export const Underline = styled.span`
   height: 2px;
 `
 
-const LabsPage = (props: PageProps<GatsbyTypes.LabsPageQuery>) => {
+const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
   const [filterCategory, setFilterCategory] = useState({
     value: 'all',
     label: 'All',
@@ -144,6 +144,7 @@ const UnFilteredList = ({ entries }) => {
 }
 
 const Lab = ({ labEntry, index, isPrimary = false }: any) => {
+  console.log(labEntry.dataCreated)
   return (
     <Link
       to={`${labEntry.slug}`}
@@ -194,7 +195,7 @@ const Lab = ({ labEntry, index, isPrimary = false }: any) => {
 export default LabsPage
 
 export const query = graphql`
-  query {
+  query LabsLandingPage {
     craftAPI {
       entry(type: "landingPage") {
         ... on CraftAPI_labs_landingPage_Entry {
@@ -205,6 +206,7 @@ export const query = graphql`
       }
       entries(section: "labs", hasDescendants: false) {
         id
+        dateCreated
         slug
         title
         typeHandle

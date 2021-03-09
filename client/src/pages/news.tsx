@@ -280,7 +280,7 @@ const NewsDropdownNav = () => {
 export default NewsArticlesPage
 
 export const query = graphql`
-  query {
+  query NewsArticleLandingPage {
     craftAPI {
       entries(type: "newsArticle") {
         ... on CraftAPI_newsArticles_newsArticle_Entry {

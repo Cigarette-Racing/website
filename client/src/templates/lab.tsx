@@ -114,21 +114,21 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
 
   return (
     <Layout>
-      <GenericSection className="pt-32" theme="dark">
+      <GenericSection className="pt-32 pb-0" theme="dark">
         <div className="px-4 max-w-screen-xl m-auto">
           <SEO title={labEntry.title} slug={props.path} />
-          <DropdownNav />
-          <Categories align="left" categories={labEntry.articleCategories} />
-          <div>
-            <Typography className="mb-4" variant="h4">
+          {/* <DropdownNav /> */}
+          <div className="border-b border-gray-2 pb-6 mb-10">
+            <Categories
+              className="transform -translate-x-2"
+              align="left"
+              categories={labEntry.articleCategories}
+            />
+            <Typography className="mb-4" variant="h3">
               {labEntry.title}
             </Typography>
-
-            <Typography className="mb-24" variant="p3">
-              {labEntry.articleExcerpt}
-            </Typography>
           </div>
-          <Typography variant="e3" className="date">
+          <Typography variant="e3" className="mb-4">
             {`${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}`}
           </Typography>
           <img
