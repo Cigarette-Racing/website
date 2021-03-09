@@ -7,7 +7,6 @@ const SpecificationsSection = ({
   title,
   unitToggle,
 }) => {
-  console.log(specificationsCategories, 'wtf')
   if (!specificationsCategories.length) {
     return (
       <div className="max-w-screen-xl m-auto">Specifications coming soon!</div>
