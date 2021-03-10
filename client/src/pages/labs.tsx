@@ -55,7 +55,7 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
 
   return (
     <Layout>
-      <GenericSection className="pt-48" theme="dark">
+      <GenericSection className="pt-48 py-12" theme="dark">
         <SEO title="Labs" slug={props.path} />
         <div className="px-4 max-w-screen-sm lg:max-w-screen-xl m-auto">
           <div className="tracking-wide lowercase text-white text-8xl font-light leading-10 font-heading mb-8 md:text-center md:text-huge">
@@ -106,7 +106,6 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
 }
 
 const FilteredList = ({ entries }) => {
-  console.log(entries)
   return (
     <div>
       {!!entries.length ? (
@@ -122,8 +121,6 @@ const FilteredList = ({ entries }) => {
 
 const UnFilteredList = ({ entries }) => {
   const entriesMinusFirst = entries.slice(1)
-
-  console.log(entriesMinusFirst)
 
   return (
     <Fragment>
@@ -144,7 +141,6 @@ const UnFilteredList = ({ entries }) => {
 }
 
 const Lab = ({ labEntry, index, isPrimary = false }: any) => {
-  console.log(labEntry.dataCreated)
   return (
     <Link
       to={`${labEntry.slug}`}
@@ -177,7 +173,10 @@ const Lab = ({ labEntry, index, isPrimary = false }: any) => {
             ['md:order-1']: index % 2 === 0,
           })}
         >
-          <Categories categories={labEntry.articleCategories} />
+          <Categories
+            className="mt-10 mb-4"
+            categories={labEntry.articleCategories}
+          />
           <div className="text-center px-3">
             <Typography className="mb-4" variant="h4">
               {labEntry.title}

@@ -20,7 +20,7 @@ export const Categories = ({
   align?: string
 }) => {
   return (
-    <div className={`categories mt-10 mb-4 ${className}`}>
+    <div className={`categories ${className}`}>
       {categories.length > 1 && (
         <div
           className={`flex items-center ${
@@ -156,7 +156,7 @@ export const GenericSection: React.FC<{
 }> = ({ children, className, theme = 'light', ...rest }) => (
   <section
     className={clsx(
-      'relative py-12 overflow-hidden',
+      'relative overflow-hidden',
       {
         'bg-black text-white': theme === 'dark',
       },

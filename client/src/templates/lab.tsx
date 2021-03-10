@@ -44,6 +44,10 @@ import {
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
 } from '../types/boat'
+import { Carousel } from '../molecules/carousel'
+import { FullWidthCarousel } from '../molecules/full-width-carousel'
+import { Slider } from '../molecules/slider'
+import { MediaGallery } from '../molecules/media-gallery'
 
 import MoreArticlesSlider from '../molecules/more-articles-slider'
 
@@ -213,6 +217,7 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                   )
                 }
                 if (isHorizontalImageTextBlock(block)) {
+                  console.log(block, 'horz')
                   const extractedBlock: HorizontalImageTextBlock = {
                     type: 'horizontal-image-text',
                     layout: block.layout,
@@ -241,59 +246,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
 
                   return <FullWidthCarousel key={index} {...block} />
                 }
-                if (isPowertrainBlock(block)) {
-                  const options = block.children.map((option: any) => {
-                    const details = option.children.map((detail) => {
-                      return {
-                        name: detail.textBlockHeader,
-                        info: detail.textBlockCopy,
-                      }
-                    })
-
-                    return {
-                      name: option.textBlockHeader,
-                      details,
-                    }
-                  })
-
-                  const powertrainData = {
-                    heroImage: block?.image,
-                    options,
-                  }
-
-                  return (
-                    <PowertrainSectionComponent
-                      key="powertrain-section"
-                      {...powertrainData}
-                    />
-                  )
-                }
-
-                if (isMoreDetailsBlock(block)) {
-                  const buttonText = block.textBlockHeader
-
-                  const details = block.children.map((detail) => {
-                    return {
-                      layout: detail.horizontalLayout,
-                      header: detail.textBlock?.[0]?.header,
-                      copy: detail.textBlock?.[0]?.copy,
-                      image: detail.singleMedia?.[0].image?.[0]?.url,
-                    }
-                  })
-
-                  const moreDetailsData = {
-                    buttonText,
-                    details,
-                  }
-
-                  return (
-                    <MoreDetailsBlockComponent
-                      key={`more-details ${block.textBlockHeader}`}
-                      {...moreDetailsData}
-                    />
-                  )
-                }
-
                 return null
               })}
           </GenericSection>
@@ -372,51 +324,25 @@ export const query = graphql`
                     }
                   }
                 }
-                ... on CraftAPI_flexibleSections_moreDetails_BlockType {
-                  textBlockHeader
-                  children {
-                    ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
-                      id
-                      horizontalLayout
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          id
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              id
-                              url(width: 2400)
-                            }
-                          }
+                ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      autoplayVideo
+                      videoURL
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url
                         }
                       }
                     }
                   }
-                }
-                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                  image {
-                    ... on CraftAPI_s3_Asset {
-                      id
-                      url(width: 2400)
-                    }
-                  }
-                  children {
-                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlockHeader
-                      children {
-                        ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
-                          textBlockCopy
-                          textBlockHeader
-                        }
-                      }
-                    }
-                  }
+                  layout: horizontalLayout
                 }
               }
             }
