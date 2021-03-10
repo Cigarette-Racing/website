@@ -61,7 +61,7 @@ const NewsArticlesPage = (
             {LandingPage.articleExcerpt}
           </Typography>
           <DropdownNav
-            className="md:hidden"
+            className="mb-24 md:hidden"
             placeholder="Explore Stories"
             options={options}
             theme="light"
@@ -96,7 +96,6 @@ const NewsArticlesPage = (
               )
             })}
           </ul>
-          {/* <NewsDropdownNav /> */}
           {filterCategory.value === 'all' ? (
             <UnFilteredList entries={articleEntries} />
           ) : (
@@ -105,132 +104,6 @@ const NewsArticlesPage = (
         </div>
       </GenericSection>
     </Layout>
-  )
-}
-
-const NewsArticle = ({
-  articleEntry,
-  index,
-  hierarchy,
-}: {
-  articleEntry: any
-  index?: number
-  hierarchy?: string
-}) => {
-  const isPrimary = hierarchy === 'primary'
-  const isSecondary = hierarchy === 'secondary'
-  const isTertiary = hierarchy === 'tertiary'
-
-  return (
-    <Fragment>
-      {isPrimary && (
-        <Link
-          to={`${articleEntry.slug}`}
-          className={clsx('block border-solid border-t border-gray-5')}
-        >
-          <div className={clsx('md:flex pt-5 flex-col mb-24')}>
-            <div className={clsx('w-full order-2')}>
-              {!!articleEntry.image[0] && (
-                <AspectRatio ratio="1:1" md="16:9" className="">
-                  <img
-                    className="absolute h-full w-full object-cover"
-                    src={`${articleEntry.image[0]?.url}?q=30&w=2400`}
-                    alt=""
-                  />
-                </AspectRatio>
-              )}
-            </div>
-            <div className={clsx('w-full order-1')}>
-              <Categories categories={articleEntry.articleCategories} />
-              <div className="text-center px-3">
-                <Typography className="mb-4" variant="h4">
-                  {articleEntry.title}
-                </Typography>
-                <Typography
-                  className="max-w-screen-sm m-auto mb-24"
-                  variant="p3"
-                >
-                  {articleEntry.articleExcerpt}
-                </Typography>
-              </div>
-            </div>
-          </div>
-        </Link>
-      )}
-      {isSecondary && (
-        <Link
-          to={`${articleEntry.slug}`}
-          className={clsx('block border-solid border-gray-5 border-t')}
-        >
-          <div className={clsx('mb-5 md:flex pt-5')}>
-            <div
-              className={clsx('md:w-1/2', {
-                ['md:order-2']: index % 2 === 0,
-              })}
-            >
-              {!!articleEntry.image[0] && (
-                <AspectRatio ratio="1:1" md="16:9" className="">
-                  <img
-                    className="absolute h-full w-full object-cover"
-                    src={`${articleEntry.image[0]?.url}?q=30&w=2400`}
-                    alt=""
-                  />
-                </AspectRatio>
-              )}
-            </div>
-            <div
-              className={clsx('md:w-1/2', {
-                ['md:order-1']: index % 2 === 0,
-              })}
-            >
-              <Categories categories={articleEntry.articleCategories} />
-              <div className="text-center px-3">
-                <Typography className="mb-4" variant="h4">
-                  {articleEntry.title}
-                </Typography>
-                <Typography
-                  className="max-w-screen-sm m-auto mb-24"
-                  variant="p3"
-                >
-                  {articleEntry.articleExcerpt}
-                </Typography>
-              </div>
-            </div>
-          </div>
-        </Link>
-      )}
-      {isTertiary && (
-        <Link to={`${articleEntry.slug}`} className={clsx('block')}>
-          <div className={clsx('mb-5 pt-5')}>
-            <div>
-              {!!articleEntry.image[0] && (
-                <AspectRatio ratio="1:1" md="16:9" className="">
-                  <img
-                    className="absolute h-full w-full object-cover"
-                    src={`${articleEntry.image[0]?.url}?q=30&w=2400`}
-                    alt=""
-                  />
-                </AspectRatio>
-              )}
-            </div>
-            <div>
-              <Categories categories={articleEntry.articleCategories} />
-              <div className="text-center px-3">
-                <Typography className="mb-4" variant="h4">
-                  {articleEntry.title}
-                </Typography>
-                <Typography
-                  className="max-w-screen-sm m-auto mb-24"
-                  variant="p3"
-                >
-                  {articleEntry.articleExcerpt}
-                </Typography>
-              </div>
-            </div>
-          </div>
-        </Link>
-      )}
-    </Fragment>
   )
 }
 
@@ -256,8 +129,6 @@ const UnFilteredList = ({ entries }) => {
   const nextTwoEntries = entries.slice(1, 3)
   const remainingEntries = entries.slice(3)
 
-  console.log(remainingEntries)
-
   return (
     <Fragment>
       <div>
@@ -281,7 +152,7 @@ const UnFilteredList = ({ entries }) => {
           <div>No Entries</div>
         )}
       </div>
-      <div className="remaining grid md:grid-cols-3 md:col-gap-6 lg:grid-cols-3 lg:col-gap-6 border-solid border-gray-5 border-t">
+      <div className="remaining grid grid-cols-2 col-gap-4 lg:grid-cols-3 lg:col-gap-6 border-solid border-gray-5 border-t">
         {!!remainingEntries.length ? (
           remainingEntries.map((articleEntry: any, i: number) => (
             <NewsArticle
@@ -372,6 +243,162 @@ const NewsDropdownNav = () => {
   )
 }
 
+const NewsArticle = ({
+  articleEntry,
+  index,
+  hierarchy,
+}: {
+  articleEntry: any
+  index?: number
+  hierarchy?: string
+}) => {
+  const isPrimary = hierarchy === 'primary'
+  const isSecondary = hierarchy === 'secondary'
+  const isTertiary = hierarchy === 'tertiary'
+
+  const date = new Date(articleEntry.dateCreated)
+
+  return (
+    <Fragment>
+      {isPrimary && (
+        <Link
+          to={`${articleEntry.slug}`}
+          className="block border-solid border-t border-gray-5 md:pt-16"
+        >
+          <div className="md:flex pt-5 flex-col mb-24">
+            <div className="w-full mb-10 md:order-2">
+              {!!articleEntry.image[0] && (
+                <AspectRatio ratio="1:1" md="16:9" className="">
+                  <img
+                    className="absolute h-full w-full object-cover"
+                    src={`${articleEntry.image[0]?.url}?q=30&w=2400`}
+                    alt=""
+                  />
+                </AspectRatio>
+              )}
+            </div>
+            <div className={clsx('w-full md:order-1')}>
+              <Categories
+                className="mb-3"
+                categories={articleEntry.articleCategories}
+              />
+              <div className="text-center px-3">
+                <Typography className="mb-4" variant="h4">
+                  {articleEntry.title}
+                </Typography>
+                <Typography
+                  className="max-w-screen-sm m-auto mb-8 text-gray-3"
+                  variant="p3"
+                >
+                  {articleEntry.articleExcerpt}
+                </Typography>
+                <Typography variant="e3" className="date text-gray-4 mb-8">
+                  {`${
+                    date.getMonth() + 1
+                  }.${date.getDate()}.${date.getFullYear()}`}
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </Link>
+      )}
+      {isSecondary && (
+        <Link
+          to={`${articleEntry.slug}`}
+          className={clsx('block border-solid border-gray-5 border-t')}
+        >
+          <div className="mb-24 md:flex pt-5">
+            <div
+              className={clsx('md:w-1/2 mb-10', {
+                ['md:order-2']: index % 2 === 0,
+              })}
+            >
+              {!!articleEntry.image[0] && (
+                <AspectRatio ratio="1:1" md="16:9" className="">
+                  <img
+                    className="absolute h-full w-full object-cover"
+                    src={`${articleEntry.image[0]?.url}?q=30&w=2400`}
+                    alt=""
+                  />
+                </AspectRatio>
+              )}
+            </div>
+            <div
+              className={clsx('md:w-1/2', {
+                ['md:order-1']: index % 2 === 0,
+                ['md:ml-6']: index % 2 != 0,
+              })}
+            >
+              <Categories
+                align="left"
+                className="mb-3"
+                categories={articleEntry.articleCategories}
+              />
+              <div className="text-center md:text-left px-3">
+                <Typography className="mb-4" variant="h4">
+                  {articleEntry.title}
+                </Typography>
+                <Typography
+                  className="max-w-screen-sm m-auto mb-8 text-gray-3"
+                  variant="p3"
+                >
+                  {articleEntry.articleExcerpt}
+                </Typography>
+                <Typography variant="e3" className="date text-gray-4">
+                  {`${
+                    date.getMonth() + 1
+                  }.${date.getDate()}.${date.getFullYear()}`}
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </Link>
+      )}
+      {isTertiary && (
+        <Link to={`${articleEntry.slug}`} className={clsx('block')}>
+          <div className="mb-24 pt-5">
+            <div className="mb-10">
+              {!!articleEntry.image[0] && (
+                <AspectRatio ratio="1:1" md="16:9" className="">
+                  <img
+                    className="absolute h-full w-full object-cover"
+                    src={`${articleEntry.image[0]?.url}?q=30&w=2400`}
+                    alt=""
+                  />
+                </AspectRatio>
+              )}
+            </div>
+            <div>
+              <Categories
+                align="left"
+                className="mb-3"
+                categories={articleEntry.articleCategories}
+              />
+              <div className="text-left px-3">
+                <Typography className="mb-10" variant="h5" md="h4">
+                  {articleEntry.title}
+                </Typography>
+                <Typography
+                  className="hidden md:block italic max-w-screen-sm m-auto mb-8 text-gray-3"
+                  variant="p3"
+                  md="p1"
+                >
+                  {articleEntry.articleExcerpt}
+                </Typography>
+                <Typography variant="e3" className="date text-gray-4">
+                  {`${
+                    date.getMonth() + 1
+                  }.${date.getDate()}.${date.getFullYear()}`}
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </Link>
+      )}
+    </Fragment>
+  )
+}
+
 export default NewsArticlesPage
 
 export const query = graphql`
@@ -379,6 +406,7 @@ export const query = graphql`
     craftAPI {
       entries(type: "newsArticle") {
         ... on CraftAPI_newsArticles_newsArticle_Entry {
+          dateCreated
           slug
           id
           articleExcerpt

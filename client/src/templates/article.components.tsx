@@ -12,7 +12,7 @@ import { ValueContainer } from 'react-select/src/components/containers'
 
 export const Categories = ({
   categories = [],
-  className,
+  className = '',
   align,
 }: {
   categories: any[]
@@ -23,8 +23,10 @@ export const Categories = ({
     <div className={`categories ${className}`}>
       {categories.length > 1 && (
         <div
-          className={`flex items-center ${
-            align === 'left' ? 'justify-start' : 'justify-center'
+          className={`flex ${
+            align === 'left'
+              ? 'justify-start'
+              : 'justify-center md:justify-start'
           }`}
         >
           <AngleIcon className="text-red" style={{ fontSize: '32px' }} />
@@ -69,7 +71,7 @@ export const DropdownNav = ({
   return (
     <div>
       <Select
-        className={`mb-12 ${className}`}
+        className={`${className}`}
         options={options}
         placeholder={placeholder}
         onChange={onChange}
