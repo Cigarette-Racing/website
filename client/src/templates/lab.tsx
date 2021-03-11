@@ -1,5 +1,6 @@
 import React from 'react'
 import { PageProps, graphql } from 'gatsby'
+import { useMedia } from 'react-use'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
@@ -8,6 +9,7 @@ import {
   Categories,
   DropdownNav,
 } from '../templates/article.components'
+import { NewsArticle } from '../pages/news'
 
 import {
   BoatHeader,
@@ -106,15 +108,21 @@ const extractFlexibleSectionsFromCraft = (labEntry: any) => {
 const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
   const {
     data: {
-      craftAPI: { entry: labEntry },
+      craftAPI: { entry: labEntry, entries: allLabs },
     },
   } = props
+
+  const relatedLabs = allLabs.filter((article) => {
+    return labEntry.id != allLabs.id
+  })
 
   const flexData = getFlexibleSections(
     extractFlexibleSectionsFromCraft(labEntry)
   )
 
   const date = new Date(labEntry.dateCreated)
+
+  const isMobile = useMedia('(max-width: 767px)')
 
   return (
     <Layout>
@@ -248,6 +256,22 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                 }
                 return null
               })}
+            <div className="overflow-scroll">
+              <div
+                className="relatedArticles grid grid-cols-3 gap-6 px-4"
+                style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
+              >
+                {relatedLabs.slice(0, 3).map((lab) => {
+                  return (
+                    <NewsArticle
+                      key={lab.id}
+                      articleEntry={lab}
+                      hierarchy="tertiary"
+                    />
+                  )
+                })}
+              </div>
+            </div>
           </GenericSection>
         )
       )}
@@ -264,6 +288,26 @@ export const query = graphql`
       categories(group: "articleCategories") {
         id
         title
+      }
+      entries(type: "labs") {
+        ... on CraftAPI_labs_labs_Entry {
+          id
+          slug
+          title
+          dateCreated
+          articleExcerpt
+          articleCategories {
+            id
+            title
+          }
+          imageObject {
+            ... on CraftAPI_imageObject_BlockType {
+              image {
+                url
+              }
+            }
+          }
+        }
       }
       entry(slug: [$craftSlug]) {
         ... on CraftAPI_labs_labs_Entry {

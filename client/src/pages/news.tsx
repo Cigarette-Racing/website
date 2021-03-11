@@ -364,7 +364,7 @@ export const NewsArticle = ({
         >
           <div className="mb-24 pt-5">
             <div className="mb-10">
-              {!!articleEntry.image[0] && (
+              {!!articleEntry?.image?.[0] && (
                 <AspectRatio ratio="1:1" className="">
                   <img
                     className="absolute h-full w-full object-cover"
