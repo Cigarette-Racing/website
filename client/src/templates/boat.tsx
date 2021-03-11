@@ -103,7 +103,7 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
   }
 }
 
-const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
+export const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
   const blockTypes = {
     oneColumnTextBlock: 'one-column-text',
     oneColumnImageTextBlock: 'one-column-image-text',
@@ -119,7 +119,7 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
   }
 
   return boatEntry.flexibleSections.map((section: any) => {
-    const blocks = section.blocks.map(
+    const blocks = section?.blocks?.map(
       (block: any, index: Number, blocks: any[]) => {
         const getBlockPosition = () => {
           if (index === 0) {
@@ -147,8 +147,9 @@ const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
       type: 'flexible',
       title: section.title,
       theme: section.theme,
-      bleedDirection: section.bleedDirection,
-      headerImage: !!section.headerImage.length && section.headerImage[0].url,
+      bleedDirection: section?.bleedDirection,
+      headerImage:
+        !!section?.headerImage?.length && section?.headerImage?.[0].url,
       blocks,
       moreDetails: [],
     }
