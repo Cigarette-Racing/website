@@ -7,100 +7,49 @@ import { Typography } from '../atoms/typography'
 import {
   GenericSection,
   Categories,
-  DropdownNav,
+  extractFlexibleSectionsFromCraft,
 } from '../templates/article.components'
 import { NewsArticle } from '../pages/news'
 
 import {
-  BoatHeader,
-  BoatSection,
-  MobileSectionHeader,
-  VerticalHeaderBlock,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
-  SpecsSectionComponent,
-  PowertrainSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
-  OrderSectionComponent,
   HorizontalImageTextBlockComponent,
-  MoreDetailsBlockComponent,
 } from './boat.components'
 
 import {
-  CommonSectionProps,
   getFlexibleSections,
-  findCustomizationsSection,
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
-  isCarouselBlock,
   isTwoColumnImagesBlock,
   isThreeColumnImagesBlock,
+  isOneColumnImageTextBlock,
+  isCarouselBlock,
   isSliderBlock,
   isFullWidthCarouselBlock,
-  isOneColumnImageTextBlock,
-  isPowertrainBlock,
-  isMoreDetailsBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
 } from '../types/boat'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
-import { MediaGallery } from '../molecules/media-gallery'
 
-import MoreArticlesSlider from '../molecules/more-articles-slider'
-
-const extractFlexibleSectionsFromCraft = (labEntry: any) => {
-  const blockTypes = {
-    oneColumnTextBlock: 'one-column-text',
-    oneColumnImageTextBlock: 'one-column-image-text',
-    twoColumnImageTextBlock: 'two-column-image-text',
-    twoColumnImagesBlock: 'two-column-images',
-    threeColumnImagesBlock: 'three-column-images',
-    sliderBlock: 'slider',
-    carousel: 'carousel',
-    fullWidthCarousel: 'full-width-carousel',
-    horizontalImageText: 'horizontal-image-text',
-    powertrainOptions: 'powertrain',
-    moreDetails: 'more-details',
-  }
-
-  return labEntry.flexibleSections.map((section: any) => {
-    const blocks = section?.blocks?.map(
-      (block: any, index: Number, blocks: any[]) => {
-        const getBlockPosition = () => {
-          if (index === 0) {
-            return 'first'
-          }
-          if (index === blocks.length - 1) {
-            return 'last'
-          }
-          return 'middle'
-        }
-
-        return {
-          ...block,
-          source: 'craft',
-          blockPosition: getBlockPosition(),
-          type:
-            block.typeHandle === 'carousel' && block.fullWidth
-              ? 'full-width-carousel'
-              : blockTypes[block.typeHandle as keyof typeof blockTypes],
-        }
-      }
-    )
-
+const createCarouselItems = (items: any) => {
+  return items.map((item) => {
     return {
-      type: 'flexible',
-      title: section.title,
-      theme: section.theme,
-      bleedDirection: section.bleedDirection,
-      headerImage: !!section.headerImage.length && section.headerImage[0].url,
-      blocks,
-      moreDetails: [],
+      content: {
+        copy: item.textBlock?.[0].copy,
+        header: item.textBlock?.[0].header,
+      },
+      media: {
+        image: item.singleMedia?.[0].image?.[0]?.url,
+        videoUrl: item.singleMedia?.[0]?.videoURL,
+        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
+      },
     }
   })
 }
@@ -126,32 +75,41 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
 
   return (
     <Layout>
-      <GenericSection className="pt-32 pb-0" theme="dark">
-        <div className="px-4 max-w-screen-xl m-auto">
+      <GenericSection className="py-12 pt-32" theme="dark">
+        <div className="px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
           <SEO title={labEntry.title} slug={props.path} />
-          {/* <DropdownNav /> */}
-          <div className="border-b border-gray-2 pb-6 mb-10">
+          <div className="md:flex align-top justify-start content-start">
             <Categories
-              className="transform -translate-x-2"
+              className="md:mr-16"
               align="left"
               categories={labEntry.articleCategories}
             />
-            <Typography className="mb-4" variant="h3">
+            <Typography className="mb-8 max-w-screen-lg" variant="h3" md="h1">
               {labEntry.title}
             </Typography>
           </div>
-          <Typography variant="e3" className="mb-4">
-            {`${date.getMonth() + 1}.${date.getDate()}.${date.getFullYear()}`}
-          </Typography>
-          <img
-            src={`${labEntry.imageObject[0].image[0].url}?q=30&w=2400`}
-            alt=""
-          />
+          <div className="border-t border-solid border-gray-5"></div>
         </div>
       </GenericSection>
       {flexData.map(
-        ({ title, theme, bleedDirection, headerImage, blocks }, i) => (
-          <GenericSection key={i} theme="dark">
+        ({ title, theme, bleedDirection, headerImage, blocks, id }, i) => (
+          <GenericSection key={id} theme="dark">
+            <div className="relative px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
+              <Typography
+                variant="e3"
+                className="date text-gray-3 mb-4 absolute top-0 left-0 px-4"
+              >
+                {`${
+                  date.getMonth() + 1
+                }.${date.getDate()}.${date.getFullYear()}`}
+              </Typography>
+            </div>
+            <SideBleedImage
+              media={headerImage}
+              side={bleedDirection}
+              className="mt-0 md:m-0 mb-20 md:mb-32 pt-0"
+              size="large"
+            />
             {!!blocks &&
               blocks.map((block, index) => {
                 if (isTwoColumnImageTextBlock(block)) {
@@ -256,28 +214,30 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                 }
                 return null
               })}
-            <div className="overflow-scroll">
-              <div
-                className="relatedArticles grid grid-cols-3 gap-6 px-4"
-                style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
-              >
-                {relatedLabs.slice(0, 3).map((lab) => {
-                  lab.image = lab.imageObject[0].image
-
-                  return (
-                    <NewsArticle
-                      key={lab.id}
-                      articleEntry={lab}
-                      hierarchy="tertiary"
-                    />
-                  )
-                })}
-              </div>
-            </div>
           </GenericSection>
         )
       )}
-      <MoreArticlesSlider />
+      <GenericSection className="max-w-screen-xl xl:max-w-screen-2xl m-auto">
+        <Typography className="mt-20 mb-5" variant="h3" md="h2">
+          More Stories
+        </Typography>
+        <div className="overflow-scroll">
+          <div
+            className="relatedLabs px-4 grid grid-cols-3 gap-6"
+            style={{ width: `${isMobile ? '240vw' : 'auto'} ` }}
+          >
+            {relatedLabs.slice(0, 3).map((lab) => {
+              return (
+                <NewsArticle
+                  key={lab.id}
+                  articleEntry={lab}
+                  hierarchy="tertiary"
+                />
+              )
+            })}
+          </div>
+        </div>
+      </GenericSection>
     </Layout>
   )
 }

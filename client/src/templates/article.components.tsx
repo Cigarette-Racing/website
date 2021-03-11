@@ -1,14 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import styled from 'styled-components'
-import { PageProps, graphql, Link } from 'gatsby'
 import Select, { components } from 'react-select'
-import { ContentHeader } from '../atoms/content-header'
-import { CaretDownIcon, CaretUpIcon, AngleIcon } from '../svgs/icons'
-import { Layout } from '../components/layout'
+import { CaretDownIcon, AngleIcon } from '../svgs/icons'
 import { Typography } from '../atoms/typography'
-import SEO from '../components/seo'
-import { ValueContainer } from 'react-select/src/components/containers'
+
+export const extractFlexibleSectionsFromCraft = (entry: any) => {
+  const blockTypes = {
+    oneColumnTextBlock: 'one-column-text',
+    oneColumnImageTextBlock: 'one-column-image-text',
+    twoColumnImageTextBlock: 'two-column-image-text',
+    twoColumnImagesBlock: 'two-column-images',
+    threeColumnImagesBlock: 'three-column-images',
+    sliderBlock: 'slider',
+    carousel: 'carousel',
+    fullWidthCarousel: 'full-width-carousel',
+    horizontalImageText: 'horizontal-image-text',
+  }
+  return entry?.flexibleSections?.map((section: any) => {
+    const blocks = section?.blocks?.map(
+      (block: any, index: Number, blocks: any[]) => {
+        const getBlockPosition = () => {
+          if (index === 0) {
+            return 'first'
+          }
+          if (index === blocks.length - 1) {
+            return 'last'
+          }
+          return 'middle'
+        }
+        return {
+          ...block,
+          source: 'craft',
+          blockPosition: getBlockPosition(),
+          type:
+            block.typeHandle === 'carousel' && block.fullWidth
+              ? 'full-width-carousel'
+              : blockTypes[block.typeHandle as keyof typeof blockTypes],
+        }
+      }
+    )
+    return {
+      type: 'flexible',
+      id: section.id || Math.random,
+      title: section.title,
+      theme: section.theme,
+      bleedDirection: section.bleedDirection,
+      headerImage: !!section.headerImage.length && section.headerImage[0].url,
+      blocks,
+      moreDetails: [],
+    }
+  })
+}
 
 export const Categories = ({
   categories = [],

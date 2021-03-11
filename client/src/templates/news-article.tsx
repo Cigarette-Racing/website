@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useMedia } from 'react-use'
 import { PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
-import { GenericSection, Categories, DropdownNav } from './article.components'
+import {
+  GenericSection,
+  Categories,
+  extractFlexibleSectionsFromCraft,
+} from './article.components'
 import { NewsArticle } from '../pages/news'
 
 import {
-  MobileSectionHeader,
-  VerticalHeaderBlock,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
@@ -28,63 +30,13 @@ import {
   isOneColumnImageTextBlock,
   isCarouselBlock,
   isSliderBlock,
+  isFullWidthCarouselBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
 } from '../types/boat'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
-import { MediaGallery } from '../molecules/media-gallery'
-
-import MoreArticlesSlider from '../molecules/more-articles-slider'
-
-const extractFlexibleSectionsFromCraft = (articleEntry: any) => {
-  const blockTypes = {
-    oneColumnTextBlock: 'one-column-text',
-    oneColumnImageTextBlock: 'one-column-image-text',
-    twoColumnImageTextBlock: 'two-column-image-text',
-    twoColumnImagesBlock: 'two-column-images',
-    threeColumnImagesBlock: 'three-column-images',
-    sliderBlock: 'slider',
-    carousel: 'carousel',
-    fullWidthCarousel: 'full-width-carousel',
-    horizontalImageText: 'horizontal-image-text',
-  }
-  return articleEntry?.flexibleSections?.map((section: any) => {
-    const blocks = section?.blocks?.map(
-      (block: any, index: Number, blocks: any[]) => {
-        const getBlockPosition = () => {
-          if (index === 0) {
-            return 'first'
-          }
-          if (index === blocks.length - 1) {
-            return 'last'
-          }
-          return 'middle'
-        }
-        return {
-          ...block,
-          source: 'craft',
-          blockPosition: getBlockPosition(),
-          type:
-            block.typeHandle === 'carousel' && block.fullWidth
-              ? 'full-width-carousel'
-              : blockTypes[block.typeHandle as keyof typeof blockTypes],
-        }
-      }
-    )
-    return {
-      type: 'flexible',
-      id: section.id || Math.random,
-      title: section.title,
-      theme: section.theme,
-      bleedDirection: section.bleedDirection,
-      headerImage: !!section.headerImage.length && section.headerImage[0].url,
-      blocks,
-      moreDetails: [],
-    }
-  })
-}
 
 const createCarouselItems = (items: any) => {
   return items.map((item) => {
@@ -140,7 +92,6 @@ const NewsArticleTemplate = (
               </Typography>
             </div>
           </div>
-
           <div className="border-t border-solid border-gray-5"></div>
         </div>
       </GenericSection>
@@ -289,7 +240,27 @@ const NewsArticleTemplate = (
           </GenericSection>
         )
       )}
-      <MoreArticlesSlider />
+      <GenericSection className="max-w-screen-xl xl:max-w-screen-2xl m-auto">
+        <Typography className="mt-20 mb-5" variant="h3" md="h2">
+          More Stories
+        </Typography>
+        <div className="overflow-scroll">
+          <div
+            className="relatedArticles px-4 grid grid-cols-3 gap-6"
+            style={{ width: `${isMobile ? '240vw' : 'auto'} ` }}
+          >
+            {relatedArticles.slice(0, 3).map((article) => {
+              return (
+                <NewsArticle
+                  key={article.id}
+                  articleEntry={article}
+                  hierarchy="tertiary"
+                />
+              )
+            })}
+          </div>
+        </div>
+      </GenericSection>
     </Layout>
   )
 }
