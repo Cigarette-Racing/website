@@ -582,12 +582,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         <SpecsAndFeaturesSection {...specsAndFeaturesData} />
       )}
 
-      {!!specsData?.categories.length && (
+      {/* {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={boatEntry.boatNameLong}
           {...specsData}
         />
-      )}
+      )} */}
       {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
       )}
