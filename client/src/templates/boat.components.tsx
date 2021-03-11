@@ -407,7 +407,7 @@ export const SpecsSectionComponent = ({
             {!!categories.length &&
               categories
                 .find((category) => category.name === selectedCategory)!
-                .specs.map((spec, index) => (
+                .specs?.map((spec, index) => (
                   <SpecAccordion key={spec.name + index} {...spec} />
                 ))}
           </div>

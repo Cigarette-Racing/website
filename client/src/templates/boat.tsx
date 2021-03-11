@@ -195,14 +195,14 @@ const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractSpecsSectionFromCraft = (boatEntry: any) => {
-  const categories = boatEntry.boatSpecs.map((specCategory: any) => {
-    const specs = specCategory.children.map((specData: any) => {
-      const specDescriptions = specData.children.map((specDesc: any) => {
-        return specDesc.boatSpecDescription
+  const categories = boatEntry?.boatSpecs?.map((specCategory: any) => {
+    const specs = specCategory?.children?.map((specData: any) => {
+      const specDescriptions = specData?.children?.map((specDesc: any) => {
+        return specDesc?.boatSpecDescription
       })
 
       return {
-        name: specData.boatSpecName,
+        name: specData?.boatSpecName,
         descriptions: specDescriptions,
       }
     })
