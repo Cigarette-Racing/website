@@ -262,6 +262,8 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                 style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
               >
                 {relatedLabs.slice(0, 3).map((lab) => {
+                  lab.image = lab.imageObject[0].image
+
                   return (
                     <NewsArticle
                       key={lab.id}
