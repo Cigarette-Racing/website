@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+
 import clsx from 'clsx'
 import styled from 'styled-components'
 import { PageProps, graphql, Link } from 'gatsby'
@@ -243,14 +244,16 @@ const NewsDropdownNav = () => {
   )
 }
 
-const NewsArticle = ({
+export const NewsArticle = ({
   articleEntry,
   index,
   hierarchy,
+  className,
 }: {
   articleEntry: any
   index?: number
   hierarchy?: string
+  className?: string
 }) => {
   const isPrimary = hierarchy === 'primary'
   const isSecondary = hierarchy === 'secondary'
@@ -263,7 +266,7 @@ const NewsArticle = ({
       {isPrimary && (
         <Link
           to={`${articleEntry.slug}`}
-          className="block border-solid border-t border-gray-5 md:pt-16"
+          className={`block border-solid border-t border-gray-5 md:pt-16 ${className}`}
         >
           <div className="md:flex pt-5 flex-col mb-24">
             <div className="w-full mb-10 md:order-2">
@@ -355,11 +358,14 @@ const NewsArticle = ({
         </Link>
       )}
       {isTertiary && (
-        <Link to={`${articleEntry.slug}`} className={clsx('block')}>
+        <Link
+          to={`/news/${articleEntry.slug}`}
+          className={clsx('block', className)}
+        >
           <div className="mb-24 pt-5">
             <div className="mb-10">
               {!!articleEntry.image[0] && (
-                <AspectRatio ratio="1:1" md="16:9" className="">
+                <AspectRatio ratio="1:1" className="">
                   <img
                     className="absolute h-full w-full object-cover"
                     src={`${articleEntry.image[0]?.url}?q=30&w=2400`}

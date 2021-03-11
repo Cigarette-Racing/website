@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { useMedia } from 'react-use'
 import { PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
 import { GenericSection, Categories, DropdownNav } from './article.components'
+import { NewsArticle } from '../pages/news'
 
 import {
   MobileSectionHeader,
@@ -105,15 +107,21 @@ const NewsArticleTemplate = (
 ) => {
   const {
     data: {
-      craftAPI: { entry: articleEntry },
+      craftAPI: { entry: articleEntry, entries: allArticles },
     },
   } = props
+
+  const relatedArticles = allArticles.filter((article) => {
+    return article.id != articleEntry.id
+  })
 
   const flexData = getFlexibleSections(
     extractFlexibleSectionsFromCraft(articleEntry)
   )
 
   const date = new Date(articleEntry.dateCreated)
+
+  const isMobile = useMedia('(max-width: 767px)')
 
   return (
     <Layout>
@@ -251,17 +259,33 @@ const NewsArticleTemplate = (
                     />
                   )
                 }
-                // if (isFullWidthCarouselBlock(block)) {
-                //   if (block?.source === 'craft') {
-                //     const items = createCarouselItems(block.children)
-                //     block.items = items
-                //   }
+                if (isFullWidthCarouselBlock(block)) {
+                  if (block?.source === 'craft') {
+                    const items = createCarouselItems(block.children)
+                    block.items = items
+                  }
 
-                //   return <FullWidthCarousel key={index} {...block} />
-                // }
+                  return <FullWidthCarousel key={index} {...block} />
+                }
 
                 return null
               })}
+            <div className="overflow-scroll">
+              <div
+                className="relatedArticles grid grid-cols-3 gap-6 px-4"
+                style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
+              >
+                {relatedArticles.slice(0, 3).map((article) => {
+                  return (
+                    <NewsArticle
+                      key={article.id}
+                      articleEntry={article}
+                      hierarchy="tertiary"
+                    />
+                  )
+                })}
+              </div>
+            </div>
           </GenericSection>
         )
       )}
@@ -278,6 +302,26 @@ export const query = graphql`
       categories(group: "articleCategories") {
         id
         title
+      }
+      entries(type: "newsArticle") {
+        ... on CraftAPI_newsArticles_newsArticle_Entry {
+          dateCreated
+          slug
+          id
+          articleExcerpt
+          title
+          image {
+            url
+          }
+          articleCategories {
+            id
+            title
+          }
+          articleTags {
+            id
+            title
+          }
+        }
       }
       entry(slug: [$craftSlug]) {
         ... on CraftAPI_newsArticles_newsArticle_Entry {
