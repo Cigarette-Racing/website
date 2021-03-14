@@ -11,7 +11,7 @@ import { useCategoriesQuery } from '../molecules/categories-data'
 import {
   GenericSection,
   Categories,
-  DropdownNav,
+  CategoryFilter,
 } from '../templates/article.components'
 
 export const Underline = styled.span`
@@ -65,35 +65,11 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
           <Typography className="mb-24 md:text-center" variant="p3">
             {LandingPage.articleExcerpt}
           </Typography>
-          <DropdownNav
-            className="md:hidden"
-            placeholder="Explore _Labs"
-            options={options}
-            onChange={(option) => {
-              setFilterCategory(option)
-            }}
+          <CategoryFilter
+            categories={options}
+            setFilterCategory={setFilterCategory}
+            filterCategory={filterCategory}
           />
-          <ul className="hidden md:flex justify-center pb-12 ">
-            {options.map((option) => {
-              return (
-                <li
-                  key={option.label}
-                  className="mx-5 cursor-pointer relative"
-                  onClick={() => {
-                    setFilterCategory(option)
-                  }}
-                >
-                  {option.label === filterCategory.label && (
-                    <span
-                      className="md:block absolute bg-red top-1/2 transform -translate-y-1/2"
-                      style={{ height: '2px', width: '100%' }}
-                    ></span>
-                  )}
-                  <Typography variant="e1">{option.label}</Typography>
-                </li>
-              )
-            })}
-          </ul>
           {filterCategory.value === 'all' ? (
             <UnFilteredList entries={labEntries} />
           ) : (

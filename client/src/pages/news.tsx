@@ -385,7 +385,7 @@ export const NewsArticle = ({
                   {articleEntry.title}
                 </Typography>
                 <Typography
-                  className="hidden md:block italic max-w-screen-sm m-auto mb-8 text-gray-3"
+                  className="hidden md:block max-w-screen-sm m-auto mb-8 text-gray-3"
                   variant="p3"
                   md="p1"
                 >

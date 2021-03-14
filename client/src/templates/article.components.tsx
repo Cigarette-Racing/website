@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import clsx from 'clsx'
 import Select, { components } from 'react-select'
 import { CaretDownIcon, AngleIcon } from '../svgs/icons'
@@ -211,3 +211,43 @@ export const GenericSection: React.FC<{
     {children}
   </section>
 )
+
+export const CategoryFilter = ({
+  categories,
+  setFilterCategory,
+  filterCategory,
+}) => {
+  return (
+    <Fragment>
+      <DropdownNav
+        className="md:hidden"
+        placeholder="Explore _Labs"
+        options={categories}
+        onChange={(option) => {
+          setFilterCategory(option)
+        }}
+      />
+      <ul className="hidden md:flex justify-center pb-12 ">
+        {categories.map((category) => {
+          return (
+            <li
+              key={category.label}
+              className="mx-5 cursor-pointer relative"
+              onClick={() => {
+                setFilterCategory(category)
+              }}
+            >
+              {category.label === filterCategory.label && (
+                <span
+                  className="md:block absolute bg-red top-1/2 transform -translate-y-1/2"
+                  style={{ height: '2px', width: '100%' }}
+                ></span>
+              )}
+              <Typography variant="e1">{category.label}</Typography>
+            </li>
+          )
+        })}
+      </ul>
+    </Fragment>
+  )
+}
