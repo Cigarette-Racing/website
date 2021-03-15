@@ -77,12 +77,12 @@ const NewsArticleTemplate = (
 
   return (
     <Layout>
-      <GenericSection className="py-12 pt-32" theme="light">
+      <GenericSection className="py-12 pb-8 pt-32" theme="light">
         <div className="px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
           <SEO title={articleEntry.title} slug={props.path} />
           <div className="md:flex align-top justify-start content-start">
             <Categories
-              className="md:mr-16"
+              className="-ml-2 mb-3 md:mr-16"
               align="left"
               categories={articleEntry.articleCategories}
             />
@@ -101,7 +101,7 @@ const NewsArticleTemplate = (
             <div className="relative px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
               <Typography
                 variant="e3"
-                className="date text-gray-3 mb-4 absolute top-0 left-0 px-4"
+                className="date text-gray-3 mb-4 md:absolute top-0 left-0 md:px-4"
               >
                 {`${
                   date.getMonth() + 1
@@ -111,7 +111,7 @@ const NewsArticleTemplate = (
             <SideBleedImage
               media={headerImage}
               side={bleedDirection}
-              className="mt-0 md:m-0 mb-20 md:mb-32 pt-0"
+              className="px-4 mt-0 md:m-0 md:mb-32 pt-0"
               size="large"
             />
             {!!blocks &&
@@ -221,46 +221,30 @@ const NewsArticleTemplate = (
 
                 return null
               })}
-            <div className="overflow-scroll">
-              <div
-                className="relatedArticles grid grid-cols-3 gap-6 px-4"
-                style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
-              >
-                {relatedArticles.slice(0, 3).map((article) => {
-                  return (
-                    <NewsArticle
-                      key={article.id}
-                      articleEntry={article}
-                      hierarchy="tertiary"
-                    />
-                  )
-                })}
+            <div>
+              <Typography className="px-4 mt-20 mb-5" variant="h3" md="h2">
+                More Stories
+              </Typography>
+              <div className="overflow-scroll">
+                <div
+                  className="relatedArticles grid grid-cols-3 gap-6 px-4"
+                  style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
+                >
+                  {relatedArticles.slice(0, 3).map((article) => {
+                    return (
+                      <NewsArticle
+                        key={article.id}
+                        articleEntry={article}
+                        hierarchy="tertiary"
+                      />
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </GenericSection>
         )
       )}
-      <GenericSection className="max-w-screen-xl xl:max-w-screen-2xl m-auto">
-        <Typography className="mt-20 mb-5" variant="h3" md="h2">
-          More Stories
-        </Typography>
-        <div className="overflow-scroll">
-          <div
-            className="relatedArticles px-4 grid grid-cols-3 gap-6"
-            style={{ width: `${isMobile ? '240vw' : 'auto'} ` }}
-          >
-            {relatedArticles.slice(0, 3).map((article) => {
-              return (
-                <NewsArticle
-                  key={article.id}
-                  articleEntry={article}
-                  hierarchy="tertiary"
-                />
-              )
-            })}
-          </div>
-        </div>
-      </GenericSection>
     </Layout>
   )
 }
