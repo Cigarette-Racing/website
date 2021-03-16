@@ -639,13 +639,24 @@ export const HorizontalImageTextBlockComponent = ({
   )
   return (
     <div
-      className="md:flex max-w-7xl mx-auto pb-16 md:pb-32"
+      className="flex flex-col md:flex-row max-w-7xl mx-auto pb-16 md:pb-32"
       data-block-type="HorizontalImageTextBlockComponent"
     >
-      <div className="md:w-1/2 flex flex-col justify-center items-center mb-12 md:mb-0">
+      <div
+        className={clsx(
+          `md:w-1/2 flex flex-col justify-center items-center mb-12 md:mb-0`,
+          {
+            ['order-2 md:order-none']: layout === 'imageOnRight',
+          }
+        )}
+      >
         {layout === 'imageOnLeft' ? image : text}
       </div>
-      <div className="md:w-1/2 flex flex-col justify-center items-center">
+      <div
+        className={clsx(`md:w-1/2 flex flex-col justify-center items-center`, {
+          ['order-1 mb-12 md:mb-auto md:order-none']: layout === 'imageOnRight',
+        })}
+      >
         {layout === 'imageOnLeft' ? text : image}
       </div>
     </div>
