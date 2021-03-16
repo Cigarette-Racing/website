@@ -25,6 +25,8 @@ const NewsArticlesPage = (
     label: 'All',
   })
 
+  const [landingPageTitle, setLandingPageTitle] = useState('All News')
+
   const {
     data: {
       craftAPI: { entries: articleEntries, entry: LandingPage },
@@ -55,7 +57,7 @@ const NewsArticlesPage = (
       <GenericSection className="py-12 pt-48">
         <SEO title="All News" slug={props.path} />
         <div className="relative flex justify-center tracking-wide text-gray-5 capitalize whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-8 text-center">
-          <span>{LandingPage.title}</span>
+          <span>{landingPageTitle}</span>
         </div>
         <div className="px-4 max-w-screen-xl m-auto">
           <Typography className="mb-24" variant="p3">
@@ -68,6 +70,7 @@ const NewsArticlesPage = (
             theme="light"
             onChange={(option) => {
               setFilterCategory(option)
+              setLandingPageTitle(option.label)
             }}
           />
           <ul className="hidden md:flex justify-center pb-12 ">
@@ -79,6 +82,7 @@ const NewsArticlesPage = (
                   className="mx-5 cursor-pointer relative"
                   onClick={() => {
                     setFilterCategory(option)
+                    setLandingPageTitle(option.label)
                   }}
                 >
                   {selected && (
