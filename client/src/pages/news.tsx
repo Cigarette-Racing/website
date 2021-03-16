@@ -47,6 +47,7 @@ const NewsArticlesPage = (
         return false
       }
     })
+
     if (hasCategory[0]) {
       return entry
     }
@@ -121,6 +122,7 @@ const FilteredList = ({ entries }) => {
             key={`${articleEntry.id}`}
             index={i}
             articleEntry={articleEntry}
+            hierarchy="secondary"
           />
         ))
       ) : (
@@ -290,7 +292,7 @@ export const NewsArticle = ({
                 categories={articleEntry.articleCategories}
               />
               <div className="text-center px-3">
-                <Typography className="mb-4" variant="h4">
+                <Typography className="mb-4" variant="h4" sm="h3" md="h1">
                   {articleEntry.title}
                 </Typography>
                 <Typography
