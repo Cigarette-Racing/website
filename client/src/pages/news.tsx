@@ -344,7 +344,7 @@ export const NewsArticle = ({
                 categories={articleEntry.articleCategories}
               />
               <div className="text-center md:text-left px-3">
-                <Typography className="mb-4" variant="h4">
+                <Typography className="mb-4" variant="h4" sm="h3" md="h2">
                   {articleEntry.title}
                 </Typography>
                 <Typography
