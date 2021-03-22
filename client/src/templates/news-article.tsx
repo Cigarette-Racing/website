@@ -4,15 +4,17 @@ import { PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
+import FormatTextBlob from '../services/text-formatter'
+import { ExternalLinkIcon } from '../svgs/icons'
 import {
   GenericSection,
   Categories,
   extractFlexibleSectionsFromCraft,
+  SideBleedImage,
 } from './article.components'
 import { NewsArticle } from '../pages/news'
 
 import {
-  SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
   OneColumnTextBlockComponent,
@@ -77,12 +79,12 @@ const NewsArticleTemplate = (
 
   return (
     <Layout>
-      <GenericSection className="py-12 pb-8 pt-32" theme="light">
+      <GenericSection className="py-12 pb-8 pt-32 md:pt-56" theme="light">
         <div className="px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
           <SEO title={articleEntry.title} slug={props.path} />
-          <div className="md:flex align-top justify-start content-start">
+          <div className="md:flex align-top justify-start content-start pb-10 md:pb-20">
             <Categories
-              className="-ml-2 mb-3 md:mr-16"
+              className="-ml-2 mb-3 md:mr-16 mt-4"
               align="left"
               categories={articleEntry.articleCategories}
             />
@@ -90,6 +92,21 @@ const NewsArticleTemplate = (
               <Typography className="mb-8 max-w-screen-lg" variant="h3" md="h1">
                 {articleEntry.title}
               </Typography>
+              <a
+                href={articleEntry.urlLink}
+                className="flex align-middle items-center"
+              >
+                <img
+                  className="w-10 h-10 mr-4"
+                  src={articleEntry.externalLinkIcon[0].url}
+                  alt=""
+                />
+                {console.log(articleEntry)}
+                <Typography variant="p2" className="text-gray-3">
+                  {articleEntry.urlLink}
+                </Typography>
+                <ExternalLinkIcon className="mr-2 ml-4" />
+              </a>
             </div>
           </div>
           <div className="border-t border-solid border-gray-5"></div>
@@ -111,9 +128,17 @@ const NewsArticleTemplate = (
             <SideBleedImage
               media={headerImage}
               side={bleedDirection}
-              className="px-4 mt-0 md:m-0 md:mb-32 pt-0"
+              className="mt-0 px-4 md:px-0 mb-16 md:m-0 md:mb-32 pt-0"
               size="large"
             />
+            <div className="px-4 md:px-0 md:w-8/12 m-auto">
+              <Typography variant="e2" className="mb-4">
+                {articleEntry.subheadline}
+              </Typography>
+            </div>
+            <div className="px-4 md:px-0 md:w-8/12 m-auto mb-16">
+              {FormatTextBlob(articleEntry.articleCopy)}
+            </div>
             {!!blocks &&
               blocks.map((block, index) => {
                 if (isTwoColumnImageTextBlock(block)) {
@@ -263,8 +288,12 @@ export const query = graphql`
           dateCreated
           slug
           id
+          urlLink
           articleExcerpt
           title
+          externalLinkIcon {
+            url
+          }
           image {
             url
           }
@@ -283,6 +312,10 @@ export const query = graphql`
           id
           dateCreated
           title
+          urlLink
+          externalLinkIcon {
+            url
+          }
           subheadline
           articleCopy
           image {

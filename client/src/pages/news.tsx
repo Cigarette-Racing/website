@@ -274,7 +274,7 @@ export const NewsArticle = ({
           to={`${articleEntry.slug}`}
           className={`block border-solid border-t border-gray-5 md:pt-16 ${className}`}
         >
-          <div className="md:flex pt-5 flex-col mb-24">
+          <div className="md:flex pt-5 flex-col md:mb-24">
             <div className="w-full mb-10 md:order-2">
               {!!articleEntry.image[0] && (
                 <AspectRatio ratio="1:1" md="16:9" className="">
@@ -316,7 +316,7 @@ export const NewsArticle = ({
           to={`${articleEntry.slug}`}
           className={clsx('block border-solid border-gray-5 border-t')}
         >
-          <div className="mb-24 md:flex pt-5">
+          <div className="mb-12 md:mb-24 md:flex pt-5">
             <div
               className={clsx('md:w-1/2 mb-10', {
                 ['md:order-2']: index % 2 === 0,
@@ -368,7 +368,7 @@ export const NewsArticle = ({
           to={`/news/${articleEntry.slug}`}
           className={clsx('block', className)}
         >
-          <div className="mb-24 pt-5">
+          <div className="pt-5 flex flex-col h-full">
             <div className="mb-10">
               {!!articleEntry?.image?.[0] && (
                 <AspectRatio ratio="1:1" className="">
@@ -380,28 +380,32 @@ export const NewsArticle = ({
                 </AspectRatio>
               )}
             </div>
-            <div>
-              <Categories
-                align="left"
-                className="mb-3"
-                categories={articleEntry.articleCategories}
-              />
-              <div className="text-left px-3">
-                <Typography className="mb-10" variant="h5" md="h4">
-                  {articleEntry.title}
-                </Typography>
-                <Typography
-                  className="hidden md:block max-w-screen-sm m-auto mb-8 text-gray-3"
-                  variant="p3"
-                  md="p1"
-                >
-                  {articleEntry.articleExcerpt}
-                </Typography>
-                <Typography variant="e3" className="date text-gray-4">
-                  {`${
-                    date.getMonth() + 1
-                  }.${date.getDate()}.${date.getFullYear()}`}
-                </Typography>
+            <div className="h-full">
+              <div className="flex justify-between content-between flex-col h-full">
+                <div>
+                  <Categories
+                    align="left"
+                    className="mb-3"
+                    categories={articleEntry.articleCategories}
+                  />
+                  <Typography className="mb-10" variant="h5" md="h4">
+                    {articleEntry.title}
+                  </Typography>
+                  <Typography
+                    className="hidden md:block max-w-screen-sm m-auto mb-8 text-gray-3"
+                    variant="p3"
+                    md="p1"
+                  >
+                    {articleEntry.articleExcerpt}
+                  </Typography>
+                </div>
+                <div>
+                  <Typography variant="e3" className="date text-gray-4">
+                    {`${
+                      date.getMonth() + 1
+                    }.${date.getDate()}.${date.getFullYear()}`}
+                  </Typography>
+                </div>
               </div>
             </div>
           </div>

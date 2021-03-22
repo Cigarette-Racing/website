@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import Select, { components } from 'react-select'
 import { CaretDownIcon, AngleIcon } from '../svgs/icons'
 import { Typography } from '../atoms/typography'
+import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
 
 export const extractFlexibleSectionsFromCraft = (entry: any) => {
   const blockTypes = {
@@ -249,5 +250,42 @@ export const CategoryFilter = ({
         })}
       </ul>
     </Fragment>
+  )
+}
+
+export const SideBleedImage = ({
+  className,
+  imgClassName,
+  media,
+  ratio = '3:2',
+  side,
+  size = 'default',
+}: {
+  className?: string
+  imgClassName?: string
+  media: Media
+  ratio?: Ratio
+  side: Side
+  size?: 'default' | 'large'
+}) => {
+  return (
+    <div className={clsx(className)} data-block-type="SideBleedImage">
+      <div
+        className={clsx('w-full md:w-11/12 lg:w-10/12', {
+          'ml-auto': side === 'right',
+          'mr-auto': side === 'left',
+          'xl:w-9/12': size === 'default',
+        })}
+      >
+        <AspectRatio ratio={ratio}>
+          <img
+            src={`${media}?q=30&w=2000`}
+            alt=""
+            className={clsx('h-full w-full object-cover', imgClassName)}
+            style={{ position: 'absolute' }}
+          />
+        </AspectRatio>
+      </div>
+    </div>
   )
 }
