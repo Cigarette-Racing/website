@@ -92,21 +92,22 @@ const NewsArticleTemplate = (
               <Typography className="mb-8 max-w-screen-lg" variant="h3" md="h1">
                 {articleEntry.title}
               </Typography>
-              <a
-                href={articleEntry.urlLink}
-                className="flex align-middle items-center"
-              >
-                <img
-                  className="w-10 h-10 mr-4"
-                  src={articleEntry.externalLinkIcon[0].url}
-                  alt=""
-                />
-                {console.log(articleEntry)}
-                <Typography variant="p2" className="text-gray-3">
-                  {articleEntry.urlLink}
-                </Typography>
-                <ExternalLinkIcon className="mr-2 ml-4" />
-              </a>
+              {!!articleEntry?.urlLink && (
+                <a
+                  href={articleEntry?.urlLink}
+                  className="flex align-middle items-center"
+                >
+                  <img
+                    className="w-10 h-10 mr-4"
+                    src={articleEntry.externalLinkIcon[0].url}
+                    alt=""
+                  />
+                  <Typography variant="p2" className="text-gray-3">
+                    {articleEntry?.urlLink}
+                  </Typography>
+                  <ExternalLinkIcon className="mr-2 ml-4" />
+                </a>
+              )}
             </div>
           </div>
           <div className="border-t border-solid border-gray-5"></div>
