@@ -56,7 +56,7 @@ type LinkItem = {
 
 const leftLinks: LinkItem[] = [
   { text: 'Boats', section: 'boats' },
-  { text: 'Our world', section: 'our world' },
+  { text: 'Our world' },
   // { text: 'The Difference' },
 ]
 const rightLinks: LinkItem[] = [
