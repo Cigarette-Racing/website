@@ -55,9 +55,13 @@ export interface SliderProps extends Omit<SliderBlock, 'type'> {
 }
 
 export const Slider = ({ items, theme }: SliderProps) => {
+  if (!items?.length) {
+    return null
+  }
+
   const [[page], setPage] = useState([0, 0])
-  const itemIndex = wrap(0, items.length, page)
-  const nextItemIndex = wrap(0, items.length, page + 1)
+  const itemIndex = wrap(0, items?.length, page)
+  const nextItemIndex = wrap(0, items?.length, page + 1)
   const goNext = () => {
     setPage([page + 1, Direction.Next])
   }
@@ -66,7 +70,9 @@ export const Slider = ({ items, theme }: SliderProps) => {
   }
 
   useEffect(() => {
-    cacheImages(items.map((item) => `${item?.media?.image}?q=30&w=2000&fm=jpg`))
+    cacheImages(
+      items?.map((item) => `${item?.media?.image}?q=30&w=2000&fm=jpg`)
+    )
   }, [])
 
   return (
@@ -76,7 +82,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
           <AnimatePresence initial={false}>
             <motion.img
               key={page}
-              src={`${items[itemIndex]?.media?.image}?q=30&w=2000&fm=jpg`}
+              src={`${items?.[itemIndex]?.media?.image}?q=30&w=2000&fm=jpg`}
               variants={variants}
               initial="enter"
               animate="center"
@@ -112,7 +118,7 @@ export const Slider = ({ items, theme }: SliderProps) => {
               style={{ left: 'calc(100% + 0px)' }}
               onClick={goNext}
             >
-              <img src={items[nextItemIndex]?.media?.image} />
+              <img src={items?.[nextItemIndex]?.media?.image} />
               <div
                 className="absolute inset-0"
                 style={{
@@ -137,8 +143,8 @@ export const Slider = ({ items, theme }: SliderProps) => {
               <TextBlockComponent
                 key={page}
                 className="my-8 md:my-0 px-4 mb-20 md:w-10/12"
-                header={items[itemIndex].content.header}
-                copy={items[itemIndex].content.copy}
+                header={items?.[itemIndex].content.header}
+                copy={items?.[itemIndex].content.copy}
               />
             </motion.div>
           </AnimatePresence>

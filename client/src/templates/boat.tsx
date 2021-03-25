@@ -1,5 +1,6 @@
 import React from 'react'
 import { PageProps, graphql } from 'gatsby'
+import clsx from 'clsx'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
@@ -414,7 +415,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             <SideBleedImage
               media={headerImage}
               side={bleedDirection}
-              className="lg:mt-32 mb-20 md:mb-32"
+              className="relative mx-auto md:mt-16 lg:mt-32 mb-20 md:mb-32"
               size="large"
             />
           ) : (
