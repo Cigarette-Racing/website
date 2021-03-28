@@ -252,29 +252,28 @@ export const SideBleedImage = ({
   ratio?: Ratio
   side: Side
   size?: 'default' | 'large'
-}) => (
-  <div
-    className={clsx('relative mx-auto md:mt-16', className)}
-    data-block-type="SideBleedImage"
-  >
-    <div
-      className={clsx('w-full md:w-11/12 lg:w-10/12 xl:w-9/12', {
-        'ml-auto': side === 'right',
-        'mr-auto': side === 'left',
-        'xl:w-9/12': size === 'default',
-      })}
-    >
-      <AspectRatio ratio={ratio}>
-        <img
-          src={`${media}?q=30&w=2000`}
-          alt=""
-          className={clsx('h-full w-full object-cover', imgClassName)}
-          style={{ position: 'absolute' }}
-        />
-      </AspectRatio>
+}) => {
+  return (
+    <div className={clsx(className)} data-block-type="SideBleedImage">
+      <div
+        className={clsx('w-full md:w-11/12 lg:w-10/12 xl:w-9/12', {
+          'ml-auto': side === 'right',
+          'mr-auto': side === 'left',
+          'xl:w-9/12': size === 'default',
+        })}
+      >
+        <AspectRatio ratio={ratio}>
+          <img
+            src={`${media}?q=30&w=2000`}
+            alt=""
+            className={clsx('h-full w-full object-cover', imgClassName)}
+            style={{ position: 'absolute' }}
+          />
+        </AspectRatio>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export const PowertrainSectionComponent = ({
   heroImage,
@@ -407,7 +406,7 @@ export const SpecsSectionComponent = ({
             {!!categories.length &&
               categories
                 .find((category) => category.name === selectedCategory)!
-                .specs.map((spec, index) => (
+                .specs?.map((spec, index) => (
                   <SpecAccordion key={spec.name + index} {...spec} />
                 ))}
           </div>
@@ -558,17 +557,17 @@ export const OneColumnImageTextBlockComponent = ({
     data-block-type="OneColumnImageTextBlockComponent"
   >
     <AspectRatio ratio="3:2" className="overflow-hidden">
-      {!!media.videoURL ? (
+      {!!media?.videoURL ? (
         <AutoplayVideo
-          image={media.image}
-          alt={media.alt}
-          videoUrl={media.videoURL}
+          image={media?.image}
+          alt={media?.alt}
+          videoUrl={media?.videoURL}
           videoOptions={{ controls: false }}
         />
       ) : (
         <Fragment>
           <img
-            src={`${media.image}?q=30&w=2000`}
+            src={`${media?.image}?q=30&w=2000`}
             alt=""
             className="h-full w-full object-cover"
             style={{ position: 'absolute' }}
@@ -639,13 +638,24 @@ export const HorizontalImageTextBlockComponent = ({
   )
   return (
     <div
-      className="md:flex max-w-7xl mx-auto pb-16 md:pb-32"
+      className="flex flex-col md:flex-row max-w-7xl mx-auto pb-16 md:pb-32"
       data-block-type="HorizontalImageTextBlockComponent"
     >
-      <div className="md:w-1/2 flex flex-col justify-center items-center mb-12 md:mb-0">
+      <div
+        className={clsx(
+          `md:w-1/2 flex flex-col justify-center items-center mb-12 md:mb-0`,
+          {
+            ['order-2 md:order-none']: layout === 'imageOnRight',
+          }
+        )}
+      >
         {layout === 'imageOnLeft' ? image : text}
       </div>
-      <div className="md:w-1/2 flex flex-col justify-center items-center">
+      <div
+        className={clsx(`md:w-1/2 flex flex-col justify-center items-center`, {
+          ['order-1 mb-12 md:mb-auto md:order-none']: layout === 'imageOnRight',
+        })}
+      >
         {layout === 'imageOnLeft' ? text : image}
       </div>
     </div>
@@ -742,7 +752,7 @@ export const TwoUpImageBlock = ({
     <div className="sm:last:pl-4 mb-16 md:mb-0 flex-1">
       <AspectRatio ratio="3:4">
         <img
-          src={images[1].singleMedia?.[0].image?.[0].url}
+          src={`${images[1].singleMedia?.[0].image?.[0].url}`}
           alt=""
           className="h-full w-full object-cover"
           style={{ position: 'absolute' }}
@@ -765,10 +775,10 @@ export const ThreeUpImageBlock = ({
   >
     {!!images &&
       !!images.length &&
-      images.map((media) => {
+      images.map((media, i) => {
         return (
           <div
-            key={media?.singleMedia?.[0].image?.[0].url}
+            key={`${media?.singleMedia?.[0].image?.[0].url}-${i}`}
             className="px-4 mb-16 sm:w-1/3"
           >
             <ImageWithLabel
@@ -796,7 +806,16 @@ export const TextBlockComponent = ({
     <Typography variant="e2" className="mb-4">
       {header}
     </Typography>
-    <Typography variant="p2">{copy}</Typography>
+    {copy
+      ?.split('\n')
+      ?.filter(Boolean)
+      .map((p) => {
+        return (
+          <Typography className="mb-4 last:mb-0" key={p} variant="p2">
+            {p}
+          </Typography>
+        )
+      })}
   </div>
 )
 

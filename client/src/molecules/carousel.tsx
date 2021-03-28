@@ -18,8 +18,12 @@ export interface CarouselProps extends Omit<CarouselBlock, 'type'> {
 }
 
 export const Carousel = ({ items, theme }: CarouselProps) => {
+  if (!items?.length) {
+    return null
+  }
+
   const [page, setPage] = useState(0)
-  const itemIndex = wrap(0, items.length, page)
+  const itemIndex = wrap(0, items?.length, page)
   const goNext = () => {
     setPage(page + 1)
   }
@@ -28,7 +32,9 @@ export const Carousel = ({ items, theme }: CarouselProps) => {
   }
 
   useEffect(() => {
-    cacheImages(items.map((item) => `${item?.media?.image}?q=30&w=1500&fm=jpg`))
+    cacheImages(
+      items?.map((item) => `${item?.media?.image}?q=30&w=1500&fm=jpg`)
+    )
   }, [])
 
   return (
@@ -37,7 +43,7 @@ export const Carousel = ({ items, theme }: CarouselProps) => {
         <AnimatePresence initial={false}>
           <motion.img
             key={page}
-            src={`${items[itemIndex]?.media?.image}?q=30&w=2000&fm=jpg`}
+            src={`${items?.[itemIndex]?.media?.image}?q=30&w=2000&fm=jpg`}
             {...fadeAnimationProps}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -66,8 +72,8 @@ export const Carousel = ({ items, theme }: CarouselProps) => {
             <TextBlockComponent
               key={page}
               className="md:w-7/12"
-              header={items[itemIndex].content.header}
-              copy={items[itemIndex].content.copy}
+              header={items?.[itemIndex].content.header}
+              copy={items?.[itemIndex].content.copy}
             />
           </motion.div>
         </AnimatePresence>

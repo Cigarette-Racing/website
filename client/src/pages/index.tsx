@@ -6,11 +6,9 @@ import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
-// import { InPageCta } from '../atoms/in-page-cta'
 import { LinkCta } from '../atoms/link-cta'
 import { PlusIcon, PlayIcon, ExternalLinkIcon, ArrowIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
-import { ExternalLink } from '../atoms/external-link'
 import { CircleButton } from '../atoms/circle-button'
 import {
   InquiryModal,

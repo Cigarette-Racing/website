@@ -1,5 +1,6 @@
 import React from 'react'
 import { PageProps, graphql } from 'gatsby'
+import clsx from 'clsx'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
@@ -196,14 +197,14 @@ const extractCustomizationsSectionFromCraft = (boatEntry: any) => {
 }
 
 const extractSpecsSectionFromCraft = (boatEntry: any) => {
-  const categories = boatEntry.boatSpecs.map((specCategory: any) => {
-    const specs = specCategory.children.map((specData: any) => {
-      const specDescriptions = specData.children.map((specDesc: any) => {
-        return specDesc.boatSpecDescription
+  const categories = boatEntry?.boatSpecs?.map((specCategory: any) => {
+    const specs = specCategory?.children?.map((specData: any) => {
+      const specDescriptions = specData?.children?.map((specDesc: any) => {
+        return specDesc?.boatSpecDescription
       })
 
       return {
-        name: specData.boatSpecName,
+        name: specData?.boatSpecName,
         descriptions: specDescriptions,
       }
     })
@@ -327,7 +328,7 @@ const extractOrderDataFromCraft = (boatEntry: any) => {
   }
 }
 
-const createCarouselItems = (items: any) => {
+export const createCarouselItems = (items: any) => {
   return items.map((item) => {
     return {
       content: {
@@ -415,7 +416,7 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
             <SideBleedImage
               media={headerImage}
               side={bleedDirection}
-              className="lg:mt-32 mb-20 md:mb-32"
+              className="relative mx-auto md:mt-16 lg:mt-32 mb-20 md:mb-32"
               size="large"
             />
           ) : (
@@ -583,12 +584,12 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
         <SpecsAndFeaturesSection {...specsAndFeaturesData} />
       )}
 
-      {!!specsData?.categories.length && (
+      {/* {!!specsData?.categories.length && (
         <SpecsSectionComponent
           boatNameLong={boatEntry.boatNameLong}
           {...specsData}
         />
-      )}
+      )} */}
       {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
       )}

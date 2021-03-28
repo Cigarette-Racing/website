@@ -143,6 +143,7 @@ export function findOrderSection(sections: readonly any[]) {
 }
 
 type FlexibleSection = {
+  id?: number
   type: 'flexible'
   theme: Theme
   bleedDirection: 'left' | 'right'

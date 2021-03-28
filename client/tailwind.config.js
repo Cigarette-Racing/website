@@ -142,6 +142,10 @@ module.exports = {
         '4xl': '3rem', // 48px
         '5xl': '3.5rem', // 56px
         '6xl': '4.5rem', // 72px
+        '7xl': '5rem', // 80px
+        '8xl': '5.5rem', // 88px
+        '9xl': '6rem', // 96px
+        huge: '10rem',
       },
       lineHeight: {
         none: '1',
@@ -197,14 +201,29 @@ module.exports = {
     },
   },
   variants: {
-    filter: ['responsive', 'hover', 'focus', 'group-hover'],
-    backgroundColor: ['responsive', 'hover', 'focus', 'group-hover'],
-    backgroundOpacity: ['responsive', 'hover', 'focus', 'group-hover'],
-    textColor: ['responsive', 'hover', 'focus', 'group-hover'],
-    translate: ['responsive', 'hover', 'focus', 'group-hover'],
-    opacity: ['responsive', 'hover', 'focus', 'group-hover', 'disabled'],
+    filter: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    backgroundOpacity: [
+      'responsive',
+      'hover',
+      'focus',
+      'active',
+      'group-hover',
+    ],
+    textColor: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    translate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    opacity: [
+      'responsive',
+      'hover',
+      'focus',
+      'active',
+      'group-hover',
+      'disabled',
+    ],
     padding: ['responsive', 'hover', 'focus', 'group-hover', 'first', 'last'],
+    margin: ['responsive', 'first', 'last', 'odd'],
     borderWidth: ['responsive', 'first', 'last'],
+    order: ['responsive', 'odd', 'even', 'first', 'last'],
   },
   plugins: [
     gridColsMax,
