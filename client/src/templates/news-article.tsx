@@ -6,23 +6,19 @@ import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
 import FormatTextBlob from '../services/text-formatter'
 import { ExternalLinkIcon } from '../svgs/icons'
+import { NewsArticle } from '../pages/news'
 import {
   GenericSection,
   Categories,
   extractFlexibleSectionsFromCraft,
   SideBleedImage,
-} from './article.components'
-import { NewsArticle } from '../pages/news'
-
-import {
   TwoUpImageBlock,
   ThreeUpImageBlock,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
   HorizontalImageTextBlockComponent,
-} from './boat.components'
-
+} from './common.components'
 import {
   getFlexibleSections,
   isTwoColumnImageTextBlock,
@@ -35,7 +31,7 @@ import {
   isFullWidthCarouselBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
-} from '../types/boat'
+} from '../types/common'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'

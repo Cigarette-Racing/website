@@ -1,12 +1,9 @@
 import React, { Fragment, useState } from 'react'
-
 import clsx from 'clsx'
-import styled from 'styled-components'
 import { PageProps, graphql, Link } from 'gatsby'
 import Select, { components } from 'react-select'
-import { ContentHeader } from '../atoms/content-header'
 import { AspectRatio } from '../atoms/aspect-ratio'
-import { CaretDownIcon, CaretUpIcon, AngleIcon } from '../svgs/icons'
+import { CaretDownIcon } from '../svgs/icons'
 import { Layout } from '../components/layout'
 import { Typography } from '../atoms/typography'
 import SEO from '../components/seo'
@@ -15,7 +12,7 @@ import {
   GenericSection,
   Categories,
   DropdownNav,
-} from '../templates/article.components'
+} from '../templates/common.components'
 
 const NewsArticlesPage = (
   props: PageProps<GatsbyTypes.newsArticlesPageQuery>

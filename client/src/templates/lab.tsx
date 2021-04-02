@@ -4,14 +4,11 @@ import { useMedia } from 'react-use'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
+import { NewsArticle } from '../pages/news'
 import {
   GenericSection,
   Categories,
   extractFlexibleSectionsFromCraft,
-} from '../templates/article.components'
-import { NewsArticle } from '../pages/news'
-
-import {
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
@@ -19,8 +16,7 @@ import {
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
   HorizontalImageTextBlockComponent,
-} from './boat.components'
-
+} from './common.components'
 import {
   getFlexibleSections,
   isTwoColumnImageTextBlock,
@@ -33,7 +29,7 @@ import {
   isFullWidthCarouselBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
-} from '../types/boat'
+} from '../types/common'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
