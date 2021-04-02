@@ -65,6 +65,22 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
   })
 }
 
+export const createCarouselItems = (items: any) => {
+  return items.map((item) => {
+    return {
+      content: {
+        copy: item.textBlock?.[0].copy,
+        header: item.textBlock?.[0].header,
+      },
+      media: {
+        image: item.singleMedia?.[0].image?.[0]?.url,
+        videoUrl: item.singleMedia?.[0]?.videoURL,
+        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
+      },
+    }
+  })
+}
+
 export const GenericSection: React.FC<{
   theme?: Theme
   className?: string

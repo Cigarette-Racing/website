@@ -9,6 +9,7 @@ import {
   GenericSection,
   Categories,
   extractFlexibleSectionsFromCraft,
+  createCarouselItems,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
@@ -33,22 +34,6 @@ import {
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
-
-const createCarouselItems = (items: any) => {
-  return items.map((item) => {
-    return {
-      content: {
-        copy: item.textBlock?.[0].copy,
-        header: item.textBlock?.[0].header,
-      },
-      media: {
-        image: item.singleMedia?.[0].image?.[0]?.url,
-        videoUrl: item.singleMedia?.[0]?.videoURL,
-        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
-      },
-    }
-  })
-}
 
 const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
   const {

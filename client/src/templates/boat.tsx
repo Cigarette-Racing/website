@@ -11,6 +11,7 @@ import {
 } from './boat.components'
 import {
   extractFlexibleSectionsFromCraft,
+  createCarouselItems,
   MobileSectionHeader,
   VerticalHeaderBlock,
   SideBleedImage,
@@ -270,22 +271,6 @@ const extractOrderDataFromCraft = (boatEntry: any) => {
     title: boatEntry.orderSectionTitle || 'Order Today',
     media: boatEntry.orderSectionBackground[0]?.url,
   }
-}
-
-const createCarouselItems = (items: any) => {
-  return items.map((item) => {
-    return {
-      content: {
-        copy: item.textBlock?.[0].copy,
-        header: item.textBlock?.[0].header,
-      },
-      media: {
-        image: item.singleMedia?.[0].image?.[0]?.url,
-        videoUrl: item.singleMedia?.[0]?.videoURL,
-        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
-      },
-    }
-  })
 }
 
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
