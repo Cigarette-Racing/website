@@ -11,6 +11,7 @@ import {
   GenericSection,
   Categories,
   extractFlexibleSectionsFromCraft,
+  createCarouselItems,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
@@ -35,22 +36,6 @@ import {
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
-
-const createCarouselItems = (items: any) => {
-  return items.map((item) => {
-    return {
-      content: {
-        copy: item.textBlock?.[0].copy,
-        header: item.textBlock?.[0].header,
-      },
-      media: {
-        image: item.singleMedia?.[0].image?.[0]?.url,
-        videoUrl: item.singleMedia?.[0]?.videoURL,
-        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
-      },
-    }
-  })
-}
 
 const NewsArticleTemplate = (
   props: PageProps<GatsbyTypes.NewsArticlePageQuery>
@@ -324,184 +309,7 @@ export const query = graphql`
           }
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
-              id
-              theme
-              title: textBlockHeader
-              shortTitle
-              bleedDirection: imageBleedDirection
-              headerImage: image {
-                url
-              }
-              blocks: children {
-                id
-                typeHandle
-                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
-                  id
-                  align: textAlign
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                  id
-                  singleMedia {
-                    ... on CraftAPI_singleMedia_BlockType {
-                      alt
-                      label
-                      autoplayVideo
-                      videoURL
-                      image {
-                        ... on CraftAPI_s3_Asset {
-                          url
-                        }
-                      }
-                    }
-                  }
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_twoColumnImagesBlock_BlockType {
-                  id
-                  children {
-                    id
-                    ... on CraftAPI_flexibleSections_image_BlockType {
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          alt
-                          label
-                          autoplayVideo
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_twoColumnImageTextBlock_BlockType {
-                  id
-                  children {
-                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          alt
-                          label
-                          autoplayVideo
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url
-                            }
-                          }
-                        }
-                      }
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
-                  id
-                  children {
-                    typeHandle
-                    ... on CraftAPI_flexibleSections_image_BlockType {
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          autoplayVideo
-                          videoURL
-                          label
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_carousel_BlockType {
-                  fullWidth
-                  children {
-                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          autoplayVideo
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
-                  children {
-                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          autoplayVideo
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                  singleMedia {
-                    ... on CraftAPI_singleMedia_BlockType {
-                      autoplayVideo
-                      videoURL
-                      image {
-                        ... on CraftAPI_s3_Asset {
-                          url
-                        }
-                      }
-                    }
-                  }
-                  layout: horizontalLayout
-                }
-              }
+              ...flexibleSectionsFragment
             }
           }
         }
