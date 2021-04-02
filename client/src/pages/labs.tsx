@@ -7,12 +7,11 @@ import { Typography } from '../atoms/typography'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import SEO from '../components/seo'
 import { useCategoriesQuery } from '../molecules/categories-data'
-
 import {
   GenericSection,
   Categories,
   CategoryFilter,
-} from '../templates/article.components'
+} from '../templates/common.components'
 
 export const Underline = styled.span`
   display: inline-block;
