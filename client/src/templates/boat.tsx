@@ -1,34 +1,34 @@
 import React from 'react'
 import { PageProps, graphql } from 'gatsby'
-import clsx from 'clsx'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
 import {
   BoatHeader,
   BoatSection,
+  OrderSectionComponent,
+  PowertrainSectionComponent,
+} from './boat.components'
+import {
+  extractFlexibleSectionsFromCraft,
+  createCarouselItems,
   MobileSectionHeader,
   VerticalHeaderBlock,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
-  SpecsSectionComponent,
-  PowertrainSectionComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
-  OrderSectionComponent,
   HorizontalImageTextBlockComponent,
   MoreDetailsBlockComponent,
-} from './boat.components'
+} from './common.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
 import SpecsAndFeaturesSection from '../components/specsAndFeatures/SpecificationsAndFeatures'
+import { isPowertrainBlock, isMoreDetailsBlock } from '../types/boat'
 import {
-  Stat,
-  CommonSectionProps,
   getFlexibleSections,
-  findCustomizationsSection,
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
   isCarouselBlock,
@@ -37,11 +37,9 @@ import {
   isSliderBlock,
   isFullWidthCarouselBlock,
   isOneColumnImageTextBlock,
-  isPowertrainBlock,
-  isMoreDetailsBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
-} from '../types/boat'
+} from '../types/common'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
@@ -102,59 +100,6 @@ const extractDiscoverSectionFromCraft = (boatEntry: any) => {
       videoUrl: boatEntry.discoverSection[0]?.singleMedia[0]?.videoURL,
     },
   }
-}
-
-export const extractFlexibleSectionsFromCraft = (boatEntry: any) => {
-  const blockTypes = {
-    oneColumnTextBlock: 'one-column-text',
-    oneColumnImageTextBlock: 'one-column-image-text',
-    twoColumnImageTextBlock: 'two-column-image-text',
-    twoColumnImagesBlock: 'two-column-images',
-    threeColumnImagesBlock: 'three-column-images',
-    sliderBlock: 'slider',
-    carousel: 'carousel',
-    fullWidthCarousel: 'full-width-carousel',
-    horizontalImageText: 'horizontal-image-text',
-    powertrainOptions: 'powertrain',
-    moreDetails: 'more-details',
-  }
-
-  return boatEntry.flexibleSections.map((section: any) => {
-    const blocks = section?.blocks?.map(
-      (block: any, index: Number, blocks: any[]) => {
-        const getBlockPosition = () => {
-          if (index === 0) {
-            return 'first'
-          }
-          if (index === blocks.length - 1) {
-            return 'last'
-          }
-          return 'middle'
-        }
-
-        return {
-          ...block,
-          source: 'craft',
-          blockPosition: getBlockPosition(),
-          type:
-            block.typeHandle === 'carousel' && block.fullWidth
-              ? 'full-width-carousel'
-              : blockTypes[block.typeHandle as keyof typeof blockTypes],
-        }
-      }
-    )
-
-    return {
-      type: 'flexible',
-      title: section.title,
-      theme: section.theme,
-      bleedDirection: section?.bleedDirection,
-      headerImage:
-        !!section?.headerImage?.length && section?.headerImage?.[0].url,
-      blocks,
-      moreDetails: [],
-    }
-  })
 }
 
 const extractGallerySectionFromCraft = (boatEntry: any) => {
@@ -326,22 +271,6 @@ const extractOrderDataFromCraft = (boatEntry: any) => {
     title: boatEntry.orderSectionTitle || 'Order Today',
     media: boatEntry.orderSectionBackground[0]?.url,
   }
-}
-
-export const createCarouselItems = (items: any) => {
-  return items.map((item) => {
-    return {
-      content: {
-        copy: item.textBlock?.[0].copy,
-        header: item.textBlock?.[0].header,
-      },
-      media: {
-        image: item.singleMedia?.[0].image?.[0]?.url,
-        videoUrl: item.singleMedia?.[0]?.videoURL,
-        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
-      },
-    }
-  })
 }
 
 const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
@@ -583,13 +512,6 @@ const BoatTemplate = (props: PageProps<GatsbyTypes.BoatPageQuery>) => {
       {!!specsAndFeaturesData && (
         <SpecsAndFeaturesSection {...specsAndFeaturesData} />
       )}
-
-      {/* {!!specsData?.categories.length && (
-        <SpecsSectionComponent
-          boatNameLong={boatEntry.boatNameLong}
-          {...specsData}
-        />
-      )} */}
       {!!powertrainData?.options?.length && (
         <PowertrainSectionComponent {...powertrainData} />
       )}
@@ -746,225 +668,9 @@ export const query = graphql`
               }
             }
           }
-
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
-              theme
-              title: textBlockHeader
-              shortTitle
-              bleedDirection: imageBleedDirection
-              headerImage: image {
-                url
-              }
-              blocks: children {
-                typeHandle
-                ... on CraftAPI_flexibleSections_moreDetails_BlockType {
-                  textBlockHeader
-                  children {
-                    ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
-                      id
-                      horizontalLayout
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          id
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              id
-                              url(width: 2400)
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                  image {
-                    ... on CraftAPI_s3_Asset {
-                      id
-                      url(width: 2400)
-                    }
-                  }
-                  children {
-                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlockHeader
-                      children {
-                        ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
-                          textBlockCopy
-                          textBlockHeader
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
-                  align: textAlign
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                  singleMedia {
-                    ... on CraftAPI_singleMedia_BlockType {
-                      alt
-                      label
-                      autoplayVideo
-                      videoURL
-                      image {
-                        ... on CraftAPI_s3_Asset {
-                          url(width: 2400)
-                        }
-                      }
-                    }
-                  }
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_twoColumnImagesBlock_BlockType {
-                  children {
-                    ... on CraftAPI_flexibleSections_image_BlockType {
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          alt
-                          label
-                          autoplayVideo
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url(width: 1400)
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_twoColumnImageTextBlock_BlockType {
-                  children {
-                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          alt
-                          label
-                          autoplayVideo
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url(width: 1400)
-                            }
-                          }
-                        }
-                      }
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
-                  children {
-                    typeHandle
-                    ... on CraftAPI_flexibleSections_image_BlockType {
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          autoplayVideo
-                          videoURL
-                          label
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url(width: 1000)
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_carousel_BlockType {
-                  fullWidth
-                  children {
-                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          autoplayVideo
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
-                  children {
-                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                      textBlock {
-                        ... on CraftAPI_textBlock_BlockType {
-                          header
-                          copy
-                        }
-                      }
-                      singleMedia {
-                        ... on CraftAPI_singleMedia_BlockType {
-                          autoplayVideo
-                          videoURL
-                          image {
-                            ... on CraftAPI_s3_Asset {
-                              url
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                  singleMedia {
-                    ... on CraftAPI_singleMedia_BlockType {
-                      autoplayVideo
-                      videoURL
-                      image {
-                        ... on CraftAPI_s3_Asset {
-                          url
-                        }
-                      }
-                    }
-                  }
-                  layout: horizontalLayout
-                }
-              }
+              ...flexibleSectionsFragment
             }
           }
           boatSpecs {

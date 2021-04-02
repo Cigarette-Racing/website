@@ -4,14 +4,12 @@ import { useMedia } from 'react-use'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
+import { NewsArticle } from '../pages/news'
 import {
   GenericSection,
   Categories,
   extractFlexibleSectionsFromCraft,
-} from '../templates/article.components'
-import { NewsArticle } from '../pages/news'
-
-import {
+  createCarouselItems,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
@@ -19,8 +17,7 @@ import {
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
   HorizontalImageTextBlockComponent,
-} from './boat.components'
-
+} from './common.components'
 import {
   getFlexibleSections,
   isTwoColumnImageTextBlock,
@@ -33,26 +30,10 @@ import {
   isFullWidthCarouselBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
-} from '../types/boat'
+} from '../types/common'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
-
-const createCarouselItems = (items: any) => {
-  return items.map((item) => {
-    return {
-      content: {
-        copy: item.textBlock?.[0].copy,
-        header: item.textBlock?.[0].header,
-      },
-      media: {
-        image: item.singleMedia?.[0].image?.[0]?.url,
-        videoUrl: item.singleMedia?.[0]?.videoURL,
-        autoplayVideo: item.singleMedia?.[0]?.autoplayVideo,
-      },
-    }
-  })
-}
 
 const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
   const {
@@ -290,67 +271,7 @@ export const query = graphql`
 
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
-              theme
-              title: textBlockHeader
-              shortTitle
-              bleedDirection: imageBleedDirection
-              headerImage: image {
-                url
-              }
-
-              blocks: children {
-                typeHandle
-                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
-                  align: textAlign
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
-                  singleMedia {
-                    ... on CraftAPI_singleMedia_BlockType {
-                      alt
-                      label
-                      autoplayVideo
-                      videoURL
-                      image {
-                        ... on CraftAPI_s3_Asset {
-                          url(width: 2400)
-                        }
-                      }
-                    }
-                  }
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
-                  textBlock {
-                    ... on CraftAPI_textBlock_BlockType {
-                      header
-                      copy
-                    }
-                  }
-                  singleMedia {
-                    ... on CraftAPI_singleMedia_BlockType {
-                      autoplayVideo
-                      videoURL
-                      image {
-                        ... on CraftAPI_s3_Asset {
-                          url
-                        }
-                      }
-                    }
-                  }
-                  layout: horizontalLayout
-                }
-              }
+              ...flexibleSectionsFragment
             }
           }
         }
