@@ -6,34 +6,25 @@ import { Typography } from '../atoms/typography'
 import {
   extractFlexibleSectionsFromCraft,
   createCarouselItems,
-} from '../templates/boat'
-import { GenericSection } from '../templates/article.components'
-import { InPageAnchor } from '../molecules/in-page-nav'
-import {
-  BoatHeader,
-  BoatSection,
+  GenericSection,
+  HorizontalImageTextBlockComponent,
+  MoreDetailsBlockComponent,
+  OneColumnTextBlockComponent,
+  TwoColumnImageTextBlockComponent,
+  OneColumnImageTextBlockComponent,
   MobileSectionHeader,
   VerticalHeaderBlock,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
-  SpecsSectionComponent,
-  PowertrainSectionComponent,
-  OneColumnTextBlockComponent,
-  TwoColumnImageTextBlockComponent,
-  OneColumnImageTextBlockComponent,
-  OrderSectionComponent,
-  HorizontalImageTextBlockComponent,
-  MoreDetailsBlockComponent,
-} from '../templates/boat.components'
+} from '../templates/common.components'
+import { InPageAnchor } from '../molecules/in-page-nav'
+
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
 import {
-  Stat,
-  CommonSectionProps,
   getFlexibleSections,
-  findCustomizationsSection,
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
   isCarouselBlock,
@@ -42,11 +33,9 @@ import {
   isSliderBlock,
   isFullWidthCarouselBlock,
   isOneColumnImageTextBlock,
-  isPowertrainBlock,
-  isMoreDetailsBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
-} from '../types/boat'
+} from '../types/common'
 
 const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
   const {
@@ -203,58 +192,6 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 }
 
                 return <FullWidthCarousel key={index} {...block} />
-              }
-              if (isPowertrainBlock(block)) {
-                const options = block.children.map((option: any) => {
-                  const details = option.children.map((detail) => {
-                    return {
-                      name: detail.textBlockHeader,
-                      info: detail.textBlockCopy,
-                    }
-                  })
-
-                  return {
-                    name: option.textBlockHeader,
-                    details,
-                  }
-                })
-
-                const powertrainData = {
-                  heroImage: block?.image,
-                  options,
-                }
-
-                return (
-                  <PowertrainSectionComponent
-                    key="powertrain-section"
-                    {...powertrainData}
-                  />
-                )
-              }
-
-              if (isMoreDetailsBlock(block)) {
-                const buttonText = block.textBlockHeader
-
-                const details = block.children.map((detail) => {
-                  return {
-                    layout: detail.horizontalLayout,
-                    header: detail.textBlock?.[0]?.header,
-                    copy: detail.textBlock?.[0]?.copy,
-                    image: detail.singleMedia?.[0].image?.[0]?.url,
-                  }
-                })
-
-                const moreDetailsData = {
-                  buttonText,
-                  details,
-                }
-
-                return (
-                  <MoreDetailsBlockComponent
-                    key={`more-details ${block.textBlockHeader}`}
-                    {...moreDetailsData}
-                  />
-                )
               }
 
               return null

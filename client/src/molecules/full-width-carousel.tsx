@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
-import { FullWidthCarouselBlock } from '../types/boat'
+import { FullWidthCarouselBlock } from '../types/common'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { ProgressDots } from '../atoms/progress-dots'
 import { determineSwipeAction } from '../services/swiping'
