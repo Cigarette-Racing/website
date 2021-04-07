@@ -44,8 +44,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
     },
   } = props
 
-  console.log(allLabs)
-
   const relatedLabs = allLabs.filter((labEntry) => {
     return labEntry.id != allLabs.id
   })
@@ -235,7 +233,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                   className="relatedArticles grid grid-cols-3 gap-6 px-4"
                   style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
                 >
-                  {console.log(relatedLabs)}
                   {relatedLabs.slice(0, 3).map((lab) => {
                     return (
                       <ContentEntry
