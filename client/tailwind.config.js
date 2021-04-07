@@ -170,6 +170,7 @@ module.exports = {
         wide: '1px',
         wider: '2px',
         widest: '3px',
+        heading: '0.2em',
       },
       maxWidth: {
         '7xl': '80rem',
