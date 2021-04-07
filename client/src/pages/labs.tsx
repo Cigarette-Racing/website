@@ -35,8 +35,6 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
     },
   } = props
 
-  console.log(labEntries)
-
   const options = useCategoriesQuery()
 
   const filteredLabEntries = labEntries.filter((entry) => {

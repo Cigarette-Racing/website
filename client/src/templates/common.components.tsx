@@ -452,6 +452,7 @@ export const ContentEntry = ({
 
   return (
     <Fragment>
+      {console.log(entry)}
       {isPrimary && (
         <Link
           to={`${entry.slug}`}
@@ -624,7 +625,7 @@ export const ContentEntry = ({
   )
 }
 
-export const FilteredList = ({ entries, entryType }) => {
+export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
   return (
     <div>
       {!!entries.length ? (
@@ -635,6 +636,7 @@ export const FilteredList = ({ entries, entryType }) => {
             index={i}
             entry={articleEntry}
             hierarchy="secondary"
+            theme={theme}
           />
         ))
       ) : (
@@ -675,7 +677,6 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
           <div>No Entries</div>
         )}
       </div>
-      {console.log(theme)}
       <div
         className={clsx(
           `remaining grid grid-cols-2 col-gap-4 lg:grid-cols-3 lg:col-gap-6 border-solid border-t`,

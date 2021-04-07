@@ -44,7 +44,9 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
     },
   } = props
 
-  const relatedLabs = allLabs.filter((article) => {
+  console.log(allLabs)
+
+  const relatedLabs = allLabs.filter((labEntry) => {
     return labEntry.id != allLabs.id
   })
 
@@ -55,8 +57,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
   const date = new Date(labEntry.dateCreated)
 
   const isMobile = useMedia('(max-width: 767px)')
-
-  console.log(labEntry.flexibleSections)
 
   return (
     <Layout>
@@ -196,7 +196,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                   )
                 }
                 if (isHorizontalImageTextBlock(block)) {
-                  console.log(block, 'horz')
                   const extractedBlock: HorizontalImageTextBlock = {
                     type: 'horizontal-image-text',
                     layout: block.layout,
@@ -236,11 +235,13 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                   className="relatedArticles grid grid-cols-3 gap-6 px-4"
                   style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
                 >
-                  {relatedLabs.slice(0, 3).map((article) => {
+                  {console.log(relatedLabs)}
+                  {relatedLabs.slice(0, 3).map((lab) => {
                     return (
                       <ContentEntry
-                        key={article.id}
-                        entry={article}
+                        entryType="labs"
+                        key={lab.id}
+                        entry={lab}
                         hierarchy="tertiary"
                       />
                     )
@@ -504,7 +505,7 @@ export const query = graphql`
           }
         }
       }
-      entries(type: "labs") {
+      entries(type: "lab") {
         ... on CraftAPI_labs_lab_Entry {
           dateCreated
           slug

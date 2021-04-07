@@ -58,8 +58,6 @@ const NewsArticleTemplate = (
 
   const isMobile = useMedia('(max-width: 767px)')
 
-  console.log(articleEntry.flexibleSections)
-
   return (
     <Layout>
       <GenericSection className="py-12 pb-8 pt-32 md:pt-56" theme="light">
@@ -115,13 +113,15 @@ const NewsArticleTemplate = (
               className="mt-0 px-4 md:px-0 mb-16 md:m-0 md:mb-32 pt-0"
               size="large"
             />
-            <div className="px-4 md:px-0 md:w-8/12 m-auto">
-              <Typography variant="e2" className="mb-4">
-                {articleEntry.subheadline}
-              </Typography>
-            </div>
-            <div className="px-4 md:px-0 md:w-8/12 m-auto mb-16">
-              {FormatTextBlob(articleEntry.articleCopy)}
+            <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 ml-auto">
+              <div className="px-4 md:px-0 md:w-8/12">
+                <Typography variant="e2" className="mb-4">
+                  {articleEntry.subheadline}
+                </Typography>
+              </div>
+              <div className="px-4 md:px-0 md:w-8/12 mb-16">
+                {FormatTextBlob(articleEntry.articleCopy)}
+              </div>
             </div>
             {!!blocks &&
               blocks.map((block, index) => {
@@ -241,9 +241,11 @@ const NewsArticleTemplate = (
                   {relatedArticles.slice(0, 3).map((article) => {
                     return (
                       <ContentEntry
+                        entryType="news"
                         key={article.id}
                         entry={article}
                         hierarchy="tertiary"
+                        theme="light"
                       />
                     )
                   })}
