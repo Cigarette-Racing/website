@@ -11,10 +11,7 @@ const ExploreOurWorld = () => {
         Explore Our World
       </Typography>
       <div className="grid-cols-3 grid col-gap-4 grid-flow-row px-4">
-        <div>something</div>
-        <div>something</div>
-        <div>something</div>
-        {/* <Link to={`/labs`} className="block w-full" data-type="tertiary link">
+        <Link to={`/labs`} className="block w-full" data-type="tertiary link">
           <div className="pt-5 flex flex-col h-full">
             <div className="mb-10">
               <AspectRatio ratio="1:1" md="16:9" className="">
@@ -79,7 +76,7 @@ const ExploreOurWorld = () => {
               </div>
             </div>
           </div>
-        </Link> */}
+        </Link>
       </div>
     </div>
   )
