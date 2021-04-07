@@ -1,10 +1,12 @@
 import React from 'react'
-import { PageProps, graphql } from 'gatsby'
 import { useMedia } from 'react-use'
+import { PageProps, graphql } from 'gatsby'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
-import { NewsArticle } from '../pages/news'
+import FormatTextBlob from '../services/text-formatter'
+import { ExternalLinkIcon } from '../svgs/icons'
+import { ContentEntry } from '../templates/common.components'
 import {
   Categories,
   createCarouselItems,
@@ -42,7 +44,7 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
     },
   } = props
 
-  const relatedLabs = allLabs.filter((article) => {
+  const relatedLabs = allLabs.filter((labEntry) => {
     return labEntry.id != allLabs.id
   })
 
@@ -56,20 +58,38 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
 
   return (
     <Layout>
-      <GenericSection className="py-12 pt-32" theme="dark">
+      <GenericSection className="py-12 pb-8 pt-32 md:pt-56" theme="dark">
         <div className="px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
           <SEO title={labEntry.title} slug={props.path} />
-          <div className="md:flex align-top justify-start content-start">
+          <div className="md:flex align-top justify-start content-start pb-10 md:pb-20">
             <Categories
-              className="md:mr-16"
+              className="-ml-2 mb-3 md:mr-16 mt-4"
               align="left"
               categories={labEntry.articleCategories}
             />
-            <Typography className="mb-8 max-w-screen-lg" variant="h3" md="h1">
-              {labEntry.title}
-            </Typography>
+            <div>
+              <Typography className="mb-8 max-w-screen-lg" variant="h3" md="h1">
+                {labEntry.title}
+              </Typography>
+              {!!labEntry?.urlLink && (
+                <a
+                  href={labEntry?.urlLink}
+                  className="flex align-middle items-center"
+                >
+                  <img
+                    className="w-10 h-10 mr-4"
+                    src={labEntry.externalLinkIcon[0].url}
+                    alt=""
+                  />
+                  <Typography variant="p2" className="text-gray-3">
+                    {labEntry?.urlLink}
+                  </Typography>
+                  <ExternalLinkIcon className="mr-2 ml-4" />
+                </a>
+              )}
+            </div>
           </div>
-          <div className="border-t border-solid border-gray-5"></div>
+          <div className="border-t border-solid border-gray-2"></div>
         </div>
       </GenericSection>
       {flexData.map(
@@ -91,6 +111,16 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
               className="mt-0 md:m-0 mb-20 md:mb-32 pt-0"
               size="large"
             />
+            <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 ml-auto">
+              <div className="px-4 md:px-0 md:w-8/12">
+                <Typography variant="e2" className="mb-4">
+                  {labEntry.subheadline}
+                </Typography>
+              </div>
+              <div className="px-4 md:px-0 md:w-8/12 mb-16">
+                {FormatTextBlob(labEntry.articleCopy)}
+              </div>
+            </div>
             {!!blocks &&
               blocks.map((block, index) => {
                 if (isTwoColumnImageTextBlock(block)) {
@@ -164,7 +194,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                   )
                 }
                 if (isHorizontalImageTextBlock(block)) {
-                  console.log(block, 'horz')
                   const extractedBlock: HorizontalImageTextBlock = {
                     type: 'horizontal-image-text',
                     layout: block.layout,
@@ -195,30 +224,31 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                 }
                 return null
               })}
+            <div>
+              <Typography className="px-4 mt-20 mb-5" variant="h3" md="h2">
+                More Stories
+              </Typography>
+              <div className="overflow-scroll">
+                <div
+                  className="relatedArticles grid grid-cols-3 gap-6 px-4"
+                  style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
+                >
+                  {relatedLabs.slice(0, 3).map((lab) => {
+                    return (
+                      <ContentEntry
+                        entryType="labs"
+                        key={lab.id}
+                        entry={lab}
+                        hierarchy="tertiary"
+                      />
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
           </GenericSection>
         )
       )}
-      <GenericSection className="max-w-screen-xl xl:max-w-screen-2xl m-auto">
-        <Typography className="mt-20 mb-5" variant="h3" md="h2">
-          More Stories
-        </Typography>
-        <div className="overflow-scroll">
-          <div
-            className="relatedLabs px-4 grid grid-cols-3 gap-6"
-            style={{ width: `${isMobile ? '240vw' : 'auto'} ` }}
-          >
-            {relatedLabs.slice(0, 3).map((lab) => {
-              return (
-                <NewsArticle
-                  key={lab.id}
-                  articleEntry={lab}
-                  hierarchy="tertiary"
-                />
-              )
-            })}
-          </div>
-        </div>
-      </GenericSection>
     </Layout>
   )
 }
@@ -232,47 +262,267 @@ export const query = graphql`
         id
         title
       }
-      entries(type: "labs") {
-        ... on CraftAPI_labs_labs_Entry {
+      entry(slug: [$craftSlug]) {
+        ... on CraftAPI_labs_lab_Entry {
           id
-          slug
-          title
           dateCreated
+          title
+          urlLink
+          externalLinkIcon {
+            url
+          }
+          subheadline
+          articleCopy
+          image {
+            url
+          }
           articleExcerpt
           articleCategories {
-            id
             title
           }
-          imageObject {
-            ... on CraftAPI_imageObject_BlockType {
-              image {
+          flexibleSections {
+            ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
+              theme
+              title: textBlockHeader
+              shortTitle
+              bleedDirection: imageBleedDirection
+              headerImage: image {
                 url
+              }
+              blocks: children {
+                typeHandle
+                ... on CraftAPI_flexibleSections_moreDetails_BlockType {
+                  textBlockHeader
+                  children {
+                    ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
+                      id
+                      horizontalLayout
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          id
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              id
+                              url(width: 2400)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      id
+                      url(width: 2400)
+                    }
+                  }
+                  children {
+                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
+                      textBlockHeader
+                      children {
+                        ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
+                          textBlockCopy
+                          textBlockHeader
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
+                  align: textAlign
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      alt
+                      label
+                      autoplayVideo
+                      videoURL
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url(width: 2400)
+                        }
+                      }
+                    }
+                  }
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_twoColumnImagesBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_image_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          alt
+                          label
+                          autoplayVideo
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1400)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_twoColumnImageTextBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          alt
+                          label
+                          autoplayVideo
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1400)
+                            }
+                          }
+                        }
+                      }
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
+                  children {
+                    typeHandle
+                    ... on CraftAPI_flexibleSections_image_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
+                          label
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1000)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_carousel_BlockType {
+                  fullWidth
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      autoplayVideo
+                      videoURL
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url
+                        }
+                      }
+                    }
+                  }
+                  layout: horizontalLayout
+                }
               }
             }
           }
         }
       }
-      entry(slug: [$craftSlug]) {
-        ... on CraftAPI_labs_labs_Entry {
-          id
+      entries(type: "lab") {
+        ... on CraftAPI_labs_lab_Entry {
           dateCreated
-          title
+          slug
+          id
+          urlLink
           articleExcerpt
+          title
+          externalLinkIcon {
+            url
+          }
+          image {
+            url
+          }
           articleCategories {
+            id
             title
           }
-          imageObject {
-            ... on CraftAPI_imageObject_BlockType {
-              image {
-                url
-              }
-            }
-          }
-
-          flexibleSections {
-            ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
-              ...flexibleSectionsFragment
-            }
+          articleTags {
+            id
+            title
           }
         }
       }
