@@ -3,6 +3,16 @@ import { PageProps, graphql, Link } from 'gatsby'
 import { Layout } from '../components/layout'
 import { Typography } from '../atoms/typography'
 import SEO from '../components/seo'
+import ExploreOurWorld from '../molecules/explore-our-world'
+
+const StaggeredHeader = ({ text1, text2 }) => {
+  return (
+    <div className="font-heading font-light text-7xl uppercase tracking-heading leading-none">
+      <div className="text-red">{text1}</div>
+      <div className="ml-56">{text2}</div>
+    </div>
+  )
+}
 
 const OurWorldDNA = (props) => {
   const {
@@ -15,6 +25,8 @@ const OurWorldDNA = (props) => {
         scienceOnWater,
         simplyStunningForeground,
         simplyStunningBgRight,
+        dnaHelmBreak,
+        dnaExperience,
       },
     },
   } = props
@@ -30,11 +42,17 @@ const OurWorldDNA = (props) => {
         />
       </div>
       <img src={`${introImage.url}?q=30&w=2400`} alt="intro image" />
-      <div className="nextLevelPerformance font-heading font-light text-7xl uppercase tracking-heading">
-        <div className="text-red">Next Level</div>
-        <div>Performance</div>
+      <div className="nextLevelPerformance">
+        <StaggeredHeader text1="Next Level" text2="performance" />
         <img
           src={`${imageBreak1.url}?q=30&w=2400`}
+          alt="next level performance"
+        />
+      </div>
+      <div className="scienceOnWater">
+        <StaggeredHeader text1="Science" text2="on water" />
+        <img
+          src={`${scienceOnWater.url}?q=30&w=2400`}
           alt="next level performance"
         />
       </div>
@@ -42,6 +60,26 @@ const OurWorldDNA = (props) => {
         src={`${imageBreak2.url}?q=30&w=2400`}
         alt="next level performance"
       />
+      <div className="relative simplyStunning">
+        <img
+          className="absolute w-1/2 left-1/2 transform -translate-x-1/2"
+          src={simplyStunningForeground.url}
+          alt=""
+        />
+        <div className="flex">
+          <div className="w-1/2">some stuff</div>
+          <img className="w-1/2" src={simplyStunningBgRight.url} alt="" />
+        </div>
+      </div>
+      <div>
+        <img src={dnaHelmBreak.url} alt="" />
+      </div>
+      <div className="experience">
+        <img src={dnaExperience?.url} alt="" />
+      </div>
+      <div>
+        <ExploreOurWorld />
+      </div>
     </Layout>
   )
 }
@@ -74,6 +112,12 @@ export const query = graphql`
       simplyStunningBgRight: asset(
         filename: "dna-simply-stunning-bg-right.jpg"
       ) {
+        url
+      }
+      dnaHelmBreak: asset(filename: "dna-helm-break.jpg") {
+        url
+      }
+      dnaExperience: asset(filename: "dna-experience.jpg") {
         url
       }
     }
