@@ -52,7 +52,7 @@ const createLabPages: GatsbyNode['createPages'] = async ({
   const query = /* GraphQL */ `
     query AllLabs {
       craftAPI {
-        entries(type: "labs") {
+        entries(type: "lab") {
           slug
         }
       }

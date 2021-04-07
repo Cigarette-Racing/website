@@ -6,7 +6,7 @@ import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
 import FormatTextBlob from '../services/text-formatter'
 import { ExternalLinkIcon } from '../svgs/icons'
-import { NewsArticle } from '../pages/news'
+import { ContentEntry } from '../templates/common.components'
 import {
   GenericSection,
   Categories,
@@ -113,13 +113,15 @@ const NewsArticleTemplate = (
               className="mt-0 px-4 md:px-0 mb-16 md:m-0 md:mb-32 pt-0"
               size="large"
             />
-            <div className="px-4 md:px-0 md:w-8/12 m-auto">
-              <Typography variant="e2" className="mb-4">
-                {articleEntry.subheadline}
-              </Typography>
-            </div>
-            <div className="px-4 md:px-0 md:w-8/12 m-auto mb-16">
-              {FormatTextBlob(articleEntry.articleCopy)}
+            <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 ml-auto">
+              <div className="px-4 md:px-0 md:w-8/12">
+                <Typography variant="e2" className="mb-4">
+                  {articleEntry.subheadline}
+                </Typography>
+              </div>
+              <div className="px-4 md:px-0 md:w-8/12 mb-16">
+                {FormatTextBlob(articleEntry.articleCopy)}
+              </div>
             </div>
             {!!blocks &&
               blocks.map((block, index) => {
@@ -225,7 +227,6 @@ const NewsArticleTemplate = (
 
                   return <FullWidthCarousel key={index} {...block} />
                 }
-
                 return null
               })}
             <div>
@@ -239,10 +240,12 @@ const NewsArticleTemplate = (
                 >
                   {relatedArticles.slice(0, 3).map((article) => {
                     return (
-                      <NewsArticle
+                      <ContentEntry
+                        entryType="news"
                         key={article.id}
-                        articleEntry={article}
+                        entry={article}
                         hierarchy="tertiary"
+                        theme="light"
                       />
                     )
                   })}
@@ -265,6 +268,246 @@ export const query = graphql`
         id
         title
       }
+      entry(slug: [$craftSlug]) {
+        ... on CraftAPI_newsArticles_newsArticle_Entry {
+          id
+          dateCreated
+          title
+          urlLink
+          externalLinkIcon {
+            url
+          }
+          subheadline
+          articleCopy
+          headerImage: image {
+            url
+          }
+          articleExcerpt
+          articleCategories {
+            title
+          }
+          flexibleSections {
+            ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
+              theme
+              title: textBlockHeader
+              shortTitle
+              bleedDirection: imageBleedDirection
+              headerImage: image {
+                url
+              }
+              blocks: children {
+                typeHandle
+                ... on CraftAPI_flexibleSections_moreDetails_BlockType {
+                  textBlockHeader
+                  children {
+                    ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
+                      id
+                      horizontalLayout
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          id
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              id
+                              url(width: 2400)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
+                  image {
+                    ... on CraftAPI_s3_Asset {
+                      id
+                      url(width: 2400)
+                    }
+                  }
+                  children {
+                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
+                      textBlockHeader
+                      children {
+                        ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
+                          textBlockCopy
+                          textBlockHeader
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
+                  align: textAlign
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      alt
+                      label
+                      autoplayVideo
+                      videoURL
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url(width: 2400)
+                        }
+                      }
+                    }
+                  }
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_twoColumnImagesBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_image_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          alt
+                          label
+                          autoplayVideo
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1400)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_twoColumnImageTextBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          alt
+                          label
+                          autoplayVideo
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1400)
+                            }
+                          }
+                        }
+                      }
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType {
+                  children {
+                    typeHandle
+                    ... on CraftAPI_flexibleSections_image_BlockType {
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
+                          label
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url(width: 1000)
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_carousel_BlockType {
+                  fullWidth
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_sliderBlock_BlockType {
+                  children {
+                    ... on CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType {
+                      textBlock {
+                        ... on CraftAPI_textBlock_BlockType {
+                          header
+                          copy
+                        }
+                      }
+                      singleMedia {
+                        ... on CraftAPI_singleMedia_BlockType {
+                          autoplayVideo
+                          videoURL
+                          image {
+                            ... on CraftAPI_s3_Asset {
+                              url
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
+                  textBlock {
+                    ... on CraftAPI_textBlock_BlockType {
+                      header
+                      copy
+                    }
+                  }
+                  singleMedia {
+                    ... on CraftAPI_singleMedia_BlockType {
+                      autoplayVideo
+                      videoURL
+                      image {
+                        ... on CraftAPI_s3_Asset {
+                          url
+                        }
+                      }
+                    }
+                  }
+                  layout: horizontalLayout
+                }
+              }
+            }
+          }
+        }
+      }
       entries(type: "newsArticle") {
         ... on CraftAPI_newsArticles_newsArticle_Entry {
           dateCreated
@@ -286,31 +529,6 @@ export const query = graphql`
           articleTags {
             id
             title
-          }
-        }
-      }
-      entry(slug: [$craftSlug]) {
-        ... on CraftAPI_newsArticles_newsArticle_Entry {
-          id
-          dateCreated
-          title
-          urlLink
-          externalLinkIcon {
-            url
-          }
-          subheadline
-          articleCopy
-          image {
-            url
-          }
-          articleExcerpt
-          articleCategories {
-            title
-          }
-          flexibleSections {
-            ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
-              ...flexibleSectionsFragment
-            }
           }
         }
       }

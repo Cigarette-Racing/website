@@ -1,8 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react'
+import { Link } from 'gatsby'
 import { Typography } from '../atoms/typography'
 import { InPageCta } from '../atoms/in-page-cta'
 import { Theme } from '../types/shared'
 import clsx from 'clsx'
+import SEO from '../components/seo'
 import { ArrowIcon, CaretDownIcon, CaretUpIcon, AngleIcon } from '../svgs/icons'
 import { CircleButton } from '../atoms/circle-button'
 import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
@@ -98,6 +100,35 @@ export const GenericSection: React.FC<{
     {children}
   </section>
 )
+
+export const PrimaryContentHero = ({ path, theme = 'light', entry }) => {
+  return (
+    <GenericSection className="py-12 pt-32" theme={theme}>
+      <div className="px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
+        <SEO title={entry?.title} slug={path} />
+        <div className="md:flex align-top justify-start content-start">
+          {!!(entry.articleCategories.length !== 0) && (
+            <Categories
+              className="md:mr-16"
+              align="left"
+              categories={entry.articleCategories}
+            />
+          )}
+          <Typography className="mb-8 max-w-screen-lg" variant="h3" md="h1">
+            {entry?.title}
+          </Typography>
+        </div>
+        <div
+          className={clsx(
+            `border-t border-solid`,
+            { 'border-gray-1': theme === 'dark' },
+            { 'border-gray-5': theme === 'light' }
+          )}
+        ></div>
+      </div>
+    </GenericSection>
+  )
+}
 
 export const MobileSectionHeader: React.FC<{ className?: string }> = ({
   children,
@@ -395,6 +426,279 @@ export const DropdownNav = ({
         }}
       />
     </div>
+  )
+}
+
+export const ContentEntry = ({
+  entry,
+  entryType,
+  index,
+  hierarchy,
+  className,
+  theme = 'light',
+}: {
+  entryType: string
+  entry: any
+  index?: number
+  hierarchy?: string
+  className?: string
+  theme?: Theme
+}) => {
+  const isPrimary = hierarchy === 'primary'
+  const isSecondary = hierarchy === 'secondary'
+  const isTertiary = hierarchy === 'tertiary'
+
+  const date = new Date(entry.dateCreated)
+
+  return (
+    <Fragment>
+      {console.log(entry)}
+      {isPrimary && (
+        <Link
+          to={`${entry.slug}`}
+          className={clsx(
+            `block border-solid border-t md:pt-16`,
+            { 'border-gray-1': theme === 'dark' },
+            { 'border-gray-5': theme === 'light' },
+            className
+          )}
+        >
+          <div className="md:flex pt-5 flex-col md:mb-24">
+            <div className="w-full mb-10 md:order-2">
+              {!!entry?.image?.[0] && (
+                <AspectRatio ratio="1:1" md="16:9" className="">
+                  <img
+                    className="absolute h-full w-full object-cover"
+                    src={`${entry.image[0]?.url}?q=30&w=2400`}
+                    alt=""
+                  />
+                </AspectRatio>
+              )}
+            </div>
+            <div className={clsx('w-full md:order-1')}>
+              <Categories
+                className="mb-3"
+                categories={entry.articleCategories}
+              />
+              <div className="text-center px-3">
+                <Typography className="mb-4" variant="h4" sm="h3" md="h1">
+                  {entry.title}
+                </Typography>
+                <Typography
+                  className="max-w-screen-sm m-auto mb-8 text-gray-3"
+                  variant="p3"
+                >
+                  {entry.articleExcerpt}
+                </Typography>
+                <Typography variant="e3" className="date text-gray-4 mb-8">
+                  {`${
+                    date.getMonth() + 1
+                  }.${date.getDate()}.${date.getFullYear()}`}
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </Link>
+      )}
+      {isSecondary && (
+        <Link
+          to={`${entry.slug}`}
+          className={clsx(
+            'block border-solid border-t',
+            { 'border-gray-1': theme === 'dark' },
+            { 'border-gray-5': theme === 'light' }
+          )}
+        >
+          <div className="mb-12 md:mb-24 md:flex pt-5">
+            <div
+              className={clsx('md:w-1/2 mb-10', {
+                ['md:order-2']: index % 2 === 0,
+              })}
+            >
+              {!!entry?.image?.[0] ? (
+                <AspectRatio ratio="1:1" md="16:9" className="">
+                  <img
+                    className="absolute h-full w-full object-cover"
+                    src={`${entry.image[0]?.url}?q=30&w=2400`}
+                    alt=""
+                  />
+                </AspectRatio>
+              ) : (
+                <AspectRatio ratio="1:1" md="16:9" className="">
+                  <img
+                    className="absolute h-full w-full object-cover"
+                    src="https://via.placeholder.com/1000x1000"
+                    alt=""
+                  />
+                </AspectRatio>
+              )}
+            </div>
+            <div
+              className={clsx('md:w-1/2', {
+                ['md:order-1']: index % 2 === 0,
+                ['md:ml-6']: index % 2 != 0,
+              })}
+            >
+              <Categories
+                align="left"
+                className="mb-3"
+                categories={entry.articleCategories}
+              />
+              <div className="text-center md:text-left px-3">
+                <Typography className="mb-4" variant="h4" sm="h3" md="h2">
+                  {entry.title}
+                </Typography>
+                <Typography
+                  className="max-w-screen-sm m-auto mb-8 text-gray-3"
+                  variant="p3"
+                >
+                  {entry.articleExcerpt}
+                </Typography>
+                <Typography variant="e3" className="date text-gray-4">
+                  {`${
+                    date.getMonth() + 1
+                  }.${date.getDate()}.${date.getFullYear()}`}
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </Link>
+      )}
+      {isTertiary && (
+        <Link
+          to={`/${entryType}/${entry.slug}`}
+          className={clsx('block', className)}
+          data-type="tertiary link"
+        >
+          <div className="pt-5 flex flex-col h-full">
+            <div className="mb-10">
+              {!!entry?.image?.[0] ? (
+                <AspectRatio ratio="1:1" md="16:9" className="">
+                  <img
+                    className="absolute h-full w-full object-cover"
+                    src={`${entry.image[0]?.url}?q=30&w=2400`}
+                    alt=""
+                  />
+                </AspectRatio>
+              ) : (
+                <AspectRatio ratio="1:1" md="16:9" className="">
+                  <img
+                    className="absolute h-full w-full object-cover"
+                    src="https://via.placeholder.com/1000x1000"
+                    alt=""
+                  />
+                </AspectRatio>
+              )}
+            </div>
+            <div className="h-full">
+              <div className="flex justify-between content-between flex-col h-full">
+                <div>
+                  <Categories
+                    align="left"
+                    className="mb-3"
+                    categories={entry.articleCategories}
+                  />
+                  <Typography className="mb-10" variant="h5" md="h4">
+                    {entry.title}
+                  </Typography>
+                  <Typography
+                    className="hidden md:block max-w-screen-sm m-auto mb-8 text-gray-3"
+                    variant="p3"
+                    md="p1"
+                  >
+                    {entry.articleExcerpt}
+                  </Typography>
+                </div>
+                <div>
+                  <Typography variant="e3" className="date text-gray-4">
+                    {`${
+                      date.getMonth() + 1
+                    }.${date.getDate()}.${date.getFullYear()}`}
+                  </Typography>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
+      )}
+    </Fragment>
+  )
+}
+
+export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
+  return (
+    <div>
+      {!!entries.length ? (
+        entries.map((articleEntry: any, i: number) => (
+          <ContentEntry
+            entryType={entryType}
+            key={`${articleEntry.id}`}
+            index={i}
+            entry={articleEntry}
+            hierarchy="secondary"
+            theme={theme}
+          />
+        ))
+      ) : (
+        <div>No Entries</div>
+      )}
+    </div>
+  )
+}
+
+export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
+  const nextTwoEntries = entries.slice(1, 3)
+  const remainingEntries = entries.slice(3)
+
+  return (
+    <Fragment>
+      <div>
+        <ContentEntry
+          entryType={entryType}
+          key={`${entries[0].id}`}
+          entry={entries[0]}
+          hierarchy="primary"
+          theme={theme}
+        />
+      </div>
+      <div className="nextTwo">
+        {!!nextTwoEntries.length ? (
+          nextTwoEntries.map((articleEntry: any, i: number) => (
+            <ContentEntry
+              entryType={entryType}
+              hierarchy="secondary"
+              key={`${articleEntry.id}`}
+              index={i}
+              entry={articleEntry}
+              theme={theme}
+            />
+          ))
+        ) : (
+          <div>No Entries</div>
+        )}
+      </div>
+      <div
+        className={clsx(
+          `remaining grid grid-cols-2 col-gap-4 lg:grid-cols-3 lg:col-gap-6 border-solid border-t`,
+          { 'border-gray-1': theme === 'dark' },
+          { 'border-gray-5': theme === 'light' }
+        )}
+      >
+        {!!remainingEntries.length ? (
+          remainingEntries.map((articleEntry: any, i: number) => (
+            <ContentEntry
+              entryType={entryType}
+              hierarchy="tertiary"
+              key={`${articleEntry.id}`}
+              index={i}
+              entry={articleEntry}
+            />
+          ))
+        ) : (
+          <div>No Entries</div>
+        )}
+      </div>
+    </Fragment>
   )
 }
 
