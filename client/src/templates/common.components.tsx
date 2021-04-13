@@ -975,13 +975,15 @@ export const TextBlockComponent = ({
   className = '',
   copy,
   header,
+  headerClassname = '',
 }: {
   className?: string
   header: string
+  headerClassname?: string
   copy: string
 }) => (
   <div className={className} data-block-type="TextBlockComponent">
-    <Typography variant="e2" className="mb-4">
+    <Typography variant="e2" className={`mb-4 ${headerClassname}`}>
       {header}
     </Typography>
     {copy
