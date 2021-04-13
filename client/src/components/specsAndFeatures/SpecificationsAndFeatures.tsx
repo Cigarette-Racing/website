@@ -4,6 +4,7 @@ import { ToggleButtons } from './ToggleButtons'
 import { ToggleSwitch } from './ToggleSwitch'
 import SpecificationsSection from './SpecificationsSection'
 import FeaturesSection from './FeaturesSection'
+import { InPageAnchor } from '../../molecules/in-page-nav'
 import { BoatSection } from '../../templates/boat.components'
 import { useToggle } from 'react-use'
 
@@ -26,6 +27,7 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
       className="pb-10 sm:pb-24 overflow-hidden"
       data-section-type="Specs And Features"
     >
+      <InPageAnchor title="specs" />
       <div className="sm:flex justify-between align-middle content-center px-6 lg:px-0 sm:mb-10 max-w-screen-xl lg:mx-auto">
         <ToggleButtons
           options={['Specifications', 'Features']}
