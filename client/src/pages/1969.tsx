@@ -7,6 +7,7 @@ import {
   extractFlexibleSectionsFromCraft,
   createCarouselItems,
   GenericSection,
+  FullBleedImage,
   HorizontalImageTextBlockComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
@@ -94,8 +95,9 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           {!!blocks &&
             blocks.map((block, index) => {
               if (isFullBleedImageBlock(block)) {
+                console.log(block)
                 return (
-                  <div>Full Bleed Image</div>
+                  <FullBleedImage {...block}/>
                 )
               }
               if (isTwoColumnImageTextBlock(block)) {

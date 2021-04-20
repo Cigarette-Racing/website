@@ -4,6 +4,7 @@ import { Typography } from '../atoms/typography'
 import { Theme } from '../types/shared'
 import clsx from 'clsx'
 import {
+  FullBleedImageBlock,
   HorizontalImageTextBlock,
   OneColumnImageTextBlock,
   OneColumnTextBlock,
@@ -35,7 +36,6 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
   }
 
   return entry.flexibleSections.map((section: any) => {
-    console.log(section)
     const blocks = section.blocks.map(
       (block: any, index: Number, blocks: any[]) => {
         const getBlockPosition = () => {
@@ -183,6 +183,14 @@ export const CarouselButtons = ({
       aria-label="Next"
     />
   </div>
+)
+
+export const FullBleedImage = ({image, alt = 'full bleed image'}) => (
+    <img
+      src={image?.[0].url}
+      className={clsx('h-full w-full object-cover')}
+      alt={alt || ''}
+    />
 )
 
 export const ImageWithLabel = ({
