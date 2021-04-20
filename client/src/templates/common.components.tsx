@@ -27,6 +27,7 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
     threeColumnImagesBlock: 'three-column-images',
     sliderBlock: 'slider',
     carousel: 'carousel',
+    fullBleedImage: 'full-bleed-image',
     fullWidthCarousel: 'full-width-carousel',
     horizontalImageText: 'horizontal-image-text',
     powertrainOptions: 'powertrain',
@@ -34,6 +35,7 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
   }
 
   return entry.flexibleSections.map((section: any) => {
+    console.log(section)
     const blocks = section.blocks.map(
       (block: any, index: Number, blocks: any[]) => {
         const getBlockPosition = () => {
@@ -51,9 +53,9 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
           source: 'craft',
           blockPosition: getBlockPosition(),
           type:
-            block.typeHandle === 'carousel' && block.fullWidth
+            block?.typeHandle === 'carousel' && block.fullWidth
               ? 'full-width-carousel'
-              : blockTypes[block.typeHandle as keyof typeof blockTypes],
+              : blockTypes[block?.typeHandle as keyof typeof blockTypes],
         }
       }
     )

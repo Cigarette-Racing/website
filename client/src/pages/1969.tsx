@@ -8,7 +8,6 @@ import {
   createCarouselItems,
   GenericSection,
   HorizontalImageTextBlockComponent,
-  MoreDetailsBlockComponent,
   OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
   OneColumnImageTextBlockComponent,
@@ -25,6 +24,7 @@ import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
 import {
   getFlexibleSections,
+  isFullBleedImageBlock,
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
   isCarouselBlock,
@@ -71,7 +71,6 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
       </section>
       {flexData.map(({ title, theme, bleedDirection, headerImage, blocks }) => (
         <GenericSection key={title} theme={theme}>
-          {console.log(title, theme, bleedDirection, headerImage, blocks)}
           {/* <InPageAnchor title={title} /> */}
           <MobileSectionHeader>{title}</MobileSectionHeader>
           {!!headerImage && (
@@ -94,6 +93,11 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           )}
           {!!blocks &&
             blocks.map((block, index) => {
+              if (isFullBleedImageBlock(block)) {
+                return (
+                  <div>Full Bleed Image</div>
+                )
+              }
               if (isTwoColumnImageTextBlock(block)) {
                 return (
                   <TwoColumnImageTextBlockComponent key={index} {...block} />
@@ -222,6 +226,7 @@ export const query = graphql`
               headerImage: image {
                 url
               }
+              textBlockHeader
               blocks: children {
                 typeHandle
                 ... on CraftAPI_flexibleSections_moreDetails_BlockType {
@@ -429,6 +434,12 @@ export const query = graphql`
                     }
                   }
                   layout: horizontalLayout
+                }
+                ... on CraftAPI_flexibleSections_fullBleedImage_BlockType {
+                  image {
+                    id
+                    url
+                  }
                 }
               }
             }
