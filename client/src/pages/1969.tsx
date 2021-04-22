@@ -1,8 +1,12 @@
 import React from 'react'
 import { graphql, PageProps } from 'gatsby'
+import clsx from 'clsx'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
+import ExploreOurWorld, {
+  ExploreContentItem,
+} from '../molecules/explore-our-world'
 import {
   extractFlexibleSectionsFromCraft,
   createCarouselItems,
@@ -38,22 +42,64 @@ import {
   HorizontalImageTextBlock,
 } from '../types/common'
 
+const Section: React.FC<{
+  theme?: Theme | 'red'
+  className?: string
+}> = ({ children, className, theme = 'light', ...rest }) => (
+  <section
+    className={clsx(
+      'relative py-12 overflow-hidden',
+      {
+        'bg-gray-0 text-white': theme === 'dark',
+        'bg-darkRed text-white': theme === 'red',
+      },
+      className
+    )}
+    {...rest}
+    data-component="Section"
+  >
+    {children}
+  </section>
+)
+
 const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
   const {
     data: {
-      craftAPI: { legacy1969: page },
+      craftAPI: { legacy1969: page,         exploreOurWorld1,
+        exploreOurWorld2,
+        exploreOurWorld3,exploreOurWorld4 },
     },
   } = props
 
   const flexData = getFlexibleSections(extractFlexibleSectionsFromCraft(page))
 
-  console.log(flexData)
+  const exploreOurWorldContent = [
+    {
+      image: exploreOurWorld1[0].url,
+      title: '_labs',
+      url: '/labs',
+      text:
+        'Enter Cigarette Racing’s industry leading processes, research, and development.',
+    },
+    {
+      image: exploreOurWorld4[0].url,
+      title: 'DNA',
+      url: '/dna',
+      text: 'Discover why Cigarette Racing remains the finest boat on the water.',
+    }, 
+    {
+      image: exploreOurWorld3[0].url,
+      title: 'News',
+      url: '/news',
+      text: 'The latest news & press happening at Cigarette Racing.',
+    },   
+  ] as ExploreContentItem[]
 
   return (
     <Layout>
-      {console.log(page)}
       <SEO title="Our Legacy - 1969" />
-      <section className="bg-black text-white pt-32 pb-4 md:min-h-screen flex flex-col justify-between relative">
+
+      <section className="bg-gray-0 text-white pt-32 pb-4 md:min-h-screen flex flex-col justify-between relative">
         <div className="mb-8 absolute md:h-full md:top-0 w-full">
           <img
             srcSet={`${page.image[0].url}?q=30&w=2000 3x, ${page.image[0].url}?q=30&w=1500 2x, ${page.image[0].url}?q=30&w=1000 1x`}
@@ -204,6 +250,13 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             })}
         </GenericSection>
       ))}
+            <Section className="exploreOurWorld" theme="dark">
+        <div className="relative max-w-7xl mx-auto">
+          <div className="border-t border-gray-2 mb-24 pt-8">
+            <ExploreOurWorld items={exploreOurWorldContent} />
+          </div>
+        </div>
+      </Section>
     </Layout>
   )
 }
@@ -213,6 +266,18 @@ export default Legacy1969Page
 export const query = graphql`
   query Legacy1969Page {
     craftAPI {
+      exploreOurWorld1: assets(filename: "1up-image-placeholder.jpg") {
+        url
+      }
+      exploreOurWorld2: assets(filename: "explore-our-world-2.png") {
+        url
+      }
+      exploreOurWorld3: assets(filename: "news-00001.jpg") {
+        url
+      }
+      exploreOurWorld4: assets(filename: "explore-our-world_dna.jpg") {
+        url
+      }
       legacy1969: entry(slug: "1969-our-legacy") {
         ... on CraftAPI_ourLegacy_ourLegacy_Entry {
           id
