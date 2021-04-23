@@ -79,6 +79,7 @@ export function isFullBleedImageBlock(
 
 export type OneColumnImageTextBlock = {
   type: 'one-column-image-text'
+  align: string
 } & ImageWithText
 
 export function isOneColumnImageTextBlock(

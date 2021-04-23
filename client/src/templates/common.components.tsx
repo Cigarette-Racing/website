@@ -185,12 +185,12 @@ export const CarouselButtons = ({
   </div>
 )
 
-export const FullBleedImage = ({image, alt = 'full bleed image'}) => (
-    <img
-      src={image?.[0].url}
-      className={clsx('h-full w-full object-cover')}
-      alt={alt || ''}
-    />
+export const FullBleedImage = ({ image, alt = 'full bleed image' }) => (
+  <img
+    src={image?.[0].url}
+    className={clsx('h-full w-full object-cover')}
+    alt={alt || ''}
+  />
 )
 
 export const ImageWithLabel = ({

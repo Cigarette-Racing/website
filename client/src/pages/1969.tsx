@@ -1,4 +1,5 @@
 import React from 'react'
+import { AspectRatio } from '../atoms/aspect-ratio'
 import { graphql, PageProps } from 'gatsby'
 import clsx from 'clsx'
 import { Layout } from '../components/layout'
@@ -13,14 +14,14 @@ import {
   GenericSection,
   FullBleedImage,
   HorizontalImageTextBlockComponent,
-  OneColumnTextBlockComponent,
   TwoColumnImageTextBlockComponent,
-  OneColumnImageTextBlockComponent,
   MobileSectionHeader,
   VerticalHeaderBlock,
   SideBleedImage,
   TwoUpImageBlock,
   ThreeUpImageBlock,
+  TextBlockComponent,
+  ImageWithLabel,
 } from '../templates/common.components'
 import { InPageAnchor } from '../molecules/in-page-nav'
 
@@ -40,6 +41,7 @@ import {
   isOneColumnImageTextBlock,
   isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
+  OneColumnImageTextBlock,
 } from '../types/common'
 
 const Section: React.FC<{
@@ -62,12 +64,80 @@ const Section: React.FC<{
   </section>
 )
 
+export const OneColumnImageTextBlockComponent = ({
+  align = 'left',
+  image,
+  header,
+  copy,
+  imageLabel,
+  theme = 'dark',
+}) => (
+  <div>
+    <div data-block-type="OneColumnImageTextBlockComponent">
+      <ImageWithLabel
+        ratio="3:2"
+        src={`${image}?q=30&w=2000`}
+        alt="alt"
+        label={imageLabel}
+      />
+      <div className="md:flex mt-10 mb-20 md:mb-48 px-4 xl:px-0 ">
+        <TextBlockComponent
+          className="md:w-3/4 text-left max-w-6xl pr-6"
+          header={header}
+          copy={copy}
+        />
+      </div>
+    </div>
+  </div>
+)
+
+const Legacy1969Menu = () => {
+  const LegacyMenuItem = ({ year }) => {
+    return (
+      <li
+        className="mr-12 last:mr-0 cursor-pointer hover:opacity-75 transition-opacity duration-75"
+        onClick={() => {
+          console.log(`go to ${year}`)
+          window.scroll({
+            top: 200,
+            behavior: 'smooth',
+          })
+        }}
+      >
+        <Typography variant="e1">{year}</Typography>
+      </li>
+    )
+  }
+
+  const years = ['1970', '1980', '1990', '2000', '2010']
+
+  return (
+    <div
+      className="py-3"
+      style={{
+        background:
+          'linear-gradient(250.95deg, #242424 14.79%, #2B2B2B 75.43%)',
+      }}
+    >
+      <ul className="flex justify-center ml-2">
+        {years.map((year) => {
+          return <LegacyMenuItem year={year} />
+        })}
+      </ul>
+    </div>
+  )
+}
+
 const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
   const {
     data: {
-      craftAPI: { legacy1969: page,         exploreOurWorld1,
+      craftAPI: {
+        legacy1969: page,
+        exploreOurWorld1,
         exploreOurWorld2,
-        exploreOurWorld3,exploreOurWorld4 },
+        exploreOurWorld3,
+        exploreOurWorld4,
+      },
     },
   } = props
 
@@ -85,178 +155,134 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
       image: exploreOurWorld4[0].url,
       title: 'DNA',
       url: '/dna',
-      text: 'Discover why Cigarette Racing remains the finest boat on the water.',
-    }, 
+      text:
+        'Discover why Cigarette Racing remains the finest boat on the water.',
+    },
     {
       image: exploreOurWorld3[0].url,
       title: 'News',
       url: '/news',
       text: 'The latest news & press happening at Cigarette Racing.',
-    },   
+    },
   ] as ExploreContentItem[]
+
+  const sliderItems1970s = createCarouselItems(flexData[0].blocks[1].children)
+  const sliderItems1980s = createCarouselItems(flexData[1].blocks[1].children)
+  const sliderItems2000s = createCarouselItems(flexData[3].blocks[1].children)
+  const sliderItems2010s = createCarouselItems(flexData[4].blocks[1].children)
+
+  console.log(flexData[1].blocks[2].image[0].url)
 
   return (
     <Layout>
       <SEO title="Our Legacy - 1969" />
-
-      <section className="bg-gray-0 text-white pt-32 pb-4 md:min-h-screen flex flex-col justify-between relative">
-        <div className="mb-8 absolute md:h-full md:top-0 w-full">
-          <img
-            srcSet={`${page.image[0].url}?q=30&w=2000 3x, ${page.image[0].url}?q=30&w=1500 2x, ${page.image[0].url}?q=30&w=1000 1x`}
-            src={`${page.image[0].url}?q=30&w=2000`}
-            alt=""
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div className="relative">
-          <Typography variant="e3">OUR LEGACY</Typography>
-          <Typography variant="h3">Ignoring Gravity </Typography>
-          <Typography variant="h3" className="text-red">
-            since 1969
-          </Typography>
-        </div>
-      </section>
-      {flexData.map(({ title, theme, bleedDirection, headerImage, blocks }) => (
-        <GenericSection key={title} theme={theme}>
-          {/* <InPageAnchor title={title} /> */}
-          <MobileSectionHeader>{title}</MobileSectionHeader>
-          {!!headerImage && (
-            <VerticalHeaderBlock
-              label={title}
-              side={bleedDirection === 'left' ? 'right' : 'left'}
-              theme={theme}
-              className="lg:mt-32"
+      <div className="pt-20 bg-gray-0 text-white pb-4 main">
+        <Legacy1969Menu />
+        <section className="md:min-h-screen flex flex-col justify-between relative">
+          <div className="mb-8 absolute md:h-full md:top-0 w-full">
+            <img
+              // srcSet={`${page.image[0].url}?q=30&w=2800 3x, ${page.image[0].url}?q=30&w=1500 2x, ${page.image[0].url}?q=30&w=1000 1x`}
+              src={`${page.image[0].url}?q=30&w=2800`}
+              alt=""
+              className="h-full w-full object-cover"
             />
-          )}
-          {!!headerImage ? (
-            <SideBleedImage
-              media={headerImage}
-              side={bleedDirection}
-              className="relative mx-auto md:mt-16 lg:mt-32 mb-20 md:mb-32"
-              size="large"
-            />
-          ) : (
-            <div className="md:pt-20"></div>
-          )}
-          {!!blocks &&
-            blocks.map((block, index) => {
-              if (isFullBleedImageBlock(block)) {
-                console.log(block)
-                return (
-                  <FullBleedImage {...block}/>
-                )
-              }
-              if (isTwoColumnImageTextBlock(block)) {
-                return (
-                  <TwoColumnImageTextBlockComponent key={index} {...block} />
-                )
-              }
-              if (isOneColumnTextBlock(block)) {
-                if (block.textBlock) {
-                  block.copy = block.textBlock[0].copy
-                  block.header = block.textBlock[0].header
-                }
-
-                return (
-                  <OneColumnTextBlockComponent
-                    key={index}
-                    {...block}
-                    align={block.align ?? undefined}
-                  />
-                )
-              }
-              if (isOneColumnImageTextBlock(block)) {
-                if (block.textBlock) {
-                  block.content = {
-                    copy: block.textBlock[0].copy,
-                    header: block.textBlock[0].header,
-                  }
-                  block.media = {
-                    image: block.singleMedia?.[0].image?.[0]?.url,
-                    videoURL: block.singleMedia?.[0].videoURL,
-                    autoplayVideo: block.singleMedia?.[0].autoplayVideo,
-                  }
-                }
-
-                return (
-                  <OneColumnImageTextBlockComponent key={index} {...block} />
-                )
-              }
-              if (isCarouselBlock(block)) {
-                if (block?.source === 'craft') {
-                  const items = createCarouselItems(block.children)
-                  block.items = items
-                }
-
-                return <Carousel key={index} {...block} theme={theme} />
-              }
-              if (isSliderBlock(block)) {
-                if (block?.source === 'craft') {
-                  const items = createCarouselItems(block.children)
-                  block.items = items
-                }
-
-                return <Slider key={index} {...block} theme={theme} />
-              }
-              if (isThreeColumnImagesBlock(block)) {
-                return (
-                  <ThreeUpImageBlock
-                    key={index}
-                    className="mb-32"
-                    images={block.children}
-                  />
-                )
-              }
-              if (isTwoColumnImagesBlock(block)) {
-                return (
-                  <TwoUpImageBlock
-                    key={index}
-                    className="mb-32"
-                    images={block.images || block.children}
-                  />
-                )
-              }
-              if (isHorizontalImageTextBlock(block)) {
-                const extractedBlock: HorizontalImageTextBlock = {
-                  type: 'horizontal-image-text',
-                  layout: block.layout,
-                  content: {
-                    header: block.textBlock[0].header as string,
-                    copy: block.textBlock[0].copy as string,
-                  },
-                  media: {
-                    image: {
-                      publicURL: block.singleMedia[0].image[0]?.url as string,
-                    },
-                  },
-                }
-                return (
-                  <HorizontalImageTextBlockComponent
-                    key={index}
-                    {...extractedBlock}
-                  />
-                )
-              }
-              if (isFullWidthCarouselBlock(block)) {
-                if (block?.source === 'craft') {
-                  const items = createCarouselItems(block.children)
-                  block.items = items
-                }
-
-                return <FullWidthCarousel key={index} {...block} />
-              }
-
-              return null
-            })}
-        </GenericSection>
-      ))}
-            <Section className="exploreOurWorld" theme="dark">
-        <div className="relative max-w-7xl mx-auto">
-          <div className="border-t border-gray-2 mb-24 pt-8">
-            <ExploreOurWorld items={exploreOurWorldContent} />
           </div>
-        </div>
-      </Section>
+          <div className="absolute bottom-0 right-0 mb-20 mr-40">
+            <div className="font-body font-bold mb-2 text-sm">OUR LEGACY</div>
+            <div className="font-heading -mb-8 text-8xl">Ignoring Gravity </div>
+            <div className="font-heading text-red text-8xl">since 1969</div>
+          </div>
+        </section>
+        <Section data-section="1970">
+          <div className="max-w-3xl ml-auto mr-40">
+            <OneColumnImageTextBlockComponent
+              copy={flexData[0].blocks[0].textBlock[0].copy}
+              imageLabel={flexData[0].blocks[0].singleMedia[0].label}
+              image={flexData[0].blocks[0].singleMedia[0].image[0].url}
+            />
+          </div>
+          <div className="ml-64">
+            <Slider items={sliderItems1970s} />
+          </div>
+        </Section>
+        <Section data-section="1980">
+          <div className="max-w-3xl mr-auto ml-40">
+            <OneColumnImageTextBlockComponent
+              copy={flexData[1].blocks[0].textBlock[0].copy}
+              imageLabel={flexData[1].blocks[0].singleMedia[0].label}
+              image={flexData[1].blocks[0].singleMedia[0].image[0].url}
+            />
+          </div>
+          <div className="mx-24 px-16">
+            <Carousel items={sliderItems1980s} />
+          </div>
+          <div className="fullbleed w-full">
+            <img
+              className="w-full"
+              src={flexData[1].blocks[2].image[0].url}
+              alt=""
+            />
+          </div>
+        </Section>
+        <Section data-section="1990">
+          <div className="max-w-3xl ml-auto mr-40">
+            <OneColumnImageTextBlockComponent
+              copy={flexData[2].blocks[0].textBlock[0].copy}
+              image={flexData[2].blocks[0].singleMedia[0].image[0].url}
+            />
+          </div>
+          {console.log(flexData[2].blocks[1].textBlock[0])}
+          <HorizontalImageTextBlockComponent
+            layout="imageOnLeft"
+            content={{
+              copy: flexData[2].blocks[1].textBlock[0].copy,
+              header: flexData[2].blocks[1].textBlock[0].header,
+            }}
+            media={{
+              image: {
+                publicURL: flexData[2].blocks[1].singleMedia[0].image[0].url,
+              },
+            }}
+          />
+        </Section>
+        <Section data-section="2000">
+          <div className="max-w-3xl mr-auto ml-40">
+            <OneColumnImageTextBlockComponent
+              copy={flexData[3].blocks[0].textBlock[0].copy}
+              image={flexData[3].blocks[0].singleMedia[0].image[0].url}
+            />
+          </div>
+          <div className="mx-24 px-16">
+            <Slider items={sliderItems2000s} />
+          </div>
+          <div className="fullbleed w-full">
+            <img
+              className="w-full"
+              src={flexData[3].blocks[2].image[0].url}
+              alt=""
+            />
+            {console.log(flexData[3])}
+          </div>
+        </Section>
+        <Section data-section="2010">
+          <div className="max-w-3xl ml-auto mr-40">
+            <OneColumnImageTextBlockComponent
+              copy={flexData[4].blocks[0].textBlock[0].copy}
+              image={flexData[4].blocks[0].singleMedia[0].image[0].url}
+            />
+          </div>
+          <div className="mx-24 px-16">
+            <Carousel items={sliderItems2010s} />
+          </div>
+        </Section>
+        <Section className="exploreOurWorld" theme="dark">
+          <div className="relative max-w-7xl mx-auto">
+            <div className="border-t border-gray-2 mb-24 pt-8">
+              <ExploreOurWorld items={exploreOurWorldContent} />
+            </div>
+          </div>
+        </Section>
+      </div>
     </Layout>
   )
 }

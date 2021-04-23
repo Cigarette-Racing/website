@@ -143,8 +143,8 @@ export const Slider = ({ items, theme }: SliderProps) => {
               <TextBlockComponent
                 key={page}
                 className="my-8 md:my-0 px-4 mb-20 md:w-10/12"
-                header={items?.[itemIndex].content.header}
-                copy={items?.[itemIndex].content.copy}
+                header={items?.[itemIndex]?.content?.header}
+                copy={items?.[itemIndex]?.content?.copy}
               />
             </motion.div>
           </AnimatePresence>
