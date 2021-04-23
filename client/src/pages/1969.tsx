@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { Typography } from '../atoms/typography'
+import { useMedia } from 'react-use'
 import ExploreOurWorld, {
   ExploreContentItem,
 } from '../molecules/explore-our-world'
@@ -63,6 +64,78 @@ const Section: React.FC<{
     {children}
   </section>
 )
+
+export const OneColumnTextBlockComponent = ({
+  align = 'left',
+  header,
+  copy,
+  theme = 'dark',
+}: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme }) => (
+  <div
+    className="my-12 px-4 xl:pl-0 mb-24 max-w-5xl mx-auto"
+    data-block-type="OneColumnTextBlockComponent"
+  >
+    <TextBlockComponent
+      className={clsx({
+        'max-w-xl mr-auto text-left': align === 'left',
+        'max-w-2xl mx-auto text-center': align === 'center',
+        'max-w-xl ml-auto text-right': align === 'right',
+      })}
+      header={header}
+      headerClassname={clsx({
+        'text-black': theme === 'light',
+        'text-red': theme === 'dark',
+      })}
+      copy={copy}
+    />
+  </div>
+)
+
+const VerticalHeader = ({
+  className,
+  text,
+}: {
+  className?: string
+  text: string
+}) => {
+  const screenSmall = useMedia('(max-width: 767px)')
+  const screenMedium = useMedia('(max-width: 1023px)')
+  const screenLarge = useMedia('(max-width: 1200px)')
+  const screenXLarge = useMedia('(min-width: 1200px)')
+
+  const getFontSize = () => {
+    if (screenSmall) return 80
+    if (screenMedium) return 100
+    if (screenLarge) return 150
+    if (screenXLarge) return 195
+  }
+
+  return (
+    <div
+      className={clsx(
+        'writing-mode-vertical-alt transform rotate-180 pointer-events-none text-white tracking-heading leading-none font-heading font-light text-9xl uppercase',
+        className
+      )}
+    >
+      <div
+        style={{
+          fontSize: getFontSize(),
+          lineHeight: 1,
+        }}
+        className="whitespace-no-wrap"
+      >
+        {text}
+        <span className="text-gray-3 font-normal">'</span>
+        <span
+          style={{ fontSize: '120px' }}
+          className="text-gray-3 align-bottom font-normal"
+        >
+          s
+        </span>
+      </div>
+    </div>
+  )
+}
 
 export const OneColumnImageTextBlockComponent = ({
   align = 'left',
@@ -171,8 +244,6 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
   const sliderItems2000s = createCarouselItems(flexData[3].blocks[1].children)
   const sliderItems2010s = createCarouselItems(flexData[4].blocks[1].children)
 
-  console.log(flexData[1].blocks[2].image[0].url)
-
   return (
     <Layout>
       <SEO title="Our Legacy - 1969" />
@@ -193,7 +264,8 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             <div className="font-heading text-red text-8xl">since 1969</div>
           </div>
         </section>
-        <Section data-section="1970">
+        <Section className="relative" data-section="1970">
+          <VerticalHeader text="1970" className="ml-24 absolute top-0 left-0" />
           <div className="max-w-3xl ml-auto mr-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[0].blocks[0].textBlock[0].copy}
@@ -205,7 +277,11 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             <Slider items={sliderItems1970s} />
           </div>
         </Section>
-        <Section data-section="1980">
+        <Section className="relative" data-section="1980">
+          <VerticalHeader
+            text="1980"
+            className="mr-24 absolute top-0 right-0"
+          />
           <div className="max-w-3xl mr-auto ml-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[1].blocks[0].textBlock[0].copy}
@@ -224,7 +300,8 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             />
           </div>
         </Section>
-        <Section data-section="1990">
+        <Section className="relative" data-section="1990">
+          <VerticalHeader text="1990" className="ml-24 absolute top-0 left-0" />
           <div className="max-w-3xl ml-auto mr-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[2].blocks[0].textBlock[0].copy}
@@ -245,7 +322,11 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             }}
           />
         </Section>
-        <Section data-section="2000">
+        <Section className="relative" data-section="2000">
+          <VerticalHeader
+            text="2000"
+            className="mr-24 absolute top-0 right-0"
+          />
           <div className="max-w-3xl mr-auto ml-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[3].blocks[0].textBlock[0].copy}
@@ -264,7 +345,8 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             {console.log(flexData[3])}
           </div>
         </Section>
-        <Section data-section="2010">
+        <Section className="relative" data-section="2010">
+          <VerticalHeader text="2010" className="ml-24 absolute top-0 left-0" />
           <div className="max-w-3xl ml-auto mr-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[4].blocks[0].textBlock[0].copy}
