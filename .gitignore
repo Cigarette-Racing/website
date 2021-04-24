@@ -10,3 +10,6 @@ backend/redactor/*
 backend/templates/*
 backend/translations/*
 backend/mysql_config.cnf
+
+# OSX Specific
+.DS_Store

@@ -7,6 +7,7 @@ import { Typography } from '../atoms/typography'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import SEO from '../components/seo'
 import { useCategoriesQuery } from '../molecules/categories-data'
+import { useMedia } from 'react-use'
 import {
   CategoryFilter,
   DropdownNav,
@@ -14,6 +15,7 @@ import {
   GenericSection,
   UnFilteredList,
 } from '../templates/common.components'
+import labsBg from '../images/Labs_BG-SVG.svg'
 
 export const Underline = styled.span`
   display: inline-block;
@@ -54,31 +56,47 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
     }
   })
 
+  const isMobile = useMedia('(max-width: 767px)')
+
   return (
     <Layout>
-      <GenericSection className="py-12 pt-48" theme="dark">
+      <GenericSection className="py-12 pt-48 bg-gray-0" theme="dark">
         <SEO title="Labs" slug={props.path} />
-        <div className="relative flex justify-center tracking-wide text-gray-5 capitalize whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-16">
-          <span>{LandingPage.title}</span>
+        <div className="relative px-4">
+          <img
+            style={{
+              width: !isMobile ? '100%' : '220%',
+              opacity: '35%',
+            }}
+            className="pointer-events-none block max-w-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:-mt-16"
+            src={labsBg}
+            alt=""
+          />
+          <div className="relative flex md:justify-center tracking-wide text-gray-5 whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-8 md:mb-16">
+            <span className="lowercase">
+              <Underline className="bg-red" />
+              {LandingPage.title}
+            </span>
+          </div>
+          <div className="flex items-center flex-col">
+            <Typography
+              className="mb-24 md:text-center max-w-2xl"
+              variant="p3"
+              md="p1"
+            >
+              {LandingPage.articleExcerpt}
+            </Typography>
+            <CategoryFilter
+              className="mb-8"
+              placeholder="Explore _Labs"
+              categories={options}
+              theme="light"
+              setFilterCategory={setFilterCategory}
+              filterCategory={filterCategory}
+            />
+          </div>
         </div>
         <div className="px-4 max-w-screen-xl m-auto">
-          <Typography className="mb-24 text-center" variant="p3">
-            {LandingPage.articleExcerpt}
-          </Typography>
-          <DropdownNav
-            className="mb-24 md:hidden"
-            placeholder="Explore Stories"
-            options={options}
-            theme="light"
-            onChange={(option) => {
-              setFilterCategory(option)
-            }}
-          />
-          <CategoryFilter
-            categories={options}
-            setFilterCategory={setFilterCategory}
-            filterCategory={filterCategory}
-          />
           {filterCategory.value === 'all' ? (
             <UnFilteredList
               entries={labEntries}

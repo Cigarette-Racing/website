@@ -248,15 +248,17 @@ export const SideBleedImage = ({
 }
 
 export const CategoryFilter = ({
+  className,
   categories,
+  placeholder,
   setFilterCategory,
   filterCategory,
 }) => {
   return (
     <Fragment>
       <DropdownNav
-        className="md:hidden"
-        placeholder="Explore _Labs"
+        className={`md:hidden ${className}`}
+        placeholder={placeholder}
         options={categories}
         onChange={(option) => {
           setFilterCategory(option)
