@@ -68,27 +68,33 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
               width: !isMobile ? '100%' : '220%',
               opacity: '35%',
             }}
-            className="block max-w-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:-mt-16"
+            className="pointer-events-none block max-w-none absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:-mt-16"
             src={labsBg}
             alt=""
           />
-          <div className="relative flex md:justify-center tracking-wide text-gray-5 whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-8">
+          <div className="relative flex md:justify-center tracking-wide text-gray-5 whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-8 md:mb-16">
             <span className="lowercase">
               <Underline className="bg-red" />
               {LandingPage.title}
             </span>
           </div>
-          <Typography className="mb-24 md:text-center" variant="p3">
-            {LandingPage.articleExcerpt}
-          </Typography>
-          <CategoryFilter
-            className="mb-8"
-            placeholder="Explore _Labs"
-            categories={options}
-            theme="light"
-            setFilterCategory={setFilterCategory}
-            filterCategory={filterCategory}
-          />
+          <div className="flex items-center flex-col">
+            <Typography
+              className="mb-24 md:text-center max-w-2xl"
+              variant="p3"
+              md="p1"
+            >
+              {LandingPage.articleExcerpt}
+            </Typography>
+            <CategoryFilter
+              className="mb-8"
+              placeholder="Explore _Labs"
+              categories={options}
+              theme="light"
+              setFilterCategory={setFilterCategory}
+              filterCategory={filterCategory}
+            />
+          </div>
         </div>
         <div className="px-4 max-w-screen-xl m-auto">
           {filterCategory.value === 'all' ? (
