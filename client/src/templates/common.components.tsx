@@ -452,12 +452,11 @@ export const ContentEntry = ({
 
   return (
     <Fragment>
-      {console.log(entry)}
       {isPrimary && (
         <Link
           to={`${entry.slug}`}
           className={clsx(
-            `block border-solid border-t md:pt-16`,
+            `primary block border-solid border-t md:pt-16`,
             { 'border-gray-1': theme === 'dark' },
             { 'border-gray-5': theme === 'light' },
             className
@@ -504,7 +503,7 @@ export const ContentEntry = ({
         <Link
           to={`${entry.slug}`}
           className={clsx(
-            'block border-solid border-t',
+            'secondary block border-solid border-t',
             { 'border-gray-1': theme === 'dark' },
             { 'border-gray-5': theme === 'light' }
           )}
@@ -541,7 +540,7 @@ export const ContentEntry = ({
             >
               <Categories
                 align="left"
-                className="mb-3"
+                className="mb-3 flex justify-center md:justify-start md:pl-1"
                 categories={entry.articleCategories}
               />
               <div className="text-center md:text-left px-3">
@@ -567,7 +566,7 @@ export const ContentEntry = ({
       {isTertiary && (
         <Link
           to={`/${entryType}/${entry.slug}`}
-          className={clsx('block', className)}
+          className={clsx('tertiary block', className)}
           data-type="tertiary link"
         >
           <div className="pt-5 flex flex-col h-full">
@@ -595,7 +594,7 @@ export const ContentEntry = ({
                 <div>
                   <Categories
                     align="left"
-                    className="mb-3"
+                    className="mb-3 transform -translate-x-2"
                     categories={entry.articleCategories}
                   />
                   <Typography className="mb-10" variant="h5" md="h4">
