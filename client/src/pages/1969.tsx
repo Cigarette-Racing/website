@@ -125,7 +125,16 @@ const VerticalHeader = ({
         className="whitespace-no-wrap"
       >
         {text}
-        <span className="text-gray-3 font-normal">'</span>
+        <span
+          style={{
+            fontSize: 130,
+            lineHeight: 0,
+            transform: `translate(16px, 7px)`,
+          }}
+          className="text-gray-3 font-normal align-top inline-block"
+        >
+          ,
+        </span>
         <span
           style={{ fontSize: '120px' }}
           className="text-gray-3 align-bottom font-normal"
@@ -250,12 +259,12 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
       <div className="pt-20 bg-gray-0 text-white pb-4 main">
         <Legacy1969Menu />
         <section className="md:min-h-screen flex flex-col justify-between relative">
-          <div className="mb-8 absolute md:h-full md:top-0 w-full">
+          <div className="mb-8 w-full">
             <img
               // srcSet={`${page.image[0].url}?q=30&w=2800 3x, ${page.image[0].url}?q=30&w=1500 2x, ${page.image[0].url}?q=30&w=1000 1x`}
               src={`${page.image[0].url}?q=30&w=2800`}
               alt=""
-              className="h-full w-full object-cover"
+              className="w-full object-cover"
             />
           </div>
           <div className="absolute bottom-0 right-0 mb-20 mr-40">
@@ -265,7 +274,10 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           </div>
         </section>
         <Section className="relative" data-section="1970">
-          <VerticalHeader text="1970" className="ml-24 absolute top-0 left-0" />
+          <VerticalHeader
+            text="1970"
+            className="ml-24 absolute top-0 left-0 pb-20"
+          />
           <div className="max-w-3xl ml-auto mr-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[0].blocks[0].textBlock[0].copy}
@@ -277,10 +289,10 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             <Slider items={sliderItems1970s} />
           </div>
         </Section>
-        <Section className="relative" data-section="1980">
+        <Section className="relative pb-64" data-section="1980">
           <VerticalHeader
             text="1980"
-            className="mr-24 absolute top-0 right-0"
+            className="mr-24 absolute top-0 right-0 pb-20"
           />
           <div className="max-w-3xl mr-auto ml-40">
             <OneColumnImageTextBlockComponent
@@ -301,7 +313,10 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           </div>
         </Section>
         <Section className="relative" data-section="1990">
-          <VerticalHeader text="1990" className="ml-24 absolute top-0 left-0" />
+          <VerticalHeader
+            text="1990"
+            className="ml-24 absolute top-0 left-0 pb-20"
+          />
           <div className="max-w-3xl ml-auto mr-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[2].blocks[0].textBlock[0].copy}
@@ -325,7 +340,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
         <Section className="relative" data-section="2000">
           <VerticalHeader
             text="2000"
-            className="mr-24 absolute top-0 right-0"
+            className="mr-24 absolute top-0 right-0 pb-20"
           />
           <div className="max-w-3xl mr-auto ml-40">
             <OneColumnImageTextBlockComponent
@@ -346,7 +361,10 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           </div>
         </Section>
         <Section className="relative" data-section="2010">
-          <VerticalHeader text="2010" className="ml-24 absolute top-0 left-0" />
+          <VerticalHeader
+            text="2010"
+            className="ml-24 absolute top-0 left-0 pb-20"
+          />
           <div className="max-w-3xl ml-auto mr-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[4].blocks[0].textBlock[0].copy}
