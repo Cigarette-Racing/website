@@ -78,7 +78,7 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
               {LandingPage.title}
             </span>
           </div>
-          <div className="flex items-center flex-col">
+          <div className="md:flex items-center flex-col">
             <Typography
               className="mb-24 md:text-center max-w-2xl"
               variant="p3"
