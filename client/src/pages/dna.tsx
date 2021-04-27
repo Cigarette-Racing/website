@@ -1,7 +1,6 @@
 import React from 'react'
-import { PageProps, graphql, Link } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import { Layout } from '../components/layout'
-import { Typography } from '../atoms/typography'
 import SEO from '../components/seo'
 import ExploreOurWorld, {
   ExploreContentItem,
@@ -11,12 +10,11 @@ import clsx from 'clsx'
 import { TextBlockComponent } from '../templates/common.components'
 import content from './dna.json'
 import { OneColumnTextBlock } from '../types/common'
-import { LinkCta } from '../atoms/link-cta'
 import { InPageCta } from '../atoms/in-page-cta'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 
 const Section: React.FC<{
-  theme?: Theme | 'red'
+  theme?: Theme | 'red' | 'none'
   className?: string
 }> = ({ children, className, theme = 'light', ...rest }) => (
   <section
@@ -25,6 +23,7 @@ const Section: React.FC<{
       {
         'bg-gray-0 text-white': theme === 'dark',
         'bg-darkRed text-white': theme === 'red',
+        'text-white': theme === 'none',
       },
       className
     )}
@@ -51,7 +50,7 @@ const StaggeredHeader = ({
   return (
     <div
       className={clsx(
-        'font-heading font-light text-7xl uppercase tracking-heading leading-none -mb-24 relative z-10',
+        'text-center lg:text-left font-heading font-light text-3xl sm:text-5xl lg:text-7xl uppercase tracking-heading leading-none -mb-4 sm:-mb-8 md:-mb-16 lg:-mb-24 relative z-10',
         className
       )}
       style={style}
@@ -66,7 +65,7 @@ const StaggeredHeader = ({
         {text1}
       </div>
       <div
-        className={clsx('ml-56', {
+        className={clsx('lg:ml-56', {
           'text-white': theme === 'dark',
           'text-black': theme === 'light',
         })}
@@ -89,9 +88,9 @@ export const OneColumnTextBlockComponent = ({
   >
     <TextBlockComponent
       className={clsx({
-        'max-w-xl mr-auto text-left': align === 'left',
+        'max-w-xl mr-auto text-center lg:text-left': align === 'left',
         'max-w-2xl mx-auto text-center': align === 'center',
-        'max-w-xl ml-auto text-right': align === 'right',
+        'max-w-xl ml-auto text-center lg:text-right': align === 'right',
       })}
       header={header}
       headerClassname={clsx({
@@ -115,7 +114,7 @@ const VerticalHeader = ({
   return (
     <div
       className={clsx(
-        'writing-mode-vertical-alt transform rotate-180 pointer-events-none text-gray-3 tracking-heading leading-none font-heading font-light text-9xl uppercase',
+        'writing-mode-vertical-alt transform rotate-180 pointer-events-none text-gray-3 tracking-heading leading-none font-heading font-light text-3xl sm:text-5xl md:text-7xl lg:text-9xl text-right lg:text-left uppercase',
         className
       )}
       style={{
@@ -191,10 +190,7 @@ const OurWorldDNA = (props) => {
           src={`${schematicImage.url}?q=30&w=2400`}
           alt="boat schematic"
         />
-        <div
-          className="text-darkRed font-heading leading-none pointer-events-none font-light"
-          style={{ fontSize: '335px' }}
-        >
+        <div className="relative text-darkRed font-heading leading-none pointer-events-none font-light text-huge sm:text-huge2 md:text-huge3">
           DNA
         </div>
         <div className="absolute bottom-0 rounded-full bg-gray-0 uppercase mb-4 text-white font-body px-4 py-2 text-mi tracking-wide">
@@ -204,7 +200,7 @@ const OurWorldDNA = (props) => {
       <img
         src={`${introImage.url}?q=30&w=2400`}
         alt="intro image"
-        className="w-full object-cover"
+        className="w-full object-cover min-h-50vh md:min-h-0"
       />
       <Section className="nextLevelPerformance pt-40" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
@@ -261,52 +257,53 @@ const OurWorldDNA = (props) => {
       />
       <Section className="simplyStunning pt-0 pb-0" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
-          <img
-            className="absolute w-1/2 left-1/2 transform -translate-x-1/2 mt-56"
-            src={simplyStunningForeground.url}
-            alt=""
-          />
-          <div className="flex items-center">
-            <div className="w-1/2 pl-12">
+          <div className="flex items-start lg:items-center">
+            <div className="w-1/2 lg:pl-12 flex justify-end lg:block pr-12 lg:pr-0 pt-4 lg:pt-0">
               <VerticalHeader line1="Simply" line2="Stunning" />
             </div>
             <img className="w-1/2" src={simplyStunningBgRight.url} alt="" />
           </div>
+          <img
+            className="lg:absolute w-5/6 lg:w-1/2 lg:left-1/2 transform lg:-translate-x-1/2 lg:mt-56 -mt-48"
+            src={simplyStunningForeground.url}
+            alt=""
+          />
           <OneColumnTextBlockComponent {...content.simplyStunning} />
         </div>
       </Section>
-      <Section className="boatImage pt-0 pb-0" theme="dark">
+      <Section className="boatImage pt-0 pb-0 -mb-12 lg:mb-0" theme="dark">
         <img src={dnaHelmBreak.url} alt="" />
       </Section>
-      <Section className="madeAndCrafted pt-24" theme="dark">
-        <div className="relative flex max-w-7xl mx-auto flex-col items-center">
-          <div className="absolute left-1/2 transform -translate-x-1/2">
-            <img
-              src={dnaMadeCraftedHeader.url}
-              className="max-w-xl h-auto"
-              alt=""
-            />
-          </div>
+      <Section className="madeAndCrafted pt-0 lg:pt-24" theme="dark">
+        <div className="relative grid grid-cols-2 lg:mt-64 max-w-7xl mx-auto flex-col items-center">
+          {/* <div className="relative flex max-w-7xl mx-auto flex-col items-center"> */}
+          <img className="lg:row-span-2" src={dnaMadeCraftedHeaderBg.url} />
           <VerticalHeader
             line1="Made &"
             line2="Crafted"
-            className="absolute right-0 mr-12"
+            className="absolute top-0 right-0 mt-12 mr-4 lg:mr-12 lg:-top-3/12 lg:-mt-12"
           />
-          <div className="flex items-center mt-64 pt-8">
-            <img className="w-1/2" src={dnaMadeCraftedHeaderBg.url} />
-            <div className="w-1/2 px-24 pt-64">
-              <OneColumnTextBlockComponent {...content.madeAndCrafted} />
-            </div>
+          <div className="lg:absolute col-span-2 w-5/6 top-0 mx-auto -mt-8 sm:-mt-16 md:-mt-24 lg:mt-0 lg:w-1/2 lg:left-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2">
+            <img
+              src={dnaMadeCraftedHeader.url}
+              // className="max-w-xl h-auto"
+              alt=""
+            />
           </div>
+          <div className="px-4 md:px-24 mt-24 lg:mt-48 lg:pt-64 col-span-2 lg:col-span-1 flex justify-center lg:block">
+            <OneColumnTextBlockComponent {...content.madeAndCrafted} />
+          </div>
+          {/* <div className="lg:flex items-center mt-64 pt-8">
+          </div> */}
         </div>
       </Section>
-      <Section className="trulyYours" theme="dark">
+      <Section className="trulyYours bg-black md:bg-gray-0" theme="none">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center px-4">
           <StaggeredHeader
             text1="Truly"
             text2="Yours"
             theme="dark"
-            className="inline-block self-start"
+            className="lg:self-start"
             style={{
               backgroundImage: `url(${dnaTrulyYours.url})`,
               backgroundPosition: '25% 15%',
@@ -319,20 +316,24 @@ const OurWorldDNA = (props) => {
           />
           <img
             src={dnaTrulyYours.url}
-            className="mt-48"
+            className="mt-4 sm:mt-8 md:mt-12 lg:mt-16"
             style={{ mixBlendMode: 'lighten' }}
             alt=""
           />
           <OneColumnTextBlockComponent {...content.trulyYours} align="center" />
         </div>
       </Section>
-      <Section className="1969" theme="dark">
-        <img src={dnaLegacyBg.url} alt="" />
+      <Section className="1969 pt-0 md:pt-12" theme="dark">
+        <img
+          src={dnaLegacyBg.url}
+          alt=""
+          className="w-full object-cover min-h-50vh md:min-h-0"
+        />
         <div
-          className="font-heading font-light text-center leading-none pointer-events-none mb-32"
+          className="font-heading font-light text-center leading-none pointer-events-none mb-32 text-huge sm:text-huge2 md:text-huge3 -mt-20 sm:-mt-32 md:-mt-40"
           style={{
-            fontSize: '340px',
-            marginTop: '-170px',
+            // fontSize: '340px',
+            // marginTop: '-170px',
             mixBlendMode: 'overlay',
           }}
         >
@@ -346,7 +347,7 @@ const OurWorldDNA = (props) => {
         </div>
       </Section>
       <Section className="experience" theme="dark">
-        <div className="font-heading font-light text-7xl uppercase tracking-heading leading-none text-center">
+        <div className="font-heading font-light uppercase tracking-heading leading-none text-center text-3xl sm:text-5xl md:text-7xl">
           <div className="text-red">The Experience</div>
           <div className="text-white">You Deserve</div>
         </div>
@@ -358,7 +359,7 @@ const OurWorldDNA = (props) => {
         <OneColumnTextBlockComponent {...content.experience} align="center" />
       </Section>
       <Section className="exploreOurWorld" theme="dark">
-        <div className="relative max-w-7xl mx-auto px-16">
+        <div className="relative max-w-7xl mx-auto md:px-16">
           <div className="border-t border-gray-2 mb-24 pt-8">
             <ExploreOurWorld items={exploreOurWorldContent} />
           </div>

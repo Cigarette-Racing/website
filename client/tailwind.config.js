@@ -21,15 +21,35 @@ const range = (x, y) =>
  * ```
  */
 const gridColsMax = plugin(({ addUtilities }) => {
-  const classes = Array.from({ length: 12 }, (_, index) => index + 1).reduce(
-    (rules, columnNumber) => {
-      rules[`.grid-cols-max-${columnNumber}`] = {
-        gridTemplateColumns: `repeat(${columnNumber}, max-content)`,
-      }
-      return rules
-    },
-    {}
-  )
+  const classes = range(1, 12).reduce((rules, columnNumber) => {
+    rules[`.grid-cols-max-${columnNumber}`] = {
+      gridTemplateColumns: `repeat(${columnNumber}, max-content)`,
+    }
+    return rules
+  }, {})
+
+  addUtilities(classes, ['responsive'])
+})
+
+/**
+ * Adds classes .min-h-10vh through .min-h-90vh
+ *
+ * Example CSS:
+ *
+ * ```css
+ * .min-h-10vh {
+ *   min-height: 10vh;
+ * }
+ * ```
+ */
+const minHeightVh = plugin(({ addUtilities }) => {
+  const classes = range(1, 9).reduce((rules, base) => {
+    const minHeight = base * 10
+    rules[`.min-h-${minHeight}vh`] = {
+      minHeight: `${minHeight}vh`,
+    }
+    return rules
+  }, {})
 
   addUtilities(classes, ['responsive'])
 })
@@ -47,14 +67,20 @@ const fractionalTopRightBottomLeft = plugin(({ addUtilities }) => {
         .concat(12)
         .map((divisor) =>
           range(1, Math.max(divisor - 1, 1)).map((dividend) => [
-            `.${position}-${dividend}\\/${divisor}`,
-            { [position]: toPercentString(dividend, divisor) },
+            [
+              `.${position}-${dividend}\\/${divisor}`,
+              { [position]: toPercentString(dividend, divisor) },
+            ],
+            [
+              `.-${position}-${dividend}\\/${divisor}`,
+              { [position]: toPercentString(dividend, divisor * -1) },
+            ],
           ])
         )
     )
-    .flat(2)
+    .flat(3)
 
-  addUtilities(Object.fromEntries(classesPairs))
+  addUtilities(Object.fromEntries(classesPairs), ['responsive'])
 })
 
 module.exports = {
@@ -132,21 +158,23 @@ module.exports = {
         '3xl': '1920px',
       },
       fontSize: {
-        mi: '0.625rem', // 10px ("mi" === "mini")
-        xs: '0.75rem', // 12px
-        sm: '0.875rem', // 14px
-        base: '1rem', // 16px
-        lg: '1.125rem', // 18px
-        xl: '1.25rem', // 20px
+        mi: '0.625rem', //  10px ("mi" === "mini")
+        xs: '0.75rem', //   12px
+        sm: '0.875rem', //  14px
+        base: '1rem', //    16px
+        lg: '1.125rem', //  18px
+        xl: '1.25rem', //   20px
         '2xl': '1.5rem', // 24px
-        '3xl': '2rem', // 32px
-        '4xl': '3rem', // 48px
+        '3xl': '2rem', //   32px
+        '4xl': '3rem', //   48px
         '5xl': '3.5rem', // 56px
         '6xl': '4.5rem', // 72px
-        '7xl': '5rem', // 80px
+        '7xl': '5rem', //   80px
         '8xl': '5.5rem', // 88px
-        '9xl': '6rem', // 96px
-        huge: '10rem',
+        '9xl': '6rem', //   96px
+        huge: '10rem', //   160px
+        huge2: '15rem', //  240px
+        huge3: '20rem', //  320px
       },
       lineHeight: {
         none: '1',
@@ -155,12 +183,12 @@ module.exports = {
         normal: '1.5',
         relaxed: '1.625',
         loose: '2',
-        '3': '.75rem', // 12px
+        '3': '.75rem', //   12px
         '4': '1.125rem', // 18px
-        '5': '1.25rem', // 20px
-        '6': '1.5rem', // 24px
+        '5': '1.25rem', //  20px
+        '6': '1.5rem', //   24px
         '7': '1.875rem', // 30px
-        '8': '2.5rem', // 40px
+        '8': '2.5rem', //   40px
         '9': '3.625rem', // 48px
         '10': '5.25rem', // 84px
       },
@@ -229,6 +257,7 @@ module.exports = {
   },
   plugins: [
     gridColsMax,
+    minHeightVh,
     fractionalTopRightBottomLeft,
     require('tailwindcss-filters'),
     require('tailwindcss-aspect-ratio'),
