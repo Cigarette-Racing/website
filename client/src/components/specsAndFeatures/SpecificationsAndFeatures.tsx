@@ -7,6 +7,7 @@ import FeaturesSection from './FeaturesSection'
 import { InPageAnchor } from '../../molecules/in-page-nav'
 import { BoatSection } from '../../templates/boat.components'
 import { useToggle } from 'react-use'
+import SpecsFeaturesBg from '../../images/specsAndFeaturesBg.jpg'
 
 const SpecsAndFeaturesSection = ({ specifications, features }) => {
   const [isToggled, setIsToggled] = useToggle(false)
@@ -24,10 +25,15 @@ const SpecsAndFeaturesSection = ({ specifications, features }) => {
   return (
     <BoatSection
       theme="dark"
-      className="pb-10 sm:pb-24 overflow-hidden"
+      className="pb-10 sm:pb-24 overflow-hidden bg-no-repeat bg-cover"
       data-section-type="Specs And Features"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0) 75%, rgba(0,0,0,1)), url(${SpecsFeaturesBg})`,
+        backgroundSize: '100vw',
+      }}
     >
       <InPageAnchor title="specs" />
+
       <div className="sm:flex justify-between align-middle content-center px-6 lg:px-0 sm:mb-10 max-w-screen-xl lg:mx-auto">
         <ToggleButtons
           options={['Specifications', 'Features']}
