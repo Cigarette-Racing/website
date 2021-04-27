@@ -233,10 +233,10 @@ const OurWorldDNA = (props) => {
         </div>
       </Section>
       <Section className="scienceOnWater pt-40" theme="red">
-        <div className="relative flex max-w-7xl mx-auto flex-col items-center">
+        <div className="relative flex max-w-8xl mx-auto flex-col items-center">
           <StaggeredHeader text1="Science" text2="on water" theme="light" />
-          <div className="md:px-12 lg:px-20">
-            <div className="px-4 md:mt-4 lg:mt-8">
+          <div className="">
+            <div className="md:mt-4 lg:mt-8">
               <img
                 src={`${scienceOnWater.url}?q=30&w=2400`}
                 alt="science on water"
