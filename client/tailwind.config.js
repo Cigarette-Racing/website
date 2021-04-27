@@ -146,6 +146,9 @@ module.exports = {
         '7xl': '5rem', // 80px
         '8xl': '5.5rem', // 88px
         '9xl': '6rem', // 96px
+        '10xl': '7rem', // 104px
+        '11xl': '8rem', // 112px
+        '12xl': '9rem', // 120px
         huge: '10rem',
       },
       lineHeight: {

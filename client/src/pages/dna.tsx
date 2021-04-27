@@ -41,17 +41,19 @@ const StaggeredHeader = ({
   text1,
   text2,
   theme = 'light',
+  staggerDistance = 'normal',
 }: {
   className?: string
   style?: React.CSSProperties
   text1: string
   text2: string
   theme?: Theme
+  staggerDistance?: string
 }) => {
   return (
     <div
       className={clsx(
-        'font-heading font-light text-7xl uppercase tracking-heading leading-none -mb-24 relative z-10',
+        'font-heading font-light uppercase tracking-heading leading-none -mb-32 ',
         className
       )}
       style={style}
@@ -66,7 +68,9 @@ const StaggeredHeader = ({
         {text1}
       </div>
       <div
-        className={clsx('ml-56', {
+        className={clsx({
+          'ml-56': staggerDistance === 'normal',
+          'ml-32': staggerDistance === 'tight',
           'text-white': theme === 'dark',
           'text-black': theme === 'light',
         })}
@@ -204,7 +208,7 @@ const OurWorldDNA = (props) => {
       <img
         src={`${introImage.url}?q=30&w=2400`}
         alt="intro image"
-        className="w-full object-cover"
+        className="w-full object-cover max-h-screen"
       />
       <Section className="nextLevelPerformance pt-40" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
@@ -238,9 +242,14 @@ const OurWorldDNA = (props) => {
       </Section>
       <Section className="scienceOnWater pt-40" theme="red">
         <div className="relative flex max-w-8xl mx-auto flex-col items-center">
-          <StaggeredHeader text1="Science" text2="on water" theme="light" />
+          <StaggeredHeader
+            text1="Science"
+            text2="on water"
+            theme="light"
+            className="text-9xl"
+          />
           <div className="">
-            <div className="md:mt-4 lg:mt-8">
+            <div className="md:mt-4 lg:mt-8 relative z-10">
               <img
                 src={`${scienceOnWater.url}?q=30&w=2400`}
                 alt="science on water"
@@ -257,7 +266,7 @@ const OurWorldDNA = (props) => {
       <img
         src={`${imageBreak2.url}?q=30&w=2400`}
         alt="next level performance"
-        className="w-full object-cover"
+        className="w-full object-cover max-h-screen"
       />
       <Section className="simplyStunning pt-0 pb-0" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
@@ -276,7 +285,11 @@ const OurWorldDNA = (props) => {
         </div>
       </Section>
       <Section className="boatImage pt-0 pb-0" theme="dark">
-        <img src={dnaHelmBreak.url} alt="" />
+        <img
+          src={dnaHelmBreak.url}
+          alt=""
+          className="w-full object-cover max-h-screen"
+        />
       </Section>
       <Section className="madeAndCrafted pt-24" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
@@ -301,12 +314,13 @@ const OurWorldDNA = (props) => {
         </div>
       </Section>
       <Section className="trulyYours" theme="dark">
-        <div className="relative flex max-w-7xl mx-auto flex-col items-center px-4">
+        <div className="relative flex max-w-8xl mx-auto flex-col items-center px-4">
           <StaggeredHeader
             text1="Truly"
             text2="Yours"
             theme="dark"
-            className="inline-block self-start"
+            staggerDistance="tight"
+            className="inline-block self-start text-11xl pl-16"
             style={{
               backgroundImage: `url(${dnaTrulyYours.url})`,
               backgroundPosition: '25% 15%',
@@ -319,7 +333,7 @@ const OurWorldDNA = (props) => {
           />
           <img
             src={dnaTrulyYours.url}
-            className="mt-48"
+            className="mt-16 z-10"
             style={{ mixBlendMode: 'lighten' }}
             alt=""
           />
@@ -327,7 +341,11 @@ const OurWorldDNA = (props) => {
         </div>
       </Section>
       <Section className="1969" theme="dark">
-        <img src={dnaLegacyBg.url} alt="" />
+        <img
+          src={dnaLegacyBg.url}
+          alt=""
+          className="w-full object-cover max-h-screen object-top"
+        />
         <div
           className="font-heading font-light text-center leading-none pointer-events-none mb-32"
           style={{
