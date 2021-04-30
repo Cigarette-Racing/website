@@ -52,7 +52,7 @@ const StaggeredHeader = ({
   return (
     <div
       className={clsx(
-        'text-center lg:text-left font-heading font-light uppercase tracking-heading leading-none -mb-4 sm:-mb-8 md:-mb-16 lg:-mb-32 relative z-10',
+        'text-center lg:text-left font-heading font-light uppercase tracking-heading leading-none -mb-8 md:-mb-16 lg:-mb-32 relative z-10',
         className
       )}
       style={style}
@@ -87,7 +87,7 @@ export const OneColumnTextBlockComponent = ({
   theme = 'dark',
 }: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme }) => (
   <div
-    className="my-12 px-4 xl:pl-0 mb-24 max-w-5xl mx-auto"
+    className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
     data-block-type="OneColumnTextBlockComponent"
   >
     <TextBlockComponent
@@ -118,7 +118,7 @@ const VerticalHeader = ({
   return (
     <div
       className={clsx(
-        'writing-mode-vertical-alt transform rotate-180 pointer-events-none text-gray-3 tracking-heading leading-none font-heading font-light text-3xl sm:text-5xl md:text-7xl lg:text-9xl text-right lg:text-left uppercase',
+        'writing-mode-vertical-alt transform rotate-180 pointer-events-none text-gray-3 tracking-heading leading-none font-heading font-light text-4xl sm:text-5xl md:text-7xl lg:text-9xl text-right lg:text-left uppercase',
         className
       )}
       style={{
@@ -126,10 +126,10 @@ const VerticalHeader = ({
           'linear-gradient(9.4deg, #adadad 33.76%, rgba(173, 173, 173, 0) 111.26%)',
         backgroundSize: '100%',
         // @ts-expect-error
-        '-webkit-background-clip': 'text',
-        '-webkit-text-fill-color': 'transparent',
-        '-moz-background-clip': 'text',
-        '-moz-text-fill-color': 'transparent',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        MozBackgroundClip: 'text',
+        MozTextFillColor: 'transparent',
       }}
     >
       <div className="whitespace-no-wrap">{line1}</div>
@@ -206,7 +206,7 @@ const OurWorldDNA = (props) => {
         alt="intro image"
         className="w-full object-cover max-h-screen min-h-50vh md:min-h-0"
       />
-      <Section className="nextLevelPerformance pt-40" theme="dark">
+      <Section className="nextLevelPerformance pt-32" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
           <StaggeredHeader
             text1="Next Level"
@@ -215,7 +215,7 @@ const OurWorldDNA = (props) => {
             className="text-3xl sm:text-5xl lg:text-8xl"
           />
           <div className="md:px-12 lg:px-20">
-            <div className="px-4 mb-16 lg:mb-20 md:mt-8 lg:mt-16">
+            <div className="px-4 mb-10 lg:mb-20 md:mt-8 lg:mt-16">
               <div className="relative">
                 <img
                   src={`${imageBreak1.url}?q=30&w=2400`}
@@ -237,13 +237,13 @@ const OurWorldDNA = (props) => {
           />
         </div>
       </Section>
-      <Section className="scienceOnWater pt-40" theme="red">
+      <Section className="scienceOnWater pt-32 pb-24" theme="red">
         <div className="relative flex max-w-8xl mx-auto flex-col items-center">
           <StaggeredHeader
             text1="Science"
             text2="on water"
             theme="light"
-            className="text-3xl sm:text-5xl lg:text-9xl"
+            className="text-4xl sm:text-5xl lg:text-9xl px-10"
           />
           <div className="">
             <div className="md:mt-4 lg:mt-8 relative z-10">
@@ -265,23 +265,29 @@ const OurWorldDNA = (props) => {
         alt="next level performance"
         className="w-full object-cover max-h-screen"
       />
-      <Section className="simplyStunning pt-0 pb-0" theme="dark">
+      <Section className="simplyStunning pt-0 pb-20" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
           <div className="flex items-start lg:items-center">
             <div className="w-1/2 lg:pl-12 flex justify-end lg:block pr-12 lg:pr-0 pt-4 lg:pt-0">
               <VerticalHeader line1="Simply" line2="Stunning" />
             </div>
-            <img className="w-1/2" src={simplyStunningBgRight.url} alt="" />
+            <div className="w-1/2">
+              <img
+                className="min-h-50vh"
+                src={simplyStunningBgRight.url}
+                alt=""
+              />
+            </div>
           </div>
           <img
-            className="lg:absolute w-5/6 lg:w-1/2 lg:left-1/2 transform lg:-translate-x-1/2 lg:mt-56 -mt-48"
+            className="lg:absolute w-5/6 lg:w-1/2 lg:left-1/2 transform lg:-translate-x-1/2 lg:mt-56 -mt-40 mb-8"
             src={simplyStunningForeground.url}
             alt=""
           />
           <OneColumnTextBlockComponent {...content.simplyStunning} />
         </div>
       </Section>
-      <Section className="boatImage pt-0 pb-0 -mb-12 lg:mb-0" theme="dark">
+      <Section className="boatImage pt-0 pb-0 -mb-4 lg:mb-0" theme="dark">
         <img
           src={dnaHelmBreak.url}
           alt=""
@@ -323,10 +329,10 @@ const OurWorldDNA = (props) => {
               backgroundImage: `url(${dnaTrulyYours.url})`,
               backgroundPosition: '25% 15%',
               // @ts-expect-error
-              '-webkit-background-clip': 'text',
-              '-webkit-text-fill-color': 'transparent',
-              '-moz-background-clip': 'text',
-              '-moz-text-fill-color': 'transparent',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              MozBackgroundClip: 'text',
+              MozTextFillColor: 'transparent',
             }}
           />
           <img
