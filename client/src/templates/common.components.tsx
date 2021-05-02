@@ -92,7 +92,7 @@ export const GenericSection: React.FC<{
     className={clsx(
       'relative overflow-hidden',
       {
-        'bg-black text-white': theme === 'dark',
+        'bg-gray-0 text-white': theme === 'dark',
       },
       className
     )}
