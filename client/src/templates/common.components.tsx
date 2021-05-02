@@ -634,7 +634,7 @@ export const ContentEntry = ({
 export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
   return (
     <div>
-      {!!entries.length ? (
+      {!!entries.length &&
         entries.map((articleEntry: any, i: number) => (
           <ContentEntry
             entryType={entryType}
@@ -644,10 +644,7 @@ export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
             hierarchy="secondary"
             theme={theme}
           />
-        ))
-      ) : (
-        <div>No Entries</div>
-      )}
+        ))}
     </div>
   )
 }
@@ -667,9 +664,9 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
           theme={theme}
         />
       </div>
-      <div className="nextTwo">
-        {!!nextTwoEntries.length ? (
-          nextTwoEntries.map((articleEntry: any, i: number) => (
+      {!!nextTwoEntries.length && (
+        <div className="nextTwo">
+          {nextTwoEntries.map((articleEntry: any, i: number) => (
             <ContentEntry
               entryType={entryType}
               hierarchy="secondary"
@@ -678,20 +675,18 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
               entry={articleEntry}
               theme={theme}
             />
-          ))
-        ) : (
-          <div>No Entries</div>
-        )}
-      </div>
-      <div
-        className={clsx(
-          `remaining grid grid-cols-2 col-gap-4 lg:grid-cols-3 lg:col-gap-6 border-solid border-t`,
-          { 'border-gray-1': theme === 'dark' },
-          { 'border-gray-5': theme === 'light' }
-        )}
-      >
-        {!!remainingEntries.length ? (
-          remainingEntries.map((articleEntry: any, i: number) => (
+          ))}
+        </div>
+      )}
+      {!!remainingEntries.length && (
+        <div
+          className={clsx(
+            `remaining grid grid-cols-2 col-gap-4 lg:grid-cols-3 lg:col-gap-6 border-solid border-t`,
+            { 'border-gray-1': theme === 'dark' },
+            { 'border-gray-5': theme === 'light' }
+          )}
+        >
+          {remainingEntries.map((articleEntry: any, i: number) => (
             <ContentEntry
               entryType={entryType}
               hierarchy="tertiary"
@@ -699,11 +694,9 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
               index={i}
               entry={articleEntry}
             />
-          ))
-        ) : (
-          <div>No Entries</div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </Fragment>
   )
 }
