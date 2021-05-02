@@ -46,13 +46,25 @@ const NewsArticleTemplate = (
     },
   } = props
 
-  const relatedArticles = allArticles.filter((article) => {
+  const relatedArticles = allArticles?.filter((article) => {
     return article.id != articleEntry.id
   })
 
-  const flexData = getFlexibleSections(
-    extractFlexibleSectionsFromCraft(articleEntry)
-  )
+  const getFlexData = () => {
+    let flexData
+
+    if (articleEntry?.flexibleSections) {
+      flexData = getFlexibleSections(
+        extractFlexibleSectionsFromCraft(articleEntry)
+      )
+    } else {
+      flexData = null
+    }
+
+    return flexData
+  }
+
+  const flexData = getFlexData()
 
   const date = new Date(articleEntry.dateCreated)
 
@@ -64,11 +76,13 @@ const NewsArticleTemplate = (
         <div className="px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
           <SEO title={articleEntry.title} slug={props.path} />
           <div className="md:flex align-top justify-start content-start pb-10 md:pb-20">
-            <Categories
-              className="-ml-2 mb-3 md:mr-16 mt-4"
-              align="left"
-              categories={articleEntry.articleCategories}
-            />
+            {!!articleEntry.articleCategories && (
+              <Categories
+                className="-ml-2 mb-3 md:mr-16 mt-4"
+                align="left"
+                categories={articleEntry.articleCategories}
+              />
+            )}
             <div>
               <Typography className="mb-8 max-w-screen-lg" variant="h3" md="h1">
                 {articleEntry.title}
@@ -84,7 +98,7 @@ const NewsArticleTemplate = (
                     alt=""
                   />
                   <Typography variant="p2" className="text-gray-3">
-                    {articleEntry?.urlLink}
+                    {articleEntry?.siteName}
                   </Typography>
                   <ExternalLinkIcon className="mr-2 ml-4" />
                 </a>
@@ -94,167 +108,174 @@ const NewsArticleTemplate = (
           <div className="border-t border-solid border-gray-5"></div>
         </div>
       </GenericSection>
-      {flexData.map(
-        ({ title, theme, bleedDirection, headerImage, blocks, id }, i) => (
-          <GenericSection key={id} theme="light">
-            <div className="relative px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
-              <Typography
-                variant="e3"
-                className="date text-gray-3 mb-4 md:absolute top-0 left-0 md:px-4"
-              >
-                {`${
-                  date.getMonth() + 1
-                }.${date.getDate()}.${date.getFullYear()}`}
-              </Typography>
-            </div>
-            <SideBleedImage
-              media={headerImage}
-              side={bleedDirection}
-              className="mt-0 px-4 md:px-0 mb-16 md:m-0 md:mb-32 pt-0"
-              size="large"
-            />
-            <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 ml-auto">
-              <div className="px-4 md:px-0 md:w-8/12">
-                <Typography variant="e2" className="mb-4">
-                  {articleEntry.subheadline}
+      {flexData.length > 0 &&
+        flexData.map(
+          ({ title, theme, bleedDirection, headerImage, blocks, id }, i) => (
+            <GenericSection key={id} theme="light">
+              <div className="relative px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
+                <Typography
+                  variant="e3"
+                  className="date text-gray-3 mb-4 md:absolute top-0 left-0 md:px-4"
+                >
+                  {`${
+                    date.getMonth() + 1
+                  }.${date.getDate()}.${date.getFullYear()}`}
                 </Typography>
               </div>
-              <div className="px-4 md:px-0 md:w-8/12 mb-16">
-                {FormatTextBlob(articleEntry.articleCopy)}
-              </div>
-            </div>
-            {!!blocks &&
-              blocks.map((block, index) => {
-                if (isTwoColumnImageTextBlock(block)) {
-                  return (
-                    <TwoColumnImageTextBlockComponent
-                      key={block.id}
-                      {...block}
-                    />
-                  )
-                }
-                if (isOneColumnTextBlock(block)) {
-                  if (block.textBlock) {
-                    block.copy = block.textBlock[0].copy
-                    block.header = block.textBlock[0].header
-                  }
-
-                  return (
-                    <OneColumnTextBlockComponent
-                      key={index}
-                      {...block}
-                      align={block.align ?? undefined}
-                    />
-                  )
-                }
-                if (isOneColumnImageTextBlock(block)) {
-                  if (block.textBlock) {
-                    block.content = {
-                      copy: block.textBlock[0].copy,
-                      header: block.textBlock[0].header,
-                    }
-                    block.media = {
-                      image: block.singleMedia?.[0].image?.[0]?.url,
-                      videoURL: block.singleMedia?.[0].videoURL,
-                      autoplayVideo: block.singleMedia?.[0].autoplayVideo,
-                    }
-                  }
-
-                  return (
-                    <OneColumnImageTextBlockComponent key={index} {...block} />
-                  )
-                }
-                if (isCarouselBlock(block)) {
-                  if (block?.source === 'craft') {
-                    const items = createCarouselItems(block.children)
-                    block.items = items
-                  }
-
-                  return <Carousel key={index} {...block} />
-                }
-                if (isSliderBlock(block)) {
-                  if (block?.source === 'craft') {
-                    const items = createCarouselItems(block.children)
-                    block.items = items
-                  }
-
-                  return <Slider key={index} {...block} />
-                }
-                if (isThreeColumnImagesBlock(block)) {
-                  return (
-                    <ThreeUpImageBlock
-                      key={block.id}
-                      className="mb-32"
-                      images={block.children}
-                    />
-                  )
-                }
-                if (isTwoColumnImagesBlock(block)) {
-                  return (
-                    <TwoUpImageBlock
-                      key={block.id}
-                      className="mb-32"
-                      images={block.images || block.children}
-                    />
-                  )
-                }
-                if (isHorizontalImageTextBlock(block)) {
-                  const extractedBlock: HorizontalImageTextBlock = {
-                    type: 'horizontal-image-text',
-                    layout: block.layout,
-                    content: {
-                      header: block.textBlock[0].header as string,
-                      copy: block.textBlock[0].copy as string,
-                    },
-                    media: {
-                      image: {
-                        publicURL: block.singleMedia[0].image[0]?.url as string,
-                      },
-                    },
-                  }
-                  return (
-                    <HorizontalImageTextBlockComponent
-                      key={block.id}
-                      {...extractedBlock}
-                    />
-                  )
-                }
-                if (isFullWidthCarouselBlock(block)) {
-                  if (block?.source === 'craft') {
-                    const items = createCarouselItems(block.children)
-                    block.items = items
-                  }
-
-                  return <FullWidthCarousel key={index} {...block} />
-                }
-                return null
-              })}
-            <div>
-              <Typography className="px-4 mt-20 mb-5" variant="h3" md="h2">
-                More Stories
-              </Typography>
-              <div className="overflow-scroll">
-                <div
-                  className="relatedArticles grid grid-cols-3 gap-6 px-4"
-                  style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
-                >
-                  {relatedArticles.slice(0, 3).map((article) => {
-                    return (
-                      <ContentEntry
-                        entryType="news"
-                        key={article.id}
-                        entry={article}
-                        hierarchy="tertiary"
-                        theme="light"
-                      />
-                    )
-                  })}
+              <SideBleedImage
+                media={headerImage}
+                side={bleedDirection}
+                className="mt-0 px-4 md:px-0 mb-16 md:m-0 md:mb-32 pt-0"
+                size="large"
+              />
+              <div className="w-full md:w-11/12 lg:w-10/12 xl:w-9/12 ml-auto">
+                <div className="px-4 md:px-0 md:w-8/12">
+                  <Typography variant="e2" className="mb-4">
+                    {articleEntry.subheadline}
+                  </Typography>
+                </div>
+                <div className="px-4 md:px-0 md:w-8/12 mb-16">
+                  {FormatTextBlob(articleEntry.articleCopy)}
                 </div>
               </div>
-            </div>
-          </GenericSection>
-        )
-      )}
+              {!!blocks &&
+                blocks.map((block, index) => {
+                  if (isTwoColumnImageTextBlock(block)) {
+                    return (
+                      <TwoColumnImageTextBlockComponent
+                        key={block.id}
+                        {...block}
+                      />
+                    )
+                  }
+                  if (isOneColumnTextBlock(block)) {
+                    if (block.textBlock) {
+                      block.copy = block.textBlock[0].copy
+                      block.header = block.textBlock[0].header
+                    }
+
+                    return (
+                      <OneColumnTextBlockComponent
+                        key={index}
+                        {...block}
+                        align={block.align ?? undefined}
+                      />
+                    )
+                  }
+                  if (isOneColumnImageTextBlock(block)) {
+                    if (block.textBlock) {
+                      block.content = {
+                        copy: block.textBlock[0].copy,
+                        header: block.textBlock[0].header,
+                      }
+                      block.media = {
+                        image: block.singleMedia?.[0].image?.[0]?.url,
+                        videoURL: block.singleMedia?.[0].videoURL,
+                        autoplayVideo: block.singleMedia?.[0].autoplayVideo,
+                      }
+                    }
+
+                    return (
+                      <OneColumnImageTextBlockComponent
+                        key={index}
+                        {...block}
+                      />
+                    )
+                  }
+                  if (isCarouselBlock(block)) {
+                    if (block?.source === 'craft') {
+                      const items = createCarouselItems(block.children)
+                      block.items = items
+                    }
+
+                    return <Carousel key={index} {...block} />
+                  }
+                  if (isSliderBlock(block)) {
+                    if (block?.source === 'craft') {
+                      const items = createCarouselItems(block.children)
+                      block.items = items
+                    }
+
+                    return <Slider key={index} {...block} />
+                  }
+                  if (isThreeColumnImagesBlock(block)) {
+                    return (
+                      <ThreeUpImageBlock
+                        key={block.id}
+                        className="mb-32"
+                        images={block.children}
+                      />
+                    )
+                  }
+                  if (isTwoColumnImagesBlock(block)) {
+                    return (
+                      <TwoUpImageBlock
+                        key={block.id}
+                        className="mb-32"
+                        images={block.images || block.children}
+                      />
+                    )
+                  }
+                  if (isHorizontalImageTextBlock(block)) {
+                    const extractedBlock: HorizontalImageTextBlock = {
+                      type: 'horizontal-image-text',
+                      layout: block.layout,
+                      content: {
+                        header: block.textBlock[0].header as string,
+                        copy: block.textBlock[0].copy as string,
+                      },
+                      media: {
+                        image: {
+                          publicURL: block.singleMedia[0].image[0]
+                            ?.url as string,
+                        },
+                      },
+                    }
+                    return (
+                      <HorizontalImageTextBlockComponent
+                        key={block.id}
+                        {...extractedBlock}
+                      />
+                    )
+                  }
+                  if (isFullWidthCarouselBlock(block)) {
+                    if (block?.source === 'craft') {
+                      const items = createCarouselItems(block.children)
+                      block.items = items
+                    }
+
+                    return <FullWidthCarousel key={index} {...block} />
+                  }
+                  return null
+                })}
+              {!!relatedArticles.length && (
+                <div>
+                  <Typography className="px-4 mt-20 mb-5" variant="h3" md="h2">
+                    More Stories
+                  </Typography>
+                  <div className="overflow-scroll">
+                    <div
+                      className="relatedArticles grid grid-cols-3 gap-6 px-4"
+                      style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
+                    >
+                      {relatedArticles.slice(0, 3).map((article) => {
+                        return (
+                          <ContentEntry
+                            entryType="news"
+                            key={article.id}
+                            entry={article}
+                            hierarchy="tertiary"
+                            theme="light"
+                          />
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </GenericSection>
+          )
+        )}
     </Layout>
   )
 }
@@ -268,12 +289,14 @@ export const query = graphql`
         id
         title
       }
-      entry(slug: [$craftSlug]) {
+      entry(slug: [$craftSlug], type: "newsArticle") {
+        id
         ... on CraftAPI_newsArticles_newsArticle_Entry {
           id
           dateCreated
           title
           urlLink
+          siteName
           externalLinkIcon {
             url
           }
@@ -288,6 +311,7 @@ export const query = graphql`
           }
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
+              id
               theme
               title: textBlockHeader
               shortTitle

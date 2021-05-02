@@ -6,6 +6,7 @@
 
 import { GatsbyNode } from 'gatsby'
 import { resolve } from 'path'
+import { any } from 'prop-types'
 
 const createBoatPages: GatsbyNode['createPages'] = async ({
   graphql,
@@ -89,9 +90,10 @@ const createNewsArticlePages: GatsbyNode['createPages'] = async ({
     'src/templates/news-article.tsx'
   )
   const query = /* GraphQL */ `
-    query AllLabs {
+    query AllArticles {
       craftAPI {
         entries(type: "newsArticle") {
+          id
           slug
         }
       }
@@ -100,18 +102,20 @@ const createNewsArticlePages: GatsbyNode['createPages'] = async ({
   const result = await graphql<{
     craftAPI: {
       entries: {
+        id: string
         slug: string
       }[]
     }
   }>(query)
   if (result.errors) throw result.errors
 
-  result.data!.craftAPI.entries.forEach(({ slug }) => {
+  result.data!.craftAPI.entries.forEach(({ id, slug }) => {
     createPage({
       path: `/news/${slug}`,
       component: newsArticleTemplate,
       context: {
         slug: `/news/${slug}`,
+        craftId: id,
         craftSlug: slug,
       },
     })

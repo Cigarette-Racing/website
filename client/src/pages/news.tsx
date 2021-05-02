@@ -62,17 +62,10 @@ const NewsArticlesPage = (
           <Typography className="mb-24" variant="p3">
             {LandingPage.articleExcerpt}
           </Typography>
-          <DropdownNav
+          <CategoryFilter
             className="mb-24 md:hidden"
             placeholder="Explore Stories"
-            options={options}
             theme="light"
-            onChange={(option) => {
-              setFilterCategory(option)
-              setLandingPageTitle(option.label)
-            }}
-          />
-          <CategoryFilter
             categories={options}
             setFilterCategory={setFilterCategory}
             filterCategory={filterCategory}
