@@ -487,7 +487,12 @@ export const ContentEntry = ({
                 categories={entry.articleCategories}
               />
               <div className="text-center px-3">
-                <Typography className="mb-4" variant="h4" sm="h3" md="h1">
+                <Typography
+                  className="mb-4 max-w-5xl m-auto"
+                  variant="h4"
+                  sm="h3"
+                  md="h1"
+                >
                   {entry.title}
                 </Typography>
                 <Typography
