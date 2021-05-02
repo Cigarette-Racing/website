@@ -56,6 +56,7 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
     )
 
     return {
+      id: entry?.id,
       type: 'flexible',
       title: section.title,
       theme: section.theme,
@@ -253,13 +254,17 @@ export const CategoryFilter = ({
   placeholder,
   setFilterCategory,
   filterCategory,
+  theme,
 }) => {
+  console.log(theme)
+
   return (
     <Fragment>
       <DropdownNav
         className={`md:hidden ${className}`}
         placeholder={placeholder}
         options={categories}
+        theme={theme}
         onChange={(option) => {
           setFilterCategory(option)
         }}
