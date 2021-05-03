@@ -153,7 +153,7 @@ export const Footer = ({}: FooterProps) => {
                     )}
                     {linkGroup.disabled && (
                       <a
-                        className="opacity-50 cursor-not-allowed"
+                        className="opacity-50 cursor-not-allowed pointer-events-none"
                         href={link.url}
                       >
                         {link.name}
