@@ -15,7 +15,7 @@ import {
   UnFilteredList,
 } from '../templates/common.components'
 import labsBg from '../images/Labs_BG-SVG.svg'
-import labsTitleSVG from '../images/_labs.svg'
+import labsTitleSVG from '../images/labs-title.svg'
 
 const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
   const [filterCategory, setFilterCategory] = useState({
