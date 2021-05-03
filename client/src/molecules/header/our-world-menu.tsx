@@ -1,45 +1,14 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal'
 import styled from 'styled-components'
-import { PageProps, graphql, Link } from 'gatsby'
+import { graphql, Link, useStaticQuery } from 'gatsby'
 import { ReturnLink } from '../../atoms/return-link'
 import { Typography } from '../../atoms/typography'
-import { Underline } from './../../pages/labs'
 import ourworldBg from '../../images/ourworld_BG.jpg'
-import our_world_1969 from '../../images/1969.jpg'
-import our_world_news from '../../images/news.jpg'
-import our_world_labs from '../../images/labs.jpg'
-import our_world_dna from '../../images/dna.jpg'
 import labsTitleSVG from '../../images/_Labs.svg'
-
-const our_world_sections = [
-  {
-    name: 'Labs',
-    hero: our_world_labs,
-    headline:
-      'Enter Cigarette Racing’s industry leading processes, research, and development.',
-    url: '/labs',
-  },
-  {
-    name: 'DNA',
-    hero: our_world_dna,
-    headline:
-      'Discover why Cigarette Racing remains the finest boat on the water.',
-    url: '/dna',
-  },
-  {
-    name: '1969',
-    hero: our_world_1969,
-    headline: 'Explore the legacy and origins of an offshore legend.',
-    url: '/1969',
-  },
-  {
-    name: 'News',
-    hero: our_world_news,
-    headline: 'The latest news & press happening at Cigarette Racing.',
-    url: '/news',
-  },
-]
+import { AspectRatio } from '../../atoms/aspect-ratio'
+import { CircleButton } from '../../atoms/circle-button'
+import { ArrowIcon } from '../../svgs/icons'
 
 const MenuLink = styled(Link)`
   &:hover {
@@ -62,6 +31,31 @@ const LabsSVGTitle = styled.img`
   height: 40px;
 `
 
+const useOurWorldMenuImagesQuery = () => {
+  const menuImages = useStaticQuery<GatsbyTypes.OurWorldMenuImagesQuery>(
+    graphql`
+      query OurWorldMenuImages {
+        craftAPI {
+          labs: assets(filename: "1up-image-placeholder.jpg") {
+            url
+          }
+          legacy1969: assets(filename: "explore-our-world-2.png") {
+            url
+          }
+          news: assets(filename: "news-00001.jpg") {
+            url
+          }
+          dna: assets(filename: "explore-our-world_dna.jpg") {
+            url
+          }
+        }
+      }
+    `
+  )
+
+  return menuImages
+}
+
 export const OurWorldMenu = ({
   isVisible,
   onReset,
@@ -69,6 +63,37 @@ export const OurWorldMenu = ({
   isVisible: boolean
   onReset: () => void
 }) => {
+  const menuImages = useOurWorldMenuImagesQuery()
+
+  const our_world_sections = [
+    {
+      name: 'Labs',
+      hero: menuImages.craftAPI.labs[0].url,
+      headline:
+        'Enter Cigarette Racing’s industry leading processes, research, and development.',
+      url: '/labs',
+    },
+    {
+      name: 'DNA',
+      hero: menuImages.craftAPI.dna[0].url,
+      headline:
+        'Discover why Cigarette Racing remains the finest boat on the water.',
+      url: '/dna',
+    },
+    {
+      name: '1969',
+      hero: menuImages.craftAPI.legacy1969[0].url,
+      headline: 'Explore the legacy and origins of an offshore legend.',
+      url: '/1969',
+    },
+    {
+      name: 'News',
+      hero: menuImages.craftAPI.news[0].url,
+      headline: 'The latest news & press happening at Cigarette Racing.',
+      url: '/news',
+    },
+  ]
+
   return (
     <Modal
       isOpen={isVisible}
@@ -79,11 +104,11 @@ export const OurWorldMenu = ({
         afterOpen: '',
         beforeClose: '',
       }}
-      overlayClassName="fixed inset-0 z-50"
+      overlayClassName="fixed inset-0 z-50 md:z-10"
       closeTimeoutMS={250}
     >
-      <div className="md:hidden h-16 flex items-center text-white">
-        <ReturnLink>Back</ReturnLink>
+      <div className="md:hidden px-4 h-16 flex items-center text-white">
+        <ReturnLink onClick={onReset}>Our World</ReturnLink>
       </div>
       <div
         className="pt-20 min-h-screen"
@@ -104,31 +129,45 @@ export const OurWorldMenu = ({
                   key={section.url}
                   to={section.url}
                   onClick={() => onReset()}
-                  className="flex flex-col justify-start items-start md:px-3 pb-10 transition-opacity duration-150"
+                  className="flex flex-col justify-start items-start md:px-3 pb-10 transition-opacity duration-150 group"
                 >
-                  <img
-                    className="order-2 md:order-1"
-                    src={section.hero}
-                    alt=""
-                  />
-                  <div className="order-1 md:order-2 px-4 mb-8 md:mb-0">
-                    {section.name === 'Labs' ? (
-                      <LabsSVGTitle
-                        className="md:mt-4 mb-6"
-                        src={labsTitleSVG}
-                        alt="_labs"
+                  <AspectRatio
+                    className="order-2 md:order-1 w-full"
+                    ratio="4:3"
+                    md="21:9"
+                  >
+                    <img
+                      className="h-full w-full object-cover"
+                      src={section.hero}
+                      alt=""
+                      style={{ position: 'absolute' }}
+                    />
+                  </AspectRatio>
+                  <div className="order-1 md:order-2 px-4 mb-8 md:mb-0 w-full">
+                    <div className="flex justify-between items-center content-center">
+                      {section.name === 'Labs' ? (
+                        <LabsSVGTitle
+                          className="md:mt-4 mb-6"
+                          src={labsTitleSVG}
+                          alt="_labs"
+                        />
+                      ) : (
+                        <Typography
+                          variant="h2"
+                          className="text-white md:mt-4 mb-4"
+                        >
+                          {section.name}
+                        </Typography>
+                      )}
+                      <CircleButton
+                        className="md:opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                        style={{ backgroundColor: '#232323' }}
+                        icon={ArrowIcon}
                       />
-                    ) : (
-                      <Typography
-                        variant="h2"
-                        className="text-white md:mt-4 mb-4"
-                      >
-                        {section.name}
-                      </Typography>
-                    )}
+                    </div>
                     <Typography
                       variant="p2"
-                      className="text-white max-w-xs md:max-w-sm"
+                      className="copy text-white max-w-xs md:max-w-sm md:opacity-0 group-hover:opacity-100  transition-opacity duration-150"
                     >
                       {section.headline}
                     </Typography>
