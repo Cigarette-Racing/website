@@ -75,50 +75,69 @@ export const OurWorldMenu = ({
       shouldCloseOnEsc={true}
       onRequestClose={onReset}
       className={{
-        base: 'absolute inset-0 overflow-scroll',
+        base: 'ourworld absolute inset-0 overflow-scroll',
         afterOpen: '',
         beforeClose: '',
       }}
-      overlayClassName="fixed inset-0 z-30"
+      overlayClassName="fixed inset-0 z-50"
       closeTimeoutMS={250}
     >
-      <div className="md:hidden h-16 flex items-center">
+      <div className="md:hidden h-16 flex items-center text-white">
         <ReturnLink>Back</ReturnLink>
       </div>
       <div
-        className="pt-20 min-h-screen px-10 bg-black bg-opacity-75"
+        className="pt-20 min-h-screen"
         style={{
           backgroundImage: `linear-gradient(to right, rgba(0,0,0, .1) 25%, rgba(0,0,0,1)), url(${ourworldBg})`,
         }}
       >
-        <Menu className="pt-24 grid grid-cols-2 h-full pb-16">
-          {our_world_sections.map((section) => {
-            return (
-              <MenuLink
-                key={section.url}
-                to={section.url}
-                onClick={() => onReset()}
-                className="flex flex-col justify-start items-start px-3 pb-10 transition-opacity duration-150"
-              >
-                <img src={section.hero} alt="" />
-                {section.name === 'Labs' ? (
-                  <LabsSVGTitle
-                    className="mt-4 mb-6"
-                    src={labsTitleSVG}
-                    alt="_labs"
+        <div
+          className="md:px-10 bg-opacity-75 pt-24 pb-16"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(0,0,0, .1) 25%, rgba(0,0,0,1)), url(${ourworldBg})`,
+          }}
+        >
+          <Menu className="md:grid grid-cols-2 h-full ">
+            {our_world_sections.map((section) => {
+              return (
+                <MenuLink
+                  key={section.url}
+                  to={section.url}
+                  onClick={() => onReset()}
+                  className="flex flex-col justify-start items-start md:px-3 pb-10 transition-opacity duration-150"
+                >
+                  <img
+                    className="order-2 md:order-1"
+                    src={section.hero}
+                    alt=""
                   />
-                ) : (
-                  <Typography variant="h2" className="text-white mt-4 mb-4">
-                    {section.name}
-                  </Typography>
-                )}
-                <Typography variant="p2" className="text-white max-w-sm">
-                  {section.headline}
-                </Typography>
-              </MenuLink>
-            )
-          })}
-        </Menu>
+                  <div className="order-1 md:order-2 px-4 mb-8 md:mb-0">
+                    {section.name === 'Labs' ? (
+                      <LabsSVGTitle
+                        className="md:mt-4 mb-6"
+                        src={labsTitleSVG}
+                        alt="_labs"
+                      />
+                    ) : (
+                      <Typography
+                        variant="h2"
+                        className="text-white md:mt-4 mb-4"
+                      >
+                        {section.name}
+                      </Typography>
+                    )}
+                    <Typography
+                      variant="p2"
+                      className="text-white max-w-xs md:max-w-sm"
+                    >
+                      {section.headline}
+                    </Typography>
+                  </div>
+                </MenuLink>
+              )
+            })}
+          </Menu>
+        </div>
       </div>
     </Modal>
   )

@@ -294,7 +294,11 @@ function MobileMenu({
   return (
     <Modal
       isOpen={isMenuOpen}
-      className={{ base: 'absolute inset-0', afterOpen: '', beforeClose: '' }}
+      className={{
+        base: 'mobilemenu absolute inset-0',
+        afterOpen: '',
+        beforeClose: '',
+      }}
       overlayClassName="fixed inset-0 z-40"
       shouldCloseOnEsc={true}
       onRequestClose={() => setIsMenuOpen(false)}
@@ -368,15 +372,6 @@ function MobileMenu({
               setSelectedSection('')
             }}
           />
-        )}
-        {selectedSection === 'our world' && (
-          <div
-            onClick={() => {
-              setSelectedSection('')
-            }}
-          >
-            <OurWorldMenu isVisible={selectedSection === 'our world'} />
-          </div>
         )}
       </div>
     </Modal>
