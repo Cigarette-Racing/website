@@ -10,6 +10,7 @@ import our_world_1969 from '../../images/1969.jpg'
 import our_world_news from '../../images/news.jpg'
 import our_world_labs from '../../images/labs.jpg'
 import our_world_dna from '../../images/dna.jpg'
+import labsTitleSVG from '../../images/_Labs.svg'
 
 const our_world_sections = [
   {
@@ -57,6 +58,10 @@ const Menu = styled.div`
   }
 `
 
+const LabsSVGTitle = styled.img`
+  height: 40px;
+`
+
 export const OurWorldMenu = ({
   isVisible,
   onReset,
@@ -97,7 +102,11 @@ export const OurWorldMenu = ({
               >
                 <img src={section.hero} alt="" />
                 {section.name === 'Labs' ? (
-                  <LabsTitle />
+                  <LabsSVGTitle
+                    className="mt-4 mb-6"
+                    src={labsTitleSVG}
+                    alt="_labs"
+                  />
                 ) : (
                   <Typography variant="h2" className="text-white mt-4 mb-4">
                     {section.name}
@@ -112,16 +121,5 @@ export const OurWorldMenu = ({
         </Menu>
       </div>
     </Modal>
-  )
-}
-
-const LabsTitle = () => {
-  return (
-    <div className="flex items-baseline mb-4 mt-4">
-      <Underline className="bg-red" />
-      <Typography variant="h2" className="text-white">
-        labs
-      </Typography>
-    </div>
   )
 }
