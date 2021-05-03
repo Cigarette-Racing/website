@@ -979,13 +979,15 @@ export const TextBlockComponent = ({
   className = '',
   copy,
   header,
+  headerClassname = '',
 }: {
   className?: string
   header: string
+  headerClassname?: string
   copy: string
 }) => (
   <div className={className} data-block-type="TextBlockComponent">
-    <Typography variant="e2" className="mb-4">
+    <Typography variant="e2" className={`mb-4 ${headerClassname}`}>
       {header}
     </Typography>
     {copy
@@ -993,7 +995,7 @@ export const TextBlockComponent = ({
       ?.filter(Boolean)
       .map((p) => {
         return (
-          <Typography className="mb-4 last:mb-0" key={p} variant="p2">
+          <Typography className="mb-4 last:mb-0" key={p} variant="p3" md="p2">
             {p}
           </Typography>
         )

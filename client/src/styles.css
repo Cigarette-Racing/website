@@ -99,6 +99,10 @@ Utilities
   writing-mode: vertical-lr;
 }
 
+.writing-mode-vertical-alt {
+  writing-mode: vertical-rl;
+}
+
 .h-screen-w {
   height: 100vw;
 }
