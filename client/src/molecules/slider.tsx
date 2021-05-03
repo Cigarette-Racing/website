@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
-import { SliderBlock } from '../types/boat'
+import { SliderBlock } from '../types/common'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import {
   CarouselButtons,
@@ -143,8 +143,8 @@ export const Slider = ({ items, theme }: SliderProps) => {
               <TextBlockComponent
                 key={page}
                 className="my-8 md:my-0 px-4 mb-20 md:w-10/12"
-                header={items?.[itemIndex].content.header}
-                copy={items?.[itemIndex].content.copy}
+                header={items?.[itemIndex]?.content?.header}
+                copy={items?.[itemIndex]?.content?.copy}
               />
             </motion.div>
           </AnimatePresence>

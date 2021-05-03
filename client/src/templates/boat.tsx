@@ -6,22 +6,22 @@ import { InPageNav, InPageAnchor } from '../molecules/in-page-nav'
 import {
   BoatHeader,
   BoatSection,
+  MoreDetailsBlockComponent,
   OrderSectionComponent,
   PowertrainSectionComponent,
 } from './boat.components'
 import {
-  extractFlexibleSectionsFromCraft,
   createCarouselItems,
-  MobileSectionHeader,
-  VerticalHeaderBlock,
-  SideBleedImage,
-  TwoUpImageBlock,
-  ThreeUpImageBlock,
-  OneColumnTextBlockComponent,
-  TwoColumnImageTextBlockComponent,
-  OneColumnImageTextBlockComponent,
+  extractFlexibleSectionsFromCraft,
   HorizontalImageTextBlockComponent,
-  MoreDetailsBlockComponent,
+  MobileSectionHeader,
+  OneColumnImageTextBlockComponent,
+  OneColumnTextBlockComponent,
+  SideBleedImage,
+  ThreeUpImageBlock,
+  TwoColumnImageTextBlockComponent,
+  TwoUpImageBlock,
+  VerticalHeaderBlock,
 } from './common.components'
 import { CustomizationsSectionComponent } from './boat/customizations-section-component'
 import { DiscoverSection } from './boat/discover-section'
@@ -29,16 +29,16 @@ import SpecsAndFeaturesSection from '../components/specsAndFeatures/Specificatio
 import { isPowertrainBlock, isMoreDetailsBlock } from '../types/boat'
 import {
   getFlexibleSections,
-  isTwoColumnImageTextBlock,
-  isOneColumnTextBlock,
-  isCarouselBlock,
-  isTwoColumnImagesBlock,
-  isThreeColumnImagesBlock,
-  isSliderBlock,
-  isFullWidthCarouselBlock,
-  isOneColumnImageTextBlock,
-  isHorizontalImageTextBlock,
   HorizontalImageTextBlock,
+  isCarouselBlock,
+  isFullWidthCarouselBlock,
+  isHorizontalImageTextBlock,
+  isOneColumnImageTextBlock,
+  isOneColumnTextBlock,
+  isSliderBlock,
+  isThreeColumnImagesBlock,
+  isTwoColumnImagesBlock,
+  isTwoColumnImageTextBlock,
 } from '../types/common'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'

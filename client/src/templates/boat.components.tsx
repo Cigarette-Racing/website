@@ -12,16 +12,13 @@ import { VerticalHeader } from '../atoms/vertical-header'
 import { ScrollPrompter } from '../molecules/header'
 import { VerticalLabel } from '../atoms/vertical-label'
 import {
-  Stat,
   Media,
-  SpecsSection,
   TwoColumnImageTextBlock,
   OneColumnTextBlock,
   OneColumnImageTextBlock,
-  OrderSection,
-  Spec,
   HorizontalImageTextBlock,
-} from '../types/boat'
+} from '../types/common'
+import { Stat, SpecsSection, OrderSection, Spec } from '../types/boat'
 import { Tab } from '../atoms/tab'
 import { AnimatePresence, motion, useViewportScroll } from 'framer-motion'
 import { useToggle } from 'react-use'

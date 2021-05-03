@@ -8,30 +8,30 @@ import FormatTextBlob from '../services/text-formatter'
 import { ExternalLinkIcon } from '../svgs/icons'
 import { ContentEntry } from '../templates/common.components'
 import {
-  GenericSection,
   Categories,
-  extractFlexibleSectionsFromCraft,
   createCarouselItems,
-  SideBleedImage,
-  TwoUpImageBlock,
-  ThreeUpImageBlock,
-  OneColumnTextBlockComponent,
-  TwoColumnImageTextBlockComponent,
-  OneColumnImageTextBlockComponent,
+  extractFlexibleSectionsFromCraft,
+  GenericSection,
   HorizontalImageTextBlockComponent,
+  OneColumnImageTextBlockComponent,
+  OneColumnTextBlockComponent,
+  SideBleedImage,
+  ThreeUpImageBlock,
+  TwoColumnImageTextBlockComponent,
+  TwoUpImageBlock,
 } from './common.components'
 import {
   getFlexibleSections,
-  isTwoColumnImageTextBlock,
-  isOneColumnTextBlock,
-  isTwoColumnImagesBlock,
-  isThreeColumnImagesBlock,
-  isOneColumnImageTextBlock,
+  HorizontalImageTextBlock,
   isCarouselBlock,
-  isSliderBlock,
   isFullWidthCarouselBlock,
   isHorizontalImageTextBlock,
-  HorizontalImageTextBlock,
+  isOneColumnImageTextBlock,
+  isOneColumnTextBlock,
+  isSliderBlock,
+  isThreeColumnImagesBlock,
+  isTwoColumnImagesBlock,
+  isTwoColumnImageTextBlock,
 } from '../types/common'
 import { Carousel } from '../molecules/carousel'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'

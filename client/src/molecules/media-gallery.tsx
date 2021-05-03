@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
-import { GallerySection, GalleryMedia } from '../types/boat'
+import { GallerySection, GalleryMedia } from '../types/common'
 import {
   BoatSection,
   MobileSectionHeader,

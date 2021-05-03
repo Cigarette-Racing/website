@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
-import { CarouselBlock } from '../types/boat'
+import { CarouselBlock } from '../types/common'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import {
   CarouselButtons,
