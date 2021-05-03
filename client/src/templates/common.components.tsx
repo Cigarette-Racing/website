@@ -1,17 +1,21 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Link } from 'gatsby'
 import { Typography } from '../atoms/typography'
-import { InPageCta } from '../atoms/in-page-cta'
 import { Theme } from '../types/shared'
 import clsx from 'clsx'
+import {
+  FullBleedImageBlock,
+  HorizontalImageTextBlock,
+  OneColumnImageTextBlock,
+  OneColumnTextBlock,
+  TwoColumnImageTextBlock,
+} from '../types/common'
+import { AngleIcon, ArrowIcon, CaretDownIcon } from '../svgs/icons'
 import SEO from '../components/seo'
-import { ArrowIcon, CaretDownIcon, CaretUpIcon, AngleIcon } from '../svgs/icons'
 import { CircleButton } from '../atoms/circle-button'
 import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
 import { VerticalHeader } from '../atoms/vertical-header'
 import { VerticalLabel } from '../atoms/vertical-label'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useToggle } from 'react-use'
 import { AutoplayVideo } from '../atoms/autoplay-video'
 import Select, { components } from 'react-select'
 
@@ -24,6 +28,7 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
     threeColumnImagesBlock: 'three-column-images',
     sliderBlock: 'slider',
     carousel: 'carousel',
+    fullBleedImage: 'full-bleed-image',
     fullWidthCarousel: 'full-width-carousel',
     horizontalImageText: 'horizontal-image-text',
     powertrainOptions: 'powertrain',
@@ -48,9 +53,9 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
           source: 'craft',
           blockPosition: getBlockPosition(),
           type:
-            block.typeHandle === 'carousel' && block.fullWidth
+            block?.typeHandle === 'carousel' && block.fullWidth
               ? 'full-width-carousel'
-              : blockTypes[block.typeHandle as keyof typeof blockTypes],
+              : blockTypes[block?.typeHandle as keyof typeof blockTypes],
         }
       }
     )
@@ -179,6 +184,14 @@ export const CarouselButtons = ({
       aria-label="Next"
     />
   </div>
+)
+
+export const FullBleedImage = ({ image, alt = 'full bleed image' }) => (
+  <img
+    src={image?.[0].url}
+    className={clsx('h-full w-full object-cover')}
+    alt={alt || ''}
+  />
 )
 
 export const ImageWithLabel = ({
@@ -839,72 +852,6 @@ export const HorizontalImageTextBlockComponent = ({
         })}
       >
         {layout === 'imageOnLeft' ? text : image}
-      </div>
-    </div>
-  )
-}
-
-export const MoreDetailsBlockComponent = ({ buttonText, details }: any) => {
-  const [isOpen, toggleIsOpen] = useToggle(false)
-  return (
-    <div data-block-type="MoreDetailsBlockComponent">
-      <div className="flex justify-center mb-10 md:mb-20">
-        <InPageCta
-          variant="secondary"
-          onClick={() => {
-            toggleIsOpen()
-          }}
-        >
-          <span className="flex items-center group">
-            {isOpen ? (
-              <CaretUpIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
-            ) : (
-              <CaretDownIcon className="inline-block text-red mr-2 text-lg group-hover:text-white" />
-            )}
-            <span>{buttonText}</span>
-          </span>
-        </InPageCta>
-      </div>
-      <div className="overflow-hidden mb-10">
-        <AnimatePresence initial={false}>
-          {isOpen && (
-            <motion.div
-              key="descriptions"
-              initial="collapsed"
-              animate="open"
-              exit="collapsed"
-              variants={{
-                open: { opacity: 1, height: 'auto' },
-                collapsed: { opacity: 0, height: 0 },
-              }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            >
-              <div>
-                {details.map((child: any, index: number) => {
-                  const extractedBlock: HorizontalImageTextBlock = {
-                    type: 'horizontal-image-text',
-                    layout: child.layout,
-                    content: {
-                      header: child.header as string,
-                      copy: child.copy as string,
-                    },
-                    media: {
-                      image: {
-                        publicURL: child.image as string,
-                      },
-                    },
-                  }
-                  return (
-                    <HorizontalImageTextBlockComponent
-                      key={`${child.header} - ${index}`}
-                      {...extractedBlock}
-                    />
-                  )
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </div>
   )

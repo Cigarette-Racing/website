@@ -35,11 +35,15 @@ const ExploreOurWorld = ({ items }: { items: ExploreContentItem[] }) => {
                   />
                 </AspectRatio>
               </div>
+
               <div className="flex justify-between items-center mb-4 px-4 md:px-0">
                 <Typography variant="h3" md="h3">
                   {item.title}
                 </Typography>
-                <CircleButton icon={ArrowIcon} />
+                <CircleButton
+                  style={{ backgroundColor: '#232323' }}
+                  icon={ArrowIcon}
+                />
               </div>
               <Typography variant="p3" className="px-4 md:px-0">
                 {item.text}

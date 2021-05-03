@@ -67,8 +67,19 @@ export function isOneColumnTextBlock(
   return block.type === 'one-column-text'
 }
 
+export type FullBleedImageBlock = {
+  type: 'full-bleed-image'
+} & Media
+
+export function isFullBleedImageBlock(
+  block: Block
+): block is FullBleedImageBlock {
+  return block.type === 'full-bleed-image'
+}
+
 export type OneColumnImageTextBlock = {
   type: 'one-column-image-text'
+  align: string
 } & ImageWithText
 
 export function isOneColumnImageTextBlock(
@@ -155,6 +166,7 @@ export function isHorizontalImageTextBlock(
 
 type Block =
   | OneColumnTextBlock
+  | FullBleedImageBlock
   | OneColumnImageTextBlock
   | TwoColumnImageTextBlock
   | TwoColumnImagesBlock
