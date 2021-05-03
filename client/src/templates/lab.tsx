@@ -44,8 +44,8 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
     },
   } = props
 
-  const relatedLabs = allLabs.filter((labEntry) => {
-    return labEntry.id != allLabs.id
+  const relatedLabs = allLabs.filter((entry) => {
+    return entry.id != labEntry.id
   })
 
   const flexData = getFlexibleSections(
@@ -224,28 +224,30 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
                 }
                 return null
               })}
-            <div>
-              <Typography className="px-4 mt-20 mb-5" variant="h3" md="h2">
-                More Stories
-              </Typography>
-              <div className="overflow-scroll">
-                <div
-                  className="relatedArticles grid grid-cols-3 gap-6 px-4"
-                  style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
-                >
-                  {relatedLabs.slice(0, 3).map((lab) => {
-                    return (
-                      <ContentEntry
-                        entryType="labs"
-                        key={lab.id}
-                        entry={lab}
-                        hierarchy="tertiary"
-                      />
-                    )
-                  })}
+            {!!relatedLabs.length && (
+              <div>
+                <Typography className="px-4 mt-20 mb-5" variant="h3" md="h2">
+                  More Stories
+                </Typography>
+                <div className="overflow-scroll">
+                  <div
+                    className="relatedArticles grid grid-cols-3 gap-6 px-4"
+                    style={{ width: `${isMobile ? '270vw' : 'auto'} ` }}
+                  >
+                    {relatedLabs.slice(0, 3).map((lab) => {
+                      return (
+                        <ContentEntry
+                          entryType="labs"
+                          key={lab.id}
+                          entry={lab}
+                          hierarchy="tertiary"
+                        />
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </GenericSection>
         )
       )}

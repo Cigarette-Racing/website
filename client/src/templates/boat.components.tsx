@@ -140,6 +140,7 @@ export const BoatHeader = ({
 export const BoatSection: React.FC<{
   theme?: Theme
   className?: string
+  style?: object
 }> = ({ children, className, theme = 'light', ...rest }) => (
   <section
     className={clsx(

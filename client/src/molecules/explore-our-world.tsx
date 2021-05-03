@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Typography } from '../atoms/typography'
-import clsx from 'clsx'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { CircleButton } from '../atoms/circle-button'
 import { ArrowIcon } from '../svgs/icons'
@@ -16,10 +15,14 @@ export interface ExploreContentItem {
 const ExploreOurWorld = ({ items }: { items: ExploreContentItem[] }) => {
   return (
     <div data-component="ExploreOurWorld">
-      <Typography variant="h3" className="mb-4">
+      <Typography
+        variant="h2"
+        md="h3"
+        className="mb-4 px-4 md:px-0 text-center md:text-left"
+      >
         Explore Our World
       </Typography>
-      <div className="grid-cols-3 grid col-gap-6 grid-flow-row">
+      <div className="grid-cols-1 md:grid-cols-3 grid col-gap-6 grid-flow-row">
         {items.map((item) => (
           <Link to={item.url} className="block w-full">
             <div className="pt-5 flex flex-col h-full">
@@ -32,13 +35,19 @@ const ExploreOurWorld = ({ items }: { items: ExploreContentItem[] }) => {
                   />
                 </AspectRatio>
               </div>
-              <div className="flex justify-between items-center mb-4">
+
+              <div className="flex justify-between items-center mb-4 px-4 md:px-0">
                 <Typography variant="h3" md="h3">
                   {item.title}
                 </Typography>
-                <CircleButton style={{backgroundColor: '#232323'}} icon={ArrowIcon} />
+                <CircleButton
+                  style={{ backgroundColor: '#232323' }}
+                  icon={ArrowIcon}
+                />
               </div>
-              <Typography variant="p3">{item.text}</Typography>
+              <Typography variant="p3" className="px-4 md:px-0">
+                {item.text}
+              </Typography>
             </div>
           </Link>
         ))}

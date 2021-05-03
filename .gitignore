@@ -11,5 +11,5 @@ backend/templates/*
 backend/translations/*
 backend/mysql_config.cnf
 
-# Mac specific files
+# OSX Specific
 .DS_Store

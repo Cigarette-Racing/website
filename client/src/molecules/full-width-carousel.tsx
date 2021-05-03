@@ -28,7 +28,7 @@ const animations = {
 }
 export interface FullWidthCarouselProps
   extends Omit<FullWidthCarouselBlock, 'type'> {
-  blockPosition: 'first' | 'middle' | 'last'
+  blockPosition?: 'first' | 'middle' | 'last'
 }
 
 export const FullWidthCarousel = ({
@@ -53,6 +53,7 @@ export const FullWidthCarousel = ({
         'mb-32 lg:mb-48 middle': blockPosition === 'middle',
         '-mb-12 last': blockPosition === 'last',
       })}
+      data-component="FullWidthCarousel"
     >
       <AspectRatio ratio="2:1">
         <AnimatePresence>
@@ -82,7 +83,7 @@ export const FullWidthCarousel = ({
             ) : (
               <img
                 src={`${media?.image}?q=30&w=2000`}
-                className="pointer-events-none"
+                className="pointer-events-none h-full w-full object-cover"
               />
             )}
           </motion.div>

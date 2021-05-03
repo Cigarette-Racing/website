@@ -61,6 +61,7 @@ export const extractFlexibleSectionsFromCraft = (entry: any) => {
     )
 
     return {
+      id: entry?.id,
       type: 'flexible',
       title: section.title,
       theme: section.theme,
@@ -261,16 +262,22 @@ export const SideBleedImage = ({
 }
 
 export const CategoryFilter = ({
+  className,
   categories,
+  placeholder,
   setFilterCategory,
   filterCategory,
+  theme,
 }) => {
+  console.log(theme)
+
   return (
     <Fragment>
       <DropdownNav
-        className="md:hidden"
-        placeholder="Explore _Labs"
+        className={`md:hidden ${className}`}
+        placeholder={placeholder}
         options={categories}
+        theme={theme}
         onChange={(option) => {
           setFilterCategory(option)
         }}
@@ -465,12 +472,11 @@ export const ContentEntry = ({
 
   return (
     <Fragment>
-      {console.log(entry)}
       {isPrimary && (
         <Link
           to={`${entry.slug}`}
           className={clsx(
-            `block border-solid border-t md:pt-16`,
+            `primary block border-solid border-t md:pt-16`,
             { 'border-gray-1': theme === 'dark' },
             { 'border-gray-5': theme === 'light' },
             className
@@ -494,7 +500,12 @@ export const ContentEntry = ({
                 categories={entry.articleCategories}
               />
               <div className="text-center px-3">
-                <Typography className="mb-4" variant="h4" sm="h3" md="h1">
+                <Typography
+                  className="mb-4 max-w-5xl m-auto"
+                  variant="h4"
+                  sm="h3"
+                  md="h1"
+                >
                   {entry.title}
                 </Typography>
                 <Typography
@@ -517,7 +528,7 @@ export const ContentEntry = ({
         <Link
           to={`${entry.slug}`}
           className={clsx(
-            'block border-solid border-t',
+            'secondary block border-solid border-t',
             { 'border-gray-1': theme === 'dark' },
             { 'border-gray-5': theme === 'light' }
           )}
@@ -554,7 +565,7 @@ export const ContentEntry = ({
             >
               <Categories
                 align="left"
-                className="mb-3"
+                className="mb-3 flex justify-center md:justify-start md:pl-1"
                 categories={entry.articleCategories}
               />
               <div className="text-center md:text-left px-3">
@@ -580,7 +591,7 @@ export const ContentEntry = ({
       {isTertiary && (
         <Link
           to={`/${entryType}/${entry.slug}`}
-          className={clsx('block', className)}
+          className={clsx('tertiary block', className)}
           data-type="tertiary link"
         >
           <div className="pt-5 flex flex-col h-full">
@@ -608,7 +619,7 @@ export const ContentEntry = ({
                 <div>
                   <Categories
                     align="left"
-                    className="mb-3"
+                    className="mb-3 transform -translate-x-2"
                     categories={entry.articleCategories}
                   />
                   <Typography className="mb-10" variant="h5" md="h4">
@@ -641,7 +652,7 @@ export const ContentEntry = ({
 export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
   return (
     <div>
-      {!!entries.length ? (
+      {!!entries.length &&
         entries.map((articleEntry: any, i: number) => (
           <ContentEntry
             entryType={entryType}
@@ -651,10 +662,7 @@ export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
             hierarchy="secondary"
             theme={theme}
           />
-        ))
-      ) : (
-        <div>No Entries</div>
-      )}
+        ))}
     </div>
   )
 }
@@ -674,9 +682,9 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
           theme={theme}
         />
       </div>
-      <div className="nextTwo">
-        {!!nextTwoEntries.length ? (
-          nextTwoEntries.map((articleEntry: any, i: number) => (
+      {!!nextTwoEntries.length && (
+        <div className="nextTwo">
+          {nextTwoEntries.map((articleEntry: any, i: number) => (
             <ContentEntry
               entryType={entryType}
               hierarchy="secondary"
@@ -685,20 +693,18 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
               entry={articleEntry}
               theme={theme}
             />
-          ))
-        ) : (
-          <div>No Entries</div>
-        )}
-      </div>
-      <div
-        className={clsx(
-          `remaining grid grid-cols-2 col-gap-4 lg:grid-cols-3 lg:col-gap-6 border-solid border-t`,
-          { 'border-gray-1': theme === 'dark' },
-          { 'border-gray-5': theme === 'light' }
-        )}
-      >
-        {!!remainingEntries.length ? (
-          remainingEntries.map((articleEntry: any, i: number) => (
+          ))}
+        </div>
+      )}
+      {!!remainingEntries.length && (
+        <div
+          className={clsx(
+            `remaining grid grid-cols-2 col-gap-4 lg:grid-cols-3 lg:col-gap-6 border-solid border-t`,
+            { 'border-gray-1': theme === 'dark' },
+            { 'border-gray-5': theme === 'light' }
+          )}
+        >
+          {remainingEntries.map((articleEntry: any, i: number) => (
             <ContentEntry
               entryType={entryType}
               hierarchy="tertiary"
@@ -706,11 +712,9 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
               index={i}
               entry={articleEntry}
             />
-          ))
-        ) : (
-          <div>No Entries</div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </Fragment>
   )
 }
@@ -922,13 +926,15 @@ export const TextBlockComponent = ({
   className = '',
   copy,
   header,
+  headerClassname = '',
 }: {
   className?: string
   header: string
+  headerClassname?: string
   copy: string
 }) => (
   <div className={className} data-block-type="TextBlockComponent">
-    <Typography variant="e2" className="mb-4">
+    <Typography variant="e2" className={`mb-4 ${headerClassname}`}>
       {header}
     </Typography>
     {copy
@@ -936,7 +942,7 @@ export const TextBlockComponent = ({
       ?.filter(Boolean)
       .map((p) => {
         return (
-          <Typography className="mb-4 last:mb-0" key={p} variant="p2">
+          <Typography className="mb-4 last:mb-0" key={p} variant="p3" md="p2">
             {p}
           </Typography>
         )
