@@ -59,7 +59,11 @@ const NewsArticlesPage = (
           <span>{landingPageTitle}</span>
         </div>
         <div className="px-4 max-w-screen-xl m-auto">
-          <Typography className="mb-24" variant="p3">
+          <Typography
+            className="mb-24 md:text-center max-w-2xl"
+            variant="p3"
+            md="p1"
+          >
             {LandingPage.articleExcerpt}
           </Typography>
           <CategoryFilter

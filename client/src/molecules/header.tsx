@@ -56,7 +56,7 @@ type LinkItem = {
 
 const leftLinks: LinkItem[] = [
   { text: 'Boats', section: 'boats' },
-  { text: 'Our world' },
+  { text: 'Our world', section: 'our world' },
   // { text: 'The Difference' },
 ]
 const rightLinks: LinkItem[] = [
@@ -296,6 +296,7 @@ function MobileMenu({
       isOpen={isMenuOpen}
       className={{ base: 'absolute inset-0', afterOpen: '', beforeClose: '' }}
       overlayClassName="fixed inset-0 z-40"
+      shouldCloseOnEsc={true}
       onRequestClose={() => setIsMenuOpen(false)}
     >
       <div

@@ -256,8 +256,6 @@ export const CategoryFilter = ({
   filterCategory,
   theme,
 }) => {
-  console.log(theme)
-
   return (
     <Fragment>
       <DropdownNav
@@ -501,11 +499,13 @@ export const ContentEntry = ({
                 >
                   {entry.articleExcerpt}
                 </Typography>
-                <Typography variant="e3" className="date text-gray-4 mb-8">
-                  {`${
-                    date.getMonth() + 1
-                  }.${date.getDate()}.${date.getFullYear()}`}
-                </Typography>
+                {!!entry.dateCreated && (
+                  <Typography variant="e3" className="date text-gray-4 mb-8">
+                    {`${
+                      date.getMonth() + 1
+                    }.${date.getDate()}.${date.getFullYear()}`}
+                  </Typography>
+                )}
               </div>
             </div>
           </div>

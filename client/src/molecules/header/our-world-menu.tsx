@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Modal from 'react-modal'
+import styled from 'styled-components'
 import { PageProps, graphql, Link } from 'gatsby'
 import { ReturnLink } from '../../atoms/return-link'
 import { Typography } from '../../atoms/typography'
 import { Underline } from './../../pages/labs'
+import ourworldBg from '../../images/ourworld_BG.jpg'
 import our_world_1969 from '../../images/1969.jpg'
 import our_world_news from '../../images/news.jpg'
 import our_world_labs from '../../images/labs.jpg'
@@ -38,6 +40,23 @@ const our_world_sections = [
   },
 ]
 
+const MenuLink = styled(Link)`
+  &:hover {
+    opacity: 1;
+  }
+`
+
+const Menu = styled.div`
+  &:hover {
+    ${MenuLink} {
+      opacity: 0.3;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+`
+
 export const OurWorldMenu = ({
   isVisible,
   onReset,
@@ -48,8 +67,10 @@ export const OurWorldMenu = ({
   return (
     <Modal
       isOpen={isVisible}
+      shouldCloseOnEsc={true}
+      onRequestClose={onReset}
       className={{
-        base: 'absolute inset-0',
+        base: 'absolute inset-0 overflow-scroll',
         afterOpen: '',
         beforeClose: '',
       }}
@@ -59,31 +80,36 @@ export const OurWorldMenu = ({
       <div className="md:hidden h-16 flex items-center">
         <ReturnLink>Back</ReturnLink>
       </div>
-      <div className="pt-20 min-h-screen h-full px-10 bg-black">
-        <div className="pt-24 grid grid-cols-2 h-full">
+      <div
+        className="pt-20 min-h-screen px-10 bg-black bg-opacity-75"
+        style={{
+          backgroundImage: `linear-gradient(to right, rgba(0,0,0, .1) 25%, rgba(0,0,0,1)), url(${ourworldBg})`,
+        }}
+      >
+        <Menu className="pt-24 grid grid-cols-2 h-full pb-16">
           {our_world_sections.map((section) => {
             return (
-              <Link
+              <MenuLink
                 key={section.url}
                 to={section.url}
                 onClick={() => onReset()}
-                className="flex flex-col justify-start items-start px-3"
+                className="flex flex-col justify-start items-start px-3 pb-10 transition-opacity duration-150"
               >
                 <img src={section.hero} alt="" />
                 {section.name === 'Labs' ? (
                   <LabsTitle />
                 ) : (
-                  <Typography variant="h2" className="text-white mt-4">
+                  <Typography variant="h2" className="text-white mt-4 mb-4">
                     {section.name}
                   </Typography>
                 )}
-                <Typography variant="p2" className="text-white">
+                <Typography variant="p2" className="text-white max-w-sm">
                   {section.headline}
                 </Typography>
-              </Link>
+              </MenuLink>
             )
           })}
-        </div>
+        </Menu>
       </div>
     </Modal>
   )
@@ -91,10 +117,10 @@ export const OurWorldMenu = ({
 
 const LabsTitle = () => {
   return (
-    <div className="flex items-baseline">
+    <div className="flex items-baseline mb-4 mt-4">
       <Underline className="bg-red" />
-      <Typography variant="h2" className="text-white mt-4">
-        Labs
+      <Typography variant="h2" className="text-white">
+        labs
       </Typography>
     </div>
   )
