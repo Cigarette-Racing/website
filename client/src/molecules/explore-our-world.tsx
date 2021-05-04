@@ -24,7 +24,7 @@ const ExploreOurWorld = ({ items }: { items: ExploreContentItem[] }) => {
       </Typography>
       <div className="grid-cols-1 md:grid-cols-3 grid col-gap-6 grid-flow-row">
         {items.map((item) => (
-          <Link to={item.url} className="block w-full">
+          <Link key={item.title} to={item.url} className="block w-full">
             <div className="pt-5 flex flex-col h-full">
               <div className="mb-10">
                 <AspectRatio ratio="1:1">
