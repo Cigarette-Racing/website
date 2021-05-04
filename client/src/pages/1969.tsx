@@ -377,7 +377,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
         </Section>
         <Section className="exploreOurWorld" theme="dark">
           <div className="relative max-w-7xl mx-auto">
-            <div className="border-t border-gray-2 mb-24 pt-8">
+            <div className="mb-24 pt-8">
               <ExploreOurWorld items={exploreOurWorldContent} />
             </div>
           </div>
