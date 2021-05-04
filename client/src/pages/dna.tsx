@@ -296,21 +296,25 @@ const OurWorldDNA = (props) => {
       </Section>
       <Section className="madeAndCrafted pt-0 lg:pt-24" theme="dark">
         <div className="relative grid grid-cols-2 lg:mt-64 max-w-7xl mx-auto flex-col items-center">
-          {/* <div className="relative flex max-w-7xl mx-auto flex-col items-center"> */}
-          <img className="lg:row-span-2" src={dnaMadeCraftedHeaderBg.url} />
+          <div className="lg:row-span-2 overflow-hidden flex justify-center">
+            <img
+              className="dnaMadeCraftedHeaderBg max-w-sm"
+              src={dnaMadeCraftedHeaderBg.url}
+            />
+          </div>
           <VerticalHeader
             line1="Made &"
             line2="Crafted"
             className="absolute top-0 right-0 mt-12 mr-4 lg:mr-12 lg:-top-3/12 lg:-mt-12"
           />
-          <div className="lg:absolute col-span-2 w-5/6 top-0 mx-auto -mt-8 sm:-mt-16 md:-mt-24 lg:mt-0 lg:w-1/2 lg:left-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2">
+          <div className="dnaMadeCraftedHeader lg:absolute col-span-2 w-5/6 top-0 mx-auto -mt-32 sm:-mt-16 md:-mt-24 lg:mt-0 lg:w-1/2 lg:left-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2">
             <img
               src={dnaMadeCraftedHeader.url}
               // className="max-w-xl h-auto"
               alt=""
             />
           </div>
-          <div className="px-4 md:px-24 mt-24 lg:mt-48 lg:pt-64 col-span-2 lg:col-span-1 flex justify-center lg:block">
+          <div className="px-4 md:px-24 mt-20 lg:mt-48 lg:pt-64 col-span-2 lg:col-span-1 flex justify-center lg:block">
             <OneColumnTextBlockComponent {...content.madeAndCrafted} />
           </div>
           {/* <div className="lg:flex items-center mt-64 pt-8">
@@ -323,8 +327,8 @@ const OurWorldDNA = (props) => {
             text1="Truly"
             text2="Yours"
             theme="dark"
-            className="lg:self-start text-3xl sm:text-5xl lg:text-11xl px-12"
-            staggerDistance="tight"
+            className="lg:self-start text-5xl sm:text-5xl lg:text-11xl px-12"
+            // staggerDistance="tight"
             style={{
               backgroundImage: `url(${dnaTrulyYours.url})`,
               backgroundPosition: '25% 15%',
@@ -361,18 +365,21 @@ const OurWorldDNA = (props) => {
           1969
         </div>
         <OneColumnTextBlockComponent {...content['1969']} align="center" />
-        <div className="flex justify-center -mt-8 mb-32">
+        {/* <div className="flex justify-center -mt-8 mb-32">
           <Link to="/1969">
             <InPageCta variant="secondary">Explore Our Heritage</InPageCta>
           </Link>
-        </div>
+        </div> */}
       </Section>
       <Section className="experience" theme="dark">
         <div className="font-heading font-light uppercase tracking-heading leading-none text-center text-3xl sm:text-5xl md:text-7xl">
           <div className="text-red">The Experience</div>
-          <div className="text-white">You Deserve</div>
+          <div className="text-white">
+            You
+            <br className="md:hidden" /> Deserve
+          </div>
         </div>
-        <div className="my-24">
+        <div className="mt-10 mb-16">
           <FullWidthCarousel
             items={[{ media: { image: dnaExperience1.url } }]}
           />
@@ -381,7 +388,7 @@ const OurWorldDNA = (props) => {
       </Section>
       <Section className="exploreOurWorld" theme="dark">
         <div className="relative max-w-7xl mx-auto md:px-16">
-          <div className="border-t border-gray-2 mb-24 pt-8">
+          <div className="md:mb-24">
             <ExploreOurWorld items={exploreOurWorldContent} />
           </div>
         </div>
@@ -429,7 +436,7 @@ export const query = graphql`
       dnaMadeCraftedHeaderBg: asset(filename: "dna-made-in-the-usa-bg.jpg") {
         url
       }
-      dnaTrulyYours: asset(filename: "dna-truly-yours.png") {
+      dnaTrulyYours: asset(filename: "Personalization-boat.png") {
         url
       }
       dnaLegacyBg: asset(filename: "dna-legacy-bg.jpg") {

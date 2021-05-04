@@ -4,6 +4,7 @@ import { Typography } from '../atoms/typography'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { CircleButton } from '../atoms/circle-button'
 import { ArrowIcon } from '../svgs/icons'
+import labsTitleSVG from '../images/labs-title.svg'
 
 export interface ExploreContentItem {
   image: string
@@ -15,19 +16,22 @@ export interface ExploreContentItem {
 const ExploreOurWorld = ({ items }: { items: ExploreContentItem[] }) => {
   return (
     <div data-component="ExploreOurWorld">
-      <Typography
-        variant="h2"
-        md="h3"
-        className="mb-4 px-4 md:px-0 text-center md:text-left"
-      >
-        Explore Our World
-      </Typography>
+      <div className="px-4">
+        <hr className="border-t border-gray-2 pt-10 " />
+        <Typography
+          variant="h2"
+          md="h3"
+          className="mb-16 px-12 md:px-0 text-center md:text-left"
+        >
+          Explore Our World
+        </Typography>
+      </div>
       <div className="grid-cols-1 md:grid-cols-3 grid col-gap-6 grid-flow-row">
         {items.map((item) => (
           <Link key={item.title} to={item.url} className="block w-full">
             <div className="pt-5 flex flex-col h-full">
-              <div className="mb-10">
-                <AspectRatio ratio="1:1">
+              <div className="mb-10 order-2">
+                <AspectRatio ratio="3:2">
                   <img
                     className="absolute h-full w-full object-cover"
                     src={item.image}
@@ -35,19 +39,23 @@ const ExploreOurWorld = ({ items }: { items: ExploreContentItem[] }) => {
                   />
                 </AspectRatio>
               </div>
-
-              <div className="flex justify-between items-center mb-4 px-4 md:px-0">
-                <Typography variant="h3" md="h3">
-                  {item.title}
+              <div className="copy order-1 mb-8">
+                <div className="flex justify-between items-center mb-4 px-4 md:px-0">
+                  <Typography variant="h2" md="h2">
+                    {item.title}
+                  </Typography>
+                  <CircleButton
+                    style={{ backgroundColor: '#232323' }}
+                    icon={ArrowIcon}
+                  />
+                </div>
+                <Typography
+                  variant="p3"
+                  className="pl-4 pr-16 md:px-0 text-gray-4"
+                >
+                  {item.text}
                 </Typography>
-                <CircleButton
-                  style={{ backgroundColor: '#232323' }}
-                  icon={ArrowIcon}
-                />
               </div>
-              <Typography variant="p3" className="px-4 md:px-0">
-                {item.text}
-              </Typography>
             </div>
           </Link>
         ))}
