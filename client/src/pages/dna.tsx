@@ -10,7 +10,6 @@ import clsx from 'clsx'
 import { TextBlockComponent } from '../templates/common.components'
 import content from './dna.json'
 import { OneColumnTextBlock } from '../types/common'
-import { InPageCta } from '../atoms/in-page-cta'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 
 const Section: React.FC<{
@@ -36,6 +35,7 @@ const Section: React.FC<{
 
 const StaggeredHeader = ({
   className,
+  centered = true,
   style,
   text1,
   text2,
@@ -43,16 +43,20 @@ const StaggeredHeader = ({
   staggerDistance = 'normal',
 }: {
   className?: string
+  centered: boolean
   style?: React.CSSProperties
   text1: string
   text2: string
   theme?: Theme
   staggerDistance?: string
 }) => {
+  console.log(centered)
+
   return (
     <div
       className={clsx(
-        'text-center lg:text-left font-heading font-light uppercase tracking-heading leading-none -mb-8 md:-mb-16 lg:-mb-32 relative z-10',
+        'font-heading font-light uppercase tracking-heading leading-none -mb-8 md:-mb-16 relative z-10',
+        { 'lg:text-left lg:-mb-32 text-center ': centered },
         className
       )}
       style={style}
@@ -70,6 +74,7 @@ const StaggeredHeader = ({
         className={clsx({
           'lg:ml-56': staggerDistance === 'normal',
           'lg:ml-32': staggerDistance === 'tight',
+          'ml-12 pl-1': centered === false,
           'text-white': theme === 'dark',
           'text-black': theme === 'light',
         })}
@@ -165,7 +170,7 @@ const OurWorldDNA = (props) => {
   const exploreOurWorldContent = [
     {
       image: exploreOurWorld1[0].url,
-      title: '_labs',
+      title: 'labs',
       url: '/labs',
       text:
         'Enter Cigarette Racing’s industry leading processes, research, and development.',
@@ -298,7 +303,7 @@ const OurWorldDNA = (props) => {
         <div className="relative grid grid-cols-2 lg:mt-64 max-w-7xl mx-auto flex-col items-center">
           <div className="lg:row-span-2 overflow-hidden flex justify-center">
             <img
-              className="dnaMadeCraftedHeaderBg max-w-sm"
+              className="dnaMadeCraftedHeaderBg max-w-sm md:max-w-full"
               src={dnaMadeCraftedHeaderBg.url}
             />
           </div>
@@ -322,12 +327,13 @@ const OurWorldDNA = (props) => {
         </div>
       </Section>
       <Section className="trulyYours bg-black md:bg-gray-0" theme="none">
-        <div className="relative flex max-w-8xl mx-auto flex-col items-center">
+        <div className="relative flex max-w-8xl mx-auto flex-col items-center mb-6">
           <StaggeredHeader
             text1="Truly"
             text2="Yours"
             theme="dark"
             className="lg:self-start text-5xl sm:text-5xl lg:text-11xl px-12"
+            centered={false}
             // staggerDistance="tight"
             style={{
               backgroundImage: `url(${dnaTrulyYours.url})`,
@@ -341,7 +347,7 @@ const OurWorldDNA = (props) => {
           />
           <img
             src={dnaTrulyYours.url}
-            className="mt-4 sm:mt-8 md:mt-12 lg:mt-16 z-10"
+            className="sm:mt-10 md:mt-12 lg:mt-16 z-10"
             style={{ mixBlendMode: 'lighten' }}
             alt=""
           />
@@ -355,21 +361,14 @@ const OurWorldDNA = (props) => {
           className="w-full object-cover min-h-50vh md:min-h-0 max-h-screen object-top"
         />
         <div
-          className="font-heading font-light text-center leading-none pointer-events-none mb-32 text-huge sm:text-huge2 md:text-huge3 -mt-20 sm:-mt-32 md:-mt-40"
+          className="font-heading font-light text-center leading-none pointer-events-none mb-20 text-huge sm:text-huge2 md:text-huge3 -mt-20 sm:-mt-32 md:-mt-40"
           style={{
-            // fontSize: '340px',
-            // marginTop: '-170px',
             mixBlendMode: 'overlay',
           }}
         >
           1969
         </div>
         <OneColumnTextBlockComponent {...content['1969']} align="center" />
-        {/* <div className="flex justify-center -mt-8 mb-32">
-          <Link to="/1969">
-            <InPageCta variant="secondary">Explore Our Heritage</InPageCta>
-          </Link>
-        </div> */}
       </Section>
       <Section className="experience" theme="dark">
         <div className="font-heading font-light uppercase tracking-heading leading-none text-center text-3xl sm:text-5xl md:text-7xl">

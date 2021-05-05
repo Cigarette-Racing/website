@@ -41,9 +41,14 @@ const ExploreOurWorld = ({ items }: { items: ExploreContentItem[] }) => {
               </div>
               <div className="copy order-1 md:order-2 mb-8">
                 <div className="flex justify-between items-center mb-4 px-4 md:px-0">
-                  <Typography variant="h2" md="h2">
-                    {item.title}
-                  </Typography>
+                  {item.title === 'labs' && (
+                    <img className="max-w-32 pr-2" src={labsTitleSVG} alt="" />
+                  )}
+                  {item.title != 'labs' && (
+                    <Typography variant="h2" md="h2">
+                      {item.title}
+                    </Typography>
+                  )}
                   <CircleButton
                     style={{ backgroundColor: '#232323' }}
                     icon={ArrowIcon}
