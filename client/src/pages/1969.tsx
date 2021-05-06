@@ -276,7 +276,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
         <Section className="relative" data-section="1970">
           <VerticalHeader
             text="1970"
-            className="ml-24 absolute top-0 left-0 pb-20"
+            className="ml-48 pr-2 absolute top-0 left-0 pb-8"
           />
           <div className="max-w-3xl ml-auto mr-40">
             <OneColumnImageTextBlockComponent
@@ -285,7 +285,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               image={flexData[0].blocks[0].singleMedia[0].image[0].url}
             />
           </div>
-          <div className="ml-64">
+          <div className="ml-64 pt-6">
             <Slider items={sliderItems1970s} />
           </div>
         </Section>
