@@ -942,7 +942,7 @@ export const TextBlockComponent = ({
       ?.filter(Boolean)
       .map((p) => {
         return (
-          <Typography className="mb-4 last:mb-0" key={p} variant="p3" md="p2">
+          <Typography className="mb-4 last:mb-0" key={p} variant="p2" md="p2">
             {p}
           </Typography>
         )

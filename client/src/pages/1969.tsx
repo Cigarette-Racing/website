@@ -27,6 +27,7 @@ import {
 
 import { Carousel } from '../molecules/carousel'
 import { Slider } from '../molecules/slider'
+import { Theme } from '../types/shared'
 import {
   getFlexibleSections,
   OneColumnTextBlock,
@@ -45,6 +46,7 @@ import {
 } from '../types/common'
 
 const Section: React.FC<{
+  style?: object
   theme?: Theme | 'red'
   className?: string
 }> = ({ children, className, theme = 'light', ...rest }) => (
@@ -210,7 +212,7 @@ export const OneColumnImageTextBlockComponent = ({
         alt="alt"
         label={imageLabel}
       />
-      <div className="md:flex mt-10 mb-20 md:mb-24 px-4 xl:px-0 ">
+      <div className="md:flex mt-16 mb-20 md:mb-24 px-4 xl:px-0 ">
         <TextBlockComponent
           className="md:w-3/4 text-left max-w-6xl pr-6"
           header={header}
@@ -343,25 +345,26 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               alt="alt"
               label={flexData[0].blocks[0].singleMedia[0].label}
             />
-            <div className="md:flex mt-10 mb-20 md:mb-48 px-4 xl:px-0 ">
+            <div className="md:flex mt-16 mb-20 md:mb-48 px-4 xl:px-0 ">
               <TextBlockComponent
                 className="md:w-3/4 text-left max-w-6xl pr-6"
                 header=""
                 copy={flexData[0].blocks[0].textBlock[0].copy}
               />
             </div>
-            {/* <OneColumnImageTextBlockComponent
-              copy={flexData[0].blocks[0].textBlock[0].copy}
-              imageLabel={flexData[0].blocks[0].singleMedia[0].label}
-              image={flexData[0].blocks[0].singleMedia[0].image[0].url}
-            /> */}
           </div>
 
           <div className="md:ml-64 pt-6">
             <Slider items={sliderItems1970s} />
           </div>
         </Section>
-        <Section className="relative pb-64 mb-12" data-section="1980">
+        <Section
+          className="relative pb-0"
+          data-section="1980"
+          style={{
+            background: 'linear-gradient(190deg, rgb(19,19,19) 25%, #000 25%)',
+          }}
+        >
           <VerticalHeader
             text="1980"
             className="hidden md:block mr-24 absolute top-0 right-0 pb-8"
@@ -377,15 +380,20 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           <div className="md:mx-24 md:px-16">
             <Carousel items={sliderItems1980s} />
           </div>
-          <div className="fullbleed w-full md:mt-48">
-            <img
-              className="w-full"
-              src={flexData[1].blocks[2].image[0].url}
-              alt=""
-            />
+          <div className="fullbleed w-full pt-12 md:mt-48">
+            <AspectRatio ratio="21:9">
+              <img
+                className="absolute h-full w-full object-cover"
+                src={flexData[1].blocks[2].image[0].url}
+                alt=""
+              />
+            </AspectRatio>
           </div>
         </Section>
-        <Section className="relative md:pb-56 mb-16" data-section="1990">
+        <Section
+          className="relative md:pb-56 pt-40 md:pt-64 md:mt-12"
+          data-section="1990"
+        >
           <VerticalHeader
             text="1990"
             className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
@@ -410,13 +418,13 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             }}
           />
         </Section>
-        <Section className="relative pb-48 mb-12" data-section="2000">
+        <Section className="relative pb-16 md:pb-48 mb-12" data-section="2000">
           <VerticalHeader
             text="2000"
             className="hidden md:block mr-24 absolute top-0 right-0 pb-8"
           />
           <MobileHeader text="2000" />
-          <div className="md:max-w-3xl mr-auto md:ml-40  md:mb-56">
+          <div className="md:max-w-3xl mr-auto md:ml-40 md:mb-56">
             <OneColumnImageTextBlockComponent
               copy={flexData[3].blocks[0].textBlock[0].copy}
               image={flexData[3].blocks[0].singleMedia[0].image[0].url}
@@ -425,25 +433,41 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           <div className="md:mx-24 md:px-16">
             <Slider items={sliderItems2000s} />
           </div>
-          <div className="fullbleed w-full mt-48">
-            <img
-              className="w-full"
-              src={flexData[3].blocks[2].image[0].url}
-              alt=""
-            />
+          <div className="fullbleed w-full mt-32">
+            <AspectRatio ratio="21:9">
+              <img
+                className="absolute h-full w-full object-cover"
+                src={flexData[3].blocks[2].image[0].url}
+                alt=""
+              />
+            </AspectRatio>
           </div>
         </Section>
-        <Section className="relative" data-section="2010">
+        <Section className="relative pb-0 md:pb-12" data-section="2010">
           <VerticalHeader
             text="2010"
             className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
           />
           <MobileHeader text="2010" />
           <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-32 md:pb-4">
-            <OneColumnImageTextBlockComponent
+            <ImageWithLabel
+              ratio="4:3"
+              md="3:2"
+              src={`${flexData[4].blocks[0].singleMedia[0].image[0].url}?q=30&w=2000`}
+              alt="alt"
+              label={flexData[4].blocks[0].singleMedia[0].label}
+            />
+            <div className="md:flex mt-16 mb-20 md:mb-48 px-4 xl:px-0 ">
+              <TextBlockComponent
+                className="md:w-3/4 text-left max-w-6xl pr-6"
+                header=""
+                copy={flexData[4].blocks[0].textBlock[0].copy}
+              />
+            </div>
+            {/* <OneColumnImageTextBlockComponent
               copy={flexData[4].blocks[0].textBlock[0].copy}
               image={flexData[4].blocks[0].singleMedia[0].image[0].url}
-            />
+            /> */}
           </div>
           <div className="md:mx-24 md:px-16">
             <Carousel items={sliderItems2010s} />
