@@ -24,13 +24,12 @@ import {
   TextBlockComponent,
   ImageWithLabel,
 } from '../templates/common.components'
-import { InPageAnchor } from '../molecules/in-page-nav'
 
 import { Carousel } from '../molecules/carousel'
-import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { Slider } from '../molecules/slider'
 import {
   getFlexibleSections,
+  OneColumnTextBlock,
   isFullBleedImageBlock,
   isTwoColumnImageTextBlock,
   isOneColumnTextBlock,
@@ -183,7 +182,6 @@ const MobileHeader = ({
         <span
           style={{
             lineHeight: 0,
-            // transform: `translate(16px, 7px)`,
             transform: `translate(5px, 7px)`,
           }}
           className="text-gray-3 font-normal align-top inline-block text-5xl"
@@ -212,7 +210,7 @@ export const OneColumnImageTextBlockComponent = ({
         alt="alt"
         label={imageLabel}
       />
-      <div className="md:flex mt-10 mb-20 md:mb-48 px-4 xl:px-0 ">
+      <div className="md:flex mt-10 mb-20 md:mb-24 px-4 xl:px-0 ">
         <TextBlockComponent
           className="md:w-3/4 text-left max-w-6xl pr-6"
           header={header}
@@ -227,11 +225,12 @@ const Legacy1969Menu = () => {
   const LegacyMenuItem = ({ year }) => {
     return (
       <li
-        className="md:mr-12 last:mr-0 cursor-pointer hover:opacity-75 transition-opacity duration-75 font-body"
+        className="md:mr-12 last:mr-0 cursor-pointer hover:opacity-75 transition-opacity duration-75 font-body md:text-sm"
         onClick={() => {
-          console.log(`go to ${year}`)
+          const section = document.querySelector(`[data-section="${year}"]`)
+          const topPos = section.offsetTop
           window.scroll({
-            top: 200,
+            top: topPos,
             behavior: 'smooth',
           })
         }}
@@ -251,7 +250,7 @@ const Legacy1969Menu = () => {
           'linear-gradient(250.95deg, #242424 14.79%, #2B2B2B 75.43%)',
       }}
     >
-      <ul className="flex justify-between px-6 text-xs">
+      <ul className="flex justify-between md:justify-center px-6 text-xs">
         {years.map((year) => {
           return <LegacyMenuItem year={year} />
         })}
@@ -362,10 +361,10 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             <Slider items={sliderItems1970s} />
           </div>
         </Section>
-        <Section className="relative pb-64" data-section="1980">
+        <Section className="relative pb-64 mb-12" data-section="1980">
           <VerticalHeader
             text="1980"
-            className="hidden md:block mr-24 absolute top-0 right-0 pb-20"
+            className="hidden md:block mr-24 absolute top-0 right-0 pb-8"
           />
           <MobileHeader text="1980" />
           <div className="md:max-w-3xl mr-auto md:ml-40">
@@ -378,7 +377,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           <div className="md:mx-24 md:px-16">
             <Carousel items={sliderItems1980s} />
           </div>
-          <div className="fullbleed w-full">
+          <div className="fullbleed w-full md:mt-48">
             <img
               className="w-full"
               src={flexData[1].blocks[2].image[0].url}
@@ -386,19 +385,18 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             />
           </div>
         </Section>
-        <Section className="relative" data-section="1990">
+        <Section className="relative md:pb-56 mb-16" data-section="1990">
           <VerticalHeader
             text="1990"
-            className="hidden md:block ml-24 absolute top-0 left-0 pb-20"
+            className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
           />
           <MobileHeader text="1990" />
-          <div className="md:max-w-3xl ml-auto md:mr-40">
+          <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-56">
             <OneColumnImageTextBlockComponent
               copy={flexData[2].blocks[0].textBlock[0].copy}
               image={flexData[2].blocks[0].singleMedia[0].image[0].url}
             />
           </div>
-          {console.log(flexData[2].blocks[1].textBlock[0])}
           <HorizontalImageTextBlockComponent
             layout="imageOnLeft"
             content={{
@@ -412,13 +410,13 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             }}
           />
         </Section>
-        <Section className="relative" data-section="2000">
+        <Section className="relative pb-48 mb-12" data-section="2000">
           <VerticalHeader
             text="2000"
-            className="hidden md:block mr-24 absolute top-0 right-0 pb-20"
+            className="hidden md:block mr-24 absolute top-0 right-0 pb-8"
           />
           <MobileHeader text="2000" />
-          <div className="md:max-w-3xl mr-auto md:ml-40">
+          <div className="md:max-w-3xl mr-auto md:ml-40  md:mb-56">
             <OneColumnImageTextBlockComponent
               copy={flexData[3].blocks[0].textBlock[0].copy}
               image={flexData[3].blocks[0].singleMedia[0].image[0].url}
@@ -427,22 +425,21 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           <div className="md:mx-24 md:px-16">
             <Slider items={sliderItems2000s} />
           </div>
-          <div className="fullbleed w-full">
+          <div className="fullbleed w-full mt-48">
             <img
               className="w-full"
               src={flexData[3].blocks[2].image[0].url}
               alt=""
             />
-            {console.log(flexData[3])}
           </div>
         </Section>
         <Section className="relative" data-section="2010">
           <VerticalHeader
             text="2010"
-            className="hidden md:block ml-24 absolute top-0 left-0 pb-20"
+            className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
           />
           <MobileHeader text="2010" />
-          <div className="md:max-w-3xl ml-auto md:mr-40">
+          <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-32 md:pb-4">
             <OneColumnImageTextBlockComponent
               copy={flexData[4].blocks[0].textBlock[0].copy}
               image={flexData[4].blocks[0].singleMedia[0].image[0].url}
