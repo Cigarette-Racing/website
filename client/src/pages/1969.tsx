@@ -146,10 +146,60 @@ const VerticalHeader = ({
   )
 }
 
+const MobileHeader = ({
+  className,
+  text,
+}: {
+  className?: string
+  text: string
+}) => {
+  const screenSmall = useMedia('(max-width: 767px)')
+  const screenMedium = useMedia('(max-width: 1023px)')
+  const screenLarge = useMedia('(max-width: 1200px)')
+  const screenXLarge = useMedia('(min-width: 1200px)')
+
+  const getFontSize = () => {
+    if (screenSmall) return 80
+    if (screenMedium) return 100
+    if (screenLarge) return 150
+    if (screenXLarge) return 195
+  }
+
+  return (
+    <div
+      className={clsx(
+        'mb-8 px-4 md:hidden text-white tracking-heading leading-none font-heading font-light text-base uppercase',
+        className
+      )}
+    >
+      <div
+        style={{
+          fontSize: getFontSize(),
+          lineHeight: 1,
+        }}
+        className="whitespace-no-wrap"
+      >
+        {text}
+        <span
+          style={{
+            lineHeight: 0,
+            // transform: `translate(16px, 7px)`,
+            transform: `translate(5px, 7px)`,
+          }}
+          className="text-gray-3 font-normal align-top inline-block text-5xl"
+        >
+          ,
+        </span>
+        <span className="text-gray-3 align-bottom font-normal text-5xl">s</span>
+      </div>
+    </div>
+  )
+}
+
 export const OneColumnImageTextBlockComponent = ({
   align = 'left',
   image,
-  header,
+  header = '',
   copy,
   imageLabel,
   theme = 'dark',
@@ -157,7 +207,7 @@ export const OneColumnImageTextBlockComponent = ({
   <div>
     <div data-block-type="OneColumnImageTextBlockComponent">
       <ImageWithLabel
-        ratio="3:2"
+        ratio="2:3"
         src={`${image}?q=30&w=2000`}
         alt="alt"
         label={imageLabel}
@@ -177,7 +227,7 @@ const Legacy1969Menu = () => {
   const LegacyMenuItem = ({ year }) => {
     return (
       <li
-        className="mr-12 last:mr-0 cursor-pointer hover:opacity-75 transition-opacity duration-75"
+        className="md:mr-12 last:mr-0 cursor-pointer hover:opacity-75 transition-opacity duration-75 font-body"
         onClick={() => {
           console.log(`go to ${year}`)
           window.scroll({
@@ -186,7 +236,7 @@ const Legacy1969Menu = () => {
           })
         }}
       >
-        <Typography variant="e1">{year}</Typography>
+        {year}
       </li>
     )
   }
@@ -201,7 +251,7 @@ const Legacy1969Menu = () => {
           'linear-gradient(250.95deg, #242424 14.79%, #2B2B2B 75.43%)',
       }}
     >
-      <ul className="flex justify-center ml-2">
+      <ul className="flex justify-between px-6 text-xs">
         {years.map((year) => {
           return <LegacyMenuItem year={year} />
         })}
@@ -258,50 +308,74 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
       <SEO title="Our Legacy - 1969" />
       <div className="pt-20 bg-gray-0 text-white pb-4 main">
         <Legacy1969Menu />
-        <section className="md:min-h-screen flex flex-col justify-between relative">
+        <section className="md:min-h-screen flex flex-col justify-between relative mb-10">
           <div className="mb-8 w-full">
             <img
-              // srcSet={`${page.image[0].url}?q=30&w=2800 3x, ${page.image[0].url}?q=30&w=1500 2x, ${page.image[0].url}?q=30&w=1000 1x`}
               src={`${page.image[0].url}?q=30&w=2800`}
               alt=""
               className="w-full object-cover"
             />
           </div>
-          <div className="absolute bottom-0 right-0 mb-20 mr-40">
-            <div className="font-body font-bold mb-2 text-sm">OUR LEGACY</div>
-            <div className="font-heading -mb-8 text-8xl">Ignoring Gravity </div>
-            <div className="font-heading text-red text-8xl">since 1969</div>
+          <div className="absolute bottom-0 px-4 md:right-0 md:mb-20 md:mr-40">
+            <div className="font-body text-xs font-bold md:mb-2 md:text-sm">
+              OUR LEGACY
+            </div>
+            <div className="text-3xl">
+              <div className="font-heading md:-mb-8 md:text-8xl">
+                Ignoring Gravity{' '}
+              </div>
+              <div className="font-heading text-red md:text-8xl">
+                since 1969
+              </div>
+            </div>
           </div>
         </section>
         <Section className="relative" data-section="1970">
           <VerticalHeader
             text="1970"
-            className="ml-48 pr-2 absolute top-0 left-0 pb-8"
+            className="hidden md:block ml-48 pr-2 absolute top-0 left-0 pb-8"
           />
-          <div className="max-w-3xl ml-auto mr-40">
-            <OneColumnImageTextBlockComponent
+          <MobileHeader text="1970" />
+          <div className="md:max-w-3xl ml-auto md:mr-40">
+            <ImageWithLabel
+              ratio="1:1"
+              md="3:2"
+              src={`${flexData[0].blocks[0].singleMedia[0].image[0].url}?q=30&w=2000`}
+              alt="alt"
+              label={flexData[0].blocks[0].singleMedia[0].label}
+            />
+            <div className="md:flex mt-10 mb-20 md:mb-48 px-4 xl:px-0 ">
+              <TextBlockComponent
+                className="md:w-3/4 text-left max-w-6xl pr-6"
+                header=""
+                copy={flexData[0].blocks[0].textBlock[0].copy}
+              />
+            </div>
+            {/* <OneColumnImageTextBlockComponent
               copy={flexData[0].blocks[0].textBlock[0].copy}
               imageLabel={flexData[0].blocks[0].singleMedia[0].label}
               image={flexData[0].blocks[0].singleMedia[0].image[0].url}
-            />
+            /> */}
           </div>
-          <div className="ml-64 pt-6">
+
+          <div className="md:ml-64 pt-6">
             <Slider items={sliderItems1970s} />
           </div>
         </Section>
         <Section className="relative pb-64" data-section="1980">
           <VerticalHeader
             text="1980"
-            className="mr-24 absolute top-0 right-0 pb-20"
+            className="hidden md:block mr-24 absolute top-0 right-0 pb-20"
           />
-          <div className="max-w-3xl mr-auto ml-40">
+          <MobileHeader text="1980" />
+          <div className="md:max-w-3xl mr-auto md:ml-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[1].blocks[0].textBlock[0].copy}
               imageLabel={flexData[1].blocks[0].singleMedia[0].label}
               image={flexData[1].blocks[0].singleMedia[0].image[0].url}
             />
           </div>
-          <div className="mx-24 px-16">
+          <div className="md:mx-24 md:px-16">
             <Carousel items={sliderItems1980s} />
           </div>
           <div className="fullbleed w-full">
@@ -315,9 +389,10 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
         <Section className="relative" data-section="1990">
           <VerticalHeader
             text="1990"
-            className="ml-24 absolute top-0 left-0 pb-20"
+            className="hidden md:block ml-24 absolute top-0 left-0 pb-20"
           />
-          <div className="max-w-3xl ml-auto mr-40">
+          <MobileHeader text="1990" />
+          <div className="md:max-w-3xl ml-auto md:mr-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[2].blocks[0].textBlock[0].copy}
               image={flexData[2].blocks[0].singleMedia[0].image[0].url}
@@ -340,15 +415,16 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
         <Section className="relative" data-section="2000">
           <VerticalHeader
             text="2000"
-            className="mr-24 absolute top-0 right-0 pb-20"
+            className="hidden md:block mr-24 absolute top-0 right-0 pb-20"
           />
-          <div className="max-w-3xl mr-auto ml-40">
+          <MobileHeader text="2000" />
+          <div className="md:max-w-3xl mr-auto md:ml-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[3].blocks[0].textBlock[0].copy}
               image={flexData[3].blocks[0].singleMedia[0].image[0].url}
             />
           </div>
-          <div className="mx-24 px-16">
+          <div className="md:mx-24 md:px-16">
             <Slider items={sliderItems2000s} />
           </div>
           <div className="fullbleed w-full">
@@ -363,15 +439,16 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
         <Section className="relative" data-section="2010">
           <VerticalHeader
             text="2010"
-            className="ml-24 absolute top-0 left-0 pb-20"
+            className="hidden md:block ml-24 absolute top-0 left-0 pb-20"
           />
-          <div className="max-w-3xl ml-auto mr-40">
+          <MobileHeader text="2010" />
+          <div className="md:max-w-3xl ml-auto md:mr-40">
             <OneColumnImageTextBlockComponent
               copy={flexData[4].blocks[0].textBlock[0].copy}
               image={flexData[4].blocks[0].singleMedia[0].image[0].url}
             />
           </div>
-          <div className="mx-24 px-16">
+          <div className="md:mx-24 md:px-16">
             <Carousel items={sliderItems2010s} />
           </div>
         </Section>
