@@ -371,6 +371,7 @@ export const DropdownNav = ({
         placeholder={placeholder}
         onChange={onChange}
         menuPortalTarget={state}
+        isSearchable={false}
         components={{
           DropdownIndicator: (props) => (
             <components.DropdownIndicator {...props}>
