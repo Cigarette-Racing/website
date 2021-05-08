@@ -92,12 +92,14 @@ export const BoatHeader = ({
       </div>
       <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
         {!!videoUrl ? (
-          <AutoplayVideo
-            image={image}
-            alt={alt}
-            videoUrl={videoUrl}
-            videoOptions={{ controls: false }}
-          />
+          <AspectRatio ratio="16:9" md="none" className="md:h-full">
+            <AutoplayVideo
+              image={image}
+              alt={alt}
+              videoUrl={videoUrl}
+              videoOptions={{ controls: false }}
+            />
+          </AspectRatio>
         ) : (
           <Fragment>
             <img src={`${image}`} className="h-full w-full object-cover" />
