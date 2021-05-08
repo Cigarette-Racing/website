@@ -1,10 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { AspectRatio } from '../atoms/aspect-ratio'
 import { graphql, PageProps } from 'gatsby'
 import clsx from 'clsx'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
-import { Typography } from '../atoms/typography'
 import { useMedia } from 'react-use'
 import ExploreOurWorld, {
   ExploreContentItem,
@@ -44,6 +44,9 @@ import {
   HorizontalImageTextBlock,
   OneColumnImageTextBlock,
 } from '../types/common'
+import dottedLine from '../images/dotted.svg'
+import verticalDottedLine from '../images/vertical-line.svg'
+import timelineStartCircle from '../images/timeline-start-circle.png'
 
 const Section: React.FC<{
   style?: object
@@ -169,7 +172,7 @@ const MobileHeader = ({
   return (
     <div
       className={clsx(
-        'mb-8 px-4 md:hidden text-white tracking-heading leading-none font-heading font-light text-base uppercase',
+        'relative z-10 mb-8 px-4 md:hidden text-white tracking-heading leading-none font-heading font-light text-base uppercase',
         className
       )}
     >
@@ -261,6 +264,18 @@ const Legacy1969Menu = () => {
   )
 }
 
+const VerticalLineContainer = styled.div`
+  background-image: url(${verticalDottedLine});
+  left: ${(props) => (props.left ? '35px' : 'auto')};
+  right: ${(props) => (props.right ? '35px' : 'auto')};
+  bottom: ${(props) => (props.bottom ? '0' : 'auto')};
+  top: ${(props) => (props.top ? '0' : 'auto')};
+  width: 50px;
+  height: ${(props) => props.height || '100%'};
+  position: absolute;
+  background-repeat: repeat-y;
+`
+
 const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
   const {
     data: {
@@ -304,12 +319,19 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
   const sliderItems2000s = createCarouselItems(flexData[3].blocks[1].children)
   const sliderItems2010s = createCarouselItems(flexData[4].blocks[1].children)
 
+  const StartCircle = styled.img`
+    height: 36px;
+    width: 36px;
+    bottom: 168px;
+    left: 18px;
+  `
+
   return (
     <Layout>
       <SEO title="Our Legacy - 1969" />
       <div className="pt-20 bg-gray-0 text-white pb-4 main">
         <Legacy1969Menu />
-        <section className="md:min-h-screen flex flex-col justify-between relative mb-10">
+        <section className="md:min-h-screen flex flex-col justify-between relative pb-10">
           <div className="mb-8 w-full">
             <img
               src={`${page.image[0].url}?q=30&w=2800`}
@@ -317,7 +339,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               className="w-full object-cover"
             />
           </div>
-          <div className="absolute bottom-0 px-4 md:right-0 md:mb-20 md:mr-40">
+          <div className="absolute bottom-0 px-4 pb-4 md:right-0 md:mb-20 md:mr-40">
             <div className="font-body text-xs font-bold md:mb-2 md:text-sm">
               OUR LEGACY
             </div>
@@ -330,28 +352,57 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               </div>
             </div>
           </div>
+          <div className="md:hidden pb-2">
+            <StartCircle src={timelineStartCircle} alt="start" />
+            <VerticalLineContainer height="168px" bottom left />
+          </div>
         </section>
-        <Section className="relative" data-section="1970">
-          <VerticalHeader
-            text="1970"
-            className="hidden md:block ml-48 pr-2 absolute top-0 left-0 pb-8"
-          />
-          <MobileHeader text="1970" />
-          <div className="md:max-w-3xl ml-auto md:mr-40">
-            <ImageWithLabel
-              ratio="1:1"
-              md="3:2"
-              src={`${flexData[0].blocks[0].singleMedia[0].image[0].url}?q=30&w=2000`}
-              alt="alt"
-              label={flexData[0].blocks[0].singleMedia[0].label}
+        <Section className="relative pb-0 pt-0" data-section="1970">
+          <div className="relative">
+            <div
+              style={{
+                backgroundImage: `url(${verticalDottedLine})`,
+                left: '35px',
+                top: 0,
+                width: '50px',
+              }}
+              className="absolute bg-repeat-y h-full"
+            ></div>
+            <VerticalHeader
+              text="1970"
+              className="hidden md:block ml-48 pr-2 absolute top-0 left-0 pb-8"
             />
-            <div className="md:flex mt-16 mb-20 md:mb-48 px-4 xl:px-0 ">
-              <TextBlockComponent
-                className="md:w-3/4 text-left max-w-6xl pr-6"
-                header=""
-                copy={flexData[0].blocks[0].textBlock[0].copy}
+
+            <div className="md:max-w-3xl ml-auto md:mr-40">
+              <ImageWithLabel
+                ratio="1:1"
+                md="3:2"
+                src={`${flexData[0].blocks[0].singleMedia[0].image[0].url}?q=30&w=2000`}
+                alt="alt"
+                label={flexData[0].blocks[0].singleMedia[0].label}
               />
+
+              <div className="md:flex mt-16 mb-20 md:mb-48 px-4 xl:px-0 ">
+                <TextBlockComponent
+                  className="md:w-3/4 text-left max-w-6xl pr-6"
+                  header=""
+                  copy={flexData[0].blocks[0].textBlock[0].copy}
+                />
+              </div>
             </div>
+          </div>
+          <div className="relative">
+            <MobileHeader className="bg-gray-0" text="1970" />
+            <div
+              style={{
+                backgroundImage: `url(${dottedLine})`,
+                top: '0px',
+                right: '90px',
+                width: '100%',
+                backgroundPositionX: 'right',
+              }}
+              className="absolute bg-repeat-y min-h-full"
+            ></div>
           </div>
 
           <div className="md:ml-64 pt-6">
@@ -359,7 +410,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           </div>
         </Section>
         <Section
-          className="relative pb-0"
+          className="relative pb-0 pt-0"
           data-section="1980"
           style={{
             background: 'linear-gradient(190deg, rgb(19,19,19) 25%, #000 25%)',
