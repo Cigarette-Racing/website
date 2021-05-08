@@ -475,7 +475,7 @@ export const ContentEntry = ({
         <Link
           to={`${entry.slug}`}
           className={clsx(
-            `primary block border-solid border-t md:pt-16`,
+            `primary block border-solid border-t md:pt-16 w-full px-4`,
             { 'border-gray-1': theme === 'dark' },
             { 'border-gray-5': theme === 'light' },
             className
@@ -652,7 +652,7 @@ export const ContentEntry = ({
 
 export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
   return (
-    <div>
+    <Fragment>
       {!!entries.length &&
         entries.map((articleEntry: any, i: number) => (
           <ContentEntry
@@ -664,7 +664,7 @@ export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
             theme={theme}
           />
         ))}
-    </div>
+    </Fragment>
   )
 }
 
@@ -674,15 +674,13 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
 
   return (
     <Fragment>
-      <div>
-        <ContentEntry
-          entryType={entryType}
-          key={`${entries[0].id}`}
-          entry={entries[0]}
-          hierarchy="primary"
-          theme={theme}
-        />
-      </div>
+      <ContentEntry
+        entryType={entryType}
+        key={`${entries[0].id}`}
+        entry={entries[0]}
+        hierarchy="primary"
+        theme={theme}
+      />
       {!!nextTwoEntries.length && (
         <div className="nextTwo">
           {nextTwoEntries.map((articleEntry: any, i: number) => (
