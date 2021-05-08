@@ -514,7 +514,7 @@ function BoatSelector({
             </div>
             <div className="fixed w-full bottom-0">
               <div className="flex space-x-8 w-min-content mx-auto pb-10">
-                {boats[boatIndex].stats.map((stat) => (
+                {boats[boatIndex]?.stats.map((stat) => (
                   <div key={stat.label} className="w-48">
                     <StatBlock
                       label={stat.label}
@@ -651,6 +651,7 @@ function BoatScrollList({
           const opacity = 0.4 + 0.6 * animationPercentage
           return (
             <motion.div
+              key={boat.boatName}
               animate={{
                 scale,
                 opacity,
