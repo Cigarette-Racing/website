@@ -67,11 +67,10 @@ export const OurWorldMenu = ({
 
   const our_world_sections = [
     {
-      name: 'Labs',
-      hero: menuImages.craftAPI.labs[0].url,
-      headline:
-        'Enter Cigarette Racing’s industry leading processes, research, and development.',
-      url: '/labs',
+      name: 'News',
+      hero: menuImages.craftAPI.news[0].url,
+      headline: 'The latest news & press happening at Cigarette Racing.',
+      url: '/news',
     },
     {
       name: 'DNA',
@@ -81,16 +80,17 @@ export const OurWorldMenu = ({
       url: '/dna',
     },
     {
+      name: 'Labs',
+      hero: menuImages.craftAPI.labs[0].url,
+      headline:
+        'Enter Cigarette Racing’s industry leading processes, research, and development.',
+      url: '/labs',
+    },
+    {
       name: '1969',
       hero: menuImages.craftAPI.legacy1969[0].url,
       headline: 'Explore the legacy and origins of an offshore legend.',
       url: '/1969',
-    },
-    {
-      name: 'News',
-      hero: menuImages.craftAPI.news[0].url,
-      headline: 'The latest news & press happening at Cigarette Racing.',
-      url: '/news',
     },
   ]
 
