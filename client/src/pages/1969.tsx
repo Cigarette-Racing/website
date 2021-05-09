@@ -156,7 +156,10 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             </div>
           </div>
           <div className="relative">
-            <MobileHeader className="bg-gray-0 px-4 " text="1970" />
+            <MobileHeader
+              className="bg-gray-0 px-4 tracking-tight"
+              text="1970"
+            />
             <div
               style={{
                 backgroundImage: `url(${dottedLine})`,
@@ -167,9 +170,9 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               }}
               className="absolute bg-repeat-y min-h-full z-20"
             ></div>
-          </div>
-          <div className="md:ml-64 pt-6">
-            <Slider items={sliderItems1970s} />
+            <div className="md:ml-64 pt-6">
+              <Slider items={sliderItems1970s} />
+            </div>
           </div>
         </Section>
         <Section
@@ -423,7 +426,7 @@ const MobileHeader = ({
   return (
     <div
       className={clsx(
-        'relative z-10 md:hidden text-white tracking-heading leading-none font-heading font-light text-base uppercase',
+        'relative z-10 md:hidden text-white leading-none font-heading font-light text-base uppercase',
         className
       )}
     >
@@ -438,13 +441,19 @@ const MobileHeader = ({
         <span
           style={{
             lineHeight: 0,
-            transform: `translate(5px, 7px)`,
+            top: '-7px',
+            left: '5px',
           }}
-          className="text-gray-2 font-normal align-top inline-block text-5xl"
+          className="text-gray-2 font-normal align-top relative inline-block text-5xl"
         >
           ,
         </span>
-        <span className="text-gray-2 align-bottom font-normal text-5xl">s</span>
+        <span
+          style={{ top: '-2px', position: 'relative' }}
+          className="text-gray-2 align-bottom font-normal text-5xl"
+        >
+          s
+        </span>
       </div>
     </div>
   )
