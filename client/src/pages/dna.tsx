@@ -11,6 +11,7 @@ import { TextBlockComponent } from '../templates/common.components'
 import content from './dna.json'
 import { OneColumnTextBlock } from '../types/common'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
+import { InPageCta } from '../atoms/in-page-cta'
 
 const Section: React.FC<{
   theme?: Theme | 'red' | 'none'
@@ -90,9 +91,10 @@ export const OneColumnTextBlockComponent = ({
   header,
   copy,
   theme = 'dark',
-}: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme }) => (
+  className,
+}: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme; className: string }) => (
   <div
-    className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+    className={clsx(className)}
     data-block-type="OneColumnTextBlockComponent"
   >
     <TextBlockComponent
@@ -239,6 +241,7 @@ const OurWorldDNA = (props) => {
           <OneColumnTextBlockComponent
             {...content.nextLevelPerformance}
             align="center"
+            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
           />
         </div>
       </Section>
@@ -262,6 +265,7 @@ const OurWorldDNA = (props) => {
             {...content.scienceOnWater}
             align="center"
             theme="light"
+            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
           />
         </div>
       </Section>
@@ -289,7 +293,10 @@ const OurWorldDNA = (props) => {
             src={simplyStunningForeground.url}
             alt=""
           />
-          <OneColumnTextBlockComponent {...content.simplyStunning} />
+          <OneColumnTextBlockComponent
+            {...content.simplyStunning}
+            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+          />
         </div>
       </Section>
       <Section className="boatImage pt-0 pb-0 -mb-4 lg:mb-0" theme="dark">
@@ -320,7 +327,10 @@ const OurWorldDNA = (props) => {
             />
           </div>
           <div className="px-4 md:px-24 mt-20 lg:mt-48 lg:pt-64 col-span-2 lg:col-span-1 flex justify-center lg:block">
-            <OneColumnTextBlockComponent {...content.madeAndCrafted} />
+            <OneColumnTextBlockComponent
+              {...content.madeAndCrafted}
+              className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+            />
           </div>
           {/* <div className="lg:flex items-center mt-64 pt-8">
           </div> */}
@@ -351,7 +361,11 @@ const OurWorldDNA = (props) => {
             style={{ mixBlendMode: 'lighten' }}
             alt=""
           />
-          <OneColumnTextBlockComponent {...content.trulyYours} align="center" />
+          <OneColumnTextBlockComponent
+            {...content.trulyYours}
+            align="center"
+            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+          />
         </div>
       </Section>
       <Section className="1969 pt-0 md:pt-12" theme="dark">
@@ -368,10 +382,19 @@ const OurWorldDNA = (props) => {
         >
           1969
         </div>
-        <OneColumnTextBlockComponent {...content['1969']} align="center" />
+        <OneColumnTextBlockComponent
+          className="my-12 px-4 xl:pl-0 mb-8 md:mb-12 max-w-5xl mx-auto"
+          {...content['1969']}
+          align="center"
+        />
+        <div className="flex justify-center mb-32">
+          <Link to="/1969">
+            <InPageCta variant="secondary">Explore Our Heritage</InPageCta>
+          </Link>
+        </div>
       </Section>
       <Section className="experience" theme="dark">
-        <div className="font-heading font-light uppercase tracking-heading leading-none text-center text-3xl sm:text-5xl md:text-7xl">
+        <div className="font-heading font-light uppercase tracking-heading leading-none text-center text-3xl sm:text-5xl md:text-8xl">
           <div className="text-red">The Experience</div>
           <div className="text-white">
             You
@@ -383,7 +406,11 @@ const OurWorldDNA = (props) => {
             items={[{ media: { image: dnaExperience1.url } }]}
           />
         </div>
-        <OneColumnTextBlockComponent {...content.experience} align="center" />
+        <OneColumnTextBlockComponent
+          {...content.experience}
+          align="center"
+          className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+        />
       </Section>
       <Section className="exploreOurWorld" theme="dark">
         <div className="relative max-w-7xl mx-auto md:px-16">
