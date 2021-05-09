@@ -48,234 +48,6 @@ import dottedLine from '../images/dotted.svg'
 import verticalDottedLine from '../images/vertical-line.svg'
 import timelineStartCircle from '../images/timeline-start-circle.png'
 
-const Section: React.FC<{
-  style?: object
-  theme?: Theme | 'red'
-  className?: string
-}> = ({ children, className, theme = 'light', ...rest }) => (
-  <section
-    className={clsx(
-      'relative py-12 overflow-hidden',
-      {
-        'bg-gray-0 text-white': theme === 'dark',
-        'bg-darkRed text-white': theme === 'red',
-      },
-      className
-    )}
-    {...rest}
-    data-component="Section"
-  >
-    {children}
-  </section>
-)
-
-export const OneColumnTextBlockComponent = ({
-  align = 'left',
-  header,
-  copy,
-  theme = 'dark',
-}: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme }) => (
-  <div
-    className="my-12 px-4 xl:pl-0 mb-24 max-w-5xl mx-auto"
-    data-block-type="OneColumnTextBlockComponent"
-  >
-    <TextBlockComponent
-      className={clsx({
-        'max-w-xl mr-auto text-left': align === 'left',
-        'max-w-2xl mx-auto text-center': align === 'center',
-        'max-w-xl ml-auto text-right': align === 'right',
-      })}
-      header={header}
-      headerClassname={clsx({
-        'text-black': theme === 'light',
-        'text-red': theme === 'dark',
-      })}
-      copy={copy}
-    />
-  </div>
-)
-
-const VerticalHeader = ({
-  className,
-  text,
-}: {
-  className?: string
-  text: string
-}) => {
-  const screenSmall = useMedia('(max-width: 767px)')
-  const screenMedium = useMedia('(max-width: 1023px)')
-  const screenLarge = useMedia('(max-width: 1200px)')
-  const screenXLarge = useMedia('(min-width: 1200px)')
-
-  const getFontSize = () => {
-    if (screenSmall) return 80
-    if (screenMedium) return 100
-    if (screenLarge) return 150
-    if (screenXLarge) return 195
-  }
-
-  return (
-    <div
-      className={clsx(
-        'writing-mode-vertical-alt transform rotate-180 pointer-events-none text-white tracking-heading leading-none font-heading font-light text-9xl uppercase',
-        className
-      )}
-    >
-      <div
-        style={{
-          fontSize: getFontSize(),
-          lineHeight: 1,
-        }}
-        className="whitespace-no-wrap"
-      >
-        {text}
-        <span
-          style={{
-            fontSize: 130,
-            lineHeight: 0,
-            transform: `translate(16px, 7px)`,
-          }}
-          className="text-gray-3 font-normal align-top inline-block"
-        >
-          ,
-        </span>
-        <span
-          style={{ fontSize: '120px' }}
-          className="text-gray-3 align-bottom font-normal"
-        >
-          s
-        </span>
-      </div>
-    </div>
-  )
-}
-
-const MobileHeader = ({
-  className,
-  text,
-}: {
-  className?: string
-  text: string
-}) => {
-  const screenSmall = useMedia('(max-width: 767px)')
-  const screenMedium = useMedia('(max-width: 1023px)')
-  const screenLarge = useMedia('(max-width: 1200px)')
-  const screenXLarge = useMedia('(min-width: 1200px)')
-
-  const getFontSize = () => {
-    if (screenSmall) return 80
-    if (screenMedium) return 100
-    if (screenLarge) return 150
-    if (screenXLarge) return 195
-  }
-
-  return (
-    <div
-      className={clsx(
-        'relative z-10 mb-8 px-4 md:hidden text-white tracking-heading leading-none font-heading font-light text-base uppercase',
-        className
-      )}
-    >
-      <div
-        style={{
-          fontSize: getFontSize(),
-          lineHeight: 1,
-        }}
-        className="whitespace-no-wrap"
-      >
-        {text}
-        <span
-          style={{
-            lineHeight: 0,
-            transform: `translate(5px, 7px)`,
-          }}
-          className="text-gray-3 font-normal align-top inline-block text-5xl"
-        >
-          ,
-        </span>
-        <span className="text-gray-3 align-bottom font-normal text-5xl">s</span>
-      </div>
-    </div>
-  )
-}
-
-export const OneColumnImageTextBlockComponent = ({
-  align = 'left',
-  image,
-  header = '',
-  copy,
-  imageLabel,
-  theme = 'dark',
-}) => (
-  <div>
-    <div data-block-type="OneColumnImageTextBlockComponent">
-      <ImageWithLabel
-        ratio="2:3"
-        src={`${image}?q=30&w=2000`}
-        alt="alt"
-        label={imageLabel}
-      />
-      <div className="md:flex mt-16 mb-20 md:mb-24 px-4 xl:px-0 ">
-        <TextBlockComponent
-          className="md:w-3/4 text-left max-w-6xl pr-6"
-          header={header}
-          copy={copy}
-        />
-      </div>
-    </div>
-  </div>
-)
-
-const Legacy1969Menu = () => {
-  const LegacyMenuItem = ({ year }) => {
-    return (
-      <li
-        className="md:mr-12 last:mr-0 cursor-pointer hover:opacity-75 transition-opacity duration-75 font-body md:text-sm"
-        onClick={() => {
-          const section = document.querySelector(`[data-section="${year}"]`)
-          const topPos = section.offsetTop
-          window.scroll({
-            top: topPos,
-            behavior: 'smooth',
-          })
-        }}
-      >
-        {year}
-      </li>
-    )
-  }
-
-  const years = ['1970', '1980', '1990', '2000', '2010']
-
-  return (
-    <div
-      className="py-3"
-      style={{
-        background:
-          'linear-gradient(250.95deg, #242424 14.79%, #2B2B2B 75.43%)',
-      }}
-    >
-      <ul className="flex justify-between md:justify-center px-6 text-xs">
-        {years.map((year) => {
-          return <LegacyMenuItem year={year} />
-        })}
-      </ul>
-    </div>
-  )
-}
-
-const VerticalLineContainer = styled.div`
-  background-image: url(${verticalDottedLine});
-  left: ${(props) => (props.left ? '35px' : 'auto')};
-  right: ${(props) => (props.right ? '35px' : 'auto')};
-  bottom: ${(props) => (props.bottom ? '0' : 'auto')};
-  top: ${(props) => (props.top ? '0' : 'auto')};
-  width: 50px;
-  height: ${(props) => props.height || '100%'};
-  position: absolute;
-  background-repeat: repeat-y;
-`
-
 const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
   const {
     data: {
@@ -319,13 +91,6 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
   const sliderItems2000s = createCarouselItems(flexData[3].blocks[1].children)
   const sliderItems2010s = createCarouselItems(flexData[4].blocks[1].children)
 
-  const StartCircle = styled.img`
-    height: 36px;
-    width: 36px;
-    bottom: 168px;
-    left: 18px;
-  `
-
   return (
     <Layout>
       <SEO title="Our Legacy - 1969" />
@@ -352,13 +117,12 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               </div>
             </div>
           </div>
-          <div className="md:hidden pb-2">
-            <StartCircle src={timelineStartCircle} alt="start" />
-            <VerticalLineContainer height="168px" bottom left />
-          </div>
+
+          <StartCircle src={timelineStartCircle} alt="start" />
+          <VerticalLineContainer height="168px" bottom left />
         </section>
         <Section className="relative pb-0 pt-0" data-section="1970">
-          <div className="relative">
+          <div className="relative pb-48">
             <div
               style={{
                 backgroundImage: `url(${verticalDottedLine})`,
@@ -382,7 +146,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 label={flexData[0].blocks[0].singleMedia[0].label}
               />
 
-              <div className="md:flex mt-16 mb-20 md:mb-48 px-4 xl:px-0 ">
+              <div className="md:flex mt-16 px-4 xl:px-0 ">
                 <TextBlockComponent
                   className="md:w-3/4 text-left max-w-6xl pr-6"
                   header=""
@@ -392,19 +156,18 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             </div>
           </div>
           <div className="relative">
-            <MobileHeader className="bg-gray-0" text="1970" />
+            <MobileHeader className="bg-gray-0 px-4 " text="1970" />
             <div
               style={{
                 backgroundImage: `url(${dottedLine})`,
-                top: '0px',
-                right: '90px',
+                top: '49px',
+                left: '245px',
                 width: '100%',
                 backgroundPositionX: 'right',
               }}
-              className="absolute bg-repeat-y min-h-full"
+              className="absolute bg-repeat-y min-h-full z-20"
             ></div>
           </div>
-
           <div className="md:ml-64 pt-6">
             <Slider items={sliderItems1970s} />
           </div>
@@ -535,6 +298,242 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
     </Layout>
   )
 }
+
+const Section: React.FC<{
+  style?: object
+  theme?: Theme | 'red'
+  className?: string
+}> = ({ children, className, theme = 'light', ...rest }) => (
+  <section
+    className={clsx(
+      'relative py-12 overflow-hidden',
+      {
+        'bg-gray-0 text-white': theme === 'dark',
+        'bg-darkRed text-white': theme === 'red',
+      },
+      className
+    )}
+    {...rest}
+    data-component="Section"
+  >
+    {children}
+  </section>
+)
+
+export const OneColumnTextBlockComponent = ({
+  align = 'left',
+  header,
+  copy,
+  theme = 'dark',
+}: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme }) => (
+  <div
+    className="my-12 px-4 xl:pl-0 mb-24 max-w-5xl mx-auto"
+    data-block-type="OneColumnTextBlockComponent"
+  >
+    <TextBlockComponent
+      className={clsx({
+        'max-w-xl mr-auto text-left': align === 'left',
+        'max-w-2xl mx-auto text-center': align === 'center',
+        'max-w-xl ml-auto text-right': align === 'right',
+      })}
+      header={header}
+      headerClassname={clsx({
+        'text-black': theme === 'light',
+        'text-red': theme === 'dark',
+      })}
+      copy={copy}
+    />
+  </div>
+)
+
+const VerticalHeader = ({
+  className,
+  text,
+}: {
+  className?: string
+  text: string
+}) => {
+  const screenSmall = useMedia('(max-width: 767px)')
+  const screenMedium = useMedia('(max-width: 1023px)')
+  const screenLarge = useMedia('(max-width: 1200px)')
+  const screenXLarge = useMedia('(min-width: 1200px)')
+
+  const getFontSize = () => {
+    if (screenSmall) return 80
+    if (screenMedium) return 100
+    if (screenLarge) return 150
+    if (screenXLarge) return 195
+  }
+
+  return (
+    <div
+      className={clsx(
+        'writing-mode-vertical-alt transform rotate-180 pointer-events-none text-white tracking-heading leading-none font-heading font-light text-9xl uppercase',
+        className
+      )}
+    >
+      <div
+        style={{
+          fontSize: getFontSize(),
+          lineHeight: 1,
+        }}
+        className="whitespace-no-wrap"
+      >
+        {text}
+        <span
+          style={{
+            fontSize: 130,
+            lineHeight: 0,
+            transform: `translate(16px, 7px)`,
+          }}
+          className="text-gray-3 font-normal align-top inline-block"
+        >
+          ,
+        </span>
+        <span
+          style={{ fontSize: '120px' }}
+          className="text-gray-3 align-bottom font-normal"
+        >
+          s
+        </span>
+      </div>
+    </div>
+  )
+}
+
+const MobileHeader = ({
+  className,
+  text,
+}: {
+  className?: string
+  text: string
+}) => {
+  const screenSmall = useMedia('(max-width: 767px)')
+  const screenMedium = useMedia('(max-width: 1023px)')
+  const screenLarge = useMedia('(max-width: 1200px)')
+  const screenXLarge = useMedia('(min-width: 1200px)')
+
+  const getFontSize = () => {
+    if (screenSmall) return 80
+    if (screenMedium) return 100
+    if (screenLarge) return 150
+    if (screenXLarge) return 195
+  }
+
+  return (
+    <div
+      className={clsx(
+        'relative z-10 md:hidden text-white tracking-heading leading-none font-heading font-light text-base uppercase',
+        className
+      )}
+    >
+      <div
+        style={{
+          fontSize: getFontSize(),
+          lineHeight: 1,
+        }}
+        className="whitespace-no-wrap"
+      >
+        {text}
+        <span
+          style={{
+            lineHeight: 0,
+            transform: `translate(5px, 7px)`,
+          }}
+          className="text-gray-2 font-normal align-top inline-block text-5xl"
+        >
+          ,
+        </span>
+        <span className="text-gray-2 align-bottom font-normal text-5xl">s</span>
+      </div>
+    </div>
+  )
+}
+
+export const OneColumnImageTextBlockComponent = ({
+  align = 'left',
+  image,
+  header = '',
+  copy,
+  imageLabel,
+  theme = 'dark',
+}) => (
+  <div>
+    <div data-block-type="OneColumnImageTextBlockComponent">
+      <ImageWithLabel
+        ratio="2:3"
+        src={`${image}?q=30&w=2000`}
+        alt="alt"
+        label={imageLabel}
+      />
+      <div className="md:flex mt-16 mb-20 md:mb-24 px-4 xl:px-0 ">
+        <TextBlockComponent
+          className="md:w-3/4 text-left max-w-6xl pr-6"
+          header={header}
+          copy={copy}
+        />
+      </div>
+    </div>
+  </div>
+)
+
+const Legacy1969Menu = () => {
+  const LegacyMenuItem = ({ year }) => {
+    return (
+      <li
+        className="md:mr-12 last:mr-0 cursor-pointer hover:opacity-75 transition-opacity duration-75 font-body md:text-sm"
+        onClick={() => {
+          const section = document.querySelector(`[data-section="${year}"]`)
+          const topPos = section.offsetTop
+          window.scroll({
+            top: topPos,
+            behavior: 'smooth',
+          })
+        }}
+      >
+        {year}
+      </li>
+    )
+  }
+
+  const years = ['1970', '1980', '1990', '2000', '2010']
+
+  return (
+    <div
+      className="py-3"
+      style={{
+        background:
+          'linear-gradient(250.95deg, #242424 14.79%, #2B2B2B 75.43%)',
+      }}
+    >
+      <ul className="flex justify-between md:justify-center px-6 text-xs">
+        {years.map((year) => {
+          return <LegacyMenuItem year={year} />
+        })}
+      </ul>
+    </div>
+  )
+}
+
+const VerticalLineContainer = styled.div`
+  background-image: url(${verticalDottedLine});
+  left: ${(props) => (props.left ? '35px' : 'auto')};
+  right: ${(props) => (props.right ? '35px' : 'auto')};
+  bottom: ${(props) => (props.bottom ? '0' : 'auto')};
+  top: ${(props) => (props.top ? '0' : 'auto')};
+  width: 50px;
+  height: ${(props) => props.height || '100%'};
+  position: absolute;
+  background-repeat: repeat-y;
+`
+
+const StartCircle = styled.img`
+  position: absolute;
+  height: 36px;
+  width: 36px;
+  bottom: 168px;
+  left: 18px;
+`
 
 export default Legacy1969Page
 
