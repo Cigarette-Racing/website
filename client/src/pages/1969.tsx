@@ -158,7 +158,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
           </div>
           <div className="relative">
             <MobileHeader
-              className="bg-gray-0 px-4 tracking-tight"
+              className="md:bg-gray-0 px-4 tracking-tight"
               text="1970"
             />
             <div
@@ -168,7 +168,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 left: '255px',
                 width: '100%',
               }}
-              className="absolute bg-repeat-y min-h-full z-20"
+              className="absolute bg-repeat-y min-h-full z-1"
             />
             <div className="md:ml-64 pt-6">
               <Slider items={sliderItems1970s} />
@@ -240,7 +240,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             text="1990"
             className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
           />
-          <MobileHeader text="1990" className="px-4" />
+          <MobileHeader text="1990" className="px-4 pb-6" />
           <div
             style={{
               backgroundImage: `url(${dottedLine})`,
@@ -248,7 +248,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               left: '255px',
               width: '100%',
             }}
-            className="absolute bg-repeat-y min-h-full z-20"
+            className="absolute bg-repeat-y min-h-full z-1"
           />
           <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-56">
             <OneColumnImageTextBlockComponent
@@ -269,12 +269,12 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             }}
           />
         </Section>
-        <Section className="relative md:pb-48 pb-0" data-section="2000">
+        <Section className="relative md:pb-48 pb-0 pt-10" data-section="2000">
           <VerticalHeader
             text="2000"
             className="hidden md:block mr-24 absolute top-0 right-0 pb-8"
           />
-          <MobileHeader text="2000" className="px-4" />
+          <MobileHeader text="2000" className="px-4 pb-6" />
           <div
             style={{
               backgroundImage: `url(${dottedLine})`,
@@ -285,7 +285,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               transform: 'scaleY(-1)',
               backgroundPosition: `top right`,
             }}
-            className="absolute z-20 bg-no-repeat"
+            className="absolute z-1 bg-no-repeat"
           />
           <div className="relative pb-32">
             <div
@@ -323,7 +323,18 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             text="2010"
             className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
           />
-          <MobileHeader text="2010" />
+          <MobileHeader text="2010" className="px-4 pb-6" />
+          <div
+            style={{
+              backgroundImage: `url(${dottedLine})`,
+              top: '45px',
+              left: '264px',
+              width: '100vw',
+              height: '100%',
+            }}
+            className="absolute z-1 bg-no-repeat"
+          />
+
           <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-32 md:pb-4">
             <ImageWithLabel
               ratio="4:3"
