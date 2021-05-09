@@ -45,6 +45,7 @@ import {
   OneColumnImageTextBlock,
 } from '../types/common'
 import dottedLine from '../images/dotted.svg'
+import dottedLine2 from '../images/dotted-2.svg'
 import verticalDottedLine from '../images/vertical-line.svg'
 import timelineStartCircle from '../images/timeline-start-circle.png'
 
@@ -131,7 +132,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 width: '50px',
               }}
               className="absolute bg-repeat-y h-full"
-            ></div>
+            />
             <VerticalHeader
               text="1970"
               className="hidden md:block ml-48 pr-2 absolute top-0 left-0 pb-8"
@@ -164,58 +165,91 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               style={{
                 backgroundImage: `url(${dottedLine})`,
                 top: '49px',
-                left: '245px',
+                left: '255px',
                 width: '100%',
-                backgroundPositionX: 'right',
               }}
               className="absolute bg-repeat-y min-h-full z-20"
-            ></div>
+            />
             <div className="md:ml-64 pt-6">
               <Slider items={sliderItems1970s} />
             </div>
           </div>
         </Section>
         <Section
-          className="relative pb-0 pt-0"
+          className="relative pb-0 pt-0 -mt-10"
           data-section="1980"
-          style={{
-            background: 'linear-gradient(190deg, rgb(19,19,19) 25%, #000 25%)',
-          }}
+          // style={{
+          //   background: 'linear-gradient(190deg, rgb(19,19,19) 25%, #000 25%)',
+          // }}
         >
           <VerticalHeader
             text="1980"
             className="hidden md:block mr-24 absolute top-0 right-0 pb-8"
           />
-          <MobileHeader text="1980" />
-          <div className="md:max-w-3xl mr-auto md:ml-40">
-            <OneColumnImageTextBlockComponent
-              copy={flexData[1].blocks[0].textBlock[0].copy}
-              imageLabel={flexData[1].blocks[0].singleMedia[0].label}
-              image={flexData[1].blocks[0].singleMedia[0].image[0].url}
+          <div className="realtive pt-10">
+            <MobileHeader text="1980" className="pb-6 px-4" />
+            <div
+              style={{
+                backgroundImage: `url(${dottedLine})`,
+                top: '-14px',
+                left: '255px',
+                width: '100vw',
+                height: '100px',
+                transform: 'scaleY(-1)',
+                backgroundPosition: `top left`,
+              }}
+              className="absolute z-20 bg-no-repeat"
             />
           </div>
-          <div className="md:mx-24 md:px-16">
-            <Carousel items={sliderItems1980s} />
-          </div>
-          <div className="fullbleed w-full pt-12 md:mt-48">
-            <AspectRatio ratio="21:9">
-              <img
-                className="absolute h-full w-full object-cover"
-                src={flexData[1].blocks[2].image[0].url}
-                alt=""
+          <div className="relative pb-32">
+            <div
+              style={{
+                backgroundImage: `url(${verticalDottedLine})`,
+                left: '35px',
+                top: 0,
+                width: '50px',
+              }}
+              className="absolute bg-repeat-y h-full"
+            />
+            <div className="md:max-w-3xl mr-auto md:ml-40">
+              <OneColumnImageTextBlockComponent
+                copy={flexData[1].blocks[0].textBlock[0].copy}
+                imageLabel={flexData[1].blocks[0].singleMedia[0].label}
+                image={flexData[1].blocks[0].singleMedia[0].image[0].url}
               />
-            </AspectRatio>
+            </div>
+            <div className="md:mx-24 md:px-16">
+              <Carousel items={sliderItems1980s} />
+            </div>
+            <div className="fullbleed w-full pt-12 md:mt-48">
+              <AspectRatio ratio="21:9">
+                <img
+                  className="absolute h-full w-full object-cover"
+                  src={flexData[1].blocks[2].image[0].url}
+                  alt=""
+                />
+              </AspectRatio>
+            </div>
           </div>
         </Section>
         <Section
-          className="relative md:pb-56 pt-40 md:pt-64 md:mt-12"
+          className="relative pt-0 md:pb-56 md:pt-64 md:mt-12"
           data-section="1990"
         >
           <VerticalHeader
             text="1990"
             className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
           />
-          <MobileHeader text="1990" />
+          <MobileHeader text="1990" className="px-4" />
+          <div
+            style={{
+              backgroundImage: `url(${dottedLine})`,
+              top: '49px',
+              left: '255px',
+              width: '100%',
+            }}
+            className="absolute bg-repeat-y min-h-full z-20"
+          />
           <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-56">
             <OneColumnImageTextBlockComponent
               copy={flexData[2].blocks[0].textBlock[0].copy}
@@ -235,32 +269,56 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             }}
           />
         </Section>
-        <Section className="relative pb-16 md:pb-48 mb-12" data-section="2000">
+        <Section className="relative md:pb-48 pb-0" data-section="2000">
           <VerticalHeader
             text="2000"
             className="hidden md:block mr-24 absolute top-0 right-0 pb-8"
           />
-          <MobileHeader text="2000" />
-          <div className="md:max-w-3xl mr-auto md:ml-40 md:mb-56">
-            <OneColumnImageTextBlockComponent
-              copy={flexData[3].blocks[0].textBlock[0].copy}
-              image={flexData[3].blocks[0].singleMedia[0].image[0].url}
+          <MobileHeader text="2000" className="px-4" />
+          <div
+            style={{
+              backgroundImage: `url(${dottedLine})`,
+              top: '-14px',
+              left: '264px',
+              width: '70px',
+              height: '100px',
+              transform: 'scaleY(-1)',
+              backgroundPosition: `top right`,
+            }}
+            className="absolute z-20 bg-no-repeat"
+          />
+          <div className="relative pb-32">
+            <div
+              style={{
+                backgroundImage: `url(${verticalDottedLine})`,
+                left: '35px',
+                top: 0,
+                width: '50px',
+              }}
+              className="absolute bg-repeat-y h-full"
             />
-          </div>
-          <div className="md:mx-24 md:px-16">
-            <Slider items={sliderItems2000s} />
-          </div>
-          <div className="fullbleed w-full mt-32">
-            <AspectRatio ratio="21:9">
-              <img
-                className="absolute h-full w-full object-cover"
-                src={flexData[3].blocks[2].image[0].url}
-                alt=""
+
+            <div className="md:max-w-3xl mr-auto md:ml-40 md:mb-56">
+              <OneColumnImageTextBlockComponent
+                copy={flexData[3].blocks[0].textBlock[0].copy}
+                image={flexData[3].blocks[0].singleMedia[0].image[0].url}
               />
-            </AspectRatio>
+            </div>
+            <div className="md:mx-24 md:px-16">
+              <Slider items={sliderItems2000s} />
+            </div>
+            <div className="fullbleed w-full mt-32">
+              <AspectRatio ratio="21:9">
+                <img
+                  className="absolute h-full w-full object-cover"
+                  src={flexData[3].blocks[2].image[0].url}
+                  alt=""
+                />
+              </AspectRatio>
+            </div>
           </div>
         </Section>
-        <Section className="relative pb-0 md:pb-12" data-section="2010">
+        <Section className="relative pb-0 pt-0 md:pb-12" data-section="2010">
           <VerticalHeader
             text="2010"
             className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
@@ -475,7 +533,7 @@ export const OneColumnImageTextBlockComponent = ({
         alt="alt"
         label={imageLabel}
       />
-      <div className="md:flex mt-16 mb-20 md:mb-24 px-4 xl:px-0 ">
+      <div className="md:flex mt-16 px-4 xl:px-0 ">
         <TextBlockComponent
           className="md:w-3/4 text-left max-w-6xl pr-6"
           header={header}
