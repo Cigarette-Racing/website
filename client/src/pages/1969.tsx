@@ -23,6 +23,7 @@ import { Theme } from '../types/shared'
 import { getFlexibleSections, OneColumnTextBlock } from '../types/common'
 import dottedLine from '../images/dotted.svg'
 import verticalDottedLine from '../images/vertical-line.svg'
+import verticalDottedLineLarge from '../images/vertical-line-desktop.svg'
 import timelineStartCircle from '../images/timeline-start-circle.png'
 
 const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
@@ -83,17 +84,28 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             className="hidden w-full object-cover max-w-full md:block"
             src={page.image[0].url}
           />
-          <div className="absolute bottom-0 pb-24 px-4 md:right-0 md:mb-20 md:mr-40">
+          <div className="absolute bottom-0 pb-24 md:pb-40 px-4 md:right-0 md:mb-20 md:mr-40">
             <div className="font-body text-10px font-bold tracking-heading mb-2 md:mb-2 md:text-sm">
               OUR LEGACY
             </div>
-            <div className="font-light text-40px md:text-8xl leading-snug">
+            <div className="font-light text-40px md:text-8xl leading-snug md:leading-normal">
               <div className="font-heading  md:-mb-8">Ignoring Gravity</div>
-              <div className="font-heading text-red">since 1969</div>
+              <div className="font-heading text-red md:font-normal">
+                since 1969
+              </div>
             </div>
           </div>
-          <StartCircle src={timelineStartCircle} alt="start" />
-          <VerticalLineContainer height="276px" bottom left />
+          <StartCircle
+            className="md:ml-40"
+            src={timelineStartCircle}
+            alt="start"
+          />
+          <VerticalLineContainer
+            height="276px"
+            bottom
+            left
+            className="md:ml-40"
+          />
         </Section>
         <Section className="relative pb-0 pt-0" data-section="1970">
           <div className="relative pb-48 linecontainer">
@@ -104,11 +116,20 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 top: 0,
                 width: '50px',
               }}
-              className="absolute bg-repeat-y h-full"
+              className="absolute bg-repeat-y h-full md:hidden"
+            />
+            <div
+              style={{
+                backgroundImage: `url(${verticalDottedLineLarge})`,
+                left: '35px',
+                top: 0,
+                width: '50px',
+              }}
+              className="hidden md:block absolute bg-repeat-y h-full md:ml-40"
             />
             <VerticalHeader
               text="1970"
-              className="hidden md:block ml-48 pr-2 absolute top-0 left-0 pb-8"
+              className="hidden md:block ml-32 pr-2 absolute top-0 left-0 pb-8 bg-gray-0 pt-12"
             />
 
             <div className="md:max-w-3xl ml-auto md:mr-40">
@@ -136,12 +157,30 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             />
             <div
               style={{
+                backgroundImage: `url(${verticalDottedLine})`,
+                left: '35px',
+                top: 0,
+                width: '50px',
+              }}
+              className="dottedLine absolute bg-repeat-y min-h-full z-1 md:ml-40 md:hidden"
+            />
+            <div
+              style={{
+                backgroundImage: `url(${verticalDottedLineLarge})`,
+                left: '35px',
+                top: '18px',
+                width: '50px',
+              }}
+              className="hidden md:block absolute bg-repeat-y h-full md:ml-40"
+            />
+            <div
+              style={{
                 backgroundImage: `url(${dottedLine})`,
                 top: '49px',
                 left: '255px',
                 width: '100%',
               }}
-              className="absolute bg-repeat-y min-h-full z-1"
+              className="dottedLine md:hidden absolute bg-repeat-y min-h-full z-1"
             />
             <div className="md:ml-64 pt-6">
               <Slider items={sliderItems1970s} />
@@ -171,7 +210,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 transform: 'scaleY(-1)',
                 backgroundPosition: `top left`,
               }}
-              className="absolute z-20 bg-no-repeat"
+              className="absolute z-20 bg-no-repeat md:hidden"
             />
           </div>
           <div className="relative pb-32">
@@ -182,7 +221,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 top: 0,
                 width: '50px',
               }}
-              className="absolute bg-repeat-y h-full"
+              className="absolute bg-repeat-y h-full md:hidden"
             />
             <div className="mb-24 md:max-w-3xl mr-auto md:ml-40">
               <OneColumnImageTextBlockComponent
@@ -221,7 +260,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               left: '255px',
               width: '100%',
             }}
-            className="absolute bg-repeat-y min-h-full z-1"
+            className="absolute bg-repeat-y min-h-full z-1 md:hidden"
           />
           <div className="mb-20 md:max-w-3xl ml-auto md:mr-40 md:mb-56">
             <OneColumnImageTextBlockComponent
@@ -261,7 +300,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               transform: 'scaleY(-1)',
               backgroundPosition: `top right`,
             }}
-            className="absolute z-1 bg-no-repeat"
+            className="absolute z-1 bg-no-repeat md:hidden"
           />
           <div className="relative pb-48">
             <div
@@ -271,7 +310,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 top: 0,
                 width: '50px',
               }}
-              className="absolute bg-repeat-y h-full"
+              className="absolute bg-repeat-y h-full md:hidden"
             />
 
             <div className="mb-16 md:max-w-3xl mr-auto md:ml-40 md:mb-56">
@@ -309,7 +348,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               width: '100vw',
               height: '100%',
             }}
-            className="absolute z-1 bg-no-repeat"
+            className="absolute z-1 bg-no-repeat md:hidden"
           />
 
           <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-32 md:pb-4">
@@ -327,10 +366,6 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
                 copy={flexData[4].blocks[0].textBlock[0].copy}
               />
             </div>
-            {/* <OneColumnImageTextBlockComponent
-              copy={flexData[4].blocks[0].textBlock[0].copy}
-              image={flexData[4].blocks[0].singleMedia[0].image[0].url}
-            /> */}
           </div>
           <div className="md:mx-24 md:px-16">
             <Carousel items={sliderItems2010s} />
@@ -573,6 +608,10 @@ const Legacy1969Menu = () => {
 
 const VerticalLineContainer = styled.div`
   background-image: url(${verticalDottedLine});
+  @media (min-width: 768px) {
+    background-image: url(${verticalDottedLineLarge});
+  }
+  /* vertical-line-desktop.svg */
   left: ${(props) => (props.left ? '35px' : 'auto')};
   right: ${(props) => (props.right ? '35px' : 'auto')};
   bottom: ${(props) => (props.bottom ? '0' : 'auto')};
@@ -589,6 +628,8 @@ const StartCircle = styled.img`
   width: 36px;
   bottom: 278px;
   left: 18px;
+  @media (max-width: 767px) {
+  }
 `
 
 export default Legacy1969Page
