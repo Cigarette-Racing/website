@@ -18,7 +18,7 @@ import {
 } from '../templates/common.components'
 
 import { Carousel } from '../molecules/carousel'
-import { Slider } from '../molecules/slider'
+import { Slider } from '../molecules/slider-custom'
 import { Theme } from '../types/shared'
 import { getFlexibleSections, OneColumnTextBlock } from '../types/common'
 import dottedLine from '../images/dotted.svg'
@@ -72,9 +72,8 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
 
   return (
     <Layout>
-      {console.log(page)}
       <SEO title="Our Legacy - 1969" />
-      <div className="pt-20 bg-gray-0 text-white pb-4 main">
+      <div className="pt-20 bg-gray-0 text-white pb-4 main md:min-w-xl">
         <Legacy1969Menu />
         <Section className="md:min-h-screen flex flex-col justify-between relative pb-40 pt-0">
           <img
@@ -105,7 +104,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             height="276px"
             bottom
             left
-            className="md:ml-48"
+            className="ml-8 md:ml-48"
           />
         </Section>
         <Section className="relative pb-0 pt-0" data-section="1970">
@@ -155,15 +154,6 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             <MobileHeader
               className="md:bg-gray-0 px-4 tracking-tight"
               text="1970"
-            />
-            <div
-              style={{
-                backgroundImage: `url(${verticalDottedLine})`,
-                left: '35px',
-                top: 0,
-                width: '50px',
-              }}
-              className="dottedLine absolute bg-repeat-y min-h-full z-1 md:ml-40 md:hidden"
             />
             <div
               style={{
@@ -220,7 +210,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               }}
               className="absolute bg-repeat-y h-full md:hidden"
             />
-            <div className="py-6 ml-48 mr-48">
+            <div className="hidden md:block py-6 ml-48 mr-48">
               <HorizontalLineContainer />
             </div>
             <div
@@ -232,7 +222,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               }}
               className="hidden md:block absolute bg-repeat-y h-full md:mr-40 mt-10"
             />
-            <div className="relative pt-24">
+            <div className="relative md:pt-24">
               <VerticalHeader
                 text="1980"
                 className="hidden md:block mr-24 absolute top-0 right-0 mt-24 pt-12 bg-gray-0"
@@ -259,7 +249,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             </div>
           </div>
         </Section>
-        <div className="py-2 ml-48 mr-13.5">
+        <div className="hidden md:block py-2 ml-48 mr-13.5">
           <HorizontalLineContainer />
         </div>
         <Section
@@ -311,10 +301,10 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             />
           </div>
         </Section>
-        <div className="py-2 ml-48 mr-13.5">
+        <div className="hidden md:block py-2 ml-48 mr-13.5">
           <HorizontalLineContainer />
         </div>
-        <Section className="relative pb-0 pt-64" data-section="2000">
+        <Section className="relative pb-0 md:pt-64" data-section="2000">
           <MobileHeader text="2000" className="px-4 pb-6" />
           <div
             style={{
@@ -337,7 +327,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             }}
             className="hidden md:block absolute bg-repeat-y h-full md:mr-40"
           />
-          <div className="relative pb-20">
+          <div className="relative pb-40 md:pb-20">
             <div
               style={{
                 backgroundImage: `url(${verticalDottedLine})`,
@@ -372,7 +362,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             </div>
           </div>
         </Section>
-        <div className="py-2 ml-48 mr-13.5">
+        <div className="hidden md:block py-2 ml-48 mr-13.5">
           <HorizontalLineContainer />
         </div>
         <Section className="relative pb-0 pt-0 md:pb-12" data-section="2010">
@@ -398,7 +388,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               }}
               className="hidden md:block absolute bg-repeat-y h-full md:ml-48"
             />
-            <div className="pt-40 relative">
+            <div className="md:pt-40 relative">
               <div className="hidden md:block ml-24 absolute top-0 left-0 mt-32 bg-gray-0">
                 <VerticalHeader text="2010" className="p-0" />
               </div>
