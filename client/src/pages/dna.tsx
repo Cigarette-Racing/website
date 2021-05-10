@@ -370,8 +370,14 @@ const OurWorldDNA = (props) => {
           />
           <img
             src={dnaTrulyYours.url}
-            className="sm:mt-10 md:mt-12 lg:mt-16 z-10"
+            className="hidden md:block md:mt-12 lg:mt-16 z-10"
             style={{ mixBlendMode: 'lighten' }}
+            alt=""
+          />
+          <img
+            src={dnaTrulyYours.url}
+            className="md:hidden z-10 max-w-none"
+            style={{ mixBlendMode: 'lighten', width: '110%' }}
             alt=""
           />
           <OneColumnTextBlockComponent
