@@ -93,7 +93,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             </div>
           </div>
           <StartCircle src={timelineStartCircle} alt="start" />
-          <VerticalLineContainer height="168px" bottom left />
+          <VerticalLineContainer height="276px" bottom left />
         </Section>
         <Section className="relative pb-0 pt-0" data-section="1970">
           <div className="relative pb-48 linecontainer">
@@ -587,7 +587,7 @@ const StartCircle = styled.img`
   position: absolute;
   height: 36px;
   width: 36px;
-  bottom: 168px;
+  bottom: 278px;
   left: 18px;
 `
 
