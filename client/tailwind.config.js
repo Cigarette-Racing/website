@@ -178,6 +178,8 @@ module.exports = {
         huge: '10rem', //   160px
         huge2: '15rem', //  240px
         huge3: '20rem', //  320px
+        '10px': '10px',
+        '40px': '40px',
       },
       lineHeight: {
         none: '1',
@@ -230,6 +232,9 @@ module.exports = {
       opacity: {
         '10': '0.1',
         '20': '0.2',
+      },
+      margin: {
+        '14': '3.5rem',
       },
     },
   },

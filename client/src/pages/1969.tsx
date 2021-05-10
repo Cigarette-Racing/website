@@ -58,6 +58,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
         exploreOurWorld2,
         exploreOurWorld3,
         exploreOurWorld4,
+        dnaHeroMobile,
       },
     },
   } = props
@@ -97,33 +98,25 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
       <SEO title="Our Legacy - 1969" />
       <div className="pt-20 bg-gray-0 text-white pb-4 main">
         <Legacy1969Menu />
-        <section className="md:min-h-screen flex flex-col justify-between relative pb-10">
-          <div className="mb-8 w-full">
-            <img
-              src={`${page.image[0].url}?q=30&w=2800`}
-              alt=""
-              className="w-full object-cover"
-            />
-          </div>
-          <div className="absolute bottom-0 px-4 pb-4 md:right-0 md:mb-20 md:mr-40">
-            <div className="font-body text-xs font-bold md:mb-2 md:text-sm">
+        <Section className="md:min-h-screen flex flex-col justify-between relative pb-40 pt-0">
+          <img
+            className="w-full object-cover max-w-full"
+            src={dnaHeroMobile[0].url}
+          />
+          <div className="absolute bottom-0 pb-24 px-4 md:right-0 md:mb-20 md:mr-40">
+            <div className="font-body text-10px font-bold tracking-heading mb-2 md:mb-2 md:text-sm">
               OUR LEGACY
             </div>
-            <div className="text-3xl">
-              <div className="font-heading md:-mb-8 md:text-8xl">
-                Ignoring Gravity{' '}
-              </div>
-              <div className="font-heading text-red md:text-8xl">
-                since 1969
-              </div>
+            <div className="font-light text-40px md:text-8xl leading-snug">
+              <div className="font-heading  md:-mb-8">Ignoring Gravity</div>
+              <div className="font-heading text-red">since 1969</div>
             </div>
           </div>
-
           <StartCircle src={timelineStartCircle} alt="start" />
           <VerticalLineContainer height="168px" bottom left />
-        </section>
+        </Section>
         <Section className="relative pb-0 pt-0" data-section="1970">
-          <div className="relative pb-48">
+          <div className="relative pb-48 linecontainer">
             <div
               style={{
                 backgroundImage: `url(${verticalDottedLine})`,
@@ -156,7 +149,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               </div>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative linecontainer pb-24">
             <MobileHeader
               className="md:bg-gray-0 px-4 tracking-tight"
               text="1970"
@@ -211,7 +204,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               }}
               className="absolute bg-repeat-y h-full"
             />
-            <div className="md:max-w-3xl mr-auto md:ml-40">
+            <div className="mb-24 md:max-w-3xl mr-auto md:ml-40">
               <OneColumnImageTextBlockComponent
                 copy={flexData[1].blocks[0].textBlock[0].copy}
                 imageLabel={flexData[1].blocks[0].singleMedia[0].label}
@@ -250,24 +243,27 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             }}
             className="absolute bg-repeat-y min-h-full z-1"
           />
-          <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-56">
+          <div className="mb-20 md:max-w-3xl ml-auto md:mr-40 md:mb-56">
             <OneColumnImageTextBlockComponent
+              ratio="4:3"
               copy={flexData[2].blocks[0].textBlock[0].copy}
               image={flexData[2].blocks[0].singleMedia[0].image[0].url}
             />
           </div>
-          <HorizontalImageTextBlockComponent
-            layout="imageOnLeft"
-            content={{
-              copy: flexData[2].blocks[1].textBlock[0].copy,
-              header: flexData[2].blocks[1].textBlock[0].header,
-            }}
-            media={{
-              image: {
-                publicURL: flexData[2].blocks[1].singleMedia[0].image[0].url,
-              },
-            }}
-          />
+          <div className="z-10 relative">
+            <HorizontalImageTextBlockComponent
+              layout="imageOnLeft"
+              content={{
+                copy: flexData[2].blocks[1].textBlock[0].copy,
+                header: flexData[2].blocks[1].textBlock[0].header,
+              }}
+              media={{
+                image: {
+                  publicURL: flexData[2].blocks[1].singleMedia[0].image[0].url,
+                },
+              }}
+            />
+          </div>
         </Section>
         <Section className="relative md:pb-48 pb-0 pt-10" data-section="2000">
           <VerticalHeader
@@ -287,7 +283,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             }}
             className="absolute z-1 bg-no-repeat"
           />
-          <div className="relative pb-32">
+          <div className="relative pb-48">
             <div
               style={{
                 backgroundImage: `url(${verticalDottedLine})`,
@@ -298,8 +294,9 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               className="absolute bg-repeat-y h-full"
             />
 
-            <div className="md:max-w-3xl mr-auto md:ml-40 md:mb-56">
+            <div className="mb-16 md:max-w-3xl mr-auto md:ml-40 md:mb-56">
               <OneColumnImageTextBlockComponent
+                ratio="4:3"
                 copy={flexData[3].blocks[0].textBlock[0].copy}
                 image={flexData[3].blocks[0].singleMedia[0].image[0].url}
               />
@@ -343,7 +340,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               alt="alt"
               label={flexData[4].blocks[0].singleMedia[0].label}
             />
-            <div className="md:flex mt-16 mb-20 md:mb-48 px-4 xl:px-0 ">
+            <div className="md:flex mt-16 mb-32 md:mb-48 px-4 xl:px-0 ">
               <TextBlockComponent
                 className="md:w-3/4 text-left max-w-6xl pr-6"
                 header=""
@@ -533,13 +530,14 @@ export const OneColumnImageTextBlockComponent = ({
   image,
   header = '',
   copy,
-  imageLabel,
+  imageLabel = '',
   theme = 'dark',
+  ratio = '',
 }) => (
   <div>
     <div data-block-type="OneColumnImageTextBlockComponent">
       <ImageWithLabel
-        ratio="2:3"
+        ratio={ratio || '2:3'}
         src={`${image}?q=30&w=2000`}
         alt="alt"
         label={imageLabel}
@@ -586,7 +584,7 @@ const Legacy1969Menu = () => {
     >
       <ul className="flex justify-between md:justify-center px-6 text-xs">
         {years.map((year) => {
-          return <LegacyMenuItem year={year} />
+          return <LegacyMenuItem key={year} year={year} />
         })}
       </ul>
     </div>
@@ -618,6 +616,9 @@ export default Legacy1969Page
 export const query = graphql`
   query Legacy1969Page {
     craftAPI {
+      dnaHeroMobile: assets(filename: "1969-hero-mobile.jpg") {
+        url
+      }
       exploreOurWorld1: assets(filename: "1up-image-placeholder.jpg") {
         url
       }
