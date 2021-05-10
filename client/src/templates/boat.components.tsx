@@ -92,12 +92,14 @@ export const BoatHeader = ({
       </div>
       <div className="mb-8 md:absolute md:h-full md:top-0 w-full">
         {!!videoUrl ? (
-          <AutoplayVideo
-            image={image}
-            alt={alt}
-            videoUrl={videoUrl}
-            videoOptions={{ controls: false }}
-          />
+          <AspectRatio ratio="16:9" md="none" className="md:h-full">
+            <AutoplayVideo
+              image={image}
+              alt={alt}
+              videoUrl={videoUrl}
+              videoOptions={{ controls: false }}
+            />
+          </AspectRatio>
         ) : (
           <Fragment>
             <img src={`${image}`} className="h-full w-full object-cover" />
@@ -107,7 +109,9 @@ export const BoatHeader = ({
       <div className="hidden bg-black bg-opacity-10 absolute inset-0 md:block"></div>
       <div className="relative z-10">
         <div className="relative flex justify-center mb-8 md:mb-10">
-          {!!boatLogo && <img src={boatLogo} alt={boatNameLong} />}
+          {!!boatLogo && (
+            <img src={boatLogo} alt={boatNameLong} className="max-w-xs" />
+          )}
         </div>
         <div className="relative flex px-4 space-x-6 mb-10 md:mb-6 max-w-2xl mx-auto">
           {stats.map((stat) => (

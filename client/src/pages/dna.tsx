@@ -211,7 +211,7 @@ const OurWorldDNA = (props) => {
       <img
         src={`${introImage.url}?q=30&w=2400`}
         alt="intro image"
-        className="w-full object-cover max-h-screen min-h-50vh md:min-h-0"
+        className="w-full h-screen object-cover"
       />
       <Section className="nextLevelPerformance pt-32" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
@@ -272,7 +272,7 @@ const OurWorldDNA = (props) => {
       <img
         src={`${imageBreak2.url}?q=30&w=2400`}
         alt="next level performance"
-        className="w-full object-cover max-h-screen"
+        className="w-full h-screen object-cover"
       />
       <Section className="simplyStunning pt-0 pb-20" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
@@ -303,7 +303,7 @@ const OurWorldDNA = (props) => {
         <img
           src={dnaHelmBreak.url}
           alt=""
-          className="w-full object-cover max-h-screen"
+          className="w-full h-screen object-cover"
         />
       </Section>
       <Section className="madeAndCrafted pt-0 lg:pt-24" theme="dark">
