@@ -12,15 +12,7 @@ import ExploreOurWorld, {
 import {
   extractFlexibleSectionsFromCraft,
   createCarouselItems,
-  GenericSection,
-  FullBleedImage,
   HorizontalImageTextBlockComponent,
-  TwoColumnImageTextBlockComponent,
-  MobileSectionHeader,
-  VerticalHeaderBlock,
-  SideBleedImage,
-  TwoUpImageBlock,
-  ThreeUpImageBlock,
   TextBlockComponent,
   ImageWithLabel,
 } from '../templates/common.components'
@@ -28,24 +20,8 @@ import {
 import { Carousel } from '../molecules/carousel'
 import { Slider } from '../molecules/slider'
 import { Theme } from '../types/shared'
-import {
-  getFlexibleSections,
-  OneColumnTextBlock,
-  isFullBleedImageBlock,
-  isTwoColumnImageTextBlock,
-  isOneColumnTextBlock,
-  isCarouselBlock,
-  isTwoColumnImagesBlock,
-  isThreeColumnImagesBlock,
-  isSliderBlock,
-  isFullWidthCarouselBlock,
-  isOneColumnImageTextBlock,
-  isHorizontalImageTextBlock,
-  HorizontalImageTextBlock,
-  OneColumnImageTextBlock,
-} from '../types/common'
+import { getFlexibleSections, OneColumnTextBlock } from '../types/common'
 import dottedLine from '../images/dotted.svg'
-import dottedLine2 from '../images/dotted-2.svg'
 import verticalDottedLine from '../images/vertical-line.svg'
 import timelineStartCircle from '../images/timeline-start-circle.png'
 
@@ -55,7 +31,6 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
       craftAPI: {
         legacy1969: page,
         exploreOurWorld1,
-        exploreOurWorld2,
         exploreOurWorld3,
         exploreOurWorld4,
         dnaHeroMobile,
@@ -95,13 +70,18 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
 
   return (
     <Layout>
+      {console.log(page)}
       <SEO title="Our Legacy - 1969" />
       <div className="pt-20 bg-gray-0 text-white pb-4 main">
         <Legacy1969Menu />
         <Section className="md:min-h-screen flex flex-col justify-between relative pb-40 pt-0">
           <img
-            className="w-full object-cover max-w-full"
+            className="w-full object-cover max-w-full md:hidden"
             src={dnaHeroMobile[0].url}
+          />
+          <img
+            className="hidden w-full object-cover max-w-full md:block"
+            src={page.image[0].url}
           />
           <div className="absolute bottom-0 pb-24 px-4 md:right-0 md:mb-20 md:mr-40">
             <div className="font-body text-10px font-bold tracking-heading mb-2 md:mb-2 md:text-sm">
