@@ -308,7 +308,7 @@ const OurWorldDNA = (props) => {
           />
           <OneColumnTextBlockComponent
             {...content.simplyStunning}
-            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-md md:-mt-56 mx-auto md:ml-40"
           />
         </div>
       </Section>
