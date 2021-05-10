@@ -295,7 +295,7 @@ const OurWorldDNA = (props) => {
             </div>
             <div className="w-1/2">
               <img
-                className="min-h-50vh"
+                className="min-h-70vh md:min-h-50vh"
                 src={simplyStunningBgRight.url}
                 alt=""
               />
@@ -312,11 +312,14 @@ const OurWorldDNA = (props) => {
           />
         </div>
       </Section>
-      <Section className="boatImage pt-0 pb-0 -mb-4 lg:mb-0" theme="dark">
+      <Section
+        className="boatImage pt-0 pb-0 -mb-4 md:-mb-12 lg:mb-0"
+        theme="dark"
+      >
         <img
           src={dnaHelmBreak.url}
           alt=""
-          className="w-full h-screen object-cover"
+          className="w-full md:h-screen object-cover"
         />
       </Section>
       <Section className="madeAndCrafted pt-0 lg:pt-24" theme="dark">
