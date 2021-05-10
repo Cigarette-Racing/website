@@ -12,6 +12,7 @@ import content from './dna.json'
 import { OneColumnTextBlock } from '../types/common'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { InPageCta } from '../atoms/in-page-cta'
+import { AspectRatio } from '../atoms/aspect-ratio'
 
 const Section: React.FC<{
   theme?: Theme | 'red' | 'none'
@@ -150,6 +151,7 @@ const OurWorldDNA = (props) => {
     data: {
       craftAPI: {
         introImage,
+        introImageMobile,
         schematicImage,
         imageBreak1,
         imageBreak2,
@@ -194,10 +196,15 @@ const OurWorldDNA = (props) => {
   return (
     <Layout>
       <SEO title="DNA" slug={props.path} />
-      <div className="relative bg-gray-0 min-w-screen min-h-screen overflow-hidden flex justify-center items-center">
+      <div className="relative bg-gray-0 min-w-screen min-h-screen overflow-hidden flex justify-center items-center pt-20">
         <img
-          className="absolute h-full w-full object-contain z-index-0"
-          // className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
+          className="absolute object-contain z-index-0 md:hidden max-w-none"
+          src={`${schematicImage.url}?q=30&w=2400`}
+          alt="boat schematic"
+          style={{ width: '120%' }}
+        />
+        <img
+          className="hidden md:block absolute h-full w-full object-contain z-index-0"
           src={`${schematicImage.url}?q=30&w=2400`}
           alt="boat schematic"
         />
@@ -208,10 +215,16 @@ const OurWorldDNA = (props) => {
           Scroll to begin
         </div>
       </div>
+
+      <img
+        src={`${introImageMobile.url}?q=30&w=2400`}
+        alt="intro image"
+        className="w-full object-cover md:hidden"
+      />
       <img
         src={`${introImage.url}?q=30&w=2400`}
         alt="intro image"
-        className="w-full h-screen object-cover"
+        className="hidden md:block w-full md:h-screen object-cover"
       />
       <Section className="nextLevelPerformance pt-32" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
@@ -429,6 +442,9 @@ export const query = graphql`
   query DNAPage {
     craftAPI {
       introImage: asset(filename: "dna-intro.jpg") {
+        url
+      }
+      introImageMobile: asset(filename: "dna-intro-mobile.jpg") {
         url
       }
       schematicImage: asset(filename: "dna-Schematic-Illustration.png") {
