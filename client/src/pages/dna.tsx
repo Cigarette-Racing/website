@@ -313,7 +313,7 @@ const OurWorldDNA = (props) => {
         </div>
       </Section>
       <Section
-        className="boatImage pt-0 pb-0 -mb-4 md:-mb-12 lg:mb-0"
+        className="boatImage pt-0 pb-0 -mb-4 md:-mb-12 lg:mb-0 md:pb-48"
         theme="dark"
       >
         <img
@@ -323,7 +323,7 @@ const OurWorldDNA = (props) => {
         />
       </Section>
       <Section className="madeAndCrafted pt-0 lg:pt-24" theme="dark">
-        <div className="relative grid grid-cols-2 lg:mt-64 max-w-7xl mx-auto flex-col items-center">
+        <div className="relative grid grid-cols-2 lg:mt-64 max-w-8xl mx-auto flex-col items-center">
           <div className="lg:row-span-2 overflow-hidden flex justify-center">
             <img
               className="dnaMadeCraftedHeaderBg max-w-sm md:max-w-full"
@@ -360,7 +360,7 @@ const OurWorldDNA = (props) => {
             theme="dark"
             className="lg:self-start text-5xl sm:text-5xl lg:text-11xl px-12"
             centered={false}
-            // staggerDistance="tight"
+            staggerDistance="tight"
             style={{
               backgroundImage: `url(${dnaTrulyYours.url})`,
               backgroundPosition: '25% 15%',
@@ -373,8 +373,7 @@ const OurWorldDNA = (props) => {
           />
           <img
             src={dnaTrulyYours.url}
-            className="hidden md:block md:mt-12 lg:mt-16 z-10"
-            style={{ mixBlendMode: 'lighten' }}
+            className="hidden md:block z-10 md:mt-4"
             alt=""
           />
           <img
