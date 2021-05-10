@@ -24,6 +24,7 @@ import { getFlexibleSections, OneColumnTextBlock } from '../types/common'
 import dottedLine from '../images/dotted.svg'
 import verticalDottedLine from '../images/vertical-line.svg'
 import verticalDottedLineLarge from '../images/vertical-line-desktop.svg'
+import horizontalDottedLineLarge from '../images/horizontal-line-desktop.svg'
 import timelineStartCircle from '../images/timeline-start-circle.png'
 
 const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
@@ -96,7 +97,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             </div>
           </div>
           <StartCircle
-            className="md:ml-40"
+            className="md:ml-40 relative"
             src={timelineStartCircle}
             alt="start"
           />
@@ -104,7 +105,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             height="276px"
             bottom
             left
-            className="md:ml-40"
+            className="md:ml-48"
           />
         </Section>
         <Section className="relative pb-0 pt-0" data-section="1970">
@@ -121,15 +122,15 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             <div
               style={{
                 backgroundImage: `url(${verticalDottedLineLarge})`,
-                left: '35px',
+                left: 0,
                 top: 0,
                 width: '50px',
               }}
-              className="hidden md:block absolute bg-repeat-y h-full md:ml-40"
+              className="hidden md:block absolute bg-repeat-y h-full md:ml-48"
             />
             <VerticalHeader
               text="1970"
-              className="hidden md:block ml-32 pr-2 absolute top-0 left-0 pb-8 bg-gray-0 pt-12"
+              className="hidden md:block ml-32 pr-2 absolute top-0 left-0 bg-gray-0 pt-12 pb-8"
             />
 
             <div className="md:max-w-3xl ml-auto md:mr-40">
@@ -167,11 +168,11 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             <div
               style={{
                 backgroundImage: `url(${verticalDottedLineLarge})`,
-                left: '35px',
+                left: 0,
                 top: '18px',
                 width: '50px',
               }}
-              className="hidden md:block absolute bg-repeat-y h-full md:ml-40"
+              className="hidden md:block absolute bg-repeat-y h-full md:ml-48"
             />
             <div
               style={{
@@ -198,7 +199,7 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             text="1980"
             className="hidden md:block mr-24 absolute top-0 right-0 pb-8"
           />
-          <div className="realtive pt-10">
+          <div className="realtive pt-10 md:pt-0">
             <MobileHeader text="1980" className="pb-6 px-4" />
             <div
               style={{
@@ -223,6 +224,18 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               }}
               className="absolute bg-repeat-y h-full md:hidden"
             />
+            <div className="py-6 ml-48 mr-48">
+              <HorizontalLineContainer />
+            </div>
+            <div
+              style={{
+                backgroundImage: `url(${verticalDottedLineLarge})`,
+                right: '12px',
+                top: '18px',
+                width: '50px',
+              }}
+              className="hidden md:block absolute bg-repeat-y h-full md:mr-40 mt-10"
+            />
             <div className="mb-24 md:max-w-3xl mr-auto md:ml-40">
               <OneColumnImageTextBlockComponent
                 copy={flexData[1].blocks[0].textBlock[0].copy}
@@ -244,13 +257,16 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             </div>
           </div>
         </Section>
+        <div className="py-2 ml-48 mr-13.5">
+          <HorizontalLineContainer />
+        </div>
         <Section
-          className="relative pt-0 md:pb-56 md:pt-64 md:mt-12"
+          className="relative pt-0 md:pb-56 md:pt-40"
           data-section="1990"
         >
           <VerticalHeader
             text="1990"
-            className="hidden md:block ml-24 absolute top-0 left-0 pb-8"
+            className="hidden md:block ml-24 absolute top-0 left-0 pb-8 md:mt-30"
           />
           <MobileHeader text="1990" className="px-4 pb-6" />
           <div
@@ -261,6 +277,15 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               width: '100%',
             }}
             className="absolute bg-repeat-y min-h-full z-1 md:hidden"
+          />
+          <div
+            style={{
+              backgroundImage: `url(${verticalDottedLineLarge})`,
+              left: 0,
+              top: '18px',
+              width: '50px',
+            }}
+            className="hidden md:block absolute bg-repeat-y h-full md:ml-48"
           />
           <div className="mb-20 md:max-w-3xl ml-auto md:mr-40 md:mb-56">
             <OneColumnImageTextBlockComponent
@@ -284,6 +309,9 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             />
           </div>
         </Section>
+        <div className="py-2 ml-48 mr-13.5">
+          <HorizontalLineContainer />
+        </div>
         <Section className="relative md:pb-48 pb-0 pt-10" data-section="2000">
           <VerticalHeader
             text="2000"
@@ -301,6 +329,15 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
               backgroundPosition: `top right`,
             }}
             className="absolute z-1 bg-no-repeat md:hidden"
+          />
+          <div
+            style={{
+              backgroundImage: `url(${verticalDottedLineLarge})`,
+              right: '12px',
+              top: '18px',
+              width: '50px',
+            }}
+            className="hidden md:block absolute bg-repeat-y h-full md:mr-40"
           />
           <div className="relative pb-48">
             <div
@@ -334,6 +371,9 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             </div>
           </div>
         </Section>
+        <div className="py-2 ml-48 mr-13.5">
+          <HorizontalLineContainer />
+        </div>
         <Section className="relative pb-0 pt-0 md:pb-12" data-section="2010">
           <VerticalHeader
             text="2010"
@@ -351,20 +391,32 @@ const Legacy1969Page = (props: PageProps<GatsbyTypes.Legacy1969PageQuery>) => {
             className="absolute z-1 bg-no-repeat md:hidden"
           />
 
-          <div className="md:max-w-3xl ml-auto md:mr-40 md:mb-32 md:pb-4">
-            <ImageWithLabel
-              ratio="4:3"
-              md="3:2"
-              src={`${flexData[4].blocks[0].singleMedia[0].image[0].url}?q=30&w=2000`}
-              alt="alt"
-              label={flexData[4].blocks[0].singleMedia[0].label}
+          <div className="relative">
+            {' '}
+            <div
+              style={{
+                backgroundImage: `url(${verticalDottedLineLarge})`,
+                left: 0,
+                top: '18px',
+                width: '50px',
+              }}
+              className="hidden md:block absolute bg-repeat-y h-full md:ml-48"
             />
-            <div className="md:flex mt-16 mb-32 md:mb-48 px-4 xl:px-0 ">
-              <TextBlockComponent
-                className="md:w-3/4 text-left max-w-6xl pr-6"
-                header=""
-                copy={flexData[4].blocks[0].textBlock[0].copy}
+            <div className="md:max-w-3xl ml-auto md:mr-40 md:pb-4">
+              <ImageWithLabel
+                ratio="4:3"
+                md="3:2"
+                src={`${flexData[4].blocks[0].singleMedia[0].image[0].url}?q=30&w=2000`}
+                alt="alt"
+                label={flexData[4].blocks[0].singleMedia[0].label}
               />
+              <div className="md:flex mt-16 mb-32 md:mb-48 px-4 xl:px-0 ">
+                <TextBlockComponent
+                  className="md:w-3/4 text-left max-w-6xl pr-6"
+                  header=""
+                  copy={flexData[4].blocks[0].textBlock[0].copy}
+                />
+              </div>
             </div>
           </div>
           <div className="md:mx-24 md:px-16">
@@ -612,14 +664,22 @@ const VerticalLineContainer = styled.div`
     background-image: url(${verticalDottedLineLarge});
   }
   /* vertical-line-desktop.svg */
-  left: ${(props) => (props.left ? '35px' : 'auto')};
-  right: ${(props) => (props.right ? '35px' : 'auto')};
-  bottom: ${(props) => (props.bottom ? '0' : 'auto')};
-  top: ${(props) => (props.top ? '0' : 'auto')};
+  left: ${(props) => (props.left ? 0 : 'auto')};
+  right: ${(props) => (props.right ? 0 : 'auto')};
+  bottom: ${(props) => (props.bottom ? 0 : 'auto')};
+  top: ${(props) => (props.top ? 0 : 'auto')};
   width: 50px;
   height: ${(props) => props.height || '100%'};
   position: absolute;
   background-repeat: repeat-y;
+`
+
+const HorizontalLineContainer = styled.div`
+  background-image: url(${horizontalDottedLineLarge});
+  height: 2px;
+  width: 100%;
+  background-repeat-y: no-repeat;
+  background-repeat-x: repeat;
 `
 
 const StartCircle = styled.img`
@@ -627,7 +687,7 @@ const StartCircle = styled.img`
   height: 36px;
   width: 36px;
   bottom: 278px;
-  left: 18px;
+  left: 16px;
   @media (max-width: 767px) {
   }
 `
