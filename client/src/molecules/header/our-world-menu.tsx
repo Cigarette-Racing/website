@@ -37,13 +37,13 @@ const Menu = styled.div`
   @media (min-width: 769px) {
     height: calc(100vh - 80px);
     overflow: hidden;
-  }
 
-  &:hover {
-    ${MenuLink} {
-      opacity: 0.3;
-      &:hover {
-        opacity: 1;
+    &:hover {
+      ${MenuLink} {
+        opacity: 0.3;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }
