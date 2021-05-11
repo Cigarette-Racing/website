@@ -11,12 +11,34 @@ import { CircleButton } from '../../atoms/circle-button'
 import { ArrowIcon } from '../../svgs/icons'
 
 const MenuLink = styled(Link)`
+  @media (min-width: 769px) {
+    display: block;
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 55%;
+  }
+
+  .hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   &:hover {
     opacity: 1;
   }
 `
 
 const Menu = styled.div`
+  @media (min-width: 769px) {
+    height: calc(100vh - 80px);
+    overflow: hidden;
+  }
+
   &:hover {
     ${MenuLink} {
       opacity: 0.3;
@@ -100,54 +122,57 @@ export const OurWorldMenu = ({
       shouldCloseOnEsc={true}
       onRequestClose={onReset}
       className={{
-        base: 'ourworld absolute inset-0 overflow-scroll',
+        base: 'ourworld absolute inset-0 overflow-scroll md:overflow-hidden',
         afterOpen: '',
         beforeClose: '',
       }}
-      overlayClassName="fixed inset-0 z-50 md:z-10"
+      overlayClassName="fixed inset-0 z-50 md:z-30"
       closeTimeoutMS={250}
     >
       <div className="md:hidden px-4 h-16 flex items-center text-white">
         <ReturnLink onClick={onReset}>Our World</ReturnLink>
       </div>
       <div
-        className="pt-20 min-h-screen"
+        className="min-h-screen"
         style={{
           backgroundImage: `linear-gradient(to right, rgba(0,0,0, .1) 25%, rgba(0,0,0,1)), url(${ourworldBg})`,
         }}
       >
-        <div
-          className="md:px-10 bg-opacity-75 pt-24 pb-16"
-          style={{
-            backgroundImage: `linear-gradient(to right, rgba(0,0,0, .1) 25%, rgba(0,0,0,1)), url(${ourworldBg})`,
-          }}
-        >
-          <Menu className="md:grid grid-cols-2 h-full ">
+        <div className="md:px-10 bg-opacity-75 pt-24 md:h-full">
+          <Menu className="md:grid md:grid-cols-2 md:grid-rows-2 h-full md:h-auto">
             {our_world_sections.map((section) => {
               return (
                 <MenuLink
                   key={section.url}
                   to={section.url}
                   onClick={() => onReset()}
-                  className="flex flex-col justify-start items-start md:px-3 pb-10 transition-opacity duration-150 group"
+                  className="flex flex-col justify-start items-start md:px-3 pb-10 last:pb-0 md:last:pb-10 transition-opacity duration-150 group"
                 >
-                  <AspectRatio
-                    className="order-2 md:order-1 w-full"
-                    ratio="4:3"
-                    md="21:9"
-                  >
+                  <div className="order-2 md:order-1 hidden md:block image-container overflow-hidden">
                     <img
-                      className="h-full w-full object-cover"
+                      className="hero w-full object-cover"
                       src={section.hero}
                       alt=""
-                      style={{ position: 'absolute' }}
                     />
-                  </AspectRatio>
-                  <div className="order-1 md:order-2 px-4 mb-8 md:mb-0 w-full">
+                  </div>
+                  <div className="order-2 md:order-1 w-full">
+                    <AspectRatio
+                      className="md:hidden w-full"
+                      ratio="4:3"
+                      md="21:9"
+                    >
+                      <img
+                        className="absolute h-full w-full object-cover"
+                        src={section.hero}
+                        alt=""
+                      />
+                    </AspectRatio>
+                  </div>
+                  <div className="order-1 md:order-2 px-4 md:px-0 mb-8 md:mb-0 w-full">
                     <div className="flex justify-between items-center content-center">
                       {section.name === 'Labs' ? (
                         <LabsSVGTitle
-                          className="md:mt-4 mb-6"
+                          className="md:mt-6 mb-6"
                           src={labsTitleSVG}
                           alt="_labs"
                         />
@@ -167,7 +192,7 @@ export const OurWorldMenu = ({
                     </div>
                     <Typography
                       variant="p2"
-                      className="copy text-white max-w-xs md:max-w-sm md:opacity-0 group-hover:opacity-100  transition-opacity duration-150"
+                      className="copy pr-12 text-white max-w-xs md:max-w-sm md:opacity-0 group-hover:opacity-100 transition-opacity duration-150"
                     >
                       {section.headline}
                     </Typography>
