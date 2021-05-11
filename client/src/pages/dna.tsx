@@ -12,7 +12,8 @@ import content from './dna.json'
 import { OneColumnTextBlock } from '../types/common'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { InPageCta } from '../atoms/in-page-cta'
-import { AspectRatio } from '../atoms/aspect-ratio'
+import { Controller, Scene } from 'react-scrollmagic'
+import { Tween, Timeline } from 'react-gsap'
 
 const Section: React.FC<{
   theme?: Theme | 'red' | 'none'
