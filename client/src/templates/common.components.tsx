@@ -475,7 +475,7 @@ export const ContentEntry = ({
         <Link
           to={`${entry.slug}`}
           className={clsx(
-            `primary block border-solid border-t md:pt-16 w-full px-4`,
+            `primary block border-solid border-t md:pt-16 w-full md:px-4`,
             { 'border-gray-1': theme === 'dark' },
             { 'border-gray-5': theme === 'light' },
             className
