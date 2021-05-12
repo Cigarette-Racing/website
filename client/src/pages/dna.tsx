@@ -49,15 +49,13 @@ const StaggeredHeader = ({
   staggerDistance = 'normal',
 }: {
   className?: string
-  centered: boolean
+  centered?: boolean
   style?: React.CSSProperties
   text1: string
   text2: string
   theme?: Theme
   staggerDistance?: string
 }) => {
-  console.log(centered)
-
   return (
     <div
       className={clsx(
@@ -325,68 +323,78 @@ const OurWorldDNA = (props) => {
           className="hidden md:block w-full md:h-screen object-cover"
         />
       </div>
-      <Section className="nextLevelPerformance pt-32" theme="dark">
-        <Controller>
-          <Scene triggerHook="onLeave" duration={1000}>
-            {(progress) => (
-              <div className="relative flex max-w-7xl mx-auto flex-col items-center">
-                <StaggeredHeader
-                  text1="Next Level"
-                  text2="performance"
-                  theme="dark"
-                  className="text-3xl sm:text-5xl lg:text-8xl"
-                />
-                <div className="md:px-12 lg:px-20">
-                  <div className="px-4 mb-10 lg:mb-20 md:mt-8 lg:mt-16">
-                    <div className="relative">
-                      <img
-                        src={`${imageBreak1.url}?q=30&w=2400`}
-                        alt="next level performance"
-                      />
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background:
-                            'linear-gradient(145deg, #093D42 9.24%, rgba(17, 60, 64, 0) 46.38%)',
-                        }}
-                      ></div>
+      <Controller>
+        <Scene triggerHook="onLeave" duration={1000} pin>
+          {(progress) => (
+            <div>
+              <Section className="nextLevelPerformance pt-32" theme="dark">
+                <div className="relative flex max-w-7xl mx-auto flex-col items-center">
+                  <StaggeredHeader
+                    text1="Next Level"
+                    text2="performance"
+                    theme="dark"
+                    className="text-3xl sm:text-5xl lg:text-8xl"
+                  />
+                  <div className="md:px-12 lg:px-20">
+                    <div className="px-4 mb-10 lg:mb-20 md:mt-8 lg:mt-16">
+                      <div className="relative">
+                        <img
+                          src={`${imageBreak1.url}?q=30&w=2400`}
+                          alt="next level performance"
+                        />
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            background:
+                              'linear-gradient(145deg, #093D42 9.24%, rgba(17, 60, 64, 0) 46.38%)',
+                          }}
+                        ></div>
+                      </div>
                     </div>
                   </div>
+                  <OneColumnTextBlockComponent
+                    {...content.nextLevelPerformance}
+                    align="center"
+                    className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+                  />
                 </div>
-                <OneColumnTextBlockComponent
-                  {...content.nextLevelPerformance}
-                  align="center"
-                  className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
-                />
-              </div>
-            )}
-          </Scene>
-        </Controller>
-      </Section>
-      <Section className="scienceOnWater pt-32 pb-24" theme="red">
-        <div className="relative flex max-w-8xl mx-auto flex-col items-center">
-          <StaggeredHeader
-            text1="Science"
-            text2="on water"
-            theme="light"
-            className="text-4xl sm:text-5xl lg:text-9xl px-10"
-          />
-          <div className="">
-            <div className="md:mt-4 lg:mt-8 relative z-10">
-              <img
-                src={`${scienceOnWater.url}?q=30&w=2400`}
-                alt="science on water"
-              />
+              </Section>
             </div>
-          </div>
-          <OneColumnTextBlockComponent
-            {...content.scienceOnWater}
-            align="center"
-            theme="light"
-            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
-          />
-        </div>
-      </Section>
+          )}
+        </Scene>
+      </Controller>
+      <Controller>
+        <Scene triggerHook="onLeave" duration={1000} pin>
+          {(progress) => (
+            <div>
+              <Section className="scienceOnWater pt-32 pb-24" theme="red">
+                <div className="relative flex max-w-8xl mx-auto flex-col items-center">
+                  <StaggeredHeader
+                    text1="Science"
+                    text2="on water"
+                    theme="light"
+                    className="text-4xl sm:text-5xl lg:text-9xl px-10"
+                  />
+                  <div className="">
+                    <div className="md:mt-4 lg:mt-8 relative z-10">
+                      <img
+                        src={`${scienceOnWater.url}?q=30&w=2400`}
+                        alt="science on water"
+                      />
+                    </div>
+                  </div>
+                  <OneColumnTextBlockComponent
+                    {...content.scienceOnWater}
+                    align="center"
+                    theme="light"
+                    className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+                  />
+                </div>
+              </Section>
+            </div>
+          )}
+        </Scene>
+      </Controller>
       <img
         src={`${imageBreak2.url}?q=30&w=2400`}
         alt="next level performance"
@@ -431,7 +439,7 @@ const OurWorldDNA = (props) => {
         <div className="relative grid grid-cols-2 lg:mt-64 max-w-8xl mx-auto flex-col items-center">
           <div className="lg:row-span-2 overflow-hidden flex justify-center">
             <img
-              className="dnaMadeCraftedHeaderBg max-w-sm md:max-w-full"
+              className="dnaMadeCraftedHeaderBg self-center max-w-sm md:max-w-full"
               src={dnaMadeCraftedHeaderBg.url}
             />
           </div>
