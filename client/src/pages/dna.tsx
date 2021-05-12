@@ -326,36 +326,42 @@ const OurWorldDNA = (props) => {
         />
       </div>
       <Section className="nextLevelPerformance pt-32" theme="dark">
-        <div className="relative flex max-w-7xl mx-auto flex-col items-center">
-          <StaggeredHeader
-            text1="Next Level"
-            text2="performance"
-            theme="dark"
-            className="text-3xl sm:text-5xl lg:text-8xl"
-          />
-          <div className="md:px-12 lg:px-20">
-            <div className="px-4 mb-10 lg:mb-20 md:mt-8 lg:mt-16">
-              <div className="relative">
-                <img
-                  src={`${imageBreak1.url}?q=30&w=2400`}
-                  alt="next level performance"
+        <Controller>
+          <Scene triggerHook="onLeave" duration={1000}>
+            {(progress) => (
+              <div className="relative flex max-w-7xl mx-auto flex-col items-center">
+                <StaggeredHeader
+                  text1="Next Level"
+                  text2="performance"
+                  theme="dark"
+                  className="text-3xl sm:text-5xl lg:text-8xl"
                 />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      'linear-gradient(145deg, #093D42 9.24%, rgba(17, 60, 64, 0) 46.38%)',
-                  }}
-                ></div>
+                <div className="md:px-12 lg:px-20">
+                  <div className="px-4 mb-10 lg:mb-20 md:mt-8 lg:mt-16">
+                    <div className="relative">
+                      <img
+                        src={`${imageBreak1.url}?q=30&w=2400`}
+                        alt="next level performance"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          background:
+                            'linear-gradient(145deg, #093D42 9.24%, rgba(17, 60, 64, 0) 46.38%)',
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <OneColumnTextBlockComponent
+                  {...content.nextLevelPerformance}
+                  align="center"
+                  className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+                />
               </div>
-            </div>
-          </div>
-          <OneColumnTextBlockComponent
-            {...content.nextLevelPerformance}
-            align="center"
-            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
-          />
-        </div>
+            )}
+          </Scene>
+        </Controller>
       </Section>
       <Section className="scienceOnWater pt-32 pb-24" theme="red">
         <div className="relative flex max-w-8xl mx-auto flex-col items-center">
