@@ -117,6 +117,7 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      darkestRed: '#6D0004',
       darkRed: '#9d0005',
       red: '#d12026',
       black: '#000000',

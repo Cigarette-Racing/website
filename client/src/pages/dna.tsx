@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { graphql, Link } from 'gatsby'
+import { useMedia } from 'react-use'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import ExploreOurWorld, {
@@ -13,7 +14,10 @@ import { OneColumnTextBlock } from '../types/common'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
 import { InPageCta } from '../atoms/in-page-cta'
 import { Controller, Scene } from 'react-scrollmagic'
+import gsap from 'gsap'
 import { Tween, Timeline } from 'react-gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import { Typography } from '../atoms/typography'
 
 const Section: React.FC<{
   theme?: Theme | 'red' | 'none'
@@ -154,6 +158,7 @@ const OurWorldDNA = (props) => {
         introImage,
         introImageMobile,
         schematicImage,
+        boatHeroImage,
         imageBreak1,
         imageBreak2,
         scienceOnWater,
@@ -194,39 +199,133 @@ const OurWorldDNA = (props) => {
     },
   ] as ExploreContentItem[]
 
+  const isMobile = useMedia('(max-width: 767px)')
+
   return (
     <Layout>
       <SEO title="DNA" slug={props.path} />
-      <div className="relative bg-gray-0 min-w-screen min-h-screen overflow-hidden flex justify-center items-center pt-20">
+      {!isMobile ? (
+        <Controller>
+          <Scene triggerHook="onLeave" duration={1000} pin>
+            {(progress) => (
+              <div className="relative bg-gray-0 min-w-screen min-h-screen overflow-hidden flex justify-center items-center pt-20">
+                <Timeline
+                  paused
+                  totalProgress={progress}
+                  target={
+                    <Fragment>
+                      <div className="introImageOpaque absolute h-full w-full">
+                        <img
+                          className="absolute object-contain z-index-0 md:hidden max-w-none"
+                          src={`${boatHeroImage.url}?q=30&w=2400`}
+                          alt="boat schematic"
+                          style={{ width: '120%' }}
+                        />
+                        <img
+                          className="hidden md:block absolute h-full w-full object-contain z-index-0"
+                          src={`${boatHeroImage.url}?q=30&w=2400`}
+                          alt="boat schematic"
+                        />
+                      </div>
+                      <div className="schematic absolute h-full w-full">
+                        <img
+                          className="absolute object-contain z-index-0 md:hidden max-w-none"
+                          src={`${schematicImage.url}?q=30&w=2400`}
+                          alt="boat schematic"
+                          style={{ width: '120%' }}
+                        />
+                        <img
+                          className="hidden md:block absolute h-full w-full object-contain z-index-0"
+                          src={`${schematicImage.url}?q=30&w=2400`}
+                          alt="boat schematic"
+                        />
+                      </div>
+                      <div
+                        id="dnatext"
+                        className="relative text-darkestRed font-heading leading-none pointer-events-none font-light text-huge sm:text-huge2 md:text-huge3"
+                      >
+                        DNA
+                      </div>
+                      <div className="text-center absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 opacity-0">
+                        <Typography variant="e1" className="text-red mb-5">
+                          THE DNA OF THE AMERICAN OFFSHORE LEGEND
+                        </Typography>
+                        <Typography variant="p3" className="text-white">
+                          The very name, “Cigarette,” evokes a feeling—an energy
+                          that even those who have never felt the thrill of an
+                          open-water Cigarette ride can sense. It is sexy, fast
+                          and glamorous. It has style, panache and evokes the
+                          “ride on the wild side” reputation that “bad boys”
+                          created. It has lure, mystery, excitement. Though this
+                          aura may be something felt, it also has hard facts
+                          behind it because Cigarette Racing Team has built its
+                          reputation, not on smoke and mirrors, but on building
+                          the finest powerboat in the world — and doing it for
+                          over 50 years. “How fast does it go?” is the typical
+                          first question—it goes very fast, but that is only the
+                          beginning of the “American Offshore Legend” story….
+                          Let’s explore the DNA of Cigarette Racing Team.
+                        </Typography>
+                      </div>
+                      <div className="absolute bottom-0 rounded-full bg-gray-0 uppercase mb-4 text-white font-body px-4 py-2 text-mi tracking-wide">
+                        Scroll to begin
+                      </div>
+                    </Fragment>
+                  }
+                >
+                  <Tween from={{ opacity: 1 }} to={{ opacity: 0 }} target={0} />
+                  <Tween
+                    from={{ opacity: 0 }}
+                    to={{ opacity: 1 }}
+                    target={1}
+                    position="-=.5"
+                  />
+                  <Tween
+                    from={{ opacity: 0 }}
+                    to={{ opacity: 1 }}
+                    target={2}
+                    position="0"
+                  />
+                  <Tween to={{ scale: 2.5 }} target={2} position="1" />
+                  <Tween to={{ opacity: 1 }} target={3} />
+                </Timeline>
+              </div>
+            )}
+          </Scene>
+        </Controller>
+      ) : (
+        <div className="relative bg-gray-0 min-w-screen min-h-screen overflow-hidden flex justify-center items-center pt-20">
+          <img
+            className="absolute object-contain z-index-0 md:hidden max-w-none"
+            src={`${schematicImage.url}?q=30&w=2400`}
+            alt="boat schematic"
+            style={{ width: '120%' }}
+          />
+          <img
+            className="hidden md:block absolute h-full w-full object-contain z-index-0"
+            src={`${schematicImage.url}?q=30&w=2400`}
+            alt="boat schematic"
+          />
+          <div className="relative text-darkRed font-heading leading-none pointer-events-none font-light text-huge sm:text-huge2 md:text-huge3">
+            DNA
+          </div>
+          <div className="absolute bottom-0 rounded-full bg-gray-0 uppercase mb-4 text-white font-body px-4 py-2 text-mi tracking-wide">
+            Scroll to begin
+          </div>
+        </div>
+      )}
+      <div id="intro">
         <img
-          className="absolute object-contain z-index-0 md:hidden max-w-none"
-          src={`${schematicImage.url}?q=30&w=2400`}
-          alt="boat schematic"
-          style={{ width: '120%' }}
+          src={`${introImageMobile.url}?q=30&w=2400`}
+          alt="intro image"
+          className="w-full object-cover md:hidden"
         />
         <img
-          className="hidden md:block absolute h-full w-full object-contain z-index-0"
-          src={`${schematicImage.url}?q=30&w=2400`}
-          alt="boat schematic"
+          src={`${introImage.url}?q=30&w=2400`}
+          alt="intro image"
+          className="hidden md:block w-full md:h-screen object-cover"
         />
-        <div className="relative text-darkRed font-heading leading-none pointer-events-none font-light text-huge sm:text-huge2 md:text-huge3">
-          DNA
-        </div>
-        <div className="absolute bottom-0 rounded-full bg-gray-0 uppercase mb-4 text-white font-body px-4 py-2 text-mi tracking-wide">
-          Scroll to begin
-        </div>
       </div>
-
-      <img
-        src={`${introImageMobile.url}?q=30&w=2400`}
-        alt="intro image"
-        className="w-full object-cover md:hidden"
-      />
-      <img
-        src={`${introImage.url}?q=30&w=2400`}
-        alt="intro image"
-        className="hidden md:block w-full md:h-screen object-cover"
-      />
       <Section className="nextLevelPerformance pt-32" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
           <StaggeredHeader
@@ -457,6 +556,9 @@ export const query = graphql`
         url
       }
       schematicImage: asset(filename: "dna-Schematic-Illustration.png") {
+        url
+      }
+      boatHeroImage: asset(filename: "boat-dna-hero-opaque.png") {
         url
       }
       imageBreak1: asset(filename: "dna-image-break-1.jpg") {
