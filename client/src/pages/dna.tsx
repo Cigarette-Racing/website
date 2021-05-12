@@ -16,7 +16,6 @@ import { InPageCta } from '../atoms/in-page-cta'
 import { Controller, Scene } from 'react-scrollmagic'
 import gsap from 'gsap'
 import { Tween, Timeline } from 'react-gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
 import { Typography } from '../atoms/typography'
 
 const Section: React.FC<{
