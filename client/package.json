@@ -37,6 +37,7 @@
     "gatsby-plugin-google-analytics": "^2.3.13",
     "gatsby-plugin-sitemap": "^2.4.12",
     "gatsby-source-graphql": "^2.14.0",
+    "gsap": "^3.6.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
