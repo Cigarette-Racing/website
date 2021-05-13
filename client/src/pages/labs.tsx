@@ -81,14 +81,14 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
             >
               {LandingPage.articleExcerpt}
             </Typography>
-            <CategoryFilter
+            {/* <CategoryFilter
               className="mb-24 md:hidden"
               placeholder="Explore _Labs"
               theme="dark"
               categories={options}
               setFilterCategory={setFilterCategory}
               filterCategory={filterCategory}
-            />
+            /> */}
             {filterCategory.value === 'all' ? (
               <UnFilteredList
                 entries={labEntries}

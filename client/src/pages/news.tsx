@@ -66,14 +66,14 @@ const NewsArticlesPage = (
           >
             {LandingPage.articleExcerpt}
           </Typography>
-          <CategoryFilter
+          {/* <CategoryFilter
             className="mb-24 md:hidden"
             placeholder="Explore Stories"
             theme="light"
             categories={options}
             setFilterCategory={setFilterCategory}
             filterCategory={filterCategory}
-          />
+          /> */}
           {filterCategory.value === 'all' ? (
             <UnFilteredList entries={articleEntries} entryType="news" />
           ) : (
