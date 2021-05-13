@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
 import { useMedia } from 'react-use'
 import { Layout } from '../components/layout'

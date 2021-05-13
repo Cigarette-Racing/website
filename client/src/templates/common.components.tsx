@@ -17,6 +17,7 @@ import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
 import { VerticalHeader } from '../atoms/vertical-header'
 import { VerticalLabel } from '../atoms/vertical-label'
 import { AutoplayVideo } from '../atoms/autoplay-video'
+import { LinkCta } from '../atoms/link-cta'
 import Select, { components } from 'react-select'
 
 export const extractFlexibleSectionsFromCraft = (entry: any) => {
@@ -520,6 +521,7 @@ export const ContentEntry = ({
                     }.${date.getDate()}.${date.getFullYear()}`}
                   </Typography>
                 )}
+                <LinkCta className="m-auto md:mb-8">Read Story</LinkCta>
               </div>
             </div>
           </div>
