@@ -74,13 +74,15 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
             </span>
           </div>
           <div className="md:flex items-center flex-col">
-            <Typography
-              className="mb-24 md:text-center max-w-2xl m-auto"
-              variant="p3"
-              md="p1"
-            >
-              {LandingPage.articleExcerpt}
-            </Typography>
+            {!!LandingPage.articleExcerpt && (
+              <Typography
+                className="mb-24 md:text-center max-w-2xl m-auto"
+                variant="p3"
+                md="p1"
+              >
+                {LandingPage.articleExcerpt}
+              </Typography>
+            )}
             {/* <CategoryFilter
               className="mb-24 md:hidden"
               placeholder="Explore _Labs"
