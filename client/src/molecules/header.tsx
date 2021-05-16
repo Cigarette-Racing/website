@@ -56,7 +56,7 @@ type LinkItem = {
 
 const leftLinks: LinkItem[] = [
   { text: 'Boats', section: 'boats' },
-  { text: 'Our world' },
+  { text: 'Our world', section: 'our world' },
   // { text: 'The Difference' },
 ]
 const rightLinks: LinkItem[] = [
@@ -294,8 +294,13 @@ function MobileMenu({
   return (
     <Modal
       isOpen={isMenuOpen}
-      className={{ base: 'absolute inset-0', afterOpen: '', beforeClose: '' }}
+      className={{
+        base: 'mobilemenu absolute inset-0',
+        afterOpen: '',
+        beforeClose: '',
+      }}
       overlayClassName="fixed inset-0 z-40"
+      shouldCloseOnEsc={true}
       onRequestClose={() => setIsMenuOpen(false)}
     >
       <div
@@ -367,15 +372,6 @@ function MobileMenu({
               setSelectedSection('')
             }}
           />
-        )}
-        {selectedSection === 'our world' && (
-          <div
-            onClick={() => {
-              setSelectedSection('')
-            }}
-          >
-            <OurWorldMenu isVisible={selectedSection === 'our world'} />
-          </div>
         )}
       </div>
     </Modal>
@@ -514,7 +510,7 @@ function BoatSelector({
             </div>
             <div className="fixed w-full bottom-0">
               <div className="flex space-x-8 w-min-content mx-auto pb-10">
-                {boats[boatIndex].stats.map((stat) => (
+                {boats[boatIndex]?.stats.map((stat) => (
                   <div key={stat.label} className="w-48">
                     <StatBlock
                       label={stat.label}
@@ -651,6 +647,7 @@ function BoatScrollList({
           const opacity = 0.4 + 0.6 * animationPercentage
           return (
             <motion.div
+              key={boat.boatName}
               animate={{
                 scale,
                 opacity,

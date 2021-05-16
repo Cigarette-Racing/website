@@ -52,8 +52,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
     extractFlexibleSectionsFromCraft(labEntry)
   )
 
-  const date = new Date(labEntry.dateCreated)
-
   const isMobile = useMedia('(max-width: 767px)')
 
   return (
@@ -95,16 +93,6 @@ const LabTemplate = (props: PageProps<GatsbyTypes.LabPageQuery>) => {
       {flexData.map(
         ({ title, theme, bleedDirection, headerImage, blocks, id }, i) => (
           <GenericSection key={id} theme="dark">
-            <div className="relative px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
-              <Typography
-                variant="e3"
-                className="date text-gray-3 mb-4 absolute top-0 left-0 px-4"
-              >
-                {`${
-                  date.getMonth() + 1
-                }.${date.getDate()}.${date.getFullYear()}`}
-              </Typography>
-            </div>
             <SideBleedImage
               media={headerImage}
               side={bleedDirection}
@@ -267,7 +255,6 @@ export const query = graphql`
       entry(slug: [$craftSlug]) {
         ... on CraftAPI_labs_lab_Entry {
           id
-          dateCreated
           title
           urlLink
           externalLinkIcon {
@@ -315,25 +302,6 @@ export const query = graphql`
                               url(width: 2400)
                             }
                           }
-                        }
-                      }
-                    }
-                  }
-                }
-                ... on CraftAPI_flexibleSections_powertrainOptions_BlockType {
-                  image {
-                    ... on CraftAPI_s3_Asset {
-                      id
-                      url(width: 2400)
-                    }
-                  }
-                  children {
-                    ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlockHeader
-                      children {
-                        ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
-                          textBlockCopy
-                          textBlockHeader
                         }
                       }
                     }
@@ -506,7 +474,6 @@ export const query = graphql`
       }
       entries(type: "lab") {
         ... on CraftAPI_labs_lab_Entry {
-          dateCreated
           slug
           id
           urlLink

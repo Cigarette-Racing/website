@@ -10,20 +10,12 @@ import { useCategoriesQuery } from '../molecules/categories-data'
 import { useMedia } from 'react-use'
 import {
   CategoryFilter,
-  DropdownNav,
   FilteredList,
   GenericSection,
   UnFilteredList,
 } from '../templates/common.components'
 import labsBg from '../images/Labs_BG-SVG.svg'
-
-export const Underline = styled.span`
-  display: inline-block;
-  transform: translateY(4px);
-  margin-right: 4px;
-  width: 55px;
-  height: 2px;
-`
+import labsTitleSVG from '../images/labs-title.svg'
 
 const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
   const [filterCategory, setFilterCategory] = useState({
@@ -72,44 +64,47 @@ const LabsPage = (props: PageProps<GatsbyTypes.LabsLandingPageQuery>) => {
             src={labsBg}
             alt=""
           />
-          <div className="relative flex md:justify-center tracking-wide text-gray-5 whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-8 md:mb-16">
+          <div className="relative flex md:justify-center mb-8 md:mb-16">
             <span className="lowercase">
-              <Underline className="bg-red" />
-              {LandingPage.title}
+              <img
+                className="max-w-xs md:max-w-xl pl-4 pr-8 md:p-0"
+                src={labsTitleSVG}
+                alt=""
+              />
             </span>
           </div>
           <div className="md:flex items-center flex-col">
-            <Typography
-              className="mb-24 md:text-center max-w-2xl"
-              variant="p3"
-              md="p1"
-            >
-              {LandingPage.articleExcerpt}
-            </Typography>
-            <CategoryFilter
-              className="mb-8"
+            {!!LandingPage.articleExcerpt && (
+              <Typography
+                className="mb-24 md:text-center max-w-2xl m-auto"
+                variant="p3"
+                md="p1"
+              >
+                {LandingPage.articleExcerpt}
+              </Typography>
+            )}
+            {/* <CategoryFilter
+              className="mb-24 md:hidden"
               placeholder="Explore _Labs"
+              theme="dark"
               categories={options}
-              theme="light"
               setFilterCategory={setFilterCategory}
               filterCategory={filterCategory}
-            />
+            /> */}
+            {filterCategory.value === 'all' ? (
+              <UnFilteredList
+                entries={labEntries}
+                entryType="labs"
+                theme="dark"
+              />
+            ) : (
+              <FilteredList
+                entries={filteredLabEntries}
+                entryType="labs"
+                theme="dark"
+              />
+            )}
           </div>
-        </div>
-        <div className="px-4 max-w-screen-xl m-auto">
-          {filterCategory.value === 'all' ? (
-            <UnFilteredList
-              entries={labEntries}
-              entryType="labs"
-              theme="dark"
-            />
-          ) : (
-            <FilteredList
-              entries={filteredLabEntries}
-              entryType="labs"
-              theme="dark"
-            />
-          )}
         </div>
       </GenericSection>
     </Layout>
@@ -130,7 +125,6 @@ export const query = graphql`
       }
       entries(type: "lab", hasDescendants: false) {
         id
-        dateCreated
         slug
         title
         typeHandle

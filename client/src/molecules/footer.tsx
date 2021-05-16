@@ -48,21 +48,12 @@ const footerLinks = [
     ],
   },
   {
-    disabled: true,
-    header: 'The Difference',
-    links: [
-      { name: 'Design Studio', url: '#' },
-      { name: 'Performance', url: '#' },
-      { name: 'Construction', url: '#' },
-    ],
-  },
-  {
-    disabled: true,
     header: 'Our World',
     links: [
-      { name: 'About Us', url: '#' },
-      { name: 'Brand Stories', url: '#' },
-      { name: 'News & Events', url: '#' },
+      { name: 'Labs', url: '/labs' },
+      { name: 'DNA', url: '/dna' },
+      { name: '1969 - Legacy', url: '/1969' },
+      { name: 'News', url: '/news' },
     ],
   },
 ]
@@ -132,6 +123,12 @@ export const Footer = ({}: FooterProps) => {
                       </a>
                     )}
                     {linkGroup.header === 'Contact Us' && (
+                      <div>
+                        <a href={link.url}>{link.name}</a>
+                      </div>
+                      // <a href={link.url}>{link.name}</a>
+                    )}
+                    {linkGroup.header === 'Our World' && (
                       <div>
                         {link.clickAction && (
                           <a

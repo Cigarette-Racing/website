@@ -117,6 +117,7 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      darkestRed: '#6D0004',
       darkRed: '#9d0005',
       red: '#d12026',
       black: '#000000',
@@ -178,6 +179,8 @@ module.exports = {
         huge: '10rem', //   160px
         huge2: '15rem', //  240px
         huge3: '20rem', //  320px
+        '10px': '10px',
+        '40px': '40px',
       },
       lineHeight: {
         none: '1',
@@ -227,9 +230,18 @@ module.exports = {
         '56': '14rem',
         '1/2': '50%',
       },
+      minWidth: {
+        xl: '1280px',
+      },
       opacity: {
         '10': '0.1',
         '20': '0.2',
+      },
+      margin: {
+        '14': '3.5rem',
+        '30': '7rem',
+        '44': '11rem',
+        '13.5': '13.5rem',
       },
     },
   },

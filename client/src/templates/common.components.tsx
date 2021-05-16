@@ -17,6 +17,7 @@ import { AspectRatio, AspectRatioProps, Ratio } from '../atoms/aspect-ratio'
 import { VerticalHeader } from '../atoms/vertical-header'
 import { VerticalLabel } from '../atoms/vertical-label'
 import { AutoplayVideo } from '../atoms/autoplay-video'
+import { LinkCta } from '../atoms/link-cta'
 import Select, { components } from 'react-select'
 
 export const extractFlexibleSectionsFromCraft = (entry: any) => {
@@ -269,8 +270,6 @@ export const CategoryFilter = ({
   filterCategory,
   theme,
 }) => {
-  console.log(theme)
-
   return (
     <Fragment>
       <DropdownNav
@@ -373,6 +372,7 @@ export const DropdownNav = ({
         placeholder={placeholder}
         onChange={onChange}
         menuPortalTarget={state}
+        isSearchable={false}
         components={{
           DropdownIndicator: (props) => (
             <components.DropdownIndicator {...props}>
@@ -476,7 +476,7 @@ export const ContentEntry = ({
         <Link
           to={`${entry.slug}`}
           className={clsx(
-            `primary block border-solid border-t md:pt-16`,
+            `primary block border-solid border-t md:pt-16 w-full md:px-4`,
             { 'border-gray-1': theme === 'dark' },
             { 'border-gray-5': theme === 'light' },
             className
@@ -514,11 +514,14 @@ export const ContentEntry = ({
                 >
                   {entry.articleExcerpt}
                 </Typography>
-                <Typography variant="e3" className="date text-gray-4 mb-8">
-                  {`${
-                    date.getMonth() + 1
-                  }.${date.getDate()}.${date.getFullYear()}`}
-                </Typography>
+                {!!entry.dateCreated && (
+                  <Typography variant="e3" className="date text-gray-4 mb-8">
+                    {`${
+                      date.getMonth() + 1
+                    }.${date.getDate()}.${date.getFullYear()}`}
+                  </Typography>
+                )}
+                <LinkCta className="m-auto md:mb-8">Read Story</LinkCta>
               </div>
             </div>
           </div>
@@ -651,7 +654,7 @@ export const ContentEntry = ({
 
 export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
   return (
-    <div>
+    <Fragment>
       {!!entries.length &&
         entries.map((articleEntry: any, i: number) => (
           <ContentEntry
@@ -663,7 +666,7 @@ export const FilteredList = ({ entries, entryType, theme = 'light' }) => {
             theme={theme}
           />
         ))}
-    </div>
+    </Fragment>
   )
 }
 
@@ -673,15 +676,13 @@ export const UnFilteredList = ({ entries, entryType, theme = 'light' }) => {
 
   return (
     <Fragment>
-      <div>
-        <ContentEntry
-          entryType={entryType}
-          key={`${entries[0].id}`}
-          entry={entries[0]}
-          hierarchy="primary"
-          theme={theme}
-        />
-      </div>
+      <ContentEntry
+        entryType={entryType}
+        key={`${entries[0].id}`}
+        entry={entries[0]}
+        hierarchy="primary"
+        theme={theme}
+      />
       {!!nextTwoEntries.length && (
         <div className="nextTwo">
           {nextTwoEntries.map((articleEntry: any, i: number) => (
@@ -942,7 +943,7 @@ export const TextBlockComponent = ({
       ?.filter(Boolean)
       .map((p) => {
         return (
-          <Typography className="mb-4 last:mb-0" key={p} variant="p3" md="p2">
+          <Typography className="mb-4 last:mb-0" key={p} variant="p2" md="p2">
             {p}
           </Typography>
         )

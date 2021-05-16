@@ -58,18 +58,25 @@ const NewsArticlesPage = (
         <div className="relative flex justify-center tracking-wide text-gray-5 capitalize whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-8 text-center">
           <span>{landingPageTitle}</span>
         </div>
+
         <div className="px-4 max-w-screen-xl m-auto">
-          <Typography className="mb-24" variant="p3">
-            {LandingPage.articleExcerpt}
-          </Typography>
-          <CategoryFilter
+          {!!LandingPage.articleExcerpt && (
+            <Typography
+              className="mb-24 md:text-center max-w-2xl m-auto"
+              variant="p3"
+              md="p1"
+            >
+              {LandingPage.articleExcerpt}
+            </Typography>
+          )}
+          {/* <CategoryFilter
             className="mb-24 md:hidden"
             placeholder="Explore Stories"
             theme="light"
             categories={options}
             setFilterCategory={setFilterCategory}
             filterCategory={filterCategory}
-          />
+          /> */}
           {filterCategory.value === 'all' ? (
             <UnFilteredList entries={articleEntries} entryType="news" />
           ) : (

@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { graphql, Link } from 'gatsby'
+import { useMedia } from 'react-use'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import ExploreOurWorld, {
@@ -10,8 +11,12 @@ import clsx from 'clsx'
 import { TextBlockComponent } from '../templates/common.components'
 import content from './dna.json'
 import { OneColumnTextBlock } from '../types/common'
-import { InPageCta } from '../atoms/in-page-cta'
 import { FullWidthCarousel } from '../molecules/full-width-carousel'
+import { InPageCta } from '../atoms/in-page-cta'
+import { Controller, Scene } from 'react-scrollmagic'
+import gsap from 'gsap'
+import { Tween, Timeline } from 'react-gsap'
+import { Typography } from '../atoms/typography'
 
 const Section: React.FC<{
   theme?: Theme | 'red' | 'none'
@@ -36,6 +41,7 @@ const Section: React.FC<{
 
 const StaggeredHeader = ({
   className,
+  centered = true,
   style,
   text1,
   text2,
@@ -43,6 +49,7 @@ const StaggeredHeader = ({
   staggerDistance = 'normal',
 }: {
   className?: string
+  centered?: boolean
   style?: React.CSSProperties
   text1: string
   text2: string
@@ -52,7 +59,8 @@ const StaggeredHeader = ({
   return (
     <div
       className={clsx(
-        'text-center lg:text-left font-heading font-light uppercase tracking-heading leading-none -mb-8 md:-mb-16 lg:-mb-32 relative z-10',
+        'font-heading font-light uppercase tracking-heading leading-none -mb-8 md:-mb-16 relative z-10',
+        { 'lg:text-left lg:-mb-32 text-center ': centered },
         className
       )}
       style={style}
@@ -70,6 +78,7 @@ const StaggeredHeader = ({
         className={clsx({
           'lg:ml-56': staggerDistance === 'normal',
           'lg:ml-32': staggerDistance === 'tight',
+          'ml-12 pl-1': centered === false,
           'text-white': theme === 'dark',
           'text-black': theme === 'light',
         })}
@@ -85,9 +94,10 @@ export const OneColumnTextBlockComponent = ({
   header,
   copy,
   theme = 'dark',
-}: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme }) => (
+  className,
+}: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme; className: string }) => (
   <div
-    className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+    className={clsx(className)}
     data-block-type="OneColumnTextBlockComponent"
   >
     <TextBlockComponent
@@ -143,7 +153,9 @@ const OurWorldDNA = (props) => {
     data: {
       craftAPI: {
         introImage,
+        introImageMobile,
         schematicImage,
+        boatHeroImage,
         imageBreak1,
         imageBreak2,
         scienceOnWater,
@@ -165,7 +177,7 @@ const OurWorldDNA = (props) => {
   const exploreOurWorldContent = [
     {
       image: exploreOurWorld1[0].url,
-      title: '_labs',
+      title: 'labs',
       url: '/labs',
       text:
         'Enter Cigarette Racing’s industry leading processes, research, and development.',
@@ -184,86 +196,209 @@ const OurWorldDNA = (props) => {
     },
   ] as ExploreContentItem[]
 
+  const isMobile = useMedia('(max-width: 767px)')
+
   return (
     <Layout>
       <SEO title="DNA" slug={props.path} />
-      <div className="relative bg-gray-0 min-w-screen min-h-screen overflow-hidden flex justify-center items-center">
-        <img
-          className="absolute h-full w-full object-contain z-index-0"
-          // className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2"
-          src={`${schematicImage.url}?q=30&w=2400`}
-          alt="boat schematic"
-        />
-        <div className="relative text-darkRed font-heading leading-none pointer-events-none font-light text-huge sm:text-huge2 md:text-huge3">
-          DNA
-        </div>
-        <div className="absolute bottom-0 rounded-full bg-gray-0 uppercase mb-4 text-white font-body px-4 py-2 text-mi tracking-wide">
-          Scroll to begin
-        </div>
-      </div>
-      <img
-        src={`${introImage.url}?q=30&w=2400`}
-        alt="intro image"
-        className="w-full object-cover max-h-screen min-h-50vh md:min-h-0"
-      />
-      <Section className="nextLevelPerformance pt-32" theme="dark">
-        <div className="relative flex max-w-7xl mx-auto flex-col items-center">
-          <StaggeredHeader
-            text1="Next Level"
-            text2="performance"
-            theme="dark"
-            className="text-3xl sm:text-5xl lg:text-8xl"
-          />
-          <div className="md:px-12 lg:px-20">
-            <div className="px-4 mb-10 lg:mb-20 md:mt-8 lg:mt-16">
-              <div className="relative">
-                <img
-                  src={`${imageBreak1.url}?q=30&w=2400`}
-                  alt="next level performance"
-                />
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      'linear-gradient(145deg, #093D42 9.24%, rgba(17, 60, 64, 0) 46.38%)',
-                  }}
-                ></div>
+      {!isMobile ? (
+        <Controller>
+          <Scene triggerHook="onLeave" duration={1000} pin>
+            {(progress) => (
+              <div className="relative bg-gray-0 min-w-screen min-h-screen overflow-hidden flex justify-center items-center pt-20">
+                <Timeline
+                  paused
+                  totalProgress={progress}
+                  target={
+                    <Fragment>
+                      <div className="introImageOpaque absolute h-full w-full">
+                        <img
+                          className="absolute object-contain z-index-0 md:hidden max-w-none"
+                          src={`${boatHeroImage.url}?q=30&w=2400`}
+                          alt="boat schematic"
+                          style={{ width: '120%' }}
+                        />
+                        <img
+                          className="hidden md:block absolute h-full w-full object-contain z-index-0"
+                          src={`${boatHeroImage.url}?q=30&w=2400`}
+                          alt="boat schematic"
+                        />
+                      </div>
+                      <div className="schematic absolute h-full w-full">
+                        <img
+                          className="absolute object-contain z-index-0 md:hidden max-w-none"
+                          src={`${schematicImage.url}?q=30&w=2400`}
+                          alt="boat schematic"
+                          style={{ width: '120%' }}
+                        />
+                        <img
+                          className="hidden md:block absolute h-full w-full object-contain z-index-0"
+                          src={`${schematicImage.url}?q=30&w=2400`}
+                          alt="boat schematic"
+                        />
+                      </div>
+                      <div
+                        id="dnatext"
+                        className="relative text-darkestRed font-heading leading-none pointer-events-none font-light text-huge sm:text-huge2 md:text-huge3"
+                      >
+                        DNA
+                      </div>
+                      <div className="text-center absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 opacity-0">
+                        <Typography variant="e1" className="text-red mb-5">
+                          THE DNA OF THE AMERICAN OFFSHORE LEGEND
+                        </Typography>
+                        <Typography variant="p3" className="text-white">
+                          The very name, “Cigarette,” evokes a feeling—an energy
+                          that even those who have never felt the thrill of an
+                          open-water Cigarette ride can sense. It is sexy, fast
+                          and glamorous. It has style, panache and evokes the
+                          “ride on the wild side” reputation that “bad boys”
+                          created. It has lure, mystery, excitement. Though this
+                          aura may be something felt, it also has hard facts
+                          behind it because Cigarette Racing Team has built its
+                          reputation, not on smoke and mirrors, but on building
+                          the finest powerboat in the world — and doing it for
+                          over 50 years. “How fast does it go?” is the typical
+                          first question—it goes very fast, but that is only the
+                          beginning of the “American Offshore Legend” story….
+                          Let’s explore the DNA of Cigarette Racing Team.
+                        </Typography>
+                      </div>
+                      <div className="absolute bottom-0 rounded-full bg-gray-0 uppercase mb-4 text-white font-body px-4 py-2 text-mi tracking-wide">
+                        Scroll to begin
+                      </div>
+                    </Fragment>
+                  }
+                >
+                  <Tween from={{ opacity: 1 }} to={{ opacity: 0 }} target={0} />
+                  <Tween
+                    from={{ opacity: 0 }}
+                    to={{ opacity: 1 }}
+                    target={1}
+                    position="-=.5"
+                  />
+                  <Tween
+                    from={{ opacity: 0 }}
+                    to={{ opacity: 1 }}
+                    target={2}
+                    position="0"
+                  />
+                  <Tween to={{ scale: 2.5 }} target={2} position="1" />
+                  <Tween to={{ opacity: 1 }} target={3} />
+                </Timeline>
               </div>
-            </div>
+            )}
+          </Scene>
+        </Controller>
+      ) : (
+        <div className="relative bg-gray-0 min-w-screen min-h-screen overflow-hidden flex justify-center items-center pt-20">
+          <img
+            className="absolute object-contain z-index-0 md:hidden max-w-none"
+            src={`${schematicImage.url}?q=30&w=2400`}
+            alt="boat schematic"
+            style={{ width: '120%' }}
+          />
+          <img
+            className="hidden md:block absolute h-full w-full object-contain z-index-0"
+            src={`${schematicImage.url}?q=30&w=2400`}
+            alt="boat schematic"
+          />
+          <div className="relative text-darkRed font-heading leading-none pointer-events-none font-light text-huge sm:text-huge2 md:text-huge3">
+            DNA
           </div>
-          <OneColumnTextBlockComponent
-            {...content.nextLevelPerformance}
-            align="center"
-          />
-        </div>
-      </Section>
-      <Section className="scienceOnWater pt-32 pb-24" theme="red">
-        <div className="relative flex max-w-8xl mx-auto flex-col items-center">
-          <StaggeredHeader
-            text1="Science"
-            text2="on water"
-            theme="light"
-            className="text-4xl sm:text-5xl lg:text-9xl px-10"
-          />
-          <div className="">
-            <div className="md:mt-4 lg:mt-8 relative z-10">
-              <img
-                src={`${scienceOnWater.url}?q=30&w=2400`}
-                alt="science on water"
-              />
-            </div>
+          <div className="absolute bottom-0 rounded-full bg-gray-0 uppercase mb-4 text-white font-body px-4 py-2 text-mi tracking-wide">
+            Scroll to begin
           </div>
-          <OneColumnTextBlockComponent
-            {...content.scienceOnWater}
-            align="center"
-            theme="light"
-          />
         </div>
-      </Section>
+      )}
+      <div id="intro">
+        <img
+          src={`${introImageMobile.url}?q=30&w=2400`}
+          alt="intro image"
+          className="w-full object-cover md:hidden"
+        />
+        <img
+          src={`${introImage.url}?q=30&w=2400`}
+          alt="intro image"
+          className="hidden md:block w-full md:h-screen object-cover"
+        />
+      </div>
+      <Controller>
+        <Scene triggerHook="onLeave" duration={1000} pin>
+          {(progress) => (
+            <div>
+              <Section className="nextLevelPerformance pt-32" theme="dark">
+                <div className="relative flex max-w-7xl mx-auto flex-col items-center">
+                  <StaggeredHeader
+                    text1="Next Level"
+                    text2="performance"
+                    theme="dark"
+                    className="text-3xl sm:text-5xl lg:text-8xl"
+                  />
+                  <div className="md:px-12 lg:px-20">
+                    <div className="px-4 mb-10 lg:mb-20 md:mt-8 lg:mt-16">
+                      <div className="relative">
+                        <img
+                          src={`${imageBreak1.url}?q=30&w=2400`}
+                          alt="next level performance"
+                        />
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            background:
+                              'linear-gradient(145deg, #093D42 9.24%, rgba(17, 60, 64, 0) 46.38%)',
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <OneColumnTextBlockComponent
+                    {...content.nextLevelPerformance}
+                    align="center"
+                    className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+                  />
+                </div>
+              </Section>
+            </div>
+          )}
+        </Scene>
+      </Controller>
+      <Controller>
+        <Scene triggerHook="onLeave" duration={1000} pin>
+          {(progress) => (
+            <div>
+              <Section className="scienceOnWater pt-32 pb-24" theme="red">
+                <div className="relative flex max-w-8xl mx-auto flex-col items-center">
+                  <StaggeredHeader
+                    text1="Science"
+                    text2="on water"
+                    theme="light"
+                    className="text-4xl sm:text-5xl lg:text-9xl px-10"
+                  />
+                  <div className="">
+                    <div className="md:mt-4 lg:mt-8 relative z-10">
+                      <img
+                        src={`${scienceOnWater.url}?q=30&w=2400`}
+                        alt="science on water"
+                      />
+                    </div>
+                  </div>
+                  <OneColumnTextBlockComponent
+                    {...content.scienceOnWater}
+                    align="center"
+                    theme="light"
+                    className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+                  />
+                </div>
+              </Section>
+            </div>
+          )}
+        </Scene>
+      </Controller>
       <img
         src={`${imageBreak2.url}?q=30&w=2400`}
         alt="next level performance"
-        className="w-full object-cover max-h-screen"
+        className="w-full h-screen object-cover"
       />
       <Section className="simplyStunning pt-0 pb-20" theme="dark">
         <div className="relative flex max-w-7xl mx-auto flex-col items-center">
@@ -273,7 +408,7 @@ const OurWorldDNA = (props) => {
             </div>
             <div className="w-1/2">
               <img
-                className="min-h-50vh"
+                className="min-h-70vh md:min-h-50vh"
                 src={simplyStunningBgRight.url}
                 alt=""
               />
@@ -284,46 +419,60 @@ const OurWorldDNA = (props) => {
             src={simplyStunningForeground.url}
             alt=""
           />
-          <OneColumnTextBlockComponent {...content.simplyStunning} />
+          <OneColumnTextBlockComponent
+            {...content.simplyStunning}
+            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-md md:-mt-56 mx-auto md:ml-40"
+          />
         </div>
       </Section>
-      <Section className="boatImage pt-0 pb-0 -mb-4 lg:mb-0" theme="dark">
+      <Section
+        className="boatImage pt-0 pb-0 -mb-4 md:-mb-12 lg:mb-0 md:pb-48"
+        theme="dark"
+      >
         <img
           src={dnaHelmBreak.url}
           alt=""
-          className="w-full object-cover max-h-screen"
+          className="w-full md:h-screen object-cover"
         />
       </Section>
       <Section className="madeAndCrafted pt-0 lg:pt-24" theme="dark">
-        <div className="relative grid grid-cols-2 lg:mt-64 max-w-7xl mx-auto flex-col items-center">
-          {/* <div className="relative flex max-w-7xl mx-auto flex-col items-center"> */}
-          <img className="lg:row-span-2" src={dnaMadeCraftedHeaderBg.url} />
+        <div className="relative grid grid-cols-2 lg:mt-64 max-w-8xl mx-auto flex-col items-center">
+          <div className="lg:row-span-2 overflow-hidden flex justify-center">
+            <img
+              className="dnaMadeCraftedHeaderBg self-center max-w-sm md:max-w-full"
+              src={dnaMadeCraftedHeaderBg.url}
+            />
+          </div>
           <VerticalHeader
             line1="Made &"
             line2="Crafted"
             className="absolute top-0 right-0 mt-12 mr-4 lg:mr-12 lg:-top-3/12 lg:-mt-12"
           />
-          <div className="lg:absolute col-span-2 w-5/6 top-0 mx-auto -mt-8 sm:-mt-16 md:-mt-24 lg:mt-0 lg:w-1/2 lg:left-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2">
+          <div className="dnaMadeCraftedHeader lg:absolute col-span-2 w-5/6 top-0 mx-auto -mt-32 sm:-mt-16 md:-mt-24 lg:mt-0 lg:w-1/2 lg:left-1/2 transform lg:-translate-x-1/2 lg:-translate-y-1/2">
             <img
               src={dnaMadeCraftedHeader.url}
               // className="max-w-xl h-auto"
               alt=""
             />
           </div>
-          <div className="px-4 md:px-24 mt-24 lg:mt-48 lg:pt-64 col-span-2 lg:col-span-1 flex justify-center lg:block">
-            <OneColumnTextBlockComponent {...content.madeAndCrafted} />
+          <div className="px-4 md:px-24 mt-20 lg:mt-48 lg:pt-64 col-span-2 lg:col-span-1 flex justify-center lg:block">
+            <OneColumnTextBlockComponent
+              {...content.madeAndCrafted}
+              className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+            />
           </div>
           {/* <div className="lg:flex items-center mt-64 pt-8">
           </div> */}
         </div>
       </Section>
       <Section className="trulyYours bg-black md:bg-gray-0" theme="none">
-        <div className="relative flex max-w-8xl mx-auto flex-col items-center">
+        <div className="relative flex max-w-8xl mx-auto flex-col items-center mb-6">
           <StaggeredHeader
             text1="Truly"
             text2="Yours"
             theme="dark"
-            className="lg:self-start text-3xl sm:text-5xl lg:text-11xl px-12"
+            className="lg:self-start text-5xl sm:text-5xl lg:text-11xl px-12"
+            centered={false}
             staggerDistance="tight"
             style={{
               backgroundImage: `url(${dnaTrulyYours.url})`,
@@ -337,11 +486,20 @@ const OurWorldDNA = (props) => {
           />
           <img
             src={dnaTrulyYours.url}
-            className="mt-4 sm:mt-8 md:mt-12 lg:mt-16 z-10"
-            style={{ mixBlendMode: 'lighten' }}
+            className="hidden md:block z-10 md:mt-4"
             alt=""
           />
-          <OneColumnTextBlockComponent {...content.trulyYours} align="center" />
+          <img
+            src={dnaTrulyYours.url}
+            className="md:hidden z-10 max-w-none"
+            style={{ mixBlendMode: 'lighten', width: '110%' }}
+            alt=""
+          />
+          <OneColumnTextBlockComponent
+            {...content.trulyYours}
+            align="center"
+            className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+          />
         </div>
       </Section>
       <Section className="1969 pt-0 md:pt-12" theme="dark">
@@ -351,37 +509,46 @@ const OurWorldDNA = (props) => {
           className="w-full object-cover min-h-50vh md:min-h-0 max-h-screen object-top"
         />
         <div
-          className="font-heading font-light text-center leading-none pointer-events-none mb-32 text-huge sm:text-huge2 md:text-huge3 -mt-20 sm:-mt-32 md:-mt-40"
+          className="font-heading font-light text-center leading-none pointer-events-none mb-20 text-huge sm:text-huge2 md:text-huge3 -mt-20 sm:-mt-32 md:-mt-40"
           style={{
-            // fontSize: '340px',
-            // marginTop: '-170px',
             mixBlendMode: 'overlay',
           }}
         >
           1969
         </div>
-        <OneColumnTextBlockComponent {...content['1969']} align="center" />
-        <div className="flex justify-center -mt-8 mb-32">
+        <OneColumnTextBlockComponent
+          className="my-12 px-4 xl:pl-0 mb-8 md:mb-12 max-w-5xl mx-auto"
+          {...content['1969']}
+          align="center"
+        />
+        <div className="flex justify-center mb-32">
           <Link to="/1969">
             <InPageCta variant="secondary">Explore Our Heritage</InPageCta>
           </Link>
         </div>
       </Section>
       <Section className="experience" theme="dark">
-        <div className="font-heading font-light uppercase tracking-heading leading-none text-center text-3xl sm:text-5xl md:text-7xl">
+        <div className="font-heading font-light uppercase tracking-heading leading-none text-center text-3xl sm:text-5xl md:text-8xl">
           <div className="text-red">The Experience</div>
-          <div className="text-white">You Deserve</div>
+          <div className="text-white">
+            You
+            <br className="md:hidden" /> Deserve
+          </div>
         </div>
-        <div className="my-24">
+        <div className="mt-10 mb-16">
           <FullWidthCarousel
             items={[{ media: { image: dnaExperience1.url } }]}
           />
         </div>
-        <OneColumnTextBlockComponent {...content.experience} align="center" />
+        <OneColumnTextBlockComponent
+          {...content.experience}
+          align="center"
+          className="my-12 px-4 xl:pl-0 mb-8 md:mb-24 max-w-5xl mx-auto"
+        />
       </Section>
       <Section className="exploreOurWorld" theme="dark">
         <div className="relative max-w-7xl mx-auto md:px-16">
-          <div className="border-t border-gray-2 mb-24 pt-8">
+          <div className="md:mb-24">
             <ExploreOurWorld items={exploreOurWorldContent} />
           </div>
         </div>
@@ -398,7 +565,13 @@ export const query = graphql`
       introImage: asset(filename: "dna-intro.jpg") {
         url
       }
+      introImageMobile: asset(filename: "dna-intro-mobile.jpg") {
+        url
+      }
       schematicImage: asset(filename: "dna-Schematic-Illustration.png") {
+        url
+      }
+      boatHeroImage: asset(filename: "boat-dna-hero-opaque.png") {
         url
       }
       imageBreak1: asset(filename: "dna-image-break-1.jpg") {
@@ -429,7 +602,7 @@ export const query = graphql`
       dnaMadeCraftedHeaderBg: asset(filename: "dna-made-in-the-usa-bg.jpg") {
         url
       }
-      dnaTrulyYours: asset(filename: "dna-truly-yours.png") {
+      dnaTrulyYours: asset(filename: "Personalization-boat.png") {
         url
       }
       dnaLegacyBg: asset(filename: "dna-legacy-bg.jpg") {
