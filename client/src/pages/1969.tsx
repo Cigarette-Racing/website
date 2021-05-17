@@ -490,7 +490,11 @@ const VerticalHeader = ({
     if (screenMedium) return 100
     if (screenLarge) return 150
     if (screenXLarge) return 195
+
+    return 80
   }
+
+  const fontSize = getFontSize()
 
   return (
     <div
@@ -501,7 +505,7 @@ const VerticalHeader = ({
     >
       <div
         style={{
-          fontSize: getFontSize(),
+          fontSize,
           lineHeight: 1,
         }}
         className="whitespace-no-wrap"
