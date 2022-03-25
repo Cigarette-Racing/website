@@ -7,9 +7,17 @@ import { useMedia, useToggle } from 'react-use'
 import { Link } from 'gatsby'
 import { useHeaderState } from './header'
 
-const slugify = (str: string) =>
-  str.toLowerCase().replace(/\W/g, '_').replace(/_+/, '_')
+const slugify = (str: string) => {
+  if (!!str) {
+    console.log('dont got ont')
+  }
+
+  // return str.toLowerCase().replace(/\W/g, '_').replace(/_+/, '_')
+  // return 'Slugify'
+}
+
 const extractName = (el: Element) => (el as HTMLElement).dataset.inPageNav || ''
+
 const getCurrentAnchor = (map: Map<Element, number>) => {
   if (map.size === 0) return
   return Array.from(map.keys()).find((el) => map.get(el)! > 0)
@@ -123,13 +131,15 @@ export const InPageNav = ({
   )
 }
 
-export const InPageAnchor = ({ title }: { title: string }) => (
-  <a
-    className="absolute inset-0 -z-index-1 mt-px"
-    id={slugify(title)}
-    data-in-page-nav={title}
-  ></a>
-)
+export const InPageAnchor = ({ title }: { title: string }) => {
+  return (
+    <a
+      className="absolute inset-0 -z-index-1 mt-px"
+      id={slugify(title)}
+      data-in-page-nav={title}
+    ></a>
+  )
+}
 
 function DropdownMenu({
   current,

@@ -716,17 +716,17 @@ export const query = graphql`
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
               theme
-              title: textBlockHeader
+              # title: textBlockHeader
               shortTitle
               bleedDirection: imageBleedDirection
               headerImage: image {
                 url
               }
-              textBlockHeader
+              # textBlockHeader
               blocks: children {
                 typeHandle
                 ... on CraftAPI_flexibleSections_moreDetails_BlockType {
-                  textBlockHeader
+                  # textBlockHeader
                   children {
                     ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
                       id
@@ -761,18 +761,18 @@ export const query = graphql`
                   }
                   children {
                     ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlockHeader
+                      # textBlockHeader
                       children {
                         ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
                           textBlockCopy
-                          textBlockHeader
+                          # textBlockHeader
                         }
                       }
                     }
                   }
                 }
                 ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
-                  align: textAlign
+                  # align: textAlign
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
                       header

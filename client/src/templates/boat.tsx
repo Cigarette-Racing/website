@@ -547,7 +547,7 @@ export const query = graphql`
           title
           boatNameLong
           eyebrow
-          ctaText: textBlockHeader
+          # ctaText: textBlockHeader
           singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
               alt
@@ -613,18 +613,18 @@ export const query = graphql`
           }
           powertrainOptions {
             ... on CraftAPI_powertrainOptions_option_BlockType {
-              textBlockHeader
+              # textBlockHeader
               children {
                 ... on CraftAPI_powertrainOptions_optionDetail_BlockType {
                   textBlockCopy
-                  textBlockHeader
+                  # textBlockHeader
                 }
               }
             }
           }
           powertrainMoreDetails {
             ... on CraftAPI_powertrainMoreDetails_moreDetails_BlockType {
-              textBlockHeader
+              # textBlockHeader
               children {
                 ... on CraftAPI_powertrainMoreDetails_moreDetailsImageCopy_BlockType {
                   horizontalLayout
@@ -671,7 +671,7 @@ export const query = graphql`
           flexibleSections {
             ... on CraftAPI_flexibleSections_flexibleSection_BlockType {
               theme
-              title: textBlockHeader
+              # title: textBlockHeader
               shortTitle
               bleedDirection: imageBleedDirection
               headerImage: image {
@@ -680,7 +680,7 @@ export const query = graphql`
               blocks: children {
                 typeHandle
                 ... on CraftAPI_flexibleSections_moreDetails_BlockType {
-                  textBlockHeader
+                  # textBlockHeader
                   children {
                     ... on CraftAPI_flexibleSections_horizontalImageText_BlockType {
                       id
@@ -715,18 +715,18 @@ export const query = graphql`
                   }
                   children {
                     ... on CraftAPI_flexibleSections_powertrainOption_BlockType {
-                      textBlockHeader
+                      # textBlockHeader
                       children {
                         ... on CraftAPI_flexibleSections_powertrainOptionDetails_BlockType {
                           textBlockCopy
-                          textBlockHeader
+                          # textBlockHeader
                         }
                       }
                     }
                   }
                 }
                 ... on CraftAPI_flexibleSections_oneColumnTextBlock_BlockType {
-                  align: textAlign
+                  # align: textAlign
                   textBlock {
                     ... on CraftAPI_textBlock_BlockType {
                       header

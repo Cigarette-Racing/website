@@ -189,7 +189,7 @@ export const query = graphql`
       entry(slug: "contact") {
         ... on CraftAPI_contact_contact_Entry {
           subtitle: textBlockCopy
-          title: textBlockHeader
+          # title: textBlockHeader
           heroBackground: singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
               image {

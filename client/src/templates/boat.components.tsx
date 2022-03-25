@@ -307,7 +307,7 @@ export const PowertrainSectionComponent = ({
             {!!options.length &&
               options.map(({ name }) => (
                 <PowertrainTab
-                  key={name}
+                  key={name || Math.random()}
                   className="whitespace-no-wrap"
                   active={name === selectedOption}
                   onClick={() => setSelectedOption(name)}
