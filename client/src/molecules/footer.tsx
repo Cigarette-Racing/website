@@ -124,9 +124,8 @@ export const Footer = ({}: FooterProps) => {
                     )}
                     {linkGroup.header === 'Contact Us' && (
                       <div>
-                        <a href={link.url}>{link.name}</a>
+                        <a href={link.url || link.mailto}>{link.name}</a>
                       </div>
-                      // <a href={link.url}>{link.name}</a>
                     )}
                     {linkGroup.header === 'Our World' && (
                       <div>
