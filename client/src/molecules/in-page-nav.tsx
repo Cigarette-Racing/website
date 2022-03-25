@@ -9,7 +9,6 @@ import { useHeaderState } from './header'
 
 const slugify = (str: string) => {
   if (!!str) {
-    console.log('dont got ont')
   }
 
   // return str.toLowerCase().replace(/\W/g, '_').replace(/_+/, '_')
