@@ -58,12 +58,9 @@ export const InPageCta: React.FC<
 }
 
 function isLink(rest: any): rest is HTMLLinkElement {
-  console.log(rest)
-
   return !!rest.link
 }
 
 function isButton(rest: any): rest is HTMLButtonElement {
-  console.log(rest)
   return !rest.link
 }
