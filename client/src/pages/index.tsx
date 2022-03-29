@@ -498,11 +498,11 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
           <Typography variant="h3" md="h2" className="mb-4 md:mb-16">
             News <br className="hidden md:block" />& press
           </Typography>
-          <ComingSoonLink>
+          {/* <ComingSoonLink>
             <LinkCta className="hidden md:flex text-black mb-40">
               Visit the News Room
             </LinkCta>
-          </ComingSoonLink>
+          </ComingSoonLink> */}
           <CarouselButtons
             className="mt-10 space-x-4 hidden md:block"
             theme="light"

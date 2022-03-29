@@ -89,7 +89,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
         </div>
       </Section>
       {/* Removing for now: https://trello.com/c/X44hNZIA/182-disable-owner-support-media-press-inquiries-on-the-contact-page-do-not-delete-these-as-the-client-wants-to-utilize-them-in-time */}
-      {/* <Section
+      <Section
         theme="light"
         className="py-20 divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x"
       >
@@ -111,7 +111,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
             }
           )}
         </div>
-      </Section> */}
+      </Section>
       <Section theme="dark" className="py-24 lg:py-48">
         <FullBgImage
           image={data.entry.careers[0].singleMedia[0].image[0].url}
@@ -129,7 +129,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
                 data.entry.careers[0].contactContentBlock[0].email
               ]
             }`}
-            link
+            link={true}
           >
             {data.entry.careers[0].contactContentBlock[0].buttonLabel ||
               metadata.emailAddresses?.[
@@ -189,7 +189,7 @@ export const query = graphql`
       entry(slug: "contact") {
         ... on CraftAPI_contact_contact_Entry {
           subtitle: textBlockCopy
-          # title: textBlockHeader
+          title: textBlockHeader
           heroBackground: singleMedia {
             ... on CraftAPI_singleMedia_BlockType {
               image {
@@ -319,7 +319,7 @@ function ContentColumn({
         variant="secondary"
         theme="light"
         href={`mailto:${email}`}
-        link
+        link={true}
       >
         {buttonText}
       </InPageCta>

@@ -332,12 +332,12 @@ export const PowertrainSectionComponent = ({
           <div className="flex-1 space-y-4 mt-2 pl-4 md:pl-12">
             {!!options.length &&
               options
-                .find((option: any) => option.name === selectedOption)
+                .find((option: any) => option?.name === selectedOption)
                 .details.map((detail: any) => (
-                  <ul key={detail.name}>
+                  <ul key={detail?.name}>
                     <li>
-                      <Typography variant="e3">{detail.name}</Typography>
-                      <Typography variant="p3">{detail.info}</Typography>
+                      <Typography variant="e3">{detail?.name}</Typography>
+                      <Typography variant="p3">{detail?.info}</Typography>
                     </li>
                   </ul>
                 ))}
