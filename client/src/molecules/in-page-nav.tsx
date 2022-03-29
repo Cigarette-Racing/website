@@ -9,10 +9,10 @@ import { useHeaderState } from './header'
 
 const slugify = (str: string) => {
   if (!!str) {
+    return str.toLowerCase().replace(/\W/g, '_').replace(/_+/, '_')
   }
 
-  // return str.toLowerCase().replace(/\W/g, '_').replace(/_+/, '_')
-  // return 'Slugify'
+  return 'undefined'
 }
 
 const extractName = (el: Element) => (el as HTMLElement).dataset.inPageNav || ''
@@ -153,7 +153,11 @@ function DropdownMenu({
     <div className="flex justify-center items-center bg-gray-0 h-10 -mb-10 space-x-6">
       {titles.map(([long, short]) => {
         return (
-          <a href={`#${slugify(long)}`} onClick={() => toggleIsMenuOpen(false)}>
+          <a
+            key={`dropdownNavItem-${short}`}
+            href={`#${slugify(long)}`}
+            onClick={() => toggleIsMenuOpen(false)}
+          >
             <Typography
               variant="e2"
               as="span"
