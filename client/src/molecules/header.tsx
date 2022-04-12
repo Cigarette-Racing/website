@@ -61,7 +61,7 @@ const leftLinks: LinkItem[] = [
 ]
 const rightLinks: LinkItem[] = [
   // { text: 'Owners' },
-  { text: 'Store', link: 'https://shopcigaretteracingteam.myshopify.com/' },
+  { text: 'Store', link: 'https://shopcigaretteracingteam.com/' },
   { text: 'Contact', link: '/contact' },
 ]
 const allLinks = [{ text: 'Home', link: '/' } as LinkItem].concat(
