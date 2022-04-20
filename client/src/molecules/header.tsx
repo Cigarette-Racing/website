@@ -57,10 +57,8 @@ type LinkItem = {
 const leftLinks: LinkItem[] = [
   { text: 'Boats', section: 'boats' },
   { text: 'Our world', section: 'our world' },
-  // { text: 'The Difference' },
 ]
 const rightLinks: LinkItem[] = [
-  // { text: 'Owners' },
   { text: 'Store', link: 'https://shopcigaretteracingteam.com/' },
   { text: 'Contact', link: '/contact' },
 ]
