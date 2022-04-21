@@ -39,21 +39,27 @@ const footerLinks = [
     ],
   },
   {
-    header: 'Contact Us',
-    links: [
-      { name: 'Request Info', url: '/contact' },
-      { name: 'Media & Press', mailto: 'mailto:diana@cigaretteracing.com' },
-      { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
-      // { name: 'Support', mailto: 'mailto:support@cigaretteracing.com' },
-    ],
-  },
-  {
     header: 'Our World',
     links: [
       { name: 'Labs', url: '/labs' },
       { name: 'DNA', url: '/dna' },
       { name: '1969 - Legacy', url: '/1969' },
       { name: 'News', url: '/news' },
+    ],
+  },
+  {
+    header: 'Apparel',
+    links: [
+      { name: 'Customer Service', mailto: 'mailto:Shop@cigaretteracing.com ' },
+      { name: '305-781-1799', mailto: 'tel:305-781-1799' },
+    ],
+  },
+  {
+    header: 'Contact Us',
+    links: [
+      { name: 'Request Info', url: '/contact' },
+      { name: 'Media & Press', mailto: 'mailto:diana@cigaretteracing.com' },
+      { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
     ],
   },
 ]
@@ -149,6 +155,28 @@ export const Footer = ({}: FooterProps) => {
                         )}
                       </div>
                       // <a href={link.url}>{link.name}</a>
+                    )}
+                    {linkGroup.header === 'Apparel' && (
+                      <div>
+                        {link.clickAction && (
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault()
+                              link.clickAction === 'openInquiryForm' &&
+                                setInquiryModalState(true)
+                            }}
+                          >
+                            {link.name}
+                          </a>
+                        )}
+                        {!link.clickAction && link.mailto && (
+                          <a href={link.mailto}>{link.name}</a>
+                        )}
+                        {!link.clickAction && link.url && (
+                          <Link to={link.url}>{link.name}</Link>
+                        )}
+                      </div>
                     )}
                     {linkGroup.disabled && (
                       <a
