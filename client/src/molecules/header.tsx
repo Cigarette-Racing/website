@@ -59,7 +59,7 @@ const leftLinks: LinkItem[] = [
   { text: 'Our world', section: 'our world' },
 ]
 const rightLinks: LinkItem[] = [
-  { text: 'Store', link: 'https://shopcigaretteracingteam.com/' },
+  { text: 'Shop', link: 'https://shopcigaretteracingteam.com/' },
   { text: 'Contact', link: '/contact' },
 ]
 const allLinks = [{ text: 'Home', link: '/' } as LinkItem].concat(

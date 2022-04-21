@@ -43,6 +43,8 @@ const footerLinks = [
     links: [
       { name: 'Request Info', url: '/contact' },
       { name: 'Media & Press', mailto: 'mailto:diana@cigaretteracing.com' },
+      { name: 'Apparel', mailto: 'mailto:Shop@cigaretteracing.com ' },
+
       { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
       // { name: 'Support', mailto: 'mailto:support@cigaretteracing.com' },
     ],
@@ -51,6 +53,15 @@ const footerLinks = [
     header: 'Our World',
     links: [
       { name: 'Labs', url: '/labs' },
+      { name: 'DNA', url: '/dna' },
+      { name: '1969 - Legacy', url: '/1969' },
+      { name: 'News', url: '/news' },
+    ],
+  },
+  {
+    header: 'Customer Service',
+    links: [
+      { name: '305-781-1799', url: 'tel:305-781-1799' },
       { name: 'DNA', url: '/dna' },
       { name: '1969 - Legacy', url: '/1969' },
       { name: 'News', url: '/news' },
