@@ -69,12 +69,19 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
   const connect = data.craftAPI.home?.connectSection?.[0] || {}
   const connectBackground =
     data.craftAPI.home?.connectSectionBackground?.[0]?.url
+  const bannerImage =
+    data.craftAPI.home?.imageObject?.[0]?.image?.[0]?.url || ''
 
   return (
     <Layout>
       <SEO image={heroImage} />
       <ScrollIndicator />
       {/* First hero section */}
+      <section className="relative bg-cover bg-center flex sm:block items-center">
+        <a href="https://shopcigaretteracingteam.com/">
+          <img src={bannerImage} alt="banner" />
+        </a>
+      </section>
       <section
         className="relative min-h-screen flex justify-center items-end overflow-hidden"
         data-scrollsection
@@ -199,6 +206,13 @@ export const query = graphql`
                 ... on CraftAPI_boatMetadata_BlockType {
                   menuName
                 }
+              }
+            }
+          }
+          imageObject {
+            ... on CraftAPI_imageObject_BlockType {
+              image {
+                url
               }
             }
           }
