@@ -39,16 +39,6 @@ const footerLinks = [
     ],
   },
   {
-    header: 'Contact Us',
-    links: [
-      { name: 'Request Info', url: '/contact' },
-      { name: 'Media & Press', mailto: 'mailto:diana@cigaretteracing.com' },
-      { name: 'Apparel', mailto: 'mailto:Shop@cigaretteracing.com ' },
-      { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
-      // { name: 'Support', mailto: 'mailto:support@cigaretteracing.com' },
-    ],
-  },
-  {
     header: 'Our World',
     links: [
       { name: 'Labs', url: '/labs' },
@@ -58,8 +48,19 @@ const footerLinks = [
     ],
   },
   {
-    header: 'Customer Service',
-    links: [{ name: '305-781-1799', mailto: 'tel:305-781-1799' }],
+    header: 'Apparel',
+    links: [
+      { name: 'Customer Service', mailto: 'mailto:Shop@cigaretteracing.com ' },
+      { name: '305-781-1799', mailto: 'tel:305-781-1799' },
+    ],
+  },
+  {
+    header: 'Contact Us',
+    links: [
+      { name: 'Request Info', url: '/contact' },
+      { name: 'Media & Press', mailto: 'mailto:diana@cigaretteracing.com' },
+      { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
+    ],
   },
 ]
 
@@ -155,7 +156,7 @@ export const Footer = ({}: FooterProps) => {
                       </div>
                       // <a href={link.url}>{link.name}</a>
                     )}
-                    {linkGroup.header === 'Customer Service' && (
+                    {linkGroup.header === 'Apparel' && (
                       <div>
                         {link.clickAction && (
                           <a
