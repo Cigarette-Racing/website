@@ -44,7 +44,6 @@ const footerLinks = [
       { name: 'Request Info', url: '/contact' },
       { name: 'Media & Press', mailto: 'mailto:diana@cigaretteracing.com' },
       { name: 'Apparel', mailto: 'mailto:Shop@cigaretteracing.com ' },
-
       { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
       // { name: 'Support', mailto: 'mailto:support@cigaretteracing.com' },
     ],
@@ -60,12 +59,7 @@ const footerLinks = [
   },
   {
     header: 'Customer Service',
-    links: [
-      { name: '305-781-1799', url: 'tel:305-781-1799' },
-      { name: 'DNA', url: '/dna' },
-      { name: '1969 - Legacy', url: '/1969' },
-      { name: 'News', url: '/news' },
-    ],
+    links: [{ name: '305-781-1799', mailto: 'tel:305-781-1799' }],
   },
 ]
 
@@ -160,6 +154,28 @@ export const Footer = ({}: FooterProps) => {
                         )}
                       </div>
                       // <a href={link.url}>{link.name}</a>
+                    )}
+                    {linkGroup.header === 'Customer Service' && (
+                      <div>
+                        {link.clickAction && (
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault()
+                              link.clickAction === 'openInquiryForm' &&
+                                setInquiryModalState(true)
+                            }}
+                          >
+                            {link.name}
+                          </a>
+                        )}
+                        {!link.clickAction && link.mailto && (
+                          <a href={link.mailto}>{link.name}</a>
+                        )}
+                        {!link.clickAction && link.url && (
+                          <Link to={link.url}>{link.name}</Link>
+                        )}
+                      </div>
                     )}
                     {linkGroup.disabled && (
                       <a
