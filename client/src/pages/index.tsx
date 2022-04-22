@@ -7,6 +7,7 @@ import SEO from '../components/seo'
 import { ContentHeader } from '../atoms/content-header'
 import { Typography } from '../atoms/typography'
 import { LinkCta } from '../atoms/link-cta'
+import { AngleIcon } from '../svgs/icons'
 import { PlusIcon, PlayIcon, ExternalLinkIcon, ArrowIcon } from '../svgs/icons'
 import { ScrollIndicator } from '../molecules/scroll-indicator'
 import { CircleButton } from '../atoms/circle-button'
@@ -71,16 +72,59 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
     data.craftAPI.home?.connectSectionBackground?.[0]?.url
   const bannerImage =
     data.craftAPI.home?.imageObject?.[0]?.image?.[0]?.url || ''
+  console.log(data.craftAPI.home?.imageObject?.[0]?.image?.[0]?.url)
 
   return (
     <Layout>
       <SEO image={heroImage} />
       <ScrollIndicator />
       {/* First hero section */}
-      <section className="relative bg-cover bg-center flex sm:block items-center">
-        <a href="https://shopcigaretteracingteam.com/">
-          <img src={bannerImage} alt="banner" />
-        </a>
+      <section
+        className="relative min-h-screen flex md:justify-center items-end text-center bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${bannerImage}?q=30&w=2000)`,
+          backgroundColor: 'black',
+        }}
+      >
+        <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
+        <div className="relative z-10 max-w-8xl mb-12 px-4 sm:mb-24 text-white text-left md:text-center flex flex-col items-start md:items-center">
+          <div className={clsx('flex items-center mb-3')}>
+            <AngleIcon
+              className="mr-1 md:hidden text-red"
+              style={{ fontSize: '30px' }}
+            />
+            <AngleIcon
+              className="hidden md:block mr-1 text-red"
+              style={{ fontSize: '80px' }}
+            />
+            <div>
+              <Typography md="h1" variant="h4" theme="dark">
+                Visit the all new
+              </Typography>
+            </div>
+          </div>
+          <Typography className="md:hidden text-3xl font-heading" theme="dark">
+            Cigarette Racing <br />
+            Team Store
+          </Typography>
+          <Typography
+            className="hidden md:block text-8xl font-heading"
+            theme="dark"
+          >
+            Cigarette Racing Team Store
+          </Typography>
+          <a
+            href="https://shopcigaretteracingteam.com/"
+            className="inline-flex items-center h-12 px-6 md:px-12 border-red bg-red hover:bg-darkRed rounded-full transition-colors duration-150 ease-in-out  mt-10"
+          >
+            <Typography
+              className="font-body uppercase text-md md:text-2xl tracking-wider"
+              as="span"
+            >
+              view all products
+            </Typography>
+          </a>
+        </div>
       </section>
       <section
         className="relative min-h-screen flex justify-center items-end overflow-hidden"
@@ -113,9 +157,6 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
             {heroContent.copy}
           </Typography>
           <div className="flex items-center space-x-6">
-            {/* <InPageCta onClick={() => setInquiryModalState(true)}>
-              Request Info
-            </InPageCta> */}
             <Link to={`/boats/${heroBoat.slug}`}>
               <LinkCta>Learn More</LinkCta>
             </Link>
@@ -212,7 +253,9 @@ export const query = graphql`
           imageObject {
             ... on CraftAPI_imageObject_BlockType {
               image {
-                url
+                ... on CraftAPI_s3_Asset {
+                  url
+                }
               }
             }
           }
