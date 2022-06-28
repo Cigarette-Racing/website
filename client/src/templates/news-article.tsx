@@ -135,6 +135,7 @@ const NewsArticleTemplate = (
                   </Typography>
                 </div>
                 <div className="px-4 md:px-0 md:w-8/12 mb-16">
+                  {console.log(articleEntry.articleCopy)}
                   {FormatTextBlob(articleEntry.articleCopy)}
                 </div>
               </div>
