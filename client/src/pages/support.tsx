@@ -1,18 +1,23 @@
 import React, { useState } from 'react'
-import { Link } from 'gatsby'
 import { Layout } from '../components/layout'
-import { InPageCta } from '../atoms/in-page-cta'
 import SEO from '../components/seo'
 import { CircleButton } from '../atoms/circle-button'
 import { ContentHeader } from '../atoms/content-header'
-import { Typography } from '../atoms/typography'
-import { LinkCta } from '../atoms/link-cta'
+import { CloseIcon } from '../svgs/icons'
 import { PlayIcon } from '../svgs/icons'
 import { CheckIcon } from '../svgs/icons'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactPlayer from 'react-player'
 import clsx from 'clsx'
-
+import ReactModal from 'react-modal'
+import { Form, Field } from 'react-final-form'
+import {
+  TextInput,
+  requiredText,
+  requiredEmail,
+  requiredPhone,
+} from '../atoms/text-input'
+import { FieldSetContainer } from '../molecules/inquiry/inquiry-modal.components'
 const TopVideo = ({ image, videoUrl }: { image: string; videoUrl: string }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   return (
@@ -60,22 +65,6 @@ const ListItem = (props) => {
   )
 }
 
-const SupportSectionCta = (props) => {
-  const { children } = props
-
-  return (
-    <button
-      onClick={() => {
-        console.log('open support modal')
-      }}
-      type="button"
-      className="text-white bg-red inline-flex items-center h-16 px-2 sm:px-10 rounded-full transition-colors duration-150 ease-in-out"
-    >
-      <span className="type-e2">{children}</span>
-    </button>
-  )
-}
-
 const SupportSectionCopy = (props) => {
   const { children } = props
 
@@ -85,15 +74,141 @@ const SupportSectionCopy = (props) => {
 const SupportSectionHeading = (props) => {
   const { children } = props
 
-  return <div className="mb-4 font-body text-2xl">{children}</div>
+  return <div className="mb-4 font-body text-2xl md:text-3xl">{children}</div>
 }
 
 const SupportPage = (props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const {} = props
+
+  const SupportSectionCta = (props) => {
+    const { children, className } = props
+
+    const classes = `text-white bg-red inline-flex items-center h-16 px-2 sm:px-10 rounded-full transition-colors duration-150 ease-in-out ${className}`
+
+    return (
+      <button
+        onClick={() => {
+          setIsModalOpen(true)
+        }}
+        type="button"
+        className={classes}
+      >
+        <span className="type-e2">{children}</span>
+      </button>
+    )
+  }
+
+  const SupportModal = () => {
+    return (
+      <ReactModal
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            zIndex: 100,
+          },
+          content: {
+            border: 'none',
+            backgroundColor: 'transparent',
+            color: 'lightsteelblue',
+          },
+        }}
+        isOpen={isModalOpen!}
+        closeTimeoutMS={1000}
+      >
+        <div className="flex justify-center ">
+          <div className="w-3/4 bg-white">
+            <div className="relative bg-black text-white py-4 px-6">
+              <div className="font-heading text-xl">
+                Contact Cigarette Racing Support
+              </div>
+              <div className="absolute top-0 right-0 px-6 py-5">
+                <CloseIcon
+                  className="cursor-pointer "
+                  onClick={() => {
+                    return setIsModalOpen(false)
+                  }}
+                />
+              </div>
+            </div>
+            <div className="p-12">
+              <Form
+                onSubmit={() => {
+                  console.log('submit the form!')
+                }}
+                render={({ handleSubmit }) => (
+                  <form onSubmit={handleSubmit}>
+                    <Field
+                      component="input"
+                      type="hidden"
+                      name="form-name"
+                      initialValue="support-form"
+                    />
+                    <TextInput
+                      name="fullName"
+                      placeholder="Full Name"
+                      type="text"
+                      validation={requiredText}
+                      required={true}
+                    />
+                    <div className="flex w-full">
+                      <TextInput
+                        name="phone"
+                        placeholder="Phone"
+                        type="text"
+                        validation={requiredText}
+                        required={true}
+                      />
+                      <TextInput
+                        name="email"
+                        placeholder="Email"
+                        type="text"
+                        validation={requiredText}
+                      />
+                    </div>
+                    <TextInput
+                      name="yearMakeModel"
+                      placeholder="Year, Make and Model"
+                      type="text"
+                    />
+                    <div className="flex w-full">
+                      <TextInput
+                        name="serialNumber"
+                        placeholder="Serial Number"
+                        type="text"
+                      />
+                      <TextInput
+                        name="hullID"
+                        placeholder="Hull ID for parts"
+                        type="text"
+                      />
+                    </div>
+                    <Field
+                      className="w-full p-4 mt-8 text-gray-1 font-body bg-gray-6 placeholder-gray-1 h-48"
+                      placeholder="Leave a message for our team..."
+                      name="notes"
+                      component="textarea"
+                    />
+                    <button
+                      type="submit"
+                      className="text-white bg-red inline-flex items-center h-8 px-2 sm:px-10 rounded-full transition-colors duration-150 ease-in-out mt-4"
+                    >
+                      Submit
+                    </button>
+                  </form>
+                )}
+              />
+            </div>
+          </div>
+        </div>
+      </ReactModal>
+    )
+  }
 
   return (
     <Layout>
-      <SEO title="Our Legacy - 1969" />
+      <SupportModal />
+      <SEO title="Cigarette Racing Support" />
       {/* intro */}
       <section className="relative min-h-screen flex justify-start items-center overflow-hidden">
         <div className="absolute top-0 left-0 h-screen w-full">
@@ -116,13 +231,15 @@ const SupportPage = (props) => {
           className="absolute top-2/5 sm:hidden hidden"
         />
         <div className="relative z-10 pl-6 md:pl-64 sm:mb-24 text-white text-left flex flex-col items-start">
-          <ContentHeader className="self-start -ml-2 sm:self-auto mb:ml-0 text-xl">
-            Welcome to
+          <ContentHeader className="self-start -ml-2 sm:self-auto mb:ml-0">
+            <span className="text-xl md:text-2xl capitalize font-normal">
+              Welcome to
+            </span>
           </ContentHeader>
-          <div className="font-heading text-5xl leading-tight mb-2">
+          <div className="font-heading text-5xl md:text-6xl leading-tight mb-2">
             Cigarette Racing
           </div>
-          <div className="mb-10 max-w-2xl sm:block text-2xl font-body">
+          <div className="mb-10 max-w-2xl sm:block text-2xl md:text-3xl font-body">
             Parts, Service, & Support
           </div>
         </div>
@@ -133,38 +250,37 @@ const SupportPage = (props) => {
           className="flex flex-col md:flex-row max-w-7xl mx-auto"
           data-block-type="HorizontalImageTextBlockComponent"
         >
-          <div className="md:w-3/4 lg:w-2/3">
-            <div data-block-type="TextBlockComponent">
-              <SupportSectionHeading>
-                We Keep You at the High-Performance Level
-              </SupportSectionHeading>
-              <SupportSectionCopy>
-                At Cigarette Racing Support, we know how important it is to
-                maintain your boat in top condition. We can provide the quality
-                maintenance and repairs you need to keep your boat running at
-                its best.
-              </SupportSectionCopy>
+          <div className="md:w-3/4 lg:w-2/3 md:mr-20">
+            <SupportSectionHeading>
+              We Keep You at the High-Performance Level
+            </SupportSectionHeading>
 
-              <SupportSectionCopy>
-                If you’re looking for a team of experts to help you maintain the
-                high-performance level of your Cigarette Racing boat, you’ve
-                come to the right place. Our team of factory-trained experts
-                will service your Cigarette Racing boat from bow to stern. We
-                are not just a Mercury Authorized Dealer but also staff a team
-                of Certified Technicians. As a Mercury Certified and Authorized
-                Dealer, we service any brand of boat with Mercury power.
-              </SupportSectionCopy>
+            <SupportSectionCopy>
+              At Cigarette Racing Support, we know how important it is to
+              maintain your boat in top condition. We can provide the quality
+              maintenance and repairs you need to keep your boat running at its
+              best.
+            </SupportSectionCopy>
 
-              <SupportSectionCopy>
-                Our facility stocks Mercury, MerCruiser, Mercury Racing and
-                Cigarette parts inventory, including those hard to find parts
-                for the OLDER Model Cigarettes for all your Mercury Parts and
-                Maintenance products needs. Whatever your needs may be, Whether
-                Cigarette Racing or Mercury Marine, or any parts used on the
-                Cigarette Racing boats, we can take care of them quickly and
-                efficiently. Contact us today to learn more.
-              </SupportSectionCopy>
-            </div>
+            <SupportSectionCopy>
+              If you’re looking for a team of experts to help you maintain the
+              high-performance level of your Cigarette Racing boat, you’ve come
+              to the right place. Our team of factory-trained experts will
+              service your Cigarette Racing boat from bow to stern. We are not
+              just a Mercury Authorized Dealer but also staff a team of
+              Certified Technicians. As a Mercury Certified and Authorized
+              Dealer, we service any brand of boat with Mercury power.
+            </SupportSectionCopy>
+
+            <SupportSectionCopy>
+              Our facility stocks Mercury, MerCruiser, Mercury Racing and
+              Cigarette parts inventory, including those hard to find parts for
+              the OLDER Model Cigarettes for all your Mercury Parts and
+              Maintenance products needs. Whatever your needs may be, Whether
+              Cigarette Racing or Mercury Marine, or any parts used on the
+              Cigarette Racing boats, we can take care of them quickly and
+              efficiently. Contact us today to learn more.
+            </SupportSectionCopy>
           </div>
           <div
             className={clsx(
@@ -264,38 +380,43 @@ const SupportPage = (props) => {
         </div>
       </section>
       {/* Mercury Certified Engine Maintenance & Repairs */}
-      <section className="px-10 pb-12 pt-12 md:px-0 relative min-h-screen md:flex justify-center items-end overflow-hidden">
-        <SupportSectionHeading>
-          Mercury Certified Engine Maintenance & Repairs
-        </SupportSectionHeading>
-        <SupportSectionCopy>
-          Mercury OEM parts and Mercury Certified Technicians are critical parts
-          of keeping your boat in safe and reliable operating condition. Our
-          Mercury factory-trained technicians have years of experience repairing
-          and maintaining Mercury engines, so you can be sure your engine is in
-          good hands. We will service any boat brand with Mercury Marine power
-          plants.
-        </SupportSectionCopy>
-        <SupportSectionCopy>
-          We have been servicing Mercury powerplants for over 25 years,
-          emphasizing high-performance engines such as Mercury Racing Inboards,
-          Verado outboards, and Mercury Racing outboards. Our team of experts
-          take special care to ensure that your engine performs at its best. We
-          use only Mercury OEM parts and accessories in our service center.
-        </SupportSectionCopy>
+      <section className="max-w-5xl px-10 pb-12 pt-12 md:px-0 relative min-h-screen justify-center flex md:flex-col md:max-w-6xl text-center mx-auto items-end overflow-hidden">
         <div>
+          <SupportSectionHeading>
+            Mercury Certified Engine Maintenance & Repairs
+          </SupportSectionHeading>
+          <SupportSectionCopy>
+            Mercury OEM parts and Mercury Certified Technicians are critical
+            parts of keeping your boat in safe and reliable operating condition.
+            Our Mercury factory-trained technicians have years of experience
+            repairing and maintaining Mercury engines, so you can be sure your
+            engine is in good hands. We will service any boat brand with Mercury
+            Marine power plants.
+          </SupportSectionCopy>
+          <SupportSectionCopy>
+            We have been servicing Mercury powerplants for over 25 years,
+            emphasizing high-performance engines such as Mercury Racing
+            Inboards, Verado outboards, and Mercury Racing outboards. Our team
+            of experts take special care to ensure that your engine performs at
+            its best. We use only Mercury OEM parts and accessories in our
+            service center.
+          </SupportSectionCopy>
+        </div>
+        <div className="flex">
           <img
-            className="my-4"
+            className="md:flex my-4 md:max-w-full md:w-1/2 md:pr-3"
             src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/outboard.png"
             alt=""
           />
           <img
-            className="my-4"
+            className="md:flex my-4 md:max-w-full md:w-1/2 md:pl-3"
             src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/onboard.png"
             alt=""
           />
         </div>
-        <SupportSectionCta>Contact Cigarette Racing Support</SupportSectionCta>
+        <SupportSectionCta className="self-center">
+          Contact Cigarette Racing Support
+        </SupportSectionCta>
       </section>
       {/* Maintenance & repair experts */}
       <section
