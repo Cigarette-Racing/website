@@ -72,7 +72,6 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
     data.craftAPI.home?.connectSectionBackground?.[0]?.url
   const bannerImage =
     data.craftAPI.home?.imageObject?.[0]?.image?.[0]?.url || ''
-  console.log(data.craftAPI.home?.imageObject?.[0]?.image?.[0]?.url)
 
   return (
     <Layout>
@@ -80,14 +79,14 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       <ScrollIndicator />
       {/* First hero section */}
       <section
-        className="relative min-h-screen flex md:justify-center items-end text-center bg-cover bg-center"
+        className="relative min-h-60vh md:min-h-screen flex justify-center items-end text-center bg-cover bg-center"
         style={{
           backgroundImage: `url(${bannerImage}?q=30&w=2000)`,
           backgroundColor: 'black',
         }}
       >
         <div className="absolute top-0 left-0 h-full w-full bg-black opacity-50" />
-        <div className="relative z-10 max-w-8xl mb-12 px-4 sm:mb-24 text-white text-left md:text-center flex flex-col items-start md:items-center">
+        <div className="relative z-10 max-w-8xl mb-12 px-4 sm:mb-24 text-white text-left md:text-center flex flex-col items-center">
           <div className={clsx('flex items-center mb-3')}>
             <AngleIcon
               className="mr-1 md:hidden text-red"
