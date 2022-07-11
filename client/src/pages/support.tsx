@@ -84,7 +84,7 @@ const SupportPage = (props) => {
   const SupportSectionCta = (props) => {
     const { children, className } = props
 
-    const classes = `text-white bg-red inline-flex items-center h-16 px-2 sm:px-10 rounded-full transition-colors duration-150 ease-in-out ${className}`
+    const classes = `text-white bg-red inline-flex items-center h-16 px-8 sm:px-10 rounded-full transition-colors duration-150 ease-in-out ${className}`
 
     return (
       <button
@@ -94,7 +94,7 @@ const SupportPage = (props) => {
         type="button"
         className={classes}
       >
-        <span className="type-e2">{children}</span>
+        <span className="font-body tracking-normal">{children}</span>
       </button>
     )
   }
@@ -117,7 +117,7 @@ const SupportPage = (props) => {
         closeTimeoutMS={1000}
       >
         <div className="flex justify-center ">
-          <div className="w-3/4 bg-white">
+          <div className="md:w-3/4 bg-white">
             <div className="relative bg-black text-white py-4 px-6">
               <div className="font-heading text-xl">
                 Contact Cigarette Racing Support
@@ -131,57 +131,64 @@ const SupportPage = (props) => {
                 />
               </div>
             </div>
-            <div className="p-12">
+            <div className="px-12 py-8">
               <Form
                 onSubmit={() => {
                   console.log('submit the form!')
                 }}
                 render={({ handleSubmit }) => (
-                  <form onSubmit={handleSubmit}>
-                    <Field
-                      component="input"
-                      type="hidden"
-                      name="form-name"
-                      initialValue="support-form"
-                    />
-                    <TextInput
-                      name="fullName"
-                      placeholder="Full Name"
-                      type="text"
-                      validation={requiredText}
-                      required={true}
-                    />
-                    <div className="flex w-full">
+                  <form
+                    name="support"
+                    method="POST"
+                    data-netlify="true"
+                    onSubmit={handleSubmit}
+                  >
+                    <div style={{ marginLeft: '-15px' }}>
+                      <Field
+                        component="input"
+                        type="hidden"
+                        name="form-name"
+                        initialValue="support-form"
+                      />
                       <TextInput
-                        name="phone"
-                        placeholder="Phone"
+                        name="fullName"
+                        placeholder="Full Name"
                         type="text"
                         validation={requiredText}
                         required={true}
                       />
+                      <div className="md:flex w-full">
+                        <TextInput
+                          name="phone"
+                          placeholder="Phone"
+                          type="text"
+                          validation={requiredText}
+                          required={true}
+                        />
+                        <TextInput
+                          name="email"
+                          placeholder="Email"
+                          type="text"
+                          validation={requiredText}
+                        />
+                      </div>
                       <TextInput
-                        name="email"
-                        placeholder="Email"
-                        type="text"
-                        validation={requiredText}
-                      />
-                    </div>
-                    <TextInput
-                      name="yearMakeModel"
-                      placeholder="Year, Make and Model"
-                      type="text"
-                    />
-                    <div className="flex w-full">
-                      <TextInput
-                        name="serialNumber"
-                        placeholder="Serial Number"
-                        type="text"
-                      />
-                      <TextInput
-                        name="hullID"
-                        placeholder="Hull ID for parts"
+                        name="yearMakeModel"
+                        placeholder="Year, Make and Model"
                         type="text"
                       />
+                      <div className="md:flex w-full">
+                        <TextInput
+                          name="serialNumber"
+                          placeholder="Serial Number"
+                          type="text"
+                        />
+                        <TextInput
+                          name="hullID"
+                          placeholder="Hull ID for parts"
+                          type="text"
+                        />
+                      </div>
                     </div>
                     <Field
                       className="w-full p-4 mt-8 text-gray-1 font-body bg-gray-6 placeholder-gray-1 h-48"
@@ -380,7 +387,7 @@ const SupportPage = (props) => {
         </div>
       </section>
       {/* Mercury Certified Engine Maintenance & Repairs */}
-      <section className="max-w-5xl px-10 pb-12 pt-12 md:px-0 relative min-h-screen justify-center flex md:flex-col md:max-w-6xl text-center mx-auto items-end overflow-hidden">
+      <section className="max-w-5xl px-10 pb-12 pt-12 md:px-0 relative min-h-screen justify-center md:flex-col md:max-w-6xl text-center mx-auto items-end overflow-hidden">
         <div>
           <SupportSectionHeading>
             Mercury Certified Engine Maintenance & Repairs
@@ -402,7 +409,7 @@ const SupportPage = (props) => {
             service center.
           </SupportSectionCopy>
         </div>
-        <div className="flex">
+        <div className="md:flex">
           <img
             className="md:flex my-4 md:max-w-full md:w-1/2 md:pr-3"
             src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/outboard.png"
@@ -439,7 +446,7 @@ const SupportPage = (props) => {
         </div>
         <SupportSectionCta>Contact Cigarette Racing Support</SupportSectionCta>
       </section>
-      <section className="px-10 pt-12 md:px-0 relative min-h-screen md:flex justify-center items-end overflow-hidden">
+      <section className="px-10 pt-12 md:px-0 relative min-h-screen flex-col md:flex justify-center items-end overflow-hidden">
         <img
           src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/dealer.png"
           alt=""
@@ -456,12 +463,12 @@ const SupportPage = (props) => {
             your local auto parts store.
           </SupportSectionCopy>
         </div>
-        <div className="md:flex pb-8">
-          <div>
+        <div className="flex-column md:flex pb-8">
+          <div className="flex flex-col">
             <div className="mb-4 mt-6 font-body text-xl leading-none">
               Mercury OEM Parts & Accessories:
             </div>
-            <ul className="list-disc pl-5 mb-4">
+            <ul className="list-disc pl-5 mb-4 self-start">
               <li>Mercury props</li>
               <li>Mercury outdrives</li>
               <li>Mercury engine parts</li>
@@ -479,11 +486,11 @@ const SupportPage = (props) => {
               Our Mercury OEM Parts Department is helpful in servicing any type
               of boat brand with Mercury marine power plants.
             </SupportSectionCopy>
-            <SupportSectionCta>
+            <SupportSectionCta className="self-center">
               Contact Cigarette Racing Support
             </SupportSectionCta>
           </div>
-          <div className="my-8">
+          <div className="my-8 mx-10">
             <img
               src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/part8.png"
               alt=""
