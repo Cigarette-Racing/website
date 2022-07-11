@@ -3,6 +3,7 @@ import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { CircleButton } from '../atoms/circle-button'
 import { ContentHeader } from '../atoms/content-header'
+import { onSubmitCreator } from '../services/forms'
 import { CloseIcon } from '../svgs/icons'
 import { PlayIcon } from '../svgs/icons'
 import { CheckIcon } from '../svgs/icons'
@@ -99,6 +100,20 @@ const SupportPage = (props) => {
     )
   }
 
+  const formValuesMapper = (values: any) => {
+    return {
+      fullName: values.fullName,
+      email: values.email,
+      phone: values.phone,
+      yearMakeModel: values.yearMakeModel,
+      serialNumber: values.serialNumber,
+      hullID: values.hullID,
+      notes: values.notes,
+    }
+  }
+
+  const supportFormOnSubmit = onSubmitCreator(formValuesMapper)
+
   const SupportModal = () => {
     return (
       <ReactModal
@@ -133,9 +148,7 @@ const SupportPage = (props) => {
             </div>
             <div className="px-12 py-8">
               <Form
-                onSubmit={() => {
-                  console.log('submit the form!')
-                }}
+                onSubmit={supportFormOnSubmit}
                 render={({ handleSubmit }) => (
                   <form
                     name="support"
@@ -209,6 +222,31 @@ const SupportPage = (props) => {
           </div>
         </div>
       </ReactModal>
+    )
+  }
+
+  const HiddenSupportForm = () => {
+    return (
+      <form
+        method="post"
+        netlify-honeypot="bot-field"
+        data-netlify="true"
+        name="support-form"
+        hidden
+      >
+        <input type="hidden" name="bot-field" />
+        <input type="hidden" name="form-name" value="support-form" />
+
+        <input type="text" name="fullName" />
+        <input type="text" name="phone" />
+        <input type="email" name="email" />
+        <input type="text" name="yearMakeModel" />
+        <input type="text" name="serialNumber" />
+        <input type="text" name="hullID" />
+        <input type="text" name="notes" />
+
+        <button type="submit">Submit</button>
+      </form>
     )
   }
 
@@ -643,6 +681,7 @@ const SupportPage = (props) => {
           </div>
         </div>
       </section>
+      <HiddenSupportForm />
     </Layout>
   )
 }
