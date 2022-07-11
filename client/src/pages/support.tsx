@@ -105,10 +105,10 @@ const SupportPage = (props) => {
       fullName: values.fullName,
       email: values.email,
       phone: values.phone,
-      yearMakeModel: values.yearMakeModel,
-      serialNumber: values.serialNumber,
-      hullID: values.hullID,
-      notes: values.notes,
+      yearMakeModel: values.yearMakeModel || '',
+      serialNumber: values.serialNumber || '',
+      hullID: values.hullID || '',
+      notes: values.notes || '',
     }
   }
 
