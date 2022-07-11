@@ -11,6 +11,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import ReactPlayer from 'react-player'
 import clsx from 'clsx'
 import ReactModal from 'react-modal'
+import Slider from 'react-slick'
 import { Form, Field } from 'react-final-form'
 import {
   TextInput,
@@ -19,6 +20,57 @@ import {
   requiredPhone,
 } from '../atoms/text-input'
 import { FieldSetContainer } from '../molecules/inquiry/inquiry-modal.components'
+
+const SimpleSlider = () => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  }
+  return (
+    <Slider {...settings}>
+      <div>
+        <img
+          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/part1.png"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/part7.png"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/part3.png"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/part4.png"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/part5.png"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/part6.png"
+          alt=""
+        />
+      </div>
+    </Slider>
+  )
+}
+
 const TopVideo = ({ image, videoUrl }: { image: string; videoUrl: string }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   return (
@@ -254,6 +306,7 @@ const SupportPage = (props) => {
     <Layout>
       <SupportModal />
       <SEO title="Cigarette Racing Support" />
+
       {/* intro */}
       <section className="relative min-h-screen flex justify-start items-center overflow-hidden">
         <div className="absolute top-0 left-0 h-screen w-full">
@@ -418,10 +471,12 @@ const SupportPage = (props) => {
         }}
         className="p-10"
       >
-        <div className="text-white font-body text-center leading-relaxed text-xl">
-          We provide Factory Authorized Refit Services for all Cigarette Racing
-          boats, from a refresh to give it a new look, to complete refits
-          including power, paint, and interior.
+        <div className="flex items-center justify-center">
+          <div className="text-white font-body text-center leading-relaxed text-xl md:max-w-2xl">
+            We provide Factory Authorized Refit Services for all Cigarette
+            Racing boats, from a refresh to give it a new look, to complete
+            refits including power, paint, and interior.
+          </div>
         </div>
       </section>
       {/* Mercury Certified Engine Maintenance & Repairs */}
@@ -469,12 +524,12 @@ const SupportPage = (props) => {
           backgroundImage:
             'url(https://cigaretteracingsupport.com/wp-content/uploads/2022/02/bg3.jpg)',
         }}
-        className="px-4 py-20 md:px-0 relative md:flex justify-center text-center items-end overflow-hidden text-white"
+        className="px-4 py-20 md:px-0 relative justify-center text-center items-end overflow-hidden text-white"
       >
         <img
-          className="mb-4"
+          className="mb-4 md:inline-flex"
           src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/mercury-logo.png"
-          alt=""
+          alt="mercury logo"
         />
         <div className="mb-4 font-body text-3xl leading-none">
           Maintenance & repair experts
@@ -484,7 +539,7 @@ const SupportPage = (props) => {
         </div>
         <SupportSectionCta>Contact Cigarette Racing Support</SupportSectionCta>
       </section>
-      <section className="px-10 pt-12 md:px-0 relative min-h-screen flex-col md:flex justify-center items-end overflow-hidden">
+      <section className="px-10 pt-12 md:px-0 relative min-h-screen flex-col md:flex justify-center items-end md:items-center mx-auto overflow-hidden max-w-5xl">
         <img
           src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/dealer.png"
           alt=""
@@ -524,15 +579,12 @@ const SupportPage = (props) => {
               Our Mercury OEM Parts Department is helpful in servicing any type
               of boat brand with Mercury marine power plants.
             </SupportSectionCopy>
-            <SupportSectionCta className="self-center">
+            <SupportSectionCta className="self-center md:self-start">
               Contact Cigarette Racing Support
             </SupportSectionCta>
           </div>
-          <div className="my-8 mx-10">
-            <img
-              src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/part8.png"
-              alt=""
-            />
+          <div className="max-w-xs mt-5 mb-5 mx-auto md:max-w-md md:pl-12">
+            <SimpleSlider />
           </div>
         </div>
       </section>
@@ -569,114 +621,143 @@ const SupportPage = (props) => {
           </SupportSectionCta>
         </div>
       </section>
-      <section className="px-10 pt-12 pb-12 bg-offWhite text-center md:px-0 relative min-h-screen md:flex justify-center items-end overflow-hidden">
-        <img
-          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/poker-support.png"
-          alt=""
-        />
-        <div className="mb-4 font-body text-3xl leading-tight mt-4">
-          POKER RUN SUPPORT
+      <section className="px-10 pt-12 pb-12 bg-offWhite text-center md:px-0 relative min-h-screen justify-center items-end overflow-hidden">
+        <div className="max-w-8xl mx-auto">
+          <img
+            src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/poker-support.png"
+            alt=""
+            className="mx-auto block"
+          />
+          <div className="mb-4 font-body text-3xl leading-tight mt-4">
+            POKER RUN SUPPORT
+          </div>
+          <SupportSectionCopy>
+            We Provide Poker Run Support, from preparing the boat for the Poker
+            Run and launching or delivering it to the Start Location, picking it
+            back up and Flushing and Detailing, to Support during the Run!
+          </SupportSectionCopy>
+          <div className="md:flex w-full mb-6">
+            <div className="md:w-1/3 md:mr-10">
+              <img
+                className="md:w-full mb-4"
+                src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/poker-run-support.png"
+                alt=""
+              />
+            </div>
+            <div className="md:w-1/3 md:mr-10">
+              <img
+                className="md:w-full mb-4"
+                src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/poker-race-support.png"
+                alt=""
+              />
+            </div>
+            <div className="md:w-1/3 last:mr-0">
+              <img
+                className="md:w-full mb-4"
+                src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/poker-race-support3.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <SupportSectionCta>
+            Contact Cigarette Racing Support
+          </SupportSectionCta>
         </div>
-        <SupportSectionCopy>
-          We Provide Poker Run Support, from preparing the boat for the Poker
-          Run and launching or delivering it to the Start Location, picking it
-          back up and Flushing and Detailing, to Support during the Run!
-        </SupportSectionCopy>
-        <div className="md:flex">
-          <img
-            className="md:w-1/3 mb-4"
-            src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/poker-run-support.png"
-            alt=""
-          />
-          <img
-            className="md:w-1/3 mb-4"
-            src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/poker-race-support.png"
-            alt=""
-          />
-          <img
-            className="md:w-1/3 mb-4"
-            src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/poker-race-support3.png"
-            alt=""
-          />
-        </div>
-        <SupportSectionCta>Contact Cigarette Racing Support</SupportSectionCta>
       </section>
-      <section className="px-10 pt-12 pb-12 md:px-0 relative md:flex justify-center items-end overflow-hidden">
-        <SupportSectionHeading>About Us</SupportSectionHeading>
-        <SupportSectionCopy>
-          If you’re looking for a reliable and experienced team to support your
-          high-performance Cigarette Racing boat, look no further than our team
-          here at Cigarette Racing Support. Give us a call today to learn more
-          about how we can support your Cigarette Racing boat.
-        </SupportSectionCopy>
-        <div className="md:flex">
-          <div>
-            <SupportSectionHeading>Contact Details</SupportSectionHeading>
-            <div>
-              <ul>
-                <li className="mb-4">
-                  <div className="flex">
-                    <div className="flex-shrink p-2 mr-4">
-                      <img
-                        height="32px"
-                        width="32px"
-                        src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/map.png"
-                        alt="map"
-                      />
+      <section className="px-10 pt-12 pb-12 md:px-0 relative justify-center items-end overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          <SupportSectionHeading>About Us</SupportSectionHeading>
+
+          <SupportSectionCopy>
+            If you’re looking for a reliable and experienced team to support
+            your high-performance Cigarette Racing boat, look no further than
+            our team here at Cigarette Racing Support. Give us a call today to
+            learn more about how we can support your Cigarette Racing boat.
+          </SupportSectionCopy>
+
+          <div className="md:flex mt-10">
+            <div className="md:w-5/12">
+              <SupportSectionHeading>Contact Details</SupportSectionHeading>
+              <div>
+                <ul>
+                  <li className="mb-4">
+                    <div className="flex">
+                      <div className="flex-shrink p-2 mr-4">
+                        <img
+                          height="32px"
+                          width="32px"
+                          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/map.png"
+                          alt="map"
+                        />
+                      </div>
+                      <div>
+                        <span className="block font-bold text-lg mb-1">
+                          Address
+                        </span>
+                        <span className="font-normal font-body">
+                          4355 NW 128th St, Opa-locka
+                          <br />
+                          FL 33054, United States
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <span className="block font-bold text-lg mb-1">
-                        Address
-                      </span>
-                      <span className="font-normal font-body">
-                        4355 NW 128th St, Opa-locka
-                        <br />
-                        FL 33054, United States
-                      </span>
+                  </li>
+                  <li className="mb-4">
+                    <div className="flex">
+                      <div className="flex-shrink p-2 mr-4">
+                        <img
+                          height="32px"
+                          width="32px"
+                          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/phone.png"
+                          alt="phone"
+                        />
+                      </div>
+                      <div>
+                        <span className="block font-bold text-lg mb-1">
+                          Phone Number
+                        </span>
+                        <span className="font-normal font-body">
+                          786-761-7615
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li className="mb-4">
-                  <div className="flex">
-                    <div className="flex-shrink p-2 mr-4">
-                      <img
-                        height="32px"
-                        width="32px"
-                        src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/phone.png"
-                        alt="map"
-                      />
+                  </li>
+                  <li className="mb-4">
+                    <div className="flex">
+                      <div className="flex-shrink p-2 mr-4">
+                        <img
+                          height="32px"
+                          width="32px"
+                          src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/email.png"
+                          alt="email"
+                        />
+                      </div>
+                      <div>
+                        <span className="block font-bold text-lg mb-1">
+                          Email
+                        </span>
+                        <span className="font-normal font-body">
+                          mindi@cigaretteracing.com
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <span className="block font-bold text-lg mb-1">
-                        Phone Number
-                      </span>
-                      <span className="font-normal font-body">
-                        786-761-7615
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="mb-4">
-                  <div className="flex">
-                    <div className="flex-shrink p-2 mr-4">
-                      <img
-                        height="32px"
-                        width="32px"
-                        src="https://cigaretteracingsupport.com/wp-content/uploads/2022/02/email.png"
-                        alt="map"
-                      />
-                    </div>
-                    <div>
-                      <span className="block font-bold text-lg mb-1">
-                        Email
-                      </span>
-                      <span className="font-normal font-body">
-                        mindi@cigaretteracing.com
-                      </span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div
+              className="overflow-hidden shadow-lg flex-1"
+              style={{ border: 0, borderRadius: '10px' }}
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3589.3650768305884!2d-80.27219064876577!3d25.890366509499735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b00f6687333f%3A0x76b5e57015d8141c!2sCigarette%20Racing!5e0!3m2!1sen!2sus!4v1657572860289!5m2!1sen!2sus"
+                width="100%"
+                height="350"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </div>
         </div>
