@@ -8,7 +8,7 @@ export interface InPageCtaProps {
   /** Make the button a link */
   link?: true
   /** Visual variant to use */
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'red'
   /** Light or dark theme */
   theme?: Theme
 }
@@ -18,6 +18,7 @@ const baseClasses =
 const primaryClasses =
   'bg-white text-black border-white hover:bg-red hover:border-red hover:text-white'
 const secondaryClasses = 'border-red hover:bg-red'
+const redClasses = 'border-red bg-red'
 
 export const InPageCta: React.FC<
   InPageCtaProps &
@@ -31,6 +32,7 @@ export const InPageCta: React.FC<
     {
       [primaryClasses]: variant === 'primary',
       [secondaryClasses]: variant === 'secondary',
+      [redClasses]: variant === 'red',
       'bg-black text-white': variant === 'secondary' && theme === 'dark',
       'text-black': variant === 'secondary' && theme === 'light',
     },
