@@ -42,8 +42,8 @@ export const TextInput = ({
       validate={validation}
       render={({ input, meta }) => {
         return (
-          <div className="relative">
-            <div className="flex justify-start items-center text-white pt-8">
+          <div className="relative flex-1">
+            <div className="flex justify-start items-center pt-8 text-gray-1">
               <div
                 className={clsx('text-red mr-2 pb-5', { invisible: !required })}
               >
@@ -51,7 +51,7 @@ export const TextInput = ({
               </div>
               <div
                 className={clsx(
-                  'relative w-full border-b border-white border-solid',
+                  'relative w-full border-b border-gray-2 border-solid',
                   { [inputBorderStylesInactive]: !meta.active },
                   { [inputBorderStylesActive]: meta.active }
                 )}
@@ -75,7 +75,7 @@ export const TextInput = ({
                   placeholder={placeholder}
                   className={clsx(
                     'font-body appearance-none bg-transparent outline-none w-full pb-6',
-                    { 'placeholder-white': !meta.invalid || !meta.touched },
+                    { 'placeholder-gray-2': !meta.invalid || !meta.touched },
                     { 'placeholder-red': meta.invalid && meta.touched }
                   )}
                 />
