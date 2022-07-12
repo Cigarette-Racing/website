@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Layout } from '../components/layout'
 import SEO from '../components/seo'
 import { CircleButton } from '../atoms/circle-button'
+import { useFormState } from '../services/forms'
 import { ContentHeader } from '../atoms/content-header'
 import { onSubmitCreator } from '../services/forms'
 import { CloseIcon } from '../svgs/icons'
@@ -106,6 +107,10 @@ const TopVideo = ({ image, videoUrl }: { image: string; videoUrl: string }) => {
   )
 }
 
+const SupportFormSubmitMessage = () => {
+  return <div>form submitted!</div>
+}
+
 const ListItem = (props) => {
   const { children } = props
   return (
@@ -169,108 +174,125 @@ const SupportPage = (props) => {
   const SupportModal = () => {
     return (
       <ReactModal
+        className="w-3/4 bg-white"
         style={{
           overlay: {
-            backgroundColor: 'rgba(0,0,0,0.5)',
+            backgroundColor: 'rgba(0,0,0,0.7)',
             zIndex: 100,
+            display: 'flex',
+            justifyContent: 'center',
           },
           content: {
             border: 'none',
-            backgroundColor: 'transparent',
-            color: 'lightsteelblue',
+            alignSelf: 'center',
           },
         }}
         isOpen={isModalOpen!}
-        closeTimeoutMS={1000}
+        onRequestClose={() => {
+          setIsModalOpen(false)
+        }}
+        shouldCloseOnOverlayClick={true}
       >
-        <div className="flex justify-center ">
-          <div className="md:w-3/4 bg-white">
-            <div className="relative bg-black text-white py-4 px-6">
-              <div className="font-heading text-xl">
-                Contact Cigarette Racing Support
-              </div>
-              <div className="absolute top-0 right-0 px-6 py-5">
-                <CloseIcon
-                  className="cursor-pointer "
-                  onClick={() => {
-                    return setIsModalOpen(false)
-                  }}
-                />
-              </div>
+        <div>
+          <div className="relative bg-black text-white py-4 px-6 flex justify-between">
+            <div className="font-heading text-xl">
+              Contact Cigarette Racing Support
             </div>
-            <div className="px-12 py-8">
-              <Form
-                onSubmit={supportFormOnSubmit}
-                render={({ handleSubmit }) => (
-                  <form
-                    name="support"
-                    method="POST"
-                    data-netlify="true"
-                    onSubmit={handleSubmit}
-                  >
-                    <div style={{ marginLeft: '-15px' }}>
-                      <Field
-                        component="input"
-                        type="hidden"
-                        name="form-name"
-                        initialValue="support-form"
-                      />
-                      <TextInput
-                        name="fullName"
-                        placeholder="Full Name"
-                        type="text"
-                        validation={requiredText}
-                        required={true}
-                      />
-                      <div className="md:flex w-full">
-                        <TextInput
-                          name="phone"
-                          placeholder="Phone"
-                          type="text"
-                          validation={requiredText}
-                          required={true}
-                        />
-                        <TextInput
-                          name="email"
-                          placeholder="Email"
-                          type="text"
-                          validation={requiredText}
-                        />
-                      </div>
-                      <TextInput
-                        name="yearMakeModel"
-                        placeholder="Year, Make and Model"
-                        type="text"
-                      />
-                      <div className="md:flex w-full">
-                        <TextInput
-                          name="serialNumber"
-                          placeholder="Serial Number"
-                          type="text"
-                        />
-                        <TextInput
-                          name="hullID"
-                          placeholder="Hull ID for parts"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <Field
-                      className="w-full p-4 mt-8 text-gray-1 font-body bg-gray-6 placeholder-gray-1 h-48"
-                      placeholder="Leave a message for our team..."
-                      name="notes"
-                      component="textarea"
-                    />
-                    <button
-                      type="submit"
-                      className="text-white bg-red inline-flex items-center h-8 px-2 sm:px-10 rounded-full transition-colors duration-150 ease-in-out mt-4"
-                    >
-                      Submit
-                    </button>
-                  </form>
-                )}
+            <div className="flex items-center">
+              <CloseIcon
+                className="cursor-pointer"
+                onClick={() => {
+                  return setIsModalOpen(false)
+                }}
               />
             </div>
+          </div>
+          <div className="px-12 py-8">
+            <Form
+              onSubmit={supportFormOnSubmit}
+              render={({ handleSubmit, submitSucceeded, submitError }) => {
+                console.log(submitSucceeded, submitError)
+
+                return (
+                  <Fragment>
+                    {!submitSucceeded && (
+                      <form
+                        name="support"
+                        method="POST"
+                        data-netlify="true"
+                        onSubmit={handleSubmit}
+                      >
+                        <div style={{ marginLeft: '-15px' }}>
+                          <Field
+                            component="input"
+                            type="hidden"
+                            name="form-name"
+                            initialValue="support-form"
+                          />
+                          <TextInput
+                            name="fullName"
+                            placeholder="Full Name"
+                            type="text"
+                            validation={requiredText}
+                            required={true}
+                          />
+                          <div className="md:flex w-full">
+                            <TextInput
+                              name="phone"
+                              placeholder="Phone"
+                              type="text"
+                              validation={requiredText}
+                              required={true}
+                            />
+                            <TextInput
+                              name="email"
+                              placeholder="Email"
+                              type="text"
+                              validation={requiredText}
+                            />
+                          </div>
+                          <TextInput
+                            name="yearMakeModel"
+                            placeholder="Year, Make and Model"
+                            type="text"
+                          />
+                          <div className="md:flex w-full">
+                            <TextInput
+                              name="serialNumber"
+                              placeholder="Serial Number"
+                              type="text"
+                            />
+                            <TextInput
+                              name="hullID"
+                              placeholder="Hull ID for parts"
+                              type="text"
+                            />
+                          </div>
+                        </div>
+                        <Field
+                          className="w-full p-4 mt-8 text-gray-1 font-body bg-gray-6 placeholder-gray-1 h-48"
+                          placeholder="Leave a message for our team..."
+                          name="notes"
+                          component="textarea"
+                        />
+                        <button
+                          type="submit"
+                          className="text-white bg-red inline-flex items-center h-8 px-2 sm:px-10 rounded-full transition-colors duration-150 ease-in-out mt-4"
+                        >
+                          Submit
+                        </button>
+                      </form>
+                    )}
+                    {submitSucceeded && (
+                      <div className="font-body">
+                        Thanks for contacting us! We will get in touch with you
+                        shortly.
+                      </div>
+                    )}
+                  </Fragment>
+                )
+              }}
+            />
           </div>
         </div>
       </ReactModal>
