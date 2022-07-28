@@ -61,6 +61,19 @@ export const plugins = [
       trackingId: process.env.GOOGLE_ANALYTICS_ID,
     },
   },
+  {
+    resolve: 'gatsby-plugin-google-tagmanager',
+    options: {
+      id: 'GTM-WCXZ7WQ',
+      // Defaults to false meaning GTM will only be loaded in production.
+      includeInDevelopment: true,
+      // Defaults to null
+      defaultDataLayer: { platform: 'gatsby' },
+      // Defaults to false
+      enableWebVitalsTracking: true,
+      // Defaults to https://www.googletagmanager.com
+    },
+  },
   `gatsby-plugin-sitemap`,
   // this (optional) plugin enables Progressive Web App + Offline functionality
   // To learn more, visit: https://gatsby.dev/offline
