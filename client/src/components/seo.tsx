@@ -77,6 +77,10 @@ function SEO({
       {imageUrl && <meta name="twitter:image" content={imageUrl} />}
 
       {/* Additional tags */}
+      <meta
+        name="facebook-domain-verification"
+        content="2pc60e3rpwaik8sr5d6ipr66blzr87"
+      />
       {meta}
     </Helmet>
   )
