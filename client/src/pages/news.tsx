@@ -23,7 +23,7 @@ const NewsArticlesPage = (
     label: 'All',
   })
 
-  const [landingPageTitle, setLandingPageTitle] = useState('All News')
+  const [landingPageTitle, setLandingPageTitle] = useState('News')
 
   const {
     data: {
