@@ -552,7 +552,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
       <div className="max-w-8xl md:mx-auto md:flex">
         <div className="pl-4 md:w-1/2 md:pl-8 lg:pl-16 xl:pl-24">
           <Typography variant="h3" md="h2" className="mb-4 md:mb-16">
-            News <br className="hidden md:block" />& press
+            News <br className="hidden md:block" />& Press
           </Typography>
           {/* <ComingSoonLink>
             <LinkCta className="hidden md:flex text-black mb-40">
@@ -622,6 +622,7 @@ function NewsSection({ newsItems }: { newsItems: NewsItem[] }) {
     return (
       <a
         href={item.url}
+        target="_blank"
         key={item.url}
         className="block w-screen"
         style={{
