@@ -72,7 +72,10 @@ const NewsArticleTemplate = (
 
   return (
     <Layout>
-      <GenericSection className="py-12 pb-8 pt-32 md:pt-56" theme="light">
+      <GenericSection
+        className="py-12 pb-8 pt-32 md:pt-56 news-article.tsx"
+        theme="light"
+      >
         <div className="px-4 max-w-screen-xl xl:max-w-screen-2xl m-auto">
           <SEO title={articleEntry.title} slug={props.path} />
           <div className="md:flex align-top justify-start content-start pb-10 md:pb-20">
@@ -135,7 +138,6 @@ const NewsArticleTemplate = (
                   </Typography>
                 </div>
                 <div className="px-4 md:px-0 md:w-8/12 mb-16">
-                  {console.log(articleEntry.articleCopy)}
                   {FormatTextBlob(articleEntry.articleCopy)}
                 </div>
               </div>

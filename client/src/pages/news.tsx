@@ -23,7 +23,7 @@ const NewsArticlesPage = (
     label: 'All',
   })
 
-  const [landingPageTitle, setLandingPageTitle] = useState('All News')
+  const [landingPageTitle, setLandingPageTitle] = useState('News')
 
   const {
     data: {
@@ -54,7 +54,7 @@ const NewsArticlesPage = (
   return (
     <Layout>
       <GenericSection className="py-12 pt-48">
-        <SEO title="All News" slug={props.path} />
+        <SEO title="News" slug={props.path} />
         <div className="relative flex justify-center tracking-wide text-gray-5 capitalize whitespace-no-wrap font-normal text-9xl lg:text-huge leading-10 font-heading mb-8 text-center">
           <span>{landingPageTitle}</span>
         </div>
