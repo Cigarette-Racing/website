@@ -67,6 +67,8 @@ const allLinks = [{ text: 'Home', link: '/' } as LinkItem].concat(
   rightLinks
 )
 
+console.log(categoriesToDisplay)
+
 export interface HeaderProps {}
 
 export const Header = ({}: HeaderProps) => {
@@ -416,6 +418,8 @@ function BoatSelector({
   const boats = boatsByCategory[boatCategory] || []
   const nextIndex = boatIndex < boats.length - 1 ? boatIndex + 1 : 0
   const prevIndex = boatIndex > 0 ? boatIndex - 1 : boats.length - 1
+
+  console.log(boatsByCategory)
 
   useEffect(() => {
     cacheImages(
