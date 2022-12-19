@@ -47,9 +47,9 @@ const extractCategories = (data: any) => {
 
 // export type HeaderBoatMenuCategories =
 //   | 'all'
-//   | 'performanceCenterConsole'
+//   | 'centerConsole'
 //   | 'heritage'
-//   | 'highPerformance'
+//   | 'performance'
 //   | 'none'
 
 // export type HeaderBoat = {
@@ -118,8 +118,8 @@ const extractCategories = (data: any) => {
 
 // export const categoriesToDisplay: Record<HeaderBoatMenuCategories, string> = {
 //   all: 'All Boats',
-//   performanceCenterConsole: 'Performance Center Console',
-//   highPerformance: 'High Performance',
+//   centerConsole: 'Performance Center Console',
+//   performance: 'High Performance',
 //   heritage: '',
 //   none: '',
 // }

@@ -26,13 +26,13 @@ const footerLinks = [
       },
       {
         name: 'Center Console',
-        category: 'performanceCenterConsole',
+        category: 'centerConsole',
         url: null,
         clickAction: true,
       },
       {
-        name: 'High Performance',
-        category: 'highPerformance',
+        name: 'Performance',
+        category: 'performance',
         url: null,
         clickAction: true,
       },
