@@ -42,6 +42,8 @@ export const InPageNav = ({
   useEffect(() => {
     if (!window.IntersectionObserver) return
 
+    console.log('from in page nav')
+
     const anchors = Array.from(document.querySelectorAll('[data-in-page-nav]'))
     const ratiosMap = new Map(Array.from(anchors).map((el) => [el, 0]))
 

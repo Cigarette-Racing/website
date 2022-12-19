@@ -23,6 +23,10 @@ import { Tab } from '../atoms/tab'
 import { AnimatePresence, motion, useViewportScroll } from 'framer-motion'
 import { useToggle } from 'react-use'
 import { AutoplayVideo } from '../atoms/autoplay-video'
+import {
+  InquiryModal,
+  useInquiryModalState,
+} from '../molecules/inquiry/inquiry-modal'
 
 export const BoatHeader = ({
   image,
@@ -494,6 +498,8 @@ export const OrderSectionComponent = ({
   boatNameLong: string
   onClickCta: (state: boolean) => void
 }) => {
+  const [, setInquiryModalState] = useInquiryModalState()
+
   return (
     <BoatSection
       className="pb-48 sm:py-48"
@@ -516,7 +522,12 @@ export const OrderSectionComponent = ({
             {boatNameLong}
           </Typography>
           <div className="flex justify-center">
-            <InPageCta href="/contact" link={true}>
+            <InPageCta
+              href="/contact"
+              onClick={() => {
+                setInquiryModalState(true)
+              }}
+            >
               Request Information
             </InPageCta>
           </div>
