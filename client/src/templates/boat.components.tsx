@@ -523,7 +523,6 @@ export const OrderSectionComponent = ({
           </Typography>
           <div className="flex justify-center">
             <InPageCta
-              href="/contact"
               onClick={() => {
                 setInquiryModalState(true)
               }}

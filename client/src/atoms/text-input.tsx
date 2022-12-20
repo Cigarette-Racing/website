@@ -33,7 +33,7 @@ export const TextInput = ({
   required = false,
   validation,
 }: TextInputProps) => {
-  const inputBorderStylesInactive = 'border-opacity-25'
+  const inputBorderStylesInactive = 'border-opacity-50'
   const inputBorderStylesActive = 'border-opacity-100'
 
   return (

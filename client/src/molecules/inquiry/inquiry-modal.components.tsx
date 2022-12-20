@@ -153,6 +153,23 @@ export const StepOne: React.FC<{ id: string }> = () => {
           validation={requiredEmail}
           required={true}
         />
+        <TextInput name="address" type="address" placeholder="Address" />
+        <div className="space-y-3 lg:space-y-0 justify-between mb-12 mt-4 lg:flex">
+          <TextInput
+            name="city"
+            type="city"
+            placeholder="City"
+            validation={requiredText}
+            required={true}
+          />
+          <TextInput
+            name="state"
+            type="state"
+            placeholder="State"
+            validation={requiredText}
+            required={true}
+          />
+        </div>
       </FieldSetContainer>
       <ContinueButton />
       <PageStatus />
