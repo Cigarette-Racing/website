@@ -39,7 +39,7 @@ const Section: React.FC<{
     data-component="Section"
   >
     <a
-      className="flex flex-col items-center content-center"
+      className="relative w-full flex flex-col items-center content-center"
       target="blank"
       href={website}
     >
@@ -51,7 +51,7 @@ const Section: React.FC<{
 const Dealers = (props) => {
   const {
     data: {
-      craftAPI: { bigThunder, lipShip, topGun, ultimateMarine },
+      craftAPI: { bigThunder, lipShip, topGun, ultimateMarine, cmg, wiresOnly },
     },
   } = props
 
@@ -79,6 +79,16 @@ const Dealers = (props) => {
         logo={ultimateMarine.url}
         website="https://www.ultimatemarine.com/"
       ></Section>
+      <Section
+        theme="light"
+        logo={cmg.url}
+        website="https://chiefmarinegroup.com/"
+      ></Section>
+      <Section
+        theme="light"
+        logo={wiresOnly.url}
+        website="https://wiresonly.com/"
+      ></Section>
     </Layout>
   )
 }
@@ -98,6 +108,12 @@ export const query = graphql`
         url
       }
       ultimateMarine: asset(filename: "UMLOGOS.png") {
+        url
+      }
+      cmg: asset(filename: "CMGLogo600px.png") {
+        url
+      }
+      wiresOnly: asset(filename: "wires-only-logo.png") {
         url
       }
     }
