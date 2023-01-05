@@ -19,14 +19,17 @@ import { Tween, Timeline } from 'react-gsap'
 import { Typography } from '../atoms/typography'
 
 const Section: React.FC<{
-  theme?: Theme | 'red' | 'none'
+  theme?: Theme | 'red' | 'gray' | 'none'
   className?: string
-}> = ({ children, className, theme = 'light', ...rest }) => (
+  website?: string
+  logo?: any
+}> = ({ children, className, website, logo, theme = 'light', ...rest }) => (
   <section
     className={clsx(
-      'relative overflow-hidden flex flex-col content-center justify-center items-center min-h-screen',
+      'relative overflow-hidden flex flex-col content-center justify-center items-center py-12 md:min-h-screen',
       {
         'bg-gray-0 text-white': theme === 'dark',
+        'bg-gray-4 text-white': theme === 'gray',
         'bg-darkRed text-white': theme === 'red',
         'text-white': theme === 'none',
       },
@@ -35,35 +38,14 @@ const Section: React.FC<{
     {...rest}
     data-component="Section"
   >
-    {children}
+    <a
+      className="flex flex-col items-center content-center"
+      target="blank"
+      href={website}
+    >
+      <img src={logo} alt="" className="w-3/4 md:w-1/2 block" />
+    </a>
   </section>
-)
-
-export const OneColumnTextBlockComponent = ({
-  align = 'left',
-  header,
-  copy,
-  theme = 'dark',
-  className,
-}: Omit<OneColumnTextBlock, 'type'> & { theme?: Theme; className: string }) => (
-  <div
-    className={clsx(className)}
-    data-block-type="OneColumnTextBlockComponent"
-  >
-    <TextBlockComponent
-      className={clsx({
-        'max-w-xl mr-auto text-center lg:text-left': align === 'left',
-        'max-w-2xl mx-auto text-center': align === 'center',
-        'max-w-xl ml-auto text-center lg:text-right': align === 'right',
-      })}
-      header={header}
-      headerClassname={clsx({
-        'text-black': theme === 'light',
-        'text-red': theme === 'dark',
-      })}
-      copy={copy}
-    />
-  </div>
 )
 
 const Dealers = (props) => {
@@ -76,42 +58,27 @@ const Dealers = (props) => {
   return (
     <Layout>
       <SEO title="Dealers" slug={props.path} />
-      <Section theme="light">
-        <a
-          className="flex flex-col items-center content-center"
-          target="blank"
-          href="https://www.bigthundermarine.com/"
-        >
-          <img src={bigThunder.url} alt="" className="w-1/2 block" />
-        </a>
-      </Section>
-      <Section theme="light">
-        <a
-          className="flex flex-col items-center content-center"
-          target="blank"
-          href="http://www.lipship.com/"
-        >
-          <img src={lipShip.url} alt="" className="w-1/2 block" />
-        </a>
-      </Section>
-      <Section theme="light">
-        <a
-          className="flex flex-col items-center content-center"
-          target="blank"
-          href="http://topgunyachts.com/"
-        >
-          <img src={topGun.url} alt="" className="w-1/2 block" />
-        </a>
-      </Section>
-      <Section theme="light">
-        <a
-          className="flex flex-col items-center content-center"
-          target="blank"
-          href="https://www.ultimatemarine.com/"
-        >
-          <img src={ultimateMarine.url} alt="" className="w-1/2 block" />
-        </a>
-      </Section>
+      <Section
+        className="pt-32"
+        theme="light"
+        logo={bigThunder.url}
+        website="https://www.bigthundermarine.com/"
+      ></Section>
+      <Section
+        theme="light"
+        logo={lipShip.url}
+        website="http://www.lipship.com/"
+      ></Section>
+      <Section
+        theme="light"
+        logo={topGun.url}
+        website="http://topgunyachts.com/"
+      ></Section>
+      <Section
+        theme="light"
+        logo={ultimateMarine.url}
+        website="https://www.ultimatemarine.com/"
+      ></Section>
     </Layout>
   )
 }
