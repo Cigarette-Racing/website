@@ -134,7 +134,7 @@ export const StepOne: React.FC<{ id: string }> = () => {
         />
         <TextInput
           name="lastName"
-          placeholder="last Name"
+          placeholder="Last Name"
           type="text"
           validation={requiredText}
           required={true}
