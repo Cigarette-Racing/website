@@ -6,6 +6,7 @@ import Modal from 'react-modal'
 import { useMedia, useToggle } from 'react-use'
 import { Link } from 'gatsby'
 import { useHeaderState } from './header'
+import { useInquiryModalState } from '../molecules/inquiry/inquiry-modal'
 
 const slugify = (str: string) => {
   if (!!str) {
@@ -38,9 +39,12 @@ export const InPageNav = ({
   const [current, setCurrent] = useState('')
   const [isMenuOpen, toggleIsMenuOpen] = useToggle(false)
   const isMobileMenu = useMedia('(max-width: 1023px)')
+  const [, setInquiryModalState] = useInquiryModalState()
 
   useEffect(() => {
     if (!window.IntersectionObserver) return
+
+    console.log('from in page nav')
 
     const anchors = Array.from(document.querySelectorAll('[data-in-page-nav]'))
     const ratiosMap = new Map(Array.from(anchors).map((el) => [el, 0]))
@@ -106,9 +110,13 @@ export const InPageNav = ({
                 )}
               </div>
             </button>
-            <Link to="/contact">
-              <Typography variant="e2">Inquire</Typography>
-            </Link>
+            <button
+              onClick={() => {
+                setInquiryModalState(true)
+              }}
+            >
+              <Typography variant="e2">Request Information</Typography>
+            </button>
           </div>
         </div>
         {!isMobileMenu && isMenuOpen && (

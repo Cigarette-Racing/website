@@ -33,7 +33,7 @@ export const TextInput = ({
   required = false,
   validation,
 }: TextInputProps) => {
-  const inputBorderStylesInactive = 'border-opacity-25'
+  const inputBorderStylesInactive = 'border-opacity-50'
   const inputBorderStylesActive = 'border-opacity-100'
 
   return (
@@ -43,7 +43,7 @@ export const TextInput = ({
       render={({ input, meta }) => {
         return (
           <div className="relative flex-1">
-            <div className="flex justify-start items-center pt-8 text-gray-1">
+            <div className="flex justify-start items-center pt-8 text-gray-6">
               <div
                 className={clsx('text-red mr-2 pb-5', { invisible: !required })}
               >
@@ -75,7 +75,7 @@ export const TextInput = ({
                   placeholder={placeholder}
                   className={clsx(
                     'font-body appearance-none bg-transparent outline-none w-full pb-6',
-                    { 'placeholder-gray-2': !meta.invalid || !meta.touched },
+                    { 'placeholder-gray-4': !meta.invalid || !meta.touched },
                     { 'placeholder-red': meta.invalid && meta.touched }
                   )}
                 />

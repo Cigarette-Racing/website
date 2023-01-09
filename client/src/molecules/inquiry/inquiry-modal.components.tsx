@@ -74,7 +74,7 @@ const PageStatus = () => {
 
   return (
     <div className="text-white self-center mt-6 font-heading italic">
-      <span className="mr-2">{currentStepIndex}</span>
+      <span className="mr-2">{currentStepIndex + 1}</span>
       <span className="mr-2">of</span>
       <span>3</span>
     </div>
@@ -121,7 +121,7 @@ export const StepOne: React.FC<{ id: string }> = () => {
   return (
     <motion.div {...stepAnimation} className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
-        request an appointment
+        Request Information
       </div>
       <FieldSetHeader>Basic info</FieldSetHeader>
       <FieldSetContainer>
@@ -153,6 +153,23 @@ export const StepOne: React.FC<{ id: string }> = () => {
           validation={requiredEmail}
           required={true}
         />
+        <TextInput name="address" type="address" placeholder="Address" />
+        <div className="space-y-3 lg:space-y-0 justify-between mb-12 mt-4 lg:flex">
+          <TextInput
+            name="city"
+            type="city"
+            placeholder="City"
+            validation={requiredText}
+            required={true}
+          />
+          <TextInput
+            name="state"
+            type="state"
+            placeholder="State"
+            validation={requiredText}
+            required={true}
+          />
+        </div>
       </FieldSetContainer>
       <ContinueButton />
       <PageStatus />
@@ -173,7 +190,7 @@ export const StepTwo: React.FC<{ id: string }> = () => {
   return (
     <motion.div {...stepAnimation} className="flex flex-col justify-center">
       <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
-        request and appointment
+        Request Information
       </div>
       <FieldSetHeader>Model Interest</FieldSetHeader>
       <FieldSetContainer>
@@ -217,25 +234,24 @@ export const StepTwo: React.FC<{ id: string }> = () => {
                 }}
                 options={[
                   {
-                    value: 'tirranna',
-                    label: 'Tirranna',
+                    value: 'nighthawk',
+                    label: `41' Nighthawk`,
+                  },
+                  { value: 'auroris', label: `42' Auroris` },
+                  {
+                    value: 'nighteagle',
+                    label: `41' Nighteagle`,
                   },
                   {
-                    value: '50ss',
-                    label: `50' Marauder SS`,
+                    value: 'tirranna',
+                    label: `59' Tirranna`,
                   },
                   {
                     value: '38topgun',
                     label: `38' Top Gun`,
                   },
-                  { value: '515', label: '515' },
                   { value: `42' X`, label: '42x' },
-                  { value: `39' GTS`, label: '39gts' },
-                  {
-                    value: 'nighthawk',
-                    label: `41' Nighthawk`,
-                  },
-                  { value: `42' Auroris`, label: 'auroris' },
+                  { value: '515', label: '515' },
                 ]}
                 styles={{
                   placeholder: (base) => ({
@@ -332,7 +348,7 @@ export const StepThree: React.FC<{ id: string }> = () => {
         className="flex flex-col justify-center"
       >
         <div className="text-white uppercase text-center mb-16 mt-20 font-bold tracking-widest font-body text-sm">
-          request and appointment
+          Request Information
         </div>
         <FieldSetHeader>Contact preference</FieldSetHeader>
         <div className="space-y-3 lg:space-y-0 justify-between px-4 mb-12 lg:pl-5 mt-4 lg:flex">

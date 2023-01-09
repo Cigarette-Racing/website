@@ -89,7 +89,7 @@ export const InquiryModal: React.FC = () => {
               alt=""
             />
             <div
-              className="pb-5 min-h-screen max-h-screen overflow-y-auto"
+              className="relative pb-5 min-h-screen max-h-screen overflow-y-auto"
               style={{
                 background:
                   'linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 51.47%, rgba(0, 0, 0, 0.4) 100%)',
@@ -121,7 +121,6 @@ const FormWizard = () => (
               />
               <AnimatePresence>
                 <Steps>
-                  <LandingStep id="landing" />
                   <StepOne id="one" />
                   <StepTwo id="two" />
                   <StepThree id="three" />
