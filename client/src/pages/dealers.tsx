@@ -66,6 +66,11 @@ const Dealers = (props) => {
       ></Section>
       <Section
         theme="light"
+        logo={cmg.url}
+        website="https://chiefmarinegroup.com/"
+      ></Section>
+      <Section
+        theme="light"
         logo={lipShip.url}
         website="http://www.lipship.com/"
       ></Section>
@@ -78,11 +83,6 @@ const Dealers = (props) => {
         theme="light"
         logo={ultimateMarine.url}
         website="https://www.ultimatemarine.com/"
-      ></Section>
-      <Section
-        theme="light"
-        logo={cmg.url}
-        website="https://chiefmarinegroup.com/"
       ></Section>
       <Section
         theme="light"
