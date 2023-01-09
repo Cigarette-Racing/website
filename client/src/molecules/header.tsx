@@ -59,6 +59,7 @@ const leftLinks: LinkItem[] = [
   { text: 'Our world', section: 'our world' },
 ]
 const rightLinks: LinkItem[] = [
+  { text: 'Dealers', link: '/dealers' },
   { text: 'Shop', link: 'https://shopcigaretteracingteam.com/' },
   { text: 'Contact', link: '/contact' },
 ]
