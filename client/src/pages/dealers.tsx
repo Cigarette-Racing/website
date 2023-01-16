@@ -66,13 +66,13 @@ const Dealers = (props) => {
       ></Section>
       <Section
         theme="light"
-        logo={cmg.url}
-        website="https://chiefmarinegroup.com/"
+        logo={lipShip.url}
+        website="http://www.lipship.com/"
       ></Section>
       <Section
         theme="light"
-        logo={lipShip.url}
-        website="http://www.lipship.com/"
+        logo={cmg.url}
+        website="https://chiefmarinegroup.com/"
       ></Section>
       <Section
         theme="light"
@@ -107,10 +107,10 @@ export const query = graphql`
       topGun: asset(filename: "Top-Gun-Logo-Red.jpg") {
         url
       }
-      ultimateMarine: asset(filename: "UMLOGOS.png") {
+      ultimateMarine: asset(filename: "UltimateMarine_Black.jpg") {
         url
       }
-      cmg: asset(filename: "CMGLogo600px.png") {
+      cmg: asset(filename: "SDMG.png") {
         url
       }
       wiresOnly: asset(filename: "wires-only-logo.png") {
