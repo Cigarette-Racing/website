@@ -78,7 +78,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
       <SEO image={heroImage} />
       <ScrollIndicator />
       {/* First hero section */}
-      <section
+      {/* <section
         className="relative min-h-60vh md:min-h-screen flex justify-center items-end text-center bg-cover bg-center"
         style={{
           backgroundImage: `url(${bannerImage}?q=30&w=2000)`,
@@ -124,7 +124,7 @@ const IndexPage = ({ data }: { data: GatsbyTypes.HomePageQuery }) => {
             </Typography>
           </a>
         </div>
-      </section>
+      </section> */}
       <section
         className="relative min-h-screen flex justify-center items-end overflow-hidden"
         data-scrollsection
