@@ -42,7 +42,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           <Typography variant="e1">{data.entry.subtitle}</Typography>
         </div>
       </Section>
-      <Section theme="dark" className="py-20 lg:py-12">
+      <Section theme="dark" className="py-20 lg:py-40">
         <div className="divide-y divide-gray-2 lg:flex lg:divide-y-0 max-w-6xl mx-auto justify-between">
           <div className="relative lg:w-7/12 xl:w-1/2">
             <div
@@ -88,30 +88,6 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           </div>
         </div>
       </Section>
-      {/* Removing for now: https://trello.com/c/X44hNZIA/182-disable-owner-support-media-press-inquiries-on-the-contact-page-do-not-delete-these-as-the-client-wants-to-utilize-them-in-time */}
-      <Section
-        theme="light"
-        className="py-20 divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x"
-      >
-        <div className="divide-y divide-gray-5 md:flex md:divide-y-0 md:divide-x max-w-6xl mx-auto w-full">
-          {data.entry.contact2ColumnContent.map(
-            ({ contactContentBlock: blocks }) => {
-              const [block] = blocks
-              return (
-                <ContentColumn
-                  key={block.header}
-                  header={block.header}
-                  buttonText={
-                    block.buttonLabel || metadata.emailAddresses?.[block.email]!
-                  }
-                  copy={block.text}
-                  email={metadata.emailAddresses?.[block.email]!}
-                />
-              )
-            }
-          )}
-        </div>
-      </Section>
       <Section theme="dark" className="py-24 lg:py-48">
         <FullBgImage
           image={data.entry.careers[0].singleMedia[0].image[0].url}
@@ -130,6 +106,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
               ]
             }`}
             link={true}
+            target="_blank"
           >
             {data.entry.careers[0].contactContentBlock[0].buttonLabel ||
               metadata.emailAddresses?.[
@@ -138,45 +115,6 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           </InPageCta>
         </div>
       </Section>
-      {/* Removing for now: https://trello.com/c/X44hNZIA/182-disable-owner-support-media-press-inquiries-on-the-contact-page-do-not-delete-these-as-the-client-wants-to-utilize-them-in-time */}
-      {/* <Section theme="dark" className="py-32">
-        <div className="space-y-8 text-center lg:hidden">
-          <Typography variant="h3">{data.entry.support[0].header}</Typography>
-          <Typography variant="p3">{data.entry.support[0].text}</Typography>
-          <InPageCta
-            variant="secondary"
-            theme="dark"
-            href={`mailto:${
-              metadata.emailAddresses?.[data.entry.support[0].email]
-            }`}
-            link
-          >
-            {data.entry.support[0].buttonLabel ||
-              metadata.emailAddresses?.[data.entry.support[0].email]}
-          </InPageCta>
-        </div>
-        <div className="hidden lg:flex justify-between max-w-4xl xl:max-w-5xl mx-auto">
-          <div>
-            <Typography variant="h2">{data.entry.support[0].header}</Typography>
-          </div>
-          <div className="space-y-8 pt-4">
-            <Typography variant="p2" className="max-w-md">
-              {data.entry.support[0].text}
-            </Typography>
-            <InPageCta
-              variant="secondary"
-              theme="dark"
-              href={`mailto:${
-                metadata.emailAddresses?.[data.entry.support[0].email]
-              }`}
-              link
-            >
-              {data.entry.support[0].buttonLabel ||
-                metadata.emailAddresses?.[data.entry.support[0].email]}
-            </InPageCta>
-          </div>
-        </div>
-      </Section> */}
     </Layout>
   )
 }
