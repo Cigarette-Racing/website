@@ -130,6 +130,7 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
               ]
             }`}
             link={true}
+            target="_blank"
           >
             {data.entry.careers[0].contactContentBlock[0].buttonLabel ||
               metadata.emailAddresses?.[
@@ -138,45 +139,6 @@ const ContactPage = (props: PageProps<GatsbyTypes.ContactImagesQuery>) => {
           </InPageCta>
         </div>
       </Section>
-      {/* Removing for now: https://trello.com/c/X44hNZIA/182-disable-owner-support-media-press-inquiries-on-the-contact-page-do-not-delete-these-as-the-client-wants-to-utilize-them-in-time */}
-      {/* <Section theme="dark" className="py-32">
-        <div className="space-y-8 text-center lg:hidden">
-          <Typography variant="h3">{data.entry.support[0].header}</Typography>
-          <Typography variant="p3">{data.entry.support[0].text}</Typography>
-          <InPageCta
-            variant="secondary"
-            theme="dark"
-            href={`mailto:${
-              metadata.emailAddresses?.[data.entry.support[0].email]
-            }`}
-            link
-          >
-            {data.entry.support[0].buttonLabel ||
-              metadata.emailAddresses?.[data.entry.support[0].email]}
-          </InPageCta>
-        </div>
-        <div className="hidden lg:flex justify-between max-w-4xl xl:max-w-5xl mx-auto">
-          <div>
-            <Typography variant="h2">{data.entry.support[0].header}</Typography>
-          </div>
-          <div className="space-y-8 pt-4">
-            <Typography variant="p2" className="max-w-md">
-              {data.entry.support[0].text}
-            </Typography>
-            <InPageCta
-              variant="secondary"
-              theme="dark"
-              href={`mailto:${
-                metadata.emailAddresses?.[data.entry.support[0].email]
-              }`}
-              link
-            >
-              {data.entry.support[0].buttonLabel ||
-                metadata.emailAddresses?.[data.entry.support[0].email]}
-            </InPageCta>
-          </div>
-        </div>
-      </Section> */}
     </Layout>
   )
 }

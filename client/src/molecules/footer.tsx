@@ -59,7 +59,7 @@ const footerLinks = [
     links: [
       { name: 'Request Info', url: '/contact' },
       { name: 'Media & Press', mailto: 'mailto:diana@cigaretteracing.com' },
-      { name: 'Careers', mailto: 'mailto:sbjobs@cigaretteracing.com' },
+      { name: 'Careers', mailto: 'mailto:careers@cigaretteracing.com' },
     ],
   },
 ]
