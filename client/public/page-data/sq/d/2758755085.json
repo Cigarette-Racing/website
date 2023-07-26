@@ -1,1 +1,27 @@
-{"data":{"craftAPI":{"backgrounds":{"__typename":"CraftAPI_backgrounds_GlobalSet","customizationSectionBackground":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/customization-section-bg.jpeg"}],"discoverSectionBackground":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/discover-section-bg.jpeg"}],"inquiryModalBackground":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/discover-section-bg.jpeg"}]}}}}
+{
+  "data": {
+    "craftAPI": {
+      "backgrounds": {
+        "__typename": "CraftAPI_backgrounds_GlobalSet",
+        "customizationSectionBackground": [
+          {
+            "__typename": "CraftAPI_s3_Asset",
+            "url": "https://cigarette-racing.imgix.net/customization-section-bg.jpeg"
+          }
+        ],
+        "discoverSectionBackground": [
+          {
+            "__typename": "CraftAPI_s3_Asset",
+            "url": "https://cigarette-racing.imgix.net/discover-section-bg.jpeg"
+          }
+        ],
+        "inquiryModalBackground": [
+          {
+            "__typename": "CraftAPI_s3_Asset",
+            "url": "https://cigarette-racing.imgix.net/discover-section-bg.jpeg"
+          }
+        ]
+      }
+    }
+  }
+}
