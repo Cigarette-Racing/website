@@ -1,1 +1,376 @@
-{"data":{"craftAPI":{"entries":[{"__typename":"CraftAPI_boats_boats_Entry","title":"59' Tirranna","slug":"59-tirranna","boatNameLong":"59' TIRRANNA","stats":[{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"Length","percentage":100,"text":"59'"},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"Beam","percentage":100,"text":"14'"},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"Max Horsepower","percentage":100,"text":"2,700hp"}],"boatMetadata":[{"__typename":"CraftAPI_boatMetadata_BlockType","menuName":"59’ Tirranna","menuSortOrder":3,"menuCategory":"centerConsole"}],"backgroundMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/Tirranna-Hero.jpg"}],"alt":"Cigarette Racing 59' TIRRANNA"}]},{"__typename":"CraftAPI_boats_boats_Entry","title":"38' Top Gun","slug":"38-topgun","boatNameLong":"38' Top Gun","stats":[{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"length","percentage":73,"text":"37'6\""},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"beam","percentage":84,"text":"8'"},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"max horsepower","percentage":36,"text":"1,130hp"}],"boatMetadata":[{"__typename":"CraftAPI_boatMetadata_BlockType","menuName":"38' Top Gun","menuSortOrder":4,"menuCategory":"performance"}],"backgroundMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/38TG_00_Hero_BG_3.jpg"}],"alt":null}]},{"__typename":"CraftAPI_boats_boats_Entry","title":"515","slug":"515","boatNameLong":"515","stats":[{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"length","percentage":100,"text":"51' 5\""},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"beam","percentage":100,"text":"9' 6\""},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"max horsepower","percentage":100,"text":"3,100hp"}],"boatMetadata":[{"__typename":"CraftAPI_boatMetadata_BlockType","menuName":"515","menuSortOrder":6,"menuCategory":"performance"}],"backgroundMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/515-halo-2021-1.jpg"}],"alt":null}]},{"__typename":"CraftAPI_boats_boats_Entry","title":"42' X","slug":"42-x","boatNameLong":"42' X","stats":[{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"length","percentage":82,"text":"41'7\""},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"beam","percentage":84,"text":"8'"},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"max horsepower","percentage":87,"text":"2,700hp"}],"boatMetadata":[{"__typename":"CraftAPI_boatMetadata_BlockType","menuName":"42' X","menuSortOrder":5,"menuCategory":"performance"}],"backgroundMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42x-hero-glacier-2020-12-22.jpg"}],"alt":null}]},{"__typename":"CraftAPI_boats_boats_Entry","title":"41' Nighthawk","slug":"41-nighthawk","boatNameLong":"41' Nighthawk","stats":[{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"length","percentage":70,"text":"41'"},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"beam","percentage":79,"text":"11'"},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"max horsepower","percentage":70,"text":"1,800hp"}],"boatMetadata":[{"__typename":"CraftAPI_boatMetadata_BlockType","menuName":"41' Nighthawk","menuSortOrder":0,"menuCategory":"centerConsole"}],"backgroundMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/41NightHawk_HeroBG.jpg"}],"alt":null}]},{"__typename":"CraftAPI_boats_boats_Entry","title":"42' Auroris","slug":"42-auroris","boatNameLong":"42' Auroris","stats":[{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"length","percentage":72,"text":"42'"},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"beam","percentage":86,"text":"11'11\""},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"max horsepower","percentage":84,"text":"2,250hp"}],"boatMetadata":[{"__typename":"CraftAPI_boatMetadata_BlockType","menuName":"42' Auroris","menuSortOrder":1,"menuCategory":"centerConsole"}],"backgroundMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42-Auroris.jpg"}],"alt":null}]},{"__typename":"CraftAPI_boats_boats_Entry","title":"42' Nighteagle","slug":"42-nighteagle","boatNameLong":"42' Nighteagle","stats":[{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"length","percentage":72,"text":"42'"},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"beam","percentage":86,"text":"11'11\""},{"__typename":"CraftAPI_boatStats_stat_BlockType","label":"max horsepower","percentage":84,"text":"2,250hp"}],"boatMetadata":[{"__typename":"CraftAPI_boatMetadata_BlockType","menuName":"42' Nighteagle","menuSortOrder":2,"menuCategory":"centerConsole"}],"backgroundMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/2022-42-Nighteagle.jpg"}],"alt":null}]}]}}}
+{
+  "data": {
+    "craftAPI": {
+      "entries": [
+        {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "title": "59' Tirranna",
+          "slug": "59-tirranna",
+          "boatNameLong": "59' TIRRANNA",
+          "stats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "Length",
+              "percentage": 100,
+              "text": "59'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "Beam",
+              "percentage": 100,
+              "text": "14'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "Max Horsepower",
+              "percentage": 100,
+              "text": "2,700hp"
+            }
+          ],
+          "boatMetadata": [
+            {
+              "__typename": "CraftAPI_boatMetadata_BlockType",
+              "menuName": "59’ Tirranna",
+              "menuSortOrder": 3,
+              "menuCategory": "centerConsole"
+            }
+          ],
+          "backgroundMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/Tirranna-Hero.jpg"
+                }
+              ],
+              "alt": "Cigarette Racing 59' TIRRANNA"
+            }
+          ]
+        },
+        {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "title": "38' Top Gun",
+          "slug": "38-topgun",
+          "boatNameLong": "38' Top Gun",
+          "stats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "length",
+              "percentage": 73,
+              "text": "37'6\""
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "beam",
+              "percentage": 84,
+              "text": "8'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "max horsepower",
+              "percentage": 36,
+              "text": "1,130hp"
+            }
+          ],
+          "boatMetadata": [
+            {
+              "__typename": "CraftAPI_boatMetadata_BlockType",
+              "menuName": "38' Top Gun",
+              "menuSortOrder": 4,
+              "menuCategory": "performance"
+            }
+          ],
+          "backgroundMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/38TG_00_Hero_BG_3.jpg"
+                }
+              ],
+              "alt": null
+            }
+          ]
+        },
+        {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "title": "515",
+          "slug": "515",
+          "boatNameLong": "515",
+          "stats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "length",
+              "percentage": 100,
+              "text": "51' 5\""
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "beam",
+              "percentage": 100,
+              "text": "9' 6\""
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "max horsepower",
+              "percentage": 100,
+              "text": "3,100hp"
+            }
+          ],
+          "boatMetadata": [
+            {
+              "__typename": "CraftAPI_boatMetadata_BlockType",
+              "menuName": "515",
+              "menuSortOrder": 6,
+              "menuCategory": "performance"
+            }
+          ],
+          "backgroundMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/515-halo-2021-1.jpg"
+                }
+              ],
+              "alt": null
+            }
+          ]
+        },
+        {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "title": "42' X",
+          "slug": "42-x",
+          "boatNameLong": "42' X",
+          "stats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "length",
+              "percentage": 82,
+              "text": "41'7\""
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "beam",
+              "percentage": 84,
+              "text": "8'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "max horsepower",
+              "percentage": 87,
+              "text": "2,700hp"
+            }
+          ],
+          "boatMetadata": [
+            {
+              "__typename": "CraftAPI_boatMetadata_BlockType",
+              "menuName": "42' X",
+              "menuSortOrder": 5,
+              "menuCategory": "performance"
+            }
+          ],
+          "backgroundMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/42x-hero-glacier-2020-12-22.jpg"
+                }
+              ],
+              "alt": null
+            }
+          ]
+        },
+        {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "title": "41' Nighthawk",
+          "slug": "41-nighthawk",
+          "boatNameLong": "41' Nighthawk",
+          "stats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "length",
+              "percentage": 70,
+              "text": "41'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "beam",
+              "percentage": 79,
+              "text": "11'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "max horsepower",
+              "percentage": 70,
+              "text": "1,800hp"
+            }
+          ],
+          "boatMetadata": [
+            {
+              "__typename": "CraftAPI_boatMetadata_BlockType",
+              "menuName": "41' Nighthawk",
+              "menuSortOrder": 0,
+              "menuCategory": "centerConsole"
+            }
+          ],
+          "backgroundMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/41NightHawk_HeroBG.jpg"
+                }
+              ],
+              "alt": null
+            }
+          ]
+        },
+        {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "title": "42' Auroris",
+          "slug": "42-auroris",
+          "boatNameLong": "42' Auroris",
+          "stats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "length",
+              "percentage": 72,
+              "text": "42'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "beam",
+              "percentage": 86,
+              "text": "11'11\""
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "max horsepower",
+              "percentage": 84,
+              "text": "2,250hp"
+            }
+          ],
+          "boatMetadata": [
+            {
+              "__typename": "CraftAPI_boatMetadata_BlockType",
+              "menuName": "42' Auroris",
+              "menuSortOrder": 1,
+              "menuCategory": "centerConsole"
+            }
+          ],
+          "backgroundMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/42-Auroris.jpg"
+                }
+              ],
+              "alt": null
+            }
+          ]
+        },
+        {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "title": "42' Nighteagle",
+          "slug": "42-nighteagle",
+          "boatNameLong": "42' Nighteagle",
+          "stats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "length",
+              "percentage": 72,
+              "text": "42'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "beam",
+              "percentage": 86,
+              "text": "11'11\""
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "max horsepower",
+              "percentage": 84,
+              "text": "2,250hp"
+            }
+          ],
+          "boatMetadata": [
+            {
+              "__typename": "CraftAPI_boatMetadata_BlockType",
+              "menuName": "42' Nighteagle",
+              "menuSortOrder": 2,
+              "menuCategory": "centerConsole"
+            }
+          ],
+          "backgroundMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/2022-42-Nighteagle.jpg"
+                }
+              ],
+              "alt": null
+            }
+          ]
+        },
+        {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "title": "52' Thunder",
+          "slug": "52-Thunder",
+          "boatNameLong": "52' Thunder",
+          "stats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "length",
+              "percentage": 72,
+              "text": "52'"
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "beam",
+              "percentage": 86,
+              "text": "11'11\""
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "label": "max horsepower",
+              "percentage": 84,
+              "text": "2,250hp"
+            }
+          ],
+          "boatMetadata": [
+            {
+              "__typename": "CraftAPI_boatMetadata_BlockType",
+              "menuName": "52' Thunder",
+              "menuSortOrder": 2,
+              "menuCategory": "centerConsole"
+            }
+          ],
+          "backgroundMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/2022-42-Nighteagle.jpg"
+                }
+              ],
+              "alt": null
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

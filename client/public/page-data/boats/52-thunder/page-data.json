@@ -1,1 +1,1411 @@
-{"componentChunkName":"component---src-templates-boat-tsx","path":"/boats/42-nighteagle","result":{"data":{"craftAPI":{"entry":{"__typename":"CraftAPI_boats_boats_Entry","id":"112637","title":"42' Nighteagle","headline":"42' Nighteagle","slug":"42-nighteagle","boatNameLong":"42' Nighteagle","eyebrow":"Seahunt, redefined.","ctaText":null,"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","alt":null,"autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/2022-42-Nighteagle.jpg"}]}],"boatLogo":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/NIGHTEAGLE.png"}],"gallery":[{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 Huntress 542 035 Philly 06 27 2019 261","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-261.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-261.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 Huntress 542 035 Philly 06 27 2019 248","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-248.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-248.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 Huntress 542 035 Philly 06 27 2019 244","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-244.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-244.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 Huntress 542 035 Philly 06 27 2019 235","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-235.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-235.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 Huntress 542 035 Philly 06 27 2019 125","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-125.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-125.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 Huntress 542 035 Philly 06 27 2019 081","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-081.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-081.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 Huntress 542 035 Philly 06 27 2019 030","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-030.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-030.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 Huntress 542 035 Philly 06 27 2019 008","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-008.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-008.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 HUNTRESS 542 34 SHULTZ 366","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-366.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-366.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 HUNTRESS 542 34 SHULTZ 317","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-317.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-317.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 HUNTRESS 542 34 SHULTZ 273","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-273.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-273.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 HUNTRESS 542 34 SHULTZ 269","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-269.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-269.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 HUNTRESS 542 34 SHULTZ 199","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-199.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-199.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 HUNTRESS 542 34 SHULTZ 181","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-181.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-181.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 HUNTRESS 542 34 SHULTZ 088","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-088.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-088.jpeg"}],"videoURL":null},{"__typename":"CraftAPI_multipleMedia_BlockType","image":[{"__typename":"CraftAPI_s3_Asset","title":"42 HUNTRESS 542 34 SHULTZ 016","thumbnail":"https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-016.jpeg","full":"https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-016.jpeg"}],"videoURL":null}],"boatStats":[{"__typename":"CraftAPI_boatStats_stat_BlockType","statLabel":"length","statText":"42'","statPercentage":72},{"__typename":"CraftAPI_boatStats_stat_BlockType","statLabel":"beam","statText":"11'11\"","statPercentage":86},{"__typename":"CraftAPI_boatStats_stat_BlockType","statLabel":"max horsepower","statText":"2,250hp","statPercentage":84}],"bespokeOptions":[],"bespokeBackgroundImage":[],"bespokeSectionCustomTitle":null,"bespokeSectionCustomSubtitle":null,"powertrainOptionsHeader":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/5.-Powertrain.jpg"}],"powertrainOptions":[{"__typename":"CraftAPI_powertrainOptions_option_BlockType","textBlockHeader":"4X Mercury 350 Verados","children":[{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"350HP (257kW)","textBlockHeader":"Rated Power"},{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"89-Octane","textBlockHeader":"Fuel"},{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"2.6L","textBlockHeader":"Displacement"}]},{"__typename":"CraftAPI_powertrainOptions_option_BlockType","textBlockHeader":"4X Mercury 400 Verados","children":[{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"400HP (298kW)","textBlockHeader":"Rated Power"},{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"89-Octane","textBlockHeader":"Fuel"},{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"2.6L","textBlockHeader":"Displacement"}]},{"__typename":"CraftAPI_powertrainOptions_option_BlockType","textBlockHeader":"4X Mercury Racing 400 Verados","children":[{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"400HP (298kW)","textBlockHeader":"Rated Power"},{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"89-Octane","textBlockHeader":"Fuel"},{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"2.6L","textBlockHeader":"Displacement"}]},{"__typename":"CraftAPI_powertrainOptions_option_BlockType","textBlockHeader":"4X Mercury 450 Verados","children":[{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"450HP (336kW)","textBlockHeader":"Rated Power"},{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"89-Octane","textBlockHeader":"Fuel"},{"__typename":"CraftAPI_powertrainOptions_optionDetail_BlockType","textBlockCopy":"4.6L","textBlockHeader":"Displacement"}]}],"powertrainMoreDetails":[],"discoverSection":[{"__typename":"CraftAPI_discoverSection_discoverSection_BlockType","disableBackground":true,"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","id":"151144","url":"https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/42Huntress-discover.jpg"}]}],"textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"SEA HUNT REDEFINED","copy":"The 42' Nighteagle exemplifies Cigarette's determination to continually innovate and expand its horizons. By merging a performance hull with an entertainment-centric deck and cabin created a total lifestyle powerboat. The efficient hull propels this boat up to exhilarating speeds yet even with its gracious and spacious deck and lounge, the boat's its extreme agility and easy-handling belie its size. The first Mercury certified five-engine application makes this boat a stand-out at any dock, while the standard quad-engine application is not just efficient, it is exceptional."}]}],"flexibleSections":[{"__typename":"CraftAPI_flexibleSections_flexibleSection_BlockType","theme":"light","title":"Architecture","shortTitle":"Architecture","bleedDirection":"left","headerImage":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42Huntress_Architecture-bow-section.jpg"}],"blocks":[{"__typename":"CraftAPI_flexibleSections_oneColumnTextBlock_BlockType","typeHandle":"oneColumnTextBlock","align":null,"textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Entertainment on the Water","copy":"Enjoy luxury day boating, while ample room to entertain friends and family. All of the design and construction details of the Nighteagle combine to create the ultimate comfort-focused Cigarette - with speed, technology, luxurious space and a commanding presence, on the water and at the dock. It is the next dimension of powerboating. At 42' long, with a 12' beam, this is a Cigarette with extra room to spare above and below deck."}]},{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","typeHandle":"horizontalImageText","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Peninsula-style Walk-around","copy":"A walk-around configuration give a yacht-like feel. On the port side, a door leads to the fully-accessorized cabin below and in the front deck, an ergonomic chaise invites lounging."}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42Huntress_Architecture-walkaround.jpg"}]}],"layout":"imageOnLeft"},{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","typeHandle":"horizontalImageText","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Aft Conversational Area","copy":"The aft entertainment area features ample room for entertaining. Side transom entry, opening inward, welcomes passengers on deck with a tender in mind. A strong stainless steel handle built into the gunnel facilitate entry to the boat and water. A recessed ladder disappears into a floor hatch and on deck"}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42Huntress_Architecture-aft.jpg"}]}],"layout":"imageOnRight"},{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","typeHandle":"horizontalImageText","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Convertible Lounge","copy":"Aft forward and rear facing seats electronically extends to form an oversized sun lounge for the ultimate mix of comfort and style."}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42Huntress_Architecture-seats-lounge.jpg"}]}],"layout":"imageOnLeft"},{"__typename":"CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType","typeHandle":"oneColumnImageTextBlock","singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","alt":null,"label":null,"autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/42Huntress_Architecture-hardtop.jpg"}]}],"textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Hardtop","copy":"The 180-degree panoramic hard top, providing excellent visibility, is a highly-engineered aluminum/composite structure solidly attached to the stringers, yet provides elegant lines that complement the all-Cigarette hull and deck."}]},{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","typeHandle":"horizontalImageText","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Audio","copy":"When you can’t describe the Cigarette ethos in words, try sound instead.  The 42’ Nighteagle sound systems are a result of the partnership between JL Audio and Cigarette Racing Team."}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42Auroris_02_Audio.jpg"}]}],"layout":"imageOnLeft"},{"__typename":"CraftAPI_flexibleSections_moreDetails_BlockType","typeHandle":"moreDetails","textBlockHeader":null,"children":[{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","id":"112678","horizontalLayout":"imageOnLeft","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"JL AUDIO X CIGARETTE RACING","copy":"For the finest marine sound systems, Cigarette relies on the leader in the industry, JL Audio Marine. To meet Cigarette's pressing demand for the perfect, audiophile quality, systems that can withstand the rigors of the sea, wind and open cockpits -- JL Audio Marine engineers designed and built a sound system so clean and so clear that it was named\n\"Cigarette PURE\"."}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","id":"112679","videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","id":"87822","url":"https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/JL-Audio_2020-08-24-001204.jpg"}]}]}]},{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","typeHandle":"horizontalImageText","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Gyrostabalization","copy":"The optional SeaKeeper 3 gyrostabilizer reduces roll by 85%.  Want to anchor on a windy day? No need to rock, just enable your gyro and enjoy the day as though it was calm."}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/59Tirranna_02_Seakeeper-2_2020-08-23-001905.jpg"}]}],"layout":"imageOnRight"},{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","typeHandle":"horizontalImageText","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Bow Thruster for Easy Docking","copy":"Maneuver around the docks with ease, thanks to the extra leverage of the included bow thruster."}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42Auroris-Bow-Thruster.jpg"}]}],"layout":"imageOnLeft"}]},{"__typename":"CraftAPI_flexibleSections_flexibleSection_BlockType","theme":"dark","title":"Helm","shortTitle":"Helm","bleedDirection":"left","headerImage":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/2.-Advanced-Helm.jpg"}],"blocks":[{"__typename":"CraftAPI_flexibleSections_oneColumnTextBlock_BlockType","typeHandle":"oneColumnTextBlock","align":null,"textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Helm","copy":"The console and helm are ergonomically designed for comfort and technology where bolsters with pull-down seating offer comfort options for supported standing or sitting while opposing hydraulic lounges meet to create a sizable sun pad. The dash can accommodate up to three 17\" Garmin GPS screens."}]},{"__typename":"CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType","typeHandle":"oneColumnImageTextBlock","singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","alt":null,"label":null,"autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/3.-Lighting.jpg"}]}],"textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"LIGHTING WITHOUT LIMITS","copy":"Enjoy full-spectrum RGB, zoned, lighting - all controlled from the Garmin multifunctional displays. A digitally controlled RGB ambient lighting system powers LED lighting through the deck with near infinite color variations. This technology extends seamlessly into an underwater RGB system with full spectrum control to create the perfect ambiance for a night on the water. High powered LED down lights in the hardtop provide general and night task lighting."}]}]},{"__typename":"CraftAPI_flexibleSections_flexibleSection_BlockType","theme":"light","title":"Cabin","shortTitle":"Cabin","bleedDirection":"left","headerImage":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/2.-Cabin.jpg"}],"blocks":[{"__typename":"CraftAPI_flexibleSections_oneColumnTextBlock_BlockType","typeHandle":"oneColumnTextBlock","align":null,"textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Cabin","copy":"The Auroris features a spacious cabin with CNC cut cabinets and Corian countertops.  7+ foot headroom provides surprising freedom of movement."}]},{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","typeHandle":"horizontalImageText","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"A Comfortable Bed","copy":"Take a nap or stay the night, in the Nighteagle's comfortable bed."}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/2.-Cabin-v.2.jpg"}]}],"layout":"imageOnLeft"},{"__typename":"CraftAPI_flexibleSections_horizontalImageText_BlockType","typeHandle":"horizontalImageText","textBlock":[{"__typename":"CraftAPI_textBlock_BlockType","header":"Enclosed Head","copy":"The large enclosed head features a vanity, storage, shower and electric head."}],"singleMedia":[{"__typename":"CraftAPI_singleMedia_BlockType","autoplayVideo":false,"videoURL":null,"image":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/42-Auroris-head.jpg"}]}],"layout":"imageOnRight"}]}],"boatSpecs":[{"__typename":"CraftAPI_boatSpecs_specCategory_BlockType","boatSpecCategory":"Deck","children":[{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Bow, Gunwale & Hull Sides","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Wide profile rub rail with stainless chafe profile"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Stainless steel continuous grab rail runs the length of the boat"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Large, inboard swinging, single-piece, dive door on starboard side with hidden fold-out diving ladder and handrail"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• 10 stainless steel cleats"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Bow Area","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• U shaped seating"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Dual, aft facing, benches sitting two each"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• 4 stainless steel cupholders around C-shaped sofas"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Weathertight storage boxes underneath each seat"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Forward Lounge Area","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Wide lounge seat at front of center console comfortably seats three and features a centered foldable armrest and stainless steel cupholders"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• “Zero gravity” ergonomic forming of the lounge increases comfort both underway and at port"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Hardtop","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Unique, carbon-fiber composite, four-pillar, hardtop design provides dramatic aesthetics while also lowering the center of gravity of the vessel"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Wide, double curvature, frameless windscreen with clear laminated safety glass"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Mercury VesselView 903 and switching located above helm on the hard top"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Rigid Industries high output floodlights are integrated into the top for powerful forward lighting"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Aft spoiler with signature Cigarette rise"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Boarding handrails on back of B pillar and underside of top provide easy access from high docks"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Helmstation","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• All new floating instrument panel constructed from a solid block of aluminum and anodized"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Nano-coated instrument panel face which is resistant to heat, reflections and fingerprints"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• RGB LED accent lighting around the instrument panel provides a distinct glow, creating the illusion that the dash is floating"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Wind doors on each side for added wind protection, constructed from carbon-fiber"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Ergonomically placed components and instrumentation"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Triple flush mounted 17” Garmin multifunctional displays"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Convenience space consisting of cupholders and storage"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Stainless grab-rails"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Ergonomic CNC machined footrest"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Midship Storage","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Integrated fender storage in gunnels, with ability to store 4x 8” fenders"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Integrated trash receptacle in gunnel, with trash bag holder"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Shoe storage cabinet"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Forward combing boxes for additional storage"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Large floor storage located on both port and starboard side"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Helm seating area","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Three seat helm seating, with central drivers seat"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Seat bottoms may be flipped up to form a bolster for more comfortable stand-up operation"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Aft lounge area","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Unique lounge arrangement with forward facing oversized L-shaped sofa and aft facing sofa"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Forward and aft facing sofas seats electrically slide to become an oversized sun-pad area"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Forward facing sofa has two armrests with integrated cupholders"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Eight cupholders are conveniently located in this area, including inside a recessed cubby by the L-shaped sofa"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Large machinery hatch gives full access to technical room below"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Storage box under port side L-shaped seating"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Flip down port side boarding step integrated into the combing pads"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Two aft insulated coolers with drainage on rear dovetail"}]}]},{"__typename":"CraftAPI_boatSpecs_specCategory_BlockType","boatSpecCategory":"Interiors","children":[{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Cabin - General","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Port-side access to cabin"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Redesigned luxury interior"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• CNC cut wood cabinets"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• CNC cut Corian countertops"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Enclosed Head","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Electric head with macerator"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Stainless steel freshwater sink"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Polished towel and toilet paper holders"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Cabin Lighting","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Distributed, warm white, high CRI, ceiling spotlights are provided in the cabin"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Cabin - Bed Area","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Two passenger sleeping berth"}]}]},{"__typename":"CraftAPI_boatSpecs_specCategory_BlockType","boatSpecCategory":"Details","children":[{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Upholstery & Flooring","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Upholstery is in premium quality outdoor fabrics with custom quilting"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Diamond pattern non-skid"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Exterior lighting","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Digitally controlled RGB ambient lighting"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• High power LED down-lights are installed in the hardtop for general and task lighting"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Red captains lighting for night tasks"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• 3x underwater lights"}]}]},{"__typename":"CraftAPI_boatSpecs_specCategory_BlockType","boatSpecCategory":"Technical","children":[{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Cigarette PURE by JL Audio Marine","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• 6x 8.8” JL Audio M Series coaxial speakers, plus 2 x 12”  and 1x10” JL Audio M subwoofers on deck"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• 2,400 watts of Class D amplification"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Fusion Apollo network head unit"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• 2x 7.7” JL Audio M Series cabin speakers powered by Apollo head unit"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Digital Switching & Automation","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• State-of-the-art CZone digital control and monitoring system"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Control of almost every vessel function through several touch screen displays on the boat"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Single button “scenes” which activate preset conditions such as day cruising, night cruising, at the dock or entertainingLighting, including dimming, can be adjusted across the boat with a single keystroke from any MFD throughout the vessel"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Lighting, including dimming, can be adjusted across the boat with a single keystroke from any MFD throughout the vessel"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• CZone monitoring allows the operator to monitor water and diesel fuel (if optioned) directly and fuel level via the NMEA2000 network"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Automatic sequential engine starting with a single button push on the Garmin display"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Individual engine trim control through Mercury integration"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Manual bypass toggle switches for critical systems"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• All digital switching output modules feature a two position fuse holder that allows bypass of the output directly by moving the fuse to the alternate position for get-home capability"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Power source selection conveniently located in the main distribution panel"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Individual branch circuit breakers and monitoring boards are strategically located out of sight but within easy reach"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Circuits can be turned on or off from one or more of the Garmin MFD displays around the boat"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Electrical System Design","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Split DC electrical system designed to protect the start battery pack and provide multiple power feeds for critical systems such as navigation"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Standalone engine starting and power steering circuits"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Automatic battery switches with manual paralleling"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• House battery system designed to minimize weight and maximize powering of house loads"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Bilge pumps, drain sumps and the wireless remote to CZone are all fed directly from the house battery bank with reset only circuit breakers so that these critical circuits can’t be accidentally turned off"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• House bank charging is accomplished by dedicated ProMariner 1260 battery charger"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• 30Amp shore power"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Laminate Quality ","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Hull and deck are vacuum bagged and use a highly optimized laminate schedule with vinylester resin"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Balsa cored hull and deck, foam cored hardtop"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Over 7” thick high density transom"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Carbon-fiber hard top to reduce the center of gravity for better handling"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Two sided, completely finished, hatches throughout"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Mercury Power & Control","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Quad & Quintuple Mercury Racing or Mercury Verado outboards"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Four/Five engines can be controlled by just two levers"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• New VesselView User interface"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Mooring & Docking","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Lewmar windlass"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Stainless steel delta anchor"},{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Bow thruster"}]},{"__typename":"CraftAPI_boatSpecs_spec_BlockType","boatSpecName":"Paint","children":[{"__typename":"CraftAPI_boatSpecs_description_BlockType","boatSpecDescription":"• Painted hull side with boot-stripe included."}]}]}],"boatFeatures":[],"boatSpecifications":[{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"LOA","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"12.8-m","specificationValueUS":"42'"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"LOA with Outboards","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"14-m","specificationValueUS":"46'"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Beam","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"3.7-m","specificationValueUS":"11' 11\""}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Weight","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"8,560-kg (quad)","specificationValueUS":"18,880-lbs (quad)"},{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"9,070-kg (quint)","specificationValueUS":"20,000-lbs (quint)"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Fuel Capacity","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"1,789-L","specificationValueUS":"470-gal"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Fresh Water","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"95-L","specificationValueUS":"25-gal"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Black Water","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"34-L","specificationValueUS":"9-gal"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Draft","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"86-cm (engines down)","specificationValueUS":"34-inch (engines down)"},{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"61-cm (engines up)","specificationValueUS":"24-inch (engines up)"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Deadrise","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"20-deg","specificationValueUS":"20-deg"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Airdraft with Radar","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"3-m","specificationValueUS":"9-ft 8-inch"}]},{"__typename":"CraftAPI_boatSpecifications_specificationName_BlockType","specificationLabel":"Airdraft without Radar","children":[{"__typename":"CraftAPI_boatSpecifications_specificationValue_BlockType","specificationValueMetric":"2.75-m","specificationValueUS":"9-ft"}]}],"orderSectionTitle":"Your Adventure Awaits","orderSectionShortTitle":"Order","orderSectionBackground":[{"__typename":"CraftAPI_s3_Asset","url":"https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-199.jpeg"}]}}},"pageContext":{"slug":"/boats/42-nighteagle","craftSlug":"42-nighteagle"}},"staticQueryHashes":["1748105593","2448486367","2758755085","2882596497","3358872553"]}
+{
+  "componentChunkName": "component---src-templates-boat-tsx",
+  "path": "/boats/52-thunder",
+  "result": {
+    "data": {
+      "craftAPI": {
+        "entry": {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "id": "112637",
+          "title": "52' Thunder",
+          "headline": "52' Thunder",
+          "slug": "52-thunder",
+          "boatNameLong": "52' Thunder",
+          "eyebrow": "Seahunt, redefined.",
+          "ctaText": null,
+          "singleMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "alt": null,
+              "autoplayVideo": false,
+              "videoURL": null,
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/2022-42-Nighteagle.jpg"
+                }
+              ]
+            }
+          ],
+          "boatLogo": [
+            {
+              "__typename": "CraftAPI_s3_Asset",
+              "url": "https://cigarette-racing.imgix.net/NIGHTEAGLE.png"
+            }
+          ],
+          "gallery": [
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 Huntress 542 035 Philly 06 27 2019 261",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-261.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-261.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 Huntress 542 035 Philly 06 27 2019 248",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-248.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-248.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 Huntress 542 035 Philly 06 27 2019 244",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-244.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-244.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 Huntress 542 035 Philly 06 27 2019 235",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-235.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-235.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 Huntress 542 035 Philly 06 27 2019 125",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-125.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-125.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 Huntress 542 035 Philly 06 27 2019 081",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-081.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-081.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 Huntress 542 035 Philly 06 27 2019 030",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-030.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-030.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 Huntress 542 035 Philly 06 27 2019 008",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-008.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-Huntress-542-035-Philly-06-27-2019-008.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 HUNTRESS 542 34 SHULTZ 366",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-366.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-366.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 HUNTRESS 542 34 SHULTZ 317",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-317.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-317.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 HUNTRESS 542 34 SHULTZ 273",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-273.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-273.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 HUNTRESS 542 34 SHULTZ 269",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-269.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-269.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 HUNTRESS 542 34 SHULTZ 199",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-199.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-199.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 HUNTRESS 542 34 SHULTZ 181",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-181.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-181.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 HUNTRESS 542 34 SHULTZ 088",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-088.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-088.jpeg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "42 HUNTRESS 542 34 SHULTZ 016",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-016.jpeg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-016.jpeg"
+                }
+              ],
+              "videoURL": null
+            }
+          ],
+          "boatStats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "statLabel": "length",
+              "statText": "42'",
+              "statPercentage": 72
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "statLabel": "beam",
+              "statText": "11'11\"",
+              "statPercentage": 86
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "statLabel": "max horsepower",
+              "statText": "2,250hp",
+              "statPercentage": 84
+            }
+          ],
+          "bespokeOptions": [],
+          "bespokeBackgroundImage": [],
+          "bespokeSectionCustomTitle": null,
+          "bespokeSectionCustomSubtitle": null,
+          "powertrainOptionsHeader": [
+            {
+              "__typename": "CraftAPI_s3_Asset",
+              "url": "https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/5.-Powertrain.jpg"
+            }
+          ],
+          "powertrainOptions": [
+            {
+              "__typename": "CraftAPI_powertrainOptions_option_BlockType",
+              "textBlockHeader": "4X Mercury 350 Verados",
+              "children": [
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "350HP (257kW)",
+                  "textBlockHeader": "Rated Power"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "89-Octane",
+                  "textBlockHeader": "Fuel"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "2.6L",
+                  "textBlockHeader": "Displacement"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_powertrainOptions_option_BlockType",
+              "textBlockHeader": "4X Mercury 400 Verados",
+              "children": [
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "400HP (298kW)",
+                  "textBlockHeader": "Rated Power"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "89-Octane",
+                  "textBlockHeader": "Fuel"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "2.6L",
+                  "textBlockHeader": "Displacement"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_powertrainOptions_option_BlockType",
+              "textBlockHeader": "4X Mercury Racing 400 Verados",
+              "children": [
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "400HP (298kW)",
+                  "textBlockHeader": "Rated Power"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "89-Octane",
+                  "textBlockHeader": "Fuel"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "2.6L",
+                  "textBlockHeader": "Displacement"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_powertrainOptions_option_BlockType",
+              "textBlockHeader": "4X Mercury 450 Verados",
+              "children": [
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "450HP (336kW)",
+                  "textBlockHeader": "Rated Power"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "89-Octane",
+                  "textBlockHeader": "Fuel"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "4.6L",
+                  "textBlockHeader": "Displacement"
+                }
+              ]
+            }
+          ],
+          "powertrainMoreDetails": [],
+          "discoverSection": [
+            {
+              "__typename": "CraftAPI_discoverSection_discoverSection_BlockType",
+              "disableBackground": true,
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "autoplayVideo": false,
+                  "videoURL": null,
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "id": "151144",
+                      "url": "https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/42Huntress-discover.jpg"
+                    }
+                  ]
+                }
+              ],
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "SEA HUNT REDEFINED",
+                  "copy": "The 52' Thunder exemplifies Cigarette's determination to continually innovate and expand its horizons. By merging a performance hull with an entertainment-centric deck and cabin created a total lifestyle powerboat. The efficient hull propels this boat up to exhilarating speeds yet even with its gracious and spacious deck and lounge, the boat's its extreme agility and easy-handling belie its size. The first Mercury certified five-engine application makes this boat a stand-out at any dock, while the standard quad-engine application is not just efficient, it is exceptional."
+                }
+              ]
+            }
+          ],
+          "flexibleSections": [
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "light",
+              "title": "Architecture",
+              "shortTitle": "Architecture",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/42Huntress_Architecture-bow-section.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Entertainment on the Water",
+                      "copy": "Enjoy luxury day boating, while ample room to entertain friends and family. All of the design and construction details of the Nighteagle combine to create the ultimate comfort-focused Cigarette - with speed, technology, luxurious space and a commanding presence, on the water and at the dock. It is the next dimension of powerboating. At 42' long, with a 12' beam, this is a Cigarette with extra room to spare above and below deck."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Peninsula-style Walk-around",
+                      "copy": "A walk-around configuration give a yacht-like feel. On the port side, a door leads to the fully-accessorized cabin below and in the front deck, an ergonomic chaise invites lounging."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/42Huntress_Architecture-walkaround.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Aft Conversational Area",
+                      "copy": "The aft entertainment area features ample room for entertaining. Side transom entry, opening inward, welcomes passengers on deck with a tender in mind. A strong stainless steel handle built into the gunnel facilitate entry to the boat and water. A recessed ladder disappears into a floor hatch and on deck"
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/42Huntress_Architecture-aft.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Convertible Lounge",
+                      "copy": "Aft forward and rear facing seats electronically extends to form an oversized sun lounge for the ultimate mix of comfort and style."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/42Huntress_Architecture-seats-lounge.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                  "typeHandle": "oneColumnImageTextBlock",
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "alt": null,
+                      "label": null,
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/42Huntress_Architecture-hardtop.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Hardtop",
+                      "copy": "The 180-degree panoramic hard top, providing excellent visibility, is a highly-engineered aluminum/composite structure solidly attached to the stringers, yet provides elegant lines that complement the all-Cigarette hull and deck."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Audio",
+                      "copy": "When you can’t describe the Cigarette ethos in words, try sound instead.  The 42’ Nighteagle sound systems are a result of the partnership between JL Audio and Cigarette Racing Team."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/42Auroris_02_Audio.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_moreDetails_BlockType",
+                  "typeHandle": "moreDetails",
+                  "textBlockHeader": null,
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                      "id": "112678",
+                      "horizontalLayout": "imageOnLeft",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "JL AUDIO X CIGARETTE RACING",
+                          "copy": "For the finest marine sound systems, Cigarette relies on the leader in the industry, JL Audio Marine. To meet Cigarette's pressing demand for the perfect, audiophile quality, systems that can withstand the rigors of the sea, wind and open cockpits -- JL Audio Marine engineers designed and built a sound system so clean and so clear that it was named\n\"Cigarette PURE\"."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "id": "112679",
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "id": "87822",
+                              "url": "https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/JL-Audio_2020-08-24-001204.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Gyrostabalization",
+                      "copy": "The optional SeaKeeper 3 gyrostabilizer reduces roll by 85%.  Want to anchor on a windy day? No need to rock, just enable your gyro and enjoy the day as though it was calm."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/59Tirranna_02_Seakeeper-2_2020-08-23-001905.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Bow Thruster for Easy Docking",
+                      "copy": "Maneuver around the docks with ease, thanks to the extra leverage of the included bow thruster."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/42Auroris-Bow-Thruster.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "dark",
+              "title": "Helm",
+              "shortTitle": "Helm",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/2.-Advanced-Helm.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Helm",
+                      "copy": "The console and helm are ergonomically designed for comfort and technology where bolsters with pull-down seating offer comfort options for supported standing or sitting while opposing hydraulic lounges meet to create a sizable sun pad. The dash can accommodate up to three 17\" Garmin GPS screens."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                  "typeHandle": "oneColumnImageTextBlock",
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "alt": null,
+                      "label": null,
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/3.-Lighting.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "LIGHTING WITHOUT LIMITS",
+                      "copy": "Enjoy full-spectrum RGB, zoned, lighting - all controlled from the Garmin multifunctional displays. A digitally controlled RGB ambient lighting system powers LED lighting through the deck with near infinite color variations. This technology extends seamlessly into an underwater RGB system with full spectrum control to create the perfect ambiance for a night on the water. High powered LED down lights in the hardtop provide general and night task lighting."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "light",
+              "title": "Cabin",
+              "shortTitle": "Cabin",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/2.-Cabin.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Cabin",
+                      "copy": "The Auroris features a spacious cabin with CNC cut cabinets and Corian countertops.  7+ foot headroom provides surprising freedom of movement."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "A Comfortable Bed",
+                      "copy": "Take a nap or stay the night, in the Nighteagle's comfortable bed."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/2.-Cabin-v.2.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Enclosed Head",
+                      "copy": "The large enclosed head features a vanity, storage, shower and electric head."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/42-Auroris-head.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                }
+              ]
+            }
+          ],
+          "boatSpecs": [
+            {
+              "__typename": "CraftAPI_boatSpecs_specCategory_BlockType",
+              "boatSpecCategory": "Deck",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Bow, Gunwale & Hull Sides",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Wide profile rub rail with stainless chafe profile"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Stainless steel continuous grab rail runs the length of the boat"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Large, inboard swinging, single-piece, dive door on starboard side with hidden fold-out diving ladder and handrail"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• 10 stainless steel cleats"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Bow Area",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• U shaped seating"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Dual, aft facing, benches sitting two each"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• 4 stainless steel cupholders around C-shaped sofas"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Weathertight storage boxes underneath each seat"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Forward Lounge Area",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Wide lounge seat at front of center console comfortably seats three and features a centered foldable armrest and stainless steel cupholders"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• “Zero gravity” ergonomic forming of the lounge increases comfort both underway and at port"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Hardtop",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Unique, carbon-fiber composite, four-pillar, hardtop design provides dramatic aesthetics while also lowering the center of gravity of the vessel"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Wide, double curvature, frameless windscreen with clear laminated safety glass"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Mercury VesselView 903 and switching located above helm on the hard top"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Rigid Industries high output floodlights are integrated into the top for powerful forward lighting"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Aft spoiler with signature Cigarette rise"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Boarding handrails on back of B pillar and underside of top provide easy access from high docks"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Helmstation",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• All new floating instrument panel constructed from a solid block of aluminum and anodized"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Nano-coated instrument panel face which is resistant to heat, reflections and fingerprints"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• RGB LED accent lighting around the instrument panel provides a distinct glow, creating the illusion that the dash is floating"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Wind doors on each side for added wind protection, constructed from carbon-fiber"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Ergonomically placed components and instrumentation"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Triple flush mounted 17” Garmin multifunctional displays"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Convenience space consisting of cupholders and storage"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Stainless grab-rails"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Ergonomic CNC machined footrest"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Midship Storage",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Integrated fender storage in gunnels, with ability to store 4x 8” fenders"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Integrated trash receptacle in gunnel, with trash bag holder"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Shoe storage cabinet"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Forward combing boxes for additional storage"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Large floor storage located on both port and starboard side"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Helm seating area",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Three seat helm seating, with central drivers seat"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Seat bottoms may be flipped up to form a bolster for more comfortable stand-up operation"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Aft lounge area",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Unique lounge arrangement with forward facing oversized L-shaped sofa and aft facing sofa"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Forward and aft facing sofas seats electrically slide to become an oversized sun-pad area"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Forward facing sofa has two armrests with integrated cupholders"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Eight cupholders are conveniently located in this area, including inside a recessed cubby by the L-shaped sofa"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Large machinery hatch gives full access to technical room below"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Storage box under port side L-shaped seating"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Flip down port side boarding step integrated into the combing pads"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Two aft insulated coolers with drainage on rear dovetail"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecs_specCategory_BlockType",
+              "boatSpecCategory": "Interiors",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Cabin - General",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Port-side access to cabin"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Redesigned luxury interior"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• CNC cut wood cabinets"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• CNC cut Corian countertops"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Enclosed Head",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Electric head with macerator"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Stainless steel freshwater sink"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Polished towel and toilet paper holders"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Cabin Lighting",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Distributed, warm white, high CRI, ceiling spotlights are provided in the cabin"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Cabin - Bed Area",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Two passenger sleeping berth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecs_specCategory_BlockType",
+              "boatSpecCategory": "Details",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Upholstery & Flooring",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Upholstery is in premium quality outdoor fabrics with custom quilting"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Diamond pattern non-skid"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Exterior lighting",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Digitally controlled RGB ambient lighting"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• High power LED down-lights are installed in the hardtop for general and task lighting"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Red captains lighting for night tasks"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• 3x underwater lights"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecs_specCategory_BlockType",
+              "boatSpecCategory": "Technical",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Cigarette PURE by JL Audio Marine",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• 6x 8.8” JL Audio M Series coaxial speakers, plus 2 x 12”  and 1x10” JL Audio M subwoofers on deck"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• 2,400 watts of Class D amplification"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Fusion Apollo network head unit"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• 2x 7.7” JL Audio M Series cabin speakers powered by Apollo head unit"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Digital Switching & Automation",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• State-of-the-art CZone digital control and monitoring system"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Control of almost every vessel function through several touch screen displays on the boat"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Single button “scenes” which activate preset conditions such as day cruising, night cruising, at the dock or entertainingLighting, including dimming, can be adjusted across the boat with a single keystroke from any MFD throughout the vessel"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Lighting, including dimming, can be adjusted across the boat with a single keystroke from any MFD throughout the vessel"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• CZone monitoring allows the operator to monitor water and diesel fuel (if optioned) directly and fuel level via the NMEA2000 network"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Automatic sequential engine starting with a single button push on the Garmin display"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Individual engine trim control through Mercury integration"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Manual bypass toggle switches for critical systems"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• All digital switching output modules feature a two position fuse holder that allows bypass of the output directly by moving the fuse to the alternate position for get-home capability"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Power source selection conveniently located in the main distribution panel"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Individual branch circuit breakers and monitoring boards are strategically located out of sight but within easy reach"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Circuits can be turned on or off from one or more of the Garmin MFD displays around the boat"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Electrical System Design",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Split DC electrical system designed to protect the start battery pack and provide multiple power feeds for critical systems such as navigation"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Standalone engine starting and power steering circuits"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Automatic battery switches with manual paralleling"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• House battery system designed to minimize weight and maximize powering of house loads"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Bilge pumps, drain sumps and the wireless remote to CZone are all fed directly from the house battery bank with reset only circuit breakers so that these critical circuits can’t be accidentally turned off"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• House bank charging is accomplished by dedicated ProMariner 1260 battery charger"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• 30Amp shore power"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Laminate Quality ",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Hull and deck are vacuum bagged and use a highly optimized laminate schedule with vinylester resin"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Balsa cored hull and deck, foam cored hardtop"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Over 7” thick high density transom"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Carbon-fiber hard top to reduce the center of gravity for better handling"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Two sided, completely finished, hatches throughout"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Mercury Power & Control",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Quad & Quintuple Mercury Racing or Mercury Verado outboards"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Four/Five engines can be controlled by just two levers"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• New VesselView User interface"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Mooring & Docking",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Lewmar windlass"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Stainless steel delta anchor"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Bow thruster"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecs_spec_BlockType",
+                  "boatSpecName": "Paint",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatSpecs_description_BlockType",
+                      "boatSpecDescription": "• Painted hull side with boot-stripe included."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "boatFeatures": [],
+          "boatSpecifications": [
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "LOA",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "12.8-m",
+                  "specificationValueUS": "42'"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "LOA with Outboards",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "14-m",
+                  "specificationValueUS": "46'"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Beam",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "3.7-m",
+                  "specificationValueUS": "11' 11\""
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Weight",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "8,560-kg (quad)",
+                  "specificationValueUS": "18,880-lbs (quad)"
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "9,070-kg (quint)",
+                  "specificationValueUS": "20,000-lbs (quint)"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Fuel Capacity",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "1,789-L",
+                  "specificationValueUS": "470-gal"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Fresh Water",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "95-L",
+                  "specificationValueUS": "25-gal"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Black Water",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "34-L",
+                  "specificationValueUS": "9-gal"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Draft",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "86-cm (engines down)",
+                  "specificationValueUS": "34-inch (engines down)"
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "61-cm (engines up)",
+                  "specificationValueUS": "24-inch (engines up)"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Deadrise",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "20-deg",
+                  "specificationValueUS": "20-deg"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Airdraft with Radar",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "3-m",
+                  "specificationValueUS": "9-ft 8-inch"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Airdraft without Radar",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "2.75-m",
+                  "specificationValueUS": "9-ft"
+                }
+              ]
+            }
+          ],
+          "orderSectionTitle": "Your Adventure Awaits",
+          "orderSectionShortTitle": "Order",
+          "orderSectionBackground": [
+            {
+              "__typename": "CraftAPI_s3_Asset",
+              "url": "https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-199.jpeg"
+            }
+          ]
+        }
+      }
+    },
+    "pageContext": {
+      "slug": "/boats/52-thunder",
+      "craftSlug": "52-thunder"
+    }
+  },
+  "staticQueryHashes": [
+    "1748105593",
+    "2448486367",
+    "2758755085",
+    "2882596497",
+    "3358872553"
+  ]
+}
