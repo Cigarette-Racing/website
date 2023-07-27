@@ -1171,7 +1171,7 @@
                         {
                           "__typename": "CraftAPI_singleMedia_BlockType",
                           "autoplayVideo": true,
-                          "videoURL": "https://player.vimeo.com/external/446458525.hd.mp4?s=4a62a967ac4db117d5506de752ca29ff580a6dec&profile_id=175",
+                          "videoURL": "",
                           "image": []
                         }
                       ]
@@ -1487,7 +1487,7 @@
                       "alt": null,
                       "label": null,
                       "autoplayVideo": true,
-                      "videoURL": "https://player.vimeo.com/external/446682059.hd.mp4?s=fca561db29c9aa27ac76c98e1abe6e5a366d8252&profile_id=175",
+                      "videoURL": "",
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",

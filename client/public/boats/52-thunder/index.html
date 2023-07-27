@@ -5672,7 +5672,11 @@ See `tailwind.config.js` for more custom styles
     }
 
     #architectureSection,
-    #stickyNav {
+    #stickyNav,
+    [data-section-type="OrderSectionComponent"],
+    [data-in-page-nav="discover"],
+    [data-section-type="Discover"],
+    .inpagenav {
       display: none !important;
     }
   </style>
@@ -6112,27 +6116,8 @@ See `tailwind.config.js` for more custom styles
               </div>
             </div>
           </div>
-          \
         </section>
 
-
-
-        <section class="relative py-12 overflow-hidden pb-48 sm:py-48" data-section-type="OrderSectionComponent"><a
-            class="absolute inset-0 -z-index-1 mt-px" id="your_adventure_awaits"
-            data-in-page-nav="Your Adventure Awaits"></a><img
-            src="https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/42-HUNTRESS-542-34-SHULTZ-199.jpeg?q=30&amp;w=2400"
-            alt="" class="h-full w-full object-cover top-0" style="position:absolute" />
-          <div class="absolute inset-0 bg-black bg-opacity-10"></div>
-          <div class="relative px-4 text-white text-center mb-48 sm:mb-0 max-w-7xl mx-auto">
-            <div class="bg-black bg-opacity-75 py-16 sm:py-20 px-4 max-w-md">
-              <div class="type-h3 sm:type-h2 mb-6">Your Adventure Awaits</div>
-              <div class="type-e2 mb-12">42&#x27; Nighteagle</div>
-              <div class="flex justify-center"><button type="button"
-                  class="inline-flex items-center h-10 px-4 sm:px-10 border rounded-full transition-colors duration-150 ease-in-out bg-white text-black border-white hover:bg-red hover:border-red hover:text-white"><span
-                    class="type-e2">Request Information</span></button></div>
-            </div>
-          </div>
-        </section>
       </main>
       <footer class="max-w-full lg:max-w-5xl mx-auto bg-black text-white py-24 px-4">
         <div class="mb-16 grid flex grid-cols-max-2 row-gap-16 col-gap-4 sm:grid-cols-max-4 justify-around">

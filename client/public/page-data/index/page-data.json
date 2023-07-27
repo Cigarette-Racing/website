@@ -32,7 +32,7 @@
           "singleMedia": [
             {
               "__typename": "CraftAPI_singleMedia_BlockType",
-              "videoURL": "https://player.vimeo.com/external/437681675.hd.mp4?s=62ecc517ddc715ac36d66ed65f8859b67ae9d53b&profile_id=175",
+              "videoURL": "",
               "image": [
                 {
                   "__typename": "CraftAPI_s3_Asset",

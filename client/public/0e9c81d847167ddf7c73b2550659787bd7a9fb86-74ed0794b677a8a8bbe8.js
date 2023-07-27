@@ -81,7 +81,7 @@
               'div',
               {
                 className: Object(r.a)(
-                  'sticky top-0 left-0 w-full z-30 text-white transform duration-200 ease-in-out'
+                  'inpagenav sticky top-0 left-0 w-full z-30 text-white transform duration-200 ease-in-out'
                 ),
               },
               l.a.createElement(
@@ -726,6 +726,7 @@
           )
         },
         C = function (e) {
+          console.log(e, '729 bbe8')
           var a = e.boatNameLong,
             t = e.title,
             n = e.media,
@@ -733,7 +734,7 @@
           return r.a.createElement(
             w,
             {
-              className: 'pb-48 sm:py-48',
+              className: 'pb-48 sm:py-48 AHHHHH',
               'data-section-type': 'OrderSectionComponent',
             },
             r.a.createElement(v.a, { title: t }),
