@@ -30,7 +30,7 @@
           "boatLogo": [
             {
               "__typename": "CraftAPI_s3_Asset",
-              "url": ""
+              "url": "https://cigarette-racing.imgix.net/52-thunder-logo.jpg"
             }
           ],
           "gallery": [],
