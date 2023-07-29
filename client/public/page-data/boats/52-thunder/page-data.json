@@ -30,7 +30,7 @@
           "boatLogo": [
             {
               "__typename": "CraftAPI_s3_Asset",
-              "url": "https://cigarette-racing.imgix.net/52-thunder-logo.jpg"
+              "url": "https://cigarette-racing.imgix.net/52-thunder-logo.png"
             }
           ],
           "gallery": [],
@@ -43,7 +43,248 @@
           "powertrainOptions": [],
           "powertrainMoreDetails": [],
           "discoverSection": [],
-          "flexibleSections": [],
+          "flexibleSections": [
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "light",
+              "title": "Cabin",
+              "shortTitle": "Cabin",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/52-thunder-8-interior.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-1-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-2-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/3-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/4-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/5-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/6-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/7-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/9-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/10-interior.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                }
+              ]
+            }
+          ],
           "boatSpecs": [
             {
               "__typename": "CraftAPI_boatSpecs_specCategory_BlockType",
