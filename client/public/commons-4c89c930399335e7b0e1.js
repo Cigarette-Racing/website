@@ -8587,7 +8587,6 @@
               { name: 'Labs', url: '/labs' },
               { name: 'DNA', url: '/dna' },
               { name: '1969 - Legacy', url: '/1969' },
-              { name: 'News', url: '/news' },
             ],
           },
           {
@@ -14213,13 +14212,6 @@
             r = Object(j.useStaticQuery)('2448486367'),
             o = [
               {
-                name: 'News',
-                hero: r.craftAPI.news[0].url,
-                headline:
-                  'The latest news & press happening at Cigarette Racing.',
-                url: '/news',
-              },
-              {
                 name: 'DNA',
                 hero: r.craftAPI.dna[0].url,
                 headline:
@@ -14282,6 +14274,7 @@
                       'md:grid md:grid-cols-2 md:grid-rows-2 h-full md:h-auto',
                   },
                   o.map(function (e) {
+                    console.log(o)
                     return i.a.createElement(
                       ie,
                       {
