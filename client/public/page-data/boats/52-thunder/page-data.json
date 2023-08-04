@@ -22,7 +22,7 @@
               "image": [
                 {
                   "__typename": "CraftAPI_s3_Asset",
-                  "url": "https://cigarette-racing.imgix.net/52-thunder-hero.jpg"
+                  "url": "https://cigarette-racing.imgix.net/52-thunder-lightning-hero.jpg"
                 }
               ]
             }
@@ -65,7 +65,197 @@
           "flexibleSections": [
             {
               "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
-              "theme": "light",
+              "theme": "dark",
+              "title": "Performance",
+              "shortTitle": "Performance",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-DJI-1.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-DJI-2.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-DJI-3.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-DJI-4.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-DJI-5.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-DJI-6.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-DJI-7.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-DJI-8.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "dark",
               "title": "Cabin",
               "shortTitle": "Cabin",
               "bleedDirection": "left",
@@ -94,7 +284,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-thunder-1-interior.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-cabin-1.jpg"
                         }
                       ]
                     }
@@ -144,37 +334,12 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/3-interior.jpg"
-                        }
-                      ]
-                    }
-                  ],
-                  "layout": "imageOnRight"
-                },
-                {
-                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
-                  "typeHandle": "horizontalImageText",
-                  "textBlock": [
-                    {
-                      "__typename": "CraftAPI_textBlock_BlockType",
-                      "header": "",
-                      "copy": ""
-                    }
-                  ],
-                  "singleMedia": [
-                    {
-                      "__typename": "CraftAPI_singleMedia_BlockType",
-                      "autoplayVideo": false,
-                      "videoURL": null,
-                      "image": [
-                        {
-                          "__typename": "CraftAPI_s3_Asset",
                           "url": "https://cigarette-racing.imgix.net/4-interior.jpg"
                         }
                       ]
                     }
                   ],
-                  "layout": "imageOnLeft"
+                  "layout": "imageOnRight"
                 },
                 {
                   "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
@@ -199,7 +364,7 @@
                       ]
                     }
                   ],
-                  "layout": "imageOnRight"
+                  "layout": "imageOnLeft"
                 },
                 {
                   "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
@@ -224,7 +389,7 @@
                       ]
                     }
                   ],
-                  "layout": "imageOnLeft"
+                  "layout": "imageOnRight"
                 },
                 {
                   "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
@@ -249,7 +414,7 @@
                       ]
                     }
                   ],
-                  "layout": "imageOnRight"
+                  "layout": "imageOnLeft"
                 },
                 {
                   "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
@@ -274,7 +439,7 @@
                       ]
                     }
                   ],
-                  "layout": "imageOnLeft"
+                  "layout": "imageOnRight"
                 },
                 {
                   "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
@@ -299,7 +464,7 @@
                       ]
                     }
                   ],
-                  "layout": "imageOnRight"
+                  "layout": "imageOnLeft"
                 }
               ]
             },
@@ -312,7 +477,7 @@
               "headerImage": [
                 {
                   "__typename": "CraftAPI_s3_Asset",
-                  "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-1.jpg"
+                  "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-1b.jpg"
                 }
               ],
               "blocks": [
@@ -334,7 +499,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-11.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-1.jpg"
                         }
                       ]
                     }
@@ -359,7 +524,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-3.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-3.jpg"
                         }
                       ]
                     }
@@ -384,7 +549,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-4.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-4.jpg"
                         }
                       ]
                     }
@@ -409,7 +574,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-5.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-5.jpg"
                         }
                       ]
                     }
@@ -434,7 +599,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-6.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-6.jpg"
                         }
                       ]
                     }
@@ -459,7 +624,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-7.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-7.jpg"
                         }
                       ]
                     }
@@ -484,7 +649,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-8.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-8.jpg"
                         }
                       ]
                     }
@@ -509,7 +674,7 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-9.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-9.jpg"
                         }
                       ]
                     }
@@ -534,12 +699,177 @@
                       "image": [
                         {
                           "__typename": "CraftAPI_s3_Asset",
-                          "url": "https://cigarette-racing.imgix.net/52-Thunder-Exterior-10.jpg"
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-exterior-deck-080123-10.jpg"
                         }
                       ]
                     }
                   ],
                   "layout": "imageOnRight"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "dark",
+              "title": "Technology",
+              "shortTitle": "Technology",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/52-thunder-technology-1.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-technology-2.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-technology-3.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-technology-4.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-technology-5.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-technology-6.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "",
+                      "copy": ""
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/52-thunder-technology-7.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
                 }
               ]
             }

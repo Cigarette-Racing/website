@@ -9,11 +9,11 @@
           "boatLink": [
             {
               "__typename": "CraftAPI_boats_boats_Entry",
-              "slug": "59-tirranna",
+              "slug": "52-thunder",
               "boatMetadata": [
                 {
                   "__typename": "CraftAPI_boatMetadata_BlockType",
-                  "menuName": "59’ Tirranna"
+                  "menuName": "52’ Thunder"
                 }
               ]
             }
@@ -36,7 +36,7 @@
               "image": [
                 {
                   "__typename": "CraftAPI_s3_Asset",
-                  "url": "https://cigarette-racing.imgix.net/homepage-header.jpeg"
+                  "url": "https://cigarette-racing.imgix.net/52-thunder-lightning-hero.jpg"
                 }
               ]
             }
