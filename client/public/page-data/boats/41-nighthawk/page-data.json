@@ -1,0 +1,2922 @@
+{
+  "componentChunkName": "component---src-templates-boat-tsx",
+  "path": "/boats/41-nighthawk",
+  "result": {
+    "data": {
+      "craftAPI": {
+        "entry": {
+          "__typename": "CraftAPI_boats_boats_Entry",
+          "id": "5294",
+          "title": "41' Nighthawk",
+          "headline": "41' Nighthawk",
+          "slug": "41-nighthawk",
+          "boatNameLong": "41' Nighthawk",
+          "eyebrow": "Vision for the future",
+          "ctaText": null,
+          "singleMedia": [
+            {
+              "__typename": "CraftAPI_singleMedia_BlockType",
+              "alt": null,
+              "autoplayVideo": false,
+              "videoURL": null,
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41NightHawk_HeroBG.jpg"
+                }
+              ]
+            }
+          ],
+          "boatLogo": [
+            {
+              "__typename": "CraftAPI_s3_Asset",
+              "url": "https://cigarette-racing.imgix.net/41Nighthawk_logo.png"
+            }
+          ],
+          "gallery": [
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "NIGHTHAWK 01 29 2020 123",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-123.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-123.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "NIGHTHAWK 01 29 2020 155",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-155.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-155.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "NIGHTHAWK 01 29 2020 314",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-314.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-314.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "NIGHTHAWK 01 29 2020 373",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-373.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-373.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "NIGHTHAWK 01 29 2020 345 Profile",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-345_Profile.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-345_Profile.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "NIGHTHAWK 01 29 2020 458",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-458.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/NIGHTHAWK_01_29_2020_-458.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk hardtop shot 01",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-hardtop-shot-01.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-hardtop-shot-01.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk hardtop shot 02",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-hardtop-shot-02.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-hardtop-shot-02.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk hardtop shot 03",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-hardtop-shot-03.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-hardtop-shot-03.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk background 03",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-background-03.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-background-03.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk background 05",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-background-05.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-background-05.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk background 06",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-background-06.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-background-06.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk storage and convenience 01",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-storage-and-convenience-01.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-storage-and-convenience-01.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk gallery aft wide fwdfacing",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41Nighthawk-gallery-aft-wide-fwdfacing.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41Nighthawk-gallery-aft-wide-fwdfacing.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk storage and convenience 02",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-storage-and-convenience-02.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-storage-and-convenience-02.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "Nighthawk storage and convenience 03",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/nighthawk-storage-and-convenience-03.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/nighthawk-storage-and-convenience-03.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk gallery ladder",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41Nighthawk-gallery-ladder.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41Nighthawk-gallery-ladder.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "39 GTS1",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/39GTS1_2020-08-08-225150.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/39GTS1_2020-08-08-225150.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk2",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk2.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk2.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk3",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk3.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk3.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk4",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk4.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk4.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk5",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk5.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk5.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk gallery engines rigging",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41Nighthawk-gallery-engines-rigging.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41Nighthawk-gallery-engines-rigging.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk6",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk6.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk6.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk7",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk7.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk7.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk8",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk8.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk8.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk9",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk9.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk9.jpg"
+                }
+              ],
+              "videoURL": null
+            },
+            {
+              "__typename": "CraftAPI_multipleMedia_BlockType",
+              "image": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "title": "41 Nighthawk10",
+                  "thumbnail": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41-Nighthawk10.jpg",
+                  "full": "https://cigarette-racing.imgix.net/_2000xAUTO_crop_center-center_none/41-Nighthawk10.jpg"
+                }
+              ],
+              "videoURL": null
+            }
+          ],
+          "boatStats": [
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "statLabel": "length",
+              "statText": "41'",
+              "statPercentage": 70
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "statLabel": "beam",
+              "statText": "11'",
+              "statPercentage": 79
+            },
+            {
+              "__typename": "CraftAPI_boatStats_stat_BlockType",
+              "statLabel": "max horsepower",
+              "statText": "1,800hp",
+              "statPercentage": 70
+            }
+          ],
+          "bespokeOptions": [
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Telescoping Aft Sun Shade",
+                  "copy": "Aft face of hard top integrates a 5’ SureShade electric awning system capable of fully covering the aft cockpit area. Features Sunbrella fabric covering and the new quiet- glide motor."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Sunshade.jpg"
+                    }
+                  ],
+                  "label": "Electric Sunshade",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Sport Teak Flooring",
+                  "copy": "Synthetic flooring that can simulate teak or more modern finishes."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Sport-Teak.jpg"
+                    }
+                  ],
+                  "label": "Sport Teak",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Sport Paint Package",
+                  "copy": "Paint that extends beyond the rub rail but not into the interior gunnels. The consoles and side of the top is painted."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Sport-Paint.jpg"
+                    }
+                  ],
+                  "label": "Sport Paint",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Soft Deck Flooring",
+                  "copy": "EVA foam flooring."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Soft-Deck.jpg"
+                    }
+                  ],
+                  "label": "Soft Deck Flooring",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Cigarette Pure Plus",
+                  "copy": "The ultimate in marine audio with 23\" JL-Audio speakers and 5,000-watts of Class D amplification."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-JL-pure.jpg"
+                    }
+                  ],
+                  "label": "Cigarette Pure Plus",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Dual Row Seating",
+                  "copy": "Six person seating behind the helm."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options_dual_row2.jpg"
+                    }
+                  ],
+                  "label": "Dual Row Seating",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Power Adjustable Seating",
+                  "copy": "Up/Down power front helm seats with individual controls."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-AdjustableHelmSeating.jpg"
+                    }
+                  ],
+                  "label": "Power Adjustable Seating",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Front & Rear Facing Cameras",
+                  "copy": "Hardtop mounted forward and aft facing camera system."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-camera.jpg"
+                    }
+                  ],
+                  "label": "Front & Rear Cameras",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Garmin Convenience Package Upgrade",
+                  "copy": "9” Garmin MFDs, located at the bow and aft section, with access to the digital switching system, audio, apps and navigation."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Garmin-Conv.jpg"
+                    }
+                  ],
+                  "label": null,
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Cigarette Cool Fabric",
+                  "copy": "Upholstery upgrade which dissipates heat up to 30%, allowing for darker colors to be used more comfortably."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Cool-Fabric.jpg"
+                    }
+                  ],
+                  "label": "Cigarette Cool",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Bow Thruster",
+                  "copy": "Bow thruster package with helm control"
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Bow-Thruster-Render-Image.jpg"
+                    }
+                  ],
+                  "label": "Bow Thruster",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Windlas System",
+                  "copy": "Integrated windlass system."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-anchor.jpg"
+                    }
+                  ],
+                  "label": "Windlas System",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Radar",
+                  "copy": "Garmin enclosed dome radar system."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Radar-gmr-24-copy.jpg"
+                    }
+                  ],
+                  "label": "Radar",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Gost Theft Deterrent System",
+                  "copy": "Anti-theft system."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-_Gost-logo.jpg"
+                    }
+                  ],
+                  "label": "Gost Theft Deterrent",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Garmin Auto-Pilot",
+                  "copy": "Garmin auto-pilot system."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41_Nighthawk_Options-Garmin-autopilot-logo.png"
+                    }
+                  ],
+                  "label": "Garmin Auto-Pilot",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Electric Telescoping Forward Table",
+                  "copy": "Electronically controlled three-stage table (floor, sun-pad height and dining height) with removable sun-pad cushion."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/Options-Generic-v2.jpg"
+                    }
+                  ],
+                  "label": "Electric Telescoping Forward Table",
+                  "title": null
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_bespokeOptions_option_BlockType",
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "Underwater Camera",
+                  "copy": "Underwater downward facing camera."
+                }
+              ],
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/Options-Generic-v2.jpg"
+                    }
+                  ],
+                  "label": "Underwater Camera",
+                  "title": null
+                }
+              ]
+            }
+          ],
+          "bespokeBackgroundImage": [
+            {
+              "__typename": "CraftAPI_s3_Asset",
+              "url": "https://cigarette-racing.imgix.net/discover-section-bg.jpeg"
+            }
+          ],
+          "bespokeSectionCustomTitle": "Bespoke Possibilities",
+          "bespokeSectionCustomSubtitle": "Make it yours.",
+          "powertrainOptionsHeader": [
+            {
+              "__typename": "CraftAPI_s3_Asset",
+              "url": "https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/41NightHawk_05_PowerTrains.jpg"
+            }
+          ],
+          "powertrainOptions": [
+            {
+              "__typename": "CraftAPI_powertrainOptions_option_BlockType",
+              "textBlockHeader": "4X Mercury 350 Verados",
+              "children": [
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "350HP (257kW)",
+                  "textBlockHeader": "Rated Power"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "89-Octane",
+                  "textBlockHeader": "Fuel"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "2.6L",
+                  "textBlockHeader": "Displacement"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_powertrainOptions_option_BlockType",
+              "textBlockHeader": "4X Mercury 400 Verados",
+              "children": [
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "400HP (298kW)",
+                  "textBlockHeader": "Rated Power"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "89-Octane",
+                  "textBlockHeader": "Fuel"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "2.6L",
+                  "textBlockHeader": "Displacement"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_powertrainOptions_option_BlockType",
+              "textBlockHeader": "4X Mercury Racing 400 Verados",
+              "children": [
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "400HP (298kW)",
+                  "textBlockHeader": "Rated Power"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "89-Octane",
+                  "textBlockHeader": "Fuel"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "2.6L",
+                  "textBlockHeader": "Displacement"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_powertrainOptions_option_BlockType",
+              "textBlockHeader": "4X Mercury 450 Verados",
+              "children": [
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "450HP (336kW)",
+                  "textBlockHeader": "Rated Power"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "89-Octane",
+                  "textBlockHeader": "Fuel"
+                },
+                {
+                  "__typename": "CraftAPI_powertrainOptions_optionDetail_BlockType",
+                  "textBlockCopy": "4.6L",
+                  "textBlockHeader": "Displacement"
+                }
+              ]
+            }
+          ],
+          "powertrainMoreDetails": [],
+          "discoverSection": [
+            {
+              "__typename": "CraftAPI_discoverSection_discoverSection_BlockType",
+              "disableBackground": true,
+              "singleMedia": [
+                {
+                  "__typename": "CraftAPI_singleMedia_BlockType",
+                  "autoplayVideo": false,
+                  "videoURL": null,
+                  "image": [
+                    {
+                      "__typename": "CraftAPI_s3_Asset",
+                      "id": "73954",
+                      "url": "https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/41NightHawk_Intro-2.jpg"
+                    }
+                  ]
+                }
+              ],
+              "textBlock": [
+                {
+                  "__typename": "CraftAPI_textBlock_BlockType",
+                  "header": "A pure expression",
+                  "copy": "The brand new 41' Nighthawk is designed to let you travel is true Cigarette style. The Nighthawk offers the latest Cigarette design language, with its all new hard top. Loaded with the latest technology, the Nighthawk is as luxurious as it is thrilling to drive."
+                }
+              ]
+            }
+          ],
+          "flexibleSections": [
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "light",
+              "title": "Performance",
+              "shortTitle": "Performance",
+              "bleedDirection": "right",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/41NightHawk_01_Large-2.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Performance meets comfort",
+                      "copy": "Cigarette proves yet again that high performance and comfort do not have to be mutually exclusive. The 41’Nighthawk provides direct, unadulterated, performance combined with the comfort that is like no other center console."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_carousel_BlockType",
+                  "typeHandle": "carousel",
+                  "fullWidth": true,
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_01_Slider_01.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_01_Slider_02.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_01_Slider_03.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Twin-Step Hull Design",
+                      "copy": "The Nighthawk draws on Cigarette’s advanced- engineered twin step hull design to match unprecedented performance with unyielding comfort. A low, aggressive center of gravity and an all carbon-fiber hardtop design further improve handling, while intelligent use of composite materials and proprietary construction techniques improve vibration dampening and structural integrity for enhanced comfort in even the most compromised conditions."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "dark",
+              "title": "Technology",
+              "shortTitle": "Technology",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/41Nighthawk_02_Helm-2020-10_2020-10-06-183918.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Advanced Helm",
+                      "copy": "The helm features three Garmin 8617 chartplotters flush mounted to an instrument panel CNC cut from a solid block of aluminum. The nano-coated instrument panel face is resistant to heat, reflections and fingerprints, and the perimeter of the panel is lit by RGB LED accent lighting to provide a distinct glow, creating the illusion that the dash is floating. The helm integrates cup holders and two glove boxes. Passengers can feel secure with stainless steel grab bars, and be in total comfort with an ergonomic CNC machined footrest."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Digital Switching & Automation",
+                      "copy": "The Nighthawk features a state of the art digital switching system, making control of vessel functions a breeze. This offers simple control of all systems on board, including automatic sequential engine starting with a single button push."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/41NightHawk_02_DigitalSwitching.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Billet Elements",
+                      "copy": "Cigarette’s attention to detail and dedication to perfection is prominently on display in its CNC milled aluminum pieces. Our signature four-step production process includes nearly 4-hours of machining and almost 14-hours of anodization.  The machined details provide a strong, stable completed component, while anodization produces a vibrant, corrosion resistant finish."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/41NightHawk_02_Billet.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Optional Adjustable Helm Seating",
+                      "copy": "The ergonomic helm seating is constructed with multi-density foam for comfort both at dock and underway.  Each of the three electric forward helm seats are independently adjustable up and down, allowing for comfort to a myriad of different sized people. Additionally, the seat bottoms can flip up to convert the standard seating into bolsters."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/41NightHawk_02_Helm_2020-08-22-022943.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Wind Mitigation Doors",
+                      "copy": "Enjoy less wind at the helm seating when cruising by extending the recessed wind doors located on either side of the helm."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/41-wind-doors-2020-10-18.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_carousel_BlockType",
+                  "typeHandle": "carousel",
+                  "fullWidth": true,
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Lighting Without Limits",
+                          "copy": "Enjoy full-spectrum RGB, zoned, lighting - all controlled from the Garmin multifunctional displays. A digitally controlled RGB ambient lighting system powers LED lighting through the deck with near infinite color variations. This technology extends seamlessly into an underwater RGB system with full spectrum control to create the perfect ambiance for a night on the water. High powered LED down lights in the hardtop, along with red captains lighting, provide general and night task lighting"
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": true,
+                          "videoURL": "",
+                          "image": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Lighting Without Limits",
+                      "copy": "Enjoy full-spectrum RGB, zoned, lighting - all controlled from the Garmin multifunctional displays. A digitally controlled RGB ambient lighting system powers LED lighting through the deck with near infinite color variations. This technology extends seamlessly into an underwater RGB system with full spectrum control to create the perfect ambiance for a night on the water. High powered LED down lights in the hardtop, along with red captains lighting, provide general and night task lighting"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_carousel_BlockType",
+                  "typeHandle": "carousel",
+                  "fullWidth": true,
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_02_lighting-fwd-white_2020-10-13-190713.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_02_lighting-fwd-turq_2020-10-13-190722.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_02_lighting-fwd-purple_2020-10-13-190730.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_02_lighting-fwd-green_2020-10-13-190745.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_02_lighting-fwd-blue_2020-10-13-190753.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_02_lighting-fwd-blue-yellow_2020-10-13-190802.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Audio Systems",
+                      "copy": "Cigarette relies on the leader in the industry, JL Audio Marine, to meet our client’s pressing demand for the perfect, audiophile quality systems that can withstand the rigors of the sea, wind and open throttle. Our sound systems are tested in each model to ensure it is appropriate to the boat size and seating configuration to compliment precise and authentic playback of any music genre."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/41NightHawk_02_AudioSystems-2.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_moreDetails_BlockType",
+                  "typeHandle": "moreDetails",
+                  "textBlockHeader": null,
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                      "id": "87583",
+                      "horizontalLayout": "imageOnLeft",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "JL AUDIO X CIGARETTE RACING",
+                          "copy": "For the finest marine sound systems, Cigarette relies on the leader in the industry, JL Audio Marine. To meet Cigarette's pressing demand for the perfect, audiophile quality, systems that can withstand the rigors of the sea, wind and open cockpits -- JL Audio Marine engineers designed and built a sound system so clean and so clear that it was named\n\"Cigarette PURE\"."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "id": "87584",
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "id": "87580",
+                              "url": "https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/JL-Audio_2020-08-24-001015.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Garmin Convenience",
+                      "copy": "The optional Garmin Convenience Package can extend control centers beyond the helm, offering digital switching control at the bow and aft conversational area."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/41NightHawk_02_Garmin_2020-08-22-023520.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_moreDetails_BlockType",
+                  "typeHandle": "moreDetails",
+                  "textBlockHeader": null,
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                      "id": "87587",
+                      "horizontalLayout": "imageOnLeft",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "GARMIN & CIGARETTE RACING",
+                          "copy": "Garmin’s bold willingness to break industry trends and produce a full touch screen technology was polarizing for most; however, Cigarette embraced the innovation with open arms.  It was clear Garmin and Cigarette shared a common vision that has led to a successful technology partnership centered on setting the industry benchmark for navigation, communication and instrumentation systems.  \n\nToday, the Garmin x Cigarette partnership has proudly delivered industry-leading solutions that seamlessly integrate with Mercury Racing and Mercury propulsion systems to simplify operation through ergonomic and intuitive controls.  \n\nCigarette is proud to be the first manufacturer to be Garmin Certified.  Through this partnership, we’re committed to testing and featuring Garmin’s latest innovations and pushing boundaries through open-minded design and a thirst for advancement."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "id": "87588",
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "id": "87581",
+                              "url": "https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/Garmin_2020-08-24-001100.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "light",
+              "title": "Hardtop",
+              "shortTitle": "Hardtop",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/41NightHawk_03_Large_2020-12-22-200635.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "An athletic hardtop",
+                      "copy": "It's sculptured form creates an athletic disposition, alluding to the capabilities of this puristic center console.\n\nThe four-pillar exclusive hardtop was skillfully engineered to provide a lower center of gravity for increased performance and comfort without compromising a beautiful design aesthetic. The four-pillar, all carbon-fiber hardtop features a wide, double-curvature, frameless clear-laminated safety glass windscreen offering exceptional wind protection. Integrated flood lights, boarding handrails, full-spectrum ambient lighting, as well as optional electrically actuated sun shade make this a pronounced and puristic center console."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                  "typeHandle": "oneColumnImageTextBlock",
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "alt": null,
+                      "label": null,
+                      "autoplayVideo": true,
+                      "videoURL": "",
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/_2400xAUTO_crop_center-center_none/41NightHawk_03_SureShade.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Sunshade",
+                      "copy": "The Nighthawk hardtop offers an optional electrically actuated sun shade. At the press of a button, the shade will cover the aft entertainment area. All done and ready to get underway? Simply press the \"shade in\" button on your Garmin display and it will retract into the hardtop."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "dark",
+              "title": "Deck",
+              "shortTitle": "Deck",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/41NightHawk_04_Deck_Large-2.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Comfort & Layout",
+                      "copy": "The all new upholstery takes the hand-crafted Cigarette upholstery to a whole new level, with multi-layered foams and highly detailed quilted patterns. The Cigarette Cool upgrade allows for dark colors to be used in sunlight while the fabric remains cool to the touch."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_carousel_BlockType",
+                  "typeHandle": "carousel",
+                  "fullWidth": true,
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_04_Slider-01-aft-fwd.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_04_Slider-02-deck-aft-looking-at-transom-sized_2020-10-13-180632.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_04_Slider-03-deck-fwd-section-three-quarter-sized_2020-10-13-180649.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_04_Slider-04-u-shaped-fwd-facing_2020-10-13-180705.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_04_Slider-05_2020-10-08-195143.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_04_Slider-06_2020-10-08-195150.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": null,
+                          "copy": null
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk-04_Slider_07-gallery-aft-conv-area-sized_2020-10-13-180717.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_threeColumnImagesBlock_BlockType",
+                  "typeHandle": "threeColumnImagesBlock",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_image_BlockType",
+                      "typeHandle": "image",
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "label": "Night Hawk Dive Door",
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41NightHawk_DiveDoor-03.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_image_BlockType",
+                      "typeHandle": "image",
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "label": "Night Hawk Dive Door",
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41NightHawk_DiveDoor-02.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_image_BlockType",
+                      "typeHandle": "image",
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "label": "Night Hawk Dive Door",
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/_1000xAUTO_crop_center-center_none/41NightHawk_DiveDoor-01.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_oneColumnTextBlock_BlockType",
+                  "typeHandle": "oneColumnTextBlock",
+                  "align": null,
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Dive Door",
+                      "copy": "Go for a swim from the inward swinging dive door with integrated ladder and stainless steel grab bar for easy, comfortable access in and out of the water."
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_sliderBlock_BlockType",
+                  "typeHandle": "sliderBlock",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Storage",
+                          "copy": "A place for everything.  The combings feature integrated storage for four fenders, room for shoes and personal belongings, and trash. These latched compartments bring convenient storage up to arm height. There is also floor storage, forward combing box storage, and storage below the U-shaped seating at the bow."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_04_Storage_2020-12-22-191924.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Storage",
+                          "copy": "A place for everything.  The combings feature integrated storage for four fenders, room for shoes and personal belongings, and trash. These latched compartments bring convenient storage up to arm height. There is also floor storage, forward combing box storage, and storage below the U-shaped seating at the bow."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/3x2.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Storage",
+                          "copy": "A place for everything.  The combings feature integrated storage for four fenders, room for shoes and personal belongings, and trash. These latched compartments bring convenient storage up to arm height. There is also floor storage, forward combing box storage, and storage below the U-shaped seating at the bow."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/3x2-1.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Storage",
+                          "copy": "A place for everything.  The combings feature integrated storage for four fenders, room for shoes and personal belongings, and trash. These latched compartments bring convenient storage up to arm height. There is also floor storage, forward combing box storage, and storage below the U-shaped seating at the bow."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/3x2-2.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Storage",
+                          "copy": "A place for everything.  The combings feature integrated storage for four fenders, room for shoes and personal belongings, and trash. These latched compartments bring convenient storage up to arm height. There is also floor storage, forward combing box storage, and storage below the U-shaped seating at the bow."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_04_Storage_aft-seat.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Storage",
+                          "copy": "A place for everything.  The combings feature integrated storage for four fenders, room for shoes and personal belongings, and trash. These latched compartments bring convenient storage up to arm height. There is also floor storage, forward combing box storage, and storage below the U-shaped seating at the bow."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_04_Storage_rear-facing-seat.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "light",
+              "title": "Cabin",
+              "shortTitle": "Cabin",
+              "bleedDirection": "left",
+              "headerImage": [
+                {
+                  "__typename": "CraftAPI_s3_Asset",
+                  "url": "https://cigarette-racing.imgix.net/41Nighthawk_04-cabin-low-aft-facing-b-sized.jpg"
+                }
+              ],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Cabin",
+                      "copy": "The cabin offers over 6' of headroom, luxurious cabinetry, a bed, storage, sink, and a vacu-flush head. Even a purpose built day-boat should have a place to rest your head for a nap - and the Nighthawk offers just that."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/41Nighthawk_04-cabin-bed-sized.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnLeft"
+                },
+                {
+                  "__typename": "CraftAPI_flexibleSections_horizontalImageText_BlockType",
+                  "typeHandle": "horizontalImageText",
+                  "textBlock": [
+                    {
+                      "__typename": "CraftAPI_textBlock_BlockType",
+                      "header": "Main Distribution Panel",
+                      "copy": "Ergonomically designed main distribution panel located conveniently just inside the door."
+                    }
+                  ],
+                  "singleMedia": [
+                    {
+                      "__typename": "CraftAPI_singleMedia_BlockType",
+                      "autoplayVideo": false,
+                      "videoURL": null,
+                      "image": [
+                        {
+                          "__typename": "CraftAPI_s3_Asset",
+                          "url": "https://cigarette-racing.imgix.net/41Nighthawk_04-gallery-MDP-sized.jpg"
+                        }
+                      ]
+                    }
+                  ],
+                  "layout": "imageOnRight"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_flexibleSections_flexibleSection_BlockType",
+              "theme": "dark",
+              "title": "Paint",
+              "shortTitle": "Paint",
+              "bleedDirection": "left",
+              "headerImage": [],
+              "blocks": [
+                {
+                  "__typename": "CraftAPI_flexibleSections_carousel_BlockType",
+                  "typeHandle": "carousel",
+                  "fullWidth": false,
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Paint",
+                          "copy": "Paint is integral to every Cigarette.  Keep it simple with a fully painted hillside with bootstripe or engage our modern design solutions and advanced application methods to explore boundless options for customizing your boats to exacting measures, while providing the highest quality in UV protection and scratch and fade resistance."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_05_Paint-profile-raised-red-gray-black-sized_2020-10-13-193638.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Paint",
+                          "copy": "Paint is integral to every Cigarette.  Keep it simple with a fully painted hillside with bootstripe or engage our modern design solutions and advanced application methods to explore boundless options for customizing your boats to exacting measures, while providing the highest quality in UV protection and scratch and fade resistance."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41Nighthawk_05_Paint-blue-and-black-raised-profile-sized.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Paint",
+                          "copy": "Paint is integral to every Cigarette.  Keep it simple with a fully painted hillside with bootstripe or engage our modern design solutions and advanced application methods to explore boundless options for customizing your boats to exacting measures, while providing the highest quality in UV protection and scratch and fade resistance."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_05_Paint_3.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Paint",
+                          "copy": "Paint is integral to every Cigarette.  Keep it simple with a fully painted hillside with bootstripe or engage our modern design solutions and advanced application methods to explore boundless options for customizing your boats to exacting measures, while providing the highest quality in UV protection and scratch and fade resistance."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_05_Paint_5-2020-12-22.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Paint",
+                          "copy": "Paint is integral to every Cigarette.  Keep it simple with a fully painted hillside with bootstripe or engage our modern design solutions and advanced application methods to explore boundless options for customizing your boats to exacting measures, while providing the highest quality in UV protection and scratch and fade resistance."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_05_Paint_6-2020-12-22.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "__typename": "CraftAPI_flexibleSections_oneColumnImageTextBlock_BlockType",
+                      "textBlock": [
+                        {
+                          "__typename": "CraftAPI_textBlock_BlockType",
+                          "header": "Paint",
+                          "copy": "Paint is integral to every Cigarette.  Keep it simple with a fully painted hillside with bootstripe or engage our modern design solutions and advanced application methods to explore boundless options for customizing your boats to exacting measures, while providing the highest quality in UV protection and scratch and fade resistance."
+                        }
+                      ],
+                      "singleMedia": [
+                        {
+                          "__typename": "CraftAPI_singleMedia_BlockType",
+                          "autoplayVideo": false,
+                          "videoURL": null,
+                          "image": [
+                            {
+                              "__typename": "CraftAPI_s3_Asset",
+                              "url": "https://cigarette-racing.imgix.net/41NightHawk_05_Paint_2020-10-13-193908.jpg"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "boatSpecs": [
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_spec_BlockType" },
+            { "__typename": "CraftAPI_boatSpecs_description_BlockType" }
+          ],
+          "boatFeatures": [
+            {
+              "__typename": "CraftAPI_boatFeatures_featureCategory_BlockType",
+              "boatFeatureCategory": "Deck",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "BOW, GUNWALE & HULL SIDE",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Wide profile rub rail with stainless chafe profile"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Stainless steel continuous grab rail runs the length of the boat"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Large, inboard swinging, single-piece, dive door on starboard side with hidden fold-out diving ladder and handrail"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "10 stainless steel cleats"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "BOW AREA",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "U shaped seating"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Dual, aft facing, benches sitting two each"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "8 stainless steel cupholders around U-shaped forward sofa"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Weathertight storage boxes underneath each seat"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "FORWARD LOUNGE AREA",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Wide lounge seat at front of center console comfortably seats three and features a centered foldable armrest and stainless steel cupholders"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "“Zero gravity” ergonomic forming of the lounge increases comfort both underway and at port"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "Hardtop",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Unique, carbon-fiber composite, four-pillar, hardtop design provides dramatic aesthetics while also lowering the center of gravity of the vessel"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Wide, double curvature, frameless windscreen with clear laminated safety glass"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Mercury VesselView 903 and switching located above helm on the hard top"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Rigid Industries high output floodlights are integrated into the top for powerful forward lighting."
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Aft spoiler with signature Cigarette rise"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Boarding handrails on back of B pillar and underside of top provide easy access from high docks"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "Helmstation",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "All new floating instrument panel constructed from a solid block of aluminum and anodized"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Nano-coated instrument panel face which is resistant to heat, reflections and fingerprints"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "RGB LED accent lighting around the instrument panel provides a distinct glow, creating the illusion that the dash is floating"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Wind doors on each side for added wind protection, constructed from carbon-fiber"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Ergonomically placed components and instrumentation"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Triple flush mounted Garmin 8617 multifunctional displays"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Convenience space consisting of cupholders, phone holders, and a keeper tray holder Stainless grab-rails"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Ergonomic CNC machined footrest"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "Midship Storage",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Integrated fender storage in gunnels, with ability to store 4x 8” fenders"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Integrated trash receptacle in gunnel, with trash bag holder"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Shoe storage cabinet"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Forward combing boxes for additional storage"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Large floor storage located on both port and starboard side"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "HELM SEATING AREA",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Three seat helm seating, with central drivers seat"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Seat bottoms may be flipped up to form a bolster for more comfortable stand-up operation"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "AFT LOUNGE AREA",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Unique lounge arrangement with forward facing oversized L-shaped sofa and aft facing sofa"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Forward facing sofa has two armrests with integrated cupholders"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Eight cupholders are conveniently located in this area, including inside a recessed cubby by the L-shaped sofa"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Large machinery hatch gives full access to technical room below"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Storage box under port side L-shaped seating"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Flip down port side boarding step integrated into the combing pads"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatFeatures_featureCategory_BlockType",
+              "boatFeatureCategory": "Interiors",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "CABIN - GENERAL",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Port-side access to cabin"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Redesigned luxury interior"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "CNC cut wood cabinets"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "CNC cut Corian countertop"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Stainless steel freshwater sink"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Electric head"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Polished towel and toilet paper holders"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "CABIN LIGHTING",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Distributed, warm white, high CRI, ceiling spotlights are provided in the cabin"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "CABIN - BED AREA",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Two passenger sleeping berth"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatFeatures_featureCategory_BlockType",
+              "boatFeatureCategory": "Detail",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "UPHOLSTERY & FLOORING",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Upholstery is in premium quality outdoor fabrics"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Diamond pattern non-skid"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "EXTERIOR LIGHTING",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Digitally controlled RGB ambient lighting"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "High power LED down-lights are installed in the hardtop for general and task lighting"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Red captains lighting for night tasks"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "3x underwater lights"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatFeatures_featureCategory_BlockType",
+              "boatFeatureCategory": "Technical",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "CIGARETTE PREMIUM AUDIO BY JL AUDIO MARINE",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "6x 8.8” JL Audio M Series coaxial speakers, plus 2 x 12” and 1x10” JL Audio M subwoofers on deck"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "2,400 watts of Class D amplification"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Fusion Apollo network head unit"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "2x 7.7” JL Audio M Series cabin speakers powered by Apollo head unit"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "DIGITAL SWITCHING & AUTOMATION",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "State-of-the-art CZone digital control and monitoring system"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Control of almost every vessel function through several touch screen displays on the boat"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Single button “scenes” which activate preset conditions such as day cruising, night cruising, at the dock or entertaining"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Lighting, including dimming, can be adjusted across the boat with a single keystroke from any MFD throughout the vessel"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "CZone monitoring allows the operator to monitor water and diesel fuel (if optioned) directly and fuel level via the NMEA2000 network"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Automatic sequential engine starting with a single button push on the Garmin display"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Individual engine trim control through Mercury integration"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Manual bypass toggle switches for critical systems"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "All digital switching output modules feature a two position fuse holder that allows bypass of the output directly by moving the fuse to the alternate position for get-home capability"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Power source selection conveniently located in the main distribution panel"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Individual branch circuit breakers and monitoring boards are strategically located out of sight but within easy reach"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Circuits can be turned on or off from one or more of the Garmin MFD displays around the boat"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "ELECTRICAL SYSTEM DESIGN",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Split DC electrical system designed to protect the start battery pack and provide multiple power feeds for critical systems such as navigation"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Standalone engine starting and power steering circuits"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Automatic battery switches with manual paralleling"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "House battery system designed to minimize weight and maximize powering of house loads"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Bilge pumps, drain sumps and the wireless remote to CZone are all fed directly from the house battery bank with reset only circuit breakers so that these critical circuits can’t be accidentally turned off"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "House bank charging is accomplished by dedicated ProMariner 1260 battery charger"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "30-Amp shore power"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "LAMINATE QUALITY",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Hull and deck are vacuum bagged and use a highly optimized laminate schedule with vinylester resin"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Balsa cored hull and deck, foam cored hardtop"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Over 7” thick high density transom"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Carbon-fiber hard top to reduce the center of gravity for better handling"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Two sided, completely finished, hatches throughout"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "MERCURY POWER & CONTROL",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Quad Mercury Racing or Mercury Verado outboards"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Four engines can be controlled by just two levers"
+                    },
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "New VesselView UI"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "CraftAPI_boatFeatures_feature_BlockType",
+                  "boatFeatureName": "PAINT",
+                  "children": [
+                    {
+                      "__typename": "CraftAPI_boatFeatures_description_BlockType",
+                      "boatFeatureDescription": "Painted hullside with bootstripe included"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "boatSpecifications": [
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "LOA",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "12.5-m",
+                  "specificationValueUS": "41-ft"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "LOA with Outboards",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "13.5-m (engines down)",
+                  "specificationValueUS": "44-ft 3-inch (engines down)"
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "13.9-m (engines down)",
+                  "specificationValueUS": "45-ft 6-inch (engines up)"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Beam",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "3.4-m",
+                  "specificationValueUS": "11-ft"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Weight",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "7080-kg",
+                  "specificationValueUS": "15,600-lbs"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Fuel Capacity",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "1325-L",
+                  "specificationValueUS": "350-gal"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Fresh Water",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "95-L",
+                  "specificationValueUS": "25-gal"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Black Water",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "34-L",
+                  "specificationValueUS": "9-gal"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Draft",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "86-cm (engines down)",
+                  "specificationValueUS": "34-inch (engines down)"
+                },
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "61-cm (engines up)",
+                  "specificationValueUS": "24-inch (engines up)"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Deadrise",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "20-deg",
+                  "specificationValueUS": "20-deg"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Airdraft with Radar",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "2.8-m",
+                  "specificationValueUS": "9' 1\""
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Airdraft without Radar",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "2.6-m",
+                  "specificationValueUS": "8-ft 5-inch"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Height with Radar",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "3.4-m",
+                  "specificationValueUS": "11-ft"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Height without Radar",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "3.2-m",
+                  "specificationValueUS": "10-ft 4-inch"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Trailer Height with Radar",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "3.9-m",
+                  "specificationValueUS": "12-ft 9-inch"
+                }
+              ]
+            },
+            {
+              "__typename": "CraftAPI_boatSpecifications_specificationName_BlockType",
+              "specificationLabel": "Trailer Height without Radar",
+              "children": [
+                {
+                  "__typename": "CraftAPI_boatSpecifications_specificationValue_BlockType",
+                  "specificationValueMetric": "3.7-m",
+                  "specificationValueUS": "12-ft 1-inch"
+                }
+              ]
+            }
+          ],
+          "orderSectionTitle": "See your Future",
+          "orderSectionShortTitle": "Reserve",
+          "orderSectionBackground": [
+            {
+              "__typename": "CraftAPI_s3_Asset",
+              "url": "https://cigarette-racing.imgix.net/_2800xAUTO_crop_center-center_none/41NightHawk_05_Paint_2.jpg"
+            }
+          ]
+        }
+      }
+    },
+    "pageContext": {
+      "slug": "/boats/41-nighthawk",
+      "craftSlug": "41-nighthawk"
+    }
+  },
+  "staticQueryHashes": [
+    "1748105593",
+    "2448486367",
+    "2758755085",
+    "2882596497",
+    "3358872553"
+  ]
+}
